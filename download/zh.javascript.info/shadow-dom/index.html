@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">影子 DOM（Shadow DOM）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/shadow-dom"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="影子 DOM（Shadow DOM）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="影子 DOM（Shadow DOM）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/custom-elements"><link rel="next" href="/template-element"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="影子 DOM（Shadow DOM）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/shadow-dom"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/shadow-dom"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/shadow-dom"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/shadow-dom"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/shadow-dom"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/shadow-dom"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/shadow-dom"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/shadow-dom">English</option><option value="https://es.javascript.info/shadow-dom">Español</option><option value="https://fr.javascript.info/shadow-dom">Français</option><option value="https://id.javascript.info/shadow-dom">Indonesia</option><option value="https://it.javascript.info/shadow-dom">Italiano</option><option value="https://ja.javascript.info/shadow-dom">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/shadow-dom">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/shadow-dom" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="7" data-tooltip="第 3/7 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../web-components/index.html"><span>Web components</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"Web components","item":"https://zh.javascript.info/web-components"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 28日 七月 2019"><div class="updated-at__content">28日 七月 2019</div></div></div><h1 class="main__header-title">影子 DOM（Shadow DOM）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="影子 DOM（Shadow DOM）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>Shadow DOM 为封装而生。它可以让一个组件拥有自己的「影子」DOM 树，这个 DOM 树不能在主文档中被任意访问，可能拥有局部样式规则，还有其他特性。</p>
+<h2><a class="main__anchor" name="nei-jian-shadowdom" href="#nei-jian-shadowdom">内建 shadow DOM</a></h2><p>你是否曾经思考过复杂的浏览器控件是如何被创建和添加样式的？</p>
+<p>比如 <code>&lt;input type=&quot;range&quot;&gt;</code>：</p>
+<p>
+<input type="range">
+</p>
+<p>浏览器在内部使用 DOM/CSS 来绘制它们。这个 DOM 结构一般来说对我们是隐藏的，但我们可以在开发者工具里面看见它。比如，在 Chrome 里，我们需要打开「Show user agent shadow DOM」选项。</p>
+<p>然后 <code>&lt;input type=&quot;range&quot;&gt;</code> 看起来会像这样：</p>
+<figure><div class="image" style="width:471px">
+      <div class="image__ratio" style="padding-top:30.78556263269639%"></div>
+      <img src="../article/shadow-dom/shadow-dom-range.png" alt width="471" height="145" class="image__image">
+      </div></figure><p>你在 <code>#shadow-root</code> 下看到的就是被称为「shadow DOM」的东西。</p>
+<p>我们不能使用一般的 JavaScript 调用或者选择器来获取内建 shadow DOM 元素。它们不是常规的子元素，而是一个强大的封装手段。</p>
+<p>在上面的例子中，我们可以看到一个有用的属性 <code>pseudo</code>。这是一个因为历史原因而存在的属性，并不在标准中。我们可以使用它来给子元素加上 CSS 样式，像这样：</p>
+<div id="x37kqs94q8" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+/* 让滑块轨道变红 */
+input::-webkit-slider-runnable-track {
+  background: red;
+}
+&lt;/style&gt;
+
+&lt;input type=&quot;range&quot;&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-x37kqs94q8" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>重申一次，<code>pseudo</code> 是一个非标准的属性。按照时间顺序来说，浏览器首先实验了使用内部 DOM 结构来实现控件，然后，在一段时间之后，shadow DOM 才被标准化来让我们，开发者们，做类似的事。</p>
+<p>接下来，我们将要使用现代 shadow DOM 标准，它在 <a href="https://dom.spec.whatwg.org/#shadow-trees">DOM spec</a> 和其他相关标准中可以被找到。</p>
+<h2><a class="main__anchor" name="shadowtree" href="#shadowtree">Shadow tree</a></h2><p>一个 DOM 元素可以有以下两类 DOM 子树：</p>
+<ol>
+<li>Light tree（光明树） —— 一个常规 DOM 子树，由 HTML 子元素组成。我们在之前章节看到的所有子树都是「光明的」。</li>
+<li>Shadow tree（影子树） —— 一个隐藏的 DOM 子树，不在 HTML 中反映，无法被察觉。</li>
+</ol>
+<p>如果一个元素同时有以上两种子树，那么浏览器只渲染 shadow tree。但是我们同样可以设置两种树的组合。我们将会在后面的章节 <a href="../slots-composition/index.html">Shadow DOM 插槽，组成</a> 中看到更多细节。</p>
+<p>影子树可以在自定义元素中被使用，其作用是隐藏组件内部结构和添加只在组件内有效的样式。</p>
+<p>比如，这个 <code>&lt;show-hello&gt;</code> 元素将它的内部 DOM 隐藏在了影子里面：</p>
+<div id="ifcn403shl" data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('show-hello', class extends HTMLElement {
+  connectedCallback() {
+    const shadow = this.attachShadow({mode: 'open'});
+    shadow.innerHTML = `&lt;p&gt;
+      Hello, ${this.getAttribute('name')}
+    &lt;/p&gt;`;
+  }
+});
+&lt;/script&gt;
+
+&lt;show-hello name=&quot;John&quot;&gt;&lt;/show-hello&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-ifcn403shl" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>这就是在 Chrome 开发者工具中看到的最终样子，所有的内容都在「#shadow-root」下：</p>
+<figure><div class="image" style="width:255px">
+      <div class="image__ratio" style="padding-top:27.84313725490196%"></div>
+      <img src="../article/shadow-dom/shadow-dom-say-hello.png" alt width="255" height="71" class="image__image">
+      </div></figure><p>首先，调用 <code>elem.attachShadow({mode: …})</code> 可以创建一个 shadow tree。</p>
+<p>这里有两个限制：</p>
+<ol>
+<li>在每个元素中，我们只能创建一个 shadow root。</li>
+<li><code>elem</code> 必须是自定义元素，或者是以下元素的其中一个：「article」、「aside」、「blockquote」、「body」、「div」、「footer」、「h1…h6」、「header」、「main」、「nav」、「p」、「section」或者「span」。其他元素，比如 <code>&lt;img&gt;</code>，不能容纳 shadow tree。</li>
+</ol>
+<p><code>mode</code> 选项可以设定封装层级。他必须是以下两个值之一：</p>
+<ul>
+<li>
+<p><code>「open」</code> —— shadow root 可以通过 <code>elem.shadowRoot</code> 访问。</p>
+<p>任何代码都可以访问 <code>elem</code> 的 shadow tree。</p>
+</li>
+<li>
+<p><code>「closed」</code> —— <code>elem.shadowRoot</code> 永远是 <code>null</code>。</p>
+<p>我们只能通过 <code>attachShadow</code> 返回的指针来访问 shadow DOM（并且可能隐藏在一个 class 中）。浏览器原生的 shadow tree，比如 <code>&lt;input type=&quot;range&quot;&gt;</code>，是封闭的。没有任何方法可以访问它们。</p>
+</li>
+</ul>
+<p><code>attachShadow</code> 返回的 <a href="https://dom.spec.whatwg.org/#shadowroot">shadow root</a>，和任何元素一样：我们可以使用 <code>innerHTML</code> 或者 DOM 方法，比如 <code>append</code> 来扩展它。</p>
+<p>我们称有 shadow root 的元素叫做「shadow tree host」，可以通过 shadow root 的 <code>host</code> 属性访问：</p>
+<div id="4tq4sq78tq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 假设 {mode: &quot;open&quot;}，否则 elem.shadowRoot 是 null
+alert(elem.shadowRoot.host === elem); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="feng-zhuang" href="#feng-zhuang">封装</a></h2><p>Shadow DOM 被非常明显地和主文档分开：</p>
+<ol>
+<li>Shadow DOM 元素对于 light DOM 中的 <code>querySelector</code> 不可见。实际上，Shadow DOM 中的元素可能与 light DOM 中某些元素的 id 冲突。这些元素必须在 shadow tree 中独一无二。</li>
+<li>Shadow DOM 有自己的样式。外部样式规则在 shadow DOM 中不产生作用。</li>
+</ol>
+<p>比如：</p>
+<div id="ggws8nbjwc" data-trusted="0" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15},{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  /* 文档样式对 #elem 内的 shadow tree 无作用 (1) */
+  p { color: red; }
+&lt;/style&gt;
+
+&lt;div id=&quot;elem&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  elem.attachShadow({mode: 'open'});
+    // shadow tree 有自己的样式 (2)
+  elem.shadowRoot.innerHTML = `
+    &lt;style&gt; p { font-weight: bold; } &lt;/style&gt;
+    &lt;p&gt;Hello, John!&lt;/p&gt;
+  `;
+
+  // &lt;p&gt; 只对 shadow tree 里面的查询可见 (3)
+  alert(document.querySelectorAll('p').length); // 0
+  alert(elem.shadowRoot.querySelectorAll('p').length); // 1
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>文档里面的样式对 shadow tree 没有任何效果。</li>
+<li>……但是内部的样式是有效的。</li>
+<li>为了获取 shadow tree 内部的元素，我们可以从树的内部查询。</li>
+</ol>
+<h2><a class="main__anchor" name="can-kao" href="#can-kao">参考</a></h2><ul>
+<li>DOM：<a href="https://dom.spec.whatwg.org/#shadow-trees">https://dom.spec.whatwg.org/#shadow-trees</a></li>
+<li>兼容性：<a href="https://caniuse.com/#feat=shadowdomv1">https://caniuse.com/#feat=shadowdomv1</a></li>
+<li>Shadow DOM 在很多其他标准中被提到，比如：<a href="https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin">DOM Parsing</a> 指定了 shadow root 有 <code>innerHTML</code>。</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>Shadow DOM 是创建组件级别 DOM 的一种方法。</p>
+<ol>
+<li><code>shadowRoot = elem.attachShadow({mode: open|closed})</code> —— 为 <code>elem</code> 创建 shadow DOM。如果 <code>mode=&quot;open&quot;</code>，那么它通过 <code>elem.shadowRoot</code> 属性被访问。</li>
+<li>我们可以使用 <code>innerHTML</code> 或者其他 DOM 方法来扩展 <code>shadowRoot</code>。</li>
+</ol>
+<p>Shadow DOM 元素：</p>
+<ul>
+<li>有自己的 id 空间。</li>
+<li>对主文档的 JavaScript 选择器隐身，比如 <code>querySelector</code>。</li>
+<li>只使用 shadow tree 内部的样式，不使用主文档的样式。</li>
+</ul>
+<p>Shadow DOM，如果存在的话，会被浏览器渲染而不是所谓的 「light DOM」（普通子元素）。在 <a href="../slots-composition/index.html">Shadow DOM 插槽，组成</a> 章节中我们将会看到如何组织它们。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../custom-elements/index.html" data-tooltip="Custom elements"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../template-element/index.html" data-tooltip="模板元素"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/shadow-dom","identifier":"\/shadow-dom"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../web-components/index.html">Web components</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nei-jian-shadowdom">内建 shadow DOM</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shadowtree">Shadow tree</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#feng-zhuang">封装</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#can-kao">参考</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fshadow-dom" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/8-web-components/3-shadow-dom" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

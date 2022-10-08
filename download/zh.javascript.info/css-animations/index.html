@@ -1,0 +1,704 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">CSS 动画</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/css-animations"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="CSS 动画"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="CSS 动画"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/bezier-curve"><link rel="next" href="/js-animation"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="CSS 动画"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/css-animations"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/css-animations"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/css-animations"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/css-animations"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/css-animations"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/css-animations"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/css-animations"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/css-animations">English</option><option value="https://es.javascript.info/css-animations">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/css-animations">Italiano</option><option value="https://ja.javascript.info/css-animations">日本語</option><option value="https://ko.javascript.info/css-animations">한국어</option><option value="https://learn.javascript.ru/css-animations">Русский</option><option value="https://tr.javascript.info/css-animations">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/css-animations" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="3" data-tooltip="第 2/3 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../animation/index.html"><span>动画</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"动画","item":"https://zh.javascript.info/animation"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">CSS 动画</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="CSS 动画"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>CSS 动画可以在不借助 Javascript 的情况下做出一些简单的动画效果。</p>
+<p>你也可以通过 Javascript 控制 CSS 动画，使用少量的代码，就能让动画表现更加出色。</p>
+<h2><a class="main__anchor" name="css-guo-du-transitioncsstransition" href="#css-guo-du-transitioncsstransition">CSS 过渡（transition）[#css-transition]</a></h2><p>CSS 过渡的理念非常简单，我们只需要定义某一个属性以及如何动态地表现其变化。当属性变化时，浏览器将会绘制出相应的过渡动画。</p>
+<p>也就是说：我们只需要改变某个属性，然后所有流畅的动画都由浏览器生成。</p>
+<p>举个例子，以下 CSS 会为 <code>backgroud-color</code> 的变化生成一个 3 秒的过渡动画：</p>
+<div id="z59pj4dw3i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>.animated {
+  transition-property: background-color;
+  transition-duration: 3s;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，只要一个元素拥有名为 <code>.animated</code> 的类，那么任何背景颜色的变化都会被渲染为 3 秒钟的动画。</p>
+<p>单击以下按钮以演示动画：</p>
+<div id="lpxv0t69sl" data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;color&quot;&gt;Click me&lt;/button&gt;
+
+&lt;style&gt;
+  #color {
+    transition-property: background-color;
+    transition-duration: 3s;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  color.onclick = function() {
+    this.style.backgroundColor = 'red';
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-lpxv0t69sl" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>CSS 提供了四个属性来描述一个过渡：</p>
+<ul>
+<li><code>transition-property</code></li>
+<li><code>transition-duration</code></li>
+<li><code>transition-timing-function</code></li>
+<li><code>transition-delay</code></li>
+</ul>
+<p>之后我们会详细介绍它们，目前我们需要知道，我们可以在 <code>transition</code> 中以 <code>property duration timing-function delay</code> 的顺序一次性定义它们，并且可以同时为多个属性设置过渡动画。</p>
+<p>请看以下例子，点击按钮生成 <code>color</code> 和 <code>font-size</code> 的过渡动画：</p>
+<div id="iv61xsqlfl" data-trusted="1" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;growing&quot;&gt;Click me&lt;/button&gt;
+
+&lt;style&gt;
+#growing {
+  transition: font-size 3s, color 2s;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+growing.onclick = function() {
+  this.style.fontSize = '36px';
+  this.style.color = 'red';
+};
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-iv61xsqlfl" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在让我们一个一个展开看这些属性。</p>
+<h2><a class="main__anchor" name="transitionproperty" href="#transitionproperty">transition-property</a></h2><p>在 <code>transition-property</code> 中我们可以列举要设置动画的所有属性，如：<code>left、margin-left、height 和 color</code>。</p>
+<p>不是所有的 CSS 属性都可以使用过渡动画，但是它们中的<a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-">大多数</a>都是可以的。<code>all</code> 表示应用在所有属性上。</p>
+<h2><a class="main__anchor" name="transitionduration" href="#transitionduration">transition-duration</a></h2><p><code>transition-duration</code> 允许我们指定动画持续的时间。时间的格式参照 <a href="http://www.w3.org/TR/css3-values/#time">CSS 时间格式</a>：单位为秒 <code>s</code> 或者毫秒 <code>ms</code>。</p>
+<h2><a class="main__anchor" name="transitiondelay" href="#transitiondelay">transition-delay</a></h2><p><code>transition-delay</code> 允许我们设定动画<strong>开始前</strong>的延迟时间。例如，对于 <code>transition-delay: 1s</code>，动画将会在属性变化发生 1 秒后开始渲染。</p>
+<p>你也可以提供一个负值。那么动画将会从整个过渡的中间时刻开始渲染。例如，对于 <code>transition-duration: 2s</code>，同时把 <code>delay</code> 设置为 <code>-1s</code>，那么这个动画将会持续 1 秒钟，并且从正中间开始渲染。</p>
+<p>这里演示了数字从 <code>0</code> 到 <code>9</code> 的动画，使用了 CSS <code>translate</code> 方法：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/digits/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/zBb6B4MI1WYsUJ0g?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/digits/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>stripe.onclick = function() {
+  stripe.classList.add('animate');
+};</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px monospace;
+  cursor: pointer;
+}
+
+#stripe {
+  display: inline-block
+}
+
+#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+  transition-timing-function: linear;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Click below to animate:
+
+  &lt;div id=&quot;digit&quot;&gt;&lt;div id=&quot;stripe&quot;&gt;0123456789&lt;/div&gt;&lt;/div&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>如下在 <code>tranform</code> 属性上应用动画：</p>
+<div id="ggmlqrb8xh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在以上的例子中，JavaScript 把 <code>.animate</code> 类添加到了元素上，由此触发了动画：</p>
+<div id="nj3rpb2hne" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>stripe.classList.add('animate');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以『从中间』开始，也就是说从某个特定数字开始，比方说，从当前的时间的秒数开始。这就要用到负的 <code>transition-delay</code>。</p>
+<p>此处，如果你单击这个数字，那么它会从当前的秒数开始渲染：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/digits-negative-delay/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/NQLS2apfmeMhkJD2?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/digits-negative-delay/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>stripe.onclick = function() {
+  let sec = new Date().getSeconds() % 10;
+  stripe.style.transitionDelay = '-' + sec + 's';
+  stripe.classList.add('animate');
+};</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px monospace;
+  cursor: pointer;
+}
+
+#stripe {
+  display: inline-block
+}
+
+#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+  transition-timing-function: linear;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Click below to animate:
+  &lt;div id=&quot;digit&quot;&gt;&lt;div id=&quot;stripe&quot;&gt;0123456789&lt;/div&gt;&lt;/div&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>只需添加一行 JavaScript 代码：</p>
+<div id="xa5wfthda2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>stripe.onclick = function() {
+  let sec = new Date().getSeconds() % 10;
+  // for instance, -3s here starts the animation from the 3rd second
+  stripe.style.transitionDelay = '-' + sec + 's';
+  stripe.classList.add('animate');
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="transitiontimingfunction" href="#transitiontimingfunction">transition-timing-function</a></h2><p>时间函数描述了动画进程在时间上的分布。它是先慢后快还是先快后慢？</p>
+<p>乍一看，这可能是最复杂的属性了，但是稍微花点时间，你就会发现其实也很简单。</p>
+<p>这个属性接受两种值：一个贝塞尔曲线（Bezier curve）或者阶跃函数（steps）。我们先从贝塞尔曲线开始，这也是较为常用的。</p>
+<h3><a class="main__anchor" name="bei-sai-er-qu-xian-beziercurve" href="#bei-sai-er-qu-xian-beziercurve">贝塞尔曲线（Bezier curve）</a></h3><p>时间函数可以用<a href="../bezier-curve/index.html">贝塞尔曲线</a>描述，通过设置四个满足以下条件的控制点：</p>
+<ol>
+<li>第一个应为：<code>(0,0)</code>。</li>
+<li>最后一个应为：<code>(1,1)</code>。</li>
+<li>对于中间值，<code>x</code> 必须位于 <code>0..1</code> 之间，<code>y</code> 可以为任意值。</li>
+</ol>
+<p>CSS 中设置一贝塞尔曲线的语法为：<code>cubic-bezier(x2, y2, x3, y3)</code>。这里我们只需要设置第二个和第三个值，因为第一个点固定为 <code>(0,0)</code>，第四个点固定为 <code>(1,1)</code>。</p>
+<p>时间函数描述了动画进行的快慢。</p>
+<ul>
+<li><code>x</code> 轴表示时间：<code>0</code> —— 开始时刻，<code>1</code> —— <code>transition-duration</code>的结束时刻。</li>
+<li><code>y</code> 轴表示过程的完成度：<code>0</code> —— 属性的起始值，<code>1</code> —— 属性的最终值。</li>
+</ul>
+<p>最简单的一种情况就是动画匀速进行，可以通过设置曲线为 <code>cubic-bezier(0, 0, 1, 1)</code> 来实现。</p>
+<p>看上去就像这样：</p>
+<figure><div class="image" style="width:144px">
+      <div class="image__ratio" style="padding-top:104.16666666666667%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/bezier-linear.svg" width="144" height="150" class="image__image" data-use-theme>
+        <img src="../article/css-animations/bezier-linear.svg" alt width="144" height="150">
+      </object>
+      </div></figure><p>…正如我们所见，这就是条直线。随着时间 <code>x</code> 推移，完成度 <code>y</code> 稳步从 <code>0</code> 增长到 <code>1</code>。</p>
+<p>例子中的列车匀速地从左侧移动到右侧：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/train-linear/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/NZdbZoW6BjFfCRgf?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/train-linear/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.train {
+  position: relative;
+  cursor: pointer;
+  width: 177px;
+  height: 160px;
+  left: 0;
+  transition: left 5s cubic-bezier(0, 0, 1, 1);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;img class=&quot;train&quot; src=&quot;https://js.cx/clipart/train.gif&quot; onclick=&quot;this.style.left='450px'&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>这个里面的 CSS 就是基于刚才那条曲线的：</p>
+<div id="7a3b78s7zm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>.train {
+  left: 0;
+  transition: left 5s cubic-bezier(0, 0, 1, 1);
+  /* JavaScript sets left to 450px */
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…那么，我们如果表现出减速行驶的列车呢？</p>
+<p>我们可以使用另一条贝塞尔曲线：<code>cubic-bezier(0.0, 0.5, 0.5 ,1.0)</code>。</p>
+<p>图像如下：</p>
+<figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/train-curve.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../article/css-animations/train-curve.svg" alt width="149" height="187">
+      </object>
+      </div></figure><p>正如我们所见，这个过程起初很快：曲线开始迅速升高，然后越来越慢。</p>
+<p>这是实际的效果演示：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/train/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/trgYHdLvWpuYGiXe?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/train/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.train {
+  position: relative;
+  cursor: pointer;
+  width: 177px;
+  height: 160px;
+  left: 0px;
+  transition: left 5s cubic-bezier(0.0, 0.5, 0.5, 1.0);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;img class=&quot;train&quot; src=&quot;https://js.cx/clipart/train.gif&quot; onclick=&quot;this.style.left='450px'&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>CSS：</p>
+<div id="juqr839znc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>.train {
+  left: 0;
+  transition: left 5s cubic-bezier(0, .5, .5, 1);
+  /* JavaScript sets left to 450px */
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>CSS 提供几条内建的曲线：<code>linear</code>、<code>ease</code>、<code>ease-in</code>、<code>ease-out</code> 和 <code>ease-in-out</code>。</p>
+<p><code>linear</code> 其实就是 <code>cubic-bezier(0, 0, 1, 1)</code> 的简写 —— 一条直线，刚刚我们已经看过了。</p>
+<p>其它的名称是以下贝塞尔曲线的简写：</p>
+<table>
+<thead>
+<tr>
+<th><code>ease</code><sup>*</sup></th>
+<th><code>ease-in</code></th>
+<th><code>ease-out</code></th>
+<th><code>ease-in-out</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(0.25, 0.1, 0.25, 1.0)</code></td>
+<td><code>(0.42, 0, 1.0, 1.0)</code></td>
+<td><code>(0, 0, 0.58, 1.0)</code></td>
+<td><code>(0.42, 0, 0.58, 1.0)</code></td>
+</tr>
+<tr>
+<td><figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/ease.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../article/css-animations/ease.svg" alt width="149" height="187">
+      </object>
+      </div></figure></td>
+<td><figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/ease-in.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../article/css-animations/ease-in.svg" alt width="149" height="187">
+      </object>
+      </div></figure></td>
+<td><figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/ease-out.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../article/css-animations/ease-out.svg" alt width="149" height="187">
+      </object>
+      </div></figure></td>
+<td><figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/ease-in-out.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../article/css-animations/ease-in-out.svg" alt width="149" height="187">
+      </object>
+      </div></figure></td>
+</tr>
+</tbody>
+</table>
+<p><code>*</code> —— 默认值，如果没有指定时间函数，那么将使用 <code>ease</code> 作为默认值。</p>
+<p>所以，我们可以使用 <code>ease-out</code> 来表现减速行驶的列车：</p>
+<div id="ceo134mhet" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>.train {
+  left: 0;
+  transition: left 5s ease-out;
+  /* transition: left 5s cubic-bezier(0, .5, .5, 1); */
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是这看起来有点怪怪的。</p>
+<p><strong>贝塞尔曲线可以使动画『超出』其原本的范围。</strong></p>
+<p>曲线上的控制点的 <code>y</code> 值可以使任意的：不管是负值还是一个很大的值。如此，贝塞尔曲线就会变得很低或者很高，让动画超出其正常的范围。</p>
+<p>在一下的例子中使用的代码：</p>
+<div id="qwojms22vv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>.train {
+  left: 100px;
+  transition: left 5s cubic-bezier(.5, -1, .5, 2);
+  /* JavaScript sets left to 400px */
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>left</code> 本该在 <code>100px</code> 到 <code>400px</code> 之间变化。</p>
+<p>但是如果你点击列车，你会发现：</p>
+<ul>
+<li>起初，列车会<strong>反向</strong>运动：<code>left</code> 会变得小于 <code>100px</code>。</li>
+<li>然后，它会变回往前运动，并且超过 <code>400px</code>。</li>
+<li>最后再返回 —— 回到 <code>400px</code>。</li>
+</ul>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/train-over/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/a4PvPk9aQYFlmZFl?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/train-over/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>.train {
+  position: relative;
+  cursor: pointer;
+  width: 177px;
+  height: 160px;
+  left: 100px;
+  transition: left 5s cubic-bezier(.5, -1, .5, 2);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;img class=&quot;train&quot; src=&quot;https://js.cx/clipart/train.gif&quot; onclick=&quot;this.style.left='400px'&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>为什么会这样？看一眼给定的贝塞尔曲线的图像你就会明白了。</p>
+<figure><div class="image" style="width:225px">
+      <div class="image__ratio" style="padding-top:147.11111111111111%"></div>
+      <object type="image/svg+xml" data="../article/css-animations/bezier-train-over.svg" width="225" height="331" class="image__image" data-use-theme>
+        <img src="../article/css-animations/bezier-train-over.svg" alt width="225" height="331">
+      </object>
+      </div></figure><p>我们把第二个点的 <code>y</code> 坐标移动到了小于 <code>0</code> 的位置，同时把第三个点的 <code>y</code> 坐标移动到了大于 <code>1</code> 的位置，因此曲线已经不再像一个四分之一圆了。<code>y</code> 坐标超出了常规的 <code>0..1</code> 的范围。</p>
+<p>正如我们所知，<code>y</code> 表示『动画进程的完成度』。<code>y = 0</code> 表示属性的初始值，<code>y = 1</code> 则表示属性的最终值。因此，<code>y &lt; 0</code> 意味着属性值要比初始值小，而 <code>y &gt; 1</code> 则表明属性值要比最终值大。</p>
+<p>当然了，<code>-1</code> 和 <code>2</code> 还是比较缓和的值。如果我们把 <code>y</code> 设为 <code>-99</code> 和 <code>99</code>，那么列车将会偏离地更远。</p>
+<p>但是，如何针对特定的任务寻找到合适的贝塞尔曲线呢？事实上，有很多工具可以帮到你。比方说，我们可以利用这个网站：<a href="http://cubic-bezier.com/">http://cubic-bezier.com/</a>。</p>
+<h3><a class="main__anchor" name="jie-yue-han-shu-steps" href="#jie-yue-han-shu-steps">阶跃函数（Steps）</a></h3><p>时间函数 <code>steps(number of steps[, start/end])</code> 允许你让动画分段进行，<code>number of steps</code> 表示需要拆分为多少段。</p>
+<p>让我们通过一个数字的例子来演示一下。我们将会让数字以离散的方式变化，而不是以连续的方式。</p>
+<p>为了达到效果，我们把动画拆分为 9 段：</p>
+<div id="yu4rm3wwbi" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:27,&quot;end&quot;:42}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>#stripe.animate  {
+  transform: translate(-90%);
+  transition: transform 9s steps(9, start);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>step(9, start)</code> 生效时：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/step/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/t6F7X2MxDV5wvI77?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/step/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px monospace;
+  cursor: pointer;
+}
+
+#stripe {
+  display: inline-block
+}
+
+#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+  transition-timing-function: steps(9, start);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Click below to animate:
+
+  &lt;div id=&quot;digit&quot;&gt;&lt;div id=&quot;stripe&quot;&gt;0123456789&lt;/div&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    digit.onclick = function() {
+      stripe.classList.add('animate');
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p><code>steps</code> 的第一个参数表示段数。这个过渡动画将会被拆分为 9 个部分（每个占 10%）。时间间隔也会以同样的方式被拆分：9 秒会被分割为多个时长 1 秒的间隔。</p>
+<p>第二个参数可以取 <code>start</code> 或 <code>end</code> 两者其一。</p>
+<p><code>start</code> 表示在动画开始时，我们需要立即开始第一段的动画。</p>
+<p>可以观察到，在动画过程中：当我们单击数字之后，它会立马变为 <code>1</code>（即第一段），然后在下一秒开始的时候继续变化。</p>
+<p>具体的流程如下：</p>
+<ul>
+<li><code>0s</code> —— <code>-10%</code>（在第一秒开始的时候立即变化）</li>
+<li><code>1s</code> —— <code>-20%</code></li>
+<li>…</li>
+<li><code>8s</code> – <code>-80%</code></li>
+<li>（最后一秒，显示最终值）</li>
+</ul>
+<p>另一个值 <code>end</code> 表示：改变不应该在最开始的时候发生，而是发生在每一段的最后时刻。</p>
+<p>其流程如下：</p>
+<ul>
+<li><code>0s</code> —— <code>0</code></li>
+<li><code>1s</code> —— <code>-10%</code>（在第一秒结束时第一次变化）</li>
+<li><code>2s</code> —— <code>-20%</code></li>
+<li>…</li>
+<li><code>9s</code> —— <code>-90%</code></li>
+</ul>
+<p><code>step(9, end)</code> 生效时：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/css-animations/step-end/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/HZo8KslNYhiAjmcR?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/css-animations/step-end/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px monospace;
+  cursor: pointer;
+}
+
+#stripe {
+  display: inline-block
+}
+
+#stripe.animate {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-duration: 9s;
+  transition-timing-function: steps(9, end);
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Click below to animate:
+
+  &lt;div id=&quot;digit&quot;&gt;&lt;div id=&quot;stripe&quot;&gt;0123456789&lt;/div&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    digit.onclick = function() {
+      stripe.classList.add('animate');
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>另外还有一些简写值：</p>
+<ul>
+<li><code>step-start</code> —— 等同于 <code>steps(1, start)</code>。即：动画立刻开始，并且只有一段。也就是说，会立刻开始，紧接着就结束了，宛如没有动画一样。</li>
+<li><code>step-end</code> —— 等同于 <code>steps(1, end)</code>。即：在 <code>transition-duration</code> 结束时生成一段动画。</li>
+</ul>
+<p>这些值很少会被用到，因为它们并不算是真正的动画，而是单步的变化。</p>
+<h2><a class="main__anchor" name="transitionend-shi-jian" href="#transitionend-shi-jian">transitionend 事件</a></h2><p>CSS 动画完成后，会触发 <code>transitionend</code> 事件。</p>
+<p>这被广泛用于在动画结束后执行某种操作。我们也可以用它来串联动画。</p>
+<p>举例来说，下面的小船会在点击后向右浮动，然后再回来。而且，每一次都会向右移动地更远一点：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/css-animations/boat/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/YqMfsXe2KRrhVg9g?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="YqMfsXe2KRrhVg9g" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://zh.js.cx/article/css-animations/boat/"></iframe>
+  </div><p>这个动画通过 <code>go</code> 函数初始化，并且在每次动画完成后都会重复执行，并转变方向：</p>
+<div id="dqse2uae1k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>boat.onclick = function() {
+  //...
+  let times = 1;
+
+  function go() {
+    if (times % 2) {
+      // 向右移动
+      boat.classList.remove('back');
+      boat.style.marginLeft = 100 * times + 200 + 'px';
+    } else {
+      // 向左移动
+      boat.classList.add('back');
+      boat.style.marginLeft = 100 * times - 200 + 'px';
+    }
+
+  }
+
+  go();
+
+  boat.addEventListener('transitionend', function() {
+    times++;
+    go();
+  });
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>transitionend</code> 的事件对象有几个特定的属性：</p>
+<p><code>event.propertyName</code>
+：当前完成动画的属性，这在我们同时为多个属性加上动画时会很有用。</p>
+<p><code>event.elapsedTime</code>
+：动画完成的时间（按秒计算），不包括 <code>transition-delay</code>。</p>
+<h2><a class="main__anchor" name="guan-jian-zhen-dong-hua-keyframes" href="#guan-jian-zhen-dong-hua-keyframes">关键帧动画（Keyframes）</a></h2><p>我们可以通过 CSS 提供的 <code>@keyframes</code> 规则整合多个简单的动画。</p>
+<p>它会指定某个动画的名称以及相应的规则：哪个属性，何时以及何地渲染动画。然后使用 <code>animation</code> 属性把动画绑定到相应的元素上，并为其添加额外的参数。</p>
+<p>这里有个详细的例子：</p>
+<div id="rab5qhxveo" data-trusted="1" class="code-example" data-demo-height="60" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:14},{&quot;start&quot;:3,&quot;end&quot;:6}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div class=&quot;progress&quot;&gt;&lt;/div&gt;
+
+&lt;style&gt;
+  @keyframes go-left-right {        /* 指定一个名字：&quot;go-left-right&quot; */
+    from { left: 0px; }             /* 从 left: 0px 开始 */
+    to { left: calc(100% - 50px); } /* 移动至 left: 100%-50px */
+  }
+
+  .progress {
+    animation: go-left-right 3s infinite alternate;
+    /* 把动画 &quot;go-left-right&quot; 应用到元素上
+       持续 3 秒
+       持续次数：infinite
+       每次都改变方向
+    */
+
+    position: relative;
+    border: 2px solid green;
+    width: 50px;
+    height: 20px;
+    background: lime;
+  }
+&lt;/style&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-rab5qhxveo" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>有许多关于 <code>@keyframes</code> 的文章以及一个<a href="https://drafts.csswg.org/css-animations/">详细的规范说明</a>。</p>
+<p>很可能你并不需要经常用到 <code>@keyframes</code>，除非你的网站上有一直在运动的元素。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>CSS 动画允许你为一个或者多个属性的变化创建丝滑流畅（也可能不是）的过渡动画。</p>
+<p>它们适用于大多数的动画需求。我们也可以使用 JavaScript 创建动画，下一章将会详细讲解相关内容。</p>
+<p>相对于 JavaScript 动画，CSS 动画存在的特点如下：</p>
+<div class="balance"><div class="balance__pluses">
+      <div class="balance__content">
+      <div class="balance__title">优点</div><ul class="balance__list"><li>简单的事，简单地做。</li>
+<li>快速，而且对 CPU 造成的压力很小。</li>
+</ul></div></div><div class="balance__minuses">
+      <div class="balance__content">
+      <div class="balance__title">不足</div><ul class="balance__list"><li>JavaScript 动画更加灵活。它们可以实现任何动画逻辑，比如某个元素的爆炸效果。</li>
+<li>不仅仅只是属性的变化。我们还可以在 JavaScript 中生成新元素用于动画。</li>
+</ul></div></div></div><p>本节已经介绍了可以使用 CSS 实现的主要动画类型，而且 <code>transitionend</code> 还允许在动画结束后执行 JavaScript 代码，因此它可以方便得与代码结合起来。</p>
+<p>但是在下一节，我们将会学习一些 JavaScript 动画来实现更加复杂的效果。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#rang-fei-ji-dong-qi-lai-css" name="rang-fei-ji-dong-qi-lai-css">让飞机动起来（CSS）</a></h3><a class="task__open-link" href="../task/animate-logo-css/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>生成如下图的动画（点击显示）：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://zh.js.cx/task/animate-logo-css/solution/"></iframe>
+  </div><ul>
+<li>点击后，图片会从 <code>40x24px</code> 变为 <code>400x240px</code> （变大十倍）。</li>
+<li>动画持续三秒。</li>
+<li>在动画结束后，输出：“Done!”。</li>
+<li>动画过程中，如果飞机被点击，这些操作不应该打断动画。</li>
+</ul>
+<p><a href="https://plnkr.co/edit/JrT0hGs3JRrcsPxD?p=preview" target="_blank" data-plunk-id="JrT0hGs3JRrcsPxD">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>使用 CSS 为 <code>width</code> 和 <code>height</code> 属性生成动效：</p>
+<div id="0x2cglyqqs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-css"><code>/* 原始类 */
+
+#flyjet {
+  transition: all 3s;
+}
+
+/* JS 添加的 .growing */
+#flyjet.growing {
+  width: 400px;
+  height: 240px;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，<code>transitionend</code> 会被触发两次 —— 每个属性触发一次。因此，如果我们不进行额外检查的话，这条信息会显示两次。</p>
+<p><a href="https://plnkr.co/edit/6rMYM4CMD1BA07c4?p=preview" target="_blank" data-plunk-id="6rMYM4CMD1BA07c4">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#wei-fei-ji-sheng-cheng-dong-hua-css" name="wei-fei-ji-sheng-cheng-dong-hua-css">为飞机生成动画（CSS）</a></h3><a class="task__open-link" href="../task/animate-logo-bezier-css/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>修改前一个的任务 <a href="../task/animate-logo-css/index.html">让飞机动起来（CSS）</a> 的解决方案，让飞机超过原有的大小 <code>400x240px</code>（跳脱出来），然后再回到之前的大小。</p>
+<p>这里是效果演示（点击飞机）：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:350px" src="https://zh.js.cx/task/animate-logo-bezier-css/solution/"></iframe>
+  </div><p>在前一个解决方案的基础上做修改。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们需要为此选择合适的贝塞尔曲线。它应该在某个地方拥有 <code>y &gt; 1</code>，来使得飞机『跳出来』。</p>
+<p>举例来说，我们可以使两个控制点的 <code>y</code> 都大于 <code>1</code>：<code>cubic-bezier(0.25, 1.5, 0.75, 1.5)</code>。</p>
+<p>如图：</p>
+<figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:125.503355704698%"></div>
+      <object type="image/svg+xml" data="../task/animate-logo-bezier-css/bezier-up.svg" width="149" height="187" class="image__image" data-use-theme>
+        <img src="../task/animate-logo-bezier-css/bezier-up.svg" alt width="149" height="187">
+      </object>
+      </div></figure><p><a href="https://plnkr.co/edit/DZE5INusZHMDtoPy?p=preview" target="_blank" data-plunk-id="DZE5INusZHMDtoPy">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yuan-quan-dong-hua" name="yuan-quan-dong-hua">圆圈动画</a></h3><a class="task__open-link" href="../task/animate-circle/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个函数：<code>showCircle(cx, cy, radius)</code>，来显示一个不断变大的圆。</p>
+<ul>
+<li><code>cx,cy</code> 为圆心相对于窗口的位置。</li>
+<li><code>radius</code> 为圆的半径。</li>
+</ul>
+<p>点击下方的按钮以演示效果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:260px" src="https://zh.js.cx/task/animate-circle/solution/"></iframe>
+  </div><p>源文件中提供了一个具有合适样式的圆样例，因此你需要做的就是创建合适的动画。</p>
+<p><a href="https://plnkr.co/edit/RW9A4fqFFJ7jpTS9?p=preview" target="_blank" data-plunk-id="RW9A4fqFFJ7jpTS9">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/uofmmIeXG1KT1GhR?p=preview" target="_blank" data-plunk-id="uofmmIeXG1KT1GhR">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../bezier-curve/index.html" data-tooltip="贝塞尔曲线"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../js-animation/index.html" data-tooltip="JavaScript 动画"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/css-animations","identifier":"\/css-animations"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../animation/index.html">动画</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#css-guo-du-transitioncsstransition">CSS 过渡（transition）[#css-transition]</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#transitionproperty">transition-property</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#transitionduration">transition-duration</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#transitiondelay">transition-delay</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#transitiontimingfunction">transition-timing-function</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#transitionend-shi-jian">transitionend 事件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#guan-jian-zhen-dong-hua-keyframes">关键帧动画（Keyframes）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fcss-animations" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/7-animation/2-css-animations" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

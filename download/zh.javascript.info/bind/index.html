@@ -1,0 +1,663 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">函数绑定</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/bind"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="函数绑定"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="函数绑定"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/call-apply-decorators"><link rel="next" href="/arrow-functions"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.0/lodash.min.js"></script>
+<script>
+function mul(a, b) {
+  return a * b;
+};
+
+function ask(question, answer, ok, fail) {
+  let result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
+  else fail();
+}
+
+function bind(func, context /*, args*/) {
+  let bindArgs = [].slice.call(arguments, 2); // (1)
+  function wrapper() {                        // (2)
+    let args = [].slice.call(arguments);
+    let unshiftArgs = bindArgs.concat(args);  // (3)
+    return func.apply(context, unshiftArgs);  // (4)
+  }
+  return wrapper;
+}
+</script><meta property="og:title" content="函数绑定"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/bind"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/bind"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/bind"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/bind"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/bind"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/bind"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/bind"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/bind"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/bind"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/bind"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/bind">عربي</option><option value="https://javascript.info/bind">English</option><option value="https://es.javascript.info/bind">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/bind">Indonesia</option><option value="https://it.javascript.info/bind">Italiano</option><option value="https://ja.javascript.info/bind">日本語</option><option value="https://ko.javascript.info/bind">한국어</option><option value="https://learn.javascript.ru/bind">Русский</option><option value="https://tr.javascript.info/bind">Türkçe</option><option value="https://uk.javascript.info/bind">Українська</option><option value="https://zh.javascript.info/bind" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="58" max="92" data-tooltip="第 58/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../advanced-functions/index.html"><span>函数进阶内容</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"函数进阶内容","item":"https://zh.javascript.info/advanced-functions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">函数绑定</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="函数绑定"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>当将对象方法作为回调进行传递，例如传递给 <code>setTimeout</code>，这儿会存在一个常见的问题：“丢失 <code>this</code>”。</p>
+<p>在本章中，我们会学习如何去解决这个问题。</p>
+<h2><a class="main__anchor" name="diu-shi-this" href="#diu-shi-this">丢失 “this”</a></h2><p>我们已经看到了丢失 <code>this</code> 的例子。一旦方法被传递到与对象分开的某个地方 —— <code>this</code> 就丢失。</p>
+<p>下面是使用 <code>setTimeout</code> 时 <code>this</code> 是如何丢失的：</p>
+<div id="vih95k240l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;,
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+setTimeout(user.sayHi, 1000); // Hello, undefined!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所看到的，输出没有像 <code>this.firstName</code> 那样显示 “John”，而显示了 <code>undefined</code>！</p>
+<p>这是因为 <code>setTimeout</code> 获取到了函数 <code>user.sayHi</code>，但它和对象分离开了。最后一行可以被重写为：</p>
+<div id="rbbx98b2n6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let f = user.sayHi;
+setTimeout(f, 1000); // 丢失了 user 上下文</code></pre>
+        </div>
+      </div>
+      
+      </div><p>浏览器中的 <code>setTimeout</code> 方法有些特殊：它为函数调用设定了 <code>this=window</code>（对于 Node.js，<code>this</code> 则会变为计时器（timer）对象，但在这儿并不重要）。所以对于 <code>this.firstName</code>，它其实试图获取的是 <code>window.firstName</code>，这个变量并不存在。在其他类似的情况下，通常 <code>this</code> 会变为 <code>undefined</code>。</p>
+<p>这个需求很典型 —— 我们想将一个对象方法传递到别的地方（这里 —— 传递到调度程序），然后在该位置调用它。如何确保在正确的上下文中调用它？</p>
+<h2><a class="main__anchor" name="jie-jue-fang-an-1-bao-zhuang-qi" href="#jie-jue-fang-an-1-bao-zhuang-qi">解决方案 1：包装器</a></h2><p>最简单的解决方案是使用一个包装函数：</p>
+<div id="hyaqsahvp8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;,
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+setTimeout(function() {
+  user.sayHi(); // Hello, John!
+}, 1000);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它可以正常工作了，因为它从外部词法环境中获取到了 <code>user</code>，就可以正常地调用方法了。</p>
+<p>相同的功能，但是更简短：</p>
+<div id="fqpwjykase" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setTimeout(() =&gt; user.sayHi(), 1000); // Hello, John!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>看起来不错，但是我们的代码结构中出现了一个小漏洞。</p>
+<p>如果在 <code>setTimeout</code> 触发之前（有一秒的延迟！）<code>user</code> 的值改变了怎么办？那么，突然间，它将调用错误的对象！</p>
+<div id="yd3x3fiksq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;,
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+setTimeout(() =&gt; user.sayHi(), 1000);
+
+// ……user 的值在不到 1 秒的时间内发生了改变
+user = {
+  sayHi() { alert(&quot;Another user in setTimeout!&quot;); }
+};
+
+// Another user in setTimeout!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>下一个解决方案保证了这样的事情不会发生。</p>
+<h2><a class="main__anchor" name="jie-jue-fang-an-2-bind" href="#jie-jue-fang-an-2-bind">解决方案 2：bind</a></h2><p>函数提供了一个内建方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind</a>，它可以绑定 <code>this</code>。</p>
+<p>基本的语法是：</p>
+<div id="q7d361iyoz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 稍后将会有更复杂的语法
+let boundFunc = func.bind(context);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>func.bind(context)</code> 的结果是一个特殊的类似于函数的“外来对象（exotic object）”，它可以像函数一样被调用，并且透明地（transparently）将调用传递给 <code>func</code> 并设定 <code>this=context</code>。</p>
+<p>换句话说，<code>boundFunc</code> 调用就像绑定了 <code>this</code> 的 <code>func</code>。</p>
+<p>举个例子，这里的 <code>funcUser</code> 将调用传递给了 <code>func</code> 同时 <code>this=user</code>：</p>
+<div id="5cz7d1x4ky" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;
+};
+
+function func() {
+  alert(this.firstName);
+}
+
+let funcUser = func.bind(user);
+funcUser(); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里的 <code>func.bind(user)</code> 作为 <code>func</code> 的“绑定的（bound）变体”，绑定了 <code>this=user</code>。</p>
+<p>所有的参数（arguments）都被“原样”传递给了初始的 <code>func</code>，例如：</p>
+<div id="0dvelnz45n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;
+};
+
+function func(phrase) {
+  alert(phrase + ', ' + this.firstName);
+}
+
+// 将 this 绑定到 user
+let funcUser = func.bind(user);
+
+funcUser(&quot;Hello&quot;); // Hello, John（参数 &quot;Hello&quot; 被传递，并且 this=user）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们来尝试一个对象方法：</p>
+<div id="f84zoq2594" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;,
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+let sayHi = user.sayHi.bind(user); // (*)
+
+// 可以在没有对象（译注：与对象分离）的情况下运行它
+sayHi(); // Hello, John!
+
+setTimeout(sayHi, 1000); // Hello, John!
+
+// 即使 user 的值在不到 1 秒内发生了改变
+// sayHi 还是会使用预先绑定（pre-bound）的值，该值是对旧的 user 对象的引用
+user = {
+  sayHi() { alert(&quot;Another user in setTimeout!&quot;); }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 <code>(*)</code> 行，我们取了方法 <code>user.sayHi</code> 并将其绑定到 <code>user</code>。<code>sayHi</code> 是一个“绑定后（bound）”的方法，它可以被单独调用，也可以被传递给 <code>setTimeout</code> —— 都没关系，函数上下文都会是正确的。</p>
+<p>这里我们能够看到参数（arguments）都被“原样”传递了，只是 <code>this</code> 被 <code>bind</code> 绑定了：</p>
+<div id="io53o6gdu8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  firstName: &quot;John&quot;,
+  say(phrase) {
+    alert(`${phrase}, ${this.firstName}!`);
+  }
+};
+
+let say = user.say.bind(user);
+
+say(&quot;Hello&quot;); // Hello, John!（参数 &quot;Hello&quot; 被传递给了 say）
+say(&quot;Bye&quot;); // Bye, John!（参数 &quot;Bye&quot; 被传递给了 say）</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">便捷方法：<code>bindAll</code></span></div>
+            <div class="important__content"><p>如果一个对象有很多方法，并且我们都打算将它们都传递出去，那么我们可以在一个循环中完成所有方法的绑定：</p>
+<div id="edjc7kko3k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let key in user) {
+  if (typeof user[key] == 'function') {
+    user[key] = user[key].bind(user);
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>JavaScript 库还提供了方便批量绑定的函数，例如 lodash 中的 <a href="http://lodash.com/docs#bindAll">_.bindAll(object, methodNames)</a>。</p>
+</div></div>
+<h2><a class="main__anchor" name="pian-han-shu-partialfunctions" href="#pian-han-shu-partialfunctions">偏函数（Partial functions）</a></h2><p>到现在为止，我们只在谈论绑定 <code>this</code>。让我们再深入一步。</p>
+<p>我们不仅可以绑定 <code>this</code>，还可以绑定参数（arguments）。虽然很少这么做，但有时它可以派上用场。</p>
+<p><code>bind</code> 的完整语法如下：</p>
+<div id="0048qzhxt4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let bound = func.bind(context, [arg1], [arg2], ...);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它允许将上下文绑定为 <code>this</code>，以及绑定函数的起始参数。</p>
+<p>例如，我们有一个乘法函数 <code>mul(a, b)</code>：</p>
+<div id="2bh6ihfot9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function mul(a, b) {
+  return a * b;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们使用 <code>bind</code> 在该函数基础上创建一个 <code>double</code> 函数：</p>
+<div id="bcwo5udlrd" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function mul(a, b) {
+  return a * b;
+}
+
+let double = mul.bind(null, 2);
+
+alert( double(3) ); // = mul(2, 3) = 6
+alert( double(4) ); // = mul(2, 4) = 8
+alert( double(5) ); // = mul(2, 5) = 10</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对 <code>mul.bind(null, 2)</code> 的调用创建了一个新函数 <code>double</code>，它将调用传递到 <code>mul</code>，将 <code>null</code> 绑定为上下文，并将 <code>2</code> 绑定为第一个参数。并且，参数（arguments）均被“原样”传递。</p>
+<p>它被称为 <a href="https://en.wikipedia.org/wiki/Partial_application">偏函数应用程序（partial function application）</a> —— 我们通过绑定先有函数的一些参数来创建一个新函数。</p>
+<p>请注意，这里我们实际上没有用到 <code>this</code>。但是 <code>bind</code> 需要它，所以我们必须传入 <code>null</code> 之类的东西。</p>
+<p>下面这段代码中的 <code>triple</code> 函数将值乘了三倍：</p>
+<div id="6zb9u8jx89" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function mul(a, b) {
+  return a * b;
+}
+
+let triple = mul.bind(null, 3);
+
+alert( triple(3) ); // = mul(3, 3) = 9
+alert( triple(4) ); // = mul(3, 4) = 12
+alert( triple(5) ); // = mul(3, 5) = 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么我们通常会创建一个偏函数？</p>
+<p>好处是我们可以创建一个具有可读性高的名字（<code>double</code>，<code>triple</code>）的独立函数。我们可以使用它，并且不必每次都提供一个参数，因为参数是被绑定了的。</p>
+<p>另一方面，当我们有一个非常通用的函数，并希望有一个通用型更低的该函数的变体时，偏函数会非常有用。</p>
+<p>例如，我们有一个函数 <code>send(from, to, text)</code>。然后，在一个 <code>user</code> 对象的内部，我们可能希望对它使用 <code>send</code> 的偏函数变体：从当前 user 发送 <code>sendTo(to, text)</code>。</p>
+<h2><a class="main__anchor" name="zai-mei-you-shang-xia-wen-qing-kuang-xia-de-partial" href="#zai-mei-you-shang-xia-wen-qing-kuang-xia-de-partial">在没有上下文情况下的 partial</a></h2><p>当我们想绑定一些参数（arguments），但是这里没有上下文 <code>this</code>，应该怎么办？例如，对于一个对象方法。</p>
+<p>原生的 <code>bind</code> 不允许这种情况。我们不可以省略上下文直接跳到参数（arguments）。</p>
+<p>幸运的是，仅绑定参数（arguments）的函数 <code>partial</code> 比较容易实现。</p>
+<p>像这样：</p>
+<div id="blrkwfw48h" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function partial(func, ...argsBound) {
+  return function(...args) { // (*)
+    return func.call(this, ...argsBound, ...args);
+  }
+}
+
+// 用法：
+let user = {
+  firstName: &quot;John&quot;,
+  say(time, phrase) {
+    alert(`[${time}] ${this.firstName}: ${phrase}!`);
+  }
+};
+
+// 添加一个带有绑定时间的 partial 方法
+user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
+
+user.sayNow(&quot;Hello&quot;);
+// 类似于这样的一些内容：
+// [10:00] John: Hello!</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>partial(func[, arg1, arg2...])</code> 调用的结果是一个包装器 <code>(*)</code>，它调用 <code>func</code> 并具有以下内容：</p>
+<ul>
+<li>与它获得的函数具有相同的 <code>this</code>（对于 <code>user.sayNow</code> 调用来说，它是 <code>user</code>）</li>
+<li>然后给它 <code>...argsBound</code> —— 来自于 <code>partial</code> 调用的参数（<code>&quot;10:00&quot;</code>）</li>
+<li>然后给它 <code>...args</code> —— 给包装器的参数（<code>&quot;Hello&quot;</code>）</li>
+</ul>
+<p>使用 spread 可以很容易实现这些操作，对吧？</p>
+<p>此外，还有来自 lodash 库的现成的 <a href="https://lodash.com/docs#partial">_.partial</a> 实现。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>方法 <code>func.bind(context, ...args)</code> 返回函数 <code>func</code> 的“绑定的（bound）变体”，它绑定了上下文 <code>this</code> 和第一个参数（如果给定了）。</p>
+<p>通常我们应用 <code>bind</code> 来绑定对象方法的 <code>this</code>，这样我们就可以把它们传递到其他地方使用。例如，传递给 <code>setTimeout</code>。</p>
+<p>当我们绑定一个现有的函数的某些参数时，绑定后的（不太通用的）函数被称为 <strong>partially applied</strong> 或 <strong>partial</strong>。</p>
+<p>当我们不想一遍又一遍地重复相同的参数时，partial 非常有用。就像我们有一个 <code>send(from, to)</code> 函数，并且对于我们的任务来说，<code>from</code> 应该总是一样的，那么我们就可以搞一个 partial 并使用它。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zuo-wei-fang-fa-de-bang-ding-han-shu" name="zuo-wei-fang-fa-de-bang-ding-han-shu">作为方法的绑定函数</a></h3><a class="task__open-link" href="../task/write-to-object-after-bind/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>输出将会是什么？</p>
+<div id="1x9zcmtali" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  alert( this ); // ?
+}
+
+let user = {
+  g: f.bind(null)
+};
+
+user.g();</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<code>null</code>。</p>
+<div id="no5bsvqchg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  alert( this ); // null
+}
+
+let user = {
+  g: f.bind(null)
+};
+
+user.g();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>绑定函数的上下文是硬绑定（hard-fixed）的。没有办法再修改它。</p>
+<p>所以即使我们执行 <code>user.g()</code>，源方法调用时还是 <code>this=null</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#er-ci-bind" name="er-ci-bind">二次 bind</a></h3><a class="task__open-link" href="../task/second-bind/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们可以通过额外的绑定改变 <code>this</code> 吗？</p>
+<p>输出将会是什么？</p>
+<div id="hf2tsii3h0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  alert(this.name);
+}
+
+f = f.bind( {name: &quot;John&quot;} ).bind( {name: &quot;Ann&quot; } );
+
+f();</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<strong>John</strong>。</p>
+<div id="q8768tgf9o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  alert(this.name);
+}
+
+f = f.bind( {name: &quot;John&quot;} ).bind( {name: &quot;Pete&quot;} );
+
+f(); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>f.bind(...)</code> 返回的外来（exotic）<a href="https://tc39.github.io/ecma262/#sec-bound-function-exotic-objects">绑定函数</a> 对象仅在创建的时候记忆上下文（以及参数，如果提供了的话）。</p>
+<p>一个函数不能被重绑定（re-bound）。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bind-hou-de-han-shu-shu-xing" name="bind-hou-de-han-shu-shu-xing">bind 后的函数属性</a></h3><a class="task__open-link" href="../task/function-property-after-bind/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>函数的属性中有一个值。<code>bind</code> 之后它会改变吗？为什么，阐述一下？</p>
+<div id="mpqfkx0qq1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sayHi() {
+  alert( this.name );
+}
+sayHi.test = 5;
+
+let bound = sayHi.bind({
+  name: &quot;John&quot;
+});
+
+alert( bound.test ); // 输出将会是什么？为什么？</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<code>undefined</code>。</p>
+<p><code>bind</code> 的结果是另一个对象。它并没有 <code>test</code> 属性。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xiu-fu-diu-shi-le-this-de-han-shu" name="xiu-fu-diu-shi-le-this-de-han-shu">修复丢失了 &quot;this&quot; 的函数</a></h3><a class="task__open-link" href="../task/question-use-bind/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面代码中对 <code>askPassword()</code> 的调用将会检查 password，然后基于结果调用 <code>user.loginOk/loginFail</code>。</p>
+<p>但是它导致了一个错误。为什么？</p>
+<p>修改高亮的行，以使所有内容都能正常工作（其它行不用修改）。</p>
+<div id="hag5xelxi5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function askPassword(ok, fail) {
+  let password = prompt(&quot;Password?&quot;, '');
+  if (password == &quot;rockstar&quot;) ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+
+};
+
+askPassword(user.loginOk, user.loginFail);</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>发生了错误是因为 <code>ask</code> 获得的是没有绑定对象的 <code>loginOk/loginFail</code> 函数。</p>
+<p>当 <code>ask</code> 调用这两个函数时，它们自然会认定 <code>this=undefined</code>。</p>
+<p>让我们 <code>bind</code> 上下文：</p>
+<div id="z7wkcvwu2q" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function askPassword(ok, fail) {
+  let password = prompt(&quot;Password?&quot;, '');
+  if (password == &quot;rockstar&quot;) ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+
+};
+
+askPassword(user.loginOk.bind(user), user.loginFail.bind(user));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它能正常工作了。</p>
+<p>另一个可替换解决方案是：</p>
+<div id="7ecpocyke3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>//...
+askPassword(() =&gt; user.loginOk(), () =&gt; user.loginFail());</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常这也能正常工作，也看起来挺好的。</p>
+<p>但是可能会在更复杂的场景下失效，例如变量 <code>user</code> 在调用 <code>askPassword</code> 之后但在访问者应答和调用 <code>() =&gt; user.loginOk()</code> 之前被修改。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#pian-han-shu-zai-deng-lu-zhong-de-ying-yong" name="pian-han-shu-zai-deng-lu-zhong-de-ying-yong">偏函数在登录中的应用</a></h3><a class="task__open-link" href="../task/ask-partial/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这个任务是比 <a href="../task/question-use-bind/index.html">修复丢失了 &quot;this&quot; 的函数</a> 略微复杂的变体。</p>
+<p><code>user</code> 对象被修改了。现在不是两个函数 <code>loginOk/loginFail</code>，现在只有一个函数 <code>user.login(true/false)</code>。</p>
+<p>在下面的代码中，我们应该向 <code>askPassword</code> 传入什么参数，以使得 <code>user.login(true)</code> 结果是 <code>ok</code>，<code>user.login(fasle)</code> 结果是 <code>fail</code>？</p>
+<div id="gsiery8unt" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function askPassword(ok, fail) {
+  let password = prompt(&quot;Password?&quot;, '');
+  if (password == &quot;rockstar&quot;) ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  login(result) {
+    alert( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+askPassword(?, ?); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你只能修改高亮部分的代码。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><ol>
+<li>
+<p>使用包装（wapper）函数，箭头函数很简洁：</p>
+<div id="jp270m31ax" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>askPassword(() =&gt; user.login(true), () =&gt; user.login(false));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它从外部变量中获得了 <code>user</code>，然后以常规方式运行它。</p>
+</li>
+<li>
+<p>或者从 <code>user.login</code> 创建一个偏函数，该函数使用 <code>user</code> 作为上下文，并具有正确的第一个参数：</p>
+<div id="y24h9nkx9t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>askPassword(user.login.bind(user, true), user.login.bind(user, false));</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../call-apply-decorators/index.html" data-tooltip="装饰器模式和转发，call/apply"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../arrow-functions/index.html" data-tooltip="深入理解箭头函数"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/bind","identifier":"\/bind"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../advanced-functions/index.html">函数进阶内容</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#diu-shi-this">丢失 “this”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jie-jue-fang-an-1-bao-zhuang-qi">解决方案 1：包装器</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jie-jue-fang-an-2-bind">解决方案 2：bind</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#pian-han-shu-partialfunctions">偏函数（Partial functions）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zai-mei-you-shang-xia-wen-qing-kuang-xia-de-partial">在没有上下文情况下的 partial</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (5)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fbind" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/06-advanced-functions/10-bind" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

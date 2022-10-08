@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">对象</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/object"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="对象"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="对象"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/object-basics"><link rel="next" href="/object-copy"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="对象"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/object"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/object"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/object"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/object"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/object"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/object"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/object"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/object"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/object"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/object"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/object"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/object">عربي</option><option value="https://javascript.info/object">English</option><option value="https://es.javascript.info/object">Español</option><option value="https://fr.javascript.info/object">Français</option><option value="https://id.javascript.info/object">Indonesia</option><option value="https://it.javascript.info/object">Italiano</option><option value="https://ja.javascript.info/object">日本語</option><option value="https://ko.javascript.info/object">한국어</option><option value="https://learn.javascript.ru/object">Русский</option><option value="https://tr.javascript.info/object">Türkçe</option><option value="https://uk.javascript.info/object">Українська</option><option value="https://zh.javascript.info/object" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="29" max="92" data-tooltip="第 29/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../object-basics/index.html"><span>Object（对象）：基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Object（对象）：基础知识","item":"https://zh.javascript.info/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">对象</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="对象"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>正如我们在 <a href="../types/index.html">数据类型</a> 一章学到的，JavaScript 中有八种数据类型。有七种原始类型，因为它们的值只包含一种东西（字符串，数字或者其他）。</p>
+<p>相反，对象则用来存储键值对和更复杂的实体。在 JavaScript 中，对象几乎渗透到了这门编程语言的方方面面。所以，在我们深入理解这门语言之前，必须先理解对象。</p>
+<p>我们可以通过使用带有可选 <strong>属性列表</strong> 的花括号 <code>{…}</code> 来创建对象。一个属性就是一个键值对（“key: value”），其中键（<code>key</code>）是一个字符串（也叫做属性名），值（<code>value</code>）可以是任何值。</p>
+<p>我们可以把对象想象成一个带有签名文件的文件柜。每一条数据都基于键（<code>key</code>）存储在文件中。这样我们就可以很容易根据文件名（也就是“键”）查找文件或添加/删除文件了。</p>
+<figure><div class="image" style="width:176px">
+      <div class="image__ratio" style="padding-top:103.97727272727273%"></div>
+      <object type="image/svg+xml" data="../article/object/object.svg" width="176" height="183" class="image__image" data-use-theme>
+        <img src="../article/object/object.svg" alt width="176" height="183">
+      </object>
+      </div></figure><p>我们可以用下面两种语法中的任一种来创建一个空的对象（“空柜子”）：</p>
+<div id="mv1wghqa7y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = new Object(); // “构造函数” 的语法
+let user = {};  // “字面量” 的语法</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:248px">
+      <div class="image__ratio" style="padding-top:37.096774193548384%"></div>
+      <object type="image/svg+xml" data="../article/object/object-user-empty.svg" width="248" height="92" class="image__image" data-use-theme>
+        <img src="../article/object/object-user-empty.svg" alt width="248" height="92">
+      </object>
+      </div></figure><p>通常，我们用花括号。这种方式我们叫做<strong>字面量</strong>。</p>
+<h2><a class="main__anchor" name="wen-ben-he-shu-xing" href="#wen-ben-he-shu-xing">文本和属性</a></h2><p>我们可以在创建对象的时候，立即将一些属性以键值对的形式放到 <code>{...}</code> 中。</p>
+<div id="c0eulvqh1x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {     // 一个对象
+  name: &quot;John&quot;,  // 键 &quot;name&quot;，值 &quot;John&quot;
+  age: 30        // 键 &quot;age&quot;，值 30
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>属性有键（或者也可以叫做“名字”或“标识符”），位于冒号 <code>&quot;:&quot;</code> 的前面，值在冒号的右边。</p>
+<p>在 <code>user</code> 对象中，有两个属性：</p>
+<ol>
+<li>第一个的键是 <code>&quot;name&quot;</code>，值是 <code>&quot;John&quot;</code>。</li>
+<li>第二个的键是 <code>&quot;age&quot;</code>，值是 <code>30</code>。</li>
+</ol>
+<p>生成的 <code>user</code> 对象可以被想象为一个放置着两个标记有 “name” 和 “age” 的文件的柜子。</p>
+<figure><div class="image" style="width:248px">
+      <div class="image__ratio" style="padding-top:69.75806451612904%"></div>
+      <object type="image/svg+xml" data="../article/object/object-user.svg" width="248" height="173" class="image__image" data-use-theme>
+        <img src="../article/object/object-user.svg" alt width="248" height="173">
+      </object>
+      </div></figure><p>我们可以随时添加、删除和读取文件。</p>
+<p>可以使用点符号访问属性值：</p>
+<div id="e9fsgvxemf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 读取文件的属性：
+alert( user.name ); // John
+alert( user.age ); // 30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>属性的值可以是任意类型，让我们加个布尔类型：</p>
+<div id="zvvupek9t6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>user.isAdmin = true;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:248px">
+      <div class="image__ratio" style="padding-top:69.75806451612904%"></div>
+      <object type="image/svg+xml" data="../article/object/object-user-isadmin.svg" width="248" height="173" class="image__image" data-use-theme>
+        <img src="../article/object/object-user-isadmin.svg" alt width="248" height="173">
+      </object>
+      </div></figure><p>我们可以用 <code>delete</code> 操作符移除属性：</p>
+<div id="190rbmsscn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>delete user.age;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:248px">
+      <div class="image__ratio" style="padding-top:69.75806451612904%"></div>
+      <object type="image/svg+xml" data="../article/object/object-user-delete.svg" width="248" height="173" class="image__image" data-use-theme>
+        <img src="../article/object/object-user-delete.svg" alt width="248" height="173">
+      </object>
+      </div></figure><p>我们也可以用多字词语来作为属性名，但必须给它们加上引号：</p>
+<div id="tql7xttta3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30,
+  &quot;likes birds&quot;: true  // 多词属性名必须加引号
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:248px">
+      <div class="image__ratio" style="padding-top:86.69354838709677%"></div>
+      <object type="image/svg+xml" data="../article/object/object-user-props.svg" width="248" height="215" class="image__image" data-use-theme>
+        <img src="../article/object/object-user-props.svg" alt width="248" height="215">
+      </object>
+      </div></figure><p>列表中的最后一个属性应以逗号结尾：</p>
+<div id="n635b46wuo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:9,&quot;end&quot;:10}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30,
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这叫做尾随（trailing）或悬挂（hanging）逗号。这样便于我们添加、删除和移动属性，因为所有的行都是相似的。</p>
+<h2><a class="main__anchor" name="fang-kuo-hao" href="#fang-kuo-hao">方括号</a></h2><p>对于多词属性，点操作就不能用了：</p>
+<div id="lwzjgwrx31" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 这将提示有语法错误
+user.likes birds = true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>JavaScript 理解不了。它认为我们在处理 <code>user.likes</code>，然后在遇到意外的 <code>birds</code> 时给出了语法错误。</p>
+<p>点符号要求 <code>key</code> 是有效的变量标识符。这意味着：不包含空格，不以数字开头，也不包含特殊字符（允许使用 <code>$</code> 和 <code>_</code>）。</p>
+<p>有另一种方法，就是使用方括号，可用于任何字符串：</p>
+<div id="hehht0q1db" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+
+// 设置
+user[&quot;likes birds&quot;] = true;
+
+// 读取
+alert(user[&quot;likes birds&quot;]); // true
+
+// 删除
+delete user[&quot;likes birds&quot;];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在一切都可行了。请注意方括号中的字符串要放在引号中，单引号或双引号都可以。</p>
+<p>方括号同样提供了一种可以通过任意表达式来获取属性名的方法 —— 跟语义上的字符串不同 —— 比如像类似于下面的变量：</p>
+<div id="5doe24b5o9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let key = &quot;likes birds&quot;;
+
+// 跟 user[&quot;likes birds&quot;] = true; 一样
+user[key] = true;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里，变量 <code>key</code> 可以是程序运行时计算得到的，也可以是根据用户的输入得到的。然后我们可以用它来访问属性。这给了我们很大的灵活性。</p>
+<p>例如：</p>
+<div id="jh36ki5qs5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let key = prompt(&quot;What do you want to know about the user?&quot;, &quot;name&quot;);
+
+// 访问变量
+alert( user[key] ); // John（如果输入 &quot;name&quot;）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>点符号不能以类似的方式使用：</p>
+<div id="0lz291zlqw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let key = &quot;name&quot;;
+alert( user.key ) // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="ji-suan-shu-xing" href="#ji-suan-shu-xing">计算属性</a></h3><p>当创建一个对象时，我们可以在对象字面量中使用方括号。这叫做 <strong>计算属性</strong>。</p>
+<p>例如：</p>
+<div id="90juytuq8n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruit = prompt(&quot;Which fruit to buy?&quot;, &quot;apple&quot;);
+
+let bag = {
+  [fruit]: 5, // 属性名是从 fruit 变量中得到的
+};
+
+alert( bag.apple ); // 5 如果 fruit=&quot;apple&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>计算属性的含义很简单：<code>[fruit]</code> 含义是属性名应该从 <code>fruit</code> 变量中获取。</p>
+<p>所以，如果一个用户输入 <code>&quot;apple&quot;</code>，<code>bag</code> 将变为 <code>{apple: 5}</code>。</p>
+<p>本质上，这跟下面的语法效果相同：</p>
+<div id="n2d9y5q758" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruit = prompt(&quot;Which fruit to buy?&quot;, &quot;apple&quot;);
+let bag = {};
+
+// 从 fruit 变量中获取值
+bag[fruit] = 5;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是看起来更好。</p>
+<p>我们可以在方括号中使用更复杂的表达式：</p>
+<div id="0nc1vucpgu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruit = 'apple';
+let bag = {
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>方括号比点符号更强大。它允许任何属性名和变量，但写起来也更加麻烦。</p>
+<p>所以，大部分时间里，当属性名是已知且简单的时候，就使用点符号。如果我们需要一些更复杂的内容，那么就用方括号。</p>
+<h2><a class="main__anchor" name="shu-xing-zhi-jian-xie" href="#shu-xing-zhi-jian-xie">属性值简写</a></h2><p>在实际开发中，我们通常用已存在的变量当做属性名。</p>
+<p>例如：</p>
+<div id="u6weg0oum4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeUser(name, age) {
+  return {
+    name: name,
+    age: age,
+    // ……其他的属性
+  };
+}
+
+let user = makeUser(&quot;John&quot;, 30);
+alert(user.name); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上面的例子中，属性名跟变量名一样。这种通过变量生成属性的应用场景很常见，在这有一种特殊的 <strong>属性值缩写</strong> 方法，使属性名变得更短。</p>
+<p>可以用 <code>name</code> 来代替 <code>name:name</code> 像下面那样：</p>
+<div id="tuz04exlum" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeUser(name, age) {
+  return {
+    name, // 与 name: name 相同
+    age,  // 与 age: age 相同
+    // ...
+  };
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以把属性名简写方式和正常方式混用：</p>
+<div id="w0ekvnbsm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name,  // 与 name:name 相同
+  age: 30
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="shu-xing-ming-cheng-xian-zhi" href="#shu-xing-ming-cheng-xian-zhi">属性名称限制</a></h2><p>我们已经知道，变量名不能是编程语言的某个保留字，如 “for”、“let”、“return” 等……</p>
+<p>但对象的属性名并不受此限制：</p>
+<div id="pr1gzdkr7b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 这些属性都没问题
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6</code></pre>
+        </div>
+      </div>
+      
+      </div><p>简而言之，属性命名没有限制。属性名可以是任何字符串或者 symbol（一种特殊的标志符类型，将在后面介绍）。</p>
+<p>其他类型会被自动地转换为字符串。</p>
+<p>例如，当数字 <code>0</code> 被用作对象的属性的键时，会被转换为字符串 <code>&quot;0&quot;</code>：</p>
+<div id="lq6vb7x603" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  0: &quot;test&quot; // 等同于 &quot;0&quot;: &quot;test&quot;
+};
+
+// 都会输出相同的属性（数字 0 被转为字符串 &quot;0&quot;）
+alert( obj[&quot;0&quot;] ); // test
+alert( obj[0] ); // test (相同的属性)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里有个小陷阱：一个名为 <code>__proto__</code> 的属性。我们不能将它设置为一个非对象的值：</p>
+<div id="ff3b8s4vnw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {};
+obj.__proto__ = 5; // 分配一个数字
+alert(obj.__proto__); // [object Object] — 值为对象，与预期结果不同</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们从代码中可以看出来，把它赋值为 <code>5</code> 的操作被忽略了。</p>
+<p>我们将在 <a href="../prototype-inheritance/index.html">后续章节</a> 中学习 <code>__proto__</code> 的特殊性质，并给出了 <a href="../prototype-methods/index.html">解决此问题的方法</a>。</p>
+<h2><a class="main__anchor" name="shu-xing-cun-zai-xing-ce-shi-in-cao-zuo-fu" href="#shu-xing-cun-zai-xing-ce-shi-in-cao-zuo-fu">属性存在性测试，“in” 操作符</a></h2><p>相比于其他语言，JavaScript 的对象有一个需要注意的特性：能够被访问任何属性。即使属性不存在也不会报错！</p>
+<p>读取不存在的属性只会得到 <code>undefined</code>。所以我们可以很容易地判断一个属性是否存在：</p>
+<div id="kuns50vg8x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+
+alert( user.noSuchProperty === undefined ); // true 意思是没有这个属性</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里还有一个特别的，检查属性是否存在的操作符 <code>&quot;in&quot;</code>。</p>
+<p>语法是：</p>
+<div id="ygax73851v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;key&quot; in object</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如：</p>
+<div id="9p9h5mlot5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: &quot;John&quot;, age: 30 };
+
+alert( &quot;age&quot; in user ); // true，user.age 存在
+alert( &quot;blabla&quot; in user ); // false，user.blabla 不存在。</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，<code>in</code> 的左边必须是 <strong>属性名</strong>。通常是一个带引号的字符串。</p>
+<p>如果我们省略引号，就意味着左边是一个变量，它应该包含要判断的实际属性名。例如：</p>
+<div id="vhab1l7ptm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:7,&quot;end&quot;:10}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { age: 30 };
+
+let key = &quot;age&quot;;
+alert( key in user ); // true，属性 &quot;age&quot; 存在</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为何会有 <code>in</code> 运算符呢？与 <code>undefined</code> 进行比较来判断还不够吗？</p>
+<p>确实，大部分情况下与 <code>undefined</code> 进行比较来判断就可以了。但有一个例外情况，这种比对方式会有问题，但 <code>in</code> 运算符的判断结果仍是对的。</p>
+<p>那就是属性存在，但存储的值是 <code>undefined</code> 的时候：</p>
+<div id="r3rze5a0f6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  test: undefined
+};
+
+alert( obj.test ); // 显示 undefined，所以属性不存在？
+
+alert( &quot;test&quot; in obj ); // true，属性存在！</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上面的代码中，属性 <code>obj.test</code> 事实上是存在的，所以 <code>in</code> 操作符检查通过。</p>
+<p>这种情况很少发生，因为通常情况下不应该给对象赋值 <code>undefined</code>。我们通常会用 <code>null</code> 来表示未知的或者空的值。因此，<code>in</code> 运算符是代码中的特殊来宾。</p>
+<h2><a class="main__anchor" name="forin-xun-huan" href="#forin-xun-huan">“for…in” 循环</a></h2><p>为了遍历一个对象的所有键（key），可以使用一个特殊形式的循环：<code>for..in</code>。这跟我们在前面学到的 <code>for(;;)</code> 循环是完全不一样的东西。</p>
+<p>语法：</p>
+<div id="33hbynyni7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (key in object) {
+  // 对此对象属性中的每个键执行的代码
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，让我们列出 <code>user</code> 所有的属性：</p>
+<div id="ln5r6jygw1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // 属性键的值
+  alert( user[key] ); // John, 30, true
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意，所有的 “for” 结构体都允许我们在循环中定义变量，像这里的 <code>let key</code>。</p>
+<p>同样，我们可以用其他属性名来替代 <code>key</code>。例如 <code>&quot;for(let prop in obj)&quot;</code> 也很常用。</p>
+<h3><a class="main__anchor" name="xiang-dui-xiang-yi-yang-pai-xu" href="#xiang-dui-xiang-yi-yang-pai-xu">像对象一样排序</a></h3><p>对象有顺序吗？换句话说，如果我们遍历一个对象，我们获取属性的顺序是和属性添加时的顺序相同吗？这靠谱吗？</p>
+<p>简短的回答是：“有特别的顺序”：整数属性会被进行排序，其他属性则按照创建的顺序显示。详情如下：</p>
+<p>例如，让我们考虑一个带有电话号码的对象：</p>
+<div id="bszizjlwis" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let codes = {
+  &quot;49&quot;: &quot;Germany&quot;,
+  &quot;41&quot;: &quot;Switzerland&quot;,
+  &quot;44&quot;: &quot;Great Britain&quot;,
+  // ..,
+  &quot;1&quot;: &quot;USA&quot;
+};
+
+for(let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对象可用于面向用户的建议选项列表。如果我们的网站主要面向德国观众，那么我们可能希望 <code>49</code> 排在第一。</p>
+<p>但如果我们执行代码，会看到完全不同的现象：</p>
+<ul>
+<li>USA (1) 排在了最前面</li>
+<li>然后是 Switzerland (41) 及其它。</li>
+</ul>
+<p>因为这些电话号码是整数，所以它们以升序排列。所以我们看到的是 <code>1, 41, 44, 49</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">整数属性？那是什么？</span></div>
+            <div class="important__content"><p>这里的“整数属性”指的是一个可以在不做任何更改的情况下与一个整数进行相互转换的字符串。</p>
+<p>所以，“49” 是一个整数属性名，因为我们把它转换成整数，再转换回来，它还是一样的。但是 “+49” 和 “1.2” 就不行了：</p>
+<div id="x5gnqt4je3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// Math.trunc 是内建的去除小数部分的方法。
+alert( String(Math.trunc(Number(&quot;49&quot;))) ); // &quot;49&quot;，相同，整数属性
+alert( String(Math.trunc(Number(&quot;+49&quot;))) ); // &quot;49&quot;，不同于 &quot;+49&quot; ⇒ 不是整数属性
+alert( String(Math.trunc(Number(&quot;1.2&quot;))) ); // &quot;1&quot;，不同于 &quot;1.2&quot; ⇒ 不是整数属性</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>……此外，如果属性名不是整数，那它们就按照创建时的顺序来排序，例如：</p>
+<div id="ftrvetz5eq" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  surname: &quot;Smith&quot;
+};
+user.age = 25; // 增加一个
+
+// 非整数属性是按照创建的顺序来排列的
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，为了解决电话号码的问题，我们可以使用非整数属性名来 <strong>欺骗</strong> 程序。只需要给每个键名加一个加号 <code>&quot;+&quot;</code> 前缀就行了。</p>
+<p>像这样：</p>
+<div id="vf60410c06" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let codes = {
+  &quot;+49&quot;: &quot;Germany&quot;,
+  &quot;+41&quot;: &quot;Switzerland&quot;,
+  &quot;+44&quot;: &quot;Great Britain&quot;,
+  // ..,
+  &quot;+1&quot;: &quot;USA&quot;
+};
+
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在跟预想的一样了。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>对象是具有一些特殊特性的关联数组。</p>
+<p>它们存储属性（键值对），其中：</p>
+<ul>
+<li>属性的键必须是字符串或者 symbol（通常是字符串）。</li>
+<li>值可以是任何类型。</li>
+</ul>
+<p>我们可以用下面的方法访问属性：</p>
+<ul>
+<li>点符号: <code>obj.property</code>。</li>
+<li>方括号 <code>obj[&quot;property&quot;]</code>，方括号允许从变量中获取键，例如 <code>obj[varWithKey]</code>。</li>
+</ul>
+<p>其他操作：</p>
+<ul>
+<li>删除属性：<code>delete obj.prop</code>。</li>
+<li>检查是否存在给定键的属性：<code>&quot;key&quot; in obj</code>。</li>
+<li>遍历对象：<code>for(let key in obj)</code> 循环。</li>
+</ul>
+<p>我们在这一章学习的叫做“普通对象（plain object）”，或者就叫对象。</p>
+<p>JavaScript 中还有很多其他类型的对象：</p>
+<ul>
+<li><code>Array</code> 用于存储有序数据集合，</li>
+<li><code>Date</code> 用于存储时间日期，</li>
+<li><code>Error</code> 用于存储错误信息。</li>
+<li>……等等。</li>
+</ul>
+<p>它们有着各自特别的特性，我们将在后面学习到。有时候大家会说“Array 类型”或“Date 类型”，但其实它们并不是自身所属的类型，而是属于一个对象类型即 “object”。它们以不同的方式对 “object” 做了一些扩展。</p>
+<p>JavaScript 中的对象非常强大。这里我们只接触了其冰山一角。在后面的章节中，我们将频繁使用对象进行编程，并学习更多关于对象的知识。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ni-hao-dui-xiang" name="ni-hao-dui-xiang">你好，对象</a></h3><a class="task__open-link" href="../task/hello-object/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>按下面的要求写代码，一条对应一行代码：</p>
+<ol>
+<li>创建一个空的对象 <code>user</code>。</li>
+<li>为这个对象增加一个属性，键是 <code>name</code>，值是 <code>John</code>。</li>
+<li>再增加一个属性，键是 <code>surname</code>，值是 <code>Smith</code>。</li>
+<li>把键为 <code>name</code> 的属性的值改成 <code>Pete</code>。</li>
+<li>删除这个对象中键为 <code>name</code> 的属性。</li>
+</ol>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="61nendlird" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+user.name = &quot;John&quot;;
+user.surname = &quot;Smith&quot;;
+user.name = &quot;Pete&quot;;
+delete user.name;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jian-cha-kong-dui-xiang" name="jian-cha-kong-dui-xiang">检查空对象</a></h3><a class="task__open-link" href="../task/is-empty/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个 <code>isEmpty(obj)</code> 函数，当对象没有属性的时候返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>应该像这样：</p>
+<div id="wy95emk9sp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let schedule = {};
+
+alert( isEmpty(schedule) ); // true
+
+schedule[&quot;8:30&quot;] = &quot;get up&quot;;
+
+alert( isEmpty(schedule) ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/fGsOxNWlMdOUnS3Q?p=preview" target="_blank" data-plunk-id="fGsOxNWlMdOUnS3Q">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>只需要遍历这个对象，如果对象存在任何属性则 <code>return false</code>。</p>
+<div id="8q72vagwhs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function isEmpty(obj) {
+  for (let key in obj) {
+    // 如果进到循环里面，说明有属性。
+    return false;
+  }
+  return true;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/UGy0ydAKzlQQdT0K?p=preview" target="_blank" data-plunk-id="UGy0ydAKzlQQdT0K">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dui-xiang-shu-xing-qiu-he" name="dui-xiang-shu-xing-qiu-he">对象属性求和</a></h3><a class="task__open-link" href="../task/sum-object/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们有一个保存着团队成员工资的对象：</p>
+<div id="hfnc6sg0r4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>写一段代码求出我们的工资总和，将计算结果保存到变量 <code>sum</code>。从所给的信息来看，结果应该是 <code>390</code>。</p>
+<p>如果 <code>salaries</code> 是一个空对象，那结果就为 <code>0</code>。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="wxjs36ucf9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+};
+
+let sum = 0;
+for (let key in salaries) {
+  sum += salaries[key];
+}
+
+alert(sum); // 390</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-shu-zhi-shu-xing-zhi-du-cheng-yi-2" name="jiang-shu-zhi-shu-xing-zhi-du-cheng-yi-2">将数值属性值都乘以 2</a></h3><a class="task__open-link" href="../task/multiply-numeric/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>创建一个 <code>multiplyNumeric(obj)</code> 函数，把 <code>obj</code> 所有的数值属性值都乘以 <code>2</code>。</p>
+<p>例如：</p>
+<div id="tjnm89262b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在调用之前
+let menu = {
+  width: 200,
+  height: 300,
+  title: &quot;My menu&quot;
+};
+
+multiplyNumeric(menu);
+
+// 调用函数之后
+menu = {
+  width: 400,
+  height: 600,
+  title: &quot;My menu&quot;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意 <code>multiplyNumeric</code> 函数不需要返回任何值，它应该就地修改对象。</p>
+<p>P.S. 用 <code>typeof</code> 检查值类型。</p>
+<p><a href="https://plnkr.co/edit/uTnQBtVrYGxV4cmu?p=preview" target="_blank" data-plunk-id="uTnQBtVrYGxV4cmu">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="47xei98ayp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function multiplyNumeric(obj) {
+  for (let key in obj) {
+    if (typeof obj[key] == 'number') {
+      obj[key] *= 2;
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/kRa9niQq9M33XtCa?p=preview" target="_blank" data-plunk-id="kRa9niQq9M33XtCa">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../object-basics/index.html" data-tooltip="Object（对象）：基础知识"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../object-copy/index.html" data-tooltip="对象引用和复制"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/object","identifier":"\/object"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../object-basics/index.html">Object（对象）：基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wen-ben-he-shu-xing">文本和属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fang-kuo-hao">方括号</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-zhi-jian-xie">属性值简写</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-ming-cheng-xian-zhi">属性名称限制</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-cun-zai-xing-ce-shi-in-cao-zuo-fu">属性存在性测试，“in” 操作符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#forin-xun-huan">“for…in” 循环</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fobject" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/04-object-basics/01-object" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

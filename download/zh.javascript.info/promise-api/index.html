@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Promise API</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/promise-api"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Promise API"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Promise API"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/promise-error-handling"><link rel="next" href="/promisify"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script>
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error("Script load error: " + src));
+
+    document.head.append(script);
+  });
+}
+</script>
+<meta property="og:title" content="Promise API"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/promise-api"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/promise-api"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/promise-api"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/promise-api"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/promise-api"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/promise-api"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/promise-api"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/promise-api"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/promise-api"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/promise-api"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/promise-api"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/promise-api">عربي</option><option value="https://javascript.info/promise-api">English</option><option value="https://es.javascript.info/promise-api">Español</option><option value="https://fr.javascript.info/promise-api">Français</option><option value="https://id.javascript.info/promise-api">Indonesia</option><option value="https://it.javascript.info/promise-api">Italiano</option><option value="https://ja.javascript.info/promise-api">日本語</option><option value="https://ko.javascript.info/promise-api">한국어</option><option value="https://learn.javascript.ru/promise-api">Русский</option><option value="https://tr.javascript.info/promise-api">Türkçe</option><option value="https://uk.javascript.info/promise-api">Українська</option><option value="https://zh.javascript.info/promise-api" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="79" max="92" data-tooltip="第 79/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../async/index.html"><span>Promise，async/await</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Promise，async/await","item":"https://zh.javascript.info/async"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 二月 2022"><div class="updated-at__content">4日 二月 2022</div></div></div><h1 class="main__header-title">Promise API</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Promise API"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在 <code>Promise</code> 类中，有 6 种静态方法。我们在这里简单介绍下它们的使用场景。</p>
+<h2><a class="main__anchor" name="promiseall" href="#promiseall">Promise.all</a></h2><p>假设我们希望并行执行多个 promise，并等待所有 promise 都准备就绪。</p>
+<p>例如，并行下载几个 URL，并等到所有内容都下载完毕后再对它们进行处理。</p>
+<p>这就是 <code>Promise.all</code> 的用途。</p>
+<p>语法：</p>
+<div id="t4haradwm1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.all([...promises...]);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Promise.all</code> 接受一个 promise 数组作为参数（从技术上讲，它可以是任何可迭代对象，但通常是一个数组）并返回一个新的 promise。</p>
+<p>当所有给定的 promise 都 resolve 时，新的 promise 才会 resolve，并且其结果数组将成为新 promise 的结果。</p>
+<p>例如，下面的 <code>Promise.all</code> 在 3 秒之后 settled，然后它的结果就是一个 <code>[1, 2, 3]</code> 数组：</p>
+<div id="exiz90rl1h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(1), 3000)), // 1
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(2), 2000)), // 2
+  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(3), 1000))  // 3
+]).then(alert); // 1,2,3 当上面这些 promise 准备好时：每个 promise 都贡献了数组中的一个元素</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，结果数组中元素的顺序与其在源 promise 中的顺序相同。即使第一个 promise 花费了最长的时间才 resolve，但它仍是结果数组中的第一个。</p>
+<p>一个常见的技巧是，将一个任务数据数组映射（map）到一个 promise 数组，然后将其包装到 <code>Promise.all</code>。</p>
+<p>例如，如果我们有一个存储 URL 的数组，我们可以像这样 fetch 它们：</p>
+<div id="qs2mu1ii5u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://api.github.com/users/jeresig'
+];
+
+// 将每个 url 映射（map）到 fetch 的 promise 中
+let requests = urls.map(url =&gt; fetch(url));
+
+// Promise.all 等待所有任务都 resolved
+Promise.all(requests)
+  .then(responses =&gt; responses.forEach(
+    response =&gt; alert(`${response.url}: ${response.status}`)
+  ));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>一个更真实的示例，通过 GitHub 用户名来获取一个 GitHub 用户数组中用户的信息（我们也可以通过商品 id 来获取商品数组中的商品信息，逻辑都是一样的）：</p>
+<div id="vv5fnz5kzm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let names = ['iliakan', 'remy', 'jeresig'];
+
+let requests = names.map(name =&gt; fetch(`https://api.github.com/users/${name}`));
+
+Promise.all(requests)
+  .then(responses =&gt; {
+    // 所有响应都被成功 resolved
+    for(let response of responses) {
+      alert(`${response.url}: ${response.status}`); // 对应每个 url 都显示 200
+    }
+
+    return responses;
+  })
+  // 将响应数组映射（map）到 response.json() 数组中以读取它们的内容
+  .then(responses =&gt; Promise.all(responses.map(r =&gt; r.json())))
+  // 所有 JSON 结果都被解析：&quot;users&quot; 是它们的数组
+  .then(users =&gt; users.forEach(user =&gt; alert(user.name)));</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong>如果任意一个 promise 被 reject，由 <code>Promise.all</code> 返回的 promise 就会立即 reject，并且带有的就是这个 error。</strong></p>
+<p>例如：</p>
+<div id="mnbgdebx32" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).catch(alert); // Error: Whoops!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里的第二个 promise 在两秒后 reject。这立即导致了 <code>Promise.all</code> 的 reject，因此 <code>.catch</code> 执行了：被 reject 的 error 成为了整个 <code>Promise.all</code> 的结果。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">如果出现 error，其他 promise 将被忽略</span></div>
+            <div class="important__content"><p>如果其中一个 promise 被 reject，<code>Promise.all</code> 就会立即被 reject，完全忽略列表中其他的 promise。它们的结果也被忽略。</p>
+<p>例如，像上面那个例子，如果有多个同时进行的 <code>fetch</code> 调用，其中一个失败，其他的 <code>fetch</code> 操作仍然会继续执行，但是 <code>Promise.all</code> 将不会再关心（watch）它们。它们可能会 settle，但是它们的结果将被忽略。</p>
+<p><code>Promise.all</code> 没有采取任何措施来取消它们，因为 promise 中没有“取消”的概念。在 <a href="../fetch-abort/index.html">另一个章节</a> 中，我们将介绍可以帮助我们解决这个问题（译注：指的是“取消” promise）的 <code>AbortController</code>，但它不是 Promise API 的一部分。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Promise.all(iterable)</code> 允许在 <code>iterable</code> 中使用 non-promise 的“常规”值</span></div>
+            <div class="important__content"><p>通常，<code>Promise.all(...)</code> 接受含有 promise 项的可迭代对象（大多数情况下是数组）作为参数。但是，如果这些对象中的任何一个不是 promise，那么它将被“按原样”传递给结果数组。</p>
+<p>例如，这里的结果是 <code>[1, 2, 3]</code>：</p>
+<div id="aa4pn08ggf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; resolve(1), 1000)
+  }),
+  2,
+  3
+]).then(alert); // 1, 2, 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以我们可以在方便的地方将准备好的值传递给 <code>Promise.all</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="promiseallsettled" href="#promiseallsettled">Promise.allSettled</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">A recent addition</span></div>
+            <div class="important__content">
+            This is a recent addition to the language.
+            Old browsers may need polyfills.
+            </div></div>
+<p>如果任意的 promise reject，则 <code>Promise.all</code> 整个将会 reject。当我们需要 <strong>所有</strong> 结果都成功时，它对这种“全有或全无”的情况很有用：</p>
+<div id="n3alzinn91" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.all([
+  fetch('/template.html'),
+  fetch('/style.css'),
+  fetch('/data.json')
+]).then(render); // render 方法需要所有 fetch 的数据</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Promise.allSettled</code> 等待所有的 promise 都被 settle，无论结果如何。结果数组具有：</p>
+<ul>
+<li><code>{status:&quot;fulfilled&quot;, value:result}</code> 对于成功的响应，</li>
+<li><code>{status:&quot;rejected&quot;, reason:error}</code> 对于 error。</li>
+</ul>
+<p>例如，我们想要获取（fetch）多个用户的信息。即使其中一个请求失败，我们仍然对其他的感兴趣。</p>
+<p>让我们使用 <code>Promise.allSettled</code>：</p>
+<div id="6w42n99wi7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url =&gt; fetch(url)))
+  .then(results =&gt; { // (*)
+    results.forEach((result, num) =&gt; {
+      if (result.status == &quot;fulfilled&quot;) {
+        alert(`${urls[num]}: ${result.value.status}`);
+      }
+      if (result.status == &quot;rejected&quot;) {
+        alert(`${urls[num]}: ${result.reason}`);
+      }
+    });
+  });</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面的 <code>(*)</code> 行中的 <code>results</code> 将会是：</p>
+<div id="6go28q31rt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>[
+  {status: 'fulfilled', value: ...response...},
+  {status: 'fulfilled', value: ...response...},
+  {status: 'rejected', reason: ...error object...}
+]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，对于每个 promise，我们都得到了其状态（status）和 <code>value/reason</code>。</p>
+<h3><a class="main__anchor" name="polyfill" href="#polyfill">Polyfill</a></h3><p>如果浏览器不支持 <code>Promise.allSettled</code>，很容易进行 polyfill：</p>
+<div id="2z9ut9catq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!Promise.allSettled) {
+  const rejectHandler = reason =&gt; ({ status: 'rejected', reason });
+
+  const resolveHandler = value =&gt; ({ status: 'fulfilled', value });
+
+  Promise.allSettled = function (promises) {
+    const convertedPromises = promises.map(p =&gt; Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
+  };
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这段代码中，<code>promises.map</code> 获取输入值，并通过 <code>p =&gt; Promise.resolve(p)</code> 将输入值转换为 promise（以防传递了 non-promise），然后向每一个 promise 都添加 <code>.then</code> 处理程序（handler）。</p>
+<p>这个处理程序（handler）将成功的结果 <code>value</code> 转换为 <code>{status:'fulfilled', value}</code>，将 error <code>reason</code> 转换为 <code>{status:'rejected', reason}</code>。这正是 <code>Promise.allSettled</code> 的格式。</p>
+<p>然后我们就可以使用 <code>Promise.allSettled</code> 来获取 <strong>所有</strong> 给定的 promise 的结果，即使其中一些被 reject。</p>
+<h2><a class="main__anchor" name="promiserace" href="#promiserace">Promise.race</a></h2><p>与 <code>Promise.all</code> 类似，但只等待第一个 settled 的 promise 并获取其结果（或 error）。</p>
+<p>语法：</p>
+<div id="yika91b17g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.race(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，这里的结果将是 <code>1</code>：</p>
+<div id="ofrl1fneql" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.race([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).then(alert); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里第一个 promise 最快，所以它变成了结果。第一个 settled 的 promise “赢得了比赛”之后，所有进一步的 result/error 都会被忽略。</p>
+<h2><a class="main__anchor" name="promiseany" href="#promiseany">Promise.any</a></h2><p>与 <code>Promise.race</code> 类似，区别在于 <code>Promise.any</code> 只等待第一个 fulfilled 的 promise，并将这个 fulfilled 的 promise 返回。如果给出的 promise 都 rejected，那么则返回 rejected 的 promise 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/AggregateError"><code>AggregateError</code></a> 错误类型的 error 实例—— 一个特殊的 error 对象，在其 <code>errors</code> 属性中存储着所有 promise error。</p>
+<p>语法如下：</p>
+<div id="relkgktyp5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = Promise.any(iterable);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，这里的结果将是 <code>1</code>：</p>
+<div id="ialuhmn2pe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.any([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(1), 2000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; resolve(3), 3000))
+]).then(alert); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里的第一个 promise 是最快的，但 rejected 了，所以第二个 promise 则成为了结果。在第一个 fulfilled 的 promise “赢得比赛”后，所有进一步的结果都将被忽略。</p>
+<p>这是一个所有 promise 都失败的例子：</p>
+<div id="e25r3frcg5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Promise.any([
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Ouch!&quot;)), 1000)),
+  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&quot;Error!&quot;)), 2000))
+]).catch(error =&gt; {
+  console.log(error.constructor.name); // AggregateError
+  console.log(error.errors[0]); // Error: Ouch!
+  console.log(error.errors[1]); // Error: Error
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如你所看到的，我们在 <code>AggregateError</code> 错误类型的 error 实例的 <code>errors</code> 属性中可以访问到失败的 promise 的 error 对象。</p>
+<h2><a class="main__anchor" name="promiseresolvereject" href="#promiseresolvereject">Promise.resolve/reject</a></h2><p>在现代的代码中，很少需要使用 <code>Promise.resolve</code> 和 <code>Promise.reject</code> 方法，因为 <code>async/await</code> 语法（我们会在 <a href="../async-await/index.html">稍后</a> 讲到）使它们变得有些过时了。</p>
+<p>完整起见，以及考虑到那些出于某些原因而无法使用 <code>async/await</code> 的人，我们在这里对它们进行介绍。</p>
+<h3><a class="main__anchor" name="promiseresolve" href="#promiseresolve">Promise.resolve</a></h3><p><code>Promise.resolve(value)</code> 用结果 <code>value</code> 创建一个 resolved 的 promise。</p>
+<p>如同：</p>
+<div id="f34neypxpb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(resolve =&gt; resolve(value));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当一个函数被期望返回一个 promise 时，这个方法用于兼容性。（译注：这里的兼容性是指，我们直接从缓存中获取了当前操作的结果 <code>value</code>，但是期望返回的是一个 promise，所以可以使用 <code>Promise.resolve(value)</code> 将 <code>value</code> “封装”进 promise，以满足期望返回一个 promise 的这个需求。）</p>
+<p>例如，下面的 <code>loadCached</code> 函数获取（fetch）一个 URL 并记住其内容。以便将来对使用相同 URL 的调用，它能立即从缓存中获取先前的内容，但使用 <code>Promise.resolve</code> 创建了一个该内容的 promise，所以返回的值始终是一个 promise。</p>
+<div id="p403cnrblm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let cache = new Map();
+
+function loadCached(url) {
+  if (cache.has(url)) {
+    return Promise.resolve(cache.get(url)); // (*)
+  }
+
+  return fetch(url)
+    .then(response =&gt; response.text())
+    .then(text =&gt; {
+      cache.set(url,text);
+      return text;
+    });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以使用 <code>loadCached(url).then(…)</code>，因为该函数保证了会返回一个 promise。我们就可以放心地在 <code>loadCached</code> 后面使用 <code>.then</code>。这就是 <code>(*)</code> 行中 <code>Promise.resolve</code> 的目的。</p>
+<h3><a class="main__anchor" name="promisereject" href="#promisereject">Promise.reject</a></h3><p><code>Promise.reject(error)</code> 用 <code>error</code> 创建一个 rejected 的 promise。</p>
+<p>如同：</p>
+<div id="lp91fgvlow" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise((resolve, reject) =&gt; reject(error));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>实际上，这个方法几乎从未被使用过。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>Promise</code> 类有 6 种静态方法：</p>
+<ol>
+<li><code>Promise.all(promises)</code> —— 等待所有 promise 都 resolve 时，返回存放它们结果的数组。如果给定的任意一个 promise 为 reject，那么它就会变成 <code>Promise.all</code> 的 error，所有其他 promise 的结果都会被忽略。</li>
+<li><code>Promise.allSettled(promises)</code>（ES2020 新增方法）—— 等待所有 promise 都 settle 时，并以包含以下内容的对象数组的形式返回它们的结果：
+<ul>
+<li><code>status</code>: <code>&quot;fulfilled&quot;</code> 或 <code>&quot;rejected&quot;</code></li>
+<li><code>value</code>（如果 fulfilled）或 <code>reason</code>（如果 rejected）。</li>
+</ul>
+</li>
+<li><code>Promise.race(promises)</code> —— 等待第一个 settle 的 promise，并将其 result/error 作为结果返回。</li>
+<li><code>Promise.any(promises)</code>（ES2021 新增方法）—— 等待第一个 fulfilled 的 promise，并将其结果作为结果返回。如果所有 promise 都 rejected，<code>Promise.any</code> 则会抛出 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/AggregateError"><code>AggregateError</code></a> 错误类型的 error 实例。</li>
+<li><code>Promise.resolve(value)</code> —— 使用给定 value 创建一个 resolved 的 promise。</li>
+<li><code>Promise.reject(error)</code> —— 使用给定 error 创建一个 rejected 的 promise。</li>
+</ol>
+<p>以上所有方法，<code>Promise.all</code> 可能是在实战中使用最多的。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../promise-error-handling/index.html" data-tooltip="使用 promise 进行错误处理"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../promisify/index.html" data-tooltip="Promisification"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/promise-api","identifier":"\/promise-api"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../async/index.html">Promise，async/await</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promiseall">Promise.all</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promiseallsettled">Promise.allSettled</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promiserace">Promise.race</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promiseany">Promise.any</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#promiseresolvereject">Promise.resolve/reject</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fpromise-api" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/11-async/05-promise-api" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

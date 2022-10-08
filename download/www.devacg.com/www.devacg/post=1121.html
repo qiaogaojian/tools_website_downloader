@@ -1,0 +1,756 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C语言—字符串数组与指针的区别</title>
+<meta name="keywords" content="鸟语,C语言">
+<meta name="description" content="const char ar1[29] = this is a char array.;  const char *pt1 = this is a char array.; &nb...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>C语言—字符串数组与指针的区别</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2019-10-15 21:17 
+			分类：<a href="sort%3D4.html">C</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	const char ar1[29] = "this is a char array."; <br>
+const char *pt1 = "this is a char array.";
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; <span style="font-size:14px;">&nbsp;数组形式(ar1[])在计算机的内存中分配为一个内含22个元素的数组（每个元素对应一个字符，还加上一个末尾的空字符‘\0’），每个元素被初始化为字符串字面量对应的字符。通常，字符串都作为可执行文件的一部分储存在数据段中。当把程序载入内存时，也载入了程序中的字符串。字符串储存在</span><strong><span style="font-size:14px;color:#003399;">静态存储区</span></strong><span style="font-size:14px;">(static memory)中。但是，程序在开始运行时才会为该数组分配内存。此时，才将字符串拷贝到数组中。注意，此时字符串有两个副本。一个是在静态内存中的字符串字面量，另一个是储存在ar1数组中的字符串。</span> 
+</p>
+<p>
+	<span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp;此后，编译器便把数组名ar1识别为该数组首元素地址(&amp;ar1[0])的别名。这里关键要理解，在数组形式中，</span><strong><span style="font-size:14px;color:#003399;">ar1是地址常量</span></strong><span style="font-size:14px;">。不能更改ar1，如果改变了ar1，则意味着改变了数组的存储位置(即地址)。可以进行类似ar1+1这样的操作，标识数组的下一个元素。但是不允许进行++ar1这样的操作。递增运算符只能用于变量名前（或概括地说，只能用于可修改的左值），不能用于常量。</span> 
+</p>
+<p>
+	<span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp;指针形式(*pt1)也使得编译器为字符串在静态存储区预留22个元素的空间。另外，一旦开始执行程序，它会为指针变量pt1留出一个储存位置，并把字符串的地址储存在指针变量中。该变量最初指向该字符串的首字符，但是它的值可以改变。因此，可以使用递增运算符。例如，++pt1将指向第2个字符(h)。</span> 
+</p>
+<p>
+	<span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#003399;">字符串字面量被视为const数据</span>。由于pt1指向这个const数据，所以应该把pt1声明为指向const数据的指针。这意味着不能用pt1改变它所指向的数据，但是仍然可以改变pt1的值(即，pt1指向的位置)。如果把一个字符串字面量拷贝给一个数组，就可以随意改变数据，除非把数组声明为const。</span> 
+</p>
+<p>
+	<span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp;总之，初始化数组把静态存储区的字符串拷贝到数组中，而初始化指针只把字符串的地址拷贝给指针。</span> 
+</p>
+<p>
+	示例
+</p>
+<pre class="prettyprint lang-cpp linenums">//Visual Studio中加上这句才可以使用scanf()
+//否则只能使用scanf_s()
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+#define MSG "I'm special"
+
+//argc: 参数个数 argv[]: 参数数组
+int main(int argc, char *argv[])
+{
+	char ar[] = MSG;
+	const char *pt = MSG;
+	printf("address of \"I'm special\": %p \n", "I'm special");
+	printf("    address ar: %p\n", ar);
+	printf("    address pt: %p\n", pt);
+	printf("address of MSG: %p\n", MSG);
+	printf("address of \"I'm special\": %p \n", "I'm special");
+
+	system("pause");
+	return 0;
+}</pre>
+<p>
+	运行测试 <br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/201910/076c1571147178.png" id="ematt:3377"><img src="../www.devacg.com/content/uploadfile/201910/076c1571147178.png" title="点击查看原图" alt="1111.png" border="0" width="280" height="108"></a> <br>
+打印结果说明： <br>
+1、pt和MSG地址相同，说明pt指向静态存储区的I'm special <br>
+2、ar和MSG地址不同，说明ar存储的是I'm special的副本 <br>
+3、I’m special字符串在程序中出现了多次，但编译器只使用了一个存储位置(<u>因使用的编译器而异</u>) <br>
+4、静态数据使用的内存与ar使用的动态内存不同，不仅值不同，特定编译器甚至使用不同的位数表示两种内存
+</p>
+<p>
+	<span style="font-size:16px;"><strong>示例二：数组与指针的区别</strong></span> 
+</p>
+<pre class="prettyprint lang-cpp linenums">//Visual Studio中加上这句才可以使用scanf()
+//否则只能使用scanf_s()
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+//argc: 参数个数 argv[]: 参数数组
+int main(int argc, char *argv[])
+{
+	//数组名heart是常量
+	char heart[] = "I love Tillie!";
+	//指针名heard是变量
+	const char *head = "I love Millie!";
+
+	//两者都可以使用数组表示法
+	for (int i = 0; i &lt; 6; i++)
+		putchar(heart[i]);
+	putchar('\n');
+	for (int i = 0; i &lt; 6; i++)
+		putchar(head[i]);
+	putchar('\n');
+
+	//两者都能进行指针加法操作
+	for (int i = 0; i &lt; 6; i++)
+		putchar(*(heart + i));
+	putchar('\n');
+	for (int i = 0; i &lt; 6; i++)
+		putchar(*(head + i));
+	putchar('\n');
+
+	//只有指针表示法可以进行递增操作
+	while (*(head) != '\0') //在字符串末尾处停止
+		putchar(*(head++));//打印字符，指针指向下一个位置
+	putchar('\n');
+	//可以将数组赋给指针
+	//head = heart;
+	//不能将指针赋给数组,因为赋值运算的左侧必须是变量,
+	//或者是可修改的左值,如*pt_int。
+	//heart = head;//非法
+
+	//两者都可改变数组中元素的信息
+	//下面两句等效
+	heart[7] = 'M';
+	*(heart + 7) = 'M';
+
+	//数组的元素是变量(除非数组被声明为const)，但是数组名不是变量。
+	//未使用const限定符的指针初始化
+	char * word = "frame";
+	//编译器可能允许这样做，但是对当前的C标准而言，这样的行为是
+	//未定义的。因为指针指向的是存储在静态区中的原始字符串，可能
+	//会影响其他使用了这个字符串的地方。
+	//word[1] = 'l';//未定义的行为,可能导致程序异常
+	//因此，建议在把指针初始化为字符串字面量时使用const限定符
+	const char * p1 = "Klingon"; //推荐用法
+	//然而，把非const数组初始化为字符串字面量却不会导致类似问题。
+	//因为数组获得的是原始字符串的副本。
+
+
+	system("pause");
+	return 0;
+}</pre>
+<p>
+	运行测试
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201910/076c1571227508.png" id="ematt:3399"><img src="../www.devacg.com/content/uploadfile/201910/076c1571227508.png" title="点击查看原图" alt="1111.png" border="0" width="133" height="101"></a> 
+</p>
+<p>
+	<span style="font-size:16px;"><strong>示例：字符串数组</strong></span> 
+</p>
+<pre class="prettyprint lang-cpp linenums">//Visual Studio中加上这句才可以使用scanf()
+//否则只能使用scanf_s()
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+#define SLEN 40
+#define LIM 5
+
+//argc: 参数个数 argv[]: 参数数组
+int main(int argc, char *argv[])
+{
+	//内含5个指针的数组
+	//指针所指向的字符串字面量储存在静态内存中
+	const char *mytalents[LIM] = {
+		"Adding numbers swiftly",
+		"Multiplying accurately",
+		"Stashing data",
+		"Following instructions to the letter",
+		"Understanding the Clanguage"
+	};
+	
+	//内含5个数组的数组,每个数组内含40个char类型的值，共占200字节。
+	//子数组储存的是字符串字面量的副本
+	char yourtalents[LIM][SLEN] = {
+		"Walking in a straight line",
+		"Sleeping",
+		"Watching television",
+		"Mailing letters",
+		"Reading email"
+	};
+	int i;
+
+	puts("Let's compare talents.");
+	printf("%-36s %-25s\n", "My Talents", "Your Talents");
+	for (i = 0; i &lt; LIM; i++)
+		printf("%-36s %-25s\n", mytalents[i], yourtalents[i]);
+	printf("\nsizeof mytalents: %zd, sizeof yourtalents: %zd\n",
+		sizeof(mytalents), sizeof(yourtalents));
+
+	/*
+	总之，如果不需要更改字符串字面量，推荐使用指针表示法(效率高).
+	如果需要更改，则使用数组表示法。
+	*/
+
+	system("pause");
+	return 0;
+}</pre>
+<p>
+	运行测试 <br>
+	
+		<a target="_blank" href="../www.devacg.com/content/uploadfile/201910/076c1571311987.png" id="ematt:3400"><img src="../www.devacg.com/content/uploadfile/201910/076c1571311987.png" title="点击查看原图" alt="1111.png" border="0" width="511" height="164"></a>
+	</p>
+	<p>
+		<span style="font-size:16px;"><strong>示例：指针和字符串</strong></span>
+	</p>
+	
+<pre class="prettyprint lang-cpp linenums">//Visual Studio中加上这句才可以使用scanf()
+//否则只能使用scanf_s()
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+//argc: 参数个数 argv[]: 参数数组
+int main(int argc, char *argv[])
+{
+	const char * mesg = "Don't be a fool!";
+	const char * copy;
+	//让copy指向mesg指向的字符串地址
+	copy = mesg;
+	printf("%s\n", copy);
+	//如果编译器不识别%p，用%u或%lu代替%p
+	printf("mesg = %s; &amp;mesg = %p; value = %p\n", mesg, &amp;mesg, mesg);
+	printf("copy = %s; &amp;copy = %p; value = %p\n", copy, &amp;copy, copy);
+
+	system("pause");
+	return 0;
+}</pre>
+	
+	<p>
+		运行测试
+	<br>
+		<a target="_blank" href="../www.devacg.com/content/uploadfile/201910/076c1571318204.png" id="ematt:3402"><img src="../www.devacg.com/content/uploadfile/201910/076c1571318204.png" title="点击查看原图" alt="1111.png" border="0" width="479" height="73"></a>
+	</p>
+<p></p>
+<p>
+	<br>
+</p>	<p class="tag">标签:	<a href="tag%3DC%25E8%25AF%25AD%25E8%25A8%2580.html">C语言</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=1121&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D1122.html">适配不同分辨率(AnchorLayout)</a>
+				|
+				 <a href="post%3D1120.html">C语言—表示字符串和字符串I/O</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D975.html">IComparer&lt;T&gt;</a></li>
+		<li><a href="post%3D846.html">Win7安装VisualStudio2017</a></li>
+		<li><a href="post%3D1282.html">《图解博弈论》</a></li>
+		<li><a href="post%3D1176.html">UGUI—UISpriteAnimation</a></li>
+		<li><a href="post%3D747.html">PropertyModification</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

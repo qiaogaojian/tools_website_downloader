@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">样式和类</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/styles-and-classes"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="样式和类"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="样式和类"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/modifying-document"><link rel="next" href="/size-and-scroll"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="样式和类"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/styles-and-classes"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/styles-and-classes"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/styles-and-classes"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/styles-and-classes"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/styles-and-classes"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/styles-and-classes"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/styles-and-classes"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/styles-and-classes"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/styles-and-classes"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/styles-and-classes"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/styles-and-classes">عربي</option><option value="https://javascript.info/styles-and-classes">English</option><option value="https://es.javascript.info/styles-and-classes">Español</option><option value="https://fr.javascript.info/styles-and-classes">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/styles-and-classes">Italiano</option><option value="https://ja.javascript.info/styles-and-classes">日本語</option><option value="https://ko.javascript.info/styles-and-classes">한국어</option><option value="https://learn.javascript.ru/styles-and-classes">Русский</option><option value="https://tr.javascript.info/styles-and-classes">Türkçe</option><option value="https://uk.javascript.info/styles-and-classes">Українська</option><option value="https://zh.javascript.info/styles-and-classes" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="8" max="32" data-tooltip="第 8/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../document/index.html"><span>Document</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"Document","item":"https://zh.javascript.info/document"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 十二月 2021"><div class="updated-at__content">4日 十二月 2021</div></div></div><h1 class="main__header-title">样式和类</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="样式和类"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在我们讨论 JavaScript 处理样式和类的方法之前 — 有一个重要的规则。希望它足够明显，但是我们仍然必须提到它。</p>
+<p>通常有两种设置元素样式的方式：</p>
+<ol>
+<li>在 CSS 中创建一个类，并添加它：<code>&lt;div class=&quot;...&quot;&gt;</code></li>
+<li>将属性直接写入 <code>style</code>：<code>&lt;div style=&quot;...&quot;&gt;</code>。</li>
+</ol>
+<p>JavaScript 既可以修改类，也可以修改 <code>style</code> 属性。</p>
+<p>相较于将样式写入 <code>style</code> 属性，我们应该首选通过 CSS 类的方式来添加样式。仅当类“无法处理”时，才应选择使用 <code>style</code> 属性的方式。</p>
+<p>例如，如果我们动态地计算元素的坐标，并希望通过 JavaScript 来设置它们，那么使用 <code>style</code> 是可以接受的，如下所示：</p>
+<div id="xzz1iijb33" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let top = /* 复杂的计算 */;
+let left = /* 复杂的计算 */;
+
+elem.style.left = left; // 例如 '123px'，在运行时计算出的
+elem.style.top = top; // 例如 '456px'</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于其他情况，例如将文本设为红色，添加一个背景图标 — 可以在 CSS 中对这些样式进行描述，然后添加类（JavaScript 可以做到）。这样更灵活，更易于支持。</p>
+<h2><a class="main__anchor" name="classname-he-classlist" href="#classname-he-classlist">className 和 classList</a></h2><p>更改类是脚本中最常见的操作之一。</p>
+<p>在很久以前，JavaScript 中有一个限制：像 <code>&quot;class&quot;</code> 这样的保留字不能用作对象的属性。这一限制现在已经不存在了，但当时就不能存在像 <code>elem.class</code> 这样的 <code>&quot;class&quot;</code> 属性。</p>
+<p>因此，对于类，引入了看起来类似的属性 <code>&quot;className&quot;</code>：<code>elem.className</code> 对应于 <code>&quot;class&quot;</code> 特性（attribute）。</p>
+<p>例如：</p>
+<div id="xauyiyox5s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    alert(document.body.className); // main page
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们对 <code>elem.className</code> 进行赋值，它将替换类中的整个字符串。有时，这正是我们所需要的，但通常我们希望添加/删除单个类。</p>
+<p>这里还有另一个属性：<code>elem.classList</code>。</p>
+<p><code>elem.classList</code> 是一个特殊的对象，它具有 <code>add/remove/toggle</code> 单个类的方法。</p>
+<p>例如：</p>
+<div id="fn2mcjxv2z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    // 添加一个 class
+    document.body.classList.add('article');
+
+    alert(document.body.className); // main page article
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，我们既可以使用 <code>className</code> 对完整的类字符串进行操作，也可以使用使用 <code>classList</code> 对单个类进行操作。我们选择什么取决于我们的需求。</p>
+<p><code>classList</code> 的方法：</p>
+<ul>
+<li><code>elem.classList.add/remove(class)</code> — 添加/移除类。</li>
+<li><code>elem.classList.toggle(class)</code> — 如果类不存在就添加类，存在就移除它。</li>
+<li><code>elem.classList.contains(class)</code> — 检查给定类，返回 <code>true/false</code>。</li>
+</ul>
+<p>此外，<code>classList</code> 是可迭代的，因此，我们可以像下面这样列出所有类：</p>
+<div id="abrr6po54v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body class=&quot;main page&quot;&gt;
+  &lt;script&gt;
+    for (let name of document.body.classList) {
+      alert(name); // main，然后是 page
+    }
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="yuan-su-yang-shi" href="#yuan-su-yang-shi">元素样式</a></h2><p><code>elem.style</code> 属性是一个对象，它对应于 <code>&quot;style&quot;</code> 特性（attribute）中所写的内容。<code>elem.style.width=&quot;100px&quot;</code> 的效果等价于我们在 <code>style</code> 特性中有一个 <code>width:100px</code> 字符串。</p>
+<p>对于多词（multi-word）属性，使用驼峰式 camelCase：</p>
+<div id="b1gt2je6ym" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>background-color  =&gt; elem.style.backgroundColor
+z-index           =&gt; elem.style.zIndex
+border-left-width =&gt; elem.style.borderLeftWidth</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如：</p>
+<div id="x1gb1iyfi4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.body.style.backgroundColor = prompt('background color?', 'green');</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">前缀属性</span></div>
+            <div class="important__content"><p>像 <code>-moz-border-radius</code> 和 <code>-webkit-border-radius</code> 这样的浏览器前缀属性，也遵循同样的规则：连字符 <code>-</code> 表示大写。</p>
+<p>例如：</p>
+<div id="qvzgyayoct" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>button.style.MozBorderRadius = '5px';
+button.style.WebkitBorderRadius = '5px';</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="zhong-zhi-yang-shi-shu-xing" href="#zhong-zhi-yang-shi-shu-xing">重置样式属性</a></h2><p>有时我们想要分配一个样式属性，稍后移除它。</p>
+<p>例如，为了隐藏一个元素，我们可以设置 <code>elem.style.display = &quot;none&quot;</code>。</p>
+<p>然后，稍后我们可能想要移除 <code>style.display</code>，就像它没有被设置一样。这里不应该使用 <code>delete elem.style.display</code>，而应该使用 <code>elem.style.display = &quot;&quot;</code> 将其赋值为空。</p>
+<div id="9o0jbeqz2q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 如果我们运行这段代码，&lt;body&gt; 将会闪烁
+document.body.style.display = &quot;none&quot;; // 隐藏
+
+setTimeout(() =&gt; document.body.style.display = &quot;&quot;, 1000); // 恢复正常</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们将 <code>display</code> 设置为空字符串，那么浏览器通常会应用 CSS 类以及内建样式，就好像根本没有这样的 <code>style</code> 属性一样。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">用 <code>style.cssText</code> 进行完全的重写</span></div>
+            <div class="important__content"><p>通常，我们使用 <code>style.*</code> 来对各个样式属性进行赋值。我们不能像这样的 <code>div.style=&quot;color: red; width: 100px&quot;</code> 设置完整的属性，因为 <code>div.style</code> 是一个对象，并且它是只读的。</p>
+<p>想要以字符串的形式设置完整的样式，可以使用特殊属性 <code>style.cssText</code>：</p>
+<div id="518kou75db" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;div&quot;&gt;Button&lt;/div&gt;
+
+&lt;script&gt;
+  // 我们可以在这里设置特殊的样式标记，例如 &quot;important&quot;
+  div.style.cssText=`color: red !important;
+    background-color: yellow;
+    width: 100px;
+    text-align: center;
+  `;
+
+  alert(div.style.cssText);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们很少使用这个属性，因为这样的赋值会删除所有现有样式：它不是进行添加，而是替换它们。有时可能会删除所需的内容。但是，当我们知道我们不会删除现有样式时，可以安全地将其用于新元素。</p>
+<p>可以通过设置一个特性（attribute）来实现同样的效果：<code>div.setAttribute('style', 'color: red...')</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="zhu-yi-dan-wei" href="#zhu-yi-dan-wei">注意单位</a></h2><p>不要忘记将 CSS 单位添加到值上。</p>
+<p>例如，我们不应该将 <code>elem.style.top</code> 设置为 <code>10</code>，而应将其设置为 <code>10px</code>。否则设置会无效：</p>
+<div id="xd0ngxjj3p" data-trusted="1" class="code-example" data-demo-height="100" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;script&gt;
+    // 无效！
+    document.body.style.margin = 20;
+    alert(document.body.style.margin); // ''（空字符串，赋值被忽略了）
+
+    // 现在添加了 CSS 单位（px）— 生效了
+    document.body.style.margin = '20px';
+    alert(document.body.style.margin); // 20px
+
+    alert(document.body.style.marginTop); // 20px
+    alert(document.body.style.marginLeft); // 20px
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：浏览器在最后几行代码中对属性 <code>style.margin</code> 进行了“解包”，并从中推断出 <code>style.marginLeft</code> 和 <code>style.marginTop</code>。</p>
+<h2><a class="main__anchor" name="ji-suan-yang-shi-getcomputedstyle" href="#ji-suan-yang-shi-getcomputedstyle">计算样式：getComputedStyle</a></h2><p>修改样式很简单。但是如何 <strong>读取</strong> 样式呢？</p>
+<p>例如，我们想知道元素的 size，margins 和 color。应该怎么获取？</p>
+<p><strong><code>style</code> 属性仅对 <code>&quot;style&quot;</code> 特性（attribute）值起作用，而没有任何 CSS 级联（cascade）。</strong></p>
+<p>因此我们无法使用 <code>elem.style</code> 读取来自 CSS 类的任何内容。</p>
+<p>例如，这里的 <code>style</code> 看不到 margin：</p>
+<div id="01p5n7fpsd" data-trusted="1" class="code-example" data-demo-height="60" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  The red text
+  &lt;script&gt;
+    alert(document.body.style.color); // 空的
+    alert(document.body.style.marginTop); // 空的
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但如果我们需要，例如，将 margin 增加 20px 呢？那么我们需要 margin 的当前值。</p>
+<p>对于这个需求，这里有另一种方法：<code>getComputedStyle</code>。</p>
+<p>语法如下：</p>
+<div id="ictv8o6uar" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getComputedStyle(element, [pseudo])</code></pre>
+        </div>
+      </div>
+      
+      </div><dl>
+<dt>element</dt>
+<dd>需要被读取样式值的元素。</dd>
+<dt>pseudo</dt>
+<dd>伪元素（如果需要），例如 <code>::before</code>。空字符串或无参数则意味着元素本身。</dd>
+</dl>
+<p>结果是一个具有样式属性的对象，像 <code>elem.style</code>，但现在对于所有的 CSS 类来说都是如此。</p>
+<p>例如：</p>
+<div id="34t3eso4i4" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;head&gt;
+  &lt;style&gt; body { color: red; margin: 5px } &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;script&gt;
+    let computedStyle = getComputedStyle(document.body);
+
+    // 现在我们可以读取它的 margin 和 color 了
+
+    alert( computedStyle.marginTop ); // 5px
+    alert( computedStyle.color ); // rgb(255, 0, 0)
+  &lt;/script&gt;
+
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">计算值和解析值</span></div>
+            <div class="important__content"><p>在 <a href="https://drafts.csswg.org/cssom/#resolved-values">CSS</a> 中有两个概念：</p>
+<ol>
+<li><strong>计算 (computed)</strong> 样式值是所有 CSS 规则和 CSS 继承都应用后的值，这是 CSS 级联（cascade）的结果。它看起来像 <code>height:1em</code> 或 <code>font-size:125%</code>。</li>
+<li><strong>解析 (resolved)</strong> 样式值是最终应用于元素的样式值值。诸如 <code>1em</code> 或 <code>125%</code> 这样的值是相对的。浏览器将使用计算（computed）值，并使所有单位均为固定的，且为绝对单位，例如：<code>height:20px</code> 或 <code>font-size:16px</code>。对于几何属性，解析（resolved）值可能具有浮点，例如：<code>width:50.5px</code>。</li>
+</ol>
+<p>很久以前，创建了 <code>getComputedStyle</code> 来获取计算（computed）值，但事实证明，解析（resolved）值要方便得多，标准也因此发生了变化。</p>
+<p>所以，现在 <code>getComputedStyle</code> 实际上返回的是属性的解析值（resolved）。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>getComputedStyle</code> 需要完整的属性名</span></div>
+            <div class="important__content"><p>我们应该总是使用我们想要的确切的属性，例如 <code>paddingLeft</code>、<code>marginTop</code> 或 <code>borderTopWidth</code>。否则，就不能保证正确的结果。</p>
+<p>例如，如果有 <code>paddingLeft/paddingTop</code> 属性，那么对于 <code>getComputedStyle(elem).padding</code>，我们会得到什么？什么都没有，或者是从已知的 padding 中“生成”的值？这里没有标准的规则。</p>
+<p>还有其他不一致的地方。例如，在下面这个例子中，某些浏览器（Chrome）会显示 <code>10px</code>，而某些浏览器（Firefox）则没有：</p>
+<div id="aq5ttzjzbm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  body {
+    margin: 10px;
+  }
+&lt;/style&gt;
+&lt;script&gt;
+  let style = getComputedStyle(document.body);
+  alert(style.margin); // 在 Firefox 中是空字符串
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">应用于 <code>:visited</code> 链接的样式被隐藏了！</span></div>
+            <div class="important__content"><p>可以使用 CSS 伪类 <code>:visited</code> 对被访问过的链接进行着色。</p>
+<p>但 <code>getComputedStyle</code> 没有给出访问该颜色的方式，因为否则，任意页面都可以通过在页面上创建它，并通过检查样式来确定用户是否访问了某链接。</p>
+<p>JavaScript 看不到 <code>:visited</code> 所应用的样式。此外，CSS 中也有一个限制，即禁止在 <code>:visited</code> 中应用更改几何形状的样式。这是为了确保一个不好的页面无法测试链接是否被访问，进而窥探隐私。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>要管理 class，有两个 DOM 属性：</p>
+<ul>
+<li><code>className</code> — 字符串值，可以很好地管理整个类的集合。</li>
+<li><code>classList</code> — 具有 <code>add/remove/toggle/contains</code> 方法的对象，可以很好地支持单个类。</li>
+</ul>
+<p>要改变样式：</p>
+<ul>
+<li>
+<p><code>style</code> 属性是具有驼峰（camelCased）样式的对象。对其进行读取和修改与修改 <code>&quot;style&quot;</code> 特性（attribute）中的各个属性具有相同的效果。要了解如何应用 <code>important</code> 和其他特殊内容 — 在 <a href="https://developer.mozilla.org/zh/docs/Web/API/CSSStyleDeclaration">MDN</a> 中有一个方法列表。</p>
+</li>
+<li>
+<p><code>style.cssText</code> 属性对应于整个 <code>&quot;style&quot;</code> 特性（attribute），即完整的样式字符串。</p>
+</li>
+</ul>
+<p>要读取已解析的（resolved）样式（对于所有类，在应用所有 CSS 并计算最终值之后）：</p>
+<ul>
+<li><code>getComputedStyle(elem, [pseudo])</code> 返回与 <code>style</code> 对象类似的，且包含了所有类的对象。只读。</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#chuang-jian-yi-ge-tong-zhi" name="chuang-jian-yi-ge-tong-zhi">创建一个通知</a></h3><a class="task__open-link" href="../task/create-notification/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>编写一个函数 <code>showNotification(options)</code>：该函数创建一个带有给定内容的通知 <code>&lt;div class=&quot;notification&quot;&gt;</code>。该通知应该在 1.5 秒后自动消失。</p>
+<p>参数：</p>
+<div id="teirz9qbr4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在窗口的右上角附近显示一个带有文本 &quot;Hello&quot; 的元素
+showNotification({
+  top: 10, // 距窗口顶部 10px（默认为 0px）
+  right: 10, // 距窗口右边缘 10px（默认为 0px）
+  html: &quot;Hello!&quot;, // 通知中的 HTML
+  className: &quot;welcome&quot; // div 的附加类（可选）
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://zh.js.cx/task/create-notification/solution/" target="blank">在新窗口中演示</a></p><p>使用 CSS 定位在给定的 top/right 坐标处显示元素。源文档已经提供了必要的样式。</p>
+<p><a href="https://plnkr.co/edit/tefpJCwkza9lBfVQ?p=preview" target="_blank" data-plunk-id="tefpJCwkza9lBfVQ">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/2R5jdNqZFhSq6Fej?p=preview" target="_blank" data-plunk-id="2R5jdNqZFhSq6Fej">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../modifying-document/index.html" data-tooltip="修改文档（document）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../size-and-scroll/index.html" data-tooltip="元素大小和滚动"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/styles-and-classes","identifier":"\/styles-and-classes"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../document/index.html">Document</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#classname-he-classlist">className 和 classList</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yuan-su-yang-shi">元素样式</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhong-zhi-yang-shi-shu-xing">重置样式属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhu-yi-dan-wei">注意单位</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ji-suan-yang-shi-getcomputedstyle">计算样式：getComputedStyle</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fstyles-and-classes" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/1-document/08-styles-and-classes" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

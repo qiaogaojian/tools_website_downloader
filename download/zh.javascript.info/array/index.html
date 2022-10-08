@@ -1,0 +1,1067 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">数组</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/array"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="数组"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="数组"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/string"><link rel="next" href="/array-methods"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="数组"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/array"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/array"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/array"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/array"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/array"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/array"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/array"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/array"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/array"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/array"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/array"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/array">عربي</option><option value="https://javascript.info/array">English</option><option value="https://es.javascript.info/array">Español</option><option value="https://fr.javascript.info/array">Français</option><option value="https://id.javascript.info/array">Indonesia</option><option value="https://it.javascript.info/array">Italiano</option><option value="https://ja.javascript.info/array">日本語</option><option value="https://ko.javascript.info/array">한국어</option><option value="https://learn.javascript.ru/array">Русский</option><option value="https://tr.javascript.info/array">Türkçe</option><option value="https://uk.javascript.info/array">Українська</option><option value="https://zh.javascript.info/array" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="40" max="92" data-tooltip="第 40/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">数组</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="数组"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>对象允许存储键值集合，这很好。</p>
+<p>但很多时候我们发现还需要 <strong>有序集合</strong>，里面的元素都是按顺序排列的。例如，我们可能需要存储一些列表，比如用户、商品以及 HTML 元素等。</p>
+<p>这里使用对象就不是很方便了，因为对象不能提供能够管理元素顺序的方法。我们不能在已有的元素“之间”插入一个新的属性。这种场景下对象就不太适用了。</p>
+<p>这时一个特殊的数据结构数组（<code>Array</code>）就派上用场了，它能存储有序的集合。</p>
+<h2><a class="main__anchor" name="sheng-ming" href="#sheng-ming">声明</a></h2><p>创建一个空数组有两种语法：</p>
+<div id="g7h3idzzzk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Array();
+let arr = [];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>绝大多数情况下使用的都是第二种语法。我们可以在方括号中添加初始元素：</p>
+<div id="nb6mgbg57b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Plum&quot;];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>数组元素从 0 开始编号。</p>
+<p>我们可以通过方括号中的数字获取元素：</p>
+<div id="k26bhrdkru" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Plum&quot;];
+
+alert( fruits[0] ); // Apple
+alert( fruits[1] ); // Orange
+alert( fruits[2] ); // Plum</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可以替换元素：</p>
+<div id="1brw264qir" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fruits[2] = 'Pear'; // 现在变成了 [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……或者向数组新加一个元素：</p>
+<div id="rvfel9gylm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fruits[3] = 'Lemon'; // 现在变成 [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;, &quot;Lemon&quot;]</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>length</code> 属性的值是数组中元素的总个数：</p>
+<div id="f6tkfjp7hj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Plum&quot;];
+
+alert( fruits.length ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>也可以用 <code>alert</code> 来显示整个数组。</p>
+<div id="42ef52e87h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Plum&quot;];
+
+alert( fruits ); // Apple,Orange,Plum</code></pre>
+        </div>
+      </div>
+      
+      </div><p>数组可以存储任何类型的元素。</p>
+<p>例如:</p>
+<div id="8ryrx1g6xn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 混合值
+let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+
+// 获取索引为 1 的对象然后显示它的 name
+alert( arr[1].name ); // John
+
+// 获取索引为 3 的函数并执行
+arr[3](); // hello</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">以逗号结尾</span></div>
+            <div class="important__content"><p>数组就像对象一样，可以以逗号结尾：</p>
+<div id="t1fnixvyny" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:9}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [
+  &quot;Apple&quot;,
+  &quot;Orange&quot;,
+  &quot;Plum&quot;,
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因为每一行都是相似的，所以这种以“逗号结尾”的方式使得插入/移除项变得更加简单。</p>
+</div></div>
+<h2><a class="main__anchor" name="poppushshiftunshift-fang-fa" href="#poppushshiftunshift-fang-fa">pop/push, shift/unshift 方法</a></h2><p><a href="https://en.wikipedia.org/wiki/Queue_(abstract_data_type)">队列（queue）</a>是最常见的使用数组的方法之一。在计算机科学中，这表示支持两个操作的一个有序元素的集合：</p>
+<ul>
+<li><code>push</code> 在末端添加一个元素.</li>
+<li><code>shift</code> 取出队列首端的一个元素，整个队列往前移，这样原先排第二的元素现在排在了第一。</li>
+</ul>
+<figure><div class="image" style="width:187px">
+      <div class="image__ratio" style="padding-top:57.75401069518716%"></div>
+      <object type="image/svg+xml" data="../article/array/queue.svg" width="187" height="108" class="image__image" data-use-theme>
+        <img src="../article/array/queue.svg" alt width="187" height="108">
+      </object>
+      </div></figure><p>这两种操作数组都支持。</p>
+<p>队列的应用在实践中经常会碰到。例如需要在屏幕上显示消息队列。</p>
+<p>数组还有另一个用例，就是数据结构 <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">栈</a>。</p>
+<p>它支持两种操作：</p>
+<ul>
+<li><code>push</code> 在末端添加一个元素.</li>
+<li><code>pop</code> 从末端取出一个元素.</li>
+</ul>
+<p>所以新元素的添加和取出都是从“末端”开始的。</p>
+<p>栈通常被被形容成一叠卡片：要么在最上面添加卡片，要么从最上面拿走卡片：</p>
+<figure><div class="image" style="width:145px">
+      <div class="image__ratio" style="padding-top:102.75862068965517%"></div>
+      <object type="image/svg+xml" data="../article/array/stack.svg" width="145" height="149" class="image__image" data-use-theme>
+        <img src="../article/array/stack.svg" alt width="145" height="149">
+      </object>
+      </div></figure><p>对于栈来说，最后放进去的内容是最先接收的，也叫做 LIFO（Last-In-First-Out），即后进先出法则。而与队列相对应的叫做 FIFO（First-In-First-Out），即先进先出。</p>
+<p>JavaScript 中的数组既可以用作队列，也可以用作栈。它们允许你从首端/末端来添加/删除元素。</p>
+<p>这在计算机科学中，允许这样的操作的数据结构被称为 <a href="https://en.wikipedia.org/wiki/Double-ended_queue">双端队列（deque）</a>。</p>
+<p><strong>作用于数组末端的方法：</strong></p>
+<dl>
+<dt><code>pop</code></dt>
+<dd>
+<p>取出并返回数组的最后一个元素：</p>
+<div id="vufuzz3ehn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;];
+
+alert( fruits.pop() ); // 移除 &quot;Pear&quot; 然后 alert 显示出来
+
+alert( fruits ); // Apple, Orange</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>push</code></dt>
+<dd>
+<p>在数组末端添加元素：</p>
+<div id="mulfbldmm6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;];
+
+fruits.push(&quot;Pear&quot;);
+
+alert( fruits ); // Apple, Orange, Pear</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>fruits.push(...)</code> 与 <code>fruits[fruits.length] = ...</code> 是一样的。</p>
+</dd>
+</dl>
+<p><strong>作用于数组首端的方法：</strong></p>
+<dl>
+<dt><code>shift</code></dt>
+<dd>
+<p>取出数组的第一个元素并返回它：</p>
+<div id="2ns49qsauw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;];
+
+alert( fruits.shift() ); // 移除 Apple 然后 alert 显示出来
+
+alert( fruits ); // Orange, Pear</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>unshift</code></dt>
+<dd>
+<p>在数组的首端添加元素：</p>
+<div id="3kqubnswoz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Orange&quot;, &quot;Pear&quot;];
+
+fruits.unshift('Apple');
+
+alert( fruits ); // Apple, Orange, Pear</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<p><code>push</code> 和 <code>unshift</code> 方法都可以一次添加多个元素：</p>
+<div id="khg89u5n8y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;];
+
+fruits.push(&quot;Orange&quot;, &quot;Peach&quot;);
+fruits.unshift(&quot;Pineapple&quot;, &quot;Lemon&quot;);
+
+// [&quot;Pineapple&quot;, &quot;Lemon&quot;, &quot;Apple&quot;, &quot;Orange&quot;, &quot;Peach&quot;]
+alert( fruits );</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="nei-bu" href="#nei-bu">内部</a></h2><p>数组是一种特殊的对象。使用方括号来访问属性 <code>arr[0]</code> 实际上是来自于对象的语法。它其实与 <code>obj[key]</code> 相同，其中 <code>arr</code> 是对象，而数字用作键（key）。</p>
+<p>它们扩展了对象，提供了特殊的方法来处理有序的数据集合以及 <code>length</code> 属性。但从本质上讲，它仍然是一个对象。</p>
+<p>记住，在 JavaScript 中只有 8 种基本的数据类型（详见 <a href="../types/index.html">数据类型</a> 一章）。数组是一个对象，因此其行为也像一个对象。</p>
+<p>例如，它是通过引用来复制的：</p>
+<div id="31fphlwjnd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Banana&quot;]
+
+let arr = fruits; // 通过引用复制 (两个变量引用的是相同的数组)
+
+alert( arr === fruits ); // true
+
+arr.push(&quot;Pear&quot;); // 通过引用修改数组
+
+alert( fruits ); // Banana, Pear — 现在有 2 项了</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是数组真正特殊的是它们的内部实现。JavaScript 引擎尝试把这些元素一个接一个地存储在连续的内存区域，就像本章的插图显示的一样，而且还有一些其它的优化，以使数组运行得非常快。</p>
+<p>但是，如果我们不像“有序集合”那样使用数组，而是像常规对象那样使用数组，这些就都不生效了。</p>
+<p>例如，从技术上讲，我们可以这样做:</p>
+<div id="xhl7iyo2ua" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = []; // 创建一个数组
+
+fruits[99999] = 5; // 分配索引远大于数组长度的属性
+
+fruits.age = 25; // 创建一个具有任意名称的属性</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是可以的，因为数组是基于对象的。我们可以给它们添加任何属性。</p>
+<p>但是 Javascript 引擎会发现，我们在像使用常规对象一样使用数组，那么针对数组的优化就不再适用了，然后对应的优化就会被关闭，这些优化所带来的优势也就荡然无存了。</p>
+<p>数组误用的几种方式:</p>
+<ul>
+<li>添加一个非数字的属性，比如 <code>arr.test = 5</code>。</li>
+<li>制造空洞，比如：添加 <code>arr[0]</code>，然后添加 <code>arr[1000]</code> (它们中间什么都没有)。</li>
+<li>以倒序填充数组，比如 <code>arr[1000]</code>，<code>arr[999]</code> 等等。</li>
+</ul>
+<p>请将数组视为作用于 <strong>有序数据</strong> 的特殊结构。它们为此提供了特殊的方法。数组在 JavaScript 引擎内部是经过特殊调整的，使得更好地作用于连续的有序数据，所以请以正确的方式使用数组。如果你需要任意键值，那很有可能实际上你需要的是常规对象 <code>{}</code>。</p>
+<h2><a class="main__anchor" name="xing-neng" href="#xing-neng">性能</a></h2><p><code>push/pop</code> 方法运行的比较快，而 <code>shift/unshift</code> 比较慢。</p>
+<figure><div class="image" style="width:354px">
+      <div class="image__ratio" style="padding-top:48.87005649717514%"></div>
+      <object type="image/svg+xml" data="../article/array/array-speed.svg" width="354" height="173" class="image__image" data-use-theme>
+        <img src="../article/array/array-speed.svg" alt width="354" height="173">
+      </object>
+      </div></figure><p>为什么作用于数组的末端会比首端快呢？让我们看看在执行期间都发生了什么：</p>
+<div id="wiurhs7lep" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fruits.shift(); // 从首端取出一个元素</code></pre>
+        </div>
+      </div>
+      
+      </div><p>只获取并移除数字 <code>0</code> 对应的元素是不够的。其它元素也需要被重新编号。</p>
+<p><code>shift</code> 操作必须做三件事:</p>
+<ol>
+<li>移除索引为 <code>0</code> 的元素。</li>
+<li>把所有的元素向左移动，把索引 <code>1</code> 改成 <code>0</code>，<code>2</code> 改成 <code>1</code> 以此类推，对其重新编号。</li>
+<li>更新 <code>length</code> 属性。</li>
+</ol>
+<figure><div class="image" style="width:610px">
+      <div class="image__ratio" style="padding-top:28.688524590163933%"></div>
+      <object type="image/svg+xml" data="../article/array/array-shift.svg" width="610" height="175" class="image__image" data-use-theme>
+        <img src="../article/array/array-shift.svg" alt width="610" height="175">
+      </object>
+      </div></figure><p><strong>数组里的元素越多，移动它们就要花越多的时间，也就意味着越多的内存操作。</strong></p>
+<p><code>unshift</code> 也是一样：为了在数组的首端添加元素，我们首先需要将现有的元素向右移动，增加它们的索引值。</p>
+<p>那 <code>push/pop</code> 是什么样的呢？它们不需要移动任何东西。如果从末端移除一个元素，<code>pop</code> 方法只需要清理索引值并缩短 <code>length</code> 就可以了。</p>
+<p><code>pop</code> 操作的行为：</p>
+<div id="gxhzess0dv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fruits.pop(); // 从末端取走一个元素</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:479px">
+      <div class="image__ratio" style="padding-top:30.89770354906054%"></div>
+      <object type="image/svg+xml" data="../article/array/array-pop.svg" width="479" height="148" class="image__image" data-use-theme>
+        <img src="../article/array/array-pop.svg" alt width="479" height="148">
+      </object>
+      </div></figure><p><strong><code>pop</code> 方法不需要移动任何东西，因为其它元素都保留了各自的索引。这就是为什么 <code>pop</code> 会特别快。</strong></p>
+<p><code>push</code> 方法也是一样的。</p>
+<h2><a class="main__anchor" name="xun-huan" href="#xun-huan">循环</a></h2><p>遍历数组最古老的方式就是 <code>for</code> 循环：</p>
+<div id="71bpfejcdo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;];
+
+for (let i = 0; i &lt; arr.length; i++) {
+  alert( arr[i] );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但对于数组来说还有另一种循环方式，<code>for..of</code>：</p>
+<div id="tpo02y45oo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Plum&quot;];
+
+// 遍历数组元素
+for (let fruit of fruits) {
+  alert( fruit );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>for..of</code> 不能获取当前元素的索引，只是获取元素值，但大多数情况是够用的。而且这样写更短。</p>
+<p>技术上来讲，因为数组也是对象，所以使用 <code>for..in</code> 也是可以的：</p>
+<div id="04tk81q7bp" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Pear&quot;];
+
+for (let key in arr) {
+  alert( arr[key] ); // Apple, Orange, Pear
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但这其实是一个很不好的想法。会有一些潜在问题存在：</p>
+<ol>
+<li>
+<p><code>for..in</code> 循环会遍历 <strong>所有属性</strong>，不仅仅是这些数字属性。</p>
+<p>在浏览器和其它环境中有一种称为“类数组”的对象，它们 <strong>看似是数组</strong>。也就是说，它们有 <code>length</code> 和索引属性，但是也可能有其它的非数字的属性和方法，这通常是我们不需要的。<code>for..in</code> 循环会把它们都列出来。所以如果我们需要处理类数组对象，这些“额外”的属性就会存在问题。</p>
+</li>
+<li>
+<p><code>for..in</code> 循环适用于普通对象，并且做了对应的优化。但是不适用于数组，因此速度要慢 10-100 倍。当然即使是这样也依然非常快。只有在遇到瓶颈时可能会有问题。但是我们仍然应该了解这其中的不同。</p>
+</li>
+</ol>
+<p>通常来说，我们不应该用 <code>for..in</code> 来处理数组。</p>
+<h2><a class="main__anchor" name="guan-yu-length" href="#guan-yu-length">关于 “length”</a></h2><p>当我们修改数组的时候，<code>length</code> 属性会自动更新。准确来说，它实际上不是数组里元素的个数，而是最大的数字索引值加一。</p>
+<p>例如，一个数组只有一个元素，但是这个元素的索引值很大，那么这个数组的 <code>length</code> 也会很大：</p>
+<div id="1jb4teqj0g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [];
+fruits[123] = &quot;Apple&quot;;
+
+alert( fruits.length ); // 124</code></pre>
+        </div>
+      </div>
+      
+      </div><p>要知道的是我们通常不会这样使用数组。</p>
+<p><code>length</code> 属性的另一个有意思的点是它是可写的。</p>
+<p>如果我们手动增加它，则不会发生任何有趣的事儿。但是如果我们减少它，数组就会被截断。该过程是不可逆的，下面是例子：</p>
+<div id="04u9vukmyx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3, 4, 5];
+
+arr.length = 2; // 截断到只剩 2 个元素
+alert( arr ); // [1, 2]
+
+arr.length = 5; // 又把 length 加回来
+alert( arr[3] ); // undefined：被截断的那些数值并没有回来</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，清空数组最简单的方法就是：<code>arr.length = 0;</code>。</p>
+<h2><a class="main__anchor" name="new-array" href="#new-array">new Array()</a></h2><p>这是创建数组的另一种语法：</p>
+<div id="1s10spew77" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:10,&quot;end&quot;:19}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Array(&quot;Apple&quot;, &quot;Pear&quot;, &quot;etc&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它很少被使用，因为方括号 <code>[]</code> 更短更简洁。而且，这种语法还有一个棘手的特性。</p>
+<p>如果使用单个参数（即数字）调用 <code>new Array</code>，那么它会创建一个 <strong>指定了长度，却没有任何项</strong> 的数组。</p>
+<p>让我们看看如何搬起石头砸自己的脚:</p>
+<div id="2j8ds4mqbk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Array(2); // 会创建一个 [2] 的数组吗？
+
+alert( arr[0] ); // undefined！没有元素。
+
+alert( arr.length ); // length 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了避免这种意外情况，我们通常使用方括号，除非我们真的知道自己在做什么。</p>
+<h2><a class="main__anchor" name="duo-wei-shu-zu" href="#duo-wei-shu-zu">多维数组</a></h2><p>数组里的项也可以是数组。我们可以将其用于多维数组，例如存储矩阵：</p>
+<div id="3pcdpsjgxd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+alert( matrix[1][1] ); // 最中间的那个数</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="tostring" href="#tostring">toString</a></h2><p>数组有自己的 <code>toString</code> 方法的实现，会返回以逗号隔开的元素列表。</p>
+<p>例如：</p>
+<div id="7tircuyvzc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3];
+
+alert( arr ); // 1,2,3
+alert( String(arr) === '1,2,3' ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>此外，我们试试运行一下这个：</p>
+<div id="msjwjd10pj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [] + 1 ); // &quot;1&quot;
+alert( [1] + 1 ); // &quot;11&quot;
+alert( [1,2] + 1 ); // &quot;1,21&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>数组没有 <code>Symbol.toPrimitive</code>，也没有 <code>valueOf</code>，它们只能执行 <code>toString</code> 进行转换，所以这里 <code>[]</code> 就变成了一个空字符串，<code>[1]</code> 变成了 <code>&quot;1&quot;</code>，<code>[1,2]</code> 变成了 <code>&quot;1,2&quot;</code>。</p>
+<p>当 <code>&quot;+&quot;</code> 运算符把一些项加到字符串后面时，加号后面的项也会被转换成字符串，所以下一步就会是这样：</p>
+<div id="e6gvjznk8h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;&quot; + 1 ); // &quot;1&quot;
+alert( &quot;1&quot; + 1 ); // &quot;11&quot;
+alert( &quot;1,2&quot; + 1 ); // &quot;1,21&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="bu-yao-shi-yong-bi-jiao-shu-zu" href="#bu-yao-shi-yong-bi-jiao-shu-zu">不要使用 == 比较数组</a></h2><p>JavaScript 中的数组与其它一些编程语言的不同，不应该使用 <code>==</code> 运算符比较 JavaScript 中的数组。</p>
+<p>该运算符不会对数组进行特殊处理，它会像处理任意对象那样处理数组。</p>
+<p>让我们回顾一下规则：</p>
+<ul>
+<li>仅当两个对象引用的是同一个对象时，它们才相等 <code>==</code>。</li>
+<li>如果 <code>==</code> 左右两个参数之中有一个参数是对象，另一个参数是原始类型，那么该对象将会被转换为原始类型，转换规则如 <a href="../object-toprimitive/index.html">对象 — 原始值转换</a> 一章所述。</li>
+<li>……<code>null</code> 和 <code>undefined</code> 相等 <code>==</code>，且各自不等于任何其他的值。</li>
+</ul>
+<p>严格比较 <code>===</code> 更简单，因为它不会进行类型转换。</p>
+<p>所以，如果我们使用 <code>==</code> 来比较数组，除非我们比较的是两个引用同一数组的变量，否则它们永远不相等。</p>
+<p>例如：</p>
+<div id="4s7owp6yym" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( [] == [] ); // false
+alert( [0] == [0] ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从技术上讲，这些数组是不同的对象。所以它们不相等。<code>==</code> 运算符不会进行逐项比较。</p>
+<p>与原始类型的比较也可能会产生看似很奇怪的结果：</p>
+<div id="5q9163433q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 0 == [] ); // true
+
+alert('0' == [] ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里的两个例子中，我们将原始类型和数组对象进行比较。因此，数组 <code>[]</code> 被转换为原始类型以进行比较，被转换成了一个空字符串 <code>''</code>。</p>
+<p>然后，接下来的比较就是原始类型之间的比较，如 <a href="../type-conversions/index.html">类型转换</a> 一章所述：</p>
+<div id="h2qd28jr52" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在 [] 被转换为 '' 后
+alert( 0 == '' ); // true，因为 '' 被转换成了数字 0
+
+alert('0' == '' ); // false，没有进一步的类型转换，是不同的字符串</code></pre>
+        </div>
+      </div>
+      
+      </div><p>那么，我们应该如何对数组进行比较呢？</p>
+<p>很简单，不要使用 <code>==</code> 运算符。而是，可以在循环中或者使用下一章中我们将介绍的迭代方法逐项地比较它们。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>数组是一种特殊的对象，适用于存储和管理有序的数据项。</p>
+<ul>
+<li>
+<p>声明:</p>
+<div id="ivwa6xx1op" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 方括号 (常见用法)
+let arr = [item1, item2...];
+
+// new Array (极其少见)
+let arr = new Array(item1, item2...);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>new Array(number)</code> 会创建一个给定长度的数组，但不含有任何项。</p>
+</li>
+<li>
+<p><code>length</code> 属性是数组的长度，准确地说，它是数组最后一个数字索引值加一。它由数组方法自动调整。</p>
+</li>
+<li>
+<p>如果我们手动缩短 <code>length</code>，那么数组就会被截断。</p>
+</li>
+</ul>
+<p>我们可以通过下列操作以双端队列的方式使用数组：</p>
+<ul>
+<li><code>push(...items)</code> 在末端添加 <code>items</code> 项。</li>
+<li><code>pop()</code> 从末端移除并返回该元素。</li>
+<li><code>shift()</code> 从首端移除并返回该元素。</li>
+<li><code>unshift(...items)</code> 从首端添加 <code>items</code> 项。</li>
+</ul>
+<p>遍历数组的元素：</p>
+<ul>
+<li><code>for (let i=0; i&lt;arr.length; i++)</code> — 运行得最快，可兼容旧版本浏览器。</li>
+<li><code>for (let item of arr)</code> — 现代语法，只能访问 items。</li>
+<li><code>for (let i in arr)</code> — 永远不要用这个。</li>
+</ul>
+<p>比较数组时，不要使用 <code>==</code> 运算符（当然也不要使用 <code>&gt;</code> 和 <code>&lt;</code> 等运算符），因为它们不会对数组进行特殊处理。它们通常会像处理任意对象那样处理数组，这通常不是我们想要的。</p>
+<p>但是，我们可以使用 <code>for..of</code> 循环来逐项比较数组。</p>
+<p>在下一章 <a href="../array-methods/index.html">数组方法</a> 中，我们将继续学习数组，学习更多添加、移除、提取元素和数组排序的方法。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shu-zu-bei-kao-bei-le-ma" name="shu-zu-bei-kao-bei-le-ma">数组被拷贝了吗?</a></h3><a class="task__open-link" href="../task/item-value/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>下面的代码将会显示什么？</p>
+<div id="erou3q607v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apples&quot;, &quot;Pear&quot;, &quot;Orange&quot;];
+
+// 在“副本”里 push 了一个新的值
+let shoppingCart = fruits;
+shoppingCart.push(&quot;Banana&quot;);
+
+// fruits 里面是什么？
+alert( fruits.length ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>结果是 <code>4</code>:</p>
+<div id="p003fljyg7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fruits = [&quot;Apples&quot;, &quot;Pear&quot;, &quot;Orange&quot;];
+
+let shoppingCart = fruits;
+
+shoppingCart.push(&quot;Banana&quot;);
+
+alert( fruits.length ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是因为数组是对象。所以 <code>shoppingCart</code> 和 <code>fruits</code> 是同一数组的引用。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shu-zu-cao-zuo" name="shu-zu-cao-zuo">数组操作。</a></h3><a class="task__open-link" href="../task/create-array/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们试试下面的 5 个数组操作。</p>
+<ol>
+<li>创建一个数组 <code>styles</code>，里面存储有 “Jazz” 和 “Blues”。</li>
+<li>将 “Rock-n-Roll” 从数组末端添加进去。</li>
+<li>用 “Classics” 替换掉数组最中间的元素。查找数组最中间的元素的代码应该适用于任何奇数长度的数组。</li>
+<li>去掉数组的第一个值并显示它。</li>
+<li>在数组前面添加 <code>Rap</code> 和 <code>Reggae</code>。</li>
+</ol>
+<p>过程中的数组：</p>
+<div id="95ygfem577" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Jazz, Blues
+Jazz, Bues, Rock-n-Roll
+Jazz, Classics, Rock-n-Roll
+Classics, Rock-n-Roll
+Rap, Reggae, Classics, Rock-n-Roll</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="39fhmrg70x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let styles = [&quot;Jazz&quot;, &quot;Blues&quot;];
+styles.push(&quot;Rock-n-Roll&quot;);
+styles[Math.floor((styles.length - 1) / 2)] = &quot;Classics&quot;;
+alert( styles.shift() );
+styles.unshift(&quot;Rap&quot;, &quot;Reggae&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zai-shu-zu-shang-xia-wen-tiao-yong" name="zai-shu-zu-shang-xia-wen-tiao-yong">在数组上下文调用</a></h3><a class="task__open-link" href="../task/call-array-this/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>结果是什么？为什么？</p>
+<div id="71g3ck5tm0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;a&quot;, &quot;b&quot;];
+
+arr.push(function() {
+  alert( this );
+})
+
+arr[2](); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><code>arr[2]()</code> 调用从句法来看可以类比于 <code>obj[method]()</code>，与 <code>obj</code> 对应的是 <code>arr</code>，与 <code>method</code> 对应的是 <code>2</code>。</p>
+<p>所以调用 <code>arr[2]</code> 函数也就是调用对象函数。自然地，它接收 <code>this</code> 引用的对象 <code>arr</code> 然后输出该数组：</p>
+<div id="nyozqinjen" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;a&quot;, &quot;b&quot;];
+
+arr.push(function() {
+  alert( this );
+})
+
+arr[2](); // a,b,function(){...}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该数组有 3 项：最开始有两个，后来添加进来一个函数。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shu-ru-shu-zi-qiu-he" name="shu-ru-shu-zi-qiu-he">输入数字求和</a></h3><a class="task__open-link" href="../task/array-input-sum/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写出函数 <code>sumInput()</code>，要求如下：</p>
+<ul>
+<li>使用 <code>prompt</code> 向用户索要值，并存在数组中。</li>
+<li>当用户输入了非数字、空字符串或者点击“取消”按钮的时候，问询结束。</li>
+<li>计算并返回数组所有项之和。</li>
+</ul>
+<p>P.S. <code>0</code> 是有效的数字，不要因为是 0 就停止问询。</p>
+<p><a href="#" onclick="event.preventDefault(); runDemo(this)">运行 demo</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>请注意这个解决方案的细微但是很重要的细节。我们没有在 <code>prompt</code> 后立即把 <code>value</code> 转换成数字，因为在执行 <code>value = +value</code> 之后，就没办法区分出空字符串（中断标志）和数字 0（合法输入）了，所以要放到后面再处理。</p>
+<div id="m19n592uf6" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sumInput() {
+
+  let numbers = [];
+
+  while (true) {
+
+    let value = prompt(&quot;A number please?&quot;, 0);
+
+    // 应该结束了吗？
+    if (value === &quot;&quot; || value === null || !isFinite(value)) break;
+
+    numbers.push(+value);
+  }
+
+  let sum = 0;
+  for (let number of numbers) {
+    sum += number;
+  }
+  return sum;
+}
+
+alert( sumInput() );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zui-da-zi-shu-zu" name="zui-da-zi-shu-zu">最大子数组</a></h3><a class="task__open-link" href="../task/maximal-subarray/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 2</span></div><div class="task__content"><div class="task__formatted"><p>输入是以数字组成的数组，例如 <code>arr = [1, -2, 3, 4, -9, 6]</code>.</p>
+<p>任务是：找出所有项的和最大的 <code>arr</code> 数组的连续子数组。</p>
+<p>写出函数 <code>getMaxSubSum(arr)</code>，用其找出并返回最大和。</p>
+<p>例如：</p>
+<div id="fh16wf37yb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:14,&quot;end&quot;:21}]},{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:14,&quot;end&quot;:17}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:26}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:28,&quot;end&quot;:30}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:14,&quot;end&quot;:25}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:18,&quot;end&quot;:22}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getMaxSubSum([-1, 2, 3, -9]) == 5（高亮项的加和）
+getMaxSubSum([2, -1, 2, 3, -9]) == 6
+getMaxSubSum([-1, 2, 3, -9, 11]) == 11
+getMaxSubSum([-2, -1, 1, 2]) == 3
+getMaxSubSum([100, -9, 2, -3, 5]) == 100
+getMaxSubSum([1, 2, 3]) == 6（所有项的和）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果所有项都是负数，那就一个项也不取（子数组是空的），所以返回的是 0：</p>
+<div id="e4fhwl1a32" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getMaxSubSum([-1, -2, -3]) = 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请尝试想出一个快速的解决方案：复杂度可以是 <a href="https://en.wikipedia.org/wiki/Big_O_notation">O(n<sup>2</sup>)</a>，有能力达到 O(n) 则更好。</p>
+<p><a href="https://plnkr.co/edit/RtI1IiQhkubobrvH?p=preview" target="_blank" data-plunk-id="RtI1IiQhkubobrvH">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">慢的解决方案</button><div class="task__answer-content"><h4 class="task__step-title">慢的解决方案</h4><div class="formatted"><p>我们可以计算所有可能的子集的和。</p>
+<p>最简单的方法就是获取每个元素然后计算从它开始所有子数组的和。</p>
+<p>以 <code>[-1, 2, 3, -9, 11]</code> 为例：</p>
+<div id="9pf90vqmxy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从 -1 开始：
+-1
+-1 + 2
+-1 + 2 + 3
+-1 + 2 + 3 + (-9)
+-1 + 2 + 3 + (-9) + 11
+
+// 从 2 开始：
+2
+2 + 3
+2 + 3 + (-9)
+2 + 3 + (-9) + 11
+
+// 从 3 开始：
+3
+3 + (-9)
+3 + (-9) + 11
+
+// 从 -9 开始：
+-9
+-9 + 11
+
+// 从 -11 开始：
+-11</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样写出来的代码实际上是一个嵌套循环：外部循环遍历数组所有元素，内部循环计算从当前元素开始的所有子数组各自的和。</p>
+<div id="s216ko10dc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getMaxSubSum(arr) {
+  let maxSum = 0; // 如果没有取到任何元素，就返回 0
+
+  for (let i = 0; i &lt; arr.length; i++) {
+    let sumFixedStart = 0;
+    for (let j = i; j &lt; arr.length; j++) {
+      sumFixedStart += arr[j];
+      maxSum = Math.max(maxSum, sumFixedStart);
+    }
+  }
+
+  return maxSum;
+}
+
+alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+alert( getMaxSubSum([1, 2, 3]) ); // 6
+alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该方案的时间复杂度是 <a href="https://en.wikipedia.org/wiki/Big_O_notation">O(n<sup>2</sup>)</a>。也就是说，如果我们把数组大小增加 2 倍，那么算法的运行时间将会延长4倍。</p>
+<p>对于大型数组（1000，10000 或者更多项）这种算法会导致严重的时间消耗。</p>
+</div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">快的解决方案</button><div class="task__answer-content"><h4 class="task__step-title">快的解决方案</h4><div class="formatted"><p>让我们遍历数组，将当前局部元素的和保存在变量 <code>s</code> 中。如果 <code>s</code> 在某一点变成负数了，就重新分配 <code>s=0</code>。所有 <code>s</code> 中的最大值就是答案。</p>
+<p>如果文字描述不太好理解，就直接看下面的代码吧，真的很短：</p>
+<div id="102ffb26af" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getMaxSubSum(arr) {
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr) { // arr 中的每个 item
+    partialSum += item; // 将其加到 partialSum
+    maxSum = Math.max(maxSum, partialSum); // 记住最大值
+    if (partialSum &lt; 0) partialSum = 0; // 如果是负数就置为 0
+  }
+
+  return maxSum;
+}
+
+alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+alert( getMaxSubSum([1, 2, 3]) ); // 6
+alert( getMaxSubSum([-1, -2, -3]) ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该算法只需要遍历 1 轮数组，所以时间复杂度是 O(n)。</p>
+<p>你也可以在这获取更多该算法的细节信息：<a href="http://en.wikipedia.org/wiki/Maximum_subarray_problem">最大子数组问题</a>。如果还是不明白，那就调试上面的例子，观察它是怎样工作的，说得再多也没有自己去调试好使。</p>
+<div id="vio9lzqhas" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getMaxSubSum(arr) {
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr) {
+    partialSum += item;
+    maxSum = Math.max(maxSum, partialSum);
+    if (partialSum &lt; 0) partialSum = 0;
+  }
+  return maxSum;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/oh0TIcDQHvPTFake?p=preview" target="_blank" data-plunk-id="oh0TIcDQHvPTFake">使用沙箱的测试功能打开解决方案。</a></p></div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../string/index.html" data-tooltip="字符串"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../array-methods/index.html" data-tooltip="数组方法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/array","identifier":"\/array"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sheng-ming">声明</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#poppushshiftunshift-fang-fa">pop/push, shift/unshift 方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nei-bu">内部</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xing-neng">性能</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xun-huan">循环</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#guan-yu-length">关于 “length”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#new-array">new Array()</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#duo-wei-shu-zu">多维数组</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tostring">toString</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bu-yao-shi-yong-bi-jiao-shu-zu">不要使用 == 比较数组</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (5)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Farray" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/04-array" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

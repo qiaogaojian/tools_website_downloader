@@ -1,0 +1,965 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">基础运算符，数学</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/operators"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="基础运算符，数学"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="基础运算符，数学"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/type-conversions"><link rel="next" href="/comparison"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="基础运算符，数学"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/operators"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/operators"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/operators"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/operators"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/operators"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/operators"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/operators"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/operators"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/operators"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/operators"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/operators"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/operators">عربي</option><option value="https://javascript.info/operators">English</option><option value="https://es.javascript.info/operators">Español</option><option value="https://fr.javascript.info/operators">Français</option><option value="https://id.javascript.info/operators">Indonesia</option><option value="https://it.javascript.info/operators">Italiano</option><option value="https://ja.javascript.info/operators">日本語</option><option value="https://ko.javascript.info/operators">한국어</option><option value="https://learn.javascript.ru/operators">Русский</option><option value="https://tr.javascript.info/operators">Türkçe</option><option value="https://uk.javascript.info/operators">Українська</option><option value="https://zh.javascript.info/operators" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="12" max="92" data-tooltip="第 12/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../first-steps/index.html"><span>JavaScript 基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"JavaScript 基础知识","item":"https://zh.javascript.info/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 7日 二月 2022"><div class="updated-at__content">7日 二月 2022</div></div></div><h1 class="main__header-title">基础运算符，数学</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="基础运算符，数学"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们从学校里了解到过很多运算符，比如说加号 <code>+</code>、乘号 <code>*</code>、减号 <code>-</code> 等。</p>
+<p>在本章中，我们将从简单的运算符开始，然后着重介绍 JavaScript 特有的方面，这些是在学校中学习的数学所没有涵盖的。</p>
+<h2><a class="main__anchor" name="shu-yu-yi-yuan-yun-suan-fu-er-yuan-yun-suan-fu-yun-suan-yuan" href="#shu-yu-yi-yuan-yun-suan-fu-er-yuan-yun-suan-fu-yun-suan-yuan">术语：“一元运算符”，“二元运算符”，“运算元”</a></h2><p>在正式开始前，我们先简单浏览一下常用术语。</p>
+<ul>
+<li>
+<p><strong>运算元</strong> —— 运算符应用的对象。比如说乘法运算 <code>5 * 2</code>，有两个运算元：左运算元 <code>5</code> 和右运算元 <code>2</code>。有时候人们也称其为“参数”而不是“运算元”。</p>
+</li>
+<li>
+<p>如果一个运算符对应的只有一个运算元，那么它是 <strong>一元运算符</strong>。比如说一元负号运算符（unary negation）<code>-</code>，它的作用是对数字进行正负转换：</p>
+<div id="pj72vyuxdf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+x = -x;
+alert( x ); // -1，一元负号运算符生效</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>如果一个运算符拥有两个运算元，那么它是 <strong>二元运算符</strong>。减号还存在二元运算符形式：</p>
+<div id="8ebasupnse" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1, y = 3;
+alert( y - x ); // 2，二元运算符减号做减运算</code></pre>
+        </div>
+      </div>
+      
+      </div><p>严格地说，在上面的示例中，我们使用一个相同的符号表征了两个不同的运算符：负号运算符，即反转符号的一元运算符，减法运算符，是从另一个数减去一个数的二元运算符。</p>
+</li>
+</ul>
+<h2><a class="main__anchor" name="shu-xue" href="#shu-xue">数学</a></h2><p>支持以下数学运算：</p>
+<ul>
+<li>加法 <code>+</code>,</li>
+<li>减法 <code>-</code>,</li>
+<li>乘法 <code>*</code>,</li>
+<li>除法 <code>/</code>,</li>
+<li>取余 <code>%</code>,</li>
+<li>求幂 <code>**</code>.</li>
+</ul>
+<p>前四个都很简单，而 <code>%</code> 和 <code>**</code> 则需要说一说。</p>
+<h3><a class="main__anchor" name="qu-yu" href="#qu-yu">取余 %</a></h3><p>取余运算符是 <code>%</code>，尽管它看起来很像百分数，但实际并无关联。</p>
+<p><code>a % b</code> 的结果是 <code>a</code> 整除 <code>b</code> 的 <a href="https://zh.wikipedia.org/zh-hans/%E4%BD%99%E6%95%B0">余数</a>)。</p>
+<p>例如：</p>
+<div id="xn7squlac" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 5 % 2 ); // 1，5 除以 2 的余数
+alert( 8 % 3 ); // 2，8 除以 3 的余数</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="qiu-mi" href="#qiu-mi">求幂 **</a></h3><p>求幂运算 <code>a ** b</code> 将 <code>a</code> 提升至 <code>a</code> 的 <code>b</code> 次幂。</p>
+<p>在数学中我们将其表示为 a<sup>b</sup>。</p>
+<p>例如：</p>
+<div id="1glluzze1n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 2 ** 2 ); // 2² = 4
+alert( 2 ** 3 ); // 2³ = 8
+alert( 2 ** 4 ); // 2⁴ = 16</code></pre>
+        </div>
+      </div>
+      
+      </div><p>就像在数学计算中一样，幂运算也适用于非整数。</p>
+<p>例如，平方根是指数为 ½ 的幂运算：</p>
+<div id="pzj6kgi8l2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 4 ** (1/2) ); // 2（1/2 次方与平方根相同)
+alert( 8 ** (1/3) ); // 2（1/3 次方与立方根相同)</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="yong-er-yuan-yun-suan-fu-lian-jie-zi-fu-chuan" href="#yong-er-yuan-yun-suan-fu-lian-jie-zi-fu-chuan">用二元运算符 + 连接字符串</a></h2><p>我们来看一些学校算术未涉及的 JavaScript 运算符的特性。</p>
+<p>通常，加号 <code>+</code> 用于求和。</p>
+<p>但是如果加号 <code>+</code> 被应用于字符串，它将合并（连接）各个字符串：</p>
+<div id="b7zfpoiao9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let s = &quot;my&quot; + &quot;string&quot;;
+alert(s); // mystring</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意：只要任意一个运算元是字符串，那么另一个运算元也将被转化为字符串。</p>
+<p>举个例子：</p>
+<div id="wfj080d1g2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '1' + 2 ); // &quot;12&quot;
+alert( 2 + '1' ); // &quot;21&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你看，第一个运算元和第二个运算元，哪个是字符串并不重要。</p>
+<p>下面是一个更复杂的例子：</p>
+<div id="ivi3oolgvt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(2 + 2 + '1' ); // &quot;41&quot;，不是 &quot;221&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里，运算符是按顺序工作。第一个 <code>+</code> 将两个数字相加，所以返回 <code>4</code>，然后下一个 <code>+</code> 将字符串 <code>1</code> 加入其中，所以就是 <code>4 + '1' = '41'</code>。</p>
+<div id="66hezdog85" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert('1' + 2 + 2); // &quot;122&quot;，不是 &quot;14&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里，第一个操作数是一个字符串，所以编译器将其他两个操作数也视为了字符串。<code>2</code> 被与 <code>'1'</code> 连接到了一起，也就是像 <code>'1' + 2 = &quot;12&quot;</code> 然后 <code>&quot;12&quot; + 2 = &quot;122&quot;</code> 这样。</p>
+<p>二元 <code>+</code> 是唯一一个以这种方式支持字符串的运算符。其他算术运算符只对数字起作用，并且总是将其运算元转换为数字。</p>
+<p>下面是减法和除法运算的示例：</p>
+<div id="44tc06fm0n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 6 - '2' ); // 4，将 '2' 转换为数字
+alert( '6' / '2' ); // 3，将两个运算元都转换为数字</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="shu-zi-zhuan-hua-yi-yuan-yun-suan-fu" href="#shu-zi-zhuan-hua-yi-yuan-yun-suan-fu">数字转化，一元运算符 +</a></h2><p>加号 <code>+</code> 有两种形式。一种是上面我们刚刚讨论的二元运算符，还有一种是一元运算符。</p>
+<p>一元运算符加号，或者说，加号 <code>+</code> 应用于单个值，对数字没有任何作用。但是如果运算元不是数字，加号 <code>+</code> 则会将其转化为数字。</p>
+<p>例如：</p>
+<div id="lihxn4cq4g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 对数字无效
+let x = 1;
+alert( +x ); // 1
+
+let y = -2;
+alert( +y ); // -2
+
+// 转化非数字
+alert( +true ); // 1
+alert( +&quot;&quot; );   // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它的效果和 <code>Number(...)</code> 相同，但是更加简短。</p>
+<p>我们经常会有将字符串转化为数字的需求。比如，如果我们正在从 HTML 表单中取值，通常得到的都是字符串。如果我们想对它们求和，该怎么办？</p>
+<p>二元运算符加号会把它们合并成字符串：</p>
+<div id="wznoipqrjq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let apples = &quot;2&quot;;
+let oranges = &quot;3&quot;;
+
+alert( apples + oranges ); // &quot;23&quot;，二元运算符加号合并字符串</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们想把它们当做数字对待，我们需要转化它们，然后再求和：</p>
+<div id="sbqtqimlh0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let apples = &quot;2&quot;;
+let oranges = &quot;3&quot;;
+
+// 在二元运算符加号起作用之前，所有的值都被转化为了数字
+alert( +apples + +oranges ); // 5
+
+// 更长的写法
+// alert( Number(apples) + Number(oranges) ); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从一个数学家的视角来看，大量的加号可能很奇怪。但是从一个程序员的视角，没什么好奇怪的：一元运算符加号首先起作用，它们将字符串转为数字，然后二元运算符加号对它们进行求和。</p>
+<p>为什么一元运算符先于二元运算符作用于运算元？接下去我们将讨论到，这是由于它们拥有 <strong>更高的优先级</strong>。</p>
+<h2><a class="main__anchor" name="yun-suan-fu-you-xian-ji" href="#yun-suan-fu-you-xian-ji">运算符优先级</a></h2><p>如果一个表达式拥有超过一个运算符，执行的顺序则由 <strong>优先级</strong> 决定。换句话说，所有的运算符中都隐含着优先级顺序。</p>
+<p>从小学开始，我们就知道在表达式 <code>1 + 2 * 2</code> 中，乘法先于加法计算。这就是一个优先级问题。乘法比加法拥有 <strong>更高的优先级</strong>。</p>
+<p>圆括号拥有最高优先级，所以如果我们对现有的运算顺序不满意，我们可以使用圆括号来修改运算顺序，就像这样：<code>(1 + 2) * 2</code>。</p>
+<p>在 JavaScript 中有众多运算符。每个运算符都有对应的优先级数字。数字越大，越先执行。如果优先级相同，则按照由左至右的顺序执行。</p>
+<p>这是一个摘抄自 Mozilla 的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">优先级表</a>（你没有必要把这全记住，但要记住一元运算符优先级高于二元运算符）：</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>名称</th>
+<th>符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>15</td>
+<td>一元加号</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>一元负号</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td>求幂</td>
+<td><code>**</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>乘号</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>除号</td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>加号</td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>减号</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>赋值符</td>
+<td><code>=</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>我们可以看到，“一元加号运算符”的优先级是 <code>15</code>，高于“二元加号运算符”的优先级 <code>12</code>。这也是为什么表达式 <code>&quot;+apples + +oranges&quot;</code> 中的一元加号先生效，然后才是二元加法。</p>
+<h2><a class="main__anchor" name="fu-zhi-yun-suan-fu" href="#fu-zhi-yun-suan-fu">赋值运算符</a></h2><p>我们知道赋值符号 <code>=</code> 也是一个运算符。从优先级表中可以看到它的优先级非常低，只有 <code>2</code>。</p>
+<p>这也是为什么，当我们赋值时，比如 <code>x = 2 * 2 + 1</code>，所有的计算先执行，然后 <code>=</code> 才执行，将计算结果存储到 <code>x</code>。</p>
+<div id="yi3s6rmqyo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 2 * 2 + 1;
+
+alert( x ); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="fu-zhi-fan-hui-yi-ge-zhi" href="#fu-zhi-fan-hui-yi-ge-zhi">赋值 = 返回一个值</a></h3><p><code>=</code> 是一个运算符，而不是一个有着“魔法”作用的语言结构。</p>
+<p>在 JavaScript 中，所有运算符都会返回一个值。这对于 <code>+</code> 和 <code>-</code> 来说是显而易见的，但对于 <code>=</code> 来说也是如此。</p>
+<p>语句 <code>x = value</code> 将值 <code>value</code> 写入 <code>x</code> <strong>然后返回 x</strong>。</p>
+<p>下面是一个在复杂语句中使用赋值的例子：</p>
+<div id="jxsoyoizi8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1;
+let b = 2;
+
+let c = 3 - (a = b + 1);
+
+alert( a ); // 3
+alert( c ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面这个例子，<code>(a = b + 1)</code> 的结果是赋给 <code>a</code> 的值（也就是 <code>3</code>）。然后该值被用于进一步的运算。</p>
+<p>有趣的代码，不是吗？我们应该了解它的工作原理，因为有时我们会在 JavaScript 库中看到它。</p>
+<p>不过，请不要写这样的代码。这样的技巧绝对不会使代码变得更清晰或可读。</p>
+<h3><a class="main__anchor" name="lian-shi-fu-zhi-chainingassignments" href="#lian-shi-fu-zhi-chainingassignments">链式赋值（Chaining assignments）</a></h3><p>另一个有趣的特性是链式赋值：</p>
+<div id="bf0gf65x3z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a, b, c;
+
+a = b = c = 2 + 2;
+
+alert( a ); // 4
+alert( b ); // 4
+alert( c ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>链式赋值从右到左进行计算。首先，对最右边的表达式 <code>2 + 2</code> 求值，然后将其赋给左边的变量：<code>c</code>、<code>b</code> 和 <code>a</code>。最后，所有的变量共享一个值。</p>
+<p>同样，出于可读性，最好将这种代码分成几行：</p>
+<div id="20sw6k3aok" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>c = 2 + 2;
+b = c;
+a = c;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样可读性更强，尤其是在快速浏览代码的时候。</p>
+<h2><a class="main__anchor" name="yuan-di-xiu-gai" href="#yuan-di-xiu-gai">原地修改</a></h2><p>我们经常需要对一个变量做运算，并将新的结果存储在同一个变量中。</p>
+<p>例如：</p>
+<div id="9zc4vfs549" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+n = n + 5;
+n = n * 2;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可以使用运算符 <code>+=</code> 和 <code>*=</code> 来缩写这种表示。</p>
+<div id="eimuzk17c7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+n += 5; // 现在 n = 7（等同于 n = n + 5）
+n *= 2; // 现在 n = 14（等同于 n = n * 2）
+
+alert( n ); // 14</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所有算术和位运算符都有简短的“修改并赋值”运算符：<code>/=</code> 和 <code>-=</code> 等。</p>
+<p>这类运算符的优先级与普通赋值运算符的优先级相同，所以它们在大多数其他运算之后执行：</p>
+<div id="om2rwyl89e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 2;
+
+n *= 3 + 5;
+
+alert( n ); // 16 （右边部分先被计算，等同于 n *= 8）</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zi-zeng-zi-jian" href="#zi-zeng-zi-jian">自增/自减</a></h2><!-- 在标题中无法写出 --，因为内建的解析器会将其转换为“长破折号” —— -->
+<p>对一个数进行加一、减一是最常见的数学运算符之一。</p>
+<p>所以，对此有一些专门的运算符：</p>
+<ul>
+<li>
+<p><strong>自增</strong> <code>++</code> 将变量与 1 相加：</p>
+<div id="2qgca8c8j6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 2;
+counter++;      // 和 counter = counter + 1 效果一样，但是更简洁
+alert( counter ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><strong>自减</strong> <code>--</code> 将变量与 1 相减：</p>
+<div id="apswq647ol" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 2;
+counter--;      // 和 counter = counter - 1 效果一样，但是更简洁
+alert( counter ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">重要：</span></div>
+            <div class="important__content"><p>自增/自减只能应用于变量。试一下，将其应用于数值（比如 <code>5++</code>）则会报错。</p>
+</div></div>
+<p>运算符 <code>++</code> 和 <code>--</code> 可以置于变量前，也可以置于变量后。</p>
+<ul>
+<li>当运算符置于变量后，被称为“后置形式”：<code>counter++</code>。</li>
+<li>当运算符置于变量前，被称为“前置形式”：<code>++counter</code>。</li>
+</ul>
+<p>两者都做同一件事：将变量 <code>counter</code> 与 <code>1</code> 相加。</p>
+<p>那么它们有区别吗？有，但只有当我们使用 <code>++/--</code> 的返回值时才能看到区别。</p>
+<p>详细点说。我们知道，所有的运算符都有返回值。自增/自减也不例外。前置形式返回一个新的值，但后置返回原来的值（做加法/减法之前的值）。</p>
+<p>为了直观看到区别，看下面的例子：</p>
+<div id="bmpsnsdb9b" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:14}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+let a = ++counter; // (*)
+
+alert(a); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>(*)</code> 所在的行是前置形式 <code>++counter</code>，对 <code>counter</code> 做自增运算，返回的是新的值 <code>2</code>。因此 <code>alert</code> 显示的是 <code>2</code>。</p>
+<p>下面让我们看看后置形式：</p>
+<div id="4ear6vra81" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:14}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+let a = counter++; // (*) 将 ++counter 改为 counter++
+
+alert(a); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>(*)</code> 所在的行是后置形式 <code>counter++</code>，它同样对 <code>counter</code> 做加法，但是返回的是 <strong>旧值</strong>（做加法之前的值）。因此 <code>alert</code> 显示的是 <code>1</code>。</p>
+<p>总结：</p>
+<ul>
+<li>
+<p>如果自增/自减的值不会被使用，那么两者形式没有区别：</p>
+<div id="3b6z3l1p2a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+counter++;
+++counter;
+alert( counter ); // 2，以上两行作用相同</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>如果我们想要对变量进行自增操作，<strong>并且</strong> 需要立刻使用自增后的值，那么我们需要使用前置形式：</p>
+<div id="qr2h35v177" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+alert( ++counter ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>如果我们想要将一个数加一，但是我们想使用其自增之前的值，那么我们需要使用后置形式：</p>
+<div id="q2citmio15" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 0;
+alert( counter++ ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">自增/自减和其它运算符的对比</span></div>
+            <div class="important__content"><p><code>++/--</code> 运算符同样可以在表达式内部使用。它们的优先级比绝大部分的算数运算符要高。</p>
+<p>举个例子：</p>
+<div id="lxeaemesey" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * ++counter ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与下方例子对比：</p>
+<div id="otuu387tif" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * counter++ ); // 2，因为 counter++ 返回的是“旧值”</code></pre>
+        </div>
+      </div>
+      
+      </div><p>尽管从技术层面上来说可行，但是这样的写法会降低代码的可阅读性。在一行上做多个操作 —— 这样并不好。</p>
+<p>当阅读代码时，快速的视觉“纵向”扫描会很容易漏掉 <code>counter++</code>，这样的自增操作并不明显。</p>
+<p>我们建议用“一行一个行为”的模式：</p>
+<div id="98rsazvrfy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let counter = 1;
+alert( 2 * counter );
+counter++;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="wei-yun-suan-fu" href="#wei-yun-suan-fu">位运算符</a></h2><p>位运算符把运算元当做 32 位整数，并在它们的二进制表现形式上操作。</p>
+<p>这些运算符不是 JavaScript 特有的。大部分的编程语言都支持这些运算符。</p>
+<p>下面是位运算符：</p>
+<ul>
+<li>按位与 ( <code>&amp;</code> )</li>
+<li>按位或 ( <code>|</code> )</li>
+<li>按位异或 ( <code>^</code> )</li>
+<li>按位非 ( <code>~</code> )</li>
+<li>左移 ( <code>&lt;&lt;</code> )</li>
+<li>右移 ( <code>&gt;&gt;</code> )</li>
+<li>无符号右移 ( <code>&gt;&gt;&gt;</code> )</li>
+</ul>
+<p>这些运算符很少被使用，一般是我们需要在最低级别（位）上操作数字时才使用。我们不会很快用到这些运算符，因为在 Web 开发中很少使用它们，但在某些特殊领域中，例如密码学，它们很有用。当你需要了解它们的时候，可以阅读 MDN 上的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise">位操作符</a> 章节。</p>
+<h2><a class="main__anchor" name="dou-hao-yun-suan-fu" href="#dou-hao-yun-suan-fu">逗号运算符</a></h2><p>逗号运算符 <code>,</code> 是最少见最不常使用的运算符之一。有时候它会被用来写更简短的代码，因此为了能够理解代码，我们需要了解它。</p>
+<p>逗号运算符能让我们处理多个语句，使用 <code>,</code> 将它们分开。每个语句都运行了，但是只有最后的语句的结果会被返回。</p>
+<p>举个例子：</p>
+<div id="wl2bioz7rk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = (1 + 2, 3 + 4);
+
+alert( a ); // 7（3 + 4 的结果）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里，第一个语句 <code>1 + 2</code> 运行了，但是它的结果被丢弃了。随后计算 <code>3 + 4</code>，并且该计算结果被返回。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">逗号运算符的优先级非常低</span></div>
+            <div class="important__content"><p>请注意逗号运算符的优先级非常低，比 <code>=</code> 还要低，因此上面你的例子中圆括号非常重要。</p>
+<p>如果没有圆括号：<code>a = 1 + 2, 3 + 4</code> 会先执行 <code>+</code>，将数值相加得到 <code>a = 3, 7</code>，然后赋值运算符 <code>=</code> 执行 <code>a = 3</code>，然后逗号之后的数值 <code>7</code> 不会再执行，它被忽略掉了。相当于 <code>(a = 1 + 2), 3 + 4</code>。</p>
+</div></div>
+<p>为什么我们需要这样一个运算符，它只返回最后一个值呢？</p>
+<p>有时候，人们会使用它把几个行为放在一行上来进行复杂的运算。</p>
+<p>举个例子：</p>
+<div id="5jpbm2ucb4" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:5,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 一行上有三个运算符
+for (a = 1, b = 3, c = a * b; a &lt; 10; a++) {
+ ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样的技巧在许多 JavaScript 框架中都有使用，这也是为什么我们提到它。但是通常它并不能提升代码的可读性，使用它之前，我们要想清楚。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#hou-zhi-yun-suan-fu-he-qian-zhi-yun-suan-fu" name="hou-zhi-yun-suan-fu-he-qian-zhi-yun-suan-fu">后置运算符和前置运算符</a></h3><a class="task__open-link" href="../task/increment-order/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>以下代码中变量 <code>a</code>、<code>b</code>、<code>c</code>、<code>d</code> 的最终值分别是多少？</p>
+<div id="ed490lfgza" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1, b = 1;
+
+let c = ++a; // ?
+let d = b++; // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案如下：</p>
+<ul>
+<li><code>a = 2</code></li>
+<li><code>b = 2</code></li>
+<li><code>c = 2</code></li>
+<li><code>d = 1</code></li>
+</ul>
+<div id="scvkcnotq2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 1, b = 1;
+
+alert( ++a ); // 2，前置运算符返回最新值
+alert( b++ ); // 1，后置运算符返回旧值
+
+alert( a ); // 2，自增一次
+alert( b ); // 2，自增一次</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#fu-zhi-jie-guo" name="fu-zhi-jie-guo">赋值结果</a></h3><a class="task__open-link" href="../task/assignment-result/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>下面这段代码运行完成后，代码中的 <code>a</code> 和 <code>x</code> 的值是多少？</p>
+<div id="yqpbuw5l2t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = 2;
+
+let x = 1 + (a *= 2);</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案如下：</p>
+<ul>
+<li><code>a = 4</code>（乘以 2）</li>
+<li><code>x = 5</code>（相当于计算 1 + 4）</li>
+</ul>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#lei-xing-zhuan-huan" name="lei-xing-zhuan-huan">类型转换</a></h3><a class="task__open-link" href="../task/primitive-conversions-questions/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面这些表达式的结果是什么？</p>
+<div id="djzpdvobe3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;&quot; + 1 + 0
+&quot;&quot; - 1 + 0
+true + false
+6 / &quot;3&quot;
+&quot;2&quot; * &quot;3&quot;
+4 + 5 + &quot;px&quot;
+&quot;$&quot; + 4 + 5
+&quot;4&quot; - 2
+&quot;4px&quot; - 2
+&quot;  -9  &quot; + 5
+&quot;  -9  &quot; - 5
+null + 1
+undefined + 1
+&quot; \t \n&quot; - 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>好好思考一下，把它们写下来然后和答案比较一下。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="g2mbrivs8w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>&quot;&quot; + 1 + 0 = &quot;10&quot; // (1)
+&quot;&quot; - 1 + 0 = -1 // (2)
+true + false = 1
+6 / &quot;3&quot; = 2
+&quot;2&quot; * &quot;3&quot; = 6
+4 + 5 + &quot;px&quot; = &quot;9px&quot;
+&quot;$&quot; + 4 + 5 = &quot;$45&quot;
+&quot;4&quot; - 2 = 2
+&quot;4px&quot; - 2 = NaN
+&quot;  -9  &quot; + 5 = &quot;  -9  5&quot; // (3)
+&quot;  -9  &quot; - 5 = -14 // (4)
+null + 1 = 1 // (5)
+undefined + 1 = NaN // (6)
+&quot; \t \n&quot; - 2 = -2 // (7)</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>有字符串的加法 <code>&quot;&quot; + 1</code>，首先会将数字 <code>1</code> 转换为一个字符串：<code>&quot;&quot; + 1 = &quot;1&quot;</code>，然后我们得到 <code>&quot;1&quot; + 0</code>，再次应用同样的规则得到最终的结果。</li>
+<li>减法 <code>-</code>（像大多数数学运算一样）只能用于数字，它会使空字符串 <code>&quot;&quot;</code> 转换为 <code>0</code>。</li>
+<li>带字符串的加法会将数字 <code>5</code> 加到字符串之后。</li>
+<li>减法始终将字符串转换为数字，因此它会使 <code>&quot; -9 &quot;</code> 转换为数字 <code>-9</code>（忽略了字符串首尾的空格）。</li>
+<li><code>null</code> 经过数字转换之后会变为 <code>0</code>。</li>
+<li><code>undefined</code> 经过数字转换之后会变为 <code>NaN</code>。</li>
+<li>字符串转换为数字时，会忽略字符串的首尾处的空格字符。在这里，整个字符串由空格字符组成，包括 <code>\t</code>、<code>\n</code> 以及它们之间的“常规”空格。因此，类似于空字符串，所以会变为 <code>0</code>。</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xiu-zheng-jia-fa" name="xiu-zheng-jia-fa">修正加法</a></h3><a class="task__open-link" href="../task/fix-prompt/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这里有一段代码，要求用户输入两个数字并显示它们的总和。</p>
+<p>它的运行结果不正确。下面例子中的输出是 <code>12</code>（对于默认的 prompt 的值）。</p>
+<p>为什么会这样？修正它。结果应该是 <code>3</code>。</p>
+<div id="0oukc92ah5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = prompt(&quot;First number?&quot;, 1);
+let b = prompt(&quot;Second number?&quot;, 2);
+
+alert(a + b); // 12</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>原因是 prompt 以字符串的形式返回用户的输入。</p>
+<p>所以变量的值分别为 <code>&quot;1&quot;</code> 和 <code>&quot;2&quot;</code>。</p>
+<div id="vei3tk14xe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = &quot;1&quot;; // prompt(&quot;First number?&quot;, 1);
+let b = &quot;2&quot;; // prompt(&quot;Second number?&quot;, 2);
+
+alert(a + b); // 12</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们应该做的是，在 <code>+</code> 之前将字符串转换为数字。例如，使用 <code>Number()</code> 或在 <code>prompt</code> 前加 <code>+</code>。</p>
+<p>例如，就在 <code>prompt</code> 之前加 <code>+</code>：</p>
+<div id="kvw6q5v7yb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = +prompt(&quot;First number?&quot;, 1);
+let b = +prompt(&quot;Second number?&quot;, 2);
+
+alert(a + b); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或在 <code>alert</code> 中：</p>
+<div id="a7oenbsuxo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = prompt(&quot;First number?&quot;, 1);
+let b = prompt(&quot;Second number?&quot;, 2);
+
+alert(+a + +b); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在最新的代码中，同时使用一元和二元的 <code>+</code>。看起来很有趣，不是吗？</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../type-conversions/index.html" data-tooltip="类型转换"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../comparison/index.html" data-tooltip="值的比较"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/operators","identifier":"\/operators"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../first-steps/index.html">JavaScript 基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-yu-yi-yuan-yun-suan-fu-er-yuan-yun-suan-fu-yun-suan-yuan">术语：“一元运算符”，“二元运算符”，“运算元”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xue">数学</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yong-er-yuan-yun-suan-fu-lian-jie-zi-fu-chuan">用二元运算符 + 连接字符串</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-zi-zhuan-hua-yi-yuan-yun-suan-fu">数字转化，一元运算符 +</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yun-suan-fu-you-xian-ji">运算符优先级</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fu-zhi-yun-suan-fu">赋值运算符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yuan-di-xiu-gai">原地修改</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-zeng-zi-jian">自增/自减</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wei-yun-suan-fu">位运算符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dou-hao-yun-suan-fu">逗号运算符</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Foperators" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/02-first-steps/08-operators" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

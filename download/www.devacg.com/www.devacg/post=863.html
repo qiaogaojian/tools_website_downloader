@@ -1,0 +1,775 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4×4齐次矩阵</title>
+<meta name="keywords" content="鸟语,Algorithms">
+<meta name="description" content="4D齐次空间     4D向量有4个分量，前3...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>4×4齐次矩阵</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2018-12-15 21:46 
+			分类：<a href="sort%3D3.html">Algorithms</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	<strong><span style="font-size:16px;">4D齐次空间</span></strong> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;4D向量有4个分量，前3个是标准的x,y和z分量，第四个是w，有时称作<strong>齐次坐标</strong>。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;为了理解标准3D坐标是怎样扩展到4D坐标的，让我们先看一下2D中的齐次坐标，它的形式为(x，y，w)。想象在3D中w=1处的标准2D平面，实际的2D点(x，y)用齐次坐标表示为(x，y，1)，对于那些不在w=1平面上的点，则将它们投影到w=1平面上。所以齐次坐标(x，y，w)映射的实际2D点为(x/w，y/w)。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;因此，给定一个2D点(x，y)，齐次空间中有无数多个点与之对应。所有点的形式都为(kx，ky，k)，k≠0。这些点构成一条穿过齐次原点的直线。
+</p>
+<p>
+	当w=0时，除法未定义，因此不存在实际的2D点。然而，可以将2D齐次点(x，y，0)解释为“位于无穷远的点”，它描述了一个方向而不是一个位置。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;4D坐标的基本思想相同。实际的3D点能被认为是在4D中w=1“平面”上。4D点的形式为(x，y，z，w)，将4D点投影到这个"平面"上得到相应的实际3D点(x/w，y/w，z/w)。w=0时4D点表示"无限远点",它描述了一个方向而不是一个位置。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;齐次坐标和通过除以w来投影是很有趣的，那我们为什么要使用4D坐标呢？有两个基本原因使得我们要使用4D向量和4×4矩阵。第一个原因实际上就是因为它是一种方便的记法。
+</p>
+<p>
+	<strong><span style="font-size:16px;">4×4平移矩阵</span></strong> 
+</p>
+<p>
+	<span style="white-space:normal;">&nbsp; &nbsp; &nbsp; &nbsp;3×3变换矩阵表示的是线性变换，不包含平移。因为矩阵乘法的性质，零向量总是变换成零向量，因此，任何能用矩阵乘法表达的变换都不包含平移。这很不幸，因为矩阵乘法和它的逆是种非常方便的工具，不仅可以用来将复杂的变换组合成简单的单一变换，还可以操纵嵌入式坐标系间的关系。如果能找到一种方法将3<span style="white-space:normal;">×3变换矩阵进行扩展，使它能处理平移，这将是一件多么美妙的事情啊，<span style="white-space:normal;">4×4矩阵恰好提供了一种数学上的“技巧”，使我们能够做到这一点。</span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"></span></span>暂时假设w总是等于1。那么，标准3D向量[x, y, z]对应的4D向量为[x, y, z, 1]。任意3<span style="white-space:normal;">×3变换矩阵在4D中表示为：</span> 
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/72691545403183.png" id="ematt:2227"><img src="../www.devacg.com/content/uploadfile/201812/72691545403183.png" title="点击查看原图" alt="111.png" border="0" width="288" height="103"></a> 
+</p>
+<p>
+	任意一个形如[x, y, z, 1]的向量乘以上面形式的矩阵，其结果和标准的<span style="white-space:normal;">3</span><span style="white-space:normal;">×3情况相同，只是结果是用w=1的4D向量表示的：</span> 
+</p>
+<p>
+	<span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201812/a0b01545403554.png" id="ematt:2228"><img src="../www.devacg.com/content/uploadfile/201812/a0b01545403554.png" title="点击查看原图" alt="2222.png" border="0" width="445" height="102"></a><br>
+</span> 
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/a1871545403791.png" id="ematt:2230"><img src="../www.devacg.com/content/uploadfile/201812/a1871545403791.png" title="点击查看原图" alt="3333.png" border="0" width="470" height="125"></a> 
+</p>
+<p>
+	现在，到了最有趣的部分。在4D中，仍然可以用矩阵乘法来表示平移，如下面公式所示，而在3D中是不可能的：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/8fcc1545404059.png" id="ematt:2232"><img src="../www.devacg.com/content/uploadfile/201812/8fcc1545404059.png" title="点击查看原图" alt="444.png" border="0" width="423" height="99"></a> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;记住，即使是在4D中，矩阵乘法仍然是线性变换。矩阵乘法不能表达4D中的“平移”，4D零向量也将总是被变换成零向量。这个技巧之所以能在3D中平移点是因为我们实际上是在切变4D空间。与实际3D空间相对应的4D中的“平面”并没有穿过4D中的原点。因此，我们能通过切变4D空间来实现3D中的平移。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; 设想没有平移的变换后接一个有平移的变换会发生什么情况呢？设R为旋转矩阵(实际上，R还能包含其他的3D线性变换，但现在假设R只包含旋转)，T为下面形式的变换矩阵：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/076c1545489702.png" id="ematt:2240"><img src="../www.devacg.com/content/uploadfile/201812/076c1545489702.png" title="点击查看原图" alt="1111.png" border="0" width="345" height="108"></a> 
+</p>
+<p>
+	将向量v先旋转再平移，新的向量v`计算如下：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/b3241545489832.png" id="ematt:2241"><img src="../www.devacg.com/content/uploadfile/201812/b3241545489832.png" title="点击查看原图" alt="222.png" border="0" width="70" height="21"></a> 
+</p>
+<p>
+	注意，变换的顺序是非常重要的。因为我们使用的是行向量，变换的顺序必须和矩阵乘法的顺序相吻合(从左往右)，先旋转再平移。和3×3矩阵一样，能将两个矩阵连成单个矩阵，记作矩阵M，如下：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/539f1545490094.png" id="ematt:2242"><img src="../www.devacg.com/content/uploadfile/201812/539f1545490094.png" title="点击查看原图" alt="333.png" border="0" width="84" height="93"></a> 
+</p>
+<p>
+	观察M的内容:
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/8fcc1545490244.png" id="ematt:2243"><img src="../www.devacg.com/content/uploadfile/201812/8fcc1545490244.png" title="点击查看原图" alt="444.png" border="0" width="455" height="100"></a> 
+</p>
+<p>
+	注意到，M的上边3×3部分是旋转部分，最下一行是平移部分。最右一列为[0, 0, 0, 1]<sup>T</sup>。逆向利用这些信息，能将任意4×4矩阵分解为线性变换部分和平移部分。将平移向量[△x, △y, △z]记作t，则M可简写为：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/c81a1545490547.png" id="ematt:2245"><img src="../www.devacg.com/content/uploadfile/201812/c81a1545490547.png" title="点击查看原图" alt="555.png" border="0" width="91" height="49"></a> 
+</p>
+<p>
+	注意：现在，我们暂时假设最右的一列总是<span style="white-space:normal;">[0, 0, 0, 1]</span><sup style="white-space:normal;">T</sup><span style="white-space:normal;">。后面我们很快就会遇到与此不同的情况。</span> 
+</p>
+<p>
+	<span style="white-space:normal;">接下来看w=0所表示的“无穷远点”。它乘以一个由“标准”3×3变换矩阵扩展成的4×4矩阵(不包含平移)，得到：</span> 
+</p>
+<p>
+	<span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201812/b62b1545491043.png" id="ematt:2246"><img src="../www.devacg.com/content/uploadfile/201812/b62b1545491043.png" title="点击查看原图" alt="666.png" border="0" width="404" height="128"></a><br>
+</span> 
+</p>
+<p>
+	换句话说，当一个形如[x, y, z, 0]的无穷远点乘以一个包含旋转、缩放等的变换矩阵，将会发生预期的变换。结果仍然是一个无穷远点，形式为[x`, y`, z`, 0]。
+</p>
+<p>
+	一个无穷远点经过包含平移的变换可得到：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201812/4ef71545491261.png" id="ematt:2247"><img src="../www.devacg.com/content/uploadfile/201812/4ef71545491261.png" title="点击查看原图" alt="7777.png" border="0" width="403" height="131"></a> 
+</p>
+<p>
+	注意到结果是一样的(和没有平移的情况相比)。换句话说，4D向量中的w分量能够“开关”4×4矩阵的平移部分。这个现象是非常有用的，因为有些向量代表“位置”，应当平移，而有些向量代表“方向”，如表面的法向量，不应该平移。从几何意义上说，能将第一类数据当作“点”，第二类数据当作“向量”。
+</p>
+<p>
+	使用4×4矩阵的一个原因就是<span style="white-space:normal;">4×4变换矩阵能包含平移。当我们仅为这个目的使用<span style="white-space:normal;">4×4矩阵时，矩阵的最右一列总是</span><span style="white-space:normal;">[0, 0, 0, 1]</span><sup style="white-space:normal;">T</sup><span style="white-space:normal;">。既然是这样，为什么不去掉最右一列而改用<span style="white-space:normal;">4×3矩阵呢？根据线性代数法则，由于多种原因，<span style="white-space:normal;">4×3矩阵不符合我们的需求，如下:</span></span></span></span> 
+</p>
+<ul>
+	<li>
+		不能用一个4×3矩阵乘以另一个4×3矩阵。
+	</li>
+	<li>
+		4×3矩阵没有逆矩阵，因为它不是一个方阵。
+	</li>
+	<li>
+		一个4D向量乘以4×3矩阵时，结果是一个3D向量。
+	</li>
+</ul>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;">为了严格遵守线性代数法则，我们加上了第4列。当然，在代码中，可以不受线性代数法则的约束。</span></span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;font-size:16px;"><span style="white-space:normal;font-size:16px;"><span style="white-space:normal;font-size:16px;"><span style="white-space:normal;font-size:16px;"><strong>一般仿射变换</strong></span></span></span></span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;用3×3矩阵表达了很多基本变换。3×3矩阵仅能表达3D中的线性变换。经过4×4矩阵的武装后，现在我们可以构造包含平移在内的一般仿射变换矩阵了。例如：
+</p>
+<ul>
+	<li>
+		绕不通过原点的轴旋转
+	</li>
+	<li>
+		沿不穿过原点的平面缩放
+	</li>
+	<li>
+		沿不穿过原点的平面镜象
+	</li>
+	<li>
+		向不穿过原点的平面正交投影
+	</li>
+</ul>
+<p>
+	<br>
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;">&nbsp; &nbsp; &nbsp; 它们的基本思想是将变换的“中心点”平移到原点，然后进行线性变换，然后再将“中心点”平移回原来的位置。开始使用平移矩阵T将点P移到原点，接着用线性变换矩阵R进‘行线性变换，最终的仿射变换矩阵M等于矩阵的积，即：TRT<sup>-1</sup>。T<sup>-1</sup>是平移矩阵，执行和T相反的变换。</span></span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;">观察这种矩阵的一般形式，它非常有趣。让我们先用“分块”形式写出前面用到的T,R,T<sup>-1</sup>：</span></span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201901/d8f71546747602.png" id="ematt:2310"><img src="../www.devacg.com/content/uploadfile/201901/d8f71546747602.png" title="点击查看原图" alt="11111.png" border="0" width="192" height="153"></a><br>
+</span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201901/a1871546747456.png" id="ematt:2309"><img src="../www.devacg.com/content/uploadfile/201901/a1871546747456.png" title="点击查看原图" alt="3333.png" border="0" width="178" height="152"></a></span></span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201901/a0b01546747666.png" id="ematt:2311"><img src="../www.devacg.com/content/uploadfile/201901/a0b01546747666.png" title="点击查看原图" alt="2222.png" border="0" width="161" height="149"></a><br>
+</span></span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;">现在进行矩阵乘法有：</span></span> 
+</p>
+<p>
+	<span style="white-space:normal;"><span style="white-space:normal;"><a target="_blank" href="../www.devacg.com/content/uploadfile/201901/8fcc1546747958.png" id="ematt:2312"><img src="../www.devacg.com/content/uploadfile/201901/8fcc1546747958.png" title="点击查看原图" alt="444.png" border="0" width="385" height="52"></a><br>
+</span></span> 
+</p>
+<p>
+	<span style="white-space:normal;">可以看出，仿射变换中增加的平移部分仅仅改变了4×4矩阵的最后一行，并没有影响到上面所包含的线性变换的3×3部分。</span> 
+</p>
+<p>
+	<span style="white-space:normal;font-size:16px;"><strong>透视投影</strong></span> 
+</p>
+<p>
+	<span style="white-space:normal;">&nbsp; &nbsp; &nbsp; 上面对“齐次”坐标的使用不过是一种数学上的技巧，目的是使我们能在变换中包含平移。我们在“齐次”两边使用了引号，因为w总是为1(或0，当点在无穷远处时)。本节将讨论使用其他w值的有意义的4D坐标。</span> 
+</p>
+<p>
+	<span style="white-space:normal;">&nbsp; &nbsp; &nbsp; &nbsp;将4D齐次向量变换到3D中时，要先把4D向量除以w。这给出了一种前面没有加以利用的数学方法，因为在之前中，w要么等于1，要么等于0。这个除法使我们可以非常简洁地包含一些重要的几何运算。更加明确一些，我们能进行透视投影。</span> 
+</p>
+<p>
+	<span style="white-space:normal;">&nbsp; &nbsp; &nbsp; 学习透视投影最好的方法就是将它和我们已经学习过的一种投影——平行投影相比较。将3D空间投影到2D平面上，该平面称作<strong>投影平面</strong>，使用的是正交投影。正交投影也被称作<strong>平行投影</strong>，因为投影都是平行的（投影线是指从原空间中的点到投影点的连线）。3D中的透视投影仍然是投影到2D平面上，但是，投影线不再平行。实际上，它们相交于一点，该点称作<strong>投影中心</strong>。</span> 
+</p>
+<p>
+	<span style="white-space:normal;">&nbsp; &nbsp; &nbsp; 因为投影中心在投影平面前面，投影线到达平面之前已经相交，所以投影平面上的图像是翻转的。当物体远离投影中心时，正交投影仍保持不变，但透视投影变小了(这是一种非常重要的视觉现象(近大远小)，称作：<strong>透视缩略</strong>)。</span> 
+</p>
+<p>
+	<span style="white-space:normal;">参见&nbsp;<a href="post%3D786.html" target="_blank">投影平面</a></span> 
+</p>
+<p>
+	<strong><span style="font-size:16px;">使用4×4矩阵进行透视投影</span></strong>
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp;从4D到3D的变换就意味着除法运算，因此我们可以利用4×4阶矩阵来编写代码，以实现透视投影。基本思想是提出一个关于P`的公式，其中的x，y，z有公分母，然后构造一个4×4矩阵，使w与这个公分母相等。这里我们假设初始点处有w=1。
+</p>
+<p>
+	先对3D形式表达的P`公式变形，可以得到：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201901/96851546751295.png" id="ematt:2313"><img src="../www.devacg.com/content/uploadfile/201901/96851546751295.png" title="点击查看原图" alt="5555.png" border="0" width="177" height="100"></a>
+</p>
+<p>
+	将4D齐次向量变换到3D中时，要用4D向量除以w，反推可知P`的4D形式为：
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201901/b62b1546751411.png" id="ematt:2314"><img src="../www.devacg.com/content/uploadfile/201901/b62b1546751411.png" title="点击查看原图" alt="666.png" border="0" width="122" height="32"></a>
+</p>
+<p>
+	因此我们需要一个4×4矩阵，它可接收一个奇异的齐次向量。该向量的形式为[x, y, z, 1]，然后将其变换为上述形式。这样的矩阵如下所示：
+</p>
+<p>
+	<span style="white-space:normal;">用4×4矩阵向z=d平面投影:</span>
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201901/b8fa1546751625.png" id="ematt:2315"><img src="../www.devacg.com/content/uploadfile/201901/b8fa1546751625.png" title="点击查看原图" alt="777.png" border="0" width="319" height="101"></a>
+</p>
+<p>
+	这样，就得到了一个<span style="white-space:normal;">4×4投影矩阵。有几个需要注意的地方：</span>
+	<ul>
+		<li>
+			乘以这个矩阵并没有进行实际的透视投影变换，它只是计算出合适的分母。投影实际发生在从4D向3D变换时。
+		</li>
+		<li>
+			存在多种变化。例如，将投影平面放在z=0处而投影中心在[0,0,-d]。这将导致一个不同的公式。
+		</li>
+		<li>
+			这里看起来比较复杂，似乎只需要简单地除以z，不必劳烦矩阵。那么为什么要使用齐次矩阵呢？第一，4×4矩阵提供了一种方法将投影表达为变换，这样就能和其他变换相连接；第二，使得投影到不平行于坐标轴的平面变得可行。实际上，我们不需要齐次坐标做任何运算，但4×4矩阵提供了一种简洁的方法表达和操纵投影变换。
+		</li>
+		<li>
+			实际的图形几何管道中的投影矩阵不是像这里导出的那样。还有许多重要的细节需要考虑。如，用以上矩阵对向量进行变换后，z值实际上被舍弃了，而很多图形系统的z缓冲用到了该值。
+		</li>
+	</ul>
+</p>	<p class="tag">标签:	<a href="tag%3DAlgorithms.html">Algorithms</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=863&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D864.html">PropertyModification</a>
+				|
+				 <a href="post%3D862.html">生成随机地形</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D1004.html">激活Windows 10</a></li>
+		<li><a href="post%3D75.html">GUI.Label</a></li>
+		<li><a href="post%3D80.html">unity_4LightPosX0</a></li>
+		<li><a href="post%3D691.html">什么是伽马校正</a></li>
+		<li><a href="post%3D50.html">GPU编程</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

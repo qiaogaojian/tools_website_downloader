@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Symbol 类型</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/symbol"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Symbol 类型"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Symbol 类型"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/optional-chaining"><link rel="next" href="/object-toprimitive"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Symbol 类型"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/symbol"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/symbol"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/symbol"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/symbol"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/symbol"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/symbol"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/symbol"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/symbol"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/symbol"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/symbol"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/symbol"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/symbol">عربي</option><option value="https://javascript.info/symbol">English</option><option value="https://es.javascript.info/symbol">Español</option><option value="https://fr.javascript.info/symbol">Français</option><option value="https://id.javascript.info/symbol">Indonesia</option><option value="https://it.javascript.info/symbol">Italiano</option><option value="https://ja.javascript.info/symbol">日本語</option><option value="https://ko.javascript.info/symbol">한국어</option><option value="https://learn.javascript.ru/symbol">Русский</option><option value="https://tr.javascript.info/symbol">Türkçe</option><option value="https://uk.javascript.info/symbol">Українська</option><option value="https://zh.javascript.info/symbol" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="35" max="92" data-tooltip="第 35/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../object-basics/index.html"><span>Object（对象）：基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Object（对象）：基础知识","item":"https://zh.javascript.info/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Symbol 类型</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Symbol 类型"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>根据规范，对象的属性键只能是字符串类型或者 Symbol 类型。不是 Number，也不是 Boolean，只有字符串或 Symbol 这两种类型。</p>
+<p>到目前为止，我们只见过字符串。现在我们来看看 Symbol 能给我们带来什么好处。</p>
+<h2><a class="main__anchor" name="symbol" href="#symbol">Symbol</a></h2><p>“Symbol” 值表示唯一的标识符。</p>
+<p>可以使用 <code>Symbol()</code> 来创建这种类型的值：</p>
+<div id="umwcznuug" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// id 是 symbol 的一个实例化对象
+let id = Symbol();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>创建时，我们可以给 Symbol 一个描述（也称为 Symbol 名），这在代码调试时非常有用：</p>
+<div id="2ft8kdi845" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// id 是描述为 &quot;id&quot; 的 Symbol
+let id = Symbol(&quot;id&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Symbol 保证是唯一的。即使我们创建了许多具有相同描述的 Symbol，它们的值也是不同。描述只是一个标签，不影响任何东西。</p>
+<p>例如，这里有两个描述相同的 Symbol —— 它们不相等：</p>
+<div id="nv9oozbwjk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id1 = Symbol(&quot;id&quot;);
+let id2 = Symbol(&quot;id&quot;);
+
+alert(id1 == id2); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果你熟悉 Ruby 或者其他有 “Symbol” 的语言 —— 别被误导。JavaScript 的 Symbol 是不同的。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Symbol 不会被自动转换为字符串</span></div>
+            <div class="important__content"><p>JavaScript 中的大多数值都支持字符串的隐式转换。例如，我们可以 <code>alert</code> 任何值，都可以生效。Symbol 比较特殊，它不会被自动转换。</p>
+<p>例如，这个 <code>alert</code> 将会提示出错：</p>
+<div id="yeeqh7995a" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+alert(id); // 类型错误：无法将 Symbol 值转换为字符串。</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是一种防止混乱的“语言保护”，因为字符串和 Symbol 有本质上的不同，不应该意外地将它们转换成另一个。</p>
+<p>如果我们真的想显示一个 Symbol，我们需要在它上面调用 <code>.toString()</code>，如下所示：</p>
+<div id="p2e7n5gvy8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+alert(id.toString()); // Symbol(id)，现在它有效了</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或者获取 <code>symbol.description</code> 属性，只显示描述（description）：</p>
+<div id="6mnoqhry9u" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+alert(id.description); // id</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="yin-cang-shu-xing" href="#yin-cang-shu-xing">“隐藏”属性</a></h2><p>Symbol 允许我们创建对象的“隐藏”属性，代码的任何其他部分都不能意外访问或重写这些属性。</p>
+<p>例如，如果我们使用的是属于第三方代码的 <code>user</code> 对象，我们想要给它们添加一些标识符。</p>
+<p>我们可以给它们使用 Symbol 键：</p>
+<div id="slbzvfdgzd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { // 属于另一个代码
+  name: &quot;John&quot;
+};
+
+let id = Symbol(&quot;id&quot;);
+
+user[id] = 1;
+
+alert( user[id] ); // 我们可以使用 Symbol 作为键来访问数据</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用 <code>Symbol(&quot;id&quot;)</code> 作为键，比起用字符串 <code>&quot;id&quot;</code> 来有什么好处呢？</p>
+<p>因为 <code>user</code> 对象属于其他的代码，那些代码也会使用这个对象，所以我们不应该在它上面直接添加任何字段，这样很不安全。但是你添加的 Symbol 属性不会被意外访问到，第三方代码根本不会看到它，所以使用 Symbol 基本上不会有问题。</p>
+<p>另外，假设另一个脚本希望在 <code>user</code> 中有自己的标识符，以实现自己的目的。这可能是另一个 JavaScript 库，因此脚本之间完全不了解彼此。</p>
+<p>然后该脚本可以创建自己的 <code>Symbol(&quot;id&quot;)</code>，像这样：</p>
+<div id="esjvcuak4v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// ...
+let id = Symbol(&quot;id&quot;);
+
+user[id] = &quot;Their id value&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们的标识符和它们的标识符之间不会有冲突，因为 Symbol 总是不同的，即使它们有相同的名字。</p>
+<p>……但如果我们处于同样的目的，使用字符串 <code>&quot;id&quot;</code> 而不是用 symbol，那么 <strong>就会</strong> 出现冲突：</p>
+<div id="ro0zsvorb9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: &quot;John&quot; };
+
+// 我们的脚本使用了 &quot;id&quot; 属性。
+user.id = &quot;Our id value&quot;;
+
+// ……另一个脚本也想将 &quot;id&quot; 用于它的目的……
+
+user.id = &quot;Their id value&quot;
+// 砰！无意中被另一个脚本重写了 id！</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="dui-xiang-zi-mian-liang-zhong-de-symbol" href="#dui-xiang-zi-mian-liang-zhong-de-symbol">对象字面量中的 Symbol</a></h3><p>如果我们要在对象字面量 <code>{...}</code> 中使用 Symbol，则需要使用方括号把它括起来。</p>
+<p>就像这样：</p>
+<div id="uk2p3o5f5s" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+
+let user = {
+  name: &quot;John&quot;,
+  [id]: 123 // 而不是 &quot;id&quot;：123
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是因为我们需要变量 <code>id</code> 的值作为键，而不是字符串 “id”。</p>
+<h3><a class="main__anchor" name="symbol-zai-forin-zhong-hui-bei-tiao-guo" href="#symbol-zai-forin-zhong-hui-bei-tiao-guo">Symbol 在 for…in 中会被跳过</a></h3><p>Symbol 属性不参与 <code>for..in</code> 循环。</p>
+<p>例如：</p>
+<div id="fsocc36v2a" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+let user = {
+  name: &quot;John&quot;,
+  age: 30,
+  [id]: 123
+};
+
+for (let key in user) alert(key); // name, age (no symbols)
+
+// 使用 Symbol 任务直接访问
+alert( &quot;Direct: &quot; + user[id] );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys(user)</a> 也会忽略它们。这是一般“隐藏符号属性”原则的一部分。如果另一个脚本或库遍历我们的对象，它不会意外地访问到符号属性。</p>
+<p>相反，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> 会同时复制字符串和 symbol 属性：</p>
+<div id="hkalt5yshm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let id = Symbol(&quot;id&quot;);
+let user = {
+  [id]: 123
+};
+
+let clone = Object.assign({}, user);
+
+alert( clone[id] ); // 123</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里并不矛盾，就是这样设计的。这里的想法是当我们克隆或者合并一个 object 时，通常希望 <strong>所有</strong> 属性被复制（包括像 <code>id</code> 这样的 Symbol）。</p>
+<h2><a class="main__anchor" name="quan-ju-symbol" href="#quan-ju-symbol">全局 symbol</a></h2><p>正如我们所看到的，通常所有的 Symbol 都是不同的，即使它们有相同的名字。但有时我们想要名字相同的 Symbol 具有相同的实体。例如，应用程序的不同部分想要访问的 Symbol <code>&quot;id&quot;</code> 指的是完全相同的属性。</p>
+<p>为了实现这一点，这里有一个 <strong>全局 Symbol 注册表</strong>。我们可以在其中创建 Symbol 并在稍后访问它们，它可以确保每次访问相同名字的 Symbol 时，返回的都是相同的 Symbol。</p>
+<p>要从注册表中读取（不存在则创建）Symbol，请使用 <code>Symbol.for(key)</code>。</p>
+<p>该调用会检查全局注册表，如果有一个描述为 <code>key</code> 的 Symbol，则返回该 Symbol，否则将创建一个新 Symbol（<code>Symbol(key)</code>），并通过给定的 <code>key</code> 将其存储在注册表中。</p>
+<p>例如：</p>
+<div id="2ao3nv57pb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从全局注册表中读取
+let id = Symbol.for(&quot;id&quot;); // 如果该 Symbol 不存在，则创建它
+
+// 再次读取（可能是在代码中的另一个位置）
+let idAgain = Symbol.for(&quot;id&quot;);
+
+// 相同的 Symbol
+alert( id === idAgain ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注册表内的 Symbol 被称为 <strong>全局 Symbol</strong>。如果我们想要一个应用程序范围内的 Symbol，可以在代码中随处访问 —— 这就是它们的用途。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">这听起来像 Ruby</span></div>
+            <div class="important__content"><p>在一些编程语言中，例如 Ruby，每个名字都有一个 Symbol。</p>
+<p>正如我们所看到的，在 JavaScript 中，全局 Symbol 也是这样的。</p>
+</div></div>
+<h3><a class="main__anchor" name="symbolkeyfor" href="#symbolkeyfor">Symbol.keyFor</a></h3><p>对于全局 Symbol，不仅有 <code>Symbol.for(key)</code> 按名字返回一个 Symbol，还有一个反向调用：<code>Symbol.keyFor(sym)</code>，它的作用完全反过来：通过全局 Symbol 返回一个名字。</p>
+<p>例如：</p>
+<div id="l5wehj0zv8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 通过 name 获取 Symbol
+let sym = Symbol.for(&quot;name&quot;);
+let sym2 = Symbol.for(&quot;id&quot;);
+
+// 通过 Symbol 获取 name
+alert( Symbol.keyFor(sym) ); // name
+alert( Symbol.keyFor(sym2) ); // id</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Symbol.keyFor</code> 内部使用全局 Symbol 注册表来查找 Symbol 的键。所以它不适用于非全局 Symbol。如果 Symbol 不是全局的，它将无法找到它并返回 <code>undefined</code>。</p>
+<p>也就是说，任何 Symbol 都具有 <code>description</code> 属性。</p>
+<p>例如：</p>
+<div id="40i0qoudnn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let globalSymbol = Symbol.for(&quot;name&quot;);
+let localSymbol = Symbol(&quot;name&quot;);
+
+alert( Symbol.keyFor(globalSymbol) ); // name，全局 Symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined，非全局
+
+alert( localSymbol.description ); // name</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="xi-tong-symbol" href="#xi-tong-symbol">系统 Symbol</a></h2><p>JavaScript 内部有很多“系统” Symbol，我们可以使用它们来微调对象的各个方面。</p>
+<p>它们都被列在了 <a href="https://tc39.github.io/ecma262/#sec-well-known-symbols">众所周知的 Symbol</a> 表的规范中：</p>
+<ul>
+<li><code>Symbol.hasInstance</code></li>
+<li><code>Symbol.isConcatSpreadable</code></li>
+<li><code>Symbol.iterator</code></li>
+<li><code>Symbol.toPrimitive</code></li>
+<li>……等等。</li>
+</ul>
+<p>例如，<code>Symbol.toPrimitive</code> 允许我们将对象描述为原始值转换。我们很快就会看到它的使用。</p>
+<p>当我们研究相应的语言特征时，我们对其他的 Symbol 也会慢慢熟悉起来。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>Symbol</code> 是唯一标识符的基本类型</p>
+<p>Symbol 是使用带有可选描述（name）的 <code>Symbol()</code> 调用创建的。</p>
+<p>Symbol 总是不同的值，即使它们有相同的名字。如果我们希望同名的 Symbol 相等，那么我们应该使用全局注册表：<code>Symbol.for(key)</code> 返回（如果需要的话则创建）一个以 <code>key</code> 作为名字的全局 Symbol。使用 <code>Symbol.for</code> 多次调用 <code>key</code> 相同的 Symbol 时，返回的就是同一个 Symbol。</p>
+<p>Symbol 有两个主要的使用场景：</p>
+<ol>
+<li>
+<p>“隐藏” 对象属性。
+如果我们想要向“属于”另一个脚本或者库的对象添加一个属性，我们可以创建一个 Symbol 并使用它作为属性的键。Symbol 属性不会出现在 <code>for..in</code> 中，因此它不会意外地被与其他属性一起处理。并且，它不会被直接访问，因为另一个脚本没有我们的 symbol。因此，该属性将受到保护，防止被意外使用或重写。</p>
+<p>因此我们可以使用 Symbol 属性“秘密地”将一些东西隐藏到我们需要的对象中，但其他地方看不到它。</p>
+</li>
+<li>
+<p>JavaScript 使用了许多系统 Symbol，这些 Symbol 可以作为 <code>Symbol.*</code> 访问。我们可以使用它们来改变一些内建行为。例如，在本教程的后面部分，我们将使用 <code>Symbol.iterator</code> 来进行 <a href="../iterable/index.html">迭代</a> 操作，使用 <code>Symbol.toPrimitive</code> 来设置 <a href="../object-toprimitive/index.html">对象原始值的转换</a> 等等。</p>
+</li>
+</ol>
+<p>从技术上说，Symbol 不是 100% 隐藏的。有一个内建方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols(obj)</a> 允许我们获取所有的 Symbol。还有一个名为 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys">Reflect.ownKeys(obj)</a> 的方法可以返回一个对象的 <strong>所有</strong> 键，包括 Symbol。所以它们并不是真正的隐藏。但是大多数库、内建方法和语法结构都没有使用这些方法。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../optional-chaining/index.html" data-tooltip="可选链 &quot;?.&quot;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../object-toprimitive/index.html" data-tooltip="对象 — 原始值转换"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/symbol","identifier":"\/symbol"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../object-basics/index.html">Object（对象）：基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#symbol">Symbol</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yin-cang-shu-xing">“隐藏”属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#quan-ju-symbol">全局 symbol</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xi-tong-symbol">系统 Symbol</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fsymbol" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/04-object-basics/08-symbol" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

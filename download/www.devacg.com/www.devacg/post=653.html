@@ -1,0 +1,3341 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UILable添加预定义字体样式选项</title>
+<meta name="keywords" content="鸟语,NGUI">
+<meta name="description" content="NGUI-3.8 一、修改UILabel.cs //---------------------...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>UILable添加预定义字体样式选项</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2017-8-22 14:34 
+			分类：<a href="sort%3D5.html">NGUI</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	NGUI-3.8
+</p>
+<p>
+	一、修改UILabel.cs
+</p>
+<p>
+<pre class="prettyprint lang-cs linenums">//-------------------------------------------------
+//            NGUI: Next-Gen UI kit
+// Copyright &copy; 2011-2017 Tasharen Entertainment Inc
+//-------------------------------------------------
+
+using UnityEngine;
+using System.Collections.Generic;
+using System;
+using Alignment = NGUIText.Alignment;
+#if UNITY_EDITOR
+using System.IO;
+using LitJson;
+#endif
+
+[ExecuteInEditMode]
+[AddComponentMenu("NGUI/UI/NGUI Label")]
+public class UILabel : UIWidget
+{
+	public enum Effect
+	{
+		None,
+		Shadow,
+		Outline,
+		Outline8,
+	}
+
+	public enum Overflow
+	{
+		ShrinkContent,
+		ClampContent,
+		ResizeFreely,
+		ResizeHeight,
+	}
+
+	public enum Crispness
+	{
+		Never,
+		OnDesktop,
+		Always,
+	}
+
+	public enum Modifier
+	{
+		None,
+		ToUppercase,
+		ToLowercase,
+		Custom = 255,
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the label will keep its content crisp even when shrunk.
+	/// You may want to turn this off on mobile devices.
+	/// &lt;/summary&gt;
+
+	public Crispness keepCrispWhenShrunk = Crispness.OnDesktop;
+
+	[HideInInspector][SerializeField] Font mTrueTypeFont;
+	[HideInInspector][SerializeField] UIFont mFont;
+#if !UNITY_3_5
+	[MultilineAttribute(6)]
+#endif
+	[HideInInspector][SerializeField] string mText = "";
+	[HideInInspector][SerializeField] int mFontSize = 16;
+	[HideInInspector][SerializeField] FontStyle mFontStyle = FontStyle.Normal;
+	[HideInInspector][SerializeField] Alignment mAlignment = Alignment.Automatic;
+	[HideInInspector][SerializeField] bool mEncoding = true;
+	[HideInInspector][SerializeField] int mMaxLineCount = 0; // 0 denotes unlimited
+	[HideInInspector][SerializeField] Effect mEffectStyle = Effect.None;
+	[HideInInspector][SerializeField] Color mEffectColor = Color.black;
+	[HideInInspector][SerializeField] NGUIText.SymbolStyle mSymbols = NGUIText.SymbolStyle.Normal;
+	[HideInInspector][SerializeField] Vector2 mEffectDistance = Vector2.one;
+	[HideInInspector][SerializeField] Overflow mOverflow = Overflow.ShrinkContent;
+	[HideInInspector][SerializeField] bool mApplyGradient = false;
+	[HideInInspector][SerializeField] Color mGradientTop = Color.white;
+	[HideInInspector][SerializeField] Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
+	[HideInInspector][SerializeField] int mSpacingX = 0;
+	[HideInInspector][SerializeField] int mSpacingY = 0;
+	[HideInInspector][SerializeField] bool mUseFloatSpacing = false;
+	[HideInInspector][SerializeField] float mFloatSpacingX = 0;
+	[HideInInspector][SerializeField] float mFloatSpacingY = 0;
+	[HideInInspector][SerializeField] bool mOverflowEllipsis = false;
+	[HideInInspector][SerializeField] int mOverflowWidth = 0;
+	[HideInInspector][SerializeField] Modifier mModifier = Modifier.None;
+
+	// Obsolete values
+	[HideInInspector][SerializeField] bool mShrinkToFit = false;
+	[HideInInspector][SerializeField] int mMaxLineWidth = 0;
+	[HideInInspector][SerializeField] int mMaxLineHeight = 0;
+	[HideInInspector][SerializeField] float mLineWidth = 0;
+	[HideInInspector][SerializeField] bool mMultiline = true;
+
+	[System.NonSerialized] Font mActiveTTF = null;
+	[System.NonSerialized] float mDensity = 1f;
+	[System.NonSerialized] bool mShouldBeProcessed = true;
+	[System.NonSerialized] string mProcessedText = null;
+	[System.NonSerialized] bool mPremultiply = false;
+	[System.NonSerialized] Vector2 mCalculatedSize = Vector2.zero;
+	[System.NonSerialized] float mScale = 1f;
+	[System.NonSerialized] int mFinalFontSize = 0;
+	[System.NonSerialized] int mLastWidth = 0;
+	[System.NonSerialized] int mLastHeight = 0;
+
+	/// &lt;summary&gt;
+	/// Font size after modifications got taken into consideration such as shrinking content.
+	/// &lt;/summary&gt;
+
+	public int finalFontSize
+	{
+		get
+		{
+			if (trueTypeFont) return Mathf.RoundToInt(mScale * mFinalFontSize);
+			return Mathf.RoundToInt(mFinalFontSize * mScale);
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Function used to determine if something has changed (and thus the geometry must be rebuilt)
+	/// &lt;/summary&gt;
+
+	bool shouldBeProcessed
+	{
+		get
+		{
+			return mShouldBeProcessed;
+		}
+		set
+		{
+			if (value)
+			{
+				mChanged = true;
+				mShouldBeProcessed = true;
+			}
+			else
+			{
+				mShouldBeProcessed = false;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the rectangle is anchored horizontally.
+	/// &lt;/summary&gt;
+
+	public override bool isAnchoredHorizontally { get { return base.isAnchoredHorizontally || mOverflow == Overflow.ResizeFreely; } }
+
+	/// &lt;summary&gt;
+	/// Whether the rectangle is anchored vertically.
+	/// &lt;/summary&gt;
+
+	public override bool isAnchoredVertically
+	{
+		get
+		{
+			return base.isAnchoredVertically ||
+				mOverflow == Overflow.ResizeFreely ||
+				mOverflow == Overflow.ResizeHeight;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Retrieve the material used by the font.
+	/// &lt;/summary&gt;
+
+	public override Material material
+	{
+		get
+		{
+			if (mMat != null) return mMat;
+			if (mFont != null) return mFont.material;
+			if (mTrueTypeFont != null) return mTrueTypeFont.material;
+			return null;
+		}
+		set
+		{
+			base.material = value;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Label's main texture comes from the font itself.
+	/// &lt;/summary&gt;
+
+	public override Texture mainTexture
+	{
+		get
+		{
+			if (mFont != null) return mFont.texture;
+			if (mTrueTypeFont != null) { var mat = mTrueTypeFont.material; if (mat != null) return mat.mainTexture; }
+			return null;
+		}
+		set
+		{
+			base.mainTexture = value;
+		}
+	}
+
+	[Obsolete("Use UILabel.bitmapFont instead")]
+	public UIFont font { get { return bitmapFont; } set { bitmapFont = value; } }
+
+	/// &lt;summary&gt;
+	/// Set the font used by this label.
+	/// &lt;/summary&gt;
+
+	public UIFont bitmapFont
+	{
+		get
+		{
+			return mFont;
+		}
+		set
+		{
+			if (mFont != value)
+			{
+				RemoveFromPanel();
+				mFont = value;
+				mTrueTypeFont = null;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Set the font used by this label.
+	/// &lt;/summary&gt;
+
+	public Font trueTypeFont
+	{
+		get
+		{
+			if (mTrueTypeFont != null) return mTrueTypeFont;
+			return (mFont != null ? mFont.dynamicFont : null);
+		}
+		set
+		{
+			if (mTrueTypeFont != value)
+			{
+				SetActiveFont(null);
+				RemoveFromPanel();
+				mTrueTypeFont = value;
+				shouldBeProcessed = true;
+				mFont = null;
+				SetActiveFont(value);
+				ProcessAndRequest();
+				if (mActiveTTF != null)
+					base.MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Ambiguous helper function.
+	/// &lt;/summary&gt;
+
+	public UnityEngine.Object ambigiousFont
+	{
+		get
+		{
+			return (UnityEngine.Object)mFont ?? (UnityEngine.Object)mTrueTypeFont;
+		}
+		set
+		{
+			UIFont bf = value as UIFont;
+			if (bf != null) bitmapFont = bf;
+			else trueTypeFont = value as Font;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Text that's being displayed by the label.
+	/// &lt;/summary&gt;
+
+	public string text
+	{
+		get
+		{
+			return mText;
+		}
+		set
+		{
+			if (mText == value) return;
+
+			if (string.IsNullOrEmpty(value))
+			{
+				if (!string.IsNullOrEmpty(mText))
+				{
+					mText = "";
+					MarkAsChanged();
+					ProcessAndRequest();
+				}
+			}
+			else if (mText != value)
+			{
+				mText = value;
+				MarkAsChanged();
+				ProcessAndRequest();
+			}
+
+			if (autoResizeBoxCollider) ResizeCollider();
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Default font size.
+	/// &lt;/summary&gt;
+
+	public int defaultFontSize { get { return (trueTypeFont != null) ? mFontSize : (mFont != null ? mFont.defaultSize : 16); } }
+
+	/// &lt;summary&gt;
+	/// Active font size used by the label.
+	/// &lt;/summary&gt;
+
+	public int fontSize
+	{
+		get
+		{
+			return mFontSize;
+		}
+		set
+		{
+			value = Mathf.Clamp(value, 0, 256);
+
+			if (mFontSize != value)
+			{
+				mFontSize = value;
+				shouldBeProcessed = true;
+				ProcessAndRequest();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Dynamic font style used by the label.
+	/// &lt;/summary&gt;
+
+	public FontStyle fontStyle
+	{
+		get
+		{
+			return mFontStyle;
+		}
+		set
+		{
+			if (mFontStyle != value)
+			{
+				mFontStyle = value;
+				shouldBeProcessed = true;
+				ProcessAndRequest();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Text alignment option.
+	/// &lt;/summary&gt;
+
+	public Alignment alignment
+	{
+		get
+		{
+			return mAlignment;
+		}
+		set
+		{
+			if (mAlignment != value)
+			{
+				mAlignment = value;
+				shouldBeProcessed = true;
+				ProcessAndRequest();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether a gradient will be applied.
+	/// &lt;/summary&gt;
+
+	public bool applyGradient
+	{
+		get
+		{
+			return mApplyGradient;
+		}
+		set
+		{
+			if (mApplyGradient != value)
+			{
+				mApplyGradient = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Top gradient color.
+	/// &lt;/summary&gt;
+
+	public Color gradientTop
+	{
+		get
+		{
+			return mGradientTop;
+		}
+		set
+		{
+			if (mGradientTop != value)
+			{
+				mGradientTop = value;
+				if (mApplyGradient) MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Bottom gradient color.
+	/// &lt;/summary&gt;
+
+	public Color gradientBottom
+	{
+		get
+		{
+			return mGradientBottom;
+		}
+		set
+		{
+			if (mGradientBottom != value)
+			{
+				mGradientBottom = value;
+				if (mApplyGradient) MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Additional horizontal spacing between characters when printing text.
+	/// &lt;/summary&gt;
+
+	public int spacingX
+	{
+		get
+		{
+			return mSpacingX;
+		}
+		set
+		{
+			if (mSpacingX != value)
+			{
+				mSpacingX = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Additional vertical spacing between lines when printing text.
+	/// &lt;/summary&gt;
+
+	public int spacingY
+	{
+		get
+		{
+			return mSpacingY;
+		}
+		set
+		{
+			if (mSpacingY != value)
+			{
+				mSpacingY = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether this label will use float text spacing values, instead of integers.
+	/// &lt;/summary&gt;
+
+	public bool useFloatSpacing
+	{
+		get
+		{
+			return mUseFloatSpacing;
+		}
+		set
+		{
+			if (mUseFloatSpacing != value)
+			{
+				mUseFloatSpacing = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Additional horizontal spacing between characters when printing text.
+	/// For this to have any effect useFloatSpacing must be true.
+	/// &lt;/summary&gt;
+
+	public float floatSpacingX
+	{
+		get
+		{
+			return mFloatSpacingX;
+		}
+		set
+		{
+			if (!Mathf.Approximately(mFloatSpacingX, value))
+			{
+				mFloatSpacingX = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Additional vertical spacing between lines when printing text.
+	/// For this to have any effect useFloatSpacing must be true.
+	/// &lt;/summary&gt;
+
+	public float floatSpacingY
+	{
+		get
+		{
+			return mFloatSpacingY;
+		}
+		set
+		{
+			if (!Mathf.Approximately(mFloatSpacingY, value))
+			{
+				mFloatSpacingY = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience property to get the used y spacing.
+	/// &lt;/summary&gt;
+
+	public float effectiveSpacingY
+	{
+		get
+		{
+			return mUseFloatSpacing ? mFloatSpacingY : mSpacingY;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience property to get the used x spacing.
+	/// &lt;/summary&gt;
+
+	public float effectiveSpacingX
+	{
+		get
+		{
+			return mUseFloatSpacing ? mFloatSpacingX : mSpacingX;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether to append "..." at the end of clamped text that didn't fit.
+	/// &lt;/summary&gt;
+
+	public bool overflowEllipsis
+	{
+		get
+		{
+			return mOverflowEllipsis;
+		}
+		set
+		{
+			if (mOverflowEllipsis != value)
+			{
+				mOverflowEllipsis = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Maximum width used when Resize Freely overflow type is enabled.
+	/// If the printed text exceeds this width, it will wrap onto the following line.
+	/// &lt;/summary&gt;
+
+	public int overflowWidth
+	{
+		get
+		{
+			return mOverflowWidth;
+		}
+		set
+		{
+			if (mOverflowWidth != value)
+			{
+				mOverflowWidth = value;
+				MarkAsChanged();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the label will use the printed size instead of font size when printing the label.
+	/// It's a dynamic font feature that will ensure that the text is crisp when shrunk.
+	/// &lt;/summary&gt;
+
+	bool keepCrisp
+	{
+		get
+		{
+			if (trueTypeFont != null &amp;&amp; keepCrispWhenShrunk != Crispness.Never)
+			{
+#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_WP_8_1 || UNITY_BLACKBERRY
+				return (keepCrispWhenShrunk == Crispness.Always);
+#else
+				return true;
+#endif
+			}
+			return false;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether this label will support color encoding in the format of [RRGGBB] and new line in the form of a "\\n" string.
+	/// &lt;/summary&gt;
+
+	public bool supportEncoding
+	{
+		get
+		{
+			return mEncoding;
+		}
+		set
+		{
+			if (mEncoding != value)
+			{
+				mEncoding = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Style used for symbols.
+	/// &lt;/summary&gt;
+
+	public NGUIText.SymbolStyle symbolStyle
+	{
+		get
+		{
+			return mSymbols;
+		}
+		set
+		{
+			if (mSymbols != value)
+			{
+				mSymbols = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Overflow method controls the label's behaviour when its content doesn't fit the bounds.
+	/// &lt;/summary&gt;
+
+	public Overflow overflowMethod
+	{
+		get
+		{
+			return mOverflow;
+		}
+		set
+		{
+			if (mOverflow != value)
+			{
+				mOverflow = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Maximum width of the label in pixels.
+	/// &lt;/summary&gt;
+
+	[System.Obsolete("Use 'width' instead")]
+	public int lineWidth
+	{
+		get { return width; }
+		set { width = value; }
+	}
+
+	/// &lt;summary&gt;
+	/// Maximum height of the label in pixels.
+	/// &lt;/summary&gt;
+
+	[System.Obsolete("Use 'height' instead")]
+	public int lineHeight
+	{
+		get { return height; }
+		set { height = value; }
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the label supports multiple lines.
+	/// &lt;/summary&gt;
+	
+	public bool multiLine
+	{
+		get
+		{
+			return mMaxLineCount != 1;
+		}
+		set
+		{
+			if ((mMaxLineCount != 1) != value)
+			{
+				mMaxLineCount = (value ? 0 : 1);
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Process the label's text before returning its corners.
+	/// &lt;/summary&gt;
+
+	public override Vector3[] localCorners
+	{
+		get
+		{
+			if (shouldBeProcessed) ProcessText();
+			return base.localCorners;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Process the label's text before returning its corners.
+	/// &lt;/summary&gt;
+
+	public override Vector3[] worldCorners
+	{
+		get
+		{
+			if (shouldBeProcessed) ProcessText();
+			return base.worldCorners;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Process the label's text before returning its drawing dimensions.
+	/// &lt;/summary&gt;
+
+	public override Vector4 drawingDimensions
+	{
+		get
+		{
+			if (shouldBeProcessed) ProcessText();
+			return base.drawingDimensions;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// The max number of lines to be displayed for the label
+	/// &lt;/summary&gt;
+
+	public int maxLineCount
+	{
+		get
+		{
+			return mMaxLineCount;
+		}
+		set
+		{
+			if (mMaxLineCount != value)
+			{
+				mMaxLineCount = Mathf.Max(value, 0);
+				shouldBeProcessed = true;
+				if (overflowMethod == Overflow.ShrinkContent) MakePixelPerfect();
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// What effect is used by the label.
+	/// &lt;/summary&gt;
+
+	public Effect effectStyle
+	{
+		get
+		{
+			return mEffectStyle;
+		}
+		set
+		{
+			if (mEffectStyle != value)
+			{
+				mEffectStyle = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Color used by the effect, if it's enabled.
+	/// &lt;/summary&gt;
+
+	public Color effectColor
+	{
+		get
+		{
+			return mEffectColor;
+		}
+		set
+		{
+			if (mEffectColor != value)
+			{
+				mEffectColor = value;
+				if (mEffectStyle != Effect.None) shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Effect distance in pixels.
+	/// &lt;/summary&gt;
+
+	public Vector2 effectDistance
+	{
+		get
+		{
+			return mEffectDistance;
+		}
+		set
+		{
+			if (mEffectDistance != value)
+			{
+				mEffectDistance = value;
+				shouldBeProcessed = true;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// How many quads there are per printed character.
+	/// &lt;/summary&gt;
+	
+	public int quadsPerCharacter
+	{
+		get
+		{
+			if (mEffectStyle == Effect.Shadow) return 2;
+			else if (mEffectStyle == Effect.Outline) return 5;
+			else if (mEffectStyle == Effect.Outline8) return 9;
+			return 1;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the label will automatically shrink its size in order to fit the maximum line width.
+	/// &lt;/summary&gt;
+
+	[System.Obsolete("Use 'overflowMethod == UILabel.Overflow.ShrinkContent' instead")]
+	public bool shrinkToFit
+	{
+		get
+		{
+			return mOverflow == Overflow.ShrinkContent;
+		}
+		set
+		{
+			if (value)
+			{
+				overflowMethod = Overflow.ShrinkContent;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Returns the processed version of 'text', with new line characters, line wrapping, etc.
+	/// &lt;/summary&gt;
+
+	public string processedText
+	{
+		get
+		{
+			if (mLastWidth != mWidth || mLastHeight != mHeight)
+			{
+				mLastWidth = mWidth;
+				mLastHeight = mHeight;
+				mShouldBeProcessed = true;
+			}
+
+			// Process the text if necessary
+			if (shouldBeProcessed) ProcessText();
+			return mProcessedText;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Actual printed size of the text, in pixels.
+	/// &lt;/summary&gt;
+
+	public Vector2 printedSize
+	{
+		get
+		{
+			if (shouldBeProcessed) ProcessText();
+			return mCalculatedSize;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Local size of the widget, in pixels.
+	/// &lt;/summary&gt;
+
+	public override Vector2 localSize
+	{
+		get
+		{
+			if (shouldBeProcessed) ProcessText();
+			return base.localSize;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Whether the label has a valid font.
+	/// &lt;/summary&gt;
+
+	bool isValid { get { return mFont != null || mTrueTypeFont != null; } }
+
+	/// &lt;summary&gt;
+	/// Custom text modifier that can transform the visible text when the label's text is assigned.
+	/// &lt;/summary&gt;
+
+	public ModifierFunc customModifier;
+	public delegate string ModifierFunc (string s);
+
+	/// &lt;summary&gt;
+	/// Text modifier can transform the text that's actually printed, without altering the label's text value.
+	/// &lt;/summary&gt;
+
+	public Modifier modifier
+	{
+		get
+		{
+			return mModifier;
+		}
+		set
+		{
+			if (mModifier != value)
+			{
+				mModifier = value;
+				MarkAsChanged();
+				ProcessAndRequest();
+			}
+		}
+	}
+
+	static BetterList&lt;UILabel&gt; mList = new BetterList&lt;UILabel&gt;();
+	static Dictionary&lt;Font, int&gt; mFontUsage = new Dictionary&lt;Font, int&gt;();
+
+	/// &lt;summary&gt;
+	/// Register the font texture change listener.
+	/// &lt;/summary&gt;
+
+	protected override void OnInit ()
+	{
+		base.OnInit();
+		mList.Add(this);
+		SetActiveFont(trueTypeFont);
+	}
+
+	/// &lt;summary&gt;
+	/// Remove the font texture change listener.
+	/// &lt;/summary&gt;
+
+	protected override void OnDisable ()
+	{
+		SetActiveFont(null);
+		mList.Remove(this);
+		base.OnDisable();
+	}
+
+	/// &lt;summary&gt;
+	/// Set the active font, correctly setting and clearing callbacks.
+	/// &lt;/summary&gt;
+
+	protected void SetActiveFont (Font fnt)
+	{
+		if (mActiveTTF != fnt)
+		{
+			Font font = mActiveTTF;
+
+			if (font != null)
+			{
+				int usage;
+
+				if (mFontUsage.TryGetValue(font, out usage))
+				{
+					usage = Mathf.Max(0, --usage);
+
+					if (usage == 0)
+					{
+#if UNITY_4_3 || UNITY_4_5
+						font.textureRebuildCallback = null;
+#endif
+						mFontUsage.Remove(font);
+					}
+					else mFontUsage[font] = usage;
+				}
+#if UNITY_4_3 || UNITY_4_5
+				else font.textureRebuildCallback = null;
+#endif
+			}
+
+			mActiveTTF = fnt;
+			font = fnt;
+
+			if (font != null)
+			{
+				int usage = 0;
+
+				// Font hasn't been used yet? Register a change delegate callback
+#if UNITY_4_3 || UNITY_4_5
+				if (!mFontUsage.TryGetValue(font, out usage))
+					font.textureRebuildCallback = delegate() { OnFontChanged(font); };
+#endif
+#if UNITY_FLASH
+				mFontUsage[font] = usage + 1;
+#else
+				mFontUsage[font] = ++usage;
+#endif
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Label's actual printed text may be modified before being drawn.
+	/// &lt;/summary&gt;
+
+	public string printedText
+	{
+		get
+		{
+			if (!string.IsNullOrEmpty(mText))
+			{
+				if (mModifier == Modifier.None) return mText;
+				if (mModifier == Modifier.ToLowercase) return mText.ToLower();
+				if (mModifier == Modifier.ToUppercase) return mText.ToUpper();
+				if (mModifier == Modifier.Custom &amp;&amp; customModifier != null) return customModifier(mText);
+			}
+			return mText;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Notification called when the Unity's font's texture gets rebuilt.
+	/// Unity's font has a nice tendency to simply discard other characters when the texture's dimensions change.
+	/// By requesting them inside the notification callback, we immediately force them back in.
+	/// Originally I was subscribing each label to the font individually, but as it turned out
+	/// mono's delegate system causes an insane amount of memory allocations when += or -= to a delegate.
+	/// So... queue yet another work-around.
+	/// &lt;/summary&gt;
+
+	static void OnFontChanged (Font font)
+	{
+		for (int i = 0; i &lt; mList.size; ++i)
+		{
+			UILabel lbl = mList[i];
+
+			if (lbl != null)
+			{
+				Font fnt = lbl.trueTypeFont;
+
+				if (fnt == font)
+				{
+					fnt.RequestCharactersInTexture(lbl.mText, lbl.mFinalFontSize, lbl.mFontStyle);
+					lbl.MarkAsChanged();
+
+					if (lbl.panel == null)
+						lbl.CreatePanel();
+
+					if (mTempDrawcalls == null)
+						mTempDrawcalls = new BetterList&lt;UIDrawCall&gt;();
+
+					if (lbl.drawCall != null &amp;&amp; !mTempDrawcalls.Contains(lbl.drawCall))
+						mTempDrawcalls.Add(lbl.drawCall);
+				}
+			}
+		}
+
+		if (mTempDrawcalls != null)
+		{
+			for (int i = 0, imax = mTempDrawcalls.size; i &lt; imax; ++i)
+			{
+				UIDrawCall dc = mTempDrawcalls[i];
+				if (dc.panel != null) dc.panel.FillDrawCall(dc);
+			}
+			mTempDrawcalls.Clear();
+		}
+
+		// http://www.tasharen.com/forum/index.php?topic=15202.0
+		/*++mFontChangedDepth;
+
+		for (int i = 0; i &lt; mList.size; ++i)
+		{
+			UILabel lbl = mList[i];
+
+			if (lbl != null)v [kp;' 5rfc328i0u
+			{
+				Font fnt = lbl.trueTypeFont;
+
+				if (fnt == font)
+				{
+					if (mTempLabels == null) mTempLabels = new BetterList&lt;UILabel&gt;();
+
+					if (!mTempLabels.Contains(lbl))
+					{
+						mTempLabels.Add(lbl);
+						lbl.UpdateNGUIText();
+						fnt.RequestCharactersInTexture(lbl.printedText, lbl.mFinalFontSize, lbl.mFontStyle);
+					}
+				}
+			}
+		}
+
+		if (mFontChangedDepth == 1 &amp;&amp; mTempLabels != null)
+		{
+			var frame = Time.frameCount;
+
+			for (int i = 0, imax = mTempLabels.size; i &lt; imax; ++i)
+			{
+				var lbl = mTempLabels.buffer[i];
+				if (lbl.panel == null) lbl.CreatePanel();
+				lbl.MarkAsChanged();
+				lbl.UpdateGeometry(frame);
+
+				var dc = lbl.drawCall;
+
+				if (dc != null)
+				{
+					if (mTempDrawcalls == null) mTempDrawcalls = new BetterList&lt;UIDrawCall&gt;();
+					if (!mTempDrawcalls.Contains(dc)) mTempDrawcalls.Add(dc);
+				}
+			}
+
+			mTempLabels.Clear();
+
+			if (mTempDrawcalls != null)
+			{
+				for (int i = 0, imax = mTempDrawcalls.size; i &lt; imax; ++i)
+				{
+					var dc = mTempDrawcalls.buffer[i];
+					if (dc.panel != null) dc.panel.FillDrawCall(dc);
+				}
+				mTempDrawcalls.Clear();
+			}
+		}
+		--mFontChangedDepth;*/
+	}
+
+	//[System.NonSerialized] static int mFontChangedDepth = 0;
+	[System.NonSerialized] static BetterList&lt;UIDrawCall&gt; mTempDrawcalls;
+	//[System.NonSerialized] static BetterList&lt;UILabel&gt; mTempLabels;
+
+	/// &lt;summary&gt;
+	/// Get the sides of the rectangle relative to the specified transform.
+	/// The order is left, top, right, bottom.
+	/// &lt;/summary&gt;
+
+	public override Vector3[] GetSides (Transform relativeTo)
+	{
+		if (shouldBeProcessed) ProcessText();
+		return base.GetSides(relativeTo);
+	}
+
+	/// &lt;summary&gt;
+	/// Upgrading labels is a bit different.
+	/// &lt;/summary&gt;
+
+	protected override void UpgradeFrom265 ()
+	{
+		ProcessText(true, true);
+
+		if (mShrinkToFit)
+		{
+			overflowMethod = Overflow.ShrinkContent;
+			mMaxLineCount = 0;
+		}
+
+		if (mMaxLineWidth != 0)
+		{
+			width = mMaxLineWidth;
+			overflowMethod = mMaxLineCount &gt; 0 ? Overflow.ResizeHeight : Overflow.ShrinkContent;
+		}
+		else overflowMethod = Overflow.ResizeFreely;
+
+		if (mMaxLineHeight != 0)
+			height = mMaxLineHeight;
+
+		if (mFont != null)
+		{
+			int min = mFont.defaultSize;
+			if (height &lt; min) height = min;
+			fontSize = min;
+		}
+
+		mMaxLineWidth = 0;
+		mMaxLineHeight = 0;
+		mShrinkToFit = false;
+
+		NGUITools.UpdateWidgetCollider(gameObject, true);
+	}
+
+	/// &lt;summary&gt;
+	/// If the label is anchored it should not auto-resize.
+	/// &lt;/summary&gt;
+
+	protected override void OnAnchor ()
+	{
+		if (mOverflow == Overflow.ResizeFreely)
+		{
+			if (isFullyAnchored)
+				mOverflow = Overflow.ShrinkContent;
+		}
+		else if (mOverflow == Overflow.ResizeHeight)
+		{
+			if (topAnchor.target != null &amp;&amp; bottomAnchor.target != null)
+				mOverflow = Overflow.ShrinkContent;
+		}
+		base.OnAnchor();
+	}
+
+	/// &lt;summary&gt;
+	/// Request the needed characters in the texture.
+	/// &lt;/summary&gt;
+
+	void ProcessAndRequest ()
+	{
+#if UNITY_EDITOR
+		if (!Application.isPlaying &amp;&amp; !NGUITools.GetActive(this)) return;
+		if (!mAllowProcessing) return;
+#endif
+		if (ambigiousFont != null) ProcessText();
+	}
+
+#if UNITY_EDITOR
+	// Used to ensure that we don't process font more than once inside OnValidate function below
+	[System.NonSerialized] bool mAllowProcessing = true;
+	[System.NonSerialized] bool mUsingTTF = true;
+
+	/// &lt;summary&gt;
+	/// Validate the properties.
+	/// &lt;/summary&gt;
+
+	protected override void OnValidate ()
+	{
+		base.OnValidate();
+
+		if (NGUITools.GetActive(this))
+		{
+			Font ttf = mTrueTypeFont;
+			UIFont fnt = mFont;
+
+			// If the true type font was not used before, but now it is, clear the font reference
+			if (!mUsingTTF &amp;&amp; ttf != null) fnt = null;
+			else if (mUsingTTF &amp;&amp; fnt != null) ttf = null;
+
+			mFont = null;
+			mTrueTypeFont = null;
+			mAllowProcessing = false;
+			SetActiveFont(null);
+
+			if (fnt != null)
+			{
+				bitmapFont = fnt;
+				mUsingTTF = false;
+			}
+			else if (ttf != null)
+			{
+				trueTypeFont = ttf;
+				mUsingTTF = true;
+			}
+
+			shouldBeProcessed = true;
+			mAllowProcessing = true;
+			ProcessAndRequest();
+			if (autoResizeBoxCollider) ResizeCollider();
+		}
+	}
+#endif
+
+#if !UNITY_4_3 &amp;&amp; !UNITY_4_5
+	static bool mTexRebuildAdded = false;
+
+	protected override void OnEnable ()
+	{
+		base.OnEnable();
+		if (!mTexRebuildAdded)
+		{
+			mTexRebuildAdded = true;
+			Font.textureRebuilt += OnFontChanged;
+		}
+	}
+#endif
+
+	/// &lt;summary&gt;
+	/// Determine start-up values.
+	/// &lt;/summary&gt;
+
+	protected override void OnStart ()
+	{
+		base.OnStart();
+
+		// Legacy support
+		if (mLineWidth &gt; 0f)
+		{
+			mMaxLineWidth = Mathf.RoundToInt(mLineWidth);
+			mLineWidth = 0f;
+		}
+
+		if (!mMultiline)
+		{
+			mMaxLineCount = 1;
+			mMultiline = true;
+		}
+
+		// Whether this is a premultiplied alpha shader
+		mPremultiply = (material != null &amp;&amp; material.shader != null &amp;&amp; material.shader.name.Contains("Premultiplied"));
+
+		// Request the text within the font
+		ProcessAndRequest();
+	}
+
+	/// &lt;summary&gt;
+	/// UILabel needs additional processing when something changes.
+	/// &lt;/summary&gt;
+
+	public override void MarkAsChanged ()
+	{
+		shouldBeProcessed = true;
+		base.MarkAsChanged();
+	}
+
+	/// &lt;summary&gt;
+	/// Process the raw text, called when something changes.
+	/// &lt;/summary&gt;
+
+	public void ProcessText (bool legacyMode = false, bool full = true)
+	{
+		if (!isValid) return;
+
+		mChanged = true;
+		shouldBeProcessed = false;
+
+		float regionX = mDrawRegion.z - mDrawRegion.x;
+		float regionY = mDrawRegion.w - mDrawRegion.y;
+
+		NGUIText.rectWidth    = legacyMode ? (mMaxLineWidth  != 0 ? mMaxLineWidth  : 1000000) : width;
+		NGUIText.rectHeight   = legacyMode ? (mMaxLineHeight != 0 ? mMaxLineHeight : 1000000) : height;
+		NGUIText.regionWidth  = (regionX != 1f) ? Mathf.RoundToInt(NGUIText.rectWidth  * regionX) : NGUIText.rectWidth;
+		NGUIText.regionHeight = (regionY != 1f) ? Mathf.RoundToInt(NGUIText.rectHeight * regionY) : NGUIText.rectHeight;
+
+		mFinalFontSize = Mathf.Abs(legacyMode ? Mathf.RoundToInt(cachedTransform.localScale.x) : defaultFontSize);
+		mScale = 1f;
+
+		if (NGUIText.regionWidth &lt; 1 || NGUIText.regionHeight &lt; 0)
+		{
+			mProcessedText = "";
+			return;
+		}
+
+		bool isDynamic = (trueTypeFont != null);
+
+		if (isDynamic &amp;&amp; keepCrisp)
+		{
+			UIRoot rt = root;
+			if (rt != null) mDensity = (rt != null) ? rt.pixelSizeAdjustment : 1f;
+		}
+		else mDensity = 1f;
+
+		if (full) UpdateNGUIText();
+
+		if (mOverflow == Overflow.ResizeFreely)
+		{
+			NGUIText.rectWidth = 1000000;
+			NGUIText.regionWidth = 1000000;
+
+			if (mOverflowWidth &gt; 0)
+			{
+				NGUIText.rectWidth = Mathf.Min(NGUIText.rectWidth, mOverflowWidth);
+				NGUIText.regionWidth = Mathf.Min(NGUIText.regionWidth, mOverflowWidth);
+			}
+		}
+
+		if (mOverflow == Overflow.ResizeFreely || mOverflow == Overflow.ResizeHeight)
+		{
+			NGUIText.rectHeight = 1000000;
+			NGUIText.regionHeight = 1000000;
+		}
+
+		if (mFinalFontSize &gt; 0)
+		{
+			bool adjustSize = keepCrisp;
+
+			for (int ps = mFinalFontSize; ps &gt; 0; --ps)
+			{
+				// Adjust either the size, or the scale
+				if (adjustSize)
+				{
+					mFinalFontSize = ps;
+					NGUIText.fontSize = mFinalFontSize;
+				}
+				else
+				{
+					mScale = (float)ps / mFinalFontSize;
+					NGUIText.fontScale = isDynamic ? mScale : ((float)mFontSize / mFont.defaultSize) * mScale;
+				}
+
+				NGUIText.Update(false);
+
+				// Wrap the text
+				bool fits = NGUIText.WrapText(printedText, out mProcessedText, false, false, mOverflow == Overflow.ClampContent &amp;&amp; mOverflowEllipsis);
+
+				if (mOverflow == Overflow.ShrinkContent &amp;&amp; !fits)
+				{
+					if (--ps &gt; 1) continue;
+					else break;
+				}
+				else if (mOverflow == Overflow.ResizeFreely)
+				{
+					mCalculatedSize = NGUIText.CalculatePrintedSize(mProcessedText);
+
+					int w = Mathf.Max(minWidth, Mathf.RoundToInt(mCalculatedSize.x));
+					if (regionX != 1f) w = Mathf.RoundToInt(w / regionX);
+					int h = Mathf.Max(minHeight, Mathf.RoundToInt(mCalculatedSize.y));
+					if (regionY != 1f) h = Mathf.RoundToInt(h / regionY);
+
+					if ((w &amp; 1) == 1) ++w;
+					if ((h &amp; 1) == 1) ++h;
+
+					if (mWidth != w || mHeight != h)
+					{
+						mWidth = w;
+						mHeight = h;
+						if (onChange != null) onChange();
+					}
+				}
+				else if (mOverflow == Overflow.ResizeHeight)
+				{
+					mCalculatedSize = NGUIText.CalculatePrintedSize(mProcessedText);
+					int h = Mathf.Max(minHeight, Mathf.RoundToInt(mCalculatedSize.y));
+					if (regionY != 1f) h = Mathf.RoundToInt(h / regionY);
+					if ((h &amp; 1) == 1) ++h;
+
+					if (mHeight != h)
+					{
+						mHeight = h;
+						if (onChange != null) onChange();
+					}
+				}
+				else
+				{
+					mCalculatedSize = NGUIText.CalculatePrintedSize(mProcessedText);
+				}
+
+				// Upgrade to the new system
+				if (legacyMode)
+				{
+					width = Mathf.RoundToInt(mCalculatedSize.x);
+					height = Mathf.RoundToInt(mCalculatedSize.y);
+					cachedTransform.localScale = Vector3.one;
+				}
+				break;
+			}
+		}
+		else
+		{
+			cachedTransform.localScale = Vector3.one;
+			mProcessedText = "";
+			mScale = 1f;
+		}
+		
+		if (full)
+		{
+			NGUIText.bitmapFont = null;
+			NGUIText.dynamicFont = null;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Text is pixel-perfect when its scale matches the size.
+	/// &lt;/summary&gt;
+
+	public override void MakePixelPerfect ()
+	{
+		if (ambigiousFont != null)
+		{
+			Vector3 pos = cachedTransform.localPosition;
+			pos.x = Mathf.RoundToInt(pos.x);
+			pos.y = Mathf.RoundToInt(pos.y);
+			pos.z = Mathf.RoundToInt(pos.z);
+
+			cachedTransform.localPosition = pos;
+			cachedTransform.localScale = Vector3.one;
+
+			if (mOverflow == Overflow.ResizeFreely)
+			{
+				AssumeNaturalSize();
+			}
+			else
+			{
+				int w = width;
+				int h = height;
+
+				Overflow over = mOverflow;
+				if (over != Overflow.ResizeHeight) mWidth = 100000;
+				mHeight = 100000;
+
+				mOverflow = Overflow.ShrinkContent;
+				ProcessText(false, true);
+				mOverflow = over;
+
+				int minX = Mathf.RoundToInt(mCalculatedSize.x);
+				int minY = Mathf.RoundToInt(mCalculatedSize.y);
+
+				minX = Mathf.Max(minX, base.minWidth);
+				minY = Mathf.Max(minY, base.minHeight);
+
+				if ((minX &amp; 1) == 1) ++minX;
+				if ((minY &amp; 1) == 1) ++minY;
+
+				mWidth = Mathf.Max(w, minX);
+				mHeight = Mathf.Max(h, minY);
+
+				MarkAsChanged();
+			}
+		}
+		else base.MakePixelPerfect();
+	}
+
+	/// &lt;summary&gt;
+	/// Make the label assume its natural size.
+	/// &lt;/summary&gt;
+
+	public void AssumeNaturalSize ()
+	{
+		if (ambigiousFont != null)
+		{
+			mWidth = 100000;
+			mHeight = 100000;
+			ProcessText(false, true);
+			mWidth = Mathf.RoundToInt(mCalculatedSize.x);
+			mHeight = Mathf.RoundToInt(mCalculatedSize.y);
+			if ((mWidth &amp; 1) == 1) ++mWidth;
+			if ((mHeight &amp; 1) == 1) ++mHeight;
+			MarkAsChanged();
+		}
+	}
+
+	[System.Obsolete("Use UILabel.GetCharacterAtPosition instead")]
+	public int GetCharacterIndex (Vector3 worldPos) { return GetCharacterIndexAtPosition(worldPos, false); }
+
+	[System.Obsolete("Use UILabel.GetCharacterAtPosition instead")]
+	public int GetCharacterIndex (Vector2 localPos) { return GetCharacterIndexAtPosition(localPos, false); }
+
+	static List&lt;Vector3&gt; mTempVerts = new List&lt;Vector3&gt;();
+	static List&lt;int&gt; mTempIndices = new List&lt;int&gt;();
+
+	/// &lt;summary&gt;
+	/// Return the index of the character at the specified world position.
+	/// &lt;/summary&gt;
+
+	public int GetCharacterIndexAtPosition (Vector3 worldPos, bool precise)
+	{
+		Vector2 localPos = cachedTransform.InverseTransformPoint(worldPos);
+		return GetCharacterIndexAtPosition(localPos, precise);
+	}
+
+	/// &lt;summary&gt;
+	/// Return the index of the character at the specified local position.
+	/// &lt;/summary&gt;
+
+	public int GetCharacterIndexAtPosition (Vector2 localPos, bool precise)
+	{
+		if (isValid)
+		{
+			string text = processedText;
+			if (string.IsNullOrEmpty(text)) return 0;
+
+			UpdateNGUIText();
+
+			if (precise) NGUIText.PrintExactCharacterPositions(text, mTempVerts, mTempIndices);
+			else NGUIText.PrintApproximateCharacterPositions(text, mTempVerts, mTempIndices);
+
+			if (mTempVerts.Count &gt; 0)
+			{
+				ApplyOffset(mTempVerts, 0);
+				int retVal = precise ?
+					NGUIText.GetExactCharacterIndex(mTempVerts, mTempIndices, localPos) :
+					NGUIText.GetApproximateCharacterIndex(mTempVerts, mTempIndices, localPos);
+
+				mTempVerts.Clear();
+				mTempIndices.Clear();
+
+				NGUIText.bitmapFont = null;
+				NGUIText.dynamicFont = null;
+				return retVal;
+			}
+
+			NGUIText.bitmapFont = null;
+			NGUIText.dynamicFont = null;
+		}
+		return 0;
+	}
+
+	/// &lt;summary&gt;
+	/// Retrieve the word directly below the specified world-space position.
+	/// &lt;/summary&gt;
+
+	public string GetWordAtPosition (Vector3 worldPos)
+	{
+		int index = GetCharacterIndexAtPosition(worldPos, true);
+		return GetWordAtCharacterIndex(index);
+	}
+
+	/// &lt;summary&gt;
+	/// Retrieve the word directly below the specified relative-to-label position.
+	/// &lt;/summary&gt;
+
+	public string GetWordAtPosition (Vector2 localPos)
+	{
+		int index = GetCharacterIndexAtPosition(localPos, true);
+		return GetWordAtCharacterIndex(index);
+	}
+
+	/// &lt;summary&gt;
+	/// Retrieve the word right under the specified character index.
+	/// &lt;/summary&gt;
+
+	public string GetWordAtCharacterIndex (int characterIndex)
+	{
+		string s = printedText;
+
+		if (characterIndex != -1 &amp;&amp; characterIndex &lt; s.Length)
+		{
+#if UNITY_FLASH
+			int wordStart = LastIndexOfAny(s, new char[] { ' ', '\n' }, characterIndex) + 1;
+			int wordEnd = IndexOfAny(s, new char[] { ' ', '\n', ',', '.' }, characterIndex);
+#else
+			int wordStart = s.LastIndexOfAny(new char[] {' ', '\n'}, characterIndex) + 1;
+			int wordEnd = s.IndexOfAny(new char[] { ' ', '\n', ',', '.' }, characterIndex);
+#endif
+			if (wordEnd == -1) wordEnd = s.Length;
+
+			if (wordStart != wordEnd)
+			{
+				int len = wordEnd - wordStart;
+
+				if (len &gt; 0)
+				{
+					string word = s.Substring(wordStart, len);
+					return NGUIText.StripSymbols(word);
+				}
+			}
+		}
+		return null;
+	}
+
+#if UNITY_FLASH
+	/// &lt;summary&gt;
+	/// Flash is fail IRL: http://www.tasharen.com/forum/index.php?topic=11390.0
+	/// &lt;/summary&gt;
+
+	int LastIndexOfAny (string input, char[] any, int start)
+	{
+		if (start &gt;= 0 &amp;&amp; input.Length &gt; 0 &amp;&amp; any.Length &gt; 0 &amp;&amp; start &lt; input.Length)
+		{
+			for (int w = start; w &gt;= 0; w--)
+			{
+				for (int r = 0; r &lt; any.Length; r++)
+				{
+					if (any[r] == input[w])
+					{
+						return w;
+					}
+				}
+			}
+		}
+		return -1;
+	}
+
+	/// &lt;summary&gt;
+	/// Flash is fail IRL: http://www.tasharen.com/forum/index.php?topic=11390.0
+	/// &lt;/summary&gt;
+
+	int IndexOfAny (string input, char[] any, int start)
+	{
+		if (start &gt;= 0 &amp;&amp; input.Length &gt; 0 &amp;&amp; any.Length &gt; 0 &amp;&amp; start &lt; input.Length)
+		{
+			for (int w = start; w &lt; input.Length; w++)
+			{
+				for (int r = 0; r &lt; any.Length; r++)
+				{
+					if (any[r] == input[w])
+					{
+						return w;
+					}
+				}
+			}
+		}
+		return -1;
+	}
+#endif
+
+	/// &lt;summary&gt;
+	/// Retrieve the URL directly below the specified world-space position.
+	/// &lt;/summary&gt;
+
+	public string GetUrlAtPosition (Vector3 worldPos) { return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(worldPos, true)); }
+
+	/// &lt;summary&gt;
+	/// Retrieve the URL directly below the specified relative-to-label position.
+	/// &lt;/summary&gt;
+
+	public string GetUrlAtPosition (Vector2 localPos) { return GetUrlAtCharacterIndex(GetCharacterIndexAtPosition(localPos, true)); }
+
+	/// &lt;summary&gt;
+	/// Retrieve the URL right under the specified character index.
+	/// &lt;/summary&gt;
+
+	public string GetUrlAtCharacterIndex (int characterIndex)
+	{
+		string s = printedText;
+
+		if (characterIndex != -1 &amp;&amp; characterIndex &lt; s.Length - 6)
+		{
+			int linkStart;
+
+			// LastIndexOf() fails if the string happens to begin with the expected text
+			if (s[characterIndex] == '[' &amp;&amp;
+				s[characterIndex + 1] == 'u' &amp;&amp;
+				s[characterIndex + 2] == 'r' &amp;&amp;
+				s[characterIndex + 3] == 'l' &amp;&amp;
+				s[characterIndex + 4] == '=')
+			{
+				linkStart = characterIndex;
+			}
+			else linkStart = s.LastIndexOf("[url=", characterIndex);
+			
+			if (linkStart == -1) return null;
+
+			linkStart += 5;
+			int linkEnd = s.IndexOf("]", linkStart);
+			if (linkEnd == -1) return null;
+
+			int urlEnd = s.IndexOf("[/url]", linkEnd);
+			if (urlEnd == -1 || characterIndex &lt;= urlEnd)
+				return s.Substring(linkStart, linkEnd - linkStart);
+		}
+		return null;
+	}
+
+	/// &lt;summary&gt;
+	/// Get the index of the character on the line directly above or below the current index.
+	/// &lt;/summary&gt;
+
+	public int GetCharacterIndex (int currentIndex, KeyCode key)
+	{
+		if (isValid)
+		{
+			string text = processedText;
+			if (string.IsNullOrEmpty(text)) return 0;
+
+			int def = defaultFontSize;
+			UpdateNGUIText();
+
+			NGUIText.PrintApproximateCharacterPositions(text, mTempVerts, mTempIndices);
+
+			if (mTempVerts.Count &gt; 0)
+			{
+				ApplyOffset(mTempVerts, 0);
+
+				for (int i = 0, imax = mTempIndices.Count; i &lt; imax; ++i)
+				{
+					if (mTempIndices[i] == currentIndex)
+					{
+						// Determine position on the line above or below this character
+						Vector2 localPos = mTempVerts[i];
+
+						if (key == KeyCode.UpArrow) localPos.y += def + effectiveSpacingY;
+						else if (key == KeyCode.DownArrow) localPos.y -= def + effectiveSpacingY;
+						else if (key == KeyCode.Home) localPos.x -= 1000f;
+						else if (key == KeyCode.End) localPos.x += 1000f;
+
+						// Find the closest character to this position
+						int retVal = NGUIText.GetApproximateCharacterIndex(mTempVerts, mTempIndices, localPos);
+						if (retVal == currentIndex) break;
+
+						mTempVerts.Clear();
+						mTempIndices.Clear();
+						return retVal;
+					}
+				}
+				mTempVerts.Clear();
+				mTempIndices.Clear();
+			}
+
+			NGUIText.bitmapFont = null;
+			NGUIText.dynamicFont = null;
+
+			// If the selection doesn't move, then we're at the top or bottom-most line
+			if (key == KeyCode.UpArrow || key == KeyCode.Home) return 0;
+			if (key == KeyCode.DownArrow || key == KeyCode.End) return text.Length;
+		}
+		return currentIndex;
+	}
+
+	/// &lt;summary&gt;
+	/// Fill the specified geometry buffer with vertices that would highlight the current selection.
+	/// &lt;/summary&gt;
+
+	public void PrintOverlay (int start, int end, UIGeometry caret, UIGeometry highlight, Color caretColor, Color highlightColor)
+	{
+		if (caret != null) caret.Clear();
+		if (highlight != null) highlight.Clear();
+		if (!isValid) return;
+
+		string text = processedText;
+		UpdateNGUIText();
+
+		int startingCaretVerts = caret.verts.Count;
+		Vector2 center = new Vector2(0.5f, 0.5f);
+		float alpha = finalAlpha;
+
+		// If we have a highlight to work with, fill the buffer
+		if (highlight != null &amp;&amp; start != end)
+		{
+			int startingVertices = highlight.verts.Count;
+			NGUIText.PrintCaretAndSelection(text, start, end, caret.verts, highlight.verts);
+
+			if (highlight.verts.Count &gt; startingVertices)
+			{
+				ApplyOffset(highlight.verts, startingVertices);
+
+				Color c = new Color(highlightColor.r, highlightColor.g, highlightColor.b, highlightColor.a * alpha);
+
+				for (int i = startingVertices, imax = highlight.verts.Count; i &lt; imax; ++i)
+				{
+					highlight.uvs.Add(center);
+					highlight.cols.Add(c);
+				}
+			}
+		}
+		else NGUIText.PrintCaretAndSelection(text, start, end, caret.verts, null);
+
+		// Fill the caret UVs and colors
+		ApplyOffset(caret.verts, startingCaretVerts);
+		Color cc = new Color(caretColor.r, caretColor.g, caretColor.b, caretColor.a * alpha);
+
+		for (int i = startingCaretVerts, imax = caret.verts.Count; i &lt; imax; ++i)
+		{
+			caret.uvs.Add(center);
+			caret.cols.Add(cc);
+		}
+
+		NGUIText.bitmapFont = null;
+		NGUIText.dynamicFont = null;
+	}
+
+	/// &lt;summary&gt;
+	/// Draw the label.
+	/// &lt;/summary&gt;
+
+	public override void OnFill (List&lt;Vector3&gt; verts, List&lt;Vector2&gt; uvs, List&lt;Color&gt; cols)
+	{
+		if (!isValid) return;
+
+		int offset = verts.Count;
+		Color col = color;
+		col.a = finalAlpha;
+		
+		if (mFont != null &amp;&amp; mFont.premultipliedAlphaShader) col = NGUITools.ApplyPMA(col);
+
+		string text = processedText;
+		int start = verts.Count;
+
+		UpdateNGUIText();
+
+		NGUIText.tint = col;
+		NGUIText.Print(text, verts, uvs, cols);
+		NGUIText.bitmapFont = null;
+		NGUIText.dynamicFont = null;
+
+		// Center the content within the label vertically
+		Vector2 pos = ApplyOffset(verts, start);
+
+		// Effects don't work with packed fonts
+		if (mFont != null &amp;&amp; mFont.packedFontShader) return;
+
+		// Apply an effect if one was requested
+		if (effectStyle != Effect.None)
+		{
+			int end = verts.Count;
+			pos.x = mEffectDistance.x;
+			pos.y = mEffectDistance.y;
+
+			ApplyShadow(verts, uvs, cols, offset, end, pos.x, -pos.y);
+
+			if ((effectStyle == Effect.Outline) || (effectStyle == Effect.Outline8))
+			{
+				offset = end;
+				end = verts.Count;
+
+				ApplyShadow(verts, uvs, cols, offset, end, -pos.x, pos.y);
+
+				offset = end;
+				end = verts.Count;
+
+				ApplyShadow(verts, uvs, cols, offset, end, pos.x, pos.y);
+
+				offset = end;
+				end = verts.Count;
+
+				ApplyShadow(verts, uvs, cols, offset, end, -pos.x, -pos.y);
+
+				if (effectStyle == Effect.Outline8)
+				{
+					offset = end;
+					end = verts.Count;
+
+					ApplyShadow(verts, uvs, cols, offset, end, -pos.x, 0);
+
+					offset = end;
+					end = verts.Count;
+
+					ApplyShadow(verts, uvs, cols, offset, end, pos.x, 0);
+
+					offset = end;
+					end = verts.Count;
+
+					ApplyShadow(verts, uvs, cols, offset, end, 0, pos.y);
+
+					offset = end;
+					end = verts.Count;
+
+					ApplyShadow(verts, uvs, cols, offset, end, 0, -pos.y);
+				}
+			}
+		}
+
+		if (onPostFill != null)
+			onPostFill(this, offset, verts, uvs, cols);
+	}
+
+	/// &lt;summary&gt;
+	/// Align the vertices, making the label positioned correctly based on the pivot.
+	/// Returns the offset that was applied.
+	/// &lt;/summary&gt;
+
+	public Vector2 ApplyOffset (List&lt;Vector3&gt; verts, int start)
+	{
+		Vector2 po = pivotOffset;
+
+		float fx = Mathf.Lerp(0f, -mWidth, po.x);
+		float fy = Mathf.Lerp(mHeight, 0f, po.y) + Mathf.Lerp((mCalculatedSize.y - mHeight), 0f, po.y);
+
+		fx = Mathf.Round(fx);
+		fy = Mathf.Round(fy);
+
+		Vector3 v;
+
+		for (int i = start, imax = verts.Count; i &lt; imax; ++i)
+		{
+			v = verts[i];
+			v.x += fx;
+			v.y += fy;
+			verts[i] = v;
+		}
+		return new Vector2(fx, fy);
+	}
+
+	/// &lt;summary&gt;
+	/// Apply a shadow effect to the buffer.
+	/// &lt;/summary&gt;
+
+	public void ApplyShadow (List&lt;Vector3&gt; verts, List&lt;Vector2&gt; uvs, List&lt;Color&gt; cols, int start, int end, float x, float y)
+	{
+		Color c = mEffectColor;
+		c.a *= finalAlpha;
+		if (bitmapFont != null &amp;&amp; bitmapFont.premultipliedAlphaShader) c = NGUITools.ApplyPMA(c);
+		Color col = c;
+
+		for (int i = start; i &lt; end; ++i)
+		{
+			verts.Add(verts[i]);
+			uvs.Add(uvs[i]);
+			cols.Add(cols[i]);
+
+			var v = verts[i];
+			v.x += x;
+			v.y += y;
+			verts[i] = v;
+
+			Color uc = cols[i];
+
+			if (uc.a == 1f)
+			{
+				cols[i] = col;
+			}
+			else
+			{
+				Color fc = c;
+				fc.a = uc.a * c.a;
+				cols[i] = fc;
+			}
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Calculate the character index offset necessary in order to print the end of the specified text.
+	/// &lt;/summary&gt;
+
+	public int CalculateOffsetToFit (string text)
+	{
+		UpdateNGUIText();
+		NGUIText.encoding = false;
+		NGUIText.symbolStyle = NGUIText.SymbolStyle.None;
+		int offset = NGUIText.CalculateOffsetToFit(text);
+		NGUIText.bitmapFont = null;
+		NGUIText.dynamicFont = null;
+		return offset;
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience function, in case you wanted to associate progress bar, slider or scroll bar's
+	/// OnValueChanged function in inspector with a label.
+	/// &lt;/summary&gt;
+
+	public void SetCurrentProgress ()
+	{
+		if (UIProgressBar.current != null)
+			text = UIProgressBar.current.value.ToString("F");
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience function, in case you wanted to associate progress bar, slider or scroll bar's
+	/// OnValueChanged function in inspector with a label.
+	/// &lt;/summary&gt;
+
+	public void SetCurrentPercent ()
+	{
+		if (UIProgressBar.current != null)
+			text = Mathf.RoundToInt(UIProgressBar.current.value * 100f) + "%";
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience function, in case you wanted to automatically set some label's text
+	/// by selecting a value in the UIPopupList.
+	/// &lt;/summary&gt;
+
+	public void SetCurrentSelection ()
+	{
+		if (UIPopupList.current != null)
+		{
+			text = UIPopupList.current.isLocalized ?
+				Localization.Get(UIPopupList.current.value) :
+				UIPopupList.current.value;
+		}
+	}
+
+	/// &lt;summary&gt;
+	/// Convenience function -- wrap the current text given the label's settings and unlimited height.
+	/// &lt;/summary&gt;
+
+	public bool Wrap (string text, out string final) { return Wrap(text, out final, 1000000); }
+
+	/// &lt;summary&gt;
+	/// Convenience function -- wrap the current text given the label's settings and the given height.
+	/// &lt;/summary&gt;
+
+	public bool Wrap (string text, out string final, int height)
+	{
+		UpdateNGUIText();
+		NGUIText.rectHeight = height;
+		NGUIText.regionHeight = height;
+		bool retVal = NGUIText.WrapText(text, out final);
+		NGUIText.bitmapFont = null;
+		NGUIText.dynamicFont = null;
+		return retVal;
+	}
+
+	/// &lt;summary&gt;
+	/// Update NGUIText.current with all the properties from this label.
+	/// &lt;/summary&gt;
+
+	public void UpdateNGUIText ()
+	{
+		Font ttf = trueTypeFont;
+		bool isDynamic = (ttf != null);
+
+        UpdateFontStyle();
+		NGUIText.fontSize = mFinalFontSize;
+		NGUIText.fontStyle = mFontStyle;
+		NGUIText.rectWidth = mWidth;
+		NGUIText.rectHeight = mHeight;
+		NGUIText.regionWidth = Mathf.RoundToInt(mWidth * (mDrawRegion.z - mDrawRegion.x));
+		NGUIText.regionHeight = Mathf.RoundToInt(mHeight * (mDrawRegion.w - mDrawRegion.y));
+		NGUIText.gradient = mApplyGradient &amp;&amp; (mFont == null || !mFont.packedFontShader);
+		NGUIText.gradientTop = mGradientTop;
+		NGUIText.gradientBottom = mGradientBottom;
+		NGUIText.encoding = mEncoding;
+		NGUIText.premultiply = mPremultiply;
+		NGUIText.symbolStyle = mSymbols;
+		NGUIText.maxLines = mMaxLineCount;
+		NGUIText.spacingX = effectiveSpacingX;
+		NGUIText.spacingY = effectiveSpacingY;
+		NGUIText.fontScale = isDynamic ? mScale : ((float)mFontSize / mFont.defaultSize) * mScale;
+
+		if (mFont != null)
+		{
+			NGUIText.bitmapFont = mFont;
+			
+			for (; ; )
+			{
+				UIFont fnt = NGUIText.bitmapFont.replacement;
+				if (fnt == null) break;
+				NGUIText.bitmapFont = fnt;
+			}
+
+			if (NGUIText.bitmapFont.isDynamic)
+			{
+				NGUIText.dynamicFont = NGUIText.bitmapFont.dynamicFont;
+				NGUIText.bitmapFont = null;
+			}
+			else NGUIText.dynamicFont = null;
+		}
+		else
+		{
+			NGUIText.dynamicFont = ttf;
+			NGUIText.bitmapFont = null;
+		}
+
+		if (isDynamic &amp;&amp; keepCrisp)
+		{
+			UIRoot rt = root;
+			if (rt != null) NGUIText.pixelDensity = (rt != null) ? rt.pixelSizeAdjustment : 1f;
+		}
+		else NGUIText.pixelDensity = 1f;
+
+		if (mDensity != NGUIText.pixelDensity)
+		{
+			ProcessText(false, false);
+			NGUIText.rectWidth = mWidth;
+			NGUIText.rectHeight = mHeight;
+			NGUIText.regionWidth = Mathf.RoundToInt(mWidth * (mDrawRegion.z - mDrawRegion.x));
+			NGUIText.regionHeight = Mathf.RoundToInt(mHeight * (mDrawRegion.w - mDrawRegion.y));
+		}
+
+		if (alignment == Alignment.Automatic)
+		{
+			Pivot p = pivot;
+
+			if (p == Pivot.Left || p == Pivot.TopLeft || p == Pivot.BottomLeft)
+			{
+				NGUIText.alignment = Alignment.Left;
+			}
+			else if (p == Pivot.Right || p == Pivot.TopRight || p == Pivot.BottomRight)
+			{
+				NGUIText.alignment = Alignment.Right;
+			}
+			else NGUIText.alignment = Alignment.Center;
+		}
+		else NGUIText.alignment = alignment;
+
+		NGUIText.Update();
+	}
+
+	void OnApplicationPause (bool paused)
+	{
+		if (!paused &amp;&amp; mTrueTypeFont != null) Invalidate(false);
+	}
+
+
+
+    #region 预定义几种常用字体样式
+    public enum FontStyleEnum
+    {
+        None,
+        Normal,
+        Tab1,
+        Tab2,
+        Button1,
+        Button2,
+        Description,
+        AttributeNumber,
+        Quality1,
+        Quality2,
+        Quality3,
+        Quality4,
+        Quality5,
+        Red,
+        Green,
+        LightBlue,
+        Yellow,
+        GradientYellow,
+        Gray
+    }
+    [HideInInspector]
+    [SerializeField]
+    FontStyleEnum mFontStyleEnum = FontStyleEnum.None;
+
+    static List&lt;CommonFontStyle&gt; fontStyleList = null;
+    class CommonFontStyle
+    {
+        public int fontSize = 24;
+        public FontStyle fontStyle = FontStyle.Normal;
+        public bool applyGradient = false; //是否应用渐变
+        public Color gradientTop = Color.white;
+        public Color gradientBottom = Color.yellow;
+        public Color color = Color.white;
+        public UILabel.Effect effectStyle = UILabel.Effect.None;
+        public Color effectColor = Color.black;
+        public string description = "描述信息";
+    }
+
+    public static void LoadFontStyleConfig()
+    {
+#if UNITY_EDITOR
+        string fileName = Directory.GetCurrentDirectory() + @"\Assets\NGUI\fontstyle.txt";
+        if (!File.Exists(fileName))
+        {
+            Debug.Log("Not found fontstyle.txt");
+            return;
+        }
+
+        if (null == fontStyleList)
+            fontStyleList = new List&lt;CommonFontStyle&gt;();
+        fontStyleList.Clear();
+        fontStyleList.Add(null);//0号元素为 None
+
+        string text = File.ReadAllText(fileName);
+        JsonReader reader = new JsonReader(text);
+        JsonData arr = JsonMapper.ToObject(reader);
+        if (!arr.IsArray)
+            return;
+
+        double r, g, b, a;
+        for (int i = 0; i &lt; arr.Count; i++)
+        {
+            JsonData data = arr[i];
+
+            CommonFontStyle cfs = new CommonFontStyle();
+            cfs.fontSize = (int)data["fontSize"];
+            cfs.fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), (string)data["fontStyle"]);
+            cfs.applyGradient = (bool)data["applyGradient"];
+
+            JsonParseColor(data, "gradientTop", out r, out g, out b, out a);
+            cfs.gradientTop = new Color((float)r, (float)g, (float)b, (float)a);
+
+            JsonParseColor(data, "gradientBottom", out r, out g, out b, out a);
+            cfs.gradientBottom = new Color((float)r, (float)g, (float)b, (float)a);
+
+            JsonParseColor(data, "color", out r, out g, out b, out a);
+            cfs.color = new Color((float)r, (float)g, (float)b, (float)a);
+            cfs.effectStyle = (UILabel.Effect)Enum.Parse(typeof(UILabel.Effect), (string)data["effectStyle"]);
+
+            JsonParseColor(data, "effectColor", out r, out g, out b, out a);
+            cfs.effectColor = new Color((float)r, (float)g, (float)b, (float)a);
+
+            cfs.description = (string)data["description"];
+            fontStyleList.Add(cfs);
+        }
+
+        Debug.Log("Load fontstyle.txt completed!");
+#endif
+    }
+
+#if UNITY_EDITOR
+    static void JsonParseColor(JsonData data, string key, out double r, out double g, out double b, out double a)
+    {
+        r = (double)data[key]["r"];
+        g = (double)data[key]["g"];
+        b = (double)data[key]["b"];
+        a = (double)data[key]["a"];
+    }
+#endif
+
+    void SetLabelFontStyle(FontStyleEnum fontStyleEnum)
+    {
+        if (fontStyleEnum == FontStyleEnum.None)
+            return;
+
+        if (null == fontStyleList)
+            LoadFontStyleConfig();
+
+        if (null == fontStyleList)
+            return;
+
+        int index = (int)fontStyleEnum;
+        CommonFontStyle style = null;
+
+        if (index &gt;= fontStyleList.Count)
+            return;
+
+        style = fontStyleList[index];
+        if (null == style)
+            return;
+        this.fontStyle = style.fontStyle;
+        this.fontSize = style.fontSize;
+        this.applyGradient = style.applyGradient;
+        this.gradientTop = style.gradientTop;
+        this.gradientBottom = style.gradientBottom;
+        this.color = style.color;
+        this.effectStyle = style.effectStyle;
+        this.effectColor = style.effectColor;
+        this.MarkAsChanged();
+    }
+
+    public void UpdateFontStyle()
+    {
+        SetLabelFontStyle(mFontStyleEnum);
+    }
+
+    public string GetFontStyleDescription()
+    {
+        if (mFontStyleEnum == FontStyleEnum.None)
+            return string.Empty;
+        int index = (int)mFontStyleEnum;
+        if (null == fontStyleList || index &gt;= fontStyleList.Count)
+            return string.Empty;
+        CommonFontStyle style = fontStyleList[index];
+        if (null == style)
+            return string.Empty;
+        return style.description;
+    }
+    #endregion
+}
+</pre>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	二、修改UILabelInspector.cs
+</p>
+<p>
+<pre class="prettyprint lang-cs linenums">//-------------------------------------------------
+//            NGUI: Next-Gen UI kit
+// Copyright &copy; 2011-2017 Tasharen Entertainment Inc
+//-------------------------------------------------
+
+#if !UNITY_FLASH
+#define DYNAMIC_FONT
+#endif
+
+using UnityEngine;
+using UnityEditor;
+
+/// &lt;summary&gt;
+/// Inspector class used to edit UILabels.
+/// &lt;/summary&gt;
+
+[CanEditMultipleObjects]
+[CustomEditor(typeof(UILabel), true)]
+public class UILabelInspector : UIWidgetInspector
+{
+	public enum FontType
+	{
+		NGUI,
+		Unity,
+	}
+
+	UILabel mLabel;
+	FontType mFontType;
+
+	protected override void OnEnable ()
+	{
+		base.OnEnable();
+		SerializedProperty bit = serializedObject.FindProperty("mFont");
+		mFontType = (bit != null &amp;&amp; bit.objectReferenceValue != null) ? FontType.NGUI : FontType.Unity;
+	}
+
+	void OnNGUIFont (Object obj)
+	{
+		serializedObject.Update();
+		
+		SerializedProperty sp = serializedObject.FindProperty("mFont");
+		sp.objectReferenceValue = obj;
+
+		sp = serializedObject.FindProperty("mTrueTypeFont");
+		sp.objectReferenceValue = null;
+		
+		serializedObject.ApplyModifiedProperties();
+		NGUISettings.ambigiousFont = obj;
+	}
+
+	void OnUnityFont (Object obj)
+	{
+		serializedObject.Update();
+		
+		SerializedProperty sp = serializedObject.FindProperty("mTrueTypeFont");
+		sp.objectReferenceValue = obj;
+
+		sp = serializedObject.FindProperty("mFont");
+		sp.objectReferenceValue = null;
+
+		serializedObject.ApplyModifiedProperties();
+		NGUISettings.ambigiousFont = obj;
+	}
+
+	/// &lt;summary&gt;
+	/// Draw the label's properties.
+	/// &lt;/summary&gt;
+
+	protected override bool ShouldDrawProperties ()
+	{
+		mLabel = mWidget as UILabel;
+
+		GUILayout.BeginHorizontal();
+
+#if DYNAMIC_FONT
+		mFontType = (FontType)EditorGUILayout.EnumPopup(mFontType, "DropDown", GUILayout.Width(74f));
+		if (NGUIEditorTools.DrawPrefixButton("Font", GUILayout.Width(64f)))
+#else
+		mFontType = FontType.NGUI;
+		if (NGUIEditorTools.DrawPrefixButton("Font", GUILayout.Width(74f)))
+#endif
+		{
+			if (mFontType == FontType.NGUI)
+			{
+				ComponentSelector.Show&lt;UIFont&gt;(OnNGUIFont);
+			}
+			else
+			{
+				ComponentSelector.Show&lt;Font&gt;(OnUnityFont, new string[] { ".ttf", ".otf" });
+			}
+		}
+
+		bool isValid = false;
+		SerializedProperty fnt = null;
+		SerializedProperty ttf = null;
+
+		if (mFontType == FontType.NGUI)
+		{
+			GUI.changed = false;
+			fnt = NGUIEditorTools.DrawProperty("", serializedObject, "mFont", GUILayout.MinWidth(40f));
+
+			if (fnt.objectReferenceValue != null)
+			{
+				if (GUI.changed) serializedObject.FindProperty("mTrueTypeFont").objectReferenceValue = null;
+				NGUISettings.ambigiousFont = fnt.objectReferenceValue;
+				isValid = true;
+			}
+		}
+		else
+		{
+			GUI.changed = false;
+			ttf = NGUIEditorTools.DrawProperty("", serializedObject, "mTrueTypeFont", GUILayout.MinWidth(40f));
+
+			if (ttf.objectReferenceValue != null)
+			{
+				if (GUI.changed) serializedObject.FindProperty("mFont").objectReferenceValue = null;
+				NGUISettings.ambigiousFont = ttf.objectReferenceValue;
+				isValid = true;
+			}
+		}
+
+		GUILayout.EndHorizontal();
+
+        //if (mFontType == FontType.Unity)
+        //{
+        //    EditorGUILayout.HelpBox("Dynamic fonts suffer from issues in Unity itself where your characters may disappear, get garbled, or just not show at times. Use this feature at your own risk.\n\n" +
+        //        "When you do run into such issues, please submit a Bug Report to Unity via Help -&gt; Report a Bug (as this is will be a Unity bug, not an NGUI one).", MessageType.Warning);
+        //}
+
+		NGUIEditorTools.DrawProperty("Material", serializedObject, "mMat");
+
+        #region 新增常用字体样式
+        GUI.changed = false;
+        Rect pRect = EditorGUILayout.GetControlRect(GUILayout.Height(16));
+        GUIContent fs_label = new GUIContent("Font Style");
+        SerializedProperty fs_sp = serializedObject.FindProperty("mFontStyleEnum");
+        UILabel.FontStyleEnum mFontStyleIndex = (UILabel.FontStyleEnum)EditorGUI.EnumPopup(pRect, fs_label, (UILabel.FontStyleEnum)fs_sp.enumValueIndex);
+        if (GUI.changed) { 
+            fs_sp.enumValueIndex = (int)mFontStyleIndex;
+        }
+        if (mFontStyleIndex != UILabel.FontStyleEnum.None &amp;&amp; string.Empty != mLabel.GetFontStyleDescription())
+        {
+            EditorGUILayout.HelpBox(mLabel.GetFontStyleDescription(), MessageType.Info);
+        }
+        #endregion
+
+		EditorGUI.BeginDisabledGroup(!isValid);
+		{
+			UIFont uiFont = (fnt != null) ? fnt.objectReferenceValue as UIFont : null;
+			Font dynFont = (ttf != null) ? ttf.objectReferenceValue as Font : null;
+
+			if (uiFont != null &amp;&amp; uiFont.isDynamic)
+			{
+				dynFont = uiFont.dynamicFont;
+				uiFont = null;
+			}
+
+			if (dynFont != null)
+			{
+				GUILayout.BeginHorizontal();
+				{
+					EditorGUI.BeginDisabledGroup((ttf != null) ? ttf.hasMultipleDifferentValues : fnt.hasMultipleDifferentValues);
+					
+					SerializedProperty prop = NGUIEditorTools.DrawProperty("Font Size", serializedObject, "mFontSize", GUILayout.Width(142f));
+					NGUISettings.fontSize = prop.intValue;
+					
+					prop = NGUIEditorTools.DrawProperty("", serializedObject, "mFontStyle", GUILayout.MinWidth(40f));
+					NGUISettings.fontStyle = (FontStyle)prop.intValue;
+					
+					NGUIEditorTools.DrawPadding();
+					EditorGUI.EndDisabledGroup();
+				}
+				GUILayout.EndHorizontal();
+			}
+			else if (uiFont != null)
+			{
+				GUILayout.BeginHorizontal();
+				SerializedProperty prop = NGUIEditorTools.DrawProperty("Font Size", serializedObject, "mFontSize", GUILayout.Width(142f));
+
+				EditorGUI.BeginDisabledGroup(true);
+				if (!serializedObject.isEditingMultipleObjects)
+				{
+					if (mLabel.overflowMethod == UILabel.Overflow.ShrinkContent)
+						GUILayout.Label(" Actual: " + mLabel.finalFontSize + "/" + mLabel.defaultFontSize);
+					else GUILayout.Label(" Default: " + mLabel.defaultFontSize);
+				}
+				EditorGUI.EndDisabledGroup();
+
+				NGUISettings.fontSize = prop.intValue;
+				GUILayout.EndHorizontal();
+			}
+
+			bool ww = GUI.skin.textField.wordWrap;
+			GUI.skin.textField.wordWrap = true;
+			SerializedProperty sp = serializedObject.FindProperty("mText");
+
+			if (sp.hasMultipleDifferentValues)
+			{
+				NGUIEditorTools.DrawProperty("", sp, GUILayout.Height(128f));
+			}
+			else
+			{
+				GUIStyle style = new GUIStyle(EditorStyles.textField);
+				style.wordWrap = true;
+
+				float height = style.CalcHeight(new GUIContent(sp.stringValue), Screen.width - 100f);
+				bool offset = true;
+
+				if (height &gt; 90f)
+				{
+					offset = false;
+					height = style.CalcHeight(new GUIContent(sp.stringValue), Screen.width - 20f);
+				}
+				else
+				{
+					GUILayout.BeginHorizontal();
+					GUILayout.BeginVertical(GUILayout.Width(76f));
+					GUILayout.Space(3f);
+					GUILayout.Label("Text");
+					GUILayout.EndVertical();
+					GUILayout.BeginVertical();
+				}
+				Rect rect = EditorGUILayout.GetControlRect(GUILayout.Height(height));
+
+				GUI.changed = false;
+				string text = EditorGUI.TextArea(rect, sp.stringValue, style);
+				if (GUI.changed) sp.stringValue = text;
+
+				if (offset)
+				{
+					GUILayout.EndVertical();
+					GUILayout.EndHorizontal();
+				}
+			}
+
+			GUI.skin.textField.wordWrap = ww;
+
+			NGUIEditorTools.DrawPaddedProperty("Modifier", serializedObject, "mModifier");
+
+			SerializedProperty ov = NGUIEditorTools.DrawPaddedProperty("Overflow", serializedObject, "mOverflow");
+			NGUISettings.overflowStyle = (UILabel.Overflow)ov.intValue;
+			if (NGUISettings.overflowStyle == UILabel.Overflow.ClampContent)
+				NGUIEditorTools.DrawProperty("Use Ellipsis", serializedObject, "mOverflowEllipsis", GUILayout.Width(110f));
+
+			if (NGUISettings.overflowStyle == UILabel.Overflow.ResizeFreely)
+			{
+				GUILayout.BeginHorizontal();
+				SerializedProperty s = NGUIEditorTools.DrawPaddedProperty("Max Width", serializedObject, "mOverflowWidth");
+				if (s != null &amp;&amp; s.intValue &lt; 1) GUILayout.Label("unlimited");
+				GUILayout.EndHorizontal();
+			}
+
+			NGUIEditorTools.DrawPaddedProperty("Alignment", serializedObject, "mAlignment");
+
+			if (dynFont != null)
+				NGUIEditorTools.DrawPaddedProperty("Keep crisp", serializedObject, "keepCrispWhenShrunk");
+
+			EditorGUI.BeginDisabledGroup(mLabel.bitmapFont != null &amp;&amp; mLabel.bitmapFont.packedFontShader);
+			GUILayout.BeginHorizontal();
+			SerializedProperty gr = NGUIEditorTools.DrawProperty("Gradient", serializedObject, "mApplyGradient",
+			GUILayout.Width(95f));
+
+			EditorGUI.BeginDisabledGroup(!gr.hasMultipleDifferentValues &amp;&amp; !gr.boolValue);
+			{
+				NGUIEditorTools.SetLabelWidth(30f);
+				NGUIEditorTools.DrawProperty("Top", serializedObject, "mGradientTop", GUILayout.MinWidth(40f));
+				GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal();
+				NGUIEditorTools.SetLabelWidth(50f);
+				GUILayout.Space(79f);
+
+				NGUIEditorTools.DrawProperty("Bottom", serializedObject, "mGradientBottom", GUILayout.MinWidth(40f));
+				NGUIEditorTools.SetLabelWidth(80f);
+			}
+			EditorGUI.EndDisabledGroup();
+			GUILayout.EndHorizontal();
+
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Effect", GUILayout.Width(76f));
+			sp = NGUIEditorTools.DrawProperty("", serializedObject, "mEffectStyle", GUILayout.MinWidth(16f));
+
+			EditorGUI.BeginDisabledGroup(!sp.hasMultipleDifferentValues &amp;&amp; !sp.boolValue);
+			{
+				NGUIEditorTools.DrawProperty("", serializedObject, "mEffectColor", GUILayout.MinWidth(10f));
+				GUILayout.EndHorizontal();
+
+				GUILayout.BeginHorizontal();
+				{
+					GUILayout.Label(" ", GUILayout.Width(56f));
+					NGUIEditorTools.SetLabelWidth(20f);
+					NGUIEditorTools.DrawProperty("X", serializedObject, "mEffectDistance.x", GUILayout.MinWidth(40f));
+					NGUIEditorTools.DrawProperty("Y", serializedObject, "mEffectDistance.y", GUILayout.MinWidth(40f));
+					NGUIEditorTools.DrawPadding();
+					NGUIEditorTools.SetLabelWidth(80f);
+				}
+			}
+			EditorGUI.EndDisabledGroup();
+			GUILayout.EndHorizontal();
+			EditorGUI.EndDisabledGroup();
+
+			sp = NGUIEditorTools.DrawProperty("Float spacing", serializedObject, "mUseFloatSpacing", GUILayout.Width(100f));
+
+			if (!sp.boolValue)
+			{
+				GUILayout.BeginHorizontal();
+				GUILayout.Label("Spacing", GUILayout.Width(56f));
+				NGUIEditorTools.SetLabelWidth(20f);
+				NGUIEditorTools.DrawProperty("X", serializedObject, "mSpacingX", GUILayout.MinWidth(40f));
+				NGUIEditorTools.DrawProperty("Y", serializedObject, "mSpacingY", GUILayout.MinWidth(40f));
+				NGUIEditorTools.DrawPadding();
+				NGUIEditorTools.SetLabelWidth(80f);
+				GUILayout.EndHorizontal();
+			}
+			else
+			{
+				GUILayout.BeginHorizontal();
+				GUILayout.Label("Spacing", GUILayout.Width(56f));
+				NGUIEditorTools.SetLabelWidth(20f);
+				NGUIEditorTools.DrawProperty("X", serializedObject, "mFloatSpacingX", GUILayout.MinWidth(40f));
+				NGUIEditorTools.DrawProperty("Y", serializedObject, "mFloatSpacingY", GUILayout.MinWidth(40f));
+				NGUIEditorTools.DrawPadding();
+				NGUIEditorTools.SetLabelWidth(80f);
+				GUILayout.EndHorizontal();
+			}
+			
+			NGUIEditorTools.DrawProperty("Max Lines", serializedObject, "mMaxLineCount", GUILayout.Width(110f));
+
+			GUILayout.BeginHorizontal();
+			sp = NGUIEditorTools.DrawProperty("BBCode", serializedObject, "mEncoding", GUILayout.Width(100f));
+			EditorGUI.BeginDisabledGroup(!sp.boolValue || mLabel.bitmapFont == null || !mLabel.bitmapFont.hasSymbols);
+			NGUIEditorTools.SetLabelWidth(60f);
+			NGUIEditorTools.DrawPaddedProperty("Symbols", serializedObject, "mSymbols");
+			NGUIEditorTools.SetLabelWidth(80f);
+			EditorGUI.EndDisabledGroup();
+			GUILayout.EndHorizontal();
+		}
+		EditorGUI.EndDisabledGroup();
+		return isValid;
+	}
+}
+</pre>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	三、添加导出字体设置信息菜单
+</p>
+<p>
+<pre class="prettyprint lang-cs linenums">using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using System.IO;
+
+static public class UIToolsEditor 
+{
+    #region UILabel 导出字体样式设置
+    [MenuItem("NGUI/Label Setting/Output Setting")]
+    static void LabelOutputSetting() {
+        GameObject[] gameObjects = Selection.gameObjects;
+        if (null == gameObjects)
+            return;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i &lt; gameObjects.Length; i++) {
+            GameObject go = gameObjects[i];
+            UILabel label = go.GetComponent&lt;UILabel&gt;();
+            if (null == label)
+                continue;
+
+            CommonFontStyleJson cfs = new CommonFontStyleJson();
+            cfs.fontSize = label.fontSize;
+            cfs.applyGradient = label.applyGradient;
+            cfs.gradientTop = new CommonFontStyleColor(label.gradientTop.r, label.gradientTop.g, label.gradientTop.b, label.gradientTop.a);
+            cfs.gradientBottom = new CommonFontStyleColor(label.gradientBottom.r, label.gradientBottom.g, label.gradientBottom.b, label.gradientBottom.a);
+            cfs.color = new CommonFontStyleColor(label.color.r, label.color.g, label.color.b, label.color.a);
+            cfs.effectStyle = label.effectStyle.ToString();
+            cfs.effectColor = new CommonFontStyleColor(label.effectColor.r, label.effectColor.g, label.effectColor.b, label.effectColor.a);
+            Debug.Log(LitJson.JsonMapper.ToJson(cfs, true));
+
+            sb.AppendLine(LitJson.JsonMapper.ToJson(cfs, true));
+        }
+
+        if (sb.Length &gt; 0)
+        {
+            string font_str = sb.ToString();
+            byte[] font_bytes = Encoding.UTF8.GetBytes(font_str.ToCharArray());
+
+            string font_file = Application.dataPath + "/NGUI/fontstyle_tmp.txt";
+            FileStream fs = File.OpenWrite(font_file);
+            fs.Write(font_bytes, 0, font_bytes.Length);
+            fs.Flush();
+            AssetDatabase.Refresh();
+            Debug.Log("Output: "+font_file);
+        }
+    }
+	
+	[MenuItem("NGUI/Label Setting/Reload fontstyle.txt")]
+    static void ReloadFontStyleConfig() {
+        UILabel.LoadFontStyleConfig();
+    }
+
+    public class CommonFontStyleJson {
+        public int fontSize;
+        public bool applyGradient;
+        public CommonFontStyleColor gradientTop;
+        public CommonFontStyleColor gradientBottom;
+        public CommonFontStyleColor color;
+        public string effectStyle;
+        public CommonFontStyleColor effectColor;
+        public string description = "描述信息";
+    }
+
+    public class CommonFontStyleColor {
+        //LitJson不支持float
+        public double r;
+        public double g;
+        public double b;
+        public double a;
+
+        public CommonFontStyleColor(float r, float g, float b, float a) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            this.a = a;
+        }
+    }
+    #endregion
+}
+</pre>
+</p>
+<p>
+	效果截图
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201708/076c1503384011.png" id="ematt:1403"><img src="../www.devacg.com/content/uploadfile/201708/076c1503384011.png" title="点击查看原图" alt="1111.png" border="0" width="496" height="282"></a>
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201708/abf31503384011.png" id="ematt:1406"><img src="../www.devacg.com/content/uploadfile/201708/abf31503384011.png" title="点击查看原图" alt="33333.png" border="0" width="277" height="507"></a>
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201708/883d1503384011.png" id="ematt:1405"><img src="../www.devacg.com/content/uploadfile/201708/883d1503384011.png" title="点击查看原图" alt="222222.png" border="0" width="267" height="396"></a>
+</p>	<p class="tag">标签:	<a href="tag%3DNGUI.html">NGUI</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=653&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D654.html">离线安装gradle-x.x-all.zip</a>
+				|
+				 <a href="post%3D652.html">红黑树的旋转操作</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D21.html">Unity实现Tiled贴图</a></li>
+		<li><a href="post%3D185.html">java.lang.RuntimeException</a></li>
+		<li><a href="post%3D312.html">播放视频</a></li>
+		<li><a href="post%3D520.html">Bloom效果</a></li>
+		<li><a href="post%3D608.html">执行简单的计算限制操作</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

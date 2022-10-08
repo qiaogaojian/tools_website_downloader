@@ -1,0 +1,521 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">贪婪量词和惰性量词</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/regexp-greedy-and-lazy"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="贪婪量词和惰性量词"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="贪婪量词和惰性量词"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/regexp-quantifiers"><link rel="next" href="/regexp-groups"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="贪婪量词和惰性量词"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-greedy-and-lazy"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/regexp-greedy-and-lazy"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/regexp-greedy-and-lazy">English</option><option value="https://es.javascript.info/regexp-greedy-and-lazy">Español</option><option value="https://fr.javascript.info/regexp-greedy-and-lazy">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-greedy-and-lazy">Italiano</option><option value="https://ja.javascript.info/regexp-greedy-and-lazy">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/regexp-greedy-and-lazy">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/regexp-greedy-and-lazy" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="10" max="17" data-tooltip="第 10/17 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../regular-expressions/index.html"><span>正则表达式</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"正则表达式","item":"https://zh.javascript.info/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">贪婪量词和惰性量词</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="贪婪量词和惰性量词"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>量词，看上去十分简单，但实际上它可能会很棘手。</p>
+<p>如果我们打算寻找比 <code class="pattern">/\d+/</code> 更加复杂的东西，就需要理解搜索工作是如何进行的。</p>
+<p>以接下来的问题为例。</p>
+<p>有一个文本，我们需要用书名号：<code>«...»</code> 来代替所有的引号 <code>&quot;...&quot;</code>。在许多国家，它们是排版的首选。</p>
+<p>例如：<code>&quot;Hello, world&quot;</code> 将会变成 <code>«Hello, world»</code>。</p>
+<p>一些国家偏爱 <code>„Witam, świat!”</code>（波兰语）甚至 <code>「你好，世界」</code>（汉语）引号。对于不同的语言环境，我们可以选择不同的替代方式，但它们都是一样的，那我们就以书名号 <code>«...»</code> 开始。</p>
+<p>为了进行替换，我们首先要找出所有被引号围起来的子串。</p>
+<p>正则表达式看上去可能是这样的：<code class="pattern">/&quot;.+&quot;/g</code>。这个表达式的意思是：我们要查找这样一个句子，一个引号后跟一个或多个字符，然后以另一个引号结尾。</p>
+<p>…但如果我们试着在一个如此简单的例子中去应用它…</p>
+<div id="5hvaepqa2i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /&quot;.+&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(reg) ); // &quot;witch&quot; and her &quot;broom&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…我们会发现它的运行结果与预期不同！</p>
+<p>它直接找到了一个匹配结果：<code class="match">&quot;witch&quot; and her &quot;broom&quot;</code>，而不是找到两个匹配结果 <code class="match">&quot;witch&quot;</code> 和 <code class="match">&quot;broom&quot;</code>。</p>
+<p>这可被称为“贪婪是万恶之源”。</p>
+<h2><a class="main__anchor" name="tan-lan-sou-suo" href="#tan-lan-sou-suo">贪婪搜索</a></h2><p>为了查找到一个匹配项，正则表达式引擎采用了以下算法：</p>
+<ul>
+<li>对于字符串中的每一个字符
+<ul>
+<li>用这个模式来匹配此字符。</li>
+<li>若无匹配，移至下一个字符</li>
+</ul>
+</li>
+</ul>
+<p>这些简单的词语没有说清楚为什么这个正则表达式匹配失败了，因此，让我们详细说明一下模式 <code class="pattern">&quot;.+&quot;</code> 是如何进行搜索工作的。</p>
+<ol>
+<li>
+<p>该模式的第一个字符是一个引号 <code class="pattern">&quot;</code>。</p>
+<p>正则表达式引擎企图在字符串 <code class="subject">a &quot;witch&quot; and her &quot;broom&quot; is one</code> 的第一个位置就匹配到目标，但这个位置是 subject:a，所以匹配失败。</p>
+<p>然后它进行下一步：移至字符串中的下一个位置，并试图匹配模式中的第一个字符，最终在第三个位置匹配到了引号：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy1.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy1.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>检测到了引号后，引擎就尝试去匹配模式中的剩余字符。它试图查看剩余的字符串主体是否符合 <code class="pattern">.+&quot;</code>。</p>
+<p>在我们的用例中，模式中的下一个字符为 <code class="pattern">.</code>（一个点）。它表示匹配除了换行符之外的任意字符，所以将会匹配下一个字符 <code class="match">'w'</code>：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy2.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy2.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>然后因为量词 <code class="pattern">.+</code>，模式中的点（.）将会重复。正则表达式引擎逐一读取字符，当该字符可能匹配时就用它来构建匹配项。</p>
+<p>…什么时候会不匹配？点（.）能够匹配所有字符，所以只有在移至字符串末尾时才停止匹配：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy3.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy3.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>现在引擎完成了对重复模式 <code class="pattern">.+</code> 的搜索，并且试图寻找模式中的下一个字符。这个字符是引号 <code class="pattern">&quot;</code>。但还有一个问题，对字符串的遍历已经结束，已经没有更多的字符了！</p>
+<p>正则表达式引擎明白它已经为 <code class="pattern">.+</code> 匹配了太多项了，所以开始<strong>回溯</strong>了。</p>
+<p>换句话说，它去掉了量词的匹配项的最后一个字符：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy4.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy4.svg" alt width="463" height="130">
+      </object>
+      </div></figure><p>现在它假设在结束前，<code class="pattern">.+</code> 会匹配一个字符，并尝试匹配剩余的字符。</p>
+<p>如果出现了一个引号，就表示到达了末尾，但最后一个字符是 <code class="subject">'e'</code>，所以无法匹配。</p>
+</li>
+<li>
+<p>…所以引擎会再去掉一个字符，以此来减少 <code class="pattern">.+</code> 的重复次数：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy5.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy5.svg" alt width="463" height="130">
+      </object>
+      </div></figure><p><code class="pattern">'&quot;'</code> 并不会匹配 <code class="subject">'n'</code>。</p>
+</li>
+<li>
+<p>引擎不断进行回溯：它减少了 <code class="pattern">'.'</code> 的重复次数，直到模式的其它部分（在我们的用例中是 <code class="pattern">'&quot;'</code>）匹配到结果：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy6.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy6.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>匹配完成。</p>
+</li>
+<li>
+<p>所以，第一次匹配是 <code class="match">&quot;witch&quot; and her &quot;broom&quot;</code>。接下来的搜索的起点位于第一次搜索的终点，但在 <code class="subject">is one</code> 中没有更多的引号了，所以没有其它的结果了。</p>
+</li>
+</ol>
+<p>这可能不是我们所想要的，但这就是它的工作原理。</p>
+<p><strong>在贪婪模式下（默认情况下），量词都会尽可能地重复多次。</strong></p>
+<p>正则表达式引擎尝试用 <code class="pattern">.+</code> 去获取尽可能多的字符，然后再一步步地筛选它们。</p>
+<p>对于这个问题，我们想要另一种结果，这也就是懒惰量词模式的用途。</p>
+<h2><a class="main__anchor" name="lan-duo-mo-shi" href="#lan-duo-mo-shi">懒惰模式</a></h2><p>懒惰模式中的量词与贪婪模式中的是相反的。它想要“重复最少次数”。</p>
+<p>我们能够通过在量词之后添加一个问号 <code class="pattern">'?'</code> 来启用它，所以匹配模式变为 <code class="pattern">*?</code> 或 <code class="pattern">+?</code>，甚至将 <code class="pattern">'?'</code> 变为 <code class="pattern">??</code>。</p>
+<p>这么说吧：通常，一个问号 <code class="pattern">?</code> 就是一个它本身的量词（0 或 1），但如果添加<strong>另一个量词（甚至可以是它自己）</strong>，就会有不同的意思 —— 它将匹配的模式从贪婪转为懒惰。</p>
+<p>正则表达式 <code class="pattern">/&quot;.+?&quot;/g</code> 正如预期工作：它找到了 <code class="match">&quot;witch&quot;</code> 和 <code class="match">&quot;broom&quot;</code>：</p>
+<div id="ewb8lkqyos" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /&quot;.+?&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(reg) ); // witch, broom</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了更清楚地理解这个变化，我们来一步步解析这个搜索过程。</p>
+<ol>
+<li>
+<p>第一步依然相同：它在第三个位置开始 <code class="pattern">'&quot;'</code>：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy1.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy1.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>下一步也是类似的：引擎为 <code class="pattern">'.'</code> 找到了一个匹配项：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_greedy2.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_greedy2.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>接下来就是搜索过程出现不同的时候了。因为我们对 <code class="pattern">+?</code> 启用了懒惰模式，引擎不会去尝试多匹配一个点，并且开始了对剩余的 <code class="pattern">'&quot;'</code> 的匹配：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_lazy3.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_lazy3.svg" alt width="463" height="130">
+      </object>
+      </div></figure><p>如果有一个引号，搜索就会停止，但是有一个 <code>'i'</code>，所以没有匹配到引号。</p>
+</li>
+<li>
+<p>接着，正则表达式引擎增加对点的重复搜索次数，并且再次尝试：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_lazy4.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_lazy4.svg" alt width="463" height="130">
+      </object>
+      </div></figure><p>又失败了。然后重复次数一次又一次的增加…</p>
+</li>
+<li>
+<p>…直到模式中的剩余部分找到匹配项：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_lazy5.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_lazy5.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+<li>
+<p>接下来的搜索工作从当前匹配结束的那一项开始，就会再产生一个结果：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:28.077753779697623%"></div>
+      <object type="image/svg+xml" data="../article/regexp-greedy-and-lazy/witch_lazy6.svg" width="463" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-greedy-and-lazy/witch_lazy6.svg" alt width="463" height="130">
+      </object>
+      </div></figure></li>
+</ol>
+<p>在这个例子中，我们看到了懒惰模式 <code class="pattern">+?</code> 是怎样工作的。量词 <code class="pattern">*?</code> 和 <code class="pattern">??</code> 也有类似的效果 —— 只有在模式的剩余部分无法在给定位置匹配时，正则表达式引擎才会增加重复次数。</p>
+<p><strong>懒惰模式只能够通过带 <code>?</code> 的量词启用</strong></p>
+<p>其它的量词依旧保持贪婪模式。</p>
+<p>例如：</p>
+<div id="1lduxoo0s5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;123 456&quot;.match(/\d+ \d+?/g) ); // 123 4</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>模式 <code class="pattern">\d+</code> 尝试匹配尽可能多的数字（贪婪模式），因此在它找到 <code class="match">123</code> 时停止，因为下一个字符为空格 <code class="pattern">' '</code>。</p>
+</li>
+<li>
+<p>匹配到一个空格。</p>
+</li>
+<li>
+<p>由于 <code class="pattern">\d+?</code>。量词是出于懒惰模式的，所以它匹配一个数字 <code class="match">4</code> 并且尝试去检测模式的剩余部分是否匹配。</p>
+<p>。。。但是在 <code class="pattern">\d+?</code> 之后没有其它的匹配项了。</p>
+<p>懒惰模式不会在不必要的情况下重复任何事情。模式结束，所以我们找到了匹配项 <code class="match">123 4</code>。</p>
+</li>
+<li>
+<p>接下来的搜索工作从字符 <code>5</code> 开始。</p>
+</li>
+</ol>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Optimizations</span></div>
+            <div class="important__content"><p>当代的正则表达式引擎会通过优化内部算法来提升效率。所以它们的工作流程和所描述的算法可能略有不同。</p>
+<p>但如果只是为了理解正则表达式是如何工作以及如何构建的，我们不需要知道这些，它们仅用于内部优化。</p>
+<p>复杂的正则表达式是难以优化的，所以搜索的过程可能会完全按照描述进行。</p>
+</div></div>
+<h2><a class="main__anchor" name="ti-dai-fang-fa" href="#ti-dai-fang-fa">替代方法</a></h2><p>在正则表达式中，通常有多种方法来达到某个相同目的。</p>
+<p>在用例中，我们能够在不启用懒惰模式的情况下用 <code class="pattern">&quot;[^&quot;]+&quot;</code> 找到带引号的字符串：</p>
+<div id="wvf3jogm24" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /&quot;[^&quot;]+&quot;/g;
+
+let str = 'a &quot;witch&quot; and her &quot;broom&quot; is one';
+
+alert( str.match(reg) ); // witch, broom</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code class="pattern">&quot;[^&quot;]+&quot;</code> 得到了正确的答案，因为它查找一个引号 <code class="pattern">'&quot;'</code>，后跟一个或多个非引号字符  <code class="pattern">[^&quot;]</code>，然后是结束的引号。</p>
+<p>当引擎寻找 <code class="pattern">[^&quot;]+</code> 时，它会在匹配到结束的引号时停止重复，这样就完成了。</p>
+<p>请注意，这个逻辑并不能取代惰性量词！</p>
+<p>这是不同的，我们有时需要这一个，有时却需要另一个。</p>
+<p>让我们再来看一个使用惰性量词失败而使用这种方式正确的例子。</p>
+<p>例如，我们想要找到 <code>&lt;a href=&quot;...&quot; class=&quot;doc&quot;&gt;</code> 形式的链接，或是任意 <code>href</code>。</p>
+<p>该使用哪个正则表达式呢？</p>
+<p>首先可能会想到：<code class="pattern">/&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g</code>。</p>
+<p>验证一下：</p>
+<div id="vjr5rlo3n7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link&quot; class=&quot;doc&quot;&gt;...';
+let reg = /&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Works!
+alert( str.match(reg) ); // &lt;a href=&quot;link&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…但如果文本中有多个链接呢？</p>
+<div id="y6dwopkh8c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let reg = /&lt;a href=&quot;.*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Whoops! Two links in one match!
+alert( str.match(reg) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在这个结果和我们的 “witches” 用例结果的错误原因是一样的。量词 <code class="pattern">.*</code> 占用太多字符了。</p>
+<p>匹配结果如下：</p>
+<div id="5l3azdwbw0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;.....................................&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们启用惰性量词 <code class="pattern">.*?</code> 来修改模式：</p>
+<div id="2ki6km9e9b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let reg = /&lt;a href=&quot;.*?&quot; class=&quot;doc&quot;&gt;/g;
+
+// 有效！
+alert( str.match(reg) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;, &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在能成功了，有两个匹配项：</p>
+<div id="r1wo6hjhaw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;.....&quot; class=&quot;doc&quot;&gt;    &lt;a href=&quot;.....&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它的工作原理是 —— 在上述的解释之后，这应该是显而易见的。所以我们不停留在这些细节上，来再尝试一个例子：</p>
+<div id="xrabugj8l3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '...&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;...';
+let reg = /&lt;a href=&quot;.*?&quot; class=&quot;doc&quot;&gt;/g;
+
+// 错误！
+alert( str.match(reg) ); // &lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们会发现，这个正则表达式不仅匹配了一个链接，还匹配了包含 <code>&lt;p...&gt;</code> 的一段文本。</p>
+<p>为什么？</p>
+<ol>
+<li>
+<p>首先，正则表达式发现一个链接标签：<code class="match">&lt;a href=&quot;</code>。</p>
+</li>
+<li>
+<p>然后它寻找 <code class="pattern">.*?</code>，我们取一个字符，检查其是否与模式的剩余部分匹配，然后再取另一个。。。</p>
+<p>量词 <code class="pattern">.*?</code> 检测字符，直到 <code class="match">class=&quot;doc&quot;&gt;</code>。</p>
+<p>…在哪里可以找到它呢？我们如果查看文本，就可以看到唯一的 <code class="match">class=&quot;doc&quot;&gt;</code> 是在链接之后的，在 <code>&lt;p&gt;</code> 中。</p>
+</li>
+<li>
+<p>所以有了如下匹配项：</p>
+<div id="qxtgiue71d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;...................................&quot; class=&quot;doc&quot;&gt;
+&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>所以，懒惰模式在这里不起作用。</p>
+<p>我们需要寻找 <code>&lt;a href=&quot;...something...&quot; class=&quot;doc&quot;&gt;</code>，但贪婪和懒惰模式都有一些问题。</p>
+<p>正确的做法应该是这样的：<code class="pattern">href=&quot;[^&quot;]*&quot;</code>。它会获取 href 属性中的所有字符，正好符合我们的需求。</p>
+<p>一个实例：</p>
+<div id="eixvfglxul" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str1 = '...&lt;a href=&quot;link1&quot; class=&quot;wrong&quot;&gt;... &lt;p style=&quot;&quot; class=&quot;doc&quot;&gt;...';
+let str2 = '...&lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;... &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;...';
+let reg = /&lt;a href=&quot;[^&quot;]*&quot; class=&quot;doc&quot;&gt;/g;
+
+// Works!
+alert( str1.match(reg) ); // 没有匹配项，是正确的
+alert( str2.match(reg) ); // &lt;a href=&quot;link1&quot; class=&quot;doc&quot;&gt;, &lt;a href=&quot;link2&quot; class=&quot;doc&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>量词有两种工作模式：</p>
+<dl>
+<dt>贪婪模式</dt>
+<dd>默认情况下，正则表达式引擎会尝试尽可能多地重复量词。例如，<code class="pattern">\d+</code> 检测所有可能的字符。当不可能检测更多（没有更多的字符或到达字符串末尾）时，然后它再匹配模式的剩余部分。如果没有匹配，则减少重复的次数（回溯），并再次尝试。</dd>
+<dt>懒惰模式</dt>
+<dd>通过在量词后添加问号 <code class="pattern">?</code> 来启用。在每次重复量词之前，引擎会尝试去匹配模式的剩余部分。</dd>
+</dl>
+<p>正如我们所见，懒惰模式并不是针对贪婪搜索的灵丹妙药。另一种方式是“微调”贪婪搜索，我们很快就会见到更多的例子。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dui-yu-dd-de-pi-pei" name="dui-yu-dd-de-pi-pei">对于 /d+? d+?/ 的匹配</a></h3><a class="task__open-link" href="../task/lazy-greedy/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>以下匹配的结果是什么？</p>
+<div id="55vh3f1qm3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;123 456&quot;.match(/\d+? \d+?/g) ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>结果是：<code class="match">123 4</code>。</p>
+<p>首先，懒惰模式 <code class="pattern">\d+?</code> 尝试去获取尽可能少的字符，但当它检测到空格，就得出匹配结果 <code class="match">123</code>。</p>
+<p>然后，第二个 <code>\d+?</code> 就只获取一个字符，因为这就已足够了。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#cha-zhao-html-zhu-shi" name="cha-zhao-html-zhu-shi">查找 HTML 注释</a></h3><a class="task__open-link" href="../task/find-html-comments/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>找出文本中的所有注释：</p>
+<div id="lqk9nx4jz8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /你的正则表达式/g;
+
+let str = `... &lt;!-- My -- comment
+ test --&gt; ..  &lt;!----&gt; ..
+`;
+
+alert( str.match(reg) ); // '&lt;!-- My -- comment \n test --&gt;', '&lt;!----&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们需要找到注释的起始位置 <code class="match">&lt;!--</code>，然后获取字符直到注释的末尾 <code class="match">--&gt;</code>。</p>
+<p>首先想到的是 <code class="pattern">&lt;!--.*?--&gt;</code> —— 惰性量词使得点（.）停在 <code class="match">--&gt;</code> 之前。</p>
+<p>但是在 Javascript 中，一个点（.）表示除换行符之外的任意字符。所以这是无法匹配多行注释的。</p>
+<p>我们可以用 <code class="pattern">[\s\S]</code>，而不是用点（.）来匹配“任何东西”：</p>
+<div id="4qlnp4gwex" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /&lt;!--[\s\S]*?--&gt;/g;
+
+let str = `... &lt;!-- My -- comment
+ test --&gt; ..  &lt;!----&gt; ..
+`;
+
+alert( str.match(reg) ); // '&lt;!-- My -- comment \n test --&gt;', '&lt;!----&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xun-zhao-html-biao-qian" name="xun-zhao-html-biao-qian">寻找 HTML 标签</a></h3><a class="task__open-link" href="../task/find-html-tags-greedy-lazy/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>创建一个正则表达式语句来寻找所有具有其属性的（闭合或非闭合）HTML 标签。</p>
+<p>用例：</p>
+<div id="9nn1r6tn0b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /你的正则表达式/g;
+
+let str = '&lt;&gt; &lt;a href=&quot;/&quot;&gt; &lt;input type=&quot;radio&quot; checked&gt; &lt;b&gt;';
+
+alert( str.match(reg) ); // '&lt;a href=&quot;/&quot;&gt;', '&lt;input type=&quot;radio&quot; checked&gt;', '&lt;b&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div><p>假设不包含 <code>&lt;</code> 和 <code>&gt;</code>（也包括引号），这将会简单许多。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案是 <code class="pattern">&lt;[^&lt;&gt;]+&gt;</code>。</p>
+<div id="civz4ff1rj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let reg = /&lt;[^&lt;&gt;]+&gt;/g;
+
+let str = '&lt;&gt; &lt;a href=&quot;/&quot;&gt; &lt;input type=&quot;radio&quot; checked&gt; &lt;b&gt;';
+
+alert( str.match(reg) ); // '&lt;a href=&quot;/&quot;&gt;', '&lt;input type=&quot;radio&quot; checked&gt;', '&lt;b&gt;'</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../regexp-quantifiers/index.html" data-tooltip="量词 `+,*,?` 和 `{n}`"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../regexp-groups/index.html" data-tooltip="捕获组"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/regexp-greedy-and-lazy","identifier":"\/regexp-greedy-and-lazy"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../regular-expressions/index.html">正则表达式</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tan-lan-sou-suo">贪婪搜索</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lan-duo-mo-shi">懒惰模式</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ti-dai-fang-fa">替代方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fregexp-greedy-and-lazy" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/9-regular-expressions/10-regexp-greedy-and-lazy" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

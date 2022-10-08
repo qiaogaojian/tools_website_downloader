@@ -1,0 +1,1459 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Proxy 和 Reflect</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/proxy"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Proxy 和 Reflect"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Proxy 和 Reflect"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/js-misc"><link rel="next" href="/eval"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Proxy 和 Reflect"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/proxy"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/proxy"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/proxy"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/proxy"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/proxy"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/proxy"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/proxy"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/proxy"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/proxy"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/proxy"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/proxy">عربي</option><option value="https://javascript.info/proxy">English</option><option value="https://es.javascript.info/proxy">Español</option><option value="https://fr.javascript.info/proxy">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/proxy">Italiano</option><option value="https://ja.javascript.info/proxy">日本語</option><option value="https://ko.javascript.info/proxy">한국어</option><option value="https://learn.javascript.ru/proxy">Русский</option><option value="https://tr.javascript.info/proxy">Türkçe</option><option value="https://uk.javascript.info/proxy">Українська</option><option value="https://zh.javascript.info/proxy" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="88" max="92" data-tooltip="第 88/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../js-misc/index.html"><span>杂项</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"杂项","item":"https://zh.javascript.info/js-misc"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">Proxy 和 Reflect</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Proxy 和 Reflect"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>一个 <code>Proxy</code> 对象包装另一个对象并拦截诸如读取/写入属性和其他操作，可以选择自行处理它们，或者透明地允许该对象处理它们。</p>
+<p>Proxy 被用于了许多库和某些浏览器框架。在本文中，我们将看到许多实际应用。</p>
+<h2><a class="main__anchor" name="proxy" href="#proxy">Proxy</a></h2><p>语法：</p>
+<div id="czczhylokw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let proxy = new Proxy(target, handler)</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>target</code> —— 是要包装的对象，可以是任何东西，包括函数。</li>
+<li><code>handler</code> —— 代理配置：带有“捕捉器”（“traps”，即拦截操作的方法）的对象。比如 <code>get</code> 捕捉器用于读取 <code>target</code> 的属性，<code>set</code> 捕捉器用于写入 <code>target</code> 的属性，等等。</li>
+</ul>
+<p>对 <code>proxy</code> 进行操作，如果在 <code>handler</code> 中存在相应的捕捉器，则它将运行，并且 Proxy 有机会对其进行处理，否则将直接对 target 进行处理。</p>
+<p>首先，让我们创建一个没有任何捕捉器的代理（Proxy）：</p>
+<div id="rx3xwrxt4n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let target = {};
+let proxy = new Proxy(target, {}); // 空的 handler 对象
+
+proxy.test = 5; // 写入 proxy 对象 (1)
+alert(target.test); // 5，test 属性出现在了 target 中！
+
+alert(proxy.test); // 5，我们也可以从 proxy 对象读取它 (2)
+
+for(let key in proxy) alert(key); // test，迭代也正常工作 (3)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>由于没有捕捉器，所有对 <code>proxy</code> 的操作都直接转发给了 <code>target</code>。</p>
+<ol>
+<li>写入操作 <code>proxy.test=</code> 会将值写入 <code>target</code>。</li>
+<li>读取操作 <code>proxy.test</code> 会从 <code>target</code> 返回对应的值。</li>
+<li>迭代 <code>proxy</code> 会从 <code>target</code> 返回对应的值。</li>
+</ol>
+<p>我们可以看到，没有任何捕捉器，<code>proxy</code> 是一个 <code>target</code> 的透明包装器（wrapper）。</p>
+<figure><div class="image" style="width:292px">
+      <div class="image__ratio" style="padding-top:61.64383561643836%"></div>
+      <object type="image/svg+xml" data="../article/proxy/proxy.svg" width="292" height="180" class="image__image" data-use-theme>
+        <img src="../article/proxy/proxy.svg" alt width="292" height="180">
+      </object>
+      </div></figure><p><code>Proxy</code> 是一种特殊的“奇异对象（exotic object）”。它没有自己的属性。如果 <code>handler</code> 为空，则透明地将操作转发给 <code>target</code>。</p>
+<p>要激活更多功能，让我们添加捕捉器。</p>
+<p>我们可以用它们拦截什么？</p>
+<p>对于对象的大多数操作，JavaScript 规范中有一个所谓的“内部方法”，它描述了最底层的工作方式。例如 <code>[[Get]]</code>，用于读取属性的内部方法，<code>[[Set]]</code>，用于写入属性的内部方法，等等。这些方法仅在规范中使用，我们不能直接通过方法名调用它们。</p>
+<p>Proxy 捕捉器会拦截这些方法的调用。它们在 <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">proxy 规范</a> 和下表中被列出。</p>
+<p>对于每个内部方法，此表中都有一个捕捉器：可用于添加到 <code>new Proxy</code> 的 <code>handler</code> 参数中以拦截操作的方法名称：</p>
+<table>
+<thead>
+<tr>
+<th>内部方法</th>
+<th>Handler 方法</th>
+<th>何时触发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[[Get]]</code></td>
+<td><code>get</code></td>
+<td>读取属性</td>
+</tr>
+<tr>
+<td><code>[[Set]]</code></td>
+<td><code>set</code></td>
+<td>写入属性</td>
+</tr>
+<tr>
+<td><code>[[HasProperty]]</code></td>
+<td><code>has</code></td>
+<td><code>in</code> 操作符</td>
+</tr>
+<tr>
+<td><code>[[Delete]]</code></td>
+<td><code>deleteProperty</code></td>
+<td><code>delete</code> 操作符</td>
+</tr>
+<tr>
+<td><code>[[Call]]</code></td>
+<td><code>apply</code></td>
+<td>函数调用</td>
+</tr>
+<tr>
+<td><code>[[Construct]]</code></td>
+<td><code>construct</code></td>
+<td><code>new</code> 操作符</td>
+</tr>
+<tr>
+<td><code>[[GetPrototypeOf]]</code></td>
+<td><code>getPrototypeOf</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf</a></td>
+</tr>
+<tr>
+<td><code>[[SetPrototypeOf]]</code></td>
+<td><code>setPrototypeOf</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf">Object.setPrototypeOf</a></td>
+</tr>
+<tr>
+<td><code>[[IsExtensible]]</code></td>
+<td><code>isExtensible</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible">Object.isExtensible</a></td>
+</tr>
+<tr>
+<td><code>[[PreventExtensions]]</code></td>
+<td><code>preventExtensions</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions">Object.preventExtensions</a></td>
+</tr>
+<tr>
+<td><code>[[DefineOwnProperty]]</code></td>
+<td><code>defineProperty</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>, <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties</a></td>
+</tr>
+<tr>
+<td><code>[[GetOwnProperty]]</code></td>
+<td><code>getOwnPropertyDescriptor</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a>, <code>for..in</code>, <code>Object.keys/values/entries</code></td>
+</tr>
+<tr>
+<td><code>[[OwnPropertyKeys]]</code></td>
+<td><code>ownKeys</code></td>
+<td><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames</a>, <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols</a>, <code>for..in</code>, <code>Object/keys/values/entries</code></td>
+</tr>
+</tbody>
+</table>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">不变量（Invariant）</span></div>
+            <div class="important__content"><p>JavaScript 强制执行某些不变量 — 内部方法和捕捉器必须满足的条件。</p>
+<p>其中大多数用于返回值：</p>
+<ul>
+<li><code>[[Set]]</code> 如果值已成功写入，则必须返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>[[Delete]]</code> 如果已成功删除该值，则必须返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li>……依此类推，我们将在下面的示例中看到更多内容。</li>
+</ul>
+<p>还有其他一些不变量，例如：</p>
+<ul>
+<li>应用于代理（proxy）对象的 <code>[[GetPrototypeOf]]</code>，必须返回与应用于被代理对象的 <code>[[GetPrototypeOf]]</code> 相同的值。换句话说，读取代理对象的原型必须始终返回被代理对象的原型。</li>
+</ul>
+<p>捕捉器可以拦截这些操作，但是必须遵循下面这些规则。</p>
+<p>不变量确保语言功能的正确和一致的行为。完整的不变量列表在 <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">规范</a> 中。如果你不做奇怪的事情，你可能就不会违反它们。</p>
+</div></div>
+<p>让我们来看看它们是如何在实际示例中工作的。</p>
+<h2><a class="main__anchor" name="dai-you-get-bu-zhuo-qi-de-mo-ren-zhi" href="#dai-you-get-bu-zhuo-qi-de-mo-ren-zhi">带有 “get” 捕捉器的默认值</a></h2><p>最常见的捕捉器是用于读取/写入的属性。</p>
+<p>要拦截读取操作，<code>handler</code> 应该有 <code>get(target, property, receiver)</code> 方法。</p>
+<p>读取属性时触发该方法，参数如下：</p>
+<ul>
+<li><code>target</code> —— 是目标对象，该对象被作为第一个参数传递给 <code>new Proxy</code>，</li>
+<li><code>property</code> —— 目标属性名，</li>
+<li><code>receiver</code> —— 如果目标属性是一个 getter 访问器属性，则 <code>receiver</code> 就是本次读取属性所在的 <code>this</code> 对象。通常，这就是 <code>proxy</code> 对象本身（或者，如果我们从 proxy 继承，则是从该 proxy 继承的对象）。现在我们不需要此参数，因此稍后我们将对其进行详细介绍。</li>
+</ul>
+<p>让我们用 <code>get</code> 来实现一个对象的默认值。</p>
+<p>我们将创建一个对不存在的数组项返回 <code>0</code> 的数组。</p>
+<p>通常，当人们尝试获取不存在的数组项时，他们会得到 <code>undefined</code>，但是我们在这将常规数组包装到代理（proxy）中，以捕获读取操作，并在没有要读取的属性的时返回 <code>0</code>：</p>
+<div id="ijn6xmsfbq" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let numbers = [0, 1, 2];
+
+numbers = new Proxy(numbers, {
+  get(target, prop) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      return 0; // 默认值
+    }
+  }
+});
+
+alert( numbers[1] ); // 1
+alert( numbers[123] ); // 0（没有这个数组项）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所看到的，使用 <code>get</code> 捕捉器很容易实现。</p>
+<p>我们可以用 <code>Proxy</code> 来实现“默认”值的任何逻辑。</p>
+<p>想象一下，我们有一本词典，上面有短语及其翻译：</p>
+<div id="9lzq5bm3aj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dictionary = {
+  'Hello': 'Hola',
+  'Bye': 'Adiós'
+};
+
+alert( dictionary['Hello'] ); // Hola
+alert( dictionary['Welcome'] ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，如果没有我们要读取的短语，那么从 <code>dictionary</code> 读取它将返回 <code>undefined</code>。但实际上，返回一个未翻译的短语通常比 <code>undefined</code> 要好。因此，让我们在这种情况下返回一个未翻译的短语来替代 <code>undefined</code>。</p>
+<p>为此，我们将把 <code>dictionary</code> 包装进一个拦截读取操作的代理：</p>
+<div id="36ruqbt3r6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dictionary = {
+  'Hello': 'Hola',
+  'Bye': 'Adiós'
+};
+
+dictionary = new Proxy(dictionary, {
+  get(target, phrase) { // 拦截读取属性操作
+    if (phrase in target) { //如果词典中有该短语
+      return target[phrase]; // 返回其翻译
+    } else {
+      // 否则返回未翻译的短语
+      return phrase;
+    }
+  }
+});
+
+// 在词典中查找任意短语！
+// 最坏的情况也只是它们没有被翻译。
+alert( dictionary['Hello'] ); // Hola
+alert( dictionary['Welcome to Proxy']); // Welcome to Proxy（没有被翻译）</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>请注意代理如何覆盖变量：</p>
+<div id="j9uxelfnj8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>dictionary = new Proxy(dictionary, ...);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>代理应该在所有地方都完全替代目标对象。目标对象被代理后，任何人都不应该再引用目标对象。否则很容易搞砸。</p>
+</div></div>
+<h2><a class="main__anchor" name="shi-yong-set-bu-zhuo-qi-jin-hang-yan-zheng" href="#shi-yong-set-bu-zhuo-qi-jin-hang-yan-zheng">使用 “set” 捕捉器进行验证</a></h2><p>假设我们想要一个专门用于数字的数组。如果添加了其他类型的值，则应该抛出一个错误。</p>
+<p>当写入属性时 <code>set</code> 捕捉器被触发。</p>
+<p><code>set(target, property, value, receiver)</code>：</p>
+<ul>
+<li><code>target</code> —— 是目标对象，该对象被作为第一个参数传递给 <code>new Proxy</code>，</li>
+<li><code>property</code> —— 目标属性名称，</li>
+<li><code>value</code> —— 目标属性的值，</li>
+<li><code>receiver</code> —— 与 <code>get</code> 捕捉器类似，仅与 setter 访问器属性相关。</li>
+</ul>
+<p>如果写入操作（setting）成功，<code>set</code> 捕捉器应该返回 <code>true</code>，否则返回 <code>false</code>（触发 <code>TypeError</code>）。</p>
+<p>让我们用它来验证新值：</p>
+<div id="nso122xmqb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:17,&quot;end&quot;:17},{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let numbers = [];
+
+numbers = new Proxy(numbers, { // (*)
+  set(target, prop, val) { // 拦截写入属性操作
+    if (typeof val == 'number') {
+      target[prop] = val;
+      return true;
+    } else {
+      return false;
+    }
+  }
+});
+
+numbers.push(1); // 添加成功
+numbers.push(2); // 添加成功
+alert(&quot;Length is: &quot; + numbers.length); // 2
+
+numbers.push(&quot;test&quot;); // TypeError（proxy 的 'set' 返回 false）
+
+alert(&quot;This line is never reached (error in the line above)&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：数组的内建方法依然有效！值被使用 <code>push</code> 方法添加到数组。当值被添加到数组后，数组的 <code>length</code> 属性会自动增加。我们的代理对象 proxy 不会破坏任何东西。</p>
+<p>我们不必重写诸如 <code>push</code> 和 <code>unshift</code> 等添加元素的数组方法，就可以在其中添加检查，因为在内部它们使用代理所拦截的 <code>[[Set]]</code> 操作。</p>
+<p>因此，代码简洁明了。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">别忘了返回 <code>true</code></span></div>
+            <div class="important__content"><p>如上所述，要保持不变量。</p>
+<p>对于 <code>set</code> 操作，它必须在成功写入时返回 <code>true</code>。</p>
+<p>如果我们忘记这样做，或返回任何假（falsy）值，则该操作将触发 <code>TypeError</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="shi-yong-ownkeys-he-getownpropertydescriptor-jin-hang-die-dai" href="#shi-yong-ownkeys-he-getownpropertydescriptor-jin-hang-die-dai">使用 “ownKeys” 和 “getOwnPropertyDescriptor” 进行迭代</a></h2><p><code>Object.keys</code>，<code>for..in</code> 循环和大多数其他遍历对象属性的方法都使用内部方法 <code>[[OwnPropertyKeys]]</code>（由 <code>ownKeys</code> 捕捉器拦截) 来获取属性列表。</p>
+<p>这些方法在细节上有所不同：</p>
+<ul>
+<li><code>Object.getOwnPropertyNames(obj)</code> 返回非 Symbol 键。</li>
+<li><code>Object.getOwnPropertySymbols(obj)</code> 返回 Symbol 键。</li>
+<li><code>Object.keys/values()</code> 返回带有 <code>enumerable</code> 标志的非 Symbol 键/值（属性标志在 <a href="../property-descriptors/index.html">属性标志和属性描述符</a> 一章有详细讲解)。</li>
+<li><code>for..in</code> 循环遍历所有带有 <code>enumerable</code> 标志的非 Symbol 键，以及原型对象的键。</li>
+</ul>
+<p>……但是所有这些都从该列表开始。</p>
+<p>在下面这个示例中，我们使用 <code>ownKeys</code> 捕捉器拦截 <code>for..in</code> 对 <code>user</code> 的遍历，并使用 <code>Object.keys</code> 和 <code>Object.values</code> 来跳过以下划线 <code>_</code> 开头的属性：</p>
+<div id="50q1yzg83n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30,
+  _password: &quot;***&quot;
+};
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return Object.keys(target).filter(key =&gt; !key.startsWith('_'));
+  }
+});
+
+// &quot;ownKeys&quot; 过滤掉了 _password
+for(let key in user) alert(key); // name，然后是 age
+
+// 对这些方法的效果相同：
+alert( Object.keys(user) ); // name,age
+alert( Object.values(user) ); // John,30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>到目前为止，它仍然有效。</p>
+<p>尽管如此，但如果我们返回对象中不存在的键，<code>Object.keys</code> 并不会列出这些键：</p>
+<div id="147ah4hu2m" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return ['a', 'b', 'c'];
+  }
+});
+
+alert( Object.keys(user) ); // &lt;empty&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么？原因很简单：<code>Object.keys</code> 仅返回带有 <code>enumerable</code> 标志的属性。为了检查它，该方法会对每个属性调用内部方法 <code>[[GetOwnProperty]]</code> 来获取 <a href="../property-descriptors/index.html">它的描述符（descriptor）</a>。在这里，由于没有属性，其描述符为空，没有 <code>enumerable</code> 标志，因此它被略过。</p>
+<p>为了让 <code>Object.keys</code> 返回一个属性，我们需要它要么存在于带有 <code>enumerable</code> 标志的对象，要么我们可以拦截对 <code>[[GetOwnProperty]]</code> 的调用（捕捉器 <code>getOwnPropertyDescriptor</code> 可以做到这一点)，并返回带有 <code>enumerable: true</code> 的描述符。</p>
+<p>这是关于此的一个例子：</p>
+<div id="mmihatzuty" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) { // 一旦要获取属性列表就会被调用
+    return ['a', 'b', 'c'];
+  },
+
+  getOwnPropertyDescriptor(target, prop) { // 被每个属性调用
+    return {
+      enumerable: true,
+      configurable: true
+      /* ...其他标志，可能是 &quot;value:...&quot; */
+    };
+  }
+
+});
+
+alert( Object.keys(user) ); // a, b, c</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们再次注意：如果该属性在对象中不存在，那么我们只需要拦截 <code>[[GetOwnProperty]]</code>。</p>
+<h2><a class="main__anchor" name="ju-you-deleteproperty-he-qi-ta-bu-zhuo-qi-de-shou-bao-hu-shu-xing" href="#ju-you-deleteproperty-he-qi-ta-bu-zhuo-qi-de-shou-bao-hu-shu-xing">具有 “deleteProperty” 和其他捕捉器的受保护属性</a></h2><p>有一个普遍的约定，即以下划线 <code>_</code> 开头的属性和方法是内部的。不应从对象外部访问它们。</p>
+<p>从技术上讲，我们也是能访问到这样的属性的：</p>
+<div id="y1pnxbts4w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  _password: &quot;secret&quot;
+};
+
+alert(user._password); // secret</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们使用代理来防止对以 <code>_</code> 开头的属性的任何访问。</p>
+<p>我们将需要以下捕捉器：</p>
+<ul>
+<li><code>get</code> 读取此类属性时抛出错误，</li>
+<li><code>set</code> 写入属性时抛出错误，</li>
+<li><code>deleteProperty</code> 删除属性时抛出错误，</li>
+<li><code>ownKeys</code> 在使用 <code>for..in</code> 和像 <code>Object.keys</code> 这样的的方法时排除以 <code>_</code> 开头的属性。</li>
+</ul>
+<p>代码如下：</p>
+<div id="hyovisfxzh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:29,&quot;end&quot;:29},{&quot;start&quot;:21,&quot;end&quot;:21},{&quot;start&quot;:13,&quot;end&quot;:13},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  _password: &quot;***&quot;
+};
+
+user = new Proxy(user, {
+  get(target, prop) {
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Access denied&quot;);
+    }
+    let value = target[prop];
+    return (typeof value === 'function') ? value.bind(target) : value; // (*)
+  },
+  set(target, prop, val) { // 拦截属性写入
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Access denied&quot;);
+    } else {
+      target[prop] = val;
+      return true;
+    }
+  },
+  deleteProperty(target, prop) { // 拦截属性删除
+    if (prop.startsWith('_')) {
+      throw new Error(&quot;Access denied&quot;);
+    } else {
+      delete target[prop];
+      return true;
+    }
+  },
+  ownKeys(target) { // 拦截读取属性列表
+    return Object.keys(target).filter(key =&gt; !key.startsWith('_'));
+  }
+});
+
+// &quot;get&quot; 不允许读取 _password
+try {
+  alert(user._password); // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// &quot;set&quot; 不允许写入 _password
+try {
+  user._password = &quot;test&quot;; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// &quot;deleteProperty&quot; 不允许删除 _password
+try {
+  delete user._password; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// &quot;ownKeys&quot; 将 _password 过滤出去
+for(let key in user) alert(key); // name</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意在 <code>(*)</code> 行中 <code>get</code> 捕捉器的重要细节：</p>
+<div id="ajp4dbur7w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>get(target, prop) {
+  // ...
+  let value = target[prop];
+  return (typeof value === 'function') ? value.bind(target) : value; // (*)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么我们需要一个函数去调用 <code>value.bind(target)</code>？</p>
+<p>原因是对象方法（例如 <code>user.checkPassword()</code>）必须能够访问 <code>_password</code>：</p>
+<div id="back90wjpj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>user = {
+  // ...
+  checkPassword(value) {
+    //对象方法必须能读取 _password
+    return value === this._password;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对 <code>user.checkPassword()</code> 的调用会将被代理的对象 <code>user</code> 作为 <code>this</code>（点符号之前的对象会成为 <code>this</code>），因此，当它尝试访问 <code>this._password</code> 时，<code>get</code> 捕捉器将激活（在任何属性读取时，它都会被触发）并抛出错误。</p>
+<p>因此，我们在 <code>(*)</code> 行中将对象方法的上下文绑定到原始对象 <code>target</code>。然后，它们将来的调用将使用 <code>target</code> 作为 <code>this</code>，不会触发任何捕捉器。</p>
+<p>该解决方案通常可行，但并不理想，因为一个方法可能会将未被代理的对象传递到其他地方，然后我们就会陷入困境：原始对象在哪里，被代理的对象在哪里？</p>
+<p>此外，一个对象可能会被代理多次（多个代理可能会对该对象添加不同的“调整”），并且如果我们将未包装的对象传递给方法，则可能会产生意想不到的后果。</p>
+<p>因此，在任何地方都不应使用这种代理。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">类的私有属性</span></div>
+            <div class="important__content"><p>现代 JavaScript 引擎原生支持 class 中的私有属性，这些私有属性以 <code>#</code> 为前缀。它们在 <a href="../private-protected-properties-methods/index.html">私有的和受保护的属性和方法</a> 一章中有详细描述。无需代理（proxy）。</p>
+<p>但是，此类属性有其自身的问题。特别是，它们是不可继承的。</p>
+</div></div>
+<h2><a class="main__anchor" name="dai-you-has-bu-zhuo-qi-de-inrange" href="#dai-you-has-bu-zhuo-qi-de-inrange">带有 “has” 捕捉器 的 “in range”</a></h2><p>让我们来看更多示例。</p>
+<p>我们有一个 range 对象：</p>
+<div id="4npme7eunn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  start: 1,
+  end: 10
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们想使用 <code>in</code> 操作符来检查一个数字是否在 <code>range</code> 范围内。</p>
+<p><code>has</code> 捕捉器会拦截 <code>in</code> 调用。</p>
+<p><code>has(target, property)</code></p>
+<ul>
+<li><code>target</code> —— 是目标对象，被作为第一个参数传递给 <code>new Proxy</code>，</li>
+<li><code>property</code> —— 属性名称。</li>
+</ul>
+<p>示例如下</p>
+<div id="8hzhbt5lll" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:12},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  start: 1,
+  end: 10
+};
+
+range = new Proxy(range, {
+  has(target, prop) {
+    return prop &gt;= target.start &amp;&amp; prop &lt;= target.end;
+  }
+});
+
+alert(5 in range); // true
+alert(50 in range); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>漂亮的语法糖，不是吗？而且实现起来非常简单。</p>
+<h2><a class="main__anchor" name="proxy-apply" href="#proxy-apply">包装函数：&quot;apply&quot;</a></h2><p>我们也可以将代理（proxy）包装在函数周围。</p>
+<p><code>apply(target, thisArg, args)</code> 捕捉器能使代理以函数的方式被调用：</p>
+<ul>
+<li><code>target</code> 是目标对象（在 JavaScript 中，函数就是一个对象），</li>
+<li><code>thisArg</code> 是 <code>this</code> 的值。</li>
+<li><code>args</code> 是参数列表。</li>
+</ul>
+<p>例如，让我们回忆一下我们在 <a href="../call-apply-decorators/index.html">装饰器模式和转发，call/apply</a> 一章中所讲的 <code>delay(f, ms)</code> 装饰器。</p>
+<p>在该章中，我们没有用 proxy 来实现它。调用 <code>delay(f, ms)</code> 会返回一个函数，该函数会在 <code>ms</code> 毫秒后把所有调用转发给 <code>f</code>。</p>
+<p>这是以前的基于函数的实现：</p>
+<div id="vfcuos4e4l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  // 返回一个包装器（wrapper），该包装器将在时间到了的时候将调用转发给函数 f
+  return function() { // (*)
+    setTimeout(() =&gt; f.apply(this, arguments), ms);
+  };
+}
+
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+// 在进行这个包装后，sayHi 函数会被延迟 3 秒后被调用
+sayHi = delay(sayHi, 3000);
+
+sayHi(&quot;John&quot;); // Hello, John! (after 3 seconds)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所看到的那样，大多数情况下它都是可行的。包装函数 <code>(*)</code> 在到达延迟的时间后后执行调用。</p>
+<p>但是包装函数不会转发属性读取/写入操作或者任何其他操作。进行包装后，就失去了对原始函数属性的访问，例如 <code>name</code>，<code>length</code> 和其他属性：</p>
+<div id="0h5ugmuq8i" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  return function() {
+    setTimeout(() =&gt; f.apply(this, arguments), ms);
+  };
+}
+
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+alert(sayHi.length); // 1（函数的 length 是函数声明中的参数个数）
+
+sayHi = delay(sayHi, 3000);
+
+alert(sayHi.length); // 0（在包装器声明中，参数个数为 0)</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Proxy</code> 的功能要强大得多，因为它可以将所有东西转发到目标对象。</p>
+<p>让我们使用 <code>Proxy</code> 来替换掉包装函数：</p>
+<div id="dryrwz2cq7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(f, ms) {
+  return new Proxy(f, {
+    apply(target, thisArg, args) {
+      setTimeout(() =&gt; target.apply(thisArg, args), ms);
+    }
+  });
+}
+
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+sayHi = delay(sayHi, 3000);
+
+alert(sayHi.length); // 1 (*) proxy 将“获取 length”的操作转发给目标对象
+
+sayHi(&quot;John&quot;); // Hello, John!（3 秒后）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果是相同的，但现在不仅仅调用，而且代理上的所有操作都能被转发到原始函数。所以在 <code>(*)</code> 行包装后的 <code>sayHi.length</code> 会返回正确的结果。</p>
+<p>我们得到了一个“更丰富”的包装器。</p>
+<p>还存在其他捕捉器：完整列表在本文的开头。它们的使用模式与上述类似。</p>
+<h2><a class="main__anchor" name="reflect" href="#reflect">Reflect</a></h2><p><code>Reflect</code> 是一个内建对象，可简化 <code>Proxy</code> 的创建。</p>
+<p>前面所讲过的内部方法，例如 <code>[[Get]]</code> 和 <code>[[Set]]</code> 等，都只是规范性的，不能直接调用。</p>
+<p><code>Reflect</code> 对象使调用这些内部方法成为了可能。它的方法是内部方法的最小包装。</p>
+<p>以下是执行相同操作和 <code>Reflect</code> 调用的示例：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th><code>Reflect</code> 调用</th>
+<th>内部方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>obj[prop]</code></td>
+<td><code>Reflect.get(obj, prop)</code></td>
+<td><code>[[Get]]</code></td>
+</tr>
+<tr>
+<td><code>obj[prop] = value</code></td>
+<td><code>Reflect.set(obj, prop, value)</code></td>
+<td><code>[[Set]]</code></td>
+</tr>
+<tr>
+<td><code>delete obj[prop]</code></td>
+<td><code>Reflect.deleteProperty(obj, prop)</code></td>
+<td><code>[[Delete]]</code></td>
+</tr>
+<tr>
+<td><code>new F(value)</code></td>
+<td><code>Reflect.construct(F, value)</code></td>
+<td><code>[[Construct]]</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<div id="r8y4luuflb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+
+Reflect.set(user, 'name', 'John');
+
+alert(user.name); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>尤其是，<code>Reflect</code> 允许我们将操作符（<code>new</code>，<code>delete</code>，……）作为函数（<code>Reflect.construct</code>，<code>Reflect.deleteProperty</code>，……）执行调用。这是一个有趣的功能，但是这里还有一点很重要。</p>
+<p><strong>对于每个可被 <code>Proxy</code> 捕获的内部方法，在 <code>Reflect</code> 中都有一个对应的方法，其名称和参数与 <code>Proxy</code> 捕捉器相同。</strong></p>
+<p>所以，我们可以使用 <code>Reflect</code> 来将操作转发给原始对象。</p>
+<p>在下面这个示例中，捕捉器 <code>get</code> 和 <code>set</code> 均透明地（好像它们都不存在一样）将读取/写入操作转发到对象，并显示一条消息：</p>
+<div id="apefjag2ec" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11},{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+};
+
+user = new Proxy(user, {
+  get(target, prop, receiver) {
+    alert(`GET ${prop}`);
+    return Reflect.get(target, prop, receiver); // (1)
+  },
+  set(target, prop, val, receiver) {
+    alert(`SET ${prop}=${val}`);
+    return Reflect.set(target, prop, val, receiver); // (2)
+  }
+});
+
+let name = user.name; // 显示 &quot;GET name&quot;
+user.name = &quot;Pete&quot;; // 显示 &quot;SET name=Pete&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里：</p>
+<ul>
+<li><code>Reflect.get</code> 读取一个对象属性。</li>
+<li><code>Reflect.set</code> 写入一个对象属性，如果写入成功则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+</ul>
+<p>这样，一切都很简单：如果一个捕捉器想要将调用转发给对象，则只需使用相同的参数调用 <code>Reflect.&lt;method&gt;</code> 就足够了。</p>
+<p>在大多数情况下，我们可以不使用 <code>Reflect</code> 完成相同的事情，例如，用于读取属性的 <code>Reflect.get(target, prop, receiver)</code> 可以被替换为 <code>target[prop]</code>。尽管有一些细微的差别。</p>
+<h3><a class="main__anchor" name="dai-li-yi-ge-getter" href="#dai-li-yi-ge-getter">代理一个 getter</a></h3><p>让我们看一个示例，来说明为什么 <code>Reflect.get</code> 更好。此外，我们还将看到为什么 <code>get/set</code> 有第三个参数 <code>receiver</code>，而且我们之前从来没有使用过它。</p>
+<p>我们有一个带有 <code>_name</code> 属性和 getter 的对象 <code>user</code>。</p>
+<p>这是对 <code>user</code> 对象对一个代理（proxy）：</p>
+<div id="dux2gxqzj4" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Guest&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return target[prop];
+  }
+});
+
+alert(userProxy.name); // Guest</code></pre>
+        </div>
+      </div>
+      
+      </div><p>其 <code>get</code> 捕捉器在这里是“透明的”，它返回原来的属性，不会做任何其他的事。这对于我们的示例而言就足够了。</p>
+<p>一切似乎都很好。但是让我们将示例变得稍微复杂一点。</p>
+<p>另一个对象 <code>admin</code> 从 <code>user</code> 继承后，我们可以观察到错误的行为：</p>
+<div id="kdnxyu7rxm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Guest&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) {
+    return target[prop]; // (*) target = user
+  }
+});
+
+let admin = {
+  __proto__: userProxy,
+  _name: &quot;Admin&quot;
+};
+
+// 期望输出：Admin
+alert(admin.name); // 输出：Guest (?!?)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>读取 <code>admin.name</code> 应该返回 <code>&quot;Admin&quot;</code>，而不是 <code>&quot;Guest&quot;</code>！</p>
+<p>发生了什么？或许我们在继承方面做错了什么？</p>
+<p>但是，如果我们移除代理，那么一切都会按预期进行。</p>
+<p>问题实际上出在代理中，在 <code>(*)</code> 行。</p>
+<ol>
+<li>
+<p>当我们读取 <code>admin.name</code> 时，由于 <code>admin</code> 对象自身没有对应的的属性，搜索将转到其原型。</p>
+</li>
+<li>
+<p>原型是 <code>userProxy</code>。</p>
+</li>
+<li>
+<p>从代理读取 <code>name</code> 属性时，<code>get</code> 捕捉器会被触发，并从原始对象返回 <code>target[prop]</code> 属性，在 <code>(*)</code> 行。</p>
+<p>当调用 <code>target[prop]</code> 时，若 <code>prop</code> 是一个 getter，它将在 <code>this=target</code> 上下文中运行其代码。因此，结果是来自原始对象 <code>target</code> 的 <code>this._name</code>，即来自 <code>user</code>。</p>
+</li>
+</ol>
+<p>为了解决这种情况，我们需要 <code>get</code> 捕捉器的第三个参数 <code>receiver</code>。它保证将正确的 <code>this</code> 传递给 getter。在我们的例子中是 <code>admin</code>。</p>
+<p>如何把上下文传递给 getter？对于一个常规函数，我们可以使用 <code>call/apply</code>，但这是一个 getter，它不能“被调用”，只能被访问。</p>
+<p><code>Reflect.get</code> 可以做到。如果我们使用它，一切都会正常运行。</p>
+<p>这是更正后的变体：</p>
+<div id="7f591snutw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19},{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  _name: &quot;Guest&quot;,
+  get name() {
+    return this._name;
+  }
+};
+
+let userProxy = new Proxy(user, {
+  get(target, prop, receiver) { // receiver = admin
+    return Reflect.get(target, prop, receiver); // (*)
+  }
+});
+
+
+let admin = {
+  __proto__: userProxy,
+  _name: &quot;Admin&quot;
+};
+
+alert(admin.name); // Admin</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在 <code>receiver</code> 保留了对正确 <code>this</code> 的引用（即 <code>admin</code>），该引用是在 <code>(*)</code> 行中被通过 <code>Reflect.get</code> 传递给 getter 的。</p>
+<p>我们可以把捕捉器重写得更短：</p>
+<div id="qavswsai12" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:33}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>get(target, prop, receiver) {
+  return Reflect.get(...arguments);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Reflect</code> 调用的命名与捕捉器的命名完全相同，并且接受相同的参数。它们是以这种方式专门设计的。</p>
+<p>因此，<code>return Reflect...</code> 提供了一个安全的方式，可以轻松地转发操作，并确保我们不会忘记与此相关的任何内容。</p>
+<h2><a class="main__anchor" name="proxy-de-ju-xian-xing" href="#proxy-de-ju-xian-xing">Proxy 的局限性</a></h2><p>代理提供了一种独特的方法，可以在最底层更改或调整现有对象的行为。但是，它并不完美。有局限性。</p>
+<h3><a class="main__anchor" name="nei-jian-dui-xiang-nei-bu-cha-cao-internalslot" href="#nei-jian-dui-xiang-nei-bu-cha-cao-internalslot">内建对象：内部插槽（Internal slot）</a></h3><p>许多内建对象，例如 <code>Map</code>，<code>Set</code>，<code>Date</code>，<code>Promise</code> 等，都使用了所谓的“内部插槽”。</p>
+<p>它们类似于属性，但仅限于内部使用，仅用于规范目的。例如，<code>Map</code> 将项目（item）存储在 <code>[[MapData]]</code> 中。内建方法可以直接访问它们，而不通过 <code>[[Get]]/[[Set]]</code> 内部方法。所以 <code>Proxy</code> 无法拦截它们。</p>
+<p>为什么要在意这些呢？毕竟它们是内部的！</p>
+<p>好吧，问题在这儿。在类似这样的内建对象被代理后，代理对象没有这些内部插槽，因此内建方法将会失败。</p>
+<p>例如：</p>
+<div id="7f1jov75du" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+let proxy = new Proxy(map, {});
+
+proxy.set('test', 1); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在内部，一个 <code>Map</code> 将所有数据存储在其 <code>[[MapData]]</code> 内部插槽中。代理对象没有这样的插槽。<a href="https://tc39.es/ecma262/#sec-map.prototype.set">内建方法 <code>Map.prototype.set</code></a> 方法试图访问内部属性 <code>this.[[MapData]]</code>，但由于 <code>this=proxy</code>，在 <code>proxy</code> 中无法找到它，只能失败。</p>
+<p>幸运的是，这儿有一种解决方法：</p>
+<div id="6c5d0ofevd" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+let proxy = new Proxy(map, {
+  get(target, prop, receiver) {
+    let value = Reflect.get(...arguments);
+    return typeof value == 'function' ? value.bind(target) : value;
+  }
+});
+
+proxy.set('test', 1);
+alert(proxy.get('test')); // 1（工作了！）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它正常工作了，因为 <code>get</code> 捕捉器将函数属性（例如 <code>map.set</code>）绑定到了目标对象（<code>map</code>）本身。</p>
+<p>与前面的示例不同，<code>proxy.set(...)</code> 内部 <code>this</code> 的值并不是 <code>proxy</code>，而是原始的 <code>map</code>。因此，当<code>set</code> 捕捉器的内部实现尝试访问 <code>this.[[MapData]]</code> 内部插槽时，它会成功。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Array</code> 没有内部插槽</span></div>
+            <div class="important__content"><p>一个值得注意的例外：内建 <code>Array</code> 没有使用内部插槽。那是出于历史原因，因为它出现于很久以前。</p>
+<p>所以，代理数组时没有这种问题。</p>
+</div></div>
+<h3><a class="main__anchor" name="si-you-zi-duan" href="#si-you-zi-duan">私有字段</a></h3><p>类的私有字段也会发生类似的情况。</p>
+<p>例如，<code>getName()</code> 方法访问私有的 <code>#name</code> 属性，并在代理后中断（break）：</p>
+<div id="r4ccbg1r7i" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  #name = &quot;Guest&quot;;
+
+  getName() {
+    return this.#name;
+  }
+}
+
+let user = new User();
+
+user = new Proxy(user, {});
+
+alert(user.getName()); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>原因是私有字段是通过内部插槽实现的。JavaScript 在访问它们时不使用 <code>[[Get]]/[[Set]]</code>。</p>
+<p>在调用 <code>getName()</code> 时，<code>this</code> 的值是代理后的 <code>user</code>，它没有带有私有字段的插槽。</p>
+<p>再次，带有 <code>bind</code> 方法的解决方案使它恢复正常：</p>
+<div id="cfl8ea1quk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  #name = &quot;Guest&quot;;
+
+  getName() {
+    return this.#name;
+  }
+}
+
+let user = new User();
+
+user = new Proxy(user, {
+  get(target, prop, receiver) {
+    let value = Reflect.get(...arguments);
+    return typeof value == 'function' ? value.bind(target) : value;
+  }
+});
+
+alert(user.getName()); // Guest</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如前所述，该解决方案也有缺点：它将原始对象暴露给该方法，可能使其进一步传递并破坏其他代理功能。</p>
+<h3><a class="main__anchor" name="proxytarget" href="#proxytarget">Proxy != target</a></h3><p>代理和原始对象是不同的对象。这很自然，对吧？</p>
+<p>所以，如果我们使用原始对象作为键，然后对其进行代理，之后却无法找到代理了：</p>
+<div id="v97iekoq2c" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let allUsers = new Set();
+
+class User {
+  constructor(name) {
+    this.name = name;
+    allUsers.add(this);
+  }
+}
+
+let user = new User(&quot;John&quot;);
+
+alert(allUsers.has(user)); // true
+
+user = new Proxy(user, {});
+
+alert(allUsers.has(user)); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如我们所见，进行代理后，我们在 <code>allUsers</code> 中找不到 <code>user</code>，因为代理是一个不同的对象。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">Proxy 无法拦截严格相等性检查 <code>===</code></span></div>
+            <div class="important__content"><p>Proxy 可以拦截许多操作符，例如 <code>new</code>（使用 <code>construct</code>），<code>in</code>（使用 <code>has</code>），<code>delete</code>（使用 <code>deleteProperty</code>）等。</p>
+<p>但是没有办法拦截对于对象的严格相等性检查。一个对象只严格等于其自身，没有其他值。</p>
+<p>因此，比较对象是否相等的所有操作和内建类都会区分对象和代理。这里没有透明的替代品。</p>
+</div></div>
+<h2><a class="main__anchor" name="ke-che-xiao-proxy" href="#ke-che-xiao-proxy">可撤销 Proxy</a></h2><p>一个 <strong>可撤销</strong> 的代理是可以被禁用的代理。</p>
+<p>假设我们有一个资源，并且想随时关闭对该资源的访问。</p>
+<p>我们可以做的是将它包装成可一个撤销的代理，没有任何捕捉器。这样的代理会将操作转发给对象，并且我们可以随时将其禁用。</p>
+<p>语法为：</p>
+<div id="silz3300nh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let {proxy, revoke} = Proxy.revocable(target, handler)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该调用返回一个带有 <code>proxy</code> 和 <code>revoke</code> 函数的对象以将其禁用。</p>
+<p>这是一个例子：</p>
+<div id="y35bc4oz8z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let object = {
+  data: &quot;Valuable data&quot;
+};
+
+let {proxy, revoke} = Proxy.revocable(object, {});
+
+// 将 proxy 传递到其他某处，而不是对象...
+alert(proxy.data); // Valuable data
+
+// 稍后，在我们的代码中
+revoke();
+
+// proxy 不再工作（revoked）
+alert(proxy.data); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>revoke()</code> 会从代理中删除对目标对象的所有内部引用，因此它们之间再无连接。之后可以对目标对象进行垃圾回收。</p>
+<p>我们还可以将 <code>revoke</code> 存储在 <code>WeakMap</code> 中，以更便于通过代理对象轻松找到它：</p>
+<div id="t8jyjia2ui" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let revokes = new WeakMap();
+
+let object = {
+  data: &quot;Valuable data&quot;
+};
+
+let {proxy, revoke} = Proxy.revocable(object, {});
+
+revokes.set(proxy, revoke);
+
+// ...稍后，在我们的代码中...
+revoke = revokes.get(proxy);
+revoke();
+
+alert(proxy.data); // Error（revoked）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这种方法的好处是，我们不必再随身携带 <code>revoke</code>。我们可以在有需要时通过 <code>proxy</code> 从 map 上获取它。</p>
+<p>此处我们使用 <code>WeakMap</code> 而不是 <code>Map</code>，因为它不会阻止垃圾回收。如果一个代理对象变得“不可访问”（例如，没有变量再引用它），则 <code>WeakMap</code> 允许将其与它的 <code>revoke</code> 一起从内存中清除，因为我们不再需要它了。</p>
+<h2><a class="main__anchor" name="can-kao-zi-liao" href="#can-kao-zi-liao">参考资料</a></h2><ul>
+<li>规范：<a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">Proxy</a>。</li>
+<li>MDN：<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>。</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>Proxy</code> 是对象的包装器，将代理上的操作转发到对象，并可以选择捕获其中一些操作。</p>
+<p>它可以包装任何类型的对象，包括类和函数。</p>
+<p>语法为：</p>
+<div id="fs0xyl5f63" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let proxy = new Proxy(target, {
+  /* trap */
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……然后，我们应该在所有地方使用 <code>proxy</code> 而不是 <code>target</code>。代理没有自己的属性或方法。如果提供了捕捉器（trap），它将捕获操作，否则会将其转发给 <code>target</code> 对象。</p>
+<p>我们可以捕获：</p>
+<ul>
+<li>读取（<code>get</code>），写入（<code>set</code>），删除（<code>deleteProperty</code>）属性（甚至是不存在的属性）。</li>
+<li>函数调用（<code>apply</code> 捕捉器）。</li>
+<li><code>new</code> 操作（<code>construct</code> 捕捉器）。</li>
+<li>许多其他操作（完整列表请见本文开头部分和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Proxy">docs</a>）。</li>
+</ul>
+<p>这使我们能够创建“虚拟”属性和方法，实现默认值，可观察对象，函数装饰器等。</p>
+<p>我们还可以将对象多次包装在不同的代理中，并用多个各个方面的功能对其进行装饰。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect</a> API 旨在补充 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>。对于任意 <code>Proxy</code> 捕捉器，都有一个带有相同参数的 <code>Reflect</code> 调用。我们应该使用它们将调用转发给目标对象。</p>
+<p>Proxy 有一些局限性：</p>
+<ul>
+<li>内建对象具有“内部插槽”，对这些对象的访问无法被代理。请参阅上文中的解决方法。</li>
+<li>私有类字段也是如此，因为它们也是在内部使用插槽实现的。因此，代理方法的调用必须具有目标对象作为 <code>this</code> 才能访问它们。</li>
+<li>对象的严格相等性检查 <code>===</code> 无法被拦截。</li>
+<li>性能：基准测试（benchmark）取决于引擎，但通常使用最简单的代理访问属性所需的时间也要长几倍。实际上，这仅对某些“瓶颈”对象来说才重要。</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#du-qu-bu-cun-zai-de-shu-xing-shi-chu-cuo" name="du-qu-bu-cun-zai-de-shu-xing-shi-chu-cuo">读取不存在的属性时出错</a></h3><a class="task__open-link" href="../task/error-nonexisting/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>通常，尝试读取不存在的属性会返回 <code>undefined</code>。</p>
+<p>创建一个代理，在尝试读取不存在的属性时，该代理抛出一个错误。</p>
+<p>这可以帮助及早发现编程错误。</p>
+<p>编写一个函数 <code>wrap(target)</code>，该函数接受一个 <code>target</code> 对象，并返回添加此方面功能的代理（proxy）。</p>
+<p>其工作方式应如下：</p>
+<div id="estt7uc1iv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:13},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;
+};
+
+function wrap(target) {
+  return new Proxy(target, {
+      /* 你的代码 */
+  });
+}
+
+user = wrap(user);
+
+alert(user.name); // John
+alert(user.age); // ReferenceError: Property doesn't exist: &quot;age&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="urxv27f5oy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;
+};
+
+function wrap(target) {
+  return new Proxy(target, {
+    get(target, prop, receiver) {
+      if (prop in target) {
+        return Reflect.get(target, prop, receiver);
+      } else {
+        throw new ReferenceError(`Property doesn't exist: &quot;${prop}&quot;`)
+      }
+    }
+  });
+}
+
+user = wrap(user);
+
+alert(user.name); // John
+alert(user.age); // ReferenceError: Property doesn't exist: &quot;age&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#fang-wen-array1" name="fang-wen-array1">访问 array[-1]</a></h3><a class="task__open-link" href="../task/array-negative/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>在某些编程语言中，我们可以使用从尾端算起的负值索引访问数组元素。</p>
+<p>像这样：</p>
+<div id="qmp8ddwnkr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array[-1]; // 3，最后一个元素
+array[-2]; // 2，从尾端开始向前移动一步
+array[-3]; // 1，从尾端开始向前移动两步</code></pre>
+        </div>
+      </div>
+      
+      </div><p>换句话说，<code>array[-N]</code> 与 <code>array[array.length - N]</code> 相同。</p>
+<p>创建一个 proxy 来实现该行为。</p>
+<p>其工作方式应如下：</p>
+<div id="pdrz9ckhth" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array = new Proxy(array, {
+  /* 你的代码 */
+});
+
+alert( array[-1] ); // 3
+alert( array[-2] ); // 2
+
+// 其他数组功能应保持“原样”</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="ulf0c2q1eh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let array = [1, 2, 3];
+
+array = new Proxy(array, {
+  get(target, prop, receiver) {
+    if (prop &lt; 0) {
+      // 即使我们像 arr[1] 这样访问它
+      // prop 是一个字符串，所以我们需要将其转换成数字
+      prop = +prop + target.length;
+    }
+    return Reflect.get(target, prop, receiver);
+  }
+});
+
+
+alert(array[-1]); // 3
+alert(array[-2]); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ke-guan-cha-de-observable" name="ke-guan-cha-de-observable">可观察的（Observable）</a></h3><a class="task__open-link" href="../task/observable/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>创建一个函数 <code>makeObservable(target)</code>，该函数通过返回一个代理“使得对象可观察”。</p>
+<p>其工作方式如下：</p>
+<div id="664fc68vz4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeObservable(target) {
+  /* 你的代码 */
+}
+
+let user = {};
+user = makeObservable(user);
+
+user.observe((key, value) =&gt; {
+  alert(`SET ${key}=${value}`);
+});
+
+user.name = &quot;John&quot;; // alerts: SET name=John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>换句话说，<code>makeObservable</code> 返回的对象就像原始对象一样，但是具有 <code>observe(handler)</code> 方法，该方法可以将 <code>handler</code> 函数设置为在任何属性被更改时，都会被调用的函数。</p>
+<p>每当有属性被更改时，都会使用属性的名称和属性值调用 <code>handler(key, value)</code> 函数。</p>
+<p>P.S. 在本任务中，你可以只关注属性写入。其他的操作可以通过类似的方式实现。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>该解决方案包括两部分：</p>
+<ol>
+<li>无论 <code>.observe(handler)</code> 何时被调用，我们都需要在某个地方记住 handler，以便以后可以调用它。我们可以使用 Symbol 作为属性键，将 handler 直接存储在对象中。</li>
+<li>我们需要一个带有 <code>set</code> 陷阱的 proxy 来在发生任何更改时调用 handler。</li>
+</ol>
+<div id="tz3hrzoqpv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let handlers = Symbol('handlers');
+
+function makeObservable(target) {
+  // 1. 初始化 handler 存储
+  target[handlers] = [];
+
+  // 将 handler 函数存储到数组中，以便于之后调用
+  target.observe = function(handler) {
+    this[handlers].push(handler);
+  };
+
+  // 2. 创建一个 proxy 以处理更改
+  return new Proxy(target, {
+    set(target, property, value, receiver) {
+      let success = Reflect.set(...arguments); // 将操作转发给对象
+      if (success) { // 如果在设置属性时没有出现 error
+        // 调用所有 handler
+        target[handlers].forEach(handler =&gt; handler(property, value));
+      }
+      return success;
+    }
+  });
+}
+
+let user = {};
+
+user = makeObservable(user);
+
+user.observe((key, value) =&gt; {
+  alert(`SET ${key}=${value}`);
+});
+
+user.name = &quot;John&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../js-misc/index.html" data-tooltip="杂项"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../eval/index.html" data-tooltip="Eval：执行代码字符串"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/proxy","identifier":"\/proxy"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../js-misc/index.html">杂项</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#proxy">Proxy</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dai-you-get-bu-zhuo-qi-de-mo-ren-zhi">带有 “get” 捕捉器的默认值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-set-bu-zhuo-qi-jin-hang-yan-zheng">使用 “set” 捕捉器进行验证</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-ownkeys-he-getownpropertydescriptor-jin-hang-die-dai">使用 “ownKeys” 和 “getOwnPropertyDescriptor” 进行迭代</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ju-you-deleteproperty-he-qi-ta-bu-zhuo-qi-de-shou-bao-hu-shu-xing">具有 “deleteProperty” 和其他捕捉器的受保护属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dai-you-has-bu-zhuo-qi-de-inrange">带有 “has” 捕捉器 的 “in range”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#proxy-apply">包装函数：&quot;apply&quot;</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#reflect">Reflect</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#proxy-de-ju-xian-xing">Proxy 的局限性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ke-che-xiao-proxy">可撤销 Proxy</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#can-kao-zi-liao">参考资料</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fproxy" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/99-js-misc/01-proxy" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

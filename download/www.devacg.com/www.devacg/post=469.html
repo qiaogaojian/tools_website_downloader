@@ -1,0 +1,1145 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unity的渲染路径</title>
+<meta name="keywords" content="鸟语,Shader">
+<meta name="description" content="在Unity里，渲染路径(Rendering Path)决定了光照是如何应用到Unity Shader中的。因此，如果要和光源打交道，我们需要为每个Pass指定它使用...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>Unity的渲染路径</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2016-9-27 16:13 
+			分类：<a href="sort%3D8.html">Shader</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在Unity里，渲染路径(Rendering Path)决定了光照是如何应用到Unity Shader中的。因此，如果要和光源打交道，我们需要为每个Pass指定它使用的渲染路径，只有这样我们才能在Unity Shader中访问到Unity为我们准备好的光照信息。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Unity支持多种类型的渲染路径。在Unity5.0版本之前，主要有3种：前向渲染路径(Forward RenderingPath)、延迟渲染路径(Deferred Rendering Path)和顶点照明渲染路径(Vertex Lit Rendering Path)。但在Unity5.0版本以后，Unity做了很多更改，主要有两个变化：首先，顶点照明渲染路径已经被Unity抛弃(但目前仍然可以对之前使用了顶点照明渲染路径的Unity Shader兼容);其次，新的延迟渲染路径代替了原来的延迟渲染路径(同样，目前也提供了对较旧版本的兼容)。
+</p>
+<p align="left">
+	为整个项目设置渲染路径:<br>
+Edit-&gt;Project Settings-&gt;Player-&gt;Other Settings-&gt;Rendering Path <br>
+<a id="ematt:794" href="../www.devacg.com/content/uploadfile/201609/fcf61474969907.png" target="_blank"><img title="点击查看原图" border="0" alt="1111111.png" src="../www.devacg.com/content/uploadfile/201609/fcf61474969907.png" width="276" height="746"><span id="__kindeditor_bookmark_end_107__" style="display:none;"></span></a> 
+</p>
+<p>
+	但有时，我们希望可以使用多个渲染路径，例如摄像机A渲染的物体使用前向渲染路径，而摄像机B渲染的物体使用延迟渲染路径。这时，我们可以在每个摄像机的渲染路径设置中设置该摄像机使用的渲染路径，以覆盖Project Setting中的设置。如图所示。 <br>
+<a id="ematt:796" href="../www.devacg.com/content/uploadfile/201609/883d1474979847.png" target="_blank"><img title="点击查看原图" border="0" alt="222222.png" src="../www.devacg.com/content/uploadfile/201609/883d1474979847.png" width="374" height="314"></a> 
+</p>
+<p align="left">
+	需要注意的是，如果当前的显卡并不支持所选择的渲染路径，Unity会自动使用更低一级的渲染路径。例如，如果一个GPU不支持延迟渲染，那么Unity就会使用前向渲染。完成了渲染路径的设置后，我们就可以在每个Pass中使用标签来指定该Pass使用的渲染路径。这是通过设置Pass的LightMode标签实现的。不同类型的渲染路径可能会包含多种标签设置。例如：<br>
+Pass {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; //告诉Unity该Pass使用前向渲染路径中的ForwardBase路径。<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Tags { "LightMode" = "ForwardBase" }<br>
+}
+</p>
+<div align="center">
+	<strong>Unity5.x LightMode标签支持的渲染路径设置选项</strong> 
+</div>
+<span id="__kindeditor_bookmark_end_91__" style="display:none;"></span> 
+<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+	<tbody>
+		<tr align="center">
+			<td>
+				<strong>&nbsp;标签名</strong> 
+			</td>
+			<td>
+				<strong>&nbsp;描述</strong> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;Always
+			</td>
+			<td>
+				&nbsp;不管使用哪种渲染路径，该Pass总是会被渲染，但不会计算任何光照
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;ForwardBase
+			</td>
+			<td>
+				&nbsp;用于前向渲染。该Pass会计算环境光、最重要的平行光、逐顶点/SH光源和Lightmaps
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;ForwardAdd
+			</td>
+			<td>
+				&nbsp;用于前向渲染。该Pass会计算额外的逐像素光源，每个Pass对应一个光源
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;Deferred
+			</td>
+			<td>
+				&nbsp;用于延迟渲染。该Pass会渲染G缓冲(G-buffer)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;ShadowCaster
+			</td>
+			<td>
+				&nbsp;把物体的深度信息渲染到阴影映射纹理(shadowmap)或一张深度纹理中
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;PrepassBase
+			</td>
+			<td>
+				&nbsp;用于遗留的延迟渲染。该Pass会渲染法线和高光反射的指数部分
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;PrepassFinal
+			</td>
+			<td>
+				&nbsp;用于遗留的延迟渲染。该Pass通过合并纹理、光照和自发光来渲染得到最后的颜色
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;Vertex、VertexLMRGBM和VertexLM
+			</td>
+			<td>
+				&nbsp;用于遗留的顶点照明渲染
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p align="left">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有指定了渲染路径，Unity才会为内置光照变量赋上正确的值。我们才能在Unity Shader中访问这些属性值。如果我们没有指定任何渲染路径(实际上，在unity5.x版本中如果使用了前向渲染又没有为Pass指定任何前向渲染适合的标签，就会被当成一个和顶点照明渲染路径等同的Pass),那么一些光照变量很可能不会被正确赋值，我们计算出的效果也就很有可能是错误的。
+</p>
+<strong><span style="font-size:14px;">前向渲染路径</span></strong> 
+<p>
+	前向渲染路径是传统的渲染方式，也是我们最常用的一种渲染路径。<br>
+<strong>1. 前向渲染路径的原理</strong><br>
+每进行一次完整的前向渲染，我们需要渲染该对象的渲染图元，并计算两个缓冲区的信息:一个是颜色缓冲区，一个是深度缓冲区。我们利用深度缓冲来决定一个片元是否可见，如果可见就更新颜色缓冲区中的颜色值。我们可以用下面的伪代码来描述前向渲染路径的大致过程：<br>
+Pass {<br>
+&nbsp;&nbsp;&nbsp; for (each primitive in this model) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (each fragment covered by this primitive) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (failed in depth test) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //如果没有通过深度测试，说明该片元是不可见的<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; discard;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //如果该片元可见<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //就进行光照计算<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float4 color = Shading(materialInfo, pos, normal, lightDir, viewDir);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //更新帧缓冲<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeFrameBuffer(fragment, color);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+对于每个逐像素光源，我们都需要进行上面一次完整的渲染流程。如果一个物体在多个逐像素光源的影响区域内，那么该物体就需要执行多个Pass，每个Pass计算一个逐像素光源的光照结果，然后在帧缓冲中把这些光照结果混合起来得到最终的颜色值。假设，场景中有N个物体，每个物体受M个光源影响，那么要渲染整个场景一共需要N*M个Pass。可以看出，如果有大量逐像素光照，那么需要执行的Pass数目也会很大。因此，渲染引擎通常会限制每个物体的逐像素光照的数目。
+</p>
+<p>
+	Unity中的前向渲染<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 事实上，一个Pass不仅仅可以用来计算逐像素光照，它也可以用来计算逐顶点等其他光照。这取决于光照计算所处流水线阶段以及计算时使用的数学模型。当我们渲染一个物体时，Unity会计算哪些光源照亮了它，以及这些光源照亮该物体的方式。
+</p>
+<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在Unity中，前向渲染路径有3种处理光照(即照亮物体)的方式；<strong>逐顶点处理</strong>、<strong>逐像素处理</strong>、<strong>球谐函数</strong>(Spherical Harmonics, SH)处理。而决定一个光源使用哪种处理模式取决于它的类型和渲染模式。光源类型指的是该光源是平行光还是其他类型的光源，而光源的渲染模式指的是该光源是否是<strong>重要的</strong>(Important)。如果我们把一个光照的模式设置为Important,意味着我们告诉Unity，“嘿老兄，这个光源很重要，我希望你可以认真对待它，把它当成一个逐像素光源来处理!”我们可以在光源的Light组件中设置这些属性，如图： <br>
+<a id="ematt:797" href="../www.devacg.com/content/uploadfile/201609/036c1475125413.png" target="_blank"><img title="点击查看原图" border="0" alt="111111.png" src="../www.devacg.com/content/uploadfile/201609/036c1475125413.png" width="275" height="287"></a> 
+</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在前向渲染中，当我们渲染一个物体时，Unity会根据场景中各个光源的设置以及这些光源对物体的影响程度(例如，距离该物体的远近、光源强度等)对这些光源进行一个重要度排序。其中，一定数目的光源会按逐像素的方式处理，然后最多有4个光源按逐顶点的方式处理，剩下的光源可以按SH方式处理。Unity使用的判断规则如下：
+<ul>
+	<li>
+		场景中最亮的平行光总是按逐像素处理的。
+	</li>
+	<li>
+		渲染模式被设置成Not Important的光源，会按逐顶点或者SH处理。
+	</li>
+	<li>
+		渲染模式被设置成Important的光源，会按逐像素处理。
+	</li>
+	<li>
+		如果根据以上规则得到的逐像素光源数量小于Quality Setting中的逐像素光源数量(Pixel Light Count),会有更多的光源以逐像素的方式进行渲染。
+	</li>
+</ul>
+<a id="ematt:798" href="../www.devacg.com/content/uploadfile/201609/fcf61475150321.png" target="_blank"><img title="点击查看原图" border="0" alt="1111111.png" src="../www.devacg.com/content/uploadfile/201609/fcf61475150321.png" width="273" height="699"></a> 
+<p>
+	<br>
+</p>
+<p>
+	那么，在哪里进行光照计算呢？当然是在Pass里。前面提到过，前向渲染有两种Pass：Base Pass和Additional Pass。
+</p>
+<p>
+	<strong><span style="font-size:14px;">前向渲染的两种Pass</span></strong><br>
+<strong>1、Base Pass</strong><br>
+可实现的光照效果:<br>
+光照纹理<br>
+环境光<br>
+自发光<br>
+阴影(平行光的阴影)
+</p>
+<p>
+	(1)渲染设置<br>
+Tags { "LightMode"="ForwardBase" }<br>
+#pragma multi_compile_fwdbase<br>
+(2)光照计算<br>
+一个逐像素的平行光以及所有逐顶点和SH光源
+</p>
+<p>
+	<strong>2、Additional Pass</strong><br>
+可实现的光照效果:<br>
+默认情况下不支持阴影，但可以通过使用#pragma multi_compile_fwdadd_fullshadows编译指令来开启阴影
+</p>
+<p>
+	(1)渲染设置<br>
+Tags { "LightMode"="ForwardAdd" }<br>
+Blend One One<br>
+#pragma multi_compile_fwdadd<br>
+(2)光照计算<br>
+其他影响该物体的逐像素光源，每个光源执行一次Pass
+</p>
+有几点需要说明的地方：<br>
+<ul>
+	<li>
+		首先，可以发现在渲染设置中，我们除了设置了Pass的标签外，还使用了#pragma multi_compile_fwdbase这样的编译指令。虽然#pragma multi_compile_fwdbase和#pragma multi_compile_fwdadd在官方文档中还没有给出相关说明，但实验表明，只有分别为Base Pass和Additional Pass使用这两个编译指令，我们才可以在相关的Pass中得到一些正确的光照变量，例如光照衰减值等。
+	</li>
+	<li>
+		在Base Pass中，我们可以访问光照纹理(lightmap)。
+	</li>
+	<li>
+		Base Pass中渲染的平行光默认是支持阴影的(如果开启了光源的阴影功能)，而Additional Pass中渲染的光源默认情况下是没有阴影效果的，即便我们在它的Light组件中设置了有阴影的Shadow Type。但我们可以在Additional Pass中使用#pragma multi_compile_fwdadd_fullshadows代替#pragma multi_compile_fwdadd编译指令，为点光源和聚光灯开启阴影效果，但这需要Unity在内部使用更多的Shader变种。
+	</li>
+	<li>
+		环境光和自发光也是在Base Pass中计算的。这是因为，对于一个物体来说，环境光和自发光我们只希望计算一次即可，而如果我们在Additional Pass中计算这两种光照，就会造成叠加多次环境光和自发光，这不是我们想要的。
+	</li>
+	<li>
+		在Additional Pass的渲染设置中，我们还开启和设置了混合模式。这是因为，我们希望每个AdditionalPass可以与上一次的光照结果在帧缓存中进行叠加，从而得到最终的有多个光照的渲染效果。如果我们没有开启和设置混合模式，那么Additional Pass的渲染结果会覆盖掉之前的渲染结果，看起来就好像该物体只受该光源的影响。通常情况下，我们选择的混合模式是Blend One One。
+	</li>
+	<li>
+		对于前向渲染来说，一个Unity Shader通常会定义一个Base Pass(Base Pass也可以定义多次,例如需要双面渲染等情况)以及一个Additional Pass。一个Base Pass仅会执行一次(定义了多个Base Pass的情况除外),而一个Additional Pass会根据影响该物体的其他逐像素光源的数目被多次调用，即每个逐像素光源会执行一次Additional Pass。
+	</li>
+</ul>
+<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 上面给出的光照计算是<strong>通常情况下</strong>我们在每种Pass中进行的计算。实际上，渲染路径的设置用于告诉Unity该Pass在前向渲染路径中的位置，然后底层的渲染引擎会进行相关计算并填充一些内置变量(如_LightColor0等),如何使用这些内置变量进行计算完全取决于开发者的选择。例如，我们完全可以利用Unity提供的内置变量在Base Pass中只进行逐顶点光照；同样,我们也完全可以在Additional Pass中按逐顶点的方式进行光照计算，不进行任何逐像素光照计算。
+</p>
+<div align="center">
+	<strong>Unity5.x中前向渲染可以使用的内置光照变量</strong> 
+</div>
+<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+	<tbody>
+		<tr align="center">
+			<td>
+				&nbsp;<strong>名称</strong> 
+			</td>
+			<td>
+				&nbsp;<strong>类型</strong> 
+			</td>
+			<td>
+				&nbsp;<strong>描述</strong> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				_LightColor0
+			</td>
+			<td>
+				&nbsp;float4
+			</td>
+			<td>
+				该Pass处理的逐像素光源的颜色
+			</td>
+		</tr>
+		<tr>
+			<td>
+				_WorldSpaceLightPos0
+			</td>
+			<td>
+				&nbsp;float4
+			</td>
+			<td>
+				_WorldSpaceLightPos0.xyz是该Pass处理的逐像素光源的位置。如果该光源是平行光，那么_WorldSpaceLightPos0.w是0，其他光源类型w值为1
+			</td>
+		</tr>
+		<tr>
+			<td>
+				_LightMatrix0
+			</td>
+			<td>
+				&nbsp;float4x4
+			</td>
+			<td>
+				从世界空间到光源空间的变换矩阵。可以用于采样cookie和光强衰减(attenuation)纹理
+			</td>
+		</tr>
+		<tr>
+			<td>
+				unity_4LightPosX0,unity_4LightPosY0,<br>
+unity_4LightPosZ0
+			</td>
+			<td>
+				&nbsp;float4
+			</td>
+			<td>
+				<strong>仅用于Base Pass</strong>。前4个非重要的点光源在世界空间中的位置
+			</td>
+		</tr>
+		<tr>
+			<td>
+				unity_4LightAtten0
+			</td>
+			<td>
+				&nbsp;float4
+			</td>
+			<td>
+				<strong>仅用于Base Pass</strong>。存储了前4个非重要的点光源的衰减因子
+			</td>
+		</tr>
+		<tr>
+			<td>
+				unity_LightColor
+			</td>
+			<td>
+				&nbsp;half4[4]
+			</td>
+			<td>
+				<strong>仅用于Base Pass</strong>。存储了前4个非重要的点光源的颜色
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<div align="center">
+	&nbsp;<strong>Unity5.x中前向渲染可以使用的内置光照函数</strong> 
+</div>
+<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+	<tbody>
+		<tr align="center">
+			<td>
+				&nbsp;<strong>函数名</strong> 
+			</td>
+			<td>
+				&nbsp;<strong>描述</strong> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				float3 WorldSpaceLightDir(float4 v)
+			</td>
+			<td>
+				<strong>仅可用于前向渲染中</strong>。输入一个模型空间中的顶点位置，返回世界空间中从该点到光源的光照方向。内部实现使用了UnityWorldSpaceLightDir函数。没有被归一化
+			</td>
+		</tr>
+		<tr>
+			<td>
+				float3 UnityWorldSpaceLightDir(float4 v)
+			</td>
+			<td>
+				<strong>仅可用于前向渲染中</strong>。输入一个世界空间中的顶点位置，返回世界空间中从该点到光源的光照方向。没有被归一化
+			</td>
+		</tr>
+		<tr>
+			<td>
+				float3 ObjSpaceLightDir(float4 v)
+			</td>
+			<td>
+				<strong>仅可用于前向渲染中</strong>。输入一个模型空间中的顶点位置，返回模型空间中从该点到光源的光照方向。没有被归一化
+			</td>
+		</tr>
+		<tr>
+			<td>
+				float3 Shade4PointLights(...)
+			</td>
+			<td>
+				<p>
+					<strong>仅可用于前向渲染中</strong>。计算四个点光源的光照，它的参数是已经打包进矢量的光照数据，通常就是前向渲染可以使用的内置光照变量，如unity_4LightPosX0、unity_4LightPosY0、unity_4LightPosZ0、unity_LightColor0和unity_4LightAtten0等。前向渲染通常会使用这个函数来计算逐顶点光照
+				</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	需要说明的是，上表给出的变量和函数并不是完整的，一些前向渲染可以使用的内置变量和函数官方文档中并没有给出说明。
+</p>
+<p>
+	<strong><span style="font-size:16px;">顶点照明渲染路径</span></strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 顶点照明渲染路径是对硬件配置要求最少、运算性能最高，但同时也是得到的效果最差的一种类型，它不支持那些逐像素才能得到的效果，例如阴影、法线映射、高精度的高光反射等。实际上，它仅仅是前向渲染路径的一个子集，也就是说，所有可以在顶点照明渲染路径中实现的功能都可以在前向渲染路径中完成。就如它的名字一样，顶点照明渲染路径只是使用了逐顶点的方式来计算光照，并没有什么神奇的地方。实际上，我们在上面的前向渲染路径中也可以计算一些逐顶点的光源。但如果选择使用顶点照明渲染路径，那么Unity会只填充那些逐顶点相关的光源变量，意味着我们不可以使用一些逐像素光照变量。
+</p>
+<p>
+	1. Unity中的顶点照明渲染<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 顶点照明渲染路径通常在一个Pass中就可以完成对物体的渲染。在这个Pass中，我们会计算我们关心的所有光源对该物体的照明，并且这个计算是按逐顶点处理的。这是Unity中最快速的渲染路径，并且具有最广泛的硬件支持(但是游戏机上并不支持这种路径)。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 由于顶点照明渲染路径仅仅是前向渲染路径的一个子集，结果是，Unity5中将顶点照明渲染路径作为一个遗留的渲染路径，在未来的版本中，顶点照明渲染路径的相关设定可能会被移除。
+</p>
+<p align="left">
+	2. 可访问的内置变量和函数<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在Unity中，我们可以在一个顶点照明的Pass中最多访问到8个逐顶点光源。如果我们只需要渲染其中两个光源对物体的照明，可以仅使用下表中内置光照数据的前两个。如果影响该物体的光源数目小于8，那么数组中剩下的光源颜色会设置成黑色。
+</p>
+<div align="center">
+	<strong>Unity5.x中</strong><strong>顶点照明渲染路径中可以使用的内置变量</strong> 
+</div>
+<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+	<tbody>
+		<tr align="center">
+			<td>
+				&nbsp;<strong>名称</strong> 
+			</td>
+			<td width="60">
+				&nbsp;<strong>类型</strong> 
+			</td>
+			<td>
+				<strong>&nbsp;描述</strong> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;unity_LightColor
+			</td>
+			<td>
+				&nbsp;half4[8]
+			</td>
+			<td>
+				光源颜色
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;unity_LightPosition
+			</td>
+			<td>
+				&nbsp;float4[8]
+			</td>
+			<td>
+				xyz分量是视角空间中的光源位置。如果光源是平行光，那么z分量值为0，其他光源类型z分量值为1
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;unity_LightAtten
+			</td>
+			<td>
+				&nbsp;half4[8]
+			</td>
+			<td>
+				光源衰减因子。如果光源是聚光灯，x分量是cos(spotAngle/2)，y分量是1/cos(spotAngle/4)；如果是其他类型的光源，x分量是-1，y分量是1。z分量是衰减的平方，w分量是光源范围开根号的结果
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;unity_SpotDirection
+			</td>
+			<td>
+				&nbsp;float4[8]
+			</td>
+			<td>
+				如果光源是聚光灯的话，值为视角空间的聚光灯的位置；如果是其他类型的光源，值为(0,0,1,0)
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	可以看出，一些变量我们同样可以在前向渲染路径中使用，例如unity_LightColor。但这些变量数组的维度和数值在不同渲染路径中的值是不同的。
+</p>
+<div align="center">
+	<strong>Unity5.x</strong><strong>中</strong><strong>顶点照明渲染路径中可以使用的内置函</strong><strong>数</strong> 
+</div>
+<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+	<tbody>
+		<tr align="center">
+			<td>
+				&nbsp;<strong>函数名</strong><span id="__kindeditor_bookmark_end_42__" style="display:none;"></span> 
+			</td>
+			<td>
+				&nbsp;<strong>描述</strong> 
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;float3 ShadeVertexLights(float4 vertex, float3 normal)
+			</td>
+			<td>
+				输入模型空间中的顶点位置和法线，计算四个逐顶点光源的光照以及环境光。内部实现实际上调用了ShadeVertexLightsFull函数
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;float3 ShadeVertexLightsFull(float4 vertex, float3 normal, int lightCount, bool spotLight)
+			</td>
+			<td>
+				输入模型空间中的顶点位置和法线，计算lightCount个光源的光照以及环境光。如果spotLight值为true，那么这些光源会被当成聚光灯来处理，虽然结果更精确，但计算更加耗时； 否则，按点光源处理
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p align="left">
+	&nbsp;
+</p>
+<p>
+	<strong><span style="font-size:16px;">延迟渲染路径</span></strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前向渲染的问题是：当场景中包含大量实时光源时，前向渲染的性能会急速下降。例如，如果我们在场景的某一块区域放置了多个光源，这些光源影响的区域互相重叠，那么为了得到最终的光照效果，我们就需要为该区域内的每个物体执行多个Pass来计算不同光源对该物体的光照结果，然后在颜色缓存中把这些结果混合起来得到最终的光照。然而，每执行一个Pass我们都需要重新渲染一遍物体，但很多计算实际上是重复的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 延迟渲染是一种更古老的渲染方法，但由于上述前向渲染可能造成的瓶颈问题，近几年又流行起来。除了前向渲染中使用的颜色缓冲和深度缓冲外，延迟渲染还会利用额外的缓冲区，这些缓冲区也被称为G缓冲(G-buffer)，其中G是英文Geometry的缩写。G缓冲区存储了我们所关心的表面(通常指的是离摄像机最近的表面)的其他信息，例如该表面的法线、位置、用于光照计算的材质属性等。
+</p>
+<p>
+	<strong>1. 延迟渲染的原理</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 延迟渲染主要包含两个Pass。在第一个Pass中，我们不进行任何光照计算，而是仅仅计算哪些片元是可见的，这主要是通过深度缓冲技术来实现，当发现一个片元是可见的，我们就把它的相关信息存储到G缓冲区中。然后，在第二个Pass中，我们利用G缓冲区的各个片元信息，例如表面法线、视角方向、漫反射系数等，进行真正的光照计算。
+</p>
+<p>
+	延迟渲染的过程大致可以用下面的伪代码来描述：<br>
+Pass 1 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; //第一个Pass不进行真正的光照计算<br>
+&nbsp;&nbsp;&nbsp;&nbsp; //仅仅把光照计算需要的信息存储到G缓冲中<br>
+&nbsp;&nbsp;&nbsp;&nbsp; for (each primitive in this model) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (each fragment covered by this primitive) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (failed in depth test) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //如果没有通过深度测试，说明该片元是不可见的<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; discard;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //如果该片元可见<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //就把需要的信息存储到G缓冲中<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeGBuffer(materialInfo, pos, normal, lightDir, viewDir);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+}
+</p>
+<p>
+	Pass 2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //利用G缓冲中的信息进行真正的光照计算<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (each pixel in the screen) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (the pixel is valid) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //如果该像素是有效的<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //读取它对应的G缓冲中的信息<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; readGBuffer(pixel, materialInfo, pos, normal, lightDir, viewDir);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //根据读取到的信息进行光照计算<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float4 color = Shading(materialInfo, pos, normal, lightDir, viewDir);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //更新帧缓冲<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeFrameBuffer(pixel, color);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+}
+</p>
+<p>
+	可以看出，延迟渲染使用的Pass数目通常就是两个，这跟场景中包含的光源数目是没有关系的。换句话说，延迟渲染的效率不依赖于场景的复杂度，而是和我们使用的屏幕空间的大小有关。这是因为，我们需要的信息都存储在缓冲区中，而这些缓冲区可以理解成是一张张2D图像，我们的计算实际上就是在这些图像空间中进行的。
+</p>
+<p>
+	<strong>2. Unity中的延迟渲染</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unity有两种延迟渲染路径，一种是遗留的延迟渲染路径，即Unity5之前使用的延迟渲染路径，而另一种是Unity5.x中使用的延迟渲染路径。如果游戏中使用了大量的实时光照，那么我们可能希望选择延迟渲染路径，但这种路径需要一定的硬件支持。
+</p>
+<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 新旧延迟渲染路径之间的差别很小，只是使用了不同的技术来权衡不同的需求。例如，较旧版本的延迟渲染路径不支持Unity5的基于物理的Standard Shader。以下我们仅讨论Unity5后使用的延迟渲染路径。对于遗留的延迟渲染路径，可以在官方文档(<a href="https://docs.unity3d.com/Manual/RenderTech-DeferredLighting.html" target="_blank">https://docs.unity3d.com/Manual/RenderTech-DeferredLighting.html</a>)找到更多资料。
+</p>
+<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 对于延迟渲染路径来说，它最适合在场景中光源数目很多、如果使用前向渲染会造成瓶颈的情况下使用。而且，延迟渲染路径中的每个光源都可以按逐像素的方式处理。但是，延迟渲染也有一些缺点。
+	<ul>
+		<li>
+			不支持真正的抗锯齿(anti-aliasing)功能。
+		</li>
+		<li>
+			不能处理半透明物体。
+		</li>
+		<li>
+			对显卡有一定要求。如果要使用延迟渲染的话，显卡必须支持MRT(Multiple Render Targets)、Shader Mode 3.0及以上、深度渲染纹理以及双面的模板缓冲。
+		</li>
+	</ul>
+	</p><p>
+		<br>
+	</p>
+	<p>
+		当使用延迟渲染时，Unity要求我们提供两个Pass。<br>
+(1) 第一个Pass用于渲染G缓冲。在这个Pass中，我们会把物体的漫反射颜色、高光反射颜色、平滑度、法线、自发光和深度等信息渲染到屏幕空间的G缓冲区中。对于每个物体来说，这个Pass仅会执行一次。<br>
+(2) 第二个Pass用于计算真正的光照模型。这个Pass会使用上一个Pass中渲染的数据来计算最终的光照颜色，再存储到帧缓冲中。
+	</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 默认的G缓冲区(注意，不同Unity版本的渲染纹理存储内容会有所不同)包含了以下几个渲染纹理(Render Texture, RT)。
+	<ul>
+		<li>
+			RT0: 格式是ARGB32,RGB通道用于存储漫反射颜色，A通道没有被使用。
+		</li>
+		<li>
+			RT1: 格式是ARGB32,RGB通道用于存储高光反射颜色，A通道用于存储高光反射的指数部分。
+		</li>
+		<li>
+			RT2: 格式是ARGB2101010,RGB通道用于存储法线，A通道没有被使用。
+		</li>
+		<li>
+			RT3: 格式是ARGB32(非HDR)或ARGBHalf(HDR)，用于存储自发光+lightmap+反射探针(reflection probes)。
+		</li>
+		<li>
+			深度缓冲和模板缓冲。
+		</li>
+	</ul>
+	<p>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当在第二个Pass中计算光照时，默认情况下仅可以使用Unity内置的Standard光照模型。如果我们想要使用其他的光照模型，就需要替换掉原有的Internal-DeferredShading.shader文件。更详细的信息可以访问官方文档(<a href="https://docs.unity3d.com/Manual/RenderTech-DeferredShading.html" target="_blank">https://docs.unity3d.com/Manual/RenderTech-DeferredShading.html</a>)。
+	</p>
+	<div align="center">
+		&nbsp;<strong>Unity5.x延迟渲染路径中可以使用的内置变量</strong>
+	</div>
+	<table style="width:100%;" bordercolor="#000000" cellspacing="0" cellpadding="2" border="1">
+		<tbody>
+			<tr align="center">
+				<td>
+					&nbsp;<strong>名称</strong>
+				</td>
+				<td>
+					&nbsp;<strong>类型</strong>
+				</td>
+				<td>
+					&nbsp;<strong>描述</strong>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;_LightColor
+				</td>
+				<td>
+					&nbsp;float4
+				</td>
+				<td>
+					&nbsp;光源颜色
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;_LightMatrix0
+				</td>
+				<td>
+					&nbsp;float4x4
+				</td>
+				<td>
+					&nbsp;从世界空间到光源空间的变换矩阵。可以用于采样cookie和光强衰减纹理
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p align="left">
+		&nbsp;
+	</p>
+	<p>
+		<strong>选择哪种渲染路径？</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Unity的官方文档(<a href="http://docs.unity3d.com/Manual/RenderingPaths.html" target="_blank">http://docs.unity3d.com/Manual/RenderingPaths.html</a>)中给出了4种渲染路径(前向渲染路径、延迟渲染路径、遗留的延迟渲染路径和顶点照明渲染路径)的详细比较，包括它们的特性比较(是否支持逐像素光照、半透明物体、实时阴影等)、性能比较以及平台支持。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 总体来说，我们需要根据游戏发布的目标平台来选择渲染路径。如果当前显卡不支持所选渲染路径，那么Unity会自动使用比其低一级的渲染路径。
+	</p>	<p class="tag">标签:	<a href="tag%3DShader.html">Shader</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=469&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D470.html">透明效果的基本原理</a>
+				|
+				 <a href="post%3D468.html">凹凸映射</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D953.html">NSDictionary类</a></li>
+		<li><a href="post%3D472.html">为什么渲染顺序很重要</a></li>
+		<li><a href="post%3D160.html">人工智能架构模型</a></li>
+		<li><a href="post%3D351.html">牛顿迭代法</a></li>
+		<li><a href="post%3D793.html">3D中绕任意轴的旋转</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

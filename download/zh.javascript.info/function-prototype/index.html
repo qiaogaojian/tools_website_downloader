@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">F.prototype</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/function-prototype"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="F.prototype"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="F.prototype"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/prototype-inheritance"><link rel="next" href="/native-prototypes"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="F.prototype"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/function-prototype"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/function-prototype"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/function-prototype"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/function-prototype"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/function-prototype"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/function-prototype"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/function-prototype"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/function-prototype"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/function-prototype"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/function-prototype"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/function-prototype"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/function-prototype">عربي</option><option value="https://javascript.info/function-prototype">English</option><option value="https://es.javascript.info/function-prototype">Español</option><option value="https://fr.javascript.info/function-prototype">Français</option><option value="https://id.javascript.info/function-prototype">Indonesia</option><option value="https://it.javascript.info/function-prototype">Italiano</option><option value="https://ja.javascript.info/function-prototype">日本語</option><option value="https://ko.javascript.info/function-prototype">한국어</option><option value="https://learn.javascript.ru/function-prototype">Русский</option><option value="https://tr.javascript.info/function-prototype">Türkçe</option><option value="https://uk.javascript.info/function-prototype">Українська</option><option value="https://zh.javascript.info/function-prototype" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="63" max="92" data-tooltip="第 63/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../prototypes/index.html"><span>原型，继承</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"原型，继承","item":"https://zh.javascript.info/prototypes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">F.prototype</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="F.prototype"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们还记得，可以使用诸如 <code>new F()</code> 这样的构造函数来创建一个新对象。</p>
+<p>如果 <code>F.prototype</code> 是一个对象，那么 <code>new</code> 操作符会使用它为新对象设置 <code>[[Prototype]]</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>JavaScript 从一开始就有了原型继承。这是 JavaScript 编程语言的核心特性之一。</p>
+<p>但是在过去，没有直接对其进行访问的方式。唯一可靠的方法是本章中会介绍的构造函数的 <code>&quot;prototype&quot;</code> 属性。目前仍有许多脚本仍在使用它。</p>
+</div></div>
+<p>请注意，这里的 <code>F.prototype</code> 指的是 <code>F</code> 的一个名为 <code>&quot;prototype&quot;</code> 的常规属性。这听起来与“原型”这个术语很类似，但这里我们实际上指的是具有该名字的常规属性。</p>
+<p>下面是一个例子：</p>
+<div id="i934nj8xjx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let animal = {
+  eats: true
+};
+
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype = animal;
+
+let rabbit = new Rabbit(&quot;White Rabbit&quot;); //  rabbit.__proto__ == animal
+
+alert( rabbit.eats ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>设置 <code>Rabbit.prototype = animal</code> 的字面意思是：“当创建了一个 <code>new Rabbit</code> 时，把它的 <code>[[Prototype]]</code> 赋值为 <code>animal</code>”。</p>
+<p>这是结果示意图：</p>
+<figure><div class="image" style="width:453px">
+      <div class="image__ratio" style="padding-top:35.32008830022075%"></div>
+      <object type="image/svg+xml" data="../article/function-prototype/proto-constructor-animal-rabbit.svg" width="453" height="160" class="image__image" data-use-theme>
+        <img src="../article/function-prototype/proto-constructor-animal-rabbit.svg" alt width="453" height="160">
+      </object>
+      </div></figure><p>在上图中，<code>&quot;prototype&quot;</code> 是一个水平箭头，表示一个常规属性，<code>[[Prototype]]</code> 是垂直的，表示 <code>rabbit</code> 继承自 <code>animal</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>F.prototype</code> 仅用在 <code>new F</code> 时</span></div>
+            <div class="important__content"><p><code>F.prototype</code> 属性仅在 <code>new F</code> 被调用时使用，它为新对象的 <code>[[Prototype]]</code> 赋值。</p>
+<p>如果在创建之后，<code>F.prototype</code> 属性有了变化（<code>F.prototype = &lt;another object&gt;</code>），那么通过 <code>new F</code> 创建的新对象也将随之拥有新的对象作为 <code>[[Prototype]]</code>，但已经存在的对象将保持旧有的值。</p>
+</div></div>
+<h2><a class="main__anchor" name="mo-ren-de-fprototype-gou-zao-qi-shu-xing" href="#mo-ren-de-fprototype-gou-zao-qi-shu-xing">默认的 F.prototype，构造器属性</a></h2><p>每个函数都有 <code>&quot;prototype&quot;</code> 属性，即使我们没有提供它。</p>
+<p>默认的 <code>&quot;prototype&quot;</code> 是一个只有属性 <code>constructor</code> 的对象，属性 <code>constructor</code> 指向函数自身。</p>
+<p>像这样：</p>
+<div id="s81v7qdz2f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+
+/* default prototype
+Rabbit.prototype = { constructor: Rabbit };
+*/</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:449px">
+      <div class="image__ratio" style="padding-top:16.258351893095767%"></div>
+      <object type="image/svg+xml" data="../article/function-prototype/function-prototype-constructor.svg" width="449" height="73" class="image__image" data-use-theme>
+        <img src="../article/function-prototype/function-prototype-constructor.svg" alt width="449" height="73">
+      </object>
+      </div></figure><p>我们可以检查一下：</p>
+<div id="p8bsq219ab" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+// by default:
+// Rabbit.prototype = { constructor: Rabbit }
+
+alert( Rabbit.prototype.constructor == Rabbit ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，如果我们什么都不做，<code>constructor</code> 属性可以通过 <code>[[Prototype]]</code> 给所有 rabbits 使用：</p>
+<div id="x2cavaymhj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+// by default:
+// Rabbit.prototype = { constructor: Rabbit }
+
+let rabbit = new Rabbit(); // inherits from {constructor: Rabbit}
+
+alert(rabbit.constructor == Rabbit); // true (from prototype)</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:460px">
+      <div class="image__ratio" style="padding-top:34.130434782608695%"></div>
+      <object type="image/svg+xml" data="../article/function-prototype/rabbit-prototype-constructor.svg" width="460" height="157" class="image__image" data-use-theme>
+        <img src="../article/function-prototype/rabbit-prototype-constructor.svg" alt width="460" height="157">
+      </object>
+      </div></figure><p>我们可以使用 <code>constructor</code> 属性来创建一个新对象，该对象使用与现有对象相同的构造器。</p>
+<p>像这样：</p>
+<div id="ostr91naly" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit(name) {
+  this.name = name;
+  alert(name);
+}
+
+let rabbit = new Rabbit(&quot;White Rabbit&quot;);
+
+let rabbit2 = new rabbit.constructor(&quot;Black Rabbit&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当我们有一个对象，但不知道它使用了哪个构造器（例如它来自第三方库），并且我们需要创建另一个类似的对象时，用这种方法就很方便。</p>
+<p>但是，关于 <code>&quot;constructor&quot;</code> 最重要的是……</p>
+<p><strong>……JavaScript 自身并不能确保正确的 <code>&quot;constructor&quot;</code> 函数值。</strong></p>
+<p>是的，它存在于函数的默认 <code>&quot;prototype&quot;</code> 中，但仅此而已。之后会发生什么 —— 完全取决于我们。</p>
+<p>特别是，如果我们将整个默认 prototype 替换掉，那么其中就不会有 <code>&quot;constructor&quot;</code> 了。</p>
+<p>例如：</p>
+<div id="9c39hqruyc" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  jumps: true
+};
+
+let rabbit = new Rabbit();
+alert(rabbit.constructor === Rabbit); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，为了确保正确的 <code>&quot;constructor&quot;</code>，我们可以选择添加/删除属性到默认 <code>&quot;prototype&quot;</code>，而不是将其整个覆盖：</p>
+<div id="ehs8mg9wpc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+
+// 不要将 Rabbit.prototype 整个覆盖
+// 可以向其中添加内容
+Rabbit.prototype.jumps = true
+// 默认的 Rabbit.prototype.constructor 被保留了下来</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或者，也可以手动重新创建 <code>constructor</code> 属性：</p>
+<div id="3x51r9u8jw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Rabbit.prototype = {
+  jumps: true,
+  constructor: Rabbit
+};
+
+// 这样的 constructor 也是正确的，因为我们手动添加了它</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>在本章中，我们简要介绍了为通过构造函数创建的对象设置 <code>[[Prototype]]</code> 的方法。稍后我们将看到更多依赖于此的高级编程模式。</p>
+<p>一切都很简单，只需要记住几条重点就可以清晰地掌握了：</p>
+<ul>
+<li><code>F.prototype</code> 属性（不要把它与 <code>[[Prototype]]</code> 弄混了）在 <code>new F</code> 被调用时为新对象的 <code>[[Prototype]]</code> 赋值。</li>
+<li><code>F.prototype</code> 的值要么是一个对象，要么就是 <code>null</code>：其他值都不起作用。</li>
+<li><code>&quot;prototype&quot;</code> 属性仅在设置了一个构造函数（constructor function），并通过 <code>new</code> 调用时，才具有这种特殊的影响。</li>
+</ul>
+<p>在常规对象上，<code>prototype</code> 没什么特别的：</p>
+<div id="grm1xd8zi5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  prototype: &quot;Bla-bla&quot; // 这里只是普通的属性
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>默认情况下，所有函数都有 <code>F.prototype = {constructor：F}</code>，所以我们可以通过访问它的 <code>&quot;constructor&quot;</code> 属性来获取一个对象的构造器。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xiu-gai-prototype" name="xiu-gai-prototype">修改 &quot;prototype&quot;</a></h3><a class="task__open-link" href="../task/changing-prototype/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>在下面的代码中，我们创建了 <code>new Rabbit</code>，然后尝试修改它的 prototype。</p>
+<p>最初，我们有以下代码：</p>
+<div id="l0v2x8tzem" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+alert( rabbit.eats ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>我们增加了一个字符串（强调）。现在 <code>alert</code> 会显示什么？</p>
+<div id="oie2h4nout" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+Rabbit.prototype = {};
+
+alert( rabbit.eats ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>……如果代码是这样的（修改了一行）？</p>
+<div id="5wvvztmujl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+Rabbit.prototype.eats = false;
+
+alert( rabbit.eats ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>像这样呢（修改了一行）？</p>
+<div id="k0eln84ive" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+delete rabbit.eats;
+
+alert( rabbit.eats ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>最后一种变体：</p>
+<div id="dcg1ode59r" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+delete Rabbit.prototype.eats;
+
+alert( rabbit.eats ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：</p>
+<ol>
+<li>
+<p><code>true</code>。</p>
+<p><code>Rabbit.prototype</code> 的赋值操作为新对象设置了 <code>[[Prototype]]</code>，但它不影响已有的对象。</p>
+</li>
+<li>
+<p><code>false</code>。</p>
+<p>对象通过引用被赋值。来自 <code>Rabbit.prototype</code> 的对象并没有被复制，它仍然是被 <code>Rabbit.prototype</code> 和 <code>rabbit</code> 的 <code>[[Prototype]]</code> 引用的单个对象。</p>
+<p>所以当我们通过一个引用更改其内容时，它对其他引用也是可见的。</p>
+</li>
+<li>
+<p><code>true</code>。</p>
+<p>所有 <code>delete</code> 操作都直接应用于对象。这里的 <code>delete rabbit.eats</code> 试图从 <code>rabbit</code> 中删除 <code>eats</code> 属性，但 <code>rabbit</code> 对象并没有 <code>eats</code> 属性。所以这个操作不会有任何影响。</p>
+</li>
+<li>
+<p><code>undefined</code>。</p>
+<p>属性 <code>eats</code> 被从 prototype 中删除，prototype 中就没有这个属性了。</p>
+</li>
+</ol>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shi-yong-xiang-tong-de-gou-zao-han-shu-chuang-jian-yi-ge-dui-xiang" name="shi-yong-xiang-tong-de-gou-zao-han-shu-chuang-jian-yi-ge-dui-xiang">使用相同的构造函数创建一个对象</a></h3><a class="task__open-link" href="../task/new-object-same-constructor/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>想象一下，我们有一个由构造函数创建的对象 <code>obj</code> —— 我们不知道使用的是哪个构造函数，但是我们想使用它创建一个新对象。</p>
+<p>我们可以这样做吗？</p>
+<div id="rhw8z204s0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj2 = new obj.constructor();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请给出一个可以使这样的代码正常工作的 <code>obj</code> 的构造函数的例子。再给出会导致这样的代码无法正确工作的例子。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>如果我们确信 <code>&quot;constructor&quot;</code> 属性具有正确的值，那么就可以使用这种方法。</p>
+<p>例如，如果我们不触碰默认的 <code>&quot;prototype&quot;</code>，那么这段代码肯定可以正常运行：</p>
+<div id="tssedxyn6u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function User(name) {
+  this.name = name;
+}
+
+let user = new User('John');
+let user2 = new user.constructor('Pete');
+
+alert( user2.name ); // Pete (worked!)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它起作用了，因为 <code>User.prototype.constructor == User</code>。</p>
+<p>……但是如果有人，重写了 <code>User.prototype</code>，并忘记可重新创建 <code>constructor</code> 以引用 <code>User</code>，那么上面这段代码就会运行失败。</p>
+<p>例如：</p>
+<div id="g6vbviqzg9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function User(name) {
+  this.name = name;
+}
+User.prototype = {}; // (*)
+
+let user = new User('John');
+let user2 = new user.constructor('Pete');
+
+alert( user2.name ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么 <code>user2.name</code> 是 <code>undefined</code>？</p>
+<p>这是 <code>new user.constructor('Pete')</code> 的工作流程：</p>
+<ol>
+<li>首先，它在 <code>user</code> 中寻找 <code>constructor</code>。没找到。</li>
+<li>然后它追溯原型链。<code>user</code> 的原型是 <code>User.prototype</code>，它也没有 <code>constructor</code>（因为我们“忘记”在右侧设定它了）。</li>
+<li>再向上追溯，<code>User.prototype</code> 是一个普通对象 <code>{}</code>，其原型是 <code>Object.prototype</code>。</li>
+<li>最终，对于内建的 <code>Object.prototype</code>，有一个内建的 <code>Object.prototype.constructor == Object</code>。所以就用它了。</li>
+</ol>
+<p>所以，最终我们得到了 <code>let user2 = new Object('Pete')</code>。</p>
+<p>可能这不是我们想要的。我们想创建 <code>new User</code> 而不是 <code>new Object</code>。这就是缺少 <code>constructor</code> 的结果。</p>
+<p>（以防你好奇，<code>new Object(...)</code> 调用会将其参数转换为对象。这是理论上的，在实际中没有人会调用 <code>new Object</code> 并传入一个值，通常我们也不会使用 <code>new Object</code> 来创建对象）。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../prototype-inheritance/index.html" data-tooltip="原型继承"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../native-prototypes/index.html" data-tooltip="原生的原型"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/function-prototype","identifier":"\/function-prototype"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../prototypes/index.html">原型，继承</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mo-ren-de-fprototype-gou-zao-qi-shu-xing">默认的 F.prototype，构造器属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ffunction-prototype" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/08-prototypes/02-function-prototype" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

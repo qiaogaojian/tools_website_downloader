@@ -1,0 +1,1782 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Unity中播放GIF</title>
+<meta name="keywords" content="鸟语,Unity3d">
+<meta name="description" content="GIF文件格式介绍https://www.jianshu.com/p/4fabac6b...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>Unity中播放GIF</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2021-5-10 9:54 
+			分类：<a href="sort%3D1.html">Unity3d</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	GIF文件格式介绍&nbsp;<a href="https://www.jianshu.com/p/4fabac6b15b3" target="_blank">https://www.jianshu.com/p/4fabac6b15b3</a> 
+</p>
+<p>
+	下载GIF播放插件&nbsp;<a href="https://github.com/WestHillApps/UniGif" target="_blank">https://github.com/WestHillApps/UniGif</a> 
+</p>
+<p>
+	如果播放时GIF背景显示纯黑色，可以修改下源码让GIF的背景显示为透明色：
+</p>
+<p>
+	修改 UniGifDecoder.cs 中的 GetColorTableAndSetBgColor() 方法:
+</p>
+<p>
+	<br>
+</p>
+<pre class="prettyprint lang-cs linenums">/// &lt;summary&gt;
+/// Get color table and set background color (local or global)
+/// &lt;/summary&gt;
+private static List&lt;byte[]&gt; GetColorTableAndSetBgColor(GifData gifData, ImageBlock imgBlock, int transparentIndex, out Color32 bgColor)
+{
+	List&lt;byte[]&gt; colorTable = imgBlock.m_localColorTableFlag ? imgBlock.m_localColorTable : gifData.m_globalColorTableFlag ? gifData.m_globalColorTable : null;
+
+	// 注释掉原来的代码
+	//if (colorTable != null)
+	//{
+	//    // Set background color from color table
+	//    byte[] bgRgb = colorTable[gifData.m_bgColorIndex];
+	//    bgColor = new Color32(bgRgb[0], bgRgb[1], bgRgb[2], (byte)(transparentIndex == gifData.m_bgColorIndex ? 0 : 255));
+	//}
+	//else
+	//{
+	//    bgColor = Color.black;
+	//}
+
+	// 直接修改成透明背景
+	bgColor = Color.black;
+	bgColor.a = 0;
+
+	return colorTable;
+}</pre>
+<p>
+	<br>
+</p>
+<p>
+	GIF文件结构
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/202105/d8f71620635618.png" id="ematt:4359"><img src="../www.devacg.com/content/uploadfile/202105/d8f71620635618.png" title="点击查看原图" alt="11111.png" border="0" width="306" height="341"></a> 
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/202105/076c1620715331.png" id="ematt:4367"><img src="../www.devacg.com/content/uploadfile/202105/076c1620715331.png" title="点击查看原图" alt="1111.png" border="0" width="700" height="300"></a> 
+</p>
+<p>
+	GIF辅助类
+</p>
+<p>
+<pre class="prettyprint lang-cs linenums">#define DEBUG_GIF_DECODE
+using System;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
+/// &lt;summary&gt;
+/// GIF 辅助类
+/// GIF用的LZW压缩算法能将图像尺寸压缩20%～25%
+/// 字符=ASCII: 
+///     'G'=71,'I'=73,'F'=70,'7'=55,'8'=56,'9'=57,'a'=97
+/// 参考 https://blog.csdn.net/Swallow_he/article/details/76165202
+/// &lt;/summary&gt;
+public sealed class GIFHelper
+{
+    #region 文件头
+    //判断是否为GIF文件
+    public static bool IsGIF(byte[] bytes)
+    {
+        byte b0 = bytes[0];
+        byte b1 = bytes[1];
+        byte b2 = bytes[2];
+        return 71 == b0 &amp;&amp; 73 == b1 &amp;&amp; 70 == b2;
+    }
+
+    //判断GIF版本是否为 GIF87a
+    public static bool IsGIF87a(byte[] bytes)
+    {
+        if (!IsGIF(bytes))
+            return false;
+
+        byte b3 = bytes[3];
+        byte b4 = bytes[4];
+        byte b5 = bytes[5];
+        return 56 == b3 &amp;&amp; 55 == b4 &amp;&amp; 97 == b5;
+    }
+
+    //判断GIF版本是否为 GIF89a
+    //这个版本才支持动画和透明背景
+    public static bool IsGIF89a(byte[] bytes)
+    {
+        if (!IsGIF(bytes))
+            return false;
+
+        byte b3 = bytes[3];
+        byte b4 = bytes[4];
+        byte b5 = bytes[5];
+        return 56 == b3 &amp;&amp; 57 == b4 &amp;&amp; 97 == b5;
+    }
+
+    //获取标记域和版本号
+    public static string SignatureVersion(byte[] bytes)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i &lt; 6; i++)
+            sb.Append((char)bytes[i]);
+        return sb.ToString();
+    }
+    #endregion
+
+    #region 逻辑描述块(LogicalScreen Descriptor), 包含7个字节
+
+    #region 图片宽高
+    //获取逻辑显示屏宽度 (图片宽度), 2字节
+    public static ushort LogicalScreenWidth(byte[] bytes)
+    {
+        //byte b6 = bytes[6];
+        //byte b7 = bytes[7];
+        ////小端
+        //short width = (short)((b7 &lt;&lt; 8) | (b6 &amp; 0xff));
+        ushort width = BitConverter.ToUInt16(bytes, 6);
+        return width;
+    }
+
+    //获取逻辑显示屏高度 (图片高度), 2字节
+    public static ushort LogicalScreenHeight(byte[] bytes)
+    {
+        //byte b8 = bytes[8];
+        //byte b9 = bytes[9];
+        ////小端
+        //short height = (short)((b9 &lt;&lt; 8) | (b8 &amp; 0xff));
+        ushort height = BitConverter.ToUInt16(bytes, 8);
+        return height;
+    }
+    #endregion
+
+    #region 包装域(Packed Fields) (G CR S Size), 1字节
+    //Size of Global Color Table 占 3bit
+    //Sort Flag 占 1bit
+    //Color Resolution 占 3bit
+    //Global Color Table Flag 占 1bit
+
+    //全局彩色表大小,代表每个像素的位数, 7bit可表示0～255
+    public static int SizeOfGlobalColorTable(byte[] bytes)
+    {
+        byte b10 = bytes[10];
+        byte size = (byte)(b10 &amp; 7); //7: 00000111
+        //表项数目
+        int table_size = (int)Math.Pow(2, size + 1);
+        //每个表项由3个字节组成(R、G、B)
+        //彩色表的字节数等于 3 * table_size
+        return table_size;
+    }
+
+    //彩色表排序标志
+    //Flag=1: 表示全局彩色表中的颜色存在重要性排序,重要的颜色被排在前面
+    public static byte SortFlag(byte[] bytes)
+    {
+        byte b10 = bytes[10];
+        byte flag = (byte)((b10 &gt;&gt; 3) &amp; 1);//00001000
+        return flag;
+    }
+
+    //调色板中的基色占几bit
+    //例如 CR=3, 表示占4bit
+    public static byte ColorResolution(byte[] bytes)
+    {
+        byte b10 = bytes[10];
+        byte cr = (byte)((b10 &gt;&gt; 4) &amp; 7);//01110000
+        return cr;
+    }
+
+    //全局彩色表标志
+    //G=1: 表示存在全局彩色表
+    public static byte GlobalColorTableFlag(byte[] bytes)
+    {
+        byte b10 = bytes[10];
+        byte G = (byte)(b10 &gt;&gt; 7);//?0000000
+        return G;
+    }
+    #endregion
+
+    #region 背景颜色索引
+    //获取背景颜色索引(彩色表位置)
+    //如果Global Color Table Flag为0，则该值也设为0
+    public static byte BackgroundColorIndex(byte[] bytes)
+    {
+        byte b11 = bytes[11];
+        return b11;
+    }
+    #endregion
+
+    #region 像素宽高比
+    //像素宽高比,是原始图像像素的宽高比的一个近似值
+    //宽高比计算公式: Aspect Ratio = (Pixel AspectRatio + 15) / 64
+    public static byte PixelAspectRatio(byte[] bytes)
+    {
+        byte b12 = bytes[12];
+        return b12;
+    }
+    #endregion
+
+    #region 全局彩色表
+
+    //获取全局彩色表
+    public static List&lt;byte[]&gt; GlobalColorTable(byte[] bytes)
+    {
+        var globalColorTable = new List&lt;byte[]&gt;();
+        if (GlobalColorTableFlag(bytes) == 0)
+            return globalColorTable;
+        
+        int byteIndex = 13;
+        int sizeOfGlobalColorTable = SizeOfGlobalColorTable(bytes);
+        // Global Color Table(0～255×3 Bytes)
+        for (int i = byteIndex; i &lt; byteIndex + (sizeOfGlobalColorTable * 3); i += 3)
+        {
+            globalColorTable.Add(new byte[] { bytes[i], bytes[i + 1], bytes[i + 2] });
+        }
+        return globalColorTable;
+    }
+    #endregion
+
+    #endregion
+}
+
+/// &lt;summary&gt;
+/// GIF图像
+/// &lt;/summary&gt;
+public class GIFImage
+{
+    //头信息
+    public GIFHeader Header { get; private set; }
+    //屏幕逻辑描述符
+    public GIFLogicalScreenDescriptor LogicalScreenDescriptor { get; private set; }
+    //全局颜色表
+    public GIFGlobalColorTable GlobalColorTable { get; private set; }
+    //图形控制扩展
+    public List&lt;GIFGraphicControlExtension&gt; graphicControlExtList { get; private set; }
+    //文本扩展
+    public List&lt;GIFPlainTextExtension&gt; plainTextExtList { get; private set; }
+    //应用程序扩展
+    public List&lt;GIFApplicationExtension&gt; applicationExtList { get; private set; }
+    //注释扩展
+    public List&lt;GIFCommentExtension&gt; commentExtList { get; private set; }
+    //图像描述符
+    public List&lt;GIFImageDescriptor&gt; imageDescriptorList { get; private set; }
+    //Texture2D 列表
+    public List&lt;Texture2D&gt; textures { 
+        get {
+            if (gifData == null)
+                return new List&lt;Texture2D&gt;();
+            return gifData.textures; 
+        }
+    }
+
+    private GIFData gifData;
+
+    /// &lt;summary&gt;
+    /// 构造方法
+    /// &lt;/summary&gt;
+    /// &lt;param name="bytes"&gt;gif文件二进制数据&lt;/param&gt;
+    public GIFImage(byte[] bytes)
+    {
+        LoadFileData(bytes);
+    }
+
+    //载入GIF文件数据
+    public void LoadFileData(byte[] bytes)
+    {
+        GIFDebug.Log("&lt;i&gt;&lt;b&gt;*** gif decode start... ***&lt;/b&gt;&lt;/i&gt;");
+
+        gifData = new GIFData();
+        int byteIndex = 0;
+        Header = new GIFHeader(bytes, ref byteIndex);
+        LogicalScreenDescriptor = new GIFLogicalScreenDescriptor(bytes, ref byteIndex);
+        if (LogicalScreenDescriptor.packedField.globalColorTableFlag == 1)
+        {
+            GlobalColorTable = new GIFGlobalColorTable(bytes, ref byteIndex,
+                LogicalScreenDescriptor.packedField.sizeOfGlobalColorTable);
+            gifData.m_globalColorTable = GlobalColorTable;
+        }
+        gifData.m_logicalScreenDescriptor = LogicalScreenDescriptor;
+
+        graphicControlExtList = new List&lt;GIFGraphicControlExtension&gt;();
+        plainTextExtList = new List&lt;GIFPlainTextExtension&gt;();
+        applicationExtList = new List&lt;GIFApplicationExtension&gt;();
+        commentExtList = new List&lt;GIFCommentExtension&gt;();
+        imageDescriptorList = new List&lt;GIFImageDescriptor&gt;();
+
+        while (true)
+        {
+            //特殊标志
+            //0x21: 扩展入口(Extension Introducer)
+            //0x3b: GIF文件结束标志
+            byte specialFlag = bytes[byteIndex];
+            byteIndex++;
+
+            //扩展入口
+            if (0x21 == specialFlag)
+            {
+                //扩展类型
+                byte extensionFlag = bytes[byteIndex];
+                byteIndex++;
+                switch (extensionFlag)
+                {
+                    case 0xf9:// Graphic Control Extension(0x21 0xf9)
+                        var gExt = new GIFGraphicControlExtension(bytes, ref byteIndex);
+                        graphicControlExtList.Add(gExt);
+                        gifData.m_graphicControlExtension = gExt;
+                        break;
+                    case 0xfe:// Comment Extension(0x21 0xfe)
+                        var cExt = new GIFCommentExtension(bytes, ref byteIndex);
+                        commentExtList.Add(cExt);
+                        break;
+                    case 0x01:// Plain Text Extension(0x21 0x01)
+                        var pExt = new GIFPlainTextExtension(bytes, ref byteIndex);
+                        plainTextExtList.Add(pExt);
+                        break;
+                    case 0xff:// Application Extension(0x21 0xff)
+                        var aExt = new GIFApplicationExtension(bytes, ref byteIndex);
+                        applicationExtList.Add(aExt);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //图像描述符(Image Descriptor)
+            else if (0x2c == specialFlag)
+            {
+                var imgDes = new GIFImageDescriptor(bytes, ref byteIndex, gifData);
+                imageDescriptorList.Add(imgDes);
+            }
+            //GIF结束
+            else if (0x3b == specialFlag)
+            {
+                GIFDebug.Log("&lt;i&gt;&lt;b&gt;*** gif decode completed (0x3b) ***&lt;/b&gt;&lt;/i&gt;");
+                break;
+            }
+        }
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF文件头
+/// &lt;/summary&gt;
+public sealed class GIFHeader
+{
+    //"GIF"
+    public string signature;
+    //"87a" 或 "89a"
+    public string version;
+
+    public GIFHeader(byte[] bytes, ref int byteIndex)
+    {
+        signature = BitConverter.ToString(bytes, byteIndex, 3);
+        byteIndex += 3;
+        version = BitConverter.ToString(bytes, byteIndex, 3);
+        byteIndex += 3;
+    }
+}
+
+/// &lt;summary&gt;
+/// 逻辑屏幕描述符
+/// &lt;/summary&gt;
+public sealed class GIFLogicalScreenDescriptor
+{
+    //画布宽度
+    public int canvasWidth;
+    //画布高度
+    public int canvasHeight;
+    public GIFPackedField packedField;
+    //表示 GIF 的背景色在 Global Color Table 中的索引
+    public byte backgroundColorIndex;
+    //表示用于计算原始图像中像素宽高比的近似因子，一般情况为 0
+    public byte pixelAspectRatio;
+
+    public GIFLogicalScreenDescriptor(byte[] bytes, ref int byteIndex)
+    {
+        canvasWidth = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        canvasHeight = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        packedField = new GIFPackedField(bytes[byteIndex]);
+        byteIndex++;
+        backgroundColorIndex = bytes[byteIndex];
+        byteIndex++;
+        pixelAspectRatio = bytes[byteIndex];
+        byteIndex++;
+
+        Print();
+        packedField.Print();
+    }
+
+    public void Print()
+    {
+        GIFDebug.Log("&lt;color=green&gt;[GIFLogicalScreenDescriptor]&lt;/color&gt;");
+        GIFDebug.LogFormat("-&gt;width={0}", canvasWidth);
+        GIFDebug.LogFormat("-&gt;height={0}", canvasHeight);
+        GIFDebug.LogFormat("-&gt;backgroundColorIndex={0}", backgroundColorIndex);
+        GIFDebug.LogFormat("-&gt;pixelAspectRatio={0}", pixelAspectRatio);
+    }
+
+    /// &lt;summary&gt;
+    /// GIF包装域
+    /// &lt;/summary&gt;
+    public sealed class GIFPackedField
+    {
+        //全局彩色表大小
+        public int sizeOfGlobalColorTable;
+        //彩色表排序标志
+        public byte sortFlag;
+        //彩色分辨率
+        public byte colorResolution;
+        //全局彩色表标志, 1:表示存在全局颜色表
+        public byte globalColorTableFlag;
+
+        public GIFPackedField(byte b)
+        {
+            byte size = (byte)(b &amp; 7); //7: 00000111
+                                       //表项数目
+            sizeOfGlobalColorTable = (int)Math.Pow(2, size + 1);
+            //每个表项由3个字节组成(R、G、B)
+            //彩色表的字节数等于 3 * table_size
+
+            sortFlag = (byte)((b &gt;&gt; 3) &amp; 1);//00001000
+            colorResolution = (byte)((b &gt;&gt; 4) &amp; 7);//01110000
+            globalColorTableFlag = (byte)(b &gt;&gt; 7);//10000000
+        }
+
+        public void Print()
+        {
+            GIFDebug.LogFormat("-&gt;sizeOfGlobalColorTable={0}", sizeOfGlobalColorTable);
+            GIFDebug.LogFormat("-&gt;sortFlag={0}", sortFlag);
+            GIFDebug.LogFormat("-&gt;colorResolution={0}", colorResolution);
+            GIFDebug.LogFormat("-&gt;globalColorTableFlag={0}", globalColorTableFlag);
+        }
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF全局颜色表
+/// &lt;/summary&gt;
+public sealed class GIFGlobalColorTable
+{
+    public List&lt;byte[]&gt; Table { get; private set; }
+
+    public GIFGlobalColorTable(byte[] bytes, ref int byteIndex, int sizeOfGlobalColorTable)
+    {
+        Table = new List&lt;byte[]&gt;();
+        // Global Color Table(0～255×3 Bytes)
+        for (int i = byteIndex; i &lt; byteIndex + (sizeOfGlobalColorTable * 3); i += 3)
+        {
+            Table.Add(new byte[] { bytes[i], bytes[i + 1], bytes[i + 2] });
+        }
+        byteIndex += sizeOfGlobalColorTable * 3;
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF图形控制扩展
+/// &lt;/summary&gt;
+public sealed class GIFGraphicControlExtension
+{
+    //表示接下来的有效数据字节数
+    public byte byteSize;
+    //是一个包装字段，内部不同位的意义也不同
+    public GIFPackedField packedField;
+    //表示 GIF 动图每一帧之间的间隔，单位为百分之一秒。当为 0 时间隔由解码器管理
+    public short delayTime;
+    //当 Transparent Flag 为 1 时，此字节有效，表示此索引在 Global Color Table 中对应的颜色将被当做透明色做处理。
+    public byte transparentColorIndex;
+    //表示 Extension 到此结束
+    public byte blockTerminator;//总是0
+
+    public GIFGraphicControlExtension(byte[] bytes, ref int byteIndex)
+    {
+        GIFDebug.LogFormat("&lt;color=green&gt;GIFGraphicControlExtension&lt;/color&gt; byteIndex={0}", byteIndex);
+        byteSize = bytes[byteIndex];
+        byteIndex++;
+        packedField = new GIFPackedField(bytes[byteIndex]);
+        byteIndex++;
+        delayTime = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        transparentColorIndex = bytes[byteIndex];
+        byteIndex++;
+        blockTerminator = bytes[byteIndex];
+        byteIndex++;
+        //Debug.LogFormat("-- end byteIndex={0}", byteIndex);
+    }
+
+    //包装字段
+    public sealed class GIFPackedField
+    {
+        //当该值为 1 时，后面的 Transparent Color Index 指定的颜色将被当做透明色处理。为 0 则不做处理。
+        public byte transparentColorFlag; //1bit
+        //表示是否需要在得到用户的输入时才进行下一帧的输入（具体用户输入指什么视应用而定）。
+        //0: 表示无需用户输入
+        //1: 表示需要用户输入
+        public byte userInputFlag; //1bit
+        //表示在进行逐帧渲染时，前一帧留下的图像作何处理:
+        //0: 不做任何处理
+        //1: 保留前一帧图像，在此基础上进行渲染
+        //2: 渲染前将图像置为背景色
+        //3: 将被下一帧覆盖的图像重置
+        public byte disposalMethod;//3bit
+        //保留位，暂无用处
+        public byte reservedForFutureUse;//3bit
+
+        public GIFPackedField(byte b)
+        {
+            transparentColorFlag = (byte)(b &amp; 1);//00000001
+            userInputFlag = (byte)((b &gt;&gt; 1) &amp; 1);//00000010
+            disposalMethod = (byte)((b &gt;&gt; 2) &amp; 7);//00011100
+            reservedForFutureUse = (byte)((b &gt;&gt; 5) &amp; 7);//11100000
+        }
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF文本扩展 (存储额外信息)
+/// &lt;/summary&gt;
+public sealed class GIFPlainTextExtension
+{
+    public GIFPlainTextExtension(byte[] bytes, ref int byteIndex)
+    {
+        GIFDebug.LogFormat("&lt;color=green&gt;GIFPlainTextExtension&lt;/color&gt; byteIndex={0}", byteIndex);
+        //暂时不关心这部分数据，直接找结束标记0
+        while (bytes[byteIndex++] != 0) ;
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF应用扩展 (存储额外信息)
+/// &lt;/summary&gt;
+public sealed class GIFApplicationExtension
+{
+    public GIFApplicationExtension(byte[] bytes, ref int byteIndex)
+    {
+        GIFDebug.LogFormat("&lt;color=green&gt;GIFApplicationExtension&lt;/color&gt; byteIndex={0}", byteIndex);
+        //暂时不关心这部分数据，直接找结束标记0
+        while (bytes[byteIndex++] != 0) ;
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF注释扩展 (存储额外信息)
+/// &lt;/summary&gt;
+public sealed class GIFCommentExtension
+{
+    public GIFCommentExtension(byte[] bytes, ref int byteIndex)
+    {
+        GIFDebug.LogFormat("&lt;color=green&gt;GIFCommentExtension&lt;/color&gt; byteIndex={0}", byteIndex);
+        //暂时不关心这部分数据，直接找结束标记0
+        while (bytes[byteIndex++] != 0) ;
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF图像描述符
+/// &lt;/summary&gt;
+public sealed class GIFImageDescriptor
+{
+    //该值表示当前帧图像渲染位置离画布左边的距离
+    public short left;
+    //该值表示当前帧图像渲染位置离画布上边的距离
+    public short top;
+    //该值表示当前帧图像的宽度
+    public short width;
+    //该值表示当前帧图像的高度
+    public short height;
+    //这是一个包装字段，内部不同位的意义也不同
+    public GIFPackedField packedField;
+    public GIFLocalColorTable localColorTable;
+    public GIFImageData imageData;
+    private GIFData gifData;
+
+    public GIFImageDescriptor(byte[] bytes, ref int byteIndex, GIFData gifData)
+    {
+        GIFDebug.LogFormat("&lt;color=green&gt;GIFImageDescriptor&lt;/color&gt; byteIndex={0}", byteIndex);
+        this.gifData = gifData;
+        left = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        top = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        width = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        height = BitConverter.ToInt16(bytes, byteIndex);
+        byteIndex += 2;
+        packedField = new GIFPackedField(bytes[byteIndex]);
+        byteIndex++;
+
+        if (packedField.localColorTableFlag == 1)
+        {
+            localColorTable = new GIFLocalColorTable(bytes, ref byteIndex, packedField.sizeOfLocalColorTable);
+        }
+
+        bool interlaceFlag = (packedField.interlaceFlag == 1);
+        imageData = new GIFImageData(bytes, ref byteIndex, width, height, interlaceFlag);
+
+        //利用解压出来的图像数据生成Texture2D
+        Texture2D tex = CreateTexture2D();
+        gifData.textures.Add(tex);
+    }
+
+    private List&lt;byte[]&gt; GetColorTable()
+    {
+        //存在局部颜色表，则使用局部颜色表，否则使用全局颜色表
+        List&lt;byte[]&gt; colorTable = (packedField.localColorTableFlag == 1) ? localColorTable.Table : gifData.m_globalColorTable.Table;
+        return colorTable;
+    }
+
+    public Texture2D CreateTexture2D()
+    {
+        List&lt;byte[]&gt; colorTable = GetColorTable();
+
+        int canvasWidth = gifData.m_logicalScreenDescriptor.canvasWidth;
+        int canvasHeight = gifData.m_logicalScreenDescriptor.canvasHeight;
+        Texture2D tex = new Texture2D(canvasWidth, canvasHeight, TextureFormat.ARGB32, false);
+        tex.filterMode = FilterMode.Bilinear;
+        tex.wrapMode = TextureWrapMode.Clamp;
+
+        //判断背景色
+        byte transparentIndex = gifData.m_graphicControlExtension.transparentColorIndex;
+        int bgColorIndex = gifData.m_logicalScreenDescriptor.backgroundColorIndex;
+        byte[] bgRgb = colorTable[bgColorIndex];
+        Color32 bgColor = new Color32(bgRgb[0], bgRgb[1], bgRgb[2], (byte)(transparentIndex == bgColorIndex ? 0 : 255));
+        Color32[] pix;
+        bool filledTexture = false;
+
+        //初始化图像像素
+        byte disposalMethod = gifData.m_graphicControlExtension.packedField.disposalMethod;
+        GIFDebug.LogFormat("disposalMethod={0}", disposalMethod);
+        switch (disposalMethod)
+        {
+            case 0://不做任何处理
+
+                break;
+            case 1://保留前一帧图像，在此基础上进行渲染
+                if (gifData.textures.Count &gt; 0)
+                {
+                    Texture2D preTex = gifData.textures[gifData.textures.Count - 1];
+                    pix = preTex.GetPixels32();
+                    tex.SetPixels32(pix);
+                    tex.Apply();
+                    filledTexture = true;
+                }
+                break;
+            case 2://渲染前将图像置为背景色
+                pix = new Color32[tex.width * tex.height];
+                for (int i = 0; i &lt; pix.Length; i++)
+                {
+                    pix[i] = bgColor;
+                }
+                tex.SetPixels32(pix);
+                tex.Apply();
+                filledTexture = true;
+                break;
+            case 3://将被下一帧覆盖的图像重置
+
+                break;
+        }
+
+        int dataIndex = 0;
+        //dataIndex是从图像的左上角开始存储的,图像的原点在左下角
+        for (int y = canvasHeight - 1; y &gt;= 0; y--)
+        {
+            int row = canvasHeight - y - 1;
+
+            for (int x = 0; x &lt; canvasWidth; x++)
+            {
+                //(left,top)左上角坐标
+                if (x &lt; left || x &gt;= left + width ||
+                    row &lt; top || row &gt;= top + height)
+                {
+                    if (!filledTexture)
+                        tex.SetPixel(x, y, bgColor);
+                    continue;
+                }
+
+                //越界检测
+                if (dataIndex &gt;= imageData.decodedData.Count)
+                {
+                    if (filledTexture == false)
+                    {
+                        tex.SetPixel(x, y, bgColor);
+                        if (dataIndex == imageData.decodedData.Count)
+                        {
+                            GIFDebug.LogError("dataIndex exceeded the size of decodedData. dataIndex:" + dataIndex + " decodedData.Length:" + imageData.decodedData.Count + " y:" + y + " x:" + x);
+                        }
+                    }
+                    dataIndex++;
+                    continue;
+                }
+
+                //像素索引对应颜色表中的索引
+                int colorIndex = imageData.decodedData[dataIndex];
+                //越界检测
+                if (colorTable == null || colorTable.Count &lt;= colorIndex)
+                {
+                    if (filledTexture == false)
+                    {
+                        tex.SetPixel(x, y, bgColor);
+                        if (colorTable == null)
+                        {
+                            GIFDebug.LogError("colorIndex exceeded the size of colorTable. colorTable is null. colorIndex:" + colorIndex);
+                        }
+                        else
+                        {
+                            GIFDebug.LogError("colorIndex exceeded the size of colorTable. colorTable.Count:" + colorTable.Count + " colorIndex:" + colorIndex);
+                        }
+                    }
+                    dataIndex++;
+                    continue;
+                }
+
+                byte[] rgb = colorTable[colorIndex];
+                //Alpha的判断规则
+                byte alpha = transparentIndex &gt;= 0 &amp;&amp; transparentIndex == colorIndex ? (byte)0 : (byte)255;
+                if (filledTexture == false || alpha != 0)
+                {
+                    Color32 color = new Color32(rgb[0], rgb[1], rgb[2], alpha);
+                    tex.SetPixel(x, y, color);
+                }
+
+                dataIndex++;
+            }
+        }
+        tex.Apply();
+        return tex;
+    }
+
+    public sealed class GIFPackedField
+    {
+        //本地颜色表大小
+        public int sizeOfLocalColorTable;
+        //保留位
+        public byte reservedForFutureUse;
+        //如果需要 Local Color Table 的话，这个字段表示其排列顺序，同 Global Color Table
+        public byte sortFlag;
+        //表示是否需要隔行扫描。1 为需要，0 为不需要
+        public byte interlaceFlag;
+        //表示下一帧图像是否需要一个独立的颜色表。1 为需要，0 为不需要
+        public byte localColorTableFlag;
+
+        public GIFPackedField(byte b)
+        {
+            byte size = (byte)(b &amp; 7); //7: 00000111
+            //表项数目
+            sizeOfLocalColorTable = (int)Math.Pow(2, size + 1);
+            //每个表项由3个字节组成(R、G、B)
+            //彩色表的字节数等于 3 * table_size
+            reservedForFutureUse = (byte)((b &gt;&gt; 3) &amp; 3);
+            sortFlag = (byte)((b &gt;&gt; 5) &amp; 1);
+            interlaceFlag = (byte)((b &gt;&gt; 6) &amp; 1);
+            localColorTableFlag = (byte)((b &gt;&gt; 7) &amp; 1);
+        }
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF本地颜色表
+/// &lt;/summary&gt;
+public sealed class GIFLocalColorTable
+{
+    public List&lt;byte[]&gt; Table { get; private set; }
+
+    public GIFLocalColorTable(byte[] bytes, ref int byteIndex, int sizeOfLocalColorTable)
+    {
+        Table = new List&lt;byte[]&gt;();
+        // Global Color Table(0～255×3 Bytes)
+        for (int i = byteIndex; i &lt; byteIndex + (sizeOfLocalColorTable * 3); i += 3)
+        {
+            Table.Add(new byte[] { bytes[i], bytes[i + 1], bytes[i + 2] });
+        }
+        byteIndex += (sizeOfLocalColorTable * 3);
+    }
+}
+
+/// &lt;summary&gt;
+/// GIF图像数据
+/// &lt;/summary&gt;
+public sealed class GIFImageData
+{
+    //LZW最小编码表大小
+    public byte lzwMinimumCodeSize;
+    //压缩数据(LZW Data)
+    public List&lt;byte&gt; lzwData;
+    //解压数据
+    public List&lt;byte&gt; decodedData;
+    //0x00 表示Image Data结束
+    public byte blockTerminator = 0;
+    private int width;
+    private int height;
+    private int needDataSize;//该帧有多少个像素
+    private bool interlaceFlag;
+
+    public GIFImageData(byte[] bytes, ref int byteIndex, int width, int height, bool interlaceFlag)
+    {
+        this.width = width;
+        this.height = height;
+        this.needDataSize = width * height;
+        this.interlaceFlag = interlaceFlag;
+        lzwMinimumCodeSize = bytes[byteIndex];
+        GIFDebug.LogFormat("-&gt;&gt;[GIFImageData] lzwMinimumCodeSize={0}", lzwMinimumCodeSize);
+        byteIndex++;
+        lzwData = new List&lt;byte&gt;();
+        //因为图像数据长度是用byte表示，所以可能有多个子块数据
+        while (ReadDataSubBlock(bytes, ref byteIndex) &gt; 0) ;
+        //对图像数据解码
+        DecodeLZWData();
+    }
+
+    private int ReadDataSubBlock(byte[] bytes, ref int byteIndex)
+    {
+        //size取值范围[0x1～0xFF]，0表示整个Image Data结束, 
+        byte size = bytes[byteIndex];
+        byteIndex++;
+        try
+        {
+            int length = byteIndex + size;
+            while (byteIndex &lt; length)
+                lzwData.Add(bytes[byteIndex++]);
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            UnityEngine.Debug.LogErrorFormat("{0}\nbyteIndex={1}", e.Message, byteIndex);
+        }
+        return size;
+    }
+
+    /// &lt;summary&gt;
+    /// 参考 https://www.pianshen.com/article/3347116142/
+    /// 对LZW数据解码 (参考 UniGif)
+    /// 1、gif中最大编码长度为12位，能表示的最大数字为4096，因此，编译表中序号不能超过4096
+    /// 2、gif最大支持256色
+    /// 3、gif定义了clear code，清除标记为原始数据长度+1
+    /// 4、gif定义了end code，结束标记的值为清除标记+1
+    /// &lt;/summary&gt;
+    private void DecodeLZWData()
+    {
+        decodedData = new List&lt;byte&gt;();
+
+        int lzwCodeSize = 0;//数据块大小，这是个变长值
+        int clearCode = 0;
+        int finishCode = 0;
+
+        //初始化编码表
+        var dic = new Dictionary&lt;int, string&gt;();
+        InitDictionary(dic, lzwMinimumCodeSize, out lzwCodeSize, out clearCode, out finishCode);
+        
+        //转成bit数组
+        var bitData = new BitArray(lzwData.ToArray());
+        //用来保存解码后的字节数组
+        byte[] output = new byte[needDataSize];
+        int outputAddIndex = 0;
+
+        bool dicInitFlag = false;
+        string prevEntry = null;
+        int bitDataIndex = 0;
+
+        while (bitDataIndex &lt; bitData.Length)
+        {
+            if (dicInitFlag)
+            {
+                InitDictionary(dic, lzwMinimumCodeSize, out lzwCodeSize, out clearCode, out finishCode);
+                dicInitFlag = false;
+            }
+
+            string entry = null;//LZW算法中的后缀
+
+            int key = bitData.GetInt(bitDataIndex, lzwCodeSize);
+
+            //发现清除标记，说明当前数据块读取完毕
+            if (key == clearCode)
+            {
+                // Clear (Initialize dictionary)
+                dicInitFlag = true;
+                bitDataIndex += lzwCodeSize;
+                prevEntry = null;
+                continue;
+            }
+            //发现结束标记，说明所有数据块已读取完毕
+            else if (key == finishCode)
+            {
+                // Exit
+                GIFDebug.LogWarning("early stop code. bitDataIndex:" + bitDataIndex + " lzwCodeSize:" + lzwCodeSize + " key:" + key + " dic.Count:" + dic.Count);
+                break;
+            }
+            else if (dic.ContainsKey(key))
+            {
+                // Output from dictionary
+                entry = dic[key];
+            }
+            else if (key &gt;= dic.Count)
+            {
+                if (prevEntry != null)
+                {
+                    // Output from estimation
+                    entry = prevEntry + prevEntry[0];
+                }
+                else
+                {
+                    //读到一个不合理的数据，这里直接跳过此数据
+                    GIFDebug.LogWarning("It is strange that come here. bitDataIndex:" + bitDataIndex + " lzwCodeSize:" + lzwCodeSize + " key:" + key + " dic.Count:" + dic.Count);
+                    bitDataIndex += lzwCodeSize;
+                    continue;
+                }
+            }
+            else
+            {
+                //读到一个不合理的数据，这里直接跳过此数据
+                GIFDebug.LogWarning("It is strange that come here. bitDataIndex:" + bitDataIndex + " lzwCodeSize:" + lzwCodeSize + " key:" + key + " dic.Count:" + dic.Count);
+                bitDataIndex += lzwCodeSize;
+                continue;
+            }
+
+            // Output
+            // Take out 8 bits from the string.
+            // 将后缀字符(或字符串)转成字节数组并输出
+            byte[] temp = Encoding.Unicode.GetBytes(entry);
+            for (int i = 0; i &lt; temp.Length; i++)
+            {
+                //Unicode.GetBytes() API会将每个字符用两个字节表示,
+                //跳过没用的高位字节
+                if (i % 2 == 0)
+                {
+                    output[outputAddIndex] = temp[i];
+                    outputAddIndex++;
+                }
+            }
+
+            if (outputAddIndex &gt;= needDataSize)
+            {
+                // Exit
+                break;
+            }
+
+            if (prevEntry != null)
+            {
+                // Add to dictionary
+                dic.Add(dic.Count, prevEntry + entry[0]);
+            }
+
+            prevEntry = entry;
+            bitDataIndex += lzwCodeSize;
+
+            //GIF中LZW算法采用变长参数记录后面数据块中每个数字(字符)用几个bit表示
+            //第1个数据块中的不同字符(或字符串)用3bit表示，总共能表示8种,当字典存满8项后，清空字典，后面的数据存入第2个数据块。
+            //第2个数据块中的不同字符(或字符串)用4bit表示，总共能表示16种,当字典存满16项后，清空字典，后面的数据存入第3个数据块。
+            //依此递推......
+
+            if (lzwCodeSize == 3 &amp;&amp; dic.Count &gt;= 8)
+            {
+                lzwCodeSize = 4;
+            }
+            else if (lzwCodeSize == 4 &amp;&amp; dic.Count &gt;= 16)
+            {
+                lzwCodeSize = 5;
+            }
+            else if (lzwCodeSize == 5 &amp;&amp; dic.Count &gt;= 32)
+            {
+                lzwCodeSize = 6;
+            }
+            else if (lzwCodeSize == 6 &amp;&amp; dic.Count &gt;= 64)
+            {
+                lzwCodeSize = 7;
+            }
+            else if (lzwCodeSize == 7 &amp;&amp; dic.Count &gt;= 128)
+            {
+                lzwCodeSize = 8;
+            }
+            else if (lzwCodeSize == 8 &amp;&amp; dic.Count &gt;= 256)
+            {
+                lzwCodeSize = 9;
+            }
+            else if (lzwCodeSize == 9 &amp;&amp; dic.Count &gt;= 512)
+            {
+                lzwCodeSize = 10;
+            }
+            else if (lzwCodeSize == 10 &amp;&amp; dic.Count &gt;= 1024)
+            {
+                lzwCodeSize = 11;
+            }
+            else if (lzwCodeSize == 11 &amp;&amp; dic.Count &gt;= 2048)
+            {
+                lzwCodeSize = 12;
+            }
+            //GIF的LZW规定最大使用12bit来表示1个字符(或字符串)
+            //字典存满后，则继续读下一个数据块, lzwCodeSize的值不再变化
+            else if (lzwCodeSize == 12 &amp;&amp; dic.Count &gt;= 4096)
+            {
+                int nextKey = bitData.GetNumeral(bitDataIndex, lzwCodeSize);
+                //字典已满，即便下一个字符不是清除标记，也要重置字典
+                if (nextKey != clearCode)
+                {
+                    dicInitFlag = true;
+                }
+            }
+        }
+
+        //是否需要交错排序
+        if (interlaceFlag)
+            output = SortInterlaceGifData(output, width);
+
+        decodedData.AddRange(output);
+    }
+
+    /// &lt;summary&gt;
+    /// 初始化字典 (代码引用 UniGif)
+    /// &lt;/summary&gt;
+    /// &lt;param name="dic"&gt;Dictionary&lt;/param&gt;
+    /// &lt;param name="lzwMinimumCodeSize"&gt;LZW minimum code size&lt;/param&gt;
+    /// &lt;param name="lzwCodeSize"&gt;out LZW code size&lt;/param&gt;
+    /// &lt;param name="clearCode"&gt;out Clear code&lt;/param&gt;
+    /// &lt;param name="finishCode"&gt;out Finish code&lt;/param&gt;
+    private static void InitDictionary(Dictionary&lt;int, string&gt; dic, int lzwMinimumCodeSize, out int lzwCodeSize, out int clearCode, out int finishCode)
+    {
+        int dicLength = (int)Math.Pow(2, lzwMinimumCodeSize);
+
+        clearCode = dicLength;
+        finishCode = clearCode + 1;
+
+        dic.Clear();
+
+        for (int i = 0; i &lt; dicLength + 2; i++)
+        {
+            dic.Add(i, ((char)i).ToString());
+        }
+
+        lzwCodeSize = lzwMinimumCodeSize + 1;
+    }
+
+    /// &lt;summary&gt;
+    /// 代码引用 UniGif
+    /// 交错排序(Sort interlace GIF data)
+    /// &lt;/summary&gt;
+    /// &lt;param name="decodedData"&gt;Decoded GIF data&lt;/param&gt;
+    /// &lt;param name="xNum"&gt;Pixel number of horizontal row&lt;/param&gt;
+    /// &lt;returns&gt;Sorted data&lt;/returns&gt;
+    private byte[] SortInterlaceGifData(byte[] decodedData, int xNum)
+    {
+        int rowNo = 0;
+        int dataIndex = 0;
+        var newArr = new byte[decodedData.Length];
+        // Every 8th. row, starting with row 0.
+        for (int i = 0; i &lt; newArr.Length; i++)
+        {
+            if (rowNo % 8 == 0)
+            {
+                newArr[i] = decodedData[dataIndex];
+                dataIndex++;
+            }
+            if (i != 0 &amp;&amp; i % xNum == 0)
+            {
+                rowNo++;
+            }
+        }
+        rowNo = 0;
+        // Every 8th. row, starting with row 4.
+        for (int i = 0; i &lt; newArr.Length; i++)
+        {
+            if (rowNo % 8 == 4)
+            {
+                newArr[i] = decodedData[dataIndex];
+                dataIndex++;
+            }
+            if (i != 0 &amp;&amp; i % xNum == 0)
+            {
+                rowNo++;
+            }
+        }
+        rowNo = 0;
+        // Every 4th. row, starting with row 2.
+        for (int i = 0; i &lt; newArr.Length; i++)
+        {
+            if (rowNo % 4 == 2)
+            {
+                newArr[i] = decodedData[dataIndex];
+                dataIndex++;
+            }
+            if (i != 0 &amp;&amp; i % xNum == 0)
+            {
+                rowNo++;
+            }
+        }
+        rowNo = 0;
+        // Every 2nd. row, starting with row 1.
+        for (int i = 0; i &lt; newArr.Length; i++)
+        {
+            if (rowNo % 8 != 0 &amp;&amp; rowNo % 8 != 4 &amp;&amp; rowNo % 4 != 2)
+            {
+                newArr[i] = decodedData[dataIndex];
+                dataIndex++;
+            }
+            if (i != 0 &amp;&amp; i % xNum == 0)
+            {
+                rowNo++;
+            }
+        }
+
+        return newArr;
+    }
+}
+
+//代码引用 UniGif
+public static class BitArrayExtension
+{
+    public static int GetInt(this BitArray array, int startIndex, int bitLength)
+    {
+        var newArray = new BitArray(bitLength);
+
+        for (int i = 0; i &lt; bitLength; i++)
+        {
+            if (array.Length &lt;= startIndex + i)
+            {
+                newArray[i] = false;
+            }
+            else
+            {
+                bool bit = array.Get(startIndex + i);
+                newArray[i] = bit;
+            }
+        }
+
+        return newArray.ToInt();
+    }
+
+    public static int ToInt(this BitArray array)
+    {
+        if (array == null)
+        {
+            GIFDebug.LogError("array is nothing.");
+            return 0;
+        }
+        if (array.Length &gt; 32)
+        {
+            GIFDebug.LogError("must be at most 32 bits long.");
+            return 0;
+        }
+
+        var result = new int[1];
+        array.CopyTo(result, 0);
+        return result[0];
+    }
+}
+
+//保存解析完成后的GIF数据
+public sealed class GIFData
+{
+    public GIFLogicalScreenDescriptor m_logicalScreenDescriptor;
+    public GIFGraphicControlExtension m_graphicControlExtension;
+    public GIFGlobalColorTable m_globalColorTable;
+    public List&lt;Texture2D&gt; textures = new List&lt;Texture2D&gt;();
+}
+
+public sealed class GIFDebug
+{
+    [Conditional("UNITY_EDITOR")]
+    public static void Log(string msg)
+    {
+#if DEBUG_GIF_DECODE
+        UnityEngine.Debug.Log(msg);
+#endif
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    public static void LogFormat(string format, params object[] args)
+    {
+#if DEBUG_GIF_DECODE
+        UnityEngine.Debug.LogFormat(format, args);
+#endif
+    }
+
+    public static void LogError(string msg)
+    {
+        UnityEngine.Debug.LogError(msg);
+    }
+
+    public static void LogErrorFormat(string format, params object[] args)
+    {
+        UnityEngine.Debug.LogErrorFormat(format, args);
+    }
+
+    public static void LogWarning(string msg)
+    {
+        UnityEngine.Debug.LogWarning(msg);
+    }
+}</pre>
+</p>
+<p>
+	使用
+</p>
+<p>
+<pre class="prettyprint lang-cs linenums">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Test : MonoBehaviour
+{
+    public List&lt;Texture2D&gt; textures;
+
+    void Start()
+    {
+        string path = string.Format("file:///{0}/test.gif", Application.streamingAssetsPath);
+        Debug.Log(path);
+        StartCoroutine(LoadGif(path));
+    }
+
+    IEnumerator LoadGif(string url)
+    {
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+
+            if (string.IsNullOrEmpty(www.error) == false)
+            {
+                Debug.LogError("File load error.\n" + www.error);
+                yield break;
+            }
+
+            byte[] bytes = www.bytes;
+            GIFImage gif = new GIFImage(bytes);
+            textures = gif.textures;
+        }
+    }
+}</pre>
+</p>
+<p>
+	运行测试
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/202109/036c1631761541.png" id="ematt:4609"><img src="../www.devacg.com/content/uploadfile/202109/036c1631761541.png" title="点击查看原图" alt="111111.png" border="0" width="350" height="583"></a>
+</p>	<p class="tag">标签:	<a href="tag%3DUnity3d.html">Unity3d</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=1364&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D1365.html">地形(Terrain)</a>
+				|
+				 <a href="post%3D1363.html">常量和字段</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D486.html">三角函数</a></li>
+		<li><a href="post%3D561.html">Animation动画曲线(Curves)</a></li>
+		<li><a href="post%3D74.html">Mathf.Lerp</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1416.php.html">模型淡入淡出</a></li>
+		<li><a href="post%3D738.html">DecoratorDrawer</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

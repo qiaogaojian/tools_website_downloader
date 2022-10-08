@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">ArrayBuffer，二进制数组</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/arraybuffer-binary-arrays"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="ArrayBuffer，二进制数组"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ArrayBuffer，二进制数组"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/binary"><link rel="next" href="/text-decoder"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="ArrayBuffer，二进制数组"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/arraybuffer-binary-arrays"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/arraybuffer-binary-arrays"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/arraybuffer-binary-arrays">English</option><option value="https://es.javascript.info/arraybuffer-binary-arrays">Español</option><option value="https://fr.javascript.info/arraybuffer-binary-arrays">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/arraybuffer-binary-arrays">Italiano</option><option value="https://ja.javascript.info/arraybuffer-binary-arrays">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/arraybuffer-binary-arrays">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/arraybuffer-binary-arrays">Українська</option><option value="https://zh.javascript.info/arraybuffer-binary-arrays" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="1" max="4" data-tooltip="第 1/4 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../binary/index.html"><span>二进制数据，文件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"二进制数据，文件","item":"https://zh.javascript.info/binary"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">ArrayBuffer，二进制数组</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="ArrayBuffer，二进制数组"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在 Web 开发中，当我们处理文件时（创建，上传，下载），经常会遇到二进制数据。另一个典型的应用场景是图像处理。</p>
+<p>这些都可以通过 JavaScript 进行处理，而且二进制操作性能更高。</p>
+<p>不过，在 JavaScript 中有很多种二进制数据格式，会有点容易混淆。仅举几个例子：</p>
+<ul>
+<li><code>ArrayBuffer</code>，<code>Uint8Array</code>，<code>DataView</code>，<code>Blob</code>，<code>File</code> 及其他。</li>
+</ul>
+<p>与其他语言相比，JavaScript 中的二进制数据是以非标准方式实现的。但是，当我们理清楚以后，一切就会变得相当简单了。</p>
+<p><strong>基本的二进制对象是 <code>ArrayBuffer</code> —— 对固定长度的连续内存空间的引用。</strong></p>
+<p>我们这样创建它：</p>
+<div id="nkciy1136w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let buffer = new ArrayBuffer(16); // 创建一个长度为 16 的 buffer
+alert(buffer.byteLength); // 16</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它会分配一个 16 字节的连续内存空间，并用 0 进行预填充。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>ArrayBuffer</code> 不是某种东西的数组</span></div>
+            <div class="important__content"><p>让我们先澄清一个可能的误区。<code>ArrayBuffer</code> 与 <code>Array</code> 没有任何共同之处：</p>
+<ul>
+<li>它的长度是固定的，我们无法增加或减少它的长度。</li>
+<li>它正好占用了内存中的那么多空间。</li>
+<li>要访问单个字节，需要另一个“视图”对象，而不是 <code>buffer[index]</code>。</li>
+</ul>
+</div></div>
+<p><code>ArrayBuffer</code> 是一个内存区域。它里面存储了什么？无从判断。只是一个原始的字节序列。</p>
+<p><strong>如要操作 <code>ArrayBuffer</code>，我们需要使用“视图”对象。</strong></p>
+<p>视图对象本身并不存储任何东西。它是一副“眼镜”，透过它来解释存储在 <code>ArrayBuffer</code> 中的字节。</p>
+<p>例如：</p>
+<ul>
+<li><strong><code>Uint8Array</code></strong> —— 将 <code>ArrayBuffer</code> 中的每个字节视为 0 到 255 之间的单个数字（每个字节是 8 位，因此只能容纳那么多）。这称为 “8 位无符号整数”。</li>
+<li><strong><code>Uint16Array</code></strong> —— 将每 2 个字节视为一个 0 到 65535 之间的整数。这称为 “16 位无符号整数”。</li>
+<li><strong><code>Uint32Array</code></strong> —— 将每 4 个字节视为一个 0 到 4294967295 之间的整数。这称为 “32 位无符号整数”。</li>
+<li><strong><code>Float64Array</code></strong> —— 将每 8 个字节视为一个 <code>5.0x10<sup>-324</sup></code> 到 <code>1.8x10<sup>308</sup></code> 之间的浮点数。</li>
+</ul>
+<p>因此，一个 16 字节 <code>ArrayBuffer</code> 中的二进制数据可以解释为 16 个“小数字”，或 8 个更大的数字（每个数字 2 个字节），或 4 个更大的数字（每个数字 4 个字节），或 2 个高精度的浮点数（每个数字 8 个字节）。</p>
+<figure><div class="image" style="width:603px">
+      <div class="image__ratio" style="padding-top:47.42951907131012%"></div>
+      <object type="image/svg+xml" data="../article/arraybuffer-binary-arrays/arraybuffer-views.svg" width="603" height="286" class="image__image" data-use-theme>
+        <img src="../article/arraybuffer-binary-arrays/arraybuffer-views.svg" alt width="603" height="286">
+      </object>
+      </div></figure><p><code>ArrayBuffer</code> 是核心对象，是所有的基础，是原始的二进制数据。</p>
+<p>但是，如果我们要写入值或遍历它，基本上几乎所有操作 —— 我们必须使用视图（view），例如：</p>
+<div id="1fe0w58l3r" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let buffer = new ArrayBuffer(16); // 创建一个长度为 16 的 buffer
+
+let view = new Uint32Array(buffer); // 将 buffer 视为一个 32 位整数的序列
+
+alert(Uint32Array.BYTES_PER_ELEMENT); // 每个整数 4 个字节
+
+alert(view.length); // 4，它存储了 4 个整数
+alert(view.byteLength); // 16，字节中的大小
+
+// 让我们写入一个值
+view[0] = 123456;
+
+// 遍历值
+for(let num of view) {
+  alert(num); // 123456，然后 0，0，0（一共 4 个值）
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="typedarray" href="#typedarray">TypedArray</a></h2><p>所有这些视图（<code>Uint8Array</code>，<code>Uint32Array</code> 等）的通用术语是 <a href="https://tc39.github.io/ecma262/#sec-typedarray-objects">TypedArray</a>。它们都享有同一组方法和属性。</p>
+<p>请注意，没有名为 <code>TypedArray</code> 的构造器，它只是表示 <code>ArrayBuffer</code> 上的视图之一的通用总称术语：<code>Int8Array</code>，<code>Uint8Array</code> 及其他，很快就会有完整列表。</p>
+<p>当你看到 <code>new TypedArray</code> 之类的内容时，它表示 <code>new Int8Array</code>、<code>new Uint8Array</code> 及其他中之一。</p>
+<p>类型化数组的行为类似于常规数组：具有索引，并且是可迭代的。</p>
+<p>一个类型化数组的构造器（无论是 <code>Int8Array</code> 或 <code>Float64Array</code>，都无关紧要），其行为各不相同，并且取决于参数类型。</p>
+<p>参数有 5 种变体：</p>
+<div id="v69rccobw6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new TypedArray(buffer, [byteOffset], [length]);
+new TypedArray(object);
+new TypedArray(typedArray);
+new TypedArray(length);
+new TypedArray();</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>
+<p>如果给定的是 <code>ArrayBuffer</code> 参数，则会在其上创建视图。我们已经用过该语法了。</p>
+<p>可选，我们可以给定起始位置 <code>byteOffset</code>（默认为 0）以及 <code>length</code>（默认至 buffer 的末尾），这样视图将仅涵盖 <code>buffer</code> 的一部分。</p>
+</li>
+<li>
+<p>如果给定的是 <code>Array</code>，或任何类数组对象，则会创建一个相同长度的类型化数组，并复制其内容。</p>
+<p>我们可以使用它来预填充数组的数据：</p>
+<div id="y9acrclth9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Uint8Array([0, 1, 2, 3]);
+alert( arr.length ); // 4，创建了相同长度的二进制数组
+alert( arr[1] ); // 1，用给定值填充了 4 个字节（无符号 8 位整数）</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>如果给定的是另一个 <code>TypedArray</code>，也是如此：创建一个相同长度的类型化数组，并复制其内容。如果需要的话，数据在此过程中会被转换为新的类型。</p>
+<div id="u2l9umj3g0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr16 = new Uint16Array([1, 1000]);
+let arr8 = new Uint8Array(arr16);
+alert( arr8[0] ); // 1
+alert( arr8[1] ); // 232，试图复制 1000，但无法将 1000 放进 8 位字节中（详述见下文）。</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>对于数字参数 <code>length</code> —— 创建类型化数组以包含这么多元素。它的字节长度将是 <code>length</code> 乘以单个 <code>TypedArray.BYTES_PER_ELEMENT</code> 中的字节数：</p>
+<div id="ikoxrv1yvd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = new Uint16Array(4); // 为 4 个整数创建类型化数组
+alert( Uint16Array.BYTES_PER_ELEMENT ); // 每个整数 2 个字节
+alert( arr.byteLength ); // 8（字节中的大小）</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>不带参数的情况下，创建长度为零的类型化数组。</p>
+</li>
+</ol>
+<p>我们可以直接创建一个 <code>TypedArray</code>，而无需提及 <code>ArrayBuffer</code>。但是，视图离不开底层的 <code>ArrayBuffer</code>，因此，除第一种情况（已提供 <code>ArrayBuffer</code>）外，其他所有情况都会自动创建 <code>ArrayBuffer</code>。</p>
+<p>如要访问 <code>ArrayBuffer</code>，可以用以下属性：</p>
+<ul>
+<li><code>arr.buffer</code> —— 引用 <code>ArrayBuffer</code>。</li>
+<li><code>arr.byteLength</code> —— <code>ArrayBuffer</code> 的长度。</li>
+</ul>
+<p>因此，我们总是可以从一个视图转到另一个视图：</p>
+<div id="8dvdc4y58g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr8 = new Uint8Array([0, 1, 2, 3]);
+
+// 同一数据的另一个视图
+let arr16 = new Uint16Array(arr8.buffer);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>下面是类型化数组的列表：</p>
+<ul>
+<li><code>Uint8Array</code>，<code>Uint16Array</code>，<code>Uint32Array</code> —— 用于 8、16 和 32 位的整数。
+<ul>
+<li><code>Uint8ClampedArray</code> —— 用于 8 位整数，在赋值时便“固定“其值（见下文）。</li>
+</ul>
+</li>
+<li><code>Int8Array</code>，<code>Int16Array</code>，<code>Int32Array</code> —— 用于有符号整数（可以为负数）。</li>
+<li><code>Float32Array</code>，<code>Float64Array</code> —— 用于 32 位和 64 位的有符号浮点数。</li>
+</ul>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">没有 <code>int8</code> 或类似的单值类型</span></div>
+            <div class="important__content"><p>请注意，尽管有类似 <code>Int8Array</code> 这样的名称，但 JavaScript 中并没有像 <code>int</code>，或 <code>int8</code> 这样的单值类型。</p>
+<p>这是合乎逻辑的，因为 <code>Int8Array</code> 不是这些单值的数组，而是 <code>ArrayBuffer</code> 上的视图。</p>
+</div></div>
+<h3><a class="main__anchor" name="yue-jie-hang-wei" href="#yue-jie-hang-wei">越界行为</a></h3><p>如果我们尝试将越界值写入类型化数组会出现什么情况？不会报错。但是多余的位被切除。</p>
+<p>例如，我们尝试将 256 放入 <code>Uint8Array</code>。256 的二进制格式是 <code>100000000</code>（9 位），但 <code>Uint8Array</code> 每个值只有 8 位，因此可用范围为 0 到 255。</p>
+<p>对于更大的数字，仅存储最右边的（低位有效）8 位，其余部分被切除：</p>
+<figure><div class="image" style="width:195px">
+      <div class="image__ratio" style="padding-top:74.35897435897436%"></div>
+      <object type="image/svg+xml" data="../article/arraybuffer-binary-arrays/8bit-integer-256.svg" width="195" height="145" class="image__image" data-use-theme>
+        <img src="../article/arraybuffer-binary-arrays/8bit-integer-256.svg" alt width="195" height="145">
+      </object>
+      </div></figure><p>因此结果是 0。</p>
+<p>257 的二进制格式是 <code>100000001</code>（9 位），最右边的 8 位会被存储，因此数组中会有 <code>1</code>：</p>
+<figure><div class="image" style="width:195px">
+      <div class="image__ratio" style="padding-top:74.35897435897436%"></div>
+      <object type="image/svg+xml" data="../article/arraybuffer-binary-arrays/8bit-integer-257.svg" width="195" height="145" class="image__image" data-use-theme>
+        <img src="../article/arraybuffer-binary-arrays/8bit-integer-257.svg" alt width="195" height="145">
+      </object>
+      </div></figure><p>换句话说，该数字对 2<sup>8</sup> 取模的结果被保存了下来。</p>
+<p>示例如下：</p>
+<div id="l9a59kn4ys" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let uint8array = new Uint8Array(16);
+
+let num = 256;
+alert(num.toString(2)); // 100000000（二进制表示）
+
+uint8array[0] = 256;
+uint8array[1] = 257;
+
+alert(uint8array[0]); // 0
+alert(uint8array[1]); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Uint8ClampedArray</code> 在这方面比较特殊，它的表现不太一样。对于大于 255 的任何数字，它将保存为 255，对于任何负数，它将保存为 0。此行为对于图像处理很有用。</p>
+<h2><a class="main__anchor" name="typedarray-fang-fa" href="#typedarray-fang-fa">TypedArray 方法</a></h2><p><code>TypedArray</code> 具有常规的 <code>Array</code> 方法，但有个明显的例外。</p>
+<p>我们可以遍历（iterate），<code>map</code>，<code>slice</code>，<code>find</code> 和 <code>reduce</code> 等。</p>
+<p>但有几件事我们做不了：</p>
+<ul>
+<li>没有 <code>splice</code> —— 我们无法“删除”一个值，因为类型化数组是缓冲区（buffer）上的视图，并且缓冲区（buffer）是固定的、连续的内存区域。我们所能做的就是分配一个零值。</li>
+<li>无 <code>concat</code> 方法。</li>
+</ul>
+<p>还有两种其他方法：</p>
+<ul>
+<li><code>arr.set(fromArr, [offset])</code> 从 <code>offset</code>（默认为 0）开始，将 <code>fromArr</code> 中的所有元素复制到 <code>arr</code>。</li>
+<li><code>arr.subarray([begin, end])</code> 创建一个从 <code>begin</code> 到 <code>end</code>（不包括）相同类型的新视图。这类似于 <code>slice</code> 方法（同样也支持），但不复制任何内容 —— 只是创建一个新视图，以对给定片段的数据进行操作。</li>
+</ul>
+<p>有了这些方法，我们可以复制、混合类型化数组，从现有数组创建新数组等。</p>
+<h2><a class="main__anchor" name="dataview" href="#dataview">DataView</a></h2><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</a> 是在 <code>ArrayBuffer</code> 上的一种特殊的超灵活“未类型化”视图。它允许以任何格式访问任何偏移量（offset）的数据。</p>
+<ul>
+<li>对于类型化的数组，构造器决定了其格式。整个数组应该是统一的。第 i 个数字是 <code>arr[i]</code>。</li>
+<li>通过 <code>DataView</code>，我们可以使用 <code>.getUint8(i)</code> 或 <code>.getUint16(i)</code> 之类的方法访问数据。我们在调用方法时选择格式，而不是在构造的时候。</li>
+</ul>
+<p>语法：</p>
+<div id="3nn3ker0py" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new DataView(buffer, [byteOffset], [byteLength])</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>buffer</code></strong> —— 底层的 <code>ArrayBuffer</code>。与类型化数组不同，<code>DataView</code> 不会自行创建缓冲区（buffer）。我们需要事先准备好。</li>
+<li><strong><code>byteOffset</code></strong> —— 视图的起始字节位置（默认为 0）。</li>
+<li><strong><code>byteLength</code></strong> —— 视图的字节长度（默认至 <code>buffer</code> 的末尾）。</li>
+</ul>
+<p>例如，这里我们从同一个 buffer 中提取不同格式的数字：</p>
+<div id="32a4bjc0ch" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 4 个字节的二进制数组，每个都是最大值 255
+let buffer = new Uint8Array([255, 255, 255, 255]).buffer;
+
+let dataView = new DataView(buffer);
+
+// 在偏移量为 0 处获取 8 位数字
+alert( dataView.getUint8(0) ); // 255
+
+// 现在在偏移量为 0 处获取 16 位数字，它由 2 个字节组成，一起解析为 65535
+alert( dataView.getUint16(0) ); // 65535（最大的 16 位无符号整数）
+
+// 在偏移量为 0 处获取 32 位数字
+alert( dataView.getUint32(0) ); // 4294967295（最大的 32 位无符号整数）
+
+dataView.setUint32(0, 0); // 将 4 个字节的数字设为 0，即将所有字节都设为 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当我们将混合格式的数据存储在同一缓冲区（buffer）中时，<code>DataView</code> 非常有用。例如，当我们存储一个成对序列（16 位整数，32 位浮点数）时，用 <code>DataView</code> 可以轻松访问它们。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>ArrayBuffer</code> 是核心对象，是对固定长度的连续内存区域的引用。</p>
+<p>几乎任何对 <code>ArrayBuffer</code> 的操作，都需要一个视图。</p>
+<ul>
+<li>它可以是 <code>TypedArray</code>：
+<ul>
+<li><code>Uint8Array</code>，<code>Uint16Array</code>，<code>Uint32Array</code> —— 用于 8 位、16 位和 32 位无符号整数。</li>
+<li><code>Uint8ClampedArray</code> —— 用于 8 位整数，在赋值时便“固定”其值。</li>
+<li><code>Int8Array</code>，<code>Int16Array</code>，<code>Int32Array</code> —— 用于有符号整数（可以为负数）。</li>
+<li><code>Float32Array</code>，<code>Float64Array</code> —— 用于 32 位和 64 位的有符号浮点数。</li>
+</ul>
+</li>
+<li>或 <code>DataView</code> —— 使用方法来指定格式的视图，例如，<code>getUint8(offset)</code>。</li>
+</ul>
+<p>在大多数情况下，我们直接对类型化数组进行创建和操作，而将 <code>ArrayBuffer</code> 作为“通用标识符（common discriminator）”隐藏起来。我们可以通过 <code>.buffer</code> 来访问它，并在需要时创建另一个视图。</p>
+<p>还有另外两个术语，用于对二进制数据进行操作的方法的描述：</p>
+<ul>
+<li><code>ArrayBufferView</code> 是所有这些视图的总称。</li>
+<li><code>BufferSource</code> 是 <code>ArrayBuffer</code> 或 <code>ArrayBufferView</code> 的总称。</li>
+</ul>
+<p>我们将在下一章中学习这些术语。<code>BufferSource</code> 是最常用的术语之一，因为它的意思是“任何类型的二进制数据” —— <code>ArrayBuffer</code> 或其上的视图。</p>
+<p>这是一份备忘单：</p>
+<figure><div class="image" style="width:707px">
+      <div class="image__ratio" style="padding-top:65.48797736916548%"></div>
+      <object type="image/svg+xml" data="../article/arraybuffer-binary-arrays/arraybuffer-view-buffersource.svg" width="707" height="463" class="image__image" data-use-theme>
+        <img src="../article/arraybuffer-binary-arrays/arraybuffer-view-buffersource.svg" alt width="707" height="463">
+      </object>
+      </div></figure></div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#pin-jie-lei-xing-hua-shu-zu" name="pin-jie-lei-xing-hua-shu-zu">拼接类型化数组</a></h3><a class="task__open-link" href="../task/concat/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>给定一个 <code>Uint8Array</code> 数组，请写一个函数 <code>concat(arrays)</code>，将数组拼接成一个单一数组并返回。</p>
+<p><a href="https://plnkr.co/edit/mqeFW1SCokeAeesx?p=preview" target="_blank" data-plunk-id="mqeFW1SCokeAeesx">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="3qjb9t4fep" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function concat(arrays) {
+  // sum of individual array lengths
+  let totalLength = arrays.reduce((acc, value) =&gt; acc + value.length, 0);
+
+  if (!arrays.length) return null;
+
+  let result = new Uint8Array(totalLength);
+
+  // for each array - copy it over result
+  // next array is copied right after the previous one
+  let length = 0;
+  for(let array of arrays) {
+    result.set(array, length);
+    length += array.length;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/umHlkoiN56Ji5sOP?p=preview" target="_blank" data-plunk-id="umHlkoiN56Ji5sOP">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../binary/index.html" data-tooltip="二进制数据，文件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../text-decoder/index.html" data-tooltip="TextDecoder 和 TextEncoder"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/arraybuffer-binary-arrays","identifier":"\/arraybuffer-binary-arrays"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../binary/index.html">二进制数据，文件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#typedarray">TypedArray</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#typedarray-fang-fa">TypedArray 方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dataview">DataView</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Farraybuffer-binary-arrays" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/4-binary/01-arraybuffer-binary-arrays" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

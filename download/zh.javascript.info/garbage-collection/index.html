@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">垃圾回收</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/garbage-collection"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="垃圾回收"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="垃圾回收"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/object-copy"><link rel="next" href="/object-methods"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="垃圾回收"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/garbage-collection"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/garbage-collection"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/garbage-collection"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/garbage-collection"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/garbage-collection"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/garbage-collection"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/garbage-collection"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/garbage-collection"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/garbage-collection"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/garbage-collection"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/garbage-collection"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/garbage-collection">عربي</option><option value="https://javascript.info/garbage-collection">English</option><option value="https://es.javascript.info/garbage-collection">Español</option><option value="https://fr.javascript.info/garbage-collection">Français</option><option value="https://id.javascript.info/garbage-collection">Indonesia</option><option value="https://it.javascript.info/garbage-collection">Italiano</option><option value="https://ja.javascript.info/garbage-collection">日本語</option><option value="https://ko.javascript.info/garbage-collection">한국어</option><option value="https://learn.javascript.ru/garbage-collection">Русский</option><option value="https://tr.javascript.info/garbage-collection">Türkçe</option><option value="https://uk.javascript.info/garbage-collection">Українська</option><option value="https://zh.javascript.info/garbage-collection" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="31" max="92" data-tooltip="第 31/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../object-basics/index.html"><span>Object（对象）：基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Object（对象）：基础知识","item":"https://zh.javascript.info/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">垃圾回收</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="垃圾回收"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>对于开发者来说，JavaScript 的内存管理是自动的、无形的。我们创建的原始值、对象、函数……这一切都会占用内存。</p>
+<p>当我们不再需要某个东西时会发生什么？JavaScript 引擎如何发现它并清理它？</p>
+<h2><a class="main__anchor" name="ke-da-xing-reachability" href="#ke-da-xing-reachability">可达性（Reachability）</a></h2><p>JavaScript 中主要的内存管理概念是 <strong>可达性</strong>。</p>
+<p>简而言之，“可达”值是那些以某种方式可访问或可用的值。它们一定是存储在内存中的。</p>
+<ol>
+<li>
+<p>这里列出固有的可达值的基本集合，这些值明显不能被释放。</p>
+<p>比方说：</p>
+<ul>
+<li>当前执行的函数，它的局部变量和参数。</li>
+<li>当前嵌套调用链上的其他函数、它们的局部变量和参数。</li>
+<li>全局变量。</li>
+<li>（还有一些内部的）</li>
+</ul>
+<p>这些值被称作 <strong>根（roots）</strong>。</p>
+</li>
+<li>
+<p>如果一个值可以通过引用或引用链从根访问任何其他值，则认为该值是可达的。</p>
+<p>比方说，如果全局变量中有一个对象，并且该对象有一个属性引用了另一个对象，则 <strong>该</strong> 对象被认为是可达的。而且它引用的内容也是可达的。下面是详细的例子。</p>
+</li>
+</ol>
+<p>在 JavaScript 引擎中有一个被称作 <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">垃圾回收器</a> 的东西在后台执行。它监控着所有对象的状态，并删除掉那些已经不可达的。</p>
+<h2><a class="main__anchor" name="yi-ge-jian-dan-de-li-zi" href="#yi-ge-jian-dan-de-li-zi">一个简单的例子</a></h2><p>这里是一个最简单的例子：</p>
+<div id="do0e10aoji" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// user 具有对这个对象的引用
+let user = {
+  name: &quot;John&quot;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:144px">
+      <div class="image__ratio" style="padding-top:104.16666666666667%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/memory-user-john.svg" width="144" height="150" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/memory-user-john.svg" alt width="144" height="150">
+      </object>
+      </div></figure><p>这里的箭头描述了一个对象引用。全局变量 <code>&quot;user&quot;</code> 引用了对象 <code>{name：&quot;John&quot;}</code>（为简洁起见，我们称它为 John）。John 的 <code>&quot;name&quot;</code> 属性存储一个原始值，所以它被写在对象内部。</p>
+<p>如果 <code>user</code> 的值被重写了，这个引用就没了：</p>
+<div id="dosa41t8lb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>user = null;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:225px">
+      <div class="image__ratio" style="padding-top:70.66666666666667%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/memory-user-john-lost.svg" width="225" height="159" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/memory-user-john-lost.svg" alt width="225" height="159">
+      </object>
+      </div></figure><p>现在 John 变成不可达的了。因为没有引用了，就不能访问到它了。垃圾回收器会认为它是垃圾数据并进行回收，然后释放内存。</p>
+<h2><a class="main__anchor" name="liang-ge-yin-yong" href="#liang-ge-yin-yong">两个引用</a></h2><p>现在让我们想象下，我们把 <code>user</code> 的引用复制给 <code>admin</code>：</p>
+<div id="lv1nyvuvcc" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// user 具有对这个对象的引用
+let user = {
+  name: &quot;John&quot;
+};
+
+let admin = user;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:144px">
+      <div class="image__ratio" style="padding-top:110.41666666666667%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/memory-user-john-admin.svg" width="144" height="159" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/memory-user-john-admin.svg" alt width="144" height="159">
+      </object>
+      </div></figure><p>现在如果执行刚刚的那个操作：</p>
+<div id="9ckyjae3lg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>user = null;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……然后对象仍然可以被通过 <code>admin</code> 这个全局变量访问到，所以对象还在内存中。如果我们又重写了 <code>admin</code>，对象就会被删除。</p>
+<h2><a class="main__anchor" name="xiang-hu-guan-lian-de-dui-xiang" href="#xiang-hu-guan-lian-de-dui-xiang">相互关联的对象</a></h2><p>现在来看一个更复杂的例子。这是个家庭：</p>
+<div id="tnc7ywqenw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function marry(man, woman) {
+  woman.husband = man;
+  man.wife = woman;
+
+  return {
+    father: man,
+    mother: woman
+  }
+}
+
+let family = marry({
+  name: &quot;John&quot;
+}, {
+  name: &quot;Ann&quot;
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>marry</code> 函数通过让两个对象相互引用使它们“结婚”了，并返回了一个包含这两个对象的新对象。</p>
+<p>由此产生的内存结构：</p>
+<figure><div class="image" style="width:337px">
+      <div class="image__ratio" style="padding-top:60.534124629080125%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/family.svg" width="337" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/family.svg" alt width="337" height="204">
+      </object>
+      </div></figure><p>到目前为止，所有对象都是可达的。</p>
+<p>现在让我们移除两个引用：</p>
+<div id="7r5t6t0wax" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>delete family.father;
+delete family.mother.husband;</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:337px">
+      <div class="image__ratio" style="padding-top:60.534124629080125%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/family-delete-refs.svg" width="337" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/family-delete-refs.svg" alt width="337" height="204">
+      </object>
+      </div></figure><p>仅删除这两个引用中的一个是不够的，因为所有的对象仍然都是可达的。</p>
+<p>但是，如果我们把这两个都删除，那么我们可以看到再也没有对 John 的引用了：</p>
+<figure><div class="image" style="width:399px">
+      <div class="image__ratio" style="padding-top:56.390977443609025%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/family-no-father.svg" width="399" height="225" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/family-no-father.svg" alt width="399" height="225">
+      </object>
+      </div></figure><p>对外引用不重要，只有传入引用才可以使对象可达。所以，John 现在是不可达的，并且将被从内存中删除，同时 John 的所有数据也将变得不可达。</p>
+<p>经过垃圾回收：</p>
+<figure><div class="image" style="width:144px">
+      <div class="image__ratio" style="padding-top:156.25%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/family-no-father-2.svg" width="144" height="225" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/family-no-father-2.svg" alt width="144" height="225">
+      </object>
+      </div></figure><h2><a class="main__anchor" name="wu-fa-dao-da-de-dao-yu" href="#wu-fa-dao-da-de-dao-yu">无法到达的岛屿</a></h2><p>几个对象相互引用，但外部没有对其任意对象的引用，这些对象也可能是不可达的，并被从内存中删除。</p>
+<p>源对象与上面相同。然后：</p>
+<div id="g850yyl63f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>family = null;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>内存内部状态将变成：</p>
+<figure><div class="image" style="width:420px">
+      <div class="image__ratio" style="padding-top:66.42857142857143%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/family-no-family.svg" width="420" height="279" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/family-no-family.svg" alt width="420" height="279">
+      </object>
+      </div></figure><p>这个例子展示了可达性概念的重要性。</p>
+<p>显而易见，John 和 Ann 仍然连着，都有传入的引用。但是，这样还不够。</p>
+<p>前面说的 <code>&quot;family&quot;</code> 对象已经不再与根相连，没有了外部对其的引用，所以它变成了一座“孤岛”，并且将被从内存中删除。</p>
+<h2><a class="main__anchor" name="nei-bu-suan-fa" href="#nei-bu-suan-fa">内部算法</a></h2><p>垃圾回收的基本算法被称为 “mark-and-sweep”。</p>
+<p>定期执行以下“垃圾回收”步骤：</p>
+<ul>
+<li>垃圾收集器找到所有的根，并“标记”（记住）它们。</li>
+<li>然后它遍历并“标记”来自它们的所有引用。</li>
+<li>然后它遍历标记的对象并标记 <strong>它们的</strong> 引用。所有被遍历到的对象都会被记住，以免将来再次遍历到同一个对象。</li>
+<li>……如此操作，直到所有可达的（从根部）引用都被访问到。</li>
+<li>没有被标记的对象都会被删除。</li>
+</ul>
+<p>例如，使我们的对象有如下的结构：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:44.06047516198704%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/garbage-collection-1.svg" width="463" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/garbage-collection-1.svg" alt width="463" height="204">
+      </object>
+      </div></figure><p>我们可以清楚地看到右侧有一个“无法到达的岛屿”。现在我们来看看“标记和清除”垃圾收集器如何处理它。</p>
+<p>第一步标记所有的根：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:44.06047516198704%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/garbage-collection-2.svg" width="463" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/garbage-collection-2.svg" alt width="463" height="204">
+      </object>
+      </div></figure><p>然后它们的引用被标记了：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:44.06047516198704%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/garbage-collection-3.svg" width="463" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/garbage-collection-3.svg" alt width="463" height="204">
+      </object>
+      </div></figure><p>……如果还有引用的话，继续标记：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:44.06047516198704%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/garbage-collection-4.svg" width="463" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/garbage-collection-4.svg" alt width="463" height="204">
+      </object>
+      </div></figure><p>现在，无法通过这个过程访问到的对象被认为是不可达的，并且会被删除。</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:44.06047516198704%"></div>
+      <object type="image/svg+xml" data="../article/garbage-collection/garbage-collection-5.svg" width="463" height="204" class="image__image" data-use-theme>
+        <img src="../article/garbage-collection/garbage-collection-5.svg" alt width="463" height="204">
+      </object>
+      </div></figure><p>我们还可以将这个过程想象成从根溢出一个巨大的油漆桶，它流经所有引用并标记所有可到达的对象。然后移除未标记的。</p>
+<p>这是垃圾收集工作的概念。JavaScript 引擎做了许多优化，使垃圾回收运行速度更快，并且不影响正常代码运行。</p>
+<p>一些优化建议：</p>
+<ul>
+<li><strong>分代收集（Generational collection）</strong>—— 对象被分成两组：“新的”和“旧的”。许多对象出现，完成它们的工作并很快死去，它们可以很快被清理。那些长期存活的对象会变得“老旧”，而且被检查的频次也会减少。</li>
+<li><strong>增量收集（Incremental collection）</strong>—— 如果有许多对象，并且我们试图一次遍历并标记整个对象集，则可能需要一些时间，并在执行过程中带来明显的延迟。所以引擎试图将垃圾收集工作分成几部分来做。然后将这几部分会逐一进行处理。这需要它们之间有额外的标记来追踪变化，但是这样会有许多微小的延迟而不是一个大的延迟。</li>
+<li><strong>闲时收集（Idle-time collection）</strong>—— 垃圾收集器只会在 CPU 空闲时尝试运行，以减少可能对代码执行的影响。</li>
+</ul>
+<p>还有其他垃圾回收算法的优化和风格。尽管我想在这里描述它们，但我必须打住了，因为不同的引擎会有不同的调整和技巧。而且，更重要的是，随着引擎的发展，情况会发生变化，所以在没有真实需求的时候，“提前”学习这些内容是不值得的。当然，除非你纯粹是出于兴趣。我在下面给你提供了一些相关链接。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>主要需要掌握的内容：</p>
+<ul>
+<li>垃圾回收是自动完成的，我们不能强制执行或是阻止执行。</li>
+<li>当对象是可达状态时，它一定是存在于内存中的。</li>
+<li>被引用与可访问（从一个根）不同：一组相互连接的对象可能整体都不可达。</li>
+</ul>
+<p>现代引擎实现了垃圾回收的高级算法。</p>
+<p>《The Garbage Collection Handbook: The Art of Automatic Memory Management》（R. Jones 等人著）这本书涵盖了其中一些内容。</p>
+<p>如果你熟悉底层（low-level）编程，关于 V8 引擎垃圾回收器的更详细信息请参阅文章 <a href="http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection">V8 之旅：垃圾回收</a>。</p>
+<p><a href="http://v8project.blogspot.com/">V8 博客</a> 还不时发布关于内存管理变化的文章。当然，为了学习垃圾收集，你最好通过学习 V8 引擎内部知识来进行准备，并阅读一个名为 <a href="http://mrale.ph">Vyacheslav Egorov</a> 的 V8 引擎工程师的博客。我之所以说 “V8”，因为网上关于它的文章最丰富的。对于其他引擎，许多方法是相似的，但在垃圾收集上许多方面有所不同。</p>
+<p>当你需要底层的优化时，对引擎有深入了解将很有帮助。在熟悉了这门编程语言之后，把熟悉引擎作为下一步计划是明智之选。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../object-copy/index.html" data-tooltip="对象引用和复制"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../object-methods/index.html" data-tooltip="对象方法，&quot;this&quot;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/garbage-collection","identifier":"\/garbage-collection"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../object-basics/index.html">Object（对象）：基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ke-da-xing-reachability">可达性（Reachability）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-ge-jian-dan-de-li-zi">一个简单的例子</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#liang-ge-yin-yong">两个引用</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xiang-hu-guan-lian-de-dui-xiang">相互关联的对象</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wu-fa-dao-da-de-dao-yu">无法到达的岛屿</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nei-bu-suan-fa">内部算法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fgarbage-collection" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/04-object-basics/03-garbage-collection" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

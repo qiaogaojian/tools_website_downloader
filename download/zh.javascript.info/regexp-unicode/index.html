@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Unicode：修饰符 “u” 和 class \p{...}</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/regexp-unicode"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Unicode：修饰符 “u” 和 class \p{...}"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Unicode：修饰符 “u” 和 class \p{...}"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/regexp-character-classes"><link rel="next" href="/regexp-anchors"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Unicode：修饰符 “u” 和 class \p{...}"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-unicode"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-unicode"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/regexp-unicode"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-unicode"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-unicode"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/regexp-unicode"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/regexp-unicode"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/regexp-unicode">English</option><option value="https://es.javascript.info/regexp-unicode">Español</option><option value="https://fr.javascript.info/regexp-unicode">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-unicode">Italiano</option><option value="https://ja.javascript.info/regexp-unicode">日本語</option><option value="https://ko.javascript.info/regexp-unicode">한국어</option><option value="https://learn.javascript.ru/regexp-unicode">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/regexp-unicode" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="17" data-tooltip="第 3/17 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../regular-expressions/index.html"><span>正则表达式</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"正则表达式","item":"https://zh.javascript.info/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 7日 六月 2021"><div class="updated-at__content">7日 六月 2021</div></div></div><h1 class="main__header-title">Unicode：修饰符 “u” 和 class \p{...}</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Unicode：修饰符 “u” 和 class \p{...}"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>JavaScript 使用 <a href="https://en.wikipedia.org/wiki/Unicode">Unicode 编码</a> （Unicode encoding）对字符串进行编码。大多数字符使用 2 个字节编码，但这种方式只能编码最多 65536 个字符。</p>
+<p>这个范围不足以对所有可能的字符进行编码，这就是为什么一些罕见的字符使用 4 个字节进行编码，比如 <code>𝒳</code> （数学符号 X）或者 <code>😄</code> （笑脸），一些象形文字等等。</p>
+<p>以下是一些字符对应的 unicode 编码：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>Unicode</th>
+<th>unicode 中的字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td><code>0x0061</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td>≈</td>
+<td><code>0x2248</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td>𝒳</td>
+<td><code>0x1d4b3</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td>𝒴</td>
+<td><code>0x1d4b4</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td>😄</td>
+<td><code>0x1f604</code></td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>所以像 <code>a</code> 和 <code>≈</code> 这样的字符占用 2 个字节，而 <code>𝒳</code>，<code>𝒴</code> 和 <code>😄</code> 的对应编码则更长，它们具有 4 个字节的长度。</p>
+<p>很久以前，当 JavaScript 被发明出来的时候，Unicode 的编码要更加简单：当时并没有 4 个字节长的字符。所以，一部分语言特性在现在仍旧无法对 unicode 进行正确的处理。</p>
+<p>比如 <code>length</code> 认为这里的输入有 2 个字符：</p>
+<div id="8ughq8767f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert('😄'.length); // 2
+alert('𝒳'.length); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>…但我们可以清楚地认识到输入的字符只有一个，对吧？关键在于 <code>length</code> 把 4 个字节当成了 2 个 2 字节长的字符。这是不对的，因为它们必须被当作一个整体来考虑。（即所谓的“代理伪字符”（surrogate pair），你可以在这里进一步阅读有关的的信息 <a href="../string/index.html">字符串</a>）。</p>
+<p>默认情况下，正则表达式同样把一个 4 个字节的“长字符”当成一对 2 个字节长的字符。正如在字符串中遇到的情况，这将导致一些奇怪的结果。我们将很快在后面的文章中遇到 <a href="../regexp-character-sets-and-ranges/index.html">集合和范围 [...]</a>。</p>
+<p>与字符串有所不同的是，正则表达式有一个修饰符 <code class="pattern">u</code> 被用以解决此类问题。当一个正则表达式使用这个修饰符后，4 个字节长的字符将被正确地处理。同时也能够用上 Unicode 属性（Unicode property）来进行查找了。我们接下来就来了解这方面的内容。</p>
+<h2><a class="main__anchor" name="unicode-shu-xing-unicodepropertiesp" href="#unicode-shu-xing-unicodepropertiesp">Unicode 属性（Unicode properties）\p{…}</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">在 Firefox 和 Edge 中缺乏支持</span></div>
+            <div class="important__content"><p>尽管 unicode property 从 2018 年以来便作为标准的一部分, 但 unicode 属性在 Firefox (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1361876">bug</a>) 和 Edge (<a href="https://github.com/Microsoft/ChakraCore/issues/2969">bug</a>) 中并没有相应的支持。</p>
+<p>目前 <a href="http://xregexp.com">XRegExp</a> 这个库提供“扩展”的正则表达式，其中包括对 unicode property 的跨平台支持。</p>
+</div></div>
+<p>Unicode 中的每一个字符都具有很多的属性。它们描述了一个字符属于哪个“类别”，包含了各种关于字符的信息。</p>
+<p>例如，如果一个字符具有 <code>Letter</code> 属性，这意味着这个字符归属于（任意语言的）一个字母表。而 <code>Number</code> 属性则表示这是一个数字：也许是阿拉伯语，亦或者是中文，等等。</p>
+<p>我们可以查找具有某种属性的字符，写作 <code class="pattern">\p{…}</code>。为了顺利使用 <code class="pattern">\p{…}</code>，一个正则表达式必须使用修饰符 <code class="pattern">u</code>。</p>
+<p>举个例子，<code>\p{Letter}</code> 表示任何语言中的一个字母。我们也可以使用 <code>\p{L}</code>，因为 <code>L</code> 是 <code>Letter</code> 的一个别名（alias）。对于每种属性而言，几乎都存在对应的缩写别名。</p>
+<p>在下面的例子中 3 种字母将会被查找出：英语、格鲁吉亚语和韩语。</p>
+<div id="n03bbhjj9w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;A ბ ㄱ&quot;;
+
+alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
+alert( str.match(/\p{L}/g) ); // null（没有匹配的文本，因为没有修饰符“u”）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>以下是主要的字符类别和它们对应的子类别：</p>
+<ul>
+<li>字母（Letter） <code>L</code>:
+<ul>
+<li>小写（lowercase） <code>Ll</code></li>
+<li>修饰（modifier） <code>Lm</code>,</li>
+<li>首字母大写（titlecase） <code>Lt</code>,</li>
+<li>大写（uppercase） <code>Lu</code>,</li>
+<li>其它（other） <code>Lo</code>。</li>
+</ul>
+</li>
+<li>数字（Number） <code>N</code>:
+<ul>
+<li>十进制数字（decimal digit） <code>Nd</code>,</li>
+<li>字母数字（letter number） <code>Nl</code>,</li>
+<li>其它（other） <code>No</code>。</li>
+</ul>
+</li>
+<li>标点符号（Punctuation） <code>P</code>:
+<ul>
+<li>链接符（connector） <code>Pc</code>,</li>
+<li>横杠（dash） <code>Pd</code>,</li>
+<li>起始引用号（initial quote） <code>Pi</code>,</li>
+<li>结束引用号（final quote） <code>Pf</code>,</li>
+<li>开（open） <code>Ps</code>,</li>
+<li>闭（close） <code>Pe</code>,</li>
+<li>其它（other） <code>Po</code>。</li>
+</ul>
+</li>
+<li>标记（Mark） <code>M</code> (accents etc):
+<ul>
+<li>间隔合并（spacing combining） <code>Mc</code>,</li>
+<li>封闭（enclosing） <code>Me</code>,</li>
+<li>非间隔（non-spacing） <code>Mn</code>。</li>
+</ul>
+</li>
+<li>符号（Symbol） <code>S</code>:
+<ul>
+<li>货币（currency） <code>Sc</code>,</li>
+<li>修饰（modifier） <code>Sk</code>,</li>
+<li>数学（math） <code>Sm</code>,</li>
+<li>其它（other） <code>So</code>。</li>
+</ul>
+</li>
+<li>分隔符（Separator） <code>Z</code>:
+<ul>
+<li>行（line） <code>Zl</code>,</li>
+<li>段落（paragraph） <code>Zp</code>,</li>
+<li>空格（space） <code>Zs</code>。</li>
+</ul>
+</li>
+<li>其它（Other） <code>C</code>:
+<ul>
+<li>控制符（control） <code>Cc</code>,</li>
+<li>格式（format） <code>Cf</code>,</li>
+<li>未分配（not assigned） <code>Cn</code>,</li>
+<li>私有（private use） <code>Co</code>,</li>
+<li>代理伪字符（surrogate） <code>Cs</code>。</li>
+</ul>
+</li>
+</ul>
+<p>因此，比如说我们需要小写的字母，就可以写成 <code class="pattern">\p{Ll}</code>，标点符号写作 <code class="pattern">\p{P}</code> 等等。</p>
+<p>也有其它派生的类别，例如：</p>
+<ul>
+<li><code>Alphabetic</code> (<code>Alpha</code>), 包含了字母 <code>L</code>, 加上字母数字 <code>Nl</code> （例如 Ⅻ – 罗马数字 12），加上一些其它符号 <code>Other_Alphabetic</code> (<code>OAlpha</code>)。</li>
+<li><code>Hex_Digit</code> 包括 16 进制数字 <code>0-9</code>，<code>a-f</code>。</li>
+<li>…等等</li>
+</ul>
+<p>Unicode 支持相当数量的属性，列出整个清单需要占用大量的空间，因此在这里列出相关的链接：</p>
+<ul>
+<li>列出一个字符的所有属性 <a href="https://unicode.org/cldr/utility/character.jsp">https://unicode.org/cldr/utility/character.jsp</a>.</li>
+<li>按照属性列出所有的字符 <a href="https://unicode.org/cldr/utility/list-unicodeset.jsp">https://unicode.org/cldr/utility/list-unicodeset.jsp</a>.</li>
+<li>属性的对应缩写形式：<a href="https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt">https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt</a>.</li>
+<li>以文本格式整理的所有 Unicode 字符，包含了所有的属性：<a href="https://www.unicode.org/Public/UCD/latest/ucd/">https://www.unicode.org/Public/UCD/latest/ucd/</a>.</li>
+</ul>
+<h3><a class="main__anchor" name="shi-li-16-jin-zhi-shu-zi" href="#shi-li-16-jin-zhi-shu-zi">实例：16 进制数字</a></h3><p>举个例子，让我们来查找 16 进制数字，写作 <code>xFF</code> 其中 <code>F</code> 是一个 16 进制的数字（0…9 或者 A…F）。</p>
+<p>一个 16 进制数字可以表示为 <code class="pattern">\p{Hex_Digit}</code>：</p>
+<div id="a2fciru0d2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
+
+alert(&quot;number: xAF&quot;.match(regexp)); // xAF</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="shi-li-zhong-wen-zi-fu" href="#shi-li-zhong-wen-zi-fu">实例：中文字符</a></h3><p>让我们再来考虑中文字符。</p>
+<p>有一个 unicode 属性 <code>Script</code> （一个书写系统），这个属性可以有一个值：<code>Cyrillic</code>，<code>Greek</code>，<code>Arabic</code>，<code>Han</code> （中文）等等，<a href="https://en.wikipedia.org/wiki/Script_(Unicode)">这里是一个完整的列表</a>。</p>
+<p>为了实现查找一个给定的书写系统中的字符，我们需要使用 <code class="pattern">Script=&lt;value&gt;</code>，例如对于西里尔字符：<code class="pattern">\p{sc=Cyrillic}</code>, 中文字符：<code class="pattern">\p{sc=Han}</code>，等等。</p>
+<div id="47qmzxb0nq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /\p{sc=Han}/gu; // returns Chinese hieroglyphs
+
+let str = `Hello Привет 你好 123_456`;
+
+alert( str.match(regexp) ); // 你,好</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="shi-li-huo-bi" href="#shi-li-huo-bi">实例：货币</a></h3><p>表示货币的字符，例如 <code>$</code>，<code>€</code>，<code>¥</code>，具有 unicode 属性 <code class="pattern">\p{Currency_Symbol}</code>，缩写为 <code class="pattern">\p{Sc}</code>。</p>
+<p>让我们使用这一属性来查找符合“货币，接着是一个数字”的价格文本：</p>
+<div id="9irf1lrnj8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /\p{Sc}\d/gu;
+
+let  str = `Prices: $2, €1, ¥9`;
+
+alert( str.match(regexp) ); // $2,€1,¥9</code></pre>
+        </div>
+      </div>
+      
+      </div><p>之后，在文章 <a href="../regexp-quantifiers/index.html">量词 `+,*,?` 和 `{n}`</a> 中我们将会了解如何查找包含很多位的数字。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>修饰符 <code class="pattern">u</code> 在正则表达式中提供对 Unicode 的支持。</p>
+<p>这意味着两件事：</p>
+<ol>
+<li>4 个字节长的字符被以正确的方式处理：被看成单个的字符，而不是 2 个 2 字节长的字符。</li>
+<li>Unicode 属性可以被用于查找中 <code>\p{…}</code>。</li>
+</ol>
+<p>有了 unicode 属性我们可以查找给定语言中的词，特殊字符（引用，货币）等等。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../regexp-character-classes/index.html" data-tooltip="字符类"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../regexp-anchors/index.html" data-tooltip="锚点（Anchors)：字符串开始 ^ 和末尾 $"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/regexp-unicode","identifier":"\/regexp-unicode"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../regular-expressions/index.html">正则表达式</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#unicode-shu-xing-unicodepropertiesp">Unicode 属性（Unicode properties）\p{…}</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fregexp-unicode" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/9-regular-expressions/03-regexp-unicode" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">键盘：keydown 和 keyup</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/keyboard-events"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="键盘：keydown 和 keyup"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="键盘：keydown 和 keyup"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/pointer-events"><link rel="next" href="/onscroll"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="键盘：keydown 和 keyup"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/keyboard-events"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/keyboard-events"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/keyboard-events"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/keyboard-events"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/keyboard-events"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/keyboard-events"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/keyboard-events"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/keyboard-events"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/keyboard-events">English</option><option value="https://es.javascript.info/keyboard-events">Español</option><option value="https://fr.javascript.info/keyboard-events">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/keyboard-events">Italiano</option><option value="https://ja.javascript.info/keyboard-events">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/keyboard-events">Русский</option><option value="https://tr.javascript.info/keyboard-events">Türkçe</option><option value="https://uk.javascript.info/keyboard-events">Українська</option><option value="https://zh.javascript.info/keyboard-events" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="21" max="32" data-tooltip="第 21/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../event-details/index.html"><span>UI 事件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"UI 事件","item":"https://zh.javascript.info/event-details"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">键盘：keydown 和 keyup</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="键盘：keydown 和 keyup"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在我们开始学习键盘的相关内容之前，请注意，在现代设备上，还有其他“输入内容”的方法。例如，人们使用语音识别（尤其是在移动端设备上）或用鼠标复制/粘贴。</p>
+<p>因此，如果我们想要跟踪 <code>&lt;input&gt;</code> 字段中的所有输入，那么键盘事件是不够的。无论如何，还需要一个名为 <code>input</code> 的事件来跟踪 <code>&lt;input&gt;</code> 字段中的更改。对于这样的任务来说，这可能是一个更好的选择。稍后我们将在 <a href="../events-change-input/index.html">事件：change，input，cut，copy，paste</a> 一章中介绍它们。</p>
+<p>当我们想要处理键盘行为时，应该使用键盘事件（虚拟键盘也算）。例如，对方向键 <kbd class="shortcut">Up</kbd> 和 <kbd class="shortcut">Down</kbd> 或热键（包括按键的组合）作出反应。</p>
+<h2><a class="main__anchor" name="keyboard-test-stand" href="#keyboard-test-stand">测试台</a></h2><p>为了更好地理解键盘事件，你可以使用下面这个测试台。</p>
+<p>在文本区域中尝试使用不同的组合键。</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">script.js</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/keyboard-events/keyboard-dump/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/trpJ7Wpj7mFgypES?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:480px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/keyboard-events/keyboard-dump/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>kinput.onkeydown = kinput.onkeyup = kinput.onkeypress = handle;
+
+let lastTime = Date.now();
+
+function handle(e) {
+  if (form.elements[e.type + 'Ignore'].checked) return;
+
+  let text = e.type +
+    ' key=' + e.key +
+    ' code=' + e.code +
+    (e.shiftKey ? ' shiftKey' : '') +
+    (e.ctrlKey ? ' ctrlKey' : '') +
+    (e.altKey ? ' altKey' : '') +
+    (e.metaKey ? ' metaKey' : '') +
+    (e.repeat ? ' (repeat)' : '') +
+    &quot;\n&quot;;
+
+  if (area.value &amp;&amp; Date.now() - lastTime &gt; 250) {
+    area.value += new Array(81).join('-') + '\n';
+  }
+  lastTime = Date.now();
+
+  area.value += text;
+
+  if (form.elements[e.type + 'Stop'].checked) {
+    e.preventDefault();
+  }
+}</code></pre></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#kinput {
+  font-size: 150%;
+  box-sizing: border-box;
+  width: 95%;
+}
+
+#area {
+  width: 95%;
+  box-sizing: border-box;
+  height: 250px;
+  border: 1px solid black;
+  display: block;
+}
+
+form label {
+  display: inline;
+  white-space: nowrap;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;form id=&quot;form&quot; onsubmit=&quot;return false&quot;&gt;
+
+    Prevent default for:
+    &lt;label&gt;
+      &lt;input type=&quot;checkbox&quot; name=&quot;keydownStop&quot; value=&quot;1&quot;&gt; keydown&lt;/label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+    &lt;label&gt;
+      &lt;input type=&quot;checkbox&quot; name=&quot;keyupStop&quot; value=&quot;1&quot;&gt; keyup&lt;/label&gt;
+
+    &lt;p&gt;
+      Ignore:
+      &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot; name=&quot;keydownIgnore&quot; value=&quot;1&quot;&gt; keydown&lt;/label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+      &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot; name=&quot;keyupIgnore&quot; value=&quot;1&quot;&gt; keyup&lt;/label&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;Focus on the input field and press a key.&lt;/p&gt;
+
+    &lt;input type=&quot;text&quot; placeholder=&quot;Press keys here&quot; id=&quot;kinput&quot;&gt;
+
+    &lt;textarea id=&quot;area&quot;&gt;&lt;/textarea&gt;
+    &lt;input type=&quot;button&quot; value=&quot;Clear&quot; onclick=&quot;area.value = ''&quot; /&gt;
+  &lt;/form&gt;
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="keydown-he-keyup" href="#keydown-he-keyup">Keydown 和 keyup</a></h2><p>当一个按键被按下时，会触发 <code>keydown</code> 事件，而当按键被释放时，会触发 <code>keyup</code> 事件。</p>
+<h3><a class="main__anchor" name="eventcode-he-eventkey" href="#eventcode-he-eventkey">event.code 和 event.key</a></h3><p>事件对象的 <code>key</code> 属性允许获取字符，而事件对象的 <code>code</code> 属性则允许获取“物理按键代码”。</p>
+<p>例如，同一个按键 <kbd class="shortcut">Z</kbd>，可以与或不与 <code>Shift</code> 一起按下。我们会得到两个不同的字符：小写的 <code>z</code> 和大写的 <code>Z</code>。</p>
+<p><code>event.key</code> 正是这个字符，并且它将是不同的。但是，<code>event.code</code> 是相同的：</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th><code>event.key</code></th>
+<th><code>event.code</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd class="shortcut">Z</kbd></td>
+<td><code>z</code>（小写）</td>
+<td><code>KeyZ</code></td>
+</tr>
+<tr>
+<td><kbd class="shortcut">Shift<span class="shortcut__plus">+</span>Z</kbd></td>
+<td><code>Z</code>（大写）</td>
+<td><code>KeyZ</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果用户使用不同的语言，那么切换到另一种语言将产生完全不同的字符，而不是 <code>&quot;Z&quot;</code>。它将成为 <code>event.key</code> 的值，而 <code>event.code</code> 则始终都是一样的：<code>&quot;KeyZ&quot;</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">“KeyZ” 和其他按键代码</span></div>
+            <div class="important__content"><p>每个按键的代码都取决于该按键在键盘上的位置。<a href="https://www.w3.org/TR/uievents-code/">UI 事件代码规范</a> 中描述了按键代码。</p>
+<p>例如：</p>
+<ul>
+<li>字符键的代码为 <code>&quot;Key&lt;letter&gt;&quot;</code>：<code>&quot;KeyA&quot;</code>，<code>&quot;KeyB&quot;</code> 等。</li>
+<li>数字键的代码为：<code>&quot;Digit&lt;number&gt;&quot;</code>：<code>&quot;Digit0&quot;</code>，<code>&quot;Digit1&quot;</code> 等。</li>
+<li>特殊按键的代码为按键的名字：<code>&quot;Enter&quot;</code>，<code>&quot;Backspace&quot;</code>，<code>&quot;Tab&quot;</code> 等。</li>
+</ul>
+<p>有几种广泛应用的键盘布局，该规范给出了每种布局的按键代码。</p>
+<p>有关更多按键代码，请参见 <a href="https://www.w3.org/TR/uievents-code/#key-alphanumeric-section">规范的字母数字部分</a>，或者只需在上面的 <a href="#keyboard-test-stand">测试台</a> 中按下一个按键。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">大小写敏感：<code>&quot;KeyZ&quot;</code>，不是 <code>&quot;keyZ&quot;</code></span></div>
+            <div class="important__content"><p>这是显而易见的，但人们仍会搞错。</p>
+<p>请规避错误类型：它是 <code>KeyZ</code>，而不是 <code>keyZ</code>。像 <code>event.code==&quot;keyZ&quot;</code> 这样的检查不起作用：<code>&quot;Key&quot;</code> 的首字母必须大写。</p>
+</div></div>
+<p>如果按键没有给出任何字符呢？例如，<kbd class="shortcut">Shift</kbd> 或 <kbd class="shortcut">F1</kbd> 或其他。对于这些按键，它们的 <code>event.key</code> 与 <code>event.code</code> 大致相同：</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th><code>event.key</code></th>
+<th><code>event.code</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd class="shortcut">F1</kbd></td>
+<td><code>F1</code></td>
+<td><code>F1</code></td>
+</tr>
+<tr>
+<td><kbd class="shortcut">Backspace</kbd></td>
+<td><code>Backspace</code></td>
+<td><code>Backspace</code></td>
+</tr>
+<tr>
+<td><kbd class="shortcut">Shift</kbd></td>
+<td><code>Shift</code></td>
+<td><code>ShiftRight</code> 或 <code>ShiftLeft</code></td>
+</tr>
+</tbody>
+</table>
+<p>请注意，<code>event.code</code> 准确地标明了哪个键被按下了。例如，大多数键盘有两个 <kbd class="shortcut">Shift</kbd> 键，一个在左边，一个在右边。<code>event.code</code> 会准确地告诉我们按下了哪个键，而 <code>event.key</code> 对按键的“含义”负责：它是什么（一个 “Shift”）。</p>
+<p>假设，我们要处理一个热键：<kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>Z</kbd>（或 Mac 上的 <kbd class="shortcut">Cmd<span class="shortcut__plus">+</span>Z</kbd>）。大多数文本编辑器将“撤销”行为挂在其上。我们可以在 <code>keydown</code> 上设置一个监听器，并检查哪个键被按下了。</p>
+<p>这里有个难题：在这样的监听器中，我们应该检查 <code>event.key</code> 的值还是 <code>event.code</code> 的值？</p>
+<p>一方面，<code>event.key</code> 的值是一个字符，它随语言而改变。如果访问者在 OS 中使用多种语言，并在它们之间进行切换，那么相同的按键将给出不同的字符。因此检查 <code>event.code</code> 会更好，因为它总是相同的。</p>
+<p>像这样：</p>
+<div id="3et6ll0hm2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.addEventListener('keydown', function(event) {
+  if (event.code == 'KeyZ' &amp;&amp; (event.ctrlKey || event.metaKey)) {
+    alert('Undo!')
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>另一方面，<code>event.code</code> 有一个问题。对于不同的键盘布局，相同的按键可能会具有不同的字符。</p>
+<p>例如，下面是美式布局（“QWERTY”）和德式布局（“QWERTZ”）—— 来自 Wikipedia：</p>
+<figure><div class="image" style="width:602px">
+      <div class="image__ratio" style="padding-top:33.5548172757475%"></div>
+      <object type="image/svg+xml" data="../article/keyboard-events/us-layout.svg" width="602" height="202" class="image__image" data-use-theme>
+        <img src="../article/keyboard-events/us-layout.svg" alt width="602" height="202">
+      </object>
+      </div></figure><figure><div class="image" style="width:600px">
+      <div class="image__ratio" style="padding-top:33.33333333333333%"></div>
+      <object type="image/svg+xml" data="../article/keyboard-events/german-layout.svg" width="600" height="200" class="image__image" data-use-theme>
+        <img src="../article/keyboard-events/german-layout.svg" alt width="600" height="200">
+      </object>
+      </div></figure><p>对于同一个按键，美式布局为 “Z”，而德式布局为 “Y”（字母被替换了）。</p>
+<p>从字面上看，对于使用德式布局键盘的人来说，但他们按下 <kbd class="shortcut">Y</kbd> 时，<code>event.code</code> 将等于 <code>KeyZ</code>。</p>
+<p>如果我们在代码中检查 <code>event.code == 'KeyZ'</code>，那么对于使用德式布局键盘的人来说，当他们按下 <kbd class="shortcut">Y</kbd> 时，这个测试就通过了。</p>
+<p>听起来确实很怪，但事实确实如此。<a href="https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system">规范</a> 中明确提到了这种行为。</p>
+<p>因此，<code>event.code</code> 可能由于意外的键盘布局而与错误的字符进行了匹配。不同键盘布局中的相同字母可能会映射到不同的物理键，从而导致了它们有不同的代码。幸运的是，这种情况只发生在几个代码上，例如 <code>keyA</code>，<code>keyQ</code>，<code>keyZ</code>（我们已经看到了），而对于诸如 <code>Shift</code> 这样的特殊按键没有发生这种情况。你可以在 <a href="https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system">规范</a> 中找到该列表。</p>
+<p>为了可靠地跟踪与受键盘布局影响的字符，使用 <code>event.key</code> 可能是一个更好的方式。</p>
+<p>另一方面，<code>event.code</code> 的好处是，即使访问者更改了语言，绑定到物理键位置的 <code>event.code</code> 会始终保持不变。因此，即使在切换了语言的情况下，依赖于它的热键也能正常工作。</p>
+<p>我们想要处理与布局有关的按键？那么 <code>event.key</code> 是我们必选的方式。</p>
+<p>或者我们希望一个热键即使在切换了语言后，仍能正常使用？那么 <code>event.code</code> 可能会更好。</p>
+<h2><a class="main__anchor" name="zi-dong-zhong-fu" href="#zi-dong-zhong-fu">自动重复</a></h2><p>如果按下一个键足够长的时间，它就会开始“自动重复”：<code>keydown</code> 会被一次又一次地触发，然后当按键被释放时，我们最终会得到 <code>keyup</code>。因此，有很多 <code>keydown</code> 却只有一个 <code>keyup</code> 是很正常的。</p>
+<p>对于由自动重复触发的事件，<code>event</code> 对象的 <code>event.repeat</code> 属性被设置为 <code>true</code>。</p>
+<h2><a class="main__anchor" name="mo-ren-hang-wei" href="#mo-ren-hang-wei">默认行为</a></h2><p>默认行为各不相同，因为键盘可能会触发很多可能的东西。</p>
+<p>例如：</p>
+<ul>
+<li>出现在屏幕上的一个字符（最明显的结果）。</li>
+<li>一个字符被删除（<kbd class="shortcut">Delete</kbd> 键）。</li>
+<li>滚动页面（<kbd class="shortcut">PageDown</kbd> 键）。</li>
+<li>浏览器打开“保存页面”对话框（<kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>S</kbd>）</li>
+<li>……等。</li>
+</ul>
+<p>阻止对 <code>keydown</code> 的默认行为可以取消大多数的行为，但基于 OS 的特殊按键除外。例如，在 Windows 中，<kbd class="shortcut">Alt<span class="shortcut__plus">+</span>F4</kbd> 会关闭当前浏览器窗口。并且无法通过在 JavaScript 中阻止默认行为来阻止它。</p>
+<p>例如，下面的这个 <code>&lt;input&gt;</code> 期望输入的内容为一个电话号码，因此它不会接受除数字，<code>+</code>，<code>()</code> 和 <code>-</code> 以外的按键：</p>
+<div id="afzc60sd1d" data-trusted="1" class="code-example" data-demo-height="60" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:7,&quot;end&quot;:50}]}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+function checkPhoneKey(key) {
+  return (key &gt;= '0' &amp;&amp; key &lt;= '9') || ['+','(',')','-'].includes(key);
+}
+&lt;/script&gt;
+&lt;input onkeydown=&quot;return checkPhoneKey(event.key)&quot; placeholder=&quot;请输入手机号&quot; type=&quot;tel&quot;&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-afzc60sd1d" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>这里 <code>onkeydown</code> 的处理程序使用 <code>checkPhoneKey</code> 来检查被按下的按键。如果它是有效的（<code>0..9</code> 或 <code>+-()</code> 之一），那么将返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>我们都知道，像上面那样，从事件处理程序返回 <code>false</code> 会阻止事件的默认行为，所以如果按下的按键未通过按键检查，那么 <code>&lt;input&gt;</code> 中什么都不会出现（从事件处理程序返回 <code>true</code> 不会对任何行为产生影响，只有返回 <code>false</code> 会产生对应的影响）。</p>
+<p>请注意，像 <kbd class="shortcut">Backspace</kbd>，<kbd class="shortcut">Left</kbd>，<kbd class="shortcut">Right</kbd>，<kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>V</kbd> 这样的特殊按键在输入中无效。这是严格过滤器 <code>checkPhoneKey</code> 的副作用。</p>
+<p>让我们将过滤条件放松一下：</p>
+<div id="0g6sgkk3v3" data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+function checkPhoneKey(key) {
+  return (key &gt;= '0' &amp;&amp; key &lt;= '9') ||
+    ['+','(',')','-','ArrowLeft','ArrowRight','Delete','Backspace'].includes(key);
+}
+&lt;/script&gt;
+&lt;input onkeydown=&quot;return checkPhoneKey(event.key)&quot; placeholder=&quot;Phone, please&quot; type=&quot;tel&quot;&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-0g6sgkk3v3" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在方向键和删除键都能正常使用了。</p>
+<p>……但我们仍然可以使用鼠标右键单击 + 粘贴来输入任何内容。因此，这个过滤器并不是 100% 可靠。我们可以让它就这样吧，因为大多数情况下它是有效的。或者，另一种方式是跟踪 <code>input</code> 事件 —— 在任何修改后触发。这样我们就可以检查新值，并在其无效时高亮/修改它。</p>
+<h2><a class="main__anchor" name="yi-cun" href="#yi-cun">遗存</a></h2><p>过去曾经有一个 <code>keypress</code> 事件，还有事件对象的 <code>keyCode</code>、<code>charCode</code> 和 <code>which</code> 属性。</p>
+<p>大多数浏览器对它们都存在兼容性问题，以致使该规范的开发者不得不弃用它们并创建新的现代的事件（本文上面所讲的这些事件），除此之外别无选择。旧的代码仍然有效，因为浏览器还在支持它们，但现在完全没必要再使用它们。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>按一个按键总是会产生一个键盘事件，无论是符号键，还是例如 <kbd class="shortcut">Shift</kbd> 或 <kbd class="shortcut">Ctrl</kbd> 等特殊按键。唯一的例外是有时会出现在笔记本电脑的键盘上的 <kbd class="shortcut">Fn</kbd> 键。它没有键盘事件，因为它通常是被在比 OS 更低的级别上实现的。</p>
+<p>键盘事件：</p>
+<ul>
+<li><code>keydown</code> —— 在按下键时（如果长按按键，则将自动重复），</li>
+<li><code>keyup</code> —— 释放按键时。</li>
+</ul>
+<p>键盘事件的主要属性：</p>
+<ul>
+<li><code>code</code> —— “按键代码”（<code>&quot;KeyA&quot;</code>，<code>&quot;ArrowLeft&quot;</code> 等），特定于键盘上按键的物理位置。</li>
+<li><code>key</code> —— 字符（<code>&quot;A&quot;</code>，<code>&quot;a&quot;</code> 等），对于非字符（non-character）的按键，通常具有与 <code>code</code> 相同的值。</li>
+</ul>
+<p>过去，键盘事件有时会被用于跟踪表单字段中的用户输入。这并不可靠，因为输入可能来自各种来源。我们有 <code>input</code> 和 <code>change</code> 事件来处理任何输入（稍后我们会在 <a href="../events-change-input/index.html">事件：change，input，cut，copy，paste</a> 一章中进行介绍）。它们在任何类型的输入（包括复制粘贴或语音识别）后触发。</p>
+<p>当我们真的想要键盘时，我们应该使用键盘事件。例如，对热键或特殊键作出反应。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#kuo-zhan-re-jian" name="kuo-zhan-re-jian">扩展热键</a></h3><a class="task__open-link" href="../task/check-sync-keydown/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个 <code>runOnKeys(func, code1, code2, ... code_n)</code> 函数，在同时按下 <code>code1, code2, ... code_n</code> 键时运行函数 <code>func</code>。</p>
+<p>例如，当按键 <code>&quot;Q&quot;</code> 和 <code>&quot;W&quot;</code> 被一起按下时（任何语言中，无论是否 CapsLock），下面的代码将显示 <code>alert</code>：</p>
+<div id="km8n127cqb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>runOnKeys(
+  () =&gt; alert(&quot;Hello!&quot;),
+  &quot;KeyQ&quot;,
+  &quot;KeyW&quot;
+);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://zh.js.cx/task/check-sync-keydown/solution/" target="blank">在新窗口中演示</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们应该使用两个处理程序：<code>document.onkeydown</code> 和 <code>document.onkeyup</code>。</p>
+<p>让我们创建一个集合 <code>pressed = new Set()</code> 来保存当前被按下的键。</p>
+<p>第一个处理程序把当前被按下的键添加到集合中，而第二个处理程序将被松开的按键从集合中移除。我们每次在 <code>keydown</code> 上检查我们是否按下了足够多的键，如果是，则运行函数 <code>func</code>。</p>
+<p><a href="https://plnkr.co/edit/gTg9nUs9yORqiOkR?p=preview" target="_blank" data-plunk-id="gTg9nUs9yORqiOkR">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../pointer-events/index.html" data-tooltip="指针事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../onscroll/index.html" data-tooltip="滚动"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/keyboard-events","identifier":"\/keyboard-events"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../event-details/index.html">UI 事件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#keyboard-test-stand">测试台</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#keydown-he-keyup">Keydown 和 keyup</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-dong-zhong-fu">自动重复</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mo-ren-hang-wei">默认行为</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-cun">遗存</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fkeyboard-events" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/3-event-details/7-keyboard-events" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

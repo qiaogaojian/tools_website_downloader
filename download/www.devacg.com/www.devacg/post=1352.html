@@ -1,0 +1,1271 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>定制特性(Attribute)</title>
+<meta name="keywords" content="鸟语,C#">
+<meta name="description" content="本章内容： ● 使用定制特性 ● 定义自己的特性类 ● 特性构造器和字段/属性数据类型 ● 检测定制特性 ● 两个特性实例的相互匹配 ● 检测定...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>定制特性(Attribute)</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2021-3-10 10:28 
+			分类：<a href="sort%3D2.html">C#</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	本章内容：<br>
+● 使用定制特性<br>
+● 定义自己的特性类<br>
+● 特性构造器和字段/属性数据类型<br>
+● 检测定制特性<br>
+● 两个特性实例的相互匹配<br>
+● 检测定制特性时不创建从<b>Attribute</b>派生的对象<br>
+● 条件特性类
+</p>
+<p>
+	本章讨论 Microsoft .NET Framework 提供的最具创意的功能之一：<b>定制特性</b>(custom attribute)。利用定制特性，可宣告式地为自己的代码构造添加注解来实现特殊功能。定制特性允许为几乎每一个元数据表记录项定义和应用信息。这种可扩展的元数据信息能在运行时查询，从而动态改变代码的执行方式。使用各种.NET Framework 技术(Windows 窗体,WPF 和 WCF 等)，会发现它们都利用了定制特性，目的是方便开发者在代码中表达他们的意图。任何.NET Framework 开发人员都有必要完全掌握定制特性。
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例——定制特性
+	</h5>
+<pre class="example_code">using System;
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+internal sealed class OSVERSIONINFO {
+	public OSVERSIONINFO() {
+		OSversionInfoSize = (UInt32) Marshal.SizeOf(this);
+	}
+	
+	public UInt32 OSversionInfoSize = 0;
+	public UInt32 MajorVersion = 0;
+	public UInt32 MinorVersion = 0;
+	public UInt32 BuildNumber = 0;
+	public UInt32 PlatformId = 0;
+	
+	[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+	public String CSDVersion = null;
+}
+
+internal sealed class MyClass {
+	[DllImport("Kernel32", CharSet = CharSet.Auto, SetLastError = true)]
+	<code_summary>//将In和Out特性应用于参数ver</code_summary>
+	public static extern Boolean GetVersionEx([In, Out] OSVERSIONINFO ver);
+}
+</pre>
+</div>
+<br>
+<p>
+	CLR 允许将特性应用于可在文件的元数据中表示的几乎任何东西。不过最常应用特性的还是以下定义表中的记录项：TypeDef(类、结构、枚举、接口和委托)，MethodDef(含构造器)，ParamDef， FieldDef, PropertyDef, EventDef， AssemblyDef 和 ModuleDef。更具体地说，C#只允许将特性应用于定义以下任何目标元素的源代码：<u>程序集、模块、类型(类、结构、枚举、接口、委托)、字段、方法(含构造器)、方法参数、方法返回值、属性、事件和泛型类型参数</u>。
+</p>
+<p>
+	应用特性时，C#允许用一个前缀明确指定特性要应用于的目标元素。以下代码展示了所有可能的前缀。许多时候，即使省略前缀，编译器也能判断特性要应用于什么目标元素(就像上例展示的那样)。但在其他时候，必须指定前缀向编译器清楚表明我们的意图。下面倾斜显示的前缀是必须的。
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例——特性前缀
+	</h5>
+<pre class="example_code">using System;
+
+[assembly: SomeAttr] <code_summary>//应用于程序集</code_summary>
+[module: SomeAttr]   <code_summary>//应用于模块</code_summary>
+
+[type: SomeAttr]	 <code_summary>//应用于类型</code_summary>
+internal sealed class SomeType&lt;[typevar: SomeAttr] T&gt; { <code_summary>//应用于泛型类型变量</code_summary>
+	[field: SomeAttr] <code_summary>//应用于字段</code_summary>
+	public Int32 SomeAttrField = 0;
+	
+	[return: SomeAttr] <code_summary>//应用于返回值</code_summary>
+	[method: SomeAttr] <code_summary>//应用于方法</code_summary>
+	public Int32 SomeMethod (
+		[param: SomeAttr]	<code_summary>//应用于参数</code_summary>
+		Int32 SomeParam) {
+		return SomeParam;
+	}
+	
+	[property: SomeAttr] <code_summary>//应用于属性</code_summary>
+	public String SomeProp {
+		[method: SomeAttr] <code_summary>//应用于get访问器方法</code_summary>
+		get { return null; }
+	}
+	
+	[event: SomeAttr] <code_summary>//应用于事件</code_summary>
+	[field: SomeAttr] <code_summary>//应用于编译器生成的字段</code_summary>
+	[method: SomeAttr] <code_summary>//应用于编译器生成的 add &amp; remove 方法</code_summary>
+	public event EventHandler SomeEvent;
+}
+</pre>
+</div>
+<br>
+<p>
+	前面介绍了如何应用定制特性，现在看看特性到底是什么。定制特性其实是一个类型的实例。为了符合“公共语规范”(CLS)的要求，定制特性类必须直接或间接从公共抽象类System.Attribute 派生。C#只允许符合 CLS 规范的特性。查看文档会发现定义了以下类(参见前面的例子)：<b>StructLayoutAttribute，MarshalAsAttribute，DllImportAttribute，InAttribute</b> 和 <b>OutAttribute</b>。所有这些类碰巧都在 <b>System.Runtime.InteropServices</b> 命名空间中定义。但特性类可以在任何命名空间中定义。进一步查看，会发现所有这些类都从<b>System.Attribute</b> 派生，所有符合 CLS 规范的特性类都肯定从这个类派生。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;
+将特性应用于源代码中的目标元素时,C#编译器允许省略 Attribute后缀以减少打字量，并提升源代码的可读性。本章许多示例代码都利用了C#提供的这一便利。例如，许多源代码用的都是[DllImport(...)]，而不是[DllImportAttribute(...)]。
+</div>
+<br>
+<p>
+	如前所述，特性是类的实例。类必须有公共构造器才能创建它的实例。所以，将特性应用于目标元素时，语法类似于调用类的某个实例构造器。除此之外，语言可能支持一些特殊的语法，允许设置与特性类关联的公共字段或属性。前面的例子将 DllImport 特性应用于
+GetVersionEx方法：<br>
+[DllImport("Kerne132", Charset = Charset.Auto, SetLastError = true)]<br>
+这一行代码的语法表面上看很奇怪，因为调用构造器时永远不会使用这样的语法。查阅DllImportAttribute 类的文档，会发现它的构造器要求接受一个 String 参数。在这个例子中，"Kernel32"将传给这个参数。构造器的参数称为<b>定位参数</b>(positional parameter)，而且是强制性的；也就是说，应用特性时必须指定参数。
+</p>
+<p>
+	那么，另外两个“参数”是什么呢？这种特殊的语法允许在构造好 DllImportAttribute 对象后设置对象的任何公共字段或属性。在这个例子中，将"Kernel32"传给构造器并构造好DllImportAttribute 对象之后，对象的公共实例字段 CharSet 和 SetLastError 分别设为CharSet.Auto 和 true。用于设置字段或属性的“参数”称为<b>命名参数</b>(named parameter)。这种参数是可选的，因为在应用特性的实例时不一定要指定参数。稍后会解释是什么导致了实际地构造 DllImportAttribute 类的实例。
+</p>
+<p>
+	还要注意，可将多个特性应用于一个目标元素。例如，在本章的第一个示例程序中，GeVersionEx方法的 ver 参数同时应用了 In 和 Out 这两个特性。将多个特性应用于单个目标元素时，注意特性的顺序无关紧要。另外，在 C#中，既可将每个特性都封闭到一对方括号中，也可在一对方括号中封闭多个以逗号分隔的特性。如果特性类的构造器不获取参数，那么圆括号可以省略。最后，就像前面说到的那样，Attribute 后缀也是可选的。下面代码行具有相同的行为，它们演示了应用多个特性时所有可能的方式：<br>
+[Serializable][Flags]<br>
+[Serializable, Flags]<br>
+[FlagsAttribute, SerializableAttribute]<br>
+[FlagsAttribute()][Serializable()]
+</p>
+<p>
+	<span style="font-size:14px;"><strong>定义自己的特性类</strong></span> 
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例——定义自己的特性类
+	</h5>
+<pre class="example_code">namespace System {
+	public class FlagsAttribute : System.Attribute {
+		public FlagsAttribute() {
+		
+		}
+	}
+}
+</pre>
+</div>
+<br>
+<p>
+	注意，FlagsAttribute 类从 Attribute 继承。这使 FlagsAttribute 类成为符合 CLS 规范的定制特性。此外，注意类名有 Attrtibute 后缀：这是为了保持与标准的相容性，但这并不是必须的。最后，所有非抽象特性至少要包含一个公共构造器。上述代码中的 FlagsAttribute构造器非常简单，不获取任何参数，也不做任何事情。
+</p>
+<div class="border-radius-1">
+	<strong>重要提示</strong>&nbsp;&nbsp;
+应将特性想像成逻辑状态容器。也就是说，虽然特性类型是一个类，但这个类应该很简单。应该只提供一个公共构造器来接受特性的强制性(或定位性)状态信息，而且这个类可以提供公共字段和属性，以接受特性的可选(或命名)状态信息。类不应提供任何公共方法、事件或其他成员。<br>
+<br>
+我通常不鼓励使用公共字段。特性也不例外，我同样不鼓励在这种类型中使用公共字段。使用属性要好得多。因为在更改特性类的实现方式时，属性能提供更大的灵活性。
+</div>
+<br>
+<p>
+	现在的情况是 FlagsAttribute 类的实例能应用于任何目标元素。但事实上，这个特性应该只能应用于枚举类型，应用于属性或方法是没有意义的。为了告诉编译器这个特性的合法应用范围,需要向特性类应用 <b>System.AttributeUsageAttribute</b> 类的实例。下面是新的代码:
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例——定义自己的特性类
+	</h5>
+<pre class="example_code">namespace System {
+	<code_summary>//AttributeUsage告诉编译器此特性只能用于枚举</code_summary>
+	<code_summary>//Inherited 该值确定指示的属性是否由派生类和重写成员继承</code_summary>
+	[AttributeUsage(AttributeTargets.Enum, Inherited = false)]
+	public class FlagsAttribute : System.Attribute {
+		public FlagsAttribute() {
+		
+		}
+	}
+}
+</pre>
+</div>
+<br>
+<p>
+	新版本将 <b>AttributeUsageAttribute</b> 的实例应用于特性。毕竟，特性类型本质上还是类，而类是可以应用特性的。AttributeUsage 特性是一个简单的类，可利用它告诉编译器定制特性的合法应用范围。所有编译器都内建了对该特性的支持，并会在定制特性应用于无效目标时报错。在这个例子中，AttributeUsage 特性指出 Flags 特性的实例只能应用于枚举类型的目标。
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例——AttributeUsageAttribute
+	</h5>
+<pre class="example_code">[Serializable]
+[AttributeUsageAttribute(AttributeTargets.Class, Inherited=true)]
+public sealed class AttributeUsageAttribute : Attribute {
+	internal static AttributeUsageAttribute Default =
+		new AttributeUsageAttribute(AttributeTargets.All);
+	
+	internal Boolean m_allowMultiple = false;
+	internal AttributeTargets m_attributeTarget = AttributeTargets.All;
+	internal Boolean m_inherited = true;
+	
+	<code_summary>// 这是一个公共构造器</code_summary>
+	public AttributeUsageAttribute(AttributeTargets validOn) {
+		m_attributeTarget = validOn;
+	}
+	
+	internal AttributeUsageAttribute(AttributeTargets validOn, 
+		Boolean allowMultiple, Boolean inherited) {
+		m_attributeTarget = validOn;
+		m_allowMultiple = allowMultiple;
+		m_inherited = inherited;
+	}
+	
+	<code_summary>//是否允许特性向目标元素应用多次</code_summary>
+	public Boolean AllowMultiple {
+		get { return m_allowMultiple; }
+		set { m_allowMultiple = value; }
+	}
+	
+	<code_summary>//派生类是否可继承特性</code_summary>
+	public Boolean Inherited {
+		get { return m_inherited; }
+		set { m_inherited = value; }
+	}
+	
+	public Boolean ValidOn {
+		get { return m_attributeTarget; }
+	}
+}
+</pre>
+</div>
+<br>
+<div class="example">
+	<h5 class="example_head">
+		示例——AttributeTargets
+	</h5>
+<pre class="example_code">[ComVisible(true)]
+[Flags]
+public enum AttributeTargets
+{
+	<code_summary>//可以对程序集应用特性。</code_summary>
+	Assembly = 1,
+	<code_summary>//可以对模块应用特性。</code_summary>
+	Module = 2,
+	<code_summary>//可以对类应用特性。</code_summary>
+	Class = 4,
+	<code_summary>//可以对结构应用性，即值类型。</code_summary>
+	Struct = 8,
+	<code_summary>//可以对枚举应用特性。</code_summary>
+	Enum = 16,
+	<code_summary>//可以对构造函数应用特性。</code_summary>
+	Constructor = 32,
+	<code_summary>//可以对方法应用特性。</code_summary>
+	Method = 64,
+	<code_summary>//可以对属性 (Property) 应用特性。</code_summary>
+	Property = 128,
+	<code_summary>//可以对字段应用特性。</code_summary>
+	Field = 256,
+	<code_summary>//可以对事件应用特性。</code_summary>
+	Event = 512,
+	<code_summary>//可以对接口应用特性。</code_summary>
+	Interface = 1024,
+	<code_summary>//可以对参数应用特性。</code_summary>
+	Parameter = 2048,
+	<code_summary>//可以对委托应用特性。</code_summary>
+	Delegate = 4096,
+	<code_summary>//可以对返回值应用特性。</code_summary>
+	ReturnValue = 8192,
+	<code_summary>//可以对泛型参数应用特性。</code_summary>
+	GenericParameter = 16384,
+	<code_summary>//可以对任何应用程序元素应用特性。</code_summary>
+	All = 32767
+}
+</pre>
+</div>
+<br>
+<p>
+	注意，.NET Framework 只认为类、方法、属性、事件、字段、方法返回值和参数等目标元素是可继承的。所以，定义特性类型时，只有在该特性应用于上述某个目标的前提下，才应该将 Inherited 设为 true。注意，可继承特性不会造成在托管模块中为派生类型生成额外的元数据。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;
+定义自己的特性类时，如果忘记向自己的类应用 AttributeUsage 特性，编译器和 CLR 将假定该特性能应用于所有目标元素，向每个目标元素都只能应用一次,而且可继承,这些假定模仿了 AttributeUsageAttribute 类中的默认字段值。
+</div>
+<br>
+<p>
+	<span style="font-size:14px;"><strong>特性构造器和字段/属性数据类型</strong></span> 
+</p>
+<p>
+	定制特性类可定义构造器来获取参数。开发人员在应用特性类的实例时必须指定这些参数,还可在类中定义非静态公共字段和属性，使开发人员能为特性类的实例选择恰当的设置。定义特性类的实例构造器、字段和属性时，可供选择的数据类型并不多。具体地说，只允许 <b>Boolean, Char, Byte, SByte, Int16, UInt16, Int32，UInt32，Int64，UInt64, Single,Double，String， Type， Object</b> 或枚举类型。此外，可使用上述任意类型的一维 0 基数组。但<span style="color:#E53333;">应尽量避免使用数组</span>，因为对于定制特性，如果它的构造器要获取数组作为参数，就会失去与 CLS 的相容性。
+</p>
+<p>
+	应用特性时必须传递一个编译时常量表达式，它与特性类定义的类型匹配。在特性类定义了一个Type参数、Type 字段或者 Type 属性的任何地方，都必须使用 C# typeof操作符(如下例所示)。在特性类定义了一个 Object 参数、Object 字段或者 Object 属性的任何地方，都可传递一个 Int32、String 或其他任何常量表达式(包括 null)如果常量表达式代表值类型，那么在运行时构造特性的实例时会对值类型进行装箱。以下是一个示例特性及其用法：
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例
+	</h5>
+<pre class="example_code">using System;
+
+internal enum Color { Red }
+
+[AttributeUsage(AttributeTargets.All)]
+internal sealed class SomeAttribute : Attribute {
+	public SomeAttribute(String name, Object o, Type[] types) {
+		<code_summary>// 'name'引用一个String
+		// 'o'引用一个合法的类型(如有必要，就进行装箱)
+		// 'types'引用一个一维0基Type数组</code_summary>
+	}
+}
+
+[Some("Jeff", Color.Red, new Type[] { typeof(Math), typeof(Console) })]
+internal sealed class SomeType { }
+</pre>
+</div>
+<br>
+<p>
+	逻辑上，当编译器检测到向目标元素应用了定制特性时，会调用特性类的构造器，向它传递任何指定的参数，从而构造特性类的实例。然后，编译器采用增强型构造器语法所指定的值，对任何公共字段和属性进行初始化。构造并初始化好定制特性类的对象之后，编译器将它的状态序列化到目标元素的元数据表记录项中。
+</p>
+<div class="border-radius-1">
+	<strong>重要提示</strong>&nbsp;&nbsp;
+为方便理解，可以这样想象定制特性：它是类的实例，被序列化成驻留在元数据中的字节流。运行时可对元数据中的字节进行反序列化，从而构造出类的实例。实际发生的事情是：编译器在元数据中生成创建特性类的实例所需的信息。每个构造器参数都是 1 字节的类型 ID,后跟具体的值。对构造器的参数进行“序列化”时，编译器先写入字段/属性名称，再跟上 1 字节的类型 ID，最后是具体的值。如果是数组，则会先保存数组元素的个数，再跟上每个单独的元素。
+</div>
+<br>
+<p>
+	<span style="font-size:14px;"><strong>检测定制特性</strong></span> 
+</p>
+<p>
+	仅仅定义特性类没有用。确实可以定义自己想要的所有特性类，并应用自己想要的所有实例。但这样除了在程序集中生成额外的元数据，没有其他任何意义。应用程序代码的行为不会有任何改变。
+</p>
+<p>
+	<table style="width:100%;border-collapse:collapse;vertical-align:middle;" cellpadding="2" cellspacing="0" border="1" bordercolor="#a0c6e5">
+		<tbody>
+			<tr style="background-color:#D2E9FF;">
+				<td colspan="2" style="text-align:center;">
+					<span style="font-size:14px;">System.Reflection.CustomAttributeExtensions定义的三个静态方法</span> 
+				</td>
+			</tr>
+			<tr style="background-color:#ECF5FF;">
+				<td style="text-align:center;">
+					方法名称
+				</td>
+				<td style="text-align:center;">
+					说明
+				</td>
+			</tr>
+			<tr>
+				<td>
+					IsDefined
+				</td>
+				<td>
+					如果至少有一个指定的 Attribute 派生类的实例与目标关联，就返回true。这个方法效率很高，因为它不构造(反序列化)特性类的任何实例
+				</td>
+			</tr>
+			<tr>
+				<td>
+					GetCustomAttributes
+				</td>
+				<td>
+					返回应用于目标的指定特性对象的集合。每个实例都使用编译时指定的参数、字段和属性来构造(反序列化)。如果目标没有应用指定特性类的实例，就返回一个空集合。该方法通常用于已将 AllowMultiple 设为 true 的特性，或者用于列出已应用的所有特性
+				</td>
+			</tr>
+			<tr>
+				<td>
+					GetCustomAttribute
+				</td>
+				<td>
+					返回应用于目标的指定特性类的实例。实例使用编译时指定的参数、字段和属性来构造(反序列化)。如果目标没有应用指定特性类的实例，就返回 null。如果目标应用了指定特性的多个实例，就抛出&nbsp;<b>System.Reflection.AmbiguousMatchException&nbsp;</b>异常。该方法通常用于已将 AllowMultiple 设为 false 的特性
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</p>
+<p>
+	调用上述任何方法，内部都必须扫描托管模块的元数据，执行字符串比较来定位指定的定制特性类。显然，这些操作会耗费一定时间。假如对性能的要求比较高，可考虑缓存这些方法的调用结果，而不是反复调用来请求相同的信息。
+</p>
+<p>
+	<b>System.Reflection</b> 命名空间定义了几个类允许检查模块的元数据。这些类包括 <b>Assembly，Module, ParameterInfo, MemberInfo, Type, MethodInfo, ConstructorInfo, FieldInfo, EventInfo， PropertyInfo</b> 及其各自的 <b>*Builder</b> 类。所有类都提供了 <b>IsDefined</b> 和<b>GetCustomAttributes</b> 方法。
+</p>
+<p>
+	反射类提供的 GetCustomAttributes 方法返回的是由 Object 实例构成的数组(Object[]),而不是由 Attribute 实例构成的数组(Attribute[])。这是由于反射类能返回不相容于 CLS 规范的特性类的对象。不过，大可不必关心这种不一致性，因为非 CLS 相容的特性是很稀少的。事实上，我与.NET Framework 打交道至今，还没有见过一例。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;
+只有 <b>Attribute，Type</b> 和 <b>MethodInfo</b> 类才实现了支持 <b>Boolean，inherit</b> 参数的反射方法。其他能检查特性的所有反射方法都会忽略 <b>inherit</b> 参数，而且不会检查继承层次结构。要检查事件、属性、字段、构造器或参数是否应用了继承的特性，只能调用 <b>Attribute</b> 的某个方法。
+</div>
+<br>
+<p>
+	还要注意，将一个类传给 <b>IsDefined，GetCustomAttribute</b> 或者 <b>GetCustomAttributes</b> 方法时，这些方法会检测是否应用了指定的特性类或者它的派生类。如果只是想搜索一个具体的特性类，应针对返回值执行一次额外的检查，确保方法返回的正是想搜索的类。还可考虑将自己的特性类定义成 <b>sealed</b>，减少可能存在的混淆，并避免执行这个额外的检查。
+</p>
+<p>
+	以下示例代码列出了一个类型中定义的所有方法，并显示应用于每个方法的特性。代码仅供演示，平时不会像这样将这些定制特性应用于这些目标元素。
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Linq;
+
+[assembly: CLSCompliant(true)]
+
+[Serializable]
+[DefaultMemberAttribute("Main")]
+[DebuggerDisplayAttribute("Richter", Name = "Jeff", Target = typeof(Program))]
+public sealed class Program
+{
+    [Conditional("Debug")]
+    [Conditional("Release")]
+    public void DoSomething() { }
+
+    public Program() { }
+
+    [CLSCompliant(true)]
+    [STAThread]
+    static void Main(string[] args)
+    {
+        // 显示应用于这个类型的特性集
+        ShowAttributes(typeof(Program));
+
+        // 获取与类型关联的方法集
+        var members =
+            from m in typeof(Program).GetTypeInfo().DeclaredMembers.OfType&lt;MethodBase&gt;()
+            where m.IsPublic
+            select m;
+
+        foreach (MemberInfo member in members)
+        {
+            // 显示应用于这个成员的特性集
+            ShowAttributes(member);
+        }
+
+        Console.ReadLine();
+    }
+
+    private static void ShowAttributes(MemberInfo attributeTarget)
+    {
+        var attributes = attributeTarget.GetCustomAttributes&lt;Attribute&gt;();
+
+        Console.WriteLine("Attributes applied to {0}: {1}",
+            attributeTarget.Name, (attributes.Count() == 0 ? "None" : String.Empty));
+
+        foreach (Attribute attribute in attributes)
+        {
+            // 显示所应用的每个特性的类型
+            Console.WriteLine(" {0}", attribute.GetType().ToString());
+
+            if (attribute is DefaultMemberAttribute)
+                Console.WriteLine(" MemberName={0}",
+                    ((DefaultMemberAttribute)attribute).MemberName);
+
+            if (attribute is ConditionalAttribute)
+                Console.WriteLine(" ConditionalString={0}",
+                    ((ConditionalAttribute)attribute).ConditionString);
+
+            if (attribute is CLSCompliantAttribute)
+                Console.WriteLine(" IsCompliant={0}",
+                    ((CLSCompliantAttribute)attribute).IsCompliant);
+
+            DebuggerDisplayAttribute dda = attribute as DebuggerDisplayAttribute;
+            if (dda != null)
+                Console.WriteLine(" Value={0}, Name={1}, Target={2}",
+                    dda.Value, dda.Name, dda.Target);
+        }
+        Console.WriteLine();
+    }
+}
+</pre>
+<p>
+	运行测试<br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/202103/036c1615364101.png" id="ematt:4146"><img src="../www.devacg.com/content/uploadfile/202103/036c1615364101.png" title="点击查看原图" alt="111111.png" border="0" width="412" height="298"></a> 
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="font-size:14px;"><strong>两个特性实例的相互匹配</strong></span> 
+</p>
+<p>
+	除了判断是否向目标应用了一个特性的实例,可能还需要检查特性的字段来确定它们的值。一个办法是老老实实写代码检查特性类的字段值。但 System.Attribute 重写了 Object 的Equals 方法，会在内部比较两个对象的类型。不一致会返回 false。如果一致，Equals会利用反射来比较两个特性对象中的字段值(为每个字段都调用 Equals)。所有字段都匹配就返回 true：否则返回 false。可在自己的定制特性类中重写 Equals 来移除反射的使用，从而提升性能。
+</p>
+<p>
+	System.Attribute 还公开了虚方法 Match，可重写它来提供更丰富的语义。Match 的默认实现只是调用 Equal 方法并返回它的结果。下例演示了如何重写 Equals 和 Match，后者在一个特性代表另一个特性的子集的前提下返回 true。另外，还演示了如何使用 Match。
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+
+namespace ConsoleApp35
+{
+    [Flags]
+    internal enum Accounts
+    {
+        Savings = 0x0001,
+        Checking = 0x0002,
+        Brokerage = 0x0004
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class AccountsAttribute : Attribute
+    {
+        private Accounts m_accounts;
+
+        public AccountsAttribute(Accounts accounts)
+        {
+            m_accounts = accounts;
+        }
+
+        public override bool Match(object obj)
+        {
+            // 如果基类实现了Match，而且基类不是
+            // Attribute，就取消对下面这行代码的注释
+            // if (!base.Match(obj)) return false;
+
+            // 由于'this'不为null，所以假如obj为null,
+            // 对象肯定不匹配
+            // 注意：如果你信任基类正确实现了Match,
+            // 那么下面这一行可以删除
+            if (obj == null) return false;
+
+            // 如果对象属于不同的类型，肯定不匹配
+            // 注意：如果你信任基类正确实现了Match，
+            // 那么下面这一行可以删除
+            if (this.GetType() != obj.GetType()) return false;
+
+            // 将obj转型为我们的类型以访问字段
+            // 注意：转型不可能失败，因为我们知道
+            // 两个对象是相同的类型
+            AccountsAttribute other = (AccountsAttribute)obj;
+
+            // 比较字段，判断它们是否有相同的值
+            // 这个例子判断'this'的账户是不是
+            // other的账户的一个子集
+            if ((other.m_accounts &amp; m_accounts) != m_accounts)
+                return false;
+
+            return true; //对象匹配
+        }
+
+        public override bool Equals(object obj)
+        {
+            // 如果基类实现了Equals，而且基类不是
+            // Object，就取消对下面这行代码的注释:
+            // if (!base.Equals(obj)) return false;
+
+            // 由于'this'不为null，所以假如object为null,
+            // 那么对象肯定不相等
+            // 注意：如果你信任基类正确实现了Equals,
+            // 那么下面这一行可删除
+            if (obj == null) return false;
+
+            // 如果对象属于不同的类型，肯定不相等
+            // 注意：如果你信任基类正确实现了Equals
+            // 那么下面这一行可以删除
+            if (this.GetType() != obj.GetType()) return false;
+
+            // 将obj转型为我们的类型以访问字段
+            // 注意：转型不可能失败，因为我们知道
+            // 两个对象是相同的类型
+            AccountsAttribute other = (AccountsAttribute)obj;
+
+            // 比较字段，判断它们是否有相同的值
+            // 这个例子判断'this'的账户是不是
+            // 与other的账户相同
+            if (other.m_accounts != m_accounts)
+                return false;
+
+            return true; //对象相等
+        }
+
+        // 重写GetHashCode，因为我们重写了Equals
+        public override int GetHashCode()
+        {
+            return (Int32)m_accounts;
+        }
+    }
+
+    [Accounts(Accounts.Savings)]
+    internal sealed class ChildAccount { }
+
+    [Accounts(Accounts.Savings | Accounts.Checking | Accounts.Brokerage)]
+    internal sealed class AdultAccount { }
+
+    public sealed class Program
+    {
+        public static void Main(string[] args)
+        {
+            CanWriteCheck(new ChildAccount());
+            CanWriteCheck(new AdultAccount());
+
+            // 只是为了演示在一个没有应用AccountsAttribute的类型上，
+            // 方法也能正确地工作
+            CanWriteCheck(new Program());
+
+            Console.ReadLine();
+        }
+
+        private static void CanWriteCheck(Object obj)
+        {
+            // 构造attribute类型的一个实例，并把它初始化成
+            // 我们要显式查找的内容
+            Attribute checking = new AccountsAttribute(Accounts.Checking);
+
+            // 构造应用于类型的特性实例
+            Attribute validAccounts = Attribute.GetCustomAttribute(
+                obj.GetType(), typeof(AccountsAttribute), false);
+
+            // 如果向精英应用了特性，而且特性指定了
+            // 'Checking'账户，表明该类型可以开支票
+            if ((validAccounts != null) &amp;&amp; checking.Match(validAccounts))
+            {
+                Console.WriteLine("{0} types can write checks.", obj.GetType());
+            }
+            else
+            {
+                Console.WriteLine("{0} types can NOT write checks.", obj.GetType());
+            }
+        }
+    }
+}
+</pre>
+<p>
+	运行测试<br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/202103/d8f71615516699.png" id="ematt:4159"><img src="../www.devacg.com/content/uploadfile/202103/d8f71615516699.png" title="点击查看原图" alt="11111.png" border="0" width="480" height="98"></a> 
+</p>
+<p>
+	<span style="font-size:14px;"><strong>检测定制特性时不创建从Attribute派生的对象</strong></span> 
+</p>
+<p>
+	本节将讨论如何利用另一种技术检测应用于元数据记录项的特性。在某些安全性要求严格的场合，这个技术能保证不执行从 Attribute 派生的类中的代码。毕竟，调用 Attribute 的GeCustomAttribute 或者 GetCustomAttributes 方法时，这些方法会在内部调用特性类的构造器，而且可能调用属性的 set 访问器方法。此外，首次访问类型会造成 CLR 调用类型的类型构造器(如果有的话)。在构造器、set 访问器方法以及类型构造器中，可能包含每次查找特性都要执行的代码。这就相当于允许未知代码在 AppDomain中运行，所以存在安全隐患。
+</p>
+<p>
+	可用 <b>System.Reflection.CustomAttributeData</b> 类在查找特性的同时禁止执行特性类中的代码。该类定义了静态方法<b>GetCustomAttributes</b> 来获取与目标关联的特性。方法有4个重载版本，分别获取一个 <b>Assembly，Module，ParameterInfo</b> 和 <b>MemberInfo</b>。该类在<b>System.Reflection</b> 命名空间中定义。通常，先用<b>Assembly</b> 的静态方法<b>ReflectionOnlyLoad</b> 加载程序集，再用<b>CustomAttributeData</b> 类分析这个程序集的元数据中的特性。简单地说，<b>ReflectionOnlyLoad</b>以特殊方式加载程序集，期间会禁止 CLR 执行程序集中的任何代码；其中包括类型构造器。
+</p>
+<p>
+	<b>CustomAttributeData</b> 的 <b>GetCustomAttributes</b> 方法是一个工厂(factory)方法。也就是说。调用它会返回一个 <b>IList&lt;CustomAttributeData&gt;</b> 类型的对象，其中包含了由 <b>CustomAttributeData</b>对象构成的集合。集合中的每个元素都是应用于指定目标的一个定制特性。可查询每个<b>CustomAttributeData</b> 对象的只读属性，判断特性对象如何构造和初始化。具体地说， <b>Constructor</b> 属性指出构造器方法将如何调用。<b>ConstructorArguments</b> 属性以一个<b>IList&lt;CustomAttributeTypedArgument&gt;</b> 实例的形式返回将传给这个构造器的实参。而<b>NamedArguments</b> 属性以一个 <b>IList&lt;CustomAttributeNamedArgument&gt;</b> 实例的形式，返回将设置的字段/属性。注意，之所以说“将”，是因为不会实际地调用构造器和 set 访问器方法。禁止执行特性类的任何方法增强了安全性。
+</p>
+<p>
+	下面是之前例子的修改版本，它利用 <b>CustomAttributeData</b> 类来安全地获取应用于各个目标的特性：
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
+
+[assembly: CLSCompliant(true)]
+
+[Serializable]
+[DefaultMemberAttribute("Main")]
+[DebuggerDisplayAttribute("Richter", Name = "Jeff", Target = typeof(Program))]
+public sealed class Program
+{
+    [Conditional("Debug")]
+    [Conditional("Release")]
+    public void DoSomething() { }
+
+    public Program() { }
+
+    [CLSCompliant(true)]
+    [STAThread]
+    static void Main(string[] args)
+    {
+        // 显示应用于这个类型的特性集
+        ShowAttributes(typeof(Program));
+
+        // 获取与类型关联的方法集
+        var members =
+            from m in typeof(Program).GetTypeInfo().DeclaredMembers.OfType&lt;MethodBase&gt;()
+            where m.IsPublic
+            select m;
+
+        foreach (MemberInfo member in members)
+        {
+            // 显示应用于这个成员的特性集
+            ShowAttributes(member);
+        }
+
+        Console.ReadLine();
+    }
+
+    private static void ShowAttributes(MemberInfo attributeTarget)
+    {
+        IList&lt;CustomAttributeData&gt; attributes =
+            CustomAttributeData.GetCustomAttributes(attributeTarget);
+
+        Console.WriteLine("Attributes applied to {0}: {1}",
+            attributeTarget.Name, (attributes.Count() == 0 ? "None" : String.Empty));
+
+        foreach (CustomAttributeData attribute in attributes)
+        {
+            // 显示所应用的每个特性的类型
+            Type t = attribute.Constructor.DeclaringType;
+            Console.WriteLine(" {0}", t.ToString());
+            Console.WriteLine("   Constructor called={0}", attribute.Constructor);
+
+            IList&lt;CustomAttributeTypedArgument&gt; posArgs = attribute.ConstructorArguments;
+            Console.WriteLine("   Positional arguments passed to constructor:" +
+                ((posArgs.Count == 0) ? "None" : String.Empty));
+            foreach (CustomAttributeTypedArgument pa in posArgs)
+            {
+                Console.WriteLine("   Type={0}, Value={1}", pa.ArgumentType, pa.Value);
+            }
+
+            IList&lt;CustomAttributeNamedArgument&gt; namedArgs = attribute.NamedArguments;
+            Console.WriteLine("   Named arguments set after construction:" +
+                ((namedArgs.Count == 0) ? "None" : String.Empty));
+            foreach (CustomAttributeNamedArgument na in namedArgs)
+            {
+                Console.WriteLine("   Name={0}, Type={1}, Value={2}",
+                    na.MemberInfo.Name, na.TypedValue.ArgumentType, na.TypedValue.Value);
+            }
+        }
+        Console.WriteLine();
+    }
+}
+</pre>
+<p>
+	运行测试<br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/202103/d8f71615519077.png" id="ematt:4161"><img src="../www.devacg.com/content/uploadfile/202103/d8f71615519077.png" title="点击查看原图" alt="11111.png" border="0" width="465" height="597"></a> 
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<span style="font-size:14px;"><strong>条件特性类</strong></span> 
+</p>
+<p>
+	定义、应用和反射特性能带来许多便利，所以开发人员越来越频繁地使用这些技术。特性简化了对代码的注释，还能实现丰富的功能。近来，开发人员越来越喜欢在设计和调试期间利用特性来辅助开发。例如，Microsoft Visual Studio 代码分析工具(FxCopCmd.exe)提供了一个 <b>System.Diagnostics.CodeAnalysis.SuppressMessageAttribute</b>，可将它应用于类型和成员，从而阻止报告特定的静态分析工具规则冲突(rule violation)。该特性仅对代码分析工具有用：程序平常运行时不会关注它。没有使用代码分析工具时，将 <b>SuppressMessage</b> 特性留在元数据中会使元数据无谓地膨胀，这会使文件变得更大，增大进程的工作集，损害应用程序的性能。假如有一种简单的方式，使编译器只有在使用代码分析工具时才生成<b>SuppressMessage</b> 特性，结果会好很多。幸好，利用条件特性类真的能做到这一点。
+</p>
+<p>
+	应用了 <b>System.Diagnostics.ConditionalAttribute</b> 的特性类称为条件特性类。下面是一个例子：
+</p>
+<div class="example">
+	<h5 class="example_head">
+		示例
+	</h5>
+<pre class="example_code">//#define TEST
+#define VERIFY
+
+using System;
+using System.Diagnostics;
+
+[Conditional("TEST")][Conditional("VERIFY")]
+public sealed class CondAttribute :  Attribute {
+}
+
+[Cond]
+public sealed class Program {
+	public static void Main() {
+		Console.WriteLine("CondAttribute is {0}applied to Program type.",
+			Attribute.IsDefined(typeof(Program),
+			typeof(CondAttribute)) ? "" : "not ");
+	}
+}
+</pre>
+</div>
+<br>
+<p>
+	编译器如果发现向目标元素应用了 CondAttribute 的实例，那么当含有目标元素的代码编译时,只有在定义 TEST 或 VERIFY 符号的前提下,编译器才会在元数据中生成特性信息。不过，特性类的定义元数据和实现仍存在于程序集中。
+</p>	<p class="tag">标签:	<a href="tag%3DC%2523.html">C#</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=1352&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D1353.html">C#属性(Property)</a>
+				|
+				 <a href="post%3D1351.html">数组(System.Array)</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D559.html">Spring Joint 2D</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="post%3D906.html">编译Lua源代码</a></li>
+		<li><a href="post%3D399.html">游戏退出确认对话框</a></li>
+		<li><a href="post%3D336.html">着色器的优化</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

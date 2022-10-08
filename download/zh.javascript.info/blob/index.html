@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Blob</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/blob"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Blob"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Blob"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/text-decoder"><link rel="next" href="/file"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Blob"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/blob"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/blob"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/blob"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/blob"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/blob"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/blob"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/blob"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/blob"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/blob"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/blob"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/blob"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/blob">عربي</option><option value="https://javascript.info/blob">English</option><option value="https://es.javascript.info/blob">Español</option><option value="https://fr.javascript.info/blob">Français</option><option value="https://id.javascript.info/blob">Indonesia</option><option value="https://it.javascript.info/blob">Italiano</option><option value="https://ja.javascript.info/blob">日本語</option><option value="https://ko.javascript.info/blob">한국어</option><option value="https://learn.javascript.ru/blob">Русский</option><option value="https://tr.javascript.info/blob">Türkçe</option><option value="https://uk.javascript.info/blob">Українська</option><option value="https://zh.javascript.info/blob" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="4" data-tooltip="第 3/4 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../binary/index.html"><span>二进制数据，文件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"二进制数据，文件","item":"https://zh.javascript.info/binary"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 12日 二月 2022"><div class="updated-at__content">12日 二月 2022</div></div></div><h1 class="main__header-title">Blob</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Blob"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><code>arrayBuffer</code> 和视图（view）都是 ECMA 标准的一部分，是 JavaScript 的一部分。</p>
+<p>在浏览器中，还有其他更高级的对象，特别是 <code>Blob</code>，在 <a href="https://www.w3.org/TR/FileAPI/">File API</a> 中有相关描述。</p>
+<p><code>Blob</code> 由一个可选的字符串 <code>type</code>（通常是 MIME 类型）和 <code>blobParts</code> 组成 —— 一系列其他 <code>Blob</code> 对象，字符串和 <code>BufferSource</code>。</p>
+<figure><div class="image" style="width:659px">
+      <div class="image__ratio" style="padding-top:16.84370257966616%"></div>
+      <object type="image/svg+xml" data="../article/blob/blob.svg" width="659" height="111" class="image__image" data-use-theme>
+        <img src="../article/blob/blob.svg" alt width="659" height="111">
+      </object>
+      </div></figure><p>构造函数的语法为：</p>
+<div id="d7y94uf5t0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Blob(blobParts, options);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>blobParts</code></strong> 是 <code>Blob</code>/<code>BufferSource</code>/<code>String</code> 类型的值的数组。</li>
+<li><strong><code>options</code></strong> 可选对象：
+<ul>
+<li><strong><code>type</code></strong> —— <code>Blob</code> 类型，通常是 MIME 类型，例如 <code>image/png</code>，</li>
+<li><strong><code>endings</code></strong> —— 是否转换换行符，使 <code>Blob</code> 对应于当前操作系统的换行符（<code>\r\n</code> 或 <code>\n</code>）。默认为 <code>&quot;transparent&quot;</code>（啥也不做），不过也可以是 <code>&quot;native&quot;</code>（转换）。</li>
+</ul>
+</li>
+</ul>
+<p>例如：</p>
+<div id="te0j5nrb4q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从字符串创建 Blob
+let blob = new Blob([&quot;&lt;html&gt;…&lt;/html&gt;&quot;], {type: 'text/html'});
+// 请注意：第一个参数必须是一个数组 [...]</code></pre>
+        </div>
+      </div>
+      
+      </div><div id="nmbcync6y4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从类型化数组（typed array）和字符串创建 Blob
+let hello = new Uint8Array([72, 101, 108, 108, 111]); // 二进制格式的 &quot;hello&quot;
+
+let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以用 <code>slice</code> 方法来提取 <code>Blob</code> 片段：</p>
+<div id="c6q9qa20ry" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>blob.slice([byteStart], [byteEnd], [contentType]);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><strong><code>byteStart</code></strong> —— 起始字节，默认为 0。</li>
+<li><strong><code>byteEnd</code></strong> —— 最后一个字节（专有，默认为最后）。</li>
+<li><strong><code>contentType</code></strong> —— 新 blob 的 <code>type</code>，默认与源 blob 相同。</li>
+</ul>
+<p>参数值类似于 <code>array.slice</code>，也允许是负数。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Blob</code> 对象是不可改变的</span></div>
+            <div class="important__content"><p>我们无法直接在 <code>Blob</code> 中更改数据，但我们可以通过 <code>slice</code> 获得 <code>Blob</code> 的多个部分，从这些部分创建新的 <code>Blob</code> 对象，将它们组成新的 <code>Blob</code>，等。</p>
+<p>这种行为类似于 JavaScript 字符串：我们无法更改字符串中的字符，但可以生成一个新的改动过的字符串。</p>
+</div></div>
+<h2><a class="main__anchor" name="blob-yong-zuo-url" href="#blob-yong-zuo-url">Blob 用作 URL</a></h2><p>Blob 可以很容易用作 <code>&lt;a&gt;</code>、<code>&lt;img&gt;</code> 或其他标签的 URL，来显示它们的内容。</p>
+<p>多亏了 <code>type</code>，让我们也可以下载/上传 <code>Blob</code> 对象，而在网络请求中，<code>type</code> 自然地变成了 <code>Content-Type</code>。</p>
+<p>让我们从一个简单的例子开始。通过点击链接，你可以下载一个具有动态生成的内容为 <code>hello world</code> 的 <code>Blob</code> 的文件：</p>
+<div id="s08ilzbsda" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- download 特性（attribute）强制浏览器下载而不是导航 --&gt;
+&lt;a download=&quot;hello.txt&quot; href='#' id=&quot;link&quot;&gt;Download&lt;/a&gt;
+
+&lt;script&gt;
+let blob = new Blob([&quot;Hello, world!&quot;], {type: 'text/plain'});
+
+link.href = URL.createObjectURL(blob);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以在 Javascript 中动态创建一个链接，通过 <code>link.click()</code> 模拟一个点击，然后便自动下载了。</p>
+<p>下面是类似的代码，此代码可以让用户无需任何 HTML 即可下载动态生成的 <code>Blob</code>（译注：也就是通过代码模拟用户点击，从而自动下载）：</p>
+<div id="79uthm0nyi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let link = document.createElement('a');
+link.download = 'hello.txt';
+
+let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+
+link.href = URL.createObjectURL(blob);
+
+link.click();
+
+URL.revokeObjectURL(link.href);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>URL.createObjectURL</code> 取一个 <code>Blob</code>，并为其创建一个唯一的 URL，形式为 <code>blob:&lt;origin&gt;/&lt;uuid&gt;</code>。</p>
+<p>也就是 <code>link.href</code> 的值的样子：</p>
+<div id="s7xysb64ue" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>blob:https://javascript.info/1e67e00e-860d-40a5-89ae-6ab0cbee6273</code></pre>
+        </div>
+      </div>
+      
+      </div><p>浏览器内部为每个通过 <code>URL.createObjectURL</code> 生成的 URL 存储了一个 URL → <code>Blob</code> 映射。因此，此类 URL 很短，但可以访问 <code>Blob</code>。</p>
+<p>生成的 URL（即其链接）仅在当前文档打开的状态下才有效。它允许引用 <code>&lt;img&gt;</code>、<code>&lt;a&gt;</code> 中的 <code>Blob</code>，以及基本上任何其他期望 URL 的对象。</p>
+<p>不过它有个副作用。虽然这里有 <code>Blob</code> 的映射，但 <code>Blob</code> 本身只保存在内存中的。浏览器无法释放它。</p>
+<p>在文档退出时（unload），该映射会被自动清除，因此 <code>Blob</code> 也相应被释放了。但是，如果应用程序寿命很长，那这个释放就不会很快发生。</p>
+<p><strong>因此，如果我们创建一个 URL，那么即使我们不再需要该 <code>Blob</code> 了，它也会被挂在内存中。</strong></p>
+<p><code>URL.revokeObjectURL(url)</code> 从内部映射中移除引用，因此允许 <code>Blob</code> 被删除（如果没有其他引用的话），并释放内存。</p>
+<p>在上面最后一个示例中，我们打算仅使用一次 <code>Blob</code>，来进行即时下载，因此我们立即调用 <code>URL.revokeObjectURL(link.href)</code>。</p>
+<p>而在前一个带有可点击的 HTML 链接的示例中，我们不调用 <code>URL.revokeObjectURL(link.href)</code>，因为那样会使 <code>Blob</code> URL 无效。在调用该方法后，由于映射被删除了，因此该 URL 也就不再起作用了。</p>
+<h2><a class="main__anchor" name="blob-zhuan-huan-wei-base64" href="#blob-zhuan-huan-wei-base64">Blob 转换为 base64</a></h2><p><code>URL.createObjectURL</code> 的一个替代方法是，将 <code>Blob</code> 转换为 base64-编码的字符串。</p>
+<p>这种编码将二进制数据表示为一个由 0 到 64 的 ASCII 码组成的字符串，非常安全且“可读“。更重要的是 —— 我们可以在 “data-url” 中使用此编码。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/http/Data_URIs">“data-url”</a> 的形式为 <code>data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</code>。我们可以在任何地方使用这种 url，和使用“常规” url 一样。</p>
+<p>例如，这是一个笑脸：</p>
+<div id="a53yd9gnvi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;img src=&quot;data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7&quot;&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>浏览器将解码该字符串，并显示图像：<img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7"></p>
+<p>我们使用内建的 <code>FileReader</code> 对象来将 <code>Blob</code> 转换为 base64。它可以将 <code>Blob</code> 中的数据读取为多种格式。在<a href="../file/index.html">下一章</a> 我们将更深入地介绍它。</p>
+<p>下面是下载 <code>Blob</code> 的示例，这次是通过 base-64：</p>
+<div id="v9sav8i7h8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let link = document.createElement('a');
+link.download = 'hello.txt';
+
+let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+
+let reader = new FileReader();
+reader.readAsDataURL(blob); // 将 Blob 转换为 base64 并调用 onload
+
+reader.onload = function() {
+  link.href = reader.result; // data url
+  link.click();
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这两种从 <code>Blob</code> 创建 URL 的方法都可以用。但通常 <code>URL.createObjectURL(blob)</code> 更简单快捷。</p>
+<div class="balance"><div class="balance__pluses">
+      <div class="balance__content">
+      <div class="balance__title">URL.createObjectURL(blob)</div><ul class="balance__list"><li>如果介意内存，我们需要撤销（revoke）它们</li>
+<li>直接访问 <code>Blob</code>，无需“编码/解码”</li>
+</ul></div></div><div class="balance__minuses">
+      <div class="balance__content">
+      <div class="balance__title">Blob 转换为 data url</div><ul class="balance__list"><li>无需撤销（revoke）任何操作。</li>
+<li>对大的 <code>Blob</code> 进行编码时，性能和内存会有损耗。</li>
+</ul></div></div></div><h2><a class="main__anchor" name="image-zhuan-huan-wei-blob" href="#image-zhuan-huan-wei-blob">Image 转换为 blob</a></h2><p>我们可以创建一个图像（image）的、图像的一部分、或者甚至创建一个页面截图的 <code>Blob</code>。这样方便将其上传至其他地方。</p>
+<p>图像操作是通过 <code>&lt;canvas&gt;</code> 元素来实现的：</p>
+<ol>
+<li>使用 <a href="https://developer.mozilla.org/zh/docs/Web/api/CanvasRenderingContext2D/drawImage">canvas.drawImage</a> 在 canvas 上绘制图像（或图像的一部分）。</li>
+<li>调用 canvas 方法 <a href="https://developer.mozilla.org/zh/docs/Web/api/HTMLCanvasElement/toBlob">.toBlob(callback, format, quality)</a> 创建一个 <code>Blob</code>，并在创建完成后使用其运行 <code>callback</code>。</li>
+</ol>
+<p>在下面这个示例中，图像只是被复制了，不过我们可以在创建 blob 之前，从中裁剪图像，或者在 canvas 上对其进行转换：</p>
+<div id="vpec3uxf18" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 获取任何图像
+let img = document.querySelector('img');
+
+// 生成同尺寸的 &lt;canvas&gt;
+let canvas = document.createElement('canvas');
+canvas.width = img.clientWidth;
+canvas.height = img.clientHeight;
+
+let context = canvas.getContext('2d');
+
+// 向其中复制图像（此方法允许剪裁图像）
+context.drawImage(img, 0, 0);
+// 我们 context.rotate()，并在 canvas 上做很多其他事情
+
+// toBlob 是异步操作，结束后会调用 callback
+canvas.toBlob(function(blob) {
+  // blob 创建完成，下载它
+  let link = document.createElement('a');
+  link.download = 'example.png';
+
+  link.href = URL.createObjectURL(blob);
+  link.click();
+
+  // 删除内部 blob 引用，这样浏览器可以从内存中将其清除
+  URL.revokeObjectURL(link.href);
+}, 'image/png');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们更喜欢 <code>async/await</code> 而不是 callback：</p>
+<div id="0iprlrphig" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let blob = await new Promise(resolve =&gt; canvasElem.toBlob(resolve, 'image/png'));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于页面截屏，我们可以使用诸如 <a href="https://github.com/niklasvh/html2canvas">https://github.com/niklasvh/html2canvas</a> 之类的库。它所做的只是扫一遍浏览器页面，并将其绘制在 <code>&lt;canvas&gt;</code> 上。然后，我们就可以像上面一样获取一个它的 <code>Blob</code>。</p>
+<h2><a class="main__anchor" name="blob-zhuan-huan-wei-arraybuffer" href="#blob-zhuan-huan-wei-arraybuffer">Blob 转换为 arrayBuffer</a></h2><p><code>Blob</code> 构造器允许从几乎所有东西创建 blob，包括任何 <code>BufferSource</code>。</p>
+<p>但是，如果我们需要执行低级别的操作的话，则可以使用 <code>blob.arrayBuffer()</code> 从 blob 中获取最低级别的 <code>arrayBuffer</code>：</p>
+<div id="1ibcz57nw3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从 blob 获取 arrayBuffer
+const bufferPromise = await blob.arrayBuffer();
+
+// 或者
+blob.arrayBuffer().then(buffer =&gt; /* 处理 arrayBuffer */);</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="blob-zhuan-huan-wei-stream" href="#blob-zhuan-huan-wei-stream">Blob 转换为 stream</a></h2><p>当我们读取和写入超过 <code>2 GB</code> 的 blob 时，将其转换为 <code>arrayBuffer</code> 的使用对我们来说会更加占用内存。这种情况下，我们可以直接将 blob 转换为 stream 进行处理。</p>
+<p>stream 是一种特殊的对象，我们可以从它那里逐部分地读取（或写入）。这块的知识点不在本文的范围之内，但这里有一个例子，你可以在 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API">https://developer.mozilla.org/en-US/docs/Web/API/Streams_API</a> 了解更多相关内容。对于适合逐段处理的数据，使用 stream 是很方便的。</p>
+<p><code>Blob</code> 接口里的 <code>stream()</code> 方法返回一个 <code>ReadableStream</code>，在被读取时可以返回 <code>Blob</code> 中包含的数据。</p>
+<p>如下所示：</p>
+<div id="bhrjojdow6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 从 blob 获取可读流（readableStream）
+const readableStream = blob.stream();
+const stream = readableStream.getReader();
+
+while (true) {
+  // 对于每次迭代：data 是下一个 blob 数据片段
+  let { done, data } = await stream.read();
+  if (done) {
+    // 读取完毕，stream 里已经没有数据了
+    console.log('all blob processed.');
+    break;
+  }
+
+  // 对刚从 blob 中读取的数据片段做一些处理
+  console.log(data);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>arrayBuffer</code>，<code>Uint8Array</code> 及其他 <code>BufferSource</code> 是“二进制数据”，而 <a href="https://www.w3.org/TR/FileAPI/#dfn-Blob">Blob</a> 则表示“具有类型的二进制数据”。</p>
+<p>这样可以方便 <code>Blob</code> 用于在浏览器中非常常见的上传/下载操作。</p>
+<p><a href="../xmlhttprequest/index.html">XMLHttpRequest</a>，<a href="../fetch/index.html">fetch</a> 等进行 Web 请求的方法可以自然地使用 <code>Blob</code>，也可以使用其他类型的二进制数据。</p>
+<p>我们可以轻松地在 <code>Blob</code> 和低级别的二进制数据类型之间进行转换：</p>
+<ul>
+<li>我们可以使用 <code>new Blob(...)</code> 构造函数从一个类型化数组（typed array）创建 <code>Blob</code>。</li>
+<li>我们可以使用 <code>FileReader</code> 从 <code>Blob</code> 中取回 <code>arrayBuffer</code>，然后在其上创建一个视图（view），用于低级别的二进制处理。</li>
+</ul>
+<p>当我们需要处理大型 blob 时，将其转换为 <code>stream</code> 非常有用。你可以轻松地从 blob 创建 <code>ReadableStream</code>。<code>Blob</code> 接口的 <code>stream()</code> 方法返回一个 <code>ReadableStream</code>，其在被读取时返回 blob 中包含的数据。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../text-decoder/index.html" data-tooltip="TextDecoder 和 TextEncoder"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../file/index.html" data-tooltip="File 和 FileReader"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/blob","identifier":"\/blob"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../binary/index.html">二进制数据，文件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-yong-zuo-url">Blob 用作 URL</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-zhuan-huan-wei-base64">Blob 转换为 base64</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#image-zhuan-huan-wei-blob">Image 转换为 blob</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-zhuan-huan-wei-arraybuffer">Blob 转换为 arrayBuffer</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#blob-zhuan-huan-wei-stream">Blob 转换为 stream</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fblob" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/4-binary/03-blob" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

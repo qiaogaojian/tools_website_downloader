@@ -1,0 +1,923 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">错误处理，&quot;try...catch&quot;</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/try-catch"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="错误处理，&quot;try...catch&quot;"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="错误处理，&quot;try...catch&quot;"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/error-handling"><link rel="next" href="/custom-errors"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="错误处理，&quot;try...catch&quot;"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/try-catch"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/try-catch"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/try-catch"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/try-catch"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/try-catch"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/try-catch"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/try-catch"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/try-catch"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/try-catch"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/try-catch"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/try-catch"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/try-catch">عربي</option><option value="https://javascript.info/try-catch">English</option><option value="https://es.javascript.info/try-catch">Español</option><option value="https://fr.javascript.info/try-catch">Français</option><option value="https://id.javascript.info/try-catch">Indonesia</option><option value="https://it.javascript.info/try-catch">Italiano</option><option value="https://ja.javascript.info/try-catch">日本語</option><option value="https://ko.javascript.info/try-catch">한국어</option><option value="https://learn.javascript.ru/try-catch">Русский</option><option value="https://tr.javascript.info/try-catch">Türkçe</option><option value="https://uk.javascript.info/try-catch">Українська</option><option value="https://zh.javascript.info/try-catch" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="73" max="92" data-tooltip="第 73/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../error-handling/index.html"><span>错误处理</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"错误处理","item":"https://zh.javascript.info/error-handling"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">错误处理，&quot;try...catch&quot;</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="错误处理，&quot;try...catch&quot;"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>不管你多么精通编程，有时我们的脚本总还是会出现错误。可能是因为我们的编写出错，或是与预期不同的用户输入，或是错误的服务端响应以及其他数千种原因。</p>
+<p>通常，如果发生错误，脚本就会“死亡”（立即停止），并在控制台将错误打印出来。</p>
+<p>但是有一种语法结构 <code>try...catch</code>，它使我们可以“捕获（catch）”错误，因此脚本可以执行更合理的操作，而不是死掉。</p>
+<h2><a class="main__anchor" name="trycatch-yu-fa" href="#trycatch-yu-fa">“try…catch” 语法</a></h2><p><code>try...catch</code> 结构由两部分组成：<code>try</code> 和 <code>catch</code>：</p>
+<div id="zs4l8dfiuf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+
+  // 代码...
+
+} catch (err) {
+
+  // 错误捕获
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它按照以下步骤执行：</p>
+<ol>
+<li>首先，执行 <code>try {...}</code> 中的代码。</li>
+<li>如果这里没有错误，则忽略 <code>catch (err)</code>：执行到 <code>try</code> 的末尾并跳过 <code>catch</code> 继续执行。</li>
+<li>如果这里出现错误，则 <code>try</code> 执行停止，控制流转向 <code>catch (err)</code> 的开头。变量 <code>err</code>（我们可以使用任何名称）将包含一个 error 对象，该对象包含了所发生事件的详细信息。</li>
+</ol>
+<figure><div class="image" style="width:514px">
+      <div class="image__ratio" style="padding-top:79.96108949416343%"></div>
+      <object type="image/svg+xml" data="../article/try-catch/try-catch-flow.svg" width="514" height="411" class="image__image" data-use-theme>
+        <img src="../article/try-catch/try-catch-flow.svg" alt width="514" height="411">
+      </object>
+      </div></figure><p>所以，<code>try {...}</code> 块内的错误不会杀死脚本 — 我们有机会在 <code>catch</code> 中处理它。</p>
+<p>让我们来看一些例子。</p>
+<ul>
+<li>
+<p>没有 error 的例子：显示 <code>alert</code> <code>(1)</code> 和 <code>(2)</code>：</p>
+<div id="2c02yysk6y" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;cols&quot;:[{&quot;start&quot;:33,&quot;end&quot;:40}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:34,&quot;end&quot;:41}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+
+  alert('Start of try runs');  // (1) &lt;--
+
+  // ...这里没有 error
+
+  alert('End of try runs');   // (2) &lt;--
+
+} catch (err) {
+
+  alert('Catch is ignored, because there are no errors'); // (3)
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>包含 error 的例子：显示 <code>(1)</code> 和 <code>(3)</code> 行的 <code>alert</code> 中的内容：</p>
+<div id="fox8v65fzj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;cols&quot;:[{&quot;start&quot;:35,&quot;end&quot;:42}]},{&quot;start&quot;:4,&quot;end&quot;:4},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:34,&quot;end&quot;:41}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+
+  alert('Start of try runs');  // (1) &lt;--
+
+  lalala; // Error，变量未定义！
+
+  alert('End of try (never reached)');  // (2)
+
+} catch (err) {
+
+  alert(`Error has occurred!`); // (3) &lt;--
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>try...catch</code> 仅对运行时的 error 有效</span></div>
+            <div class="important__content"><p>要使得 <code>try...catch</code> 能工作，代码必须是可执行的。换句话说，它必须是有效的 JavaScript 代码。</p>
+<p>如果代码包含语法错误，那么 <code>try..catch</code> 将无法正常工作，例如含有不匹配的花括号：</p>
+<div id="8993cuovdl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  {{{{{{{{{{{{
+} catch (err) {
+  alert(&quot;The engine can't understand this code, it's invalid&quot;);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>JavaScript 引擎首先会读取代码，然后运行它。在读取阶段发生的错误被称为“解析时间（parse-time）”错误，并且无法恢复（从该代码内部）。这是因为引擎无法理解该代码。</p>
+<p>所以，<code>try...catch</code> 只能处理有效代码中出现的错误。这类错误被称为“运行时的错误（runtime errors）”，有时被称为“异常（exceptions）”。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>try...catch</code> 同步工作</span></div>
+            <div class="important__content"><p>如果在“计划的（scheduled）”代码中发生异常，例如在 <code>setTimeout</code> 中，则 <code>try...catch</code> 不会捕获到异常：</p>
+<div id="nraot5vvuh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  setTimeout(function() {
+    noSuchVariable; // 脚本将在这里停止运行
+  }, 1000);
+} catch (err) {
+  alert( &quot;won't work&quot; );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因为 <code>try...catch</code> 包裹了计划要执行的函数，该函数本身要稍后才执行，这时引擎已经离开了 <code>try...catch</code> 结构。</p>
+<p>为了捕获到计划的（scheduled）函数中的异常，那么 <code>try...catch</code> 必须在这个函数内：</p>
+<div id="4xtb962bor" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setTimeout(function() {
+  try {
+    noSuchVariable; // try...catch 处理 error 了！
+  } catch {
+    alert( &quot;error is caught here!&quot; );
+  }
+}, 1000);</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="error-dui-xiang" href="#error-dui-xiang">Error 对象</a></h2><p>发生错误时，JavaScript 生成一个包含有关其详细信息的对象。然后将该对象作为参数传递给 <code>catch</code>：</p>
+<div id="85e8sxwjkc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  // ...
+} catch (err) { // &lt;-- “error 对象”，也可以用其他参数名代替 err
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于所有内建的 error，error 对象具有两个主要属性：</p>
+<dl>
+<dt><code>name</code></dt>
+<dd>Error 名称。例如，对于一个未定义的变量，名称是 <code>&quot;ReferenceError&quot;</code>。</dd>
+<dt><code>message</code></dt>
+<dd>关于 error 的详细文字描述。</dd>
+</dl>
+<p>还有其他非标准的属性在大多数环境中可用。其中被最广泛使用和支持的是：</p>
+<dl>
+<dt><code>stack</code></dt>
+<dd>当前的调用栈：用于调试目的的一个字符串，其中包含有关导致 error 的嵌套调用序列的信息。</dd>
+</dl>
+<p>例如：</p>
+<div id="zg2g1mkheg" data-trusted="0" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  lalala; // error, variable is not defined!
+} catch (err) {
+  alert(err.name); // ReferenceError
+  alert(err.message); // lalala is not defined
+  alert(err.stack); // ReferenceError: lalala is not defined at (...call stack)
+
+  // 也可以将一个 error 作为整体显示出来as a whole
+  // Error 信息被转换为像 &quot;name: message&quot; 这样的字符串
+  alert(err); // ReferenceError: lalala is not defined
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ke-xuan-de-catch-bang-ding" href="#ke-xuan-de-catch-bang-ding">可选的 “catch” 绑定</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">A recent addition</span></div>
+            <div class="important__content">
+            This is a recent addition to the language.
+            Old browsers may need polyfills.
+            </div></div>
+<p>如果我们不需要 error 的详细信息，<code>catch</code> 也可以忽略它：</p>
+<div id="1nt0zc9eok" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  // ...
+} catch { // &lt;-- 没有 (err)
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="shi-yong-trycatch" href="#shi-yong-trycatch">使用 “try…catch”</a></h2><p>让我们一起探究一下真实场景中 <code>try...catch</code> 的用例。</p>
+<p>正如我们所知道的，JavaScript 支持 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">JSON.parse(str)</a> 方法来解析 JSON 编码的值。</p>
+<p>通常，它被用来解析从网络，从服务器或是从其他来源接收到的数据。</p>
+<p>我们收到数据后，然后像下面这样调用 <code>JSON.parse</code>：</p>
+<div id="lxvbnr1xsg" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = '{&quot;name&quot;:&quot;John&quot;, &quot;age&quot;: 30}'; // 来自服务器的数据
+
+let user = JSON.parse(json); // 将文本表示转换成 JS 对象
+
+// 现在 user 是一个解析自 json 字符串的有自己属性的对象
+alert( user.name ); // John
+alert( user.age );  // 30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你可以在 <a href="../json/index.html">JSON 方法，toJSON</a> 一章中找到更多关于 JSON 的详细内容。</p>
+<p><strong>如果 <code>json</code> 格式错误，<code>JSON.parse</code> 就会生成一个 error，因此脚本就会“死亡”。</strong></p>
+<p>我们对此满意吗？当然不！</p>
+<p>如果这样做，当拿到的数据出了问题，那么访问者永远都不会知道原因（除非他们打开开发者控制台）。代码执行失败却没有提示信息，这真的是很糟糕的用户体验。</p>
+<p>让我们用 <code>try...catch</code> 来处理这个 error：</p>
+<div id="afllzyp7xx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:11},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = &quot;{ bad json }&quot;;
+
+try {
+
+  let user = JSON.parse(json); // &lt;-- 当出现一个 error 时...
+  alert( user.name ); // 不工作
+
+} catch (err) {
+  // ...执行会跳转到这里并继续执行
+  alert( &quot;Our apologies, the data has errors, we'll try to request it one more time.&quot; );
+  alert( err.name );
+  alert( err.message );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这儿，我们将 <code>catch</code> 块仅仅用于显示信息，但是我们可以做更多的事儿：发送一个新的网络请求，向访问者建议一个替代方案，将有关错误的信息发送给记录日志的设备，……。所有这些都比代码“死掉”好得多。</p>
+<h2><a class="main__anchor" name="pao-chu-wo-men-zi-ding-yi-de-error" href="#pao-chu-wo-men-zi-ding-yi-de-error">抛出我们自定义的 error</a></h2><p>如果这个 <code>json</code> 在语法上是正确的，但是没有所必须的 <code>name</code> 属性该怎么办？</p>
+<p>像这样：</p>
+<div id="gw2kyzg41p" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = '{ &quot;age&quot;: 30 }'; // 不完整的数据
+
+try {
+
+  let user = JSON.parse(json); // &lt;-- 没有 error
+  alert( user.name ); // 没有 name！
+
+} catch (err) {
+  alert( &quot;doesn't execute&quot; );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里 <code>JSON.parse</code> 正常执行，但是缺少 <code>name</code> 属性对我们来说确实是个 error。</p>
+<p>为了统一进行 error 处理，我们将使用 <code>throw</code> 操作符。</p>
+<h3><a class="main__anchor" name="throw-cao-zuo-fu" href="#throw-cao-zuo-fu">“Throw” 操作符</a></h3><p><code>throw</code> 操作符会生成一个 error 对象。</p>
+<p>语法如下：</p>
+<div id="qapnxzug4n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>throw &lt;error object&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>技术上讲，我们可以将任何东西用作 error 对象。甚至可以是一个原始类型数据，例如数字或字符串，但最好使用对象，最好使用具有 <code>name</code> 和 <code>message</code> 属性的对象（某种程度上保持与内建 error 的兼容性）。</p>
+<p>JavaScript 中有很多内建的标准 error 的构造器：<code>Error</code>，<code>SyntaxError</code>，<code>ReferenceError</code>，<code>TypeError</code> 等。我们也可以使用它们来创建 error 对象。</p>
+<p>它们的语法是：</p>
+<div id="if4lkb42ku" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let error = new Error(message);
+// 或
+let error = new SyntaxError(message);
+let error = new ReferenceError(message);
+// ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于内建的 error（不是对于其他任何对象，仅仅是对于 error），<code>name</code> 属性刚好就是构造器的名字。<code>message</code> 则来自于参数（argument）。</p>
+<p>例如：</p>
+<div id="00oc8em1ko" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let error = new Error(&quot;Things happen o_O&quot;);
+
+alert(error.name); // Error
+alert(error.message); // Things happen o_O</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们来看看 <code>JSON.parse</code> 会生成什么样的 error：</p>
+<div id="innnzhi0uq" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  JSON.parse(&quot;{ bad json o_O }&quot;);
+} catch(err) {
+  alert(err.name); // SyntaxError
+  alert(err.message); // Unexpected token b in JSON at position 2
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所看到的， 那是一个  <code>SyntaxError</code>。</p>
+<p>在我们的示例中，缺少 <code>name</code> 属性就是一个 error，因为用户必须有一个 <code>name</code>。</p>
+<p>所以，让我们抛出这个 error。</p>
+<div id="2n79od1192" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = '{ &quot;age&quot;: 30 }'; // 不完整的数据
+
+try {
+
+  let user = JSON.parse(json); // &lt;-- 没有 error
+
+  if (!user.name) {
+    throw new SyntaxError(&quot;Incomplete data: no name&quot;); // (*)
+  }
+
+  alert( user.name );
+
+} catch(err) {
+  alert( &quot;JSON Error: &quot; + err.message ); // JSON Error: Incomplete data: no name
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 <code>(*)</code> 标记的这一行，<code>throw</code> 操作符生成了包含着我们所给定的 <code>message</code> 的 <code>SyntaxError</code>，与 JavaScript 自己生成的方式相同。<code>try</code> 的执行立即停止，控制流转向 <code>catch</code> 块。</p>
+<p>现在，<code>catch</code> 成为了所有 error 处理的唯一场所：对于 <code>JSON.parse</code> 和其他情况都适用。</p>
+<h2><a class="main__anchor" name="zai-ci-pao-chu-rethrowing" href="#zai-ci-pao-chu-rethrowing">再次抛出（Rethrowing）</a></h2><p>在上面的例子中，我们使用 <code>try...catch</code> 来处理不正确的数据。但是在 <code>try {...}</code> 块中是否可能发生 <strong>另一个预料之外的 error</strong>？例如编程错误（未定义变量）或其他错误，而不仅仅是这种“不正确的数据”。</p>
+<p>例如：</p>
+<div id="w8yianqbev" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = '{ &quot;age&quot;: 30 }'; // 不完整的数据
+
+try {
+  user = JSON.parse(json); // &lt;-- 忘记在 user 前放置 &quot;let&quot;
+
+  // ...
+} catch (err) {
+  alert(&quot;JSON Error: &quot; + err); // JSON Error: ReferenceError: user is not defined
+  // (实际上并没有 JSON Error)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当然，一切皆有可能！程序员也会犯错。即使是被数百万人使用了几十年的开源项目中 — 也可能突然被发现了一个漏洞，并导致可怕的黑客入侵。</p>
+<p>在我们的例子中，<code>try...catch</code> 旨在捕获“数据不正确”的 error。但是实际上，catch 会捕获到 <strong>所有</strong> 来自于 <code>try</code> 的 error。在这儿，它捕获到了一个预料之外的 error，但是仍然抛出的是同样的 <code>&quot;JSON Error&quot;</code> 信息。这是不正确的，并且也会使代码变得更难以调试。</p>
+<p>为了避免此类问题，我们可以采用“重新抛出”技术。规则很简单：</p>
+<p><strong><code>catch</code> 应该只处理它知道的 error，并“抛出”所有其他 error。</strong></p>
+<p>“再次抛出（rethrowing）”技术可以被更详细地解释为：</p>
+<ol>
+<li>Catch 捕获所有 error。</li>
+<li>在 <code>catch (err) {...}</code> 块中，我们对 error 对象 <code>err</code> 进行分析。</li>
+<li>如果我们不知道如何处理它，那我们就 <code>throw err</code>。</li>
+</ol>
+<p>通常，我们可以使用 <code>instanceof</code> 操作符判断错误类型：</p>
+<div id="e49mgpv9x9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  user = { /*...*/ };
+} catch (err) {
+  if (err instanceof ReferenceError) {
+    alert('ReferenceError'); // 访问一个未定义（undefined）的变量产生了 &quot;ReferenceError&quot;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们还可以从 <code>err.name</code> 属性中获取错误的类名。所有原生的错误都有这个属性。另一种方式是读取 <code>err.constructor.name</code>。</p>
+<p>在下面的代码中，我们使用“再次抛出”，以达到在 <code>catch</code> 中只处理 <code>SyntaxError</code> 的目的：</p>
+<div id="ml7qix546l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:19},{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let json = '{ &quot;age&quot;: 30 }'; // 不完整的数据
+try {
+
+  let user = JSON.parse(json);
+
+  if (!user.name) {
+    throw new SyntaxError(&quot;Incomplete data: no name&quot;);
+  }
+
+  blabla(); // 预料之外的 error
+
+  alert( user.name );
+
+} catch (err) {
+
+  if (err instanceof SyntaxError) {
+    alert( &quot;JSON Error: &quot; + err.message );
+  } else {
+    throw err; // 再次抛出 (*)
+  }
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果 <code>(*)</code> 标记的这行 <code>catch</code> 块中的 error 从 <code>try...catch</code> 中“掉了出来”，那么它也可以被外部的 <code>try...catch</code> 结构（如果存在）捕获到，如果外部不存在这种结构，那么脚本就会被杀死。</p>
+<p>所以，<code>catch</code> 块实际上只处理它知道该如何处理的 error，并“跳过”所有其他的 error。</p>
+<p>下面这个示例演示了这种类型的 error 是如何被另外一级 <code>try...catch</code> 捕获的：</p>
+<div id="o2zbkt7u5w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:17,&quot;end&quot;:17},{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function readData() {
+  let json = '{ &quot;age&quot;: 30 }';
+
+  try {
+    // ...
+    blabla(); // error!
+  } catch (err) {
+    // ...
+    if (!(err instanceof SyntaxError)) {
+      throw err; // 再次抛出（不知道如何处理它）
+    }
+  }
+}
+
+try {
+  readData();
+} catch (err) {
+  alert( &quot;External catch got: &quot; + err ); // 捕获了它！
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面这个例子中的 <code>readData</code> 只知道如何处理 <code>SyntaxError</code>，而外部的 <code>try...catch</code> 知道如何处理任意的 error。</p>
+<h2><a class="main__anchor" name="trycatchfinally" href="#trycatchfinally">try…catch…finally</a></h2><p>等一下，以上并不是所有内容。</p>
+<p><code>try...catch</code> 结构可能还有一个代码子句（clause）：<code>finally</code>。</p>
+<p>如果它存在，它在所有情况下都会被执行：</p>
+<ul>
+<li><code>try</code> 之后，如果没有 error，</li>
+<li><code>catch</code> 之后，如果没有 error。</li>
+</ul>
+<p>该扩展语法如下所示：</p>
+<div id="m0to7msswo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:9}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:7}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:3}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+   ... 尝试执行的代码 ...
+} catch (err) {
+   ... 处理 error ...
+} finally {
+   ... 总是会执行的代码 ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>试试运行这段代码：</p>
+<div id="t536vkpeq6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  alert( 'try' );
+  if (confirm('Make an error?')) BAD_CODE();
+} catch (err) {
+  alert( 'catch' );
+} finally {
+  alert( 'finally' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这段代码有两种执行方式：</p>
+<ol>
+<li>如果你对于 “Make an error?” 的回答是 “Yes”，那么执行 <code>try -&gt; catch -&gt; finally</code>。</li>
+<li>如果你的回答是 “No”，那么执行 <code>try -&gt; finally</code>。</li>
+</ol>
+<p><code>finally</code> 子句（clause）通常用在：当我们开始做某事的时候，希望无论出现什么情况都要完成完成某个任务。</p>
+<p>例如，我们想要测量一个斐波那契数字函数 <code>fib(n)</code> 执行所需要花费的时间。通常，我们可以在运行它之前开始测量，并在运行完成时结束测量。但是，如果在该函数调用期间出现 error 该怎么办？特别是，下面这段 <code>fib(n)</code> 的实现代码在遇到负数或非整数数字时会返回一个 error。</p>
+<p>无论如何，<code>finally</code> 子句都是一个结束测量的好地方。</p>
+<p>在这儿，<code>finally</code> 能够保证在两种情况下都能正确地测量时间 — 成功执行 <code>fib</code> 以及 <code>fib</code> 中出现 error 时：</p>
+<div id="sequao1clu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:17,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let num = +prompt(&quot;Enter a positive integer number?&quot;, 35)
+
+let diff, result;
+
+function fib(n) {
+  if (n &lt; 0 || Math.trunc(n) != n) {
+    throw new Error(&quot;Must not be negative, and also an integer.&quot;);
+  }
+  return n &lt;= 1 ? n : fib(n - 1) + fib(n - 2);
+}
+
+let start = Date.now();
+
+try {
+  result = fib(num);
+} catch (err) {
+  result = 0;
+} finally {
+  diff = Date.now() - start;
+}
+
+alert(result || &quot;error occurred&quot;);
+
+alert( `execution took ${diff}ms` );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你可以通过运行上面这段代码并在 <code>prompt</code> 弹窗中输入 <code>35</code> 来进行检查 — 代码运行正常，先执行 <code>try</code> 然后是 <code>finally</code>。如果你输入的是 <code>-1</code> — 将立即出现 error，执行将只花费 <code>0ms</code>。以上两种情况下的时间测量都正确地完成了。</p>
+<p>换句话说，函数 <code>fib</code> 以 <code>return</code> 还是 <code>throw</code> 完成都无关紧要。在这两种情况下都会执行 <code>finally</code> 子句。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">变量和 <code>try...catch...finally</code> 中的局部变量</span></div>
+            <div class="important__content"><p>请注意，上面代码中的 <code>result</code> 和 <code>diff</code> 变量都是在 <code>try...catch</code> <strong>之前</strong> 声明的。</p>
+<p>否则，如果我们使用 <code>let</code> 在 <code>try</code> 块中声明变量，那么该变量将只在 <code>try</code> 块中可见。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>finally</code> 和 <code>return</code></span></div>
+            <div class="important__content"><p><code>finally</code> 子句适用于 <code>try...catch</code> 的 <strong>任何</strong> 出口。这包括显式的 <code>return</code>。</p>
+<p>在下面这个例子中，在 <code>try</code> 中有一个 <code>return</code>。在这种情况下，<code>finally</code> 会在控制转向外部代码前被执行。</p>
+<div id="i2tyfzrhfk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function func() {
+
+  try {
+    return 1;
+
+  } catch (err) {
+    /* ... */
+  } finally {
+    alert( 'finally' );
+  }
+}
+
+alert( func() ); // 先执行 finally 中的 alert，然后执行这个 alert</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>try...finally</code></span></div>
+            <div class="important__content"><p>没有 <code>catch</code> 子句的 <code>try...finally</code> 结构也很有用。当我们不想在这儿处理 error（让它们 fall through），但是需要确保我们启动的处理需要被完成。</p>
+<div id="otx8o2foi2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function func() {
+  // 开始执行需要被完成的操作（比如测量）
+  try {
+    // ...
+  } finally {
+    // 完成前面我们需要完成的那件事儿，即使 try 中的执行失败了
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面的代码中，由于没有 <code>catch</code>，所以 <code>try</code> 中的 error 总是会使代码执行跳转至函数 <code>func()</code> 外。但是，在跳出之前需要执行 <code>finally</code> 中的代码。</p>
+</div></div>
+<h2><a class="main__anchor" name="quan-ju-catch" href="#quan-ju-catch">全局 catch</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">环境特定</span></div>
+            <div class="important__content"><p>这个部分的内容并不是 JavaScript 核心的一部分。</p>
+</div></div>
+<p>设想一下，在 <code>try...catch</code> 结构外有一个致命的 error，然后脚本死亡了。这个 error 就像编程错误或其他可怕的事儿那样。</p>
+<p>有什么办法可以用来应对这种情况吗？我们可能想要记录这个 error，并向用户显示某些内容（通常用户看不到错误信息）等。</p>
+<p>规范中没有相关内容，但是代码的执行环境一般会提供这种机制，因为它确实很有用。例如，Node.JS 有 <a href="https://nodejs.org/api/process.html#process_event_uncaughtexception"><code>process.on(&quot;uncaughtException&quot;)</code></a>。在浏览器中，我们可以将将一个函数赋值给特殊的 <a href="https://developer.mozilla.org/zh/docs/Web/API/GlobalEventHandlers/onerror">window.onerror</a> 属性，该函数将在发生未捕获的 error 时执行。</p>
+<p>语法如下：</p>
+<div id="5cwhzlb00k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.onerror = function(message, url, line, col, error) {
+  // ...
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><dl>
+<dt><code>message</code></dt>
+<dd>Error 信息。</dd>
+<dt><code>url</code></dt>
+<dd>发生 error 的脚本的 URL。</dd>
+<dt><code>line</code>，<code>col</code></dt>
+<dd>发生 error 处的代码的行号和列号。</dd>
+<dt><code>error</code></dt>
+<dd>Error 对象。</dd>
+</dl>
+<p>例如：</p>
+<div id="cav03e7axq" data-trusted="0" class="code-example" data-demo-height="1" data-refresh="1" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  window.onerror = function(message, url, line, col, error) {
+    alert(`${message}\n At ${line}:${col} of ${url}`);
+  };
+
+  function readData() {
+    badFunc(); // 啊，出问题了！
+  }
+
+  readData();
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>全局错误处理程序 <code>window.onerror</code> 的作用通常不是恢复脚本的执行 — 如果发生编程错误，那这几乎是不可能的，它的作用是将错误信息发送给开发者。</p>
+<p>也有针对这种情况提供错误日志的 Web 服务，例如 <a href="https://errorception.com">https://errorception.com</a> 或 <a href="http://www.muscula.com">http://www.muscula.com</a>。</p>
+<p>它们会像这样运行：</p>
+<ol>
+<li>我们注册该服务，并拿到一段 JS 代码（或脚本的 URL），然后插入到页面中。</li>
+<li>该 JS 脚本设置了自定义的 <code>window.onerror</code> 函数。</li>
+<li>当发生 error 时，它会发送一个此 error  相关的网络请求到服务提供方。</li>
+<li>我们可以登录到服务方的 Web 界面来查看这些 error。</li>
+</ol>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>try...catch</code> 结构允许我们处理执行过程中出现的 error。从字面上看，它允许“尝试”运行代码并“捕获”其中可能发生的错误。</p>
+<p>语法如下：</p>
+<div id="q3371rlgcs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  // 执行此处代码
+} catch (err) {
+  // 如果发生错误，跳转至此处
+  // err 是一个 error 对象
+} finally {
+  // 无论怎样都会在 try/catch 之后执行
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这儿可能会没有 <code>catch</code> 部分或者没有 <code>finally</code>，所以 <code>try...catch</code> 或 <code>try...finally</code> 都是可用的。</p>
+<p>Error 对象包含下列属性：</p>
+<ul>
+<li><code>message</code> — 人类可读的 error 信息。</li>
+<li><code>name</code> — 具有 error 名称的字符串（Error 构造器的名称）。</li>
+<li><code>stack</code>（没有标准，但得到了很好的支持）— Error 发生时的调用栈。</li>
+</ul>
+<p>如果我们不需要 error 对象，我们可以通过使用 <code>catch {</code> 而不是 <code>catch (err) {</code> 来省略它。</p>
+<p>我们也可以使用 <code>throw</code> 操作符来生成自定义的 error。从技术上讲，<code>throw</code> 的参数可以是任何东西，但通常是继承自内建的 <code>Error</code> 类的 error 对象。下一章我们会详细介绍扩展 error。</p>
+<p>再次抛出（rethrowing）是一种错误处理的重要模式：<code>catch</code> 块通常期望并知道如何处理特定的 error 类型，因此它应该再次抛出它不知道的 error。</p>
+<p>即使我们没有 <code>try...catch</code>，大多数执行环境也允许我们设置“全局”错误处理程序来捕获“掉出（fall out）”的 error。在浏览器中，就是 <code>window.onerror</code>。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shi-yong-finally-huan-shi-zhi-jie-fang-zai-dai-ma-hou-mian" name="shi-yong-finally-huan-shi-zhi-jie-fang-zai-dai-ma-hou-mian">使用 finally 还是直接放在代码后面？</a></h3><a class="task__open-link" href="../task/finally-or-code-after/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>比较下面两个代码片段。</p>
+<ol>
+<li>
+<p>第一个代码片段，使用 <code>finally</code> 在 <code>try..catch</code> 之后执行代码：</p>
+<div id="nz5jclj3n3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  work work
+} catch (err) {
+  handle errors
+} finally {
+  cleanup the working space
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>第二个代码片段，将清空工作空间的代码放在了 <code>try...catch</code> 之后：</p>
+<div id="lvj5nxkj8s" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>try {
+  work work
+} catch (err) {
+  handle errors
+}
+
+cleanup the working space</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>我们肯定需要在工作后进行清理，无论工作过程中是否有 error 都不影响。</p>
+<p>在这儿使用 <code>finally</code> 更有优势，还是说两个代码片段效果一样？如果在这儿有这样的优势，如果需要，请举例说明。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>当我们看函数中的代码时，差异就变得很明显了。</p>
+<p>如果在这儿有“跳出” <code>try..catch</code> 的行为，那么这两种方式的表现就不同了。</p>
+<p>例如，当 <code>try...catch</code> 中有 <code>return</code> 时。<code>finally</code> 子句会在 <code>try...catch</code> 的 <strong>任意</strong> 出口处起作用，即使是通过 <code>return</code> 语句退出的也是如此：在 <code>try...catch</code> 刚刚执行完成后，但在调用代码获得控制权之前。</p>
+<div id="wx1wli4668" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  try {
+    alert('start');
+    return &quot;result&quot;;
+  } catch (err) {
+    /// ...
+  } finally {
+    alert('cleanup!');
+  }
+}
+
+f(); // cleanup!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……或者当有 <code>throw</code> 时，如下所示：</p>
+<div id="wa386aycmf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  try {
+    alert('start');
+    throw new Error(&quot;an error&quot;);
+  } catch (err) {
+    // ...
+    if(&quot;can't handle the error&quot;) {
+      throw err;
+    }
+
+  } finally {
+    alert('cleanup!')
+  }
+}
+
+f(); // cleanup!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正是这里的 <code>finally</code> 保证了 cleanup。如果我们只是将代码放在函数 <code>f</code> 的末尾，则在这些情况下它不会运行。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../error-handling/index.html" data-tooltip="错误处理"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../custom-errors/index.html" data-tooltip="自定义 Error，扩展 Error"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/try-catch","identifier":"\/try-catch"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../error-handling/index.html">错误处理</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#trycatch-yu-fa">“try…catch” 语法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#error-dui-xiang">Error 对象</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ke-xuan-de-catch-bang-ding">可选的 “catch” 绑定</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-trycatch">使用 “try…catch”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#pao-chu-wo-men-zi-ding-yi-de-error">抛出我们自定义的 error</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zai-ci-pao-chu-rethrowing">再次抛出（Rethrowing）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#trycatchfinally">try…catch…finally</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#quan-ju-catch">全局 catch</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ftry-catch" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/10-error-handling/1-try-catch" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

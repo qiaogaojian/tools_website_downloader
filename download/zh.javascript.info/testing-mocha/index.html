@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">使用 Mocha 进行自动化测试</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/testing-mocha"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="使用 Mocha 进行自动化测试"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用 Mocha 进行自动化测试"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/ninja-code"><link rel="next" href="/polyfills"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="使用 Mocha 进行自动化测试"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/testing-mocha"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/testing-mocha"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/testing-mocha"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/testing-mocha"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/testing-mocha"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/testing-mocha"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/testing-mocha"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/testing-mocha"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/testing-mocha"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/testing-mocha"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/testing-mocha"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/testing-mocha">عربي</option><option value="https://javascript.info/testing-mocha">English</option><option value="https://es.javascript.info/testing-mocha">Español</option><option value="https://fr.javascript.info/testing-mocha">Français</option><option value="https://id.javascript.info/testing-mocha">Indonesia</option><option value="https://it.javascript.info/testing-mocha">Italiano</option><option value="https://ja.javascript.info/testing-mocha">日本語</option><option value="https://ko.javascript.info/testing-mocha">한국어</option><option value="https://learn.javascript.ru/testing-mocha">Русский</option><option value="https://tr.javascript.info/testing-mocha">Türkçe</option><option value="https://uk.javascript.info/testing-mocha">Українська</option><option value="https://zh.javascript.info/testing-mocha" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="27" max="92" data-tooltip="第 27/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../code-quality/index.html"><span>代码质量</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"代码质量","item":"https://zh.javascript.info/code-quality"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 十二月 2021"><div class="updated-at__content">4日 十二月 2021</div></div></div><h1 class="main__header-title">使用 Mocha 进行自动化测试</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="使用 Mocha 进行自动化测试"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>自动化测试将被用于进一步的任务中，并且还将被广泛应用在实际项目中。</p>
+<h2><a class="main__anchor" name="wo-men-wei-shi-mo-xu-yao-ce-shi" href="#wo-men-wei-shi-mo-xu-yao-ce-shi">我们为什么需要测试？</a></h2><p>当我们在写一个函数时，我们通常可以想象出它应该做什么：哪些参数会给出哪些结果。</p>
+<p>在开发期间，我们可以通过运行程序来检查它并将结果与预期进行比较。例如，我们可以在控制台中这么做。</p>
+<p>如果出了问题 —— 那么我们会修复代码，然后再一次运行并检查结果 —— 直到它工作为止。</p>
+<p>但这样的手动“重新运行”是不完美的。</p>
+<p><strong>当通过手动重新运行来测试代码时，很容易漏掉一些东西。</strong></p>
+<p>例如，我们要创建一个函数 <code>f</code>。写一些代码，然后测试：<code>f(1)</code> 可以执行，但是 <code>f(2)</code> 不执行。我们修复了一下代码，现在 <code>f(2)</code> 可以执行了。看起来已经搞定了？但是我们忘了重新测试 <code>f(1)</code>。这样有可能会导致出现错误。</p>
+<p>这是非常典型的。当我们在开发一些东西时，我们会保留很多可能需要的用例。但是不要想着程序员在每一次代码修改后都去检查所有的案例。所以这就很容易造成修复了一个问题却造成另一个问题的情况。</p>
+<p><strong>自动化测试意味着测试是独立于代码的。它们以各种方式运行我们的函数，并将结果与预期结果进行比较。</strong></p>
+<h2><a class="main__anchor" name="hang-wei-qu-dong-kai-fa-bdd" href="#hang-wei-qu-dong-kai-fa-bdd">行为驱动开发（BDD）</a></h2><p>我们来使用一种名为 <a href="http://en.wikipedia.org/wiki/Behavior-driven_development">行为驱动开发</a> 或简言为 BDD 的技术。</p>
+<p><strong>BDD 包含了三部分内容：测试、文档和示例。</strong></p>
+<p>为了理解 BDD，我们将研究一个实际的开发案例。</p>
+<h2><a class="main__anchor" name="kai-fa-pow-gui-fan" href="#kai-fa-pow-gui-fan">开发 “pow”：规范</a></h2><p>我们想要创建一个函数 <code>pow(x, n)</code> 来计算 <code>x</code> 的 <code>n</code> 次幂（<code>n</code> 为整数）。我们假设 <code>n≥0</code>。</p>
+<p>这个任务只是一个例子：JavaScript 中有一个 <code>**</code> 运算符可以用于幂运算。但是在这里我们专注于可以应用于更复杂任务的开发流程上。</p>
+<p>在创建函数 <code>pow</code> 的代码之前，我们可以想象函数应该做什么并且描述出来。</p>
+<p>这样的描述被称作 <strong>规范（specification, spec）</strong>，包含用例的描述以及针对它们的测试，如下所示：</p>
+<div id="6t92bwzwkg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;raises to n-th power&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如你所看到的，一个规范包含三个主要的模块：</p>
+<dl>
+<dt><code>describe(&quot;title&quot;, function() { ... })</code></dt>
+<dd>
+<p>表示我们正在描述的功能是什么。在我们的例子中我们正在描述函数 <code>pow</code>。用于组织“工人（workers）” —— <code>it</code> 代码块。</p>
+</dd>
+<dt><code>it(&quot;use case description&quot;, function() { ... })</code></dt>
+<dd>
+<p><code>it</code> 里面的描述部分，我们以一种 <strong>易于理解</strong> 的方式描述特定的用例，第二个参数是用于对其进行测试的函数。</p>
+</dd>
+<dt><code>assert.equal(value1, value2)</code></dt>
+<dd>
+<p><code>it</code> 块中的代码，如果实现是正确的，它应该在执行的时候不产生任何错误。</p>
+<p><code>assert.*</code> 函数用于检查 <code>pow</code> 函数是否按照预期工作。在这里我们使用了其中之一 —— <code>assert.equal</code>，它会对参数进行比较，如果它们不相等则会抛出一个错误。这里它检查了 <code>pow(2, 3)</code> 的值是否等于 <code>8</code>。还有其他类型的比较和检查，我们将在后面介绍到。</p>
+</dd>
+</dl>
+<p>规范可以被执行，它将运行在 <code>it</code> 块中指定的测试。我们稍后会看到。</p>
+<h2><a class="main__anchor" name="kai-fa-liu-cheng" href="#kai-fa-liu-cheng">开发流程</a></h2><p>开发流程通常看起来像这样：</p>
+<ol>
+<li>编写初始规范，测试最基本的功能。</li>
+<li>创建一个最初始的实现。</li>
+<li>检查它是否工作，我们运行测试框架 <a href="http://mochajs.org/">Mocha</a>（很快会有更多细节）来运行测试。当功能未完成时，将显示错误。我们持续修正直到一切都能工作。</li>
+<li>现在我们有一个带有测试的能工作的初步实现。</li>
+<li>我们增加更多的用例到规范中，或许目前的程序实现还不支持。无法通过测试。</li>
+<li>回到第 3 步，更新程序直到测试不会抛出错误。</li>
+<li>重复第 3 步到第 6 步，直到功能完善。</li>
+</ol>
+<p>如此来看，开发就是不断地 <strong>迭代</strong>。我们写规范，实现它，确保测试通过，然后写更多的测试，确保它们工作等等。最后，我们有了一个能工作的实现和针对它的测试。</p>
+<p>让我们在我们的开发案例中看看这个开发流程吧。</p>
+<p>在我们的案例中，第一步已经完成了：我们有一个针对 <code>pow</code> 的初始规范。因此让我们来实现它吧。但在此之前，让我们用一些 JavaScript 库来运行测试，就是看看测试是通过了还是失败了。</p>
+<h2><a class="main__anchor" name="hang-wei-gui-fan" href="#hang-wei-gui-fan">行为规范</a></h2><p>在本教程中，我们将使用以下 JavaScript 库进行测试：</p>
+<ul>
+<li><a href="http://mochajs.org/">Mocha</a> —— 核心框架：提供了包括通用型测试函数 <code>describe</code> 和 <code>it</code>，以及用于运行测试的主函数。</li>
+<li><a href="http://chaijs.com">Chai</a> —— 提供很多断言（assertion）支持的库。它提供了很多不同的断言，现在我们只需要用 <code>assert.equal</code>。</li>
+<li><a href="http://sinonjs.org/">Sinon</a> —— 用于监视函数、模拟内建函数和其他函数的库，我们在后面才会用到它。</li>
+</ul>
+<p>这些库都既适用于浏览器端，也适用于服务器端。这里我们将使用浏览器端的变体。</p>
+<p>包含这些框架和 <code>pow</code> 规范的完整的 HTML 页面：</p>
+<div id="37t50qyucz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;!-- add mocha css, to show results --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css&quot;&gt;
+  &lt;!-- add mocha framework code --&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    mocha.setup('bdd'); // minimal setup
+  &lt;/script&gt;
+  &lt;!-- add chai --&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // chai has a lot of stuff, let's make assert global
+    let assert = chai.assert;
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;script&gt;
+    function pow(x, n) {
+      /* function code is to be written, empty now */
+    }
+  &lt;/script&gt;
+
+  &lt;!-- the script with tests (describe, it...) --&gt;
+  &lt;script src=&quot;test.js&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- the element with id=&quot;mocha&quot; will contain test results --&gt;
+  &lt;div id=&quot;mocha&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- run tests! --&gt;
+  &lt;script&gt;
+    mocha.run();
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该页面可分为五个部分：</p>
+<ol>
+<li><code>&lt;head&gt;</code> —— 添加用于测试的第三方库和样式文件。</li>
+<li><code>&lt;script&gt;</code> 包含测试函数，在我们的例子中 —— 和 <code>pow</code> 相关的代码。</li>
+<li>测试代码 —— 在我们的案例中是名为 <code>test.js</code> 的脚本，它包含上面 <code>describe(&quot;pow&quot;, ...)</code> 的那些代码。</li>
+<li>HTML 元素 <code>&lt;div id=&quot;mocha&quot;&gt;</code> 将被 Mocha 用来输出结果。</li>
+<li>可以使用 <code>mocha.run()</code> 命令来开始测试。</li>
+</ol>
+<p>结果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/Tjz77Vofdt7IRJGn?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="Tjz77Vofdt7IRJGn" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/article/testing-mocha/pow-1/"></iframe>
+  </div><p>到目前为止，测试失败了，出现了一个错误。这是合乎逻辑的：我们的 <code>pow</code> 是一个空函数，因此 <code>pow(2,3)</code> 返回了 <code>undefined</code> 而不是 <code>8</code>。</p>
+<p>未来，我们会注意到有更高级的测试工具，像是 <a href="https://karma-runner.github.io/">karma</a> 或其他的，使自动运行许多不同的测试变得更容易。</p>
+<h2><a class="main__anchor" name="chu-shi-shi-xian" href="#chu-shi-shi-xian">初始实现</a></h2><p>为了可以通过测试，让我们写一个 <code>pow</code> 的简单实现：</p>
+<div id="dq6s0vuixu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow() {
+  return 8; // :) 我们作弊啦！
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>哇哦，现在它可以工作了。</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/YpgrDhYIAs7lWmtY?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="YpgrDhYIAs7lWmtY" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/article/testing-mocha/pow-min/"></iframe>
+  </div><h2><a class="main__anchor" name="gai-jin-gui-fan" href="#gai-jin-gui-fan">改进规范</a></h2><p>我们所做的这些绝对是作弊。函数是不起作用的：尝试计算 <code>pow(3,4)</code> 的话就会得到一个不正确的结果，但是测试却通过了。</p>
+<p>……但是这种情况却是在实际中相当典型例子。测试通过了，但是函数却是错误的。我们的规范是不完善的。我们需要给它添加更多的测试用例。</p>
+<p>这里我们又添加了一个测试来检查 <code>pow(3, 4) = 81</code>。</p>
+<p>我们可以选择两种方式中的任意一种来组织测试代码：</p>
+<ol>
+<li>
+<p>第一种 —— 在同一个 <code>it</code> 中再添加一个 <code>assert</code>：</p>
+<div id="7deglihfou" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;raises to n-th power&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+    assert.equal(pow(3, 4), 81);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>第二种 —— 写两个测试：</p>
+<div id="aqclrbmjdx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  it(&quot;2 raised to power 3 is 8&quot;, function() {
+    assert.equal(pow(2, 3), 8);
+  });
+
+  it(&quot;3 raised to power 4 is 81&quot;, function() {
+    assert.equal(pow(3, 4), 81);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>主要的区别是，当 <code>assert</code> 触发一个错误时，<code>it</code> 代码块会立即终止。因此，在第一种方式中，如果第一个 <code>assert</code> 失败了，我们将永远不会看到第二个 <code>assert</code> 的结果。</p>
+<p>保持测试之间独立，有助于我们获知代码中正在发生什么，因此第二种方式更好一点。</p>
+<p>除此之外，还有一个规范值得遵循。</p>
+<p><strong>一个测试检查一个东西。</strong></p>
+<p>如果我们在看测试代码的时候，发现在其中有两个相互独立的检查 —— 最好将它拆分成两个更简单的检查。</p>
+<p>因此让我们继续使用第二种方式。</p>
+<p>结果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/voVRGjcRg7RkQTZr?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="voVRGjcRg7RkQTZr" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/article/testing-mocha/pow-2/"></iframe>
+  </div><p>正如我们可以想到的，第二条测试失败了。当然啦，我们的函数总会返回 <code>8</code>，而 <code>assert</code> 期望的是 <code>81</code>。</p>
+<h2><a class="main__anchor" name="gai-jin-shi-xian" href="#gai-jin-shi-xian">改进实现</a></h2><p>让我们写一些更加实际的代码来通过测试吧：</p>
+<div id="je9t9uu15j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了确保函数可以很好地工作，我们来使用更多值测试它吧。除了手动地编写 <code>it</code> 代码块，我们可以使用 <code>for</code> 循环来生成它们：</p>
+<div id="zqo5lyo1su" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  function makeTest(x) {
+    let expected = x * x * x;
+    it(`${x} in the power 3 is ${expected}`, function() {
+      assert.equal(pow(x, 3), expected);
+    });
+  }
+
+  for (let x = 1; x &lt;= 5; x++) {
+    makeTest(x);
+  }
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/fGVMptYjGzFspOGH?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="fGVMptYjGzFspOGH" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/article/testing-mocha/pow-3/"></iframe>
+  </div><h2><a class="main__anchor" name="qian-tao-miao-shu" href="#qian-tao-miao-shu">嵌套描述</a></h2><p>我们继续添加更多的测试。但在此之前，我们需要注意到辅助函数 <code>makeTest</code> 和 <code>for</code> 应该被组合到一起。我们在其他测试中不需要 <code>makeTest</code>，只有在 <code>for</code> 循环中需要它：它们共同的任务就是检查 <code>pow</code> 是如何自乘至给定的幂次方。</p>
+<p>使用嵌套的 <code>describe</code> 来进行分组：</p>
+<div id="bezlzgib1w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15},{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  describe(&quot;raises x to power 3&quot;, function() {
+
+    function makeTest(x) {
+      let expected = x * x * x;
+      it(`${x} in the power 3 is ${expected}`, function() {
+        assert.equal(pow(x, 3), expected);
+      });
+    }
+
+    for (let x = 1; x &lt;= 5; x++) {
+      makeTest(x);
+    }
+
+  });
+
+  // ……可以在这里写更多的测试代码，describe 和 it 都可以添加在这。
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>嵌套的 <code>describe</code> 定义了一个新的 “subgroup” 测试。在输出中我们可以看到带有标题的缩进：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/mbuprHopPBcA5W9S?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="mbuprHopPBcA5W9S" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/article/testing-mocha/pow-4/"></iframe>
+  </div><p>将来，我们可以在顶级域中使用 <code>it</code> 和 <code>describe</code> 的辅助函数添加更多的 <code>it</code> 和 <code>describe</code>，它们不会看到 <code>makeTest</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>before/after</code> 和 <code>beforeEach/afterEach</code></span></div>
+            <div class="important__content"><p>我们可以设置 <code>before/after</code> 函数来在运行测试之前/之后执行。也可以使用 <code>beforeEach/afterEach</code> 函数来设置在执行 <strong>每一个</strong> <code>it</code> 之前/之后执行。</p>
+<p>例如：</p>
+<div id="nr5w0ty1ey" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;test&quot;, function() {
+
+  before(() =&gt; alert(&quot;Testing started – before all tests&quot;));
+  after(() =&gt; alert(&quot;Testing finished – after all tests&quot;));
+
+  beforeEach(() =&gt; alert(&quot;Before a test – enter a test&quot;));
+  afterEach(() =&gt; alert(&quot;After a test – exit a test&quot;));
+
+  it('test 1', () =&gt; alert(1));
+  it('test 2', () =&gt; alert(2));
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>运行顺序将为：</p>
+<div id="hurbn7igjg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Testing started – before all tests (before)
+Before a test – enter a test (beforeEach)
+1
+After a test – exit a test   (afterEach)
+Before a test – enter a test (beforeEach)
+2
+After a test – exit a test   (afterEach)
+Testing finished – after all tests (after)</code></pre>
+        </div>
+      </div>
+      
+      </div><a class="edit" target="_blank" href="https://plnkr.co/edit/GbnfZaiQjI09SIgj?p=preview">Open the example in the sandbox.</a><p>通常，<code>beforeEach/afterEach</code> 和 <code>before/after</code> 被用于执行初始化，清零计数器或做一些介于每个测试（或测试组）之间的事情。</p>
+</div></div>
+<h2><a class="main__anchor" name="yan-shen-gui-fan" href="#yan-shen-gui-fan">延伸规范</a></h2><p><code>pow</code> 的基础功能已经完成了。第一次迭代开发完成啦。当我们庆祝和喝完香槟之后，让我们继续改进它吧。</p>
+<p>正如前面所说，函数 <code>pow(x, n)</code> 适用于正整数 <code>n</code>。</p>
+<p>JavaScript 函数通常会返回 <code>NaN</code> 以表示一个数学错误。接下来我们对无效的 <code>n</code> 值执行相同的操作。</p>
+<p>让我们首先将这个行为加到规范中(!)：</p>
+<div id="acxo96i2js" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;pow&quot;, function() {
+
+  // ...
+
+  it(&quot;for negative n the result is NaN&quot;, function() {
+    assert.isNaN(pow(2, -1));
+  });
+
+  it(&quot;for non-integer n the result is NaN&quot;, function() {
+    assert.isNaN(pow(2, 1.5));
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>新测试的结果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/L5lDeZiVOXDpek3U?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="L5lDeZiVOXDpek3U" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:530px" src="https://zh.js.cx/article/testing-mocha/pow-nan/"></iframe>
+  </div><p>新加的测试失败了，因为我们的实现方式是不支持它们的。这就是 BDD 的做法：我们首先写一些暂时无法通过的测试，然后去实现它们。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Other assertions</span></div>
+            <div class="important__content"><p>请注意断言语句 <code>assert.isNaN</code>：它用来检查 <code>NaN</code>。</p>
+<p>在 <a href="http://chaijs.com">Chai</a> 中也有其他的断言，例如：</p>
+<ul>
+<li><code>assert.equal(value1, value2)</code> —— 检查相等 <code>value1 == value2</code>。</li>
+<li><code>assert.strictEqual(value1, value2)</code> —— 检查严格相等 <code>value1 === value2</code>。</li>
+<li><code>assert.notEqual</code>，<code>assert.notStrictEqual</code> —— 执行和上面相反的检查。</li>
+<li><code>assert.isTrue(value)</code> —— 检查 <code>value === true</code>。</li>
+<li><code>assert.isFalse(value)</code> —— 检查 <code>value === false</code>。</li>
+<li>……完整的列表请见 <a href="http://chaijs.com/api/assert/">docs</a></li>
+</ul>
+</div></div>
+<p>因此我们应该给 <code>pow</code> 再加几行：</p>
+<div id="zl2kxqanbn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) return NaN;
+  if (Math.round(n) != n) return NaN;
+
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它可以工作了，所有的测试也都通过了：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/d9iXyHLaB8ZB5b2x?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="d9iXyHLaB8ZB5b2x" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:300px" src="https://zh.js.cx/article/testing-mocha/pow-full/"></iframe>
+  </div><a class="edit" target="_blank" href="https://plnkr.co/edit/d9iXyHLaB8ZB5b2x?p=preview">Open the full final example in the sandbox.</a><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>在 BDD 中，规范先行，实现在后。最后我们同时拥有了规范和代码。</p>
+<p>规范有三种使用方式：</p>
+<ol>
+<li>作为 <strong>测试</strong> —— 保证代码正确工作。</li>
+<li>作为 <strong>文档</strong> —— <code>describe</code> 和 <code>it</code> 的标题告诉我们函数做了什么。</li>
+<li>作为 <strong>案例</strong> —— 测试实际工作的例子展示了一个函数可以被怎样使用。</li>
+</ol>
+<p>有了规范，我们可以安全地改进、修改甚至重写函数，并确保它仍然正确地工作。</p>
+<p>这在一个函数会被用在多个地方的大型项目中尤其重要。当我们改变这样一个函数时，没有办法手动检查每个使用它们的地方是否仍旧正确。</p>
+<p>如果没有测试，一般有两个办法：</p>
+<ol>
+<li>展示修改，无论修改了什么。然后我们的用户遇到了 bug，这应该是我们没有手动完成某些检查。</li>
+<li>如果对出错的惩罚比较严重，并且没有测试，那么大家会很害怕修改这样的函数，然后这些代码就会越来越陈旧，没有人会想接触它。这很不利于发展。</li>
+</ol>
+<p><strong>自动化测试则有助于避免这样的问题！</strong></p>
+<p>如果这个项目被测试代码覆盖了，就不会出现这种问题。在任何修改之后，我们都可以运行测试，并在几秒钟内看到大量的检查。</p>
+<p><strong>另外，一个经过良好测试的代码通常都有更好的架构。</strong></p>
+<p>当然，这是因为覆盖了自动化测试的代码更容易修改和改进。但还有另一个原因。</p>
+<p>要编写测试，代码的组织方式应确保每个函数都有一个清晰描述的任务、定义良好的输入和输出。这意味着从一开始就有一个好的架构。</p>
+<p>在实际开发中有时候可能并不容易，有时很难在写实际代码之前编写规范，因为还不清楚它应该如何表现。但一般来说，编写测试使得开发更快更稳定。</p>
+<p>在本教程的后面部分，你将遇到许多包含了测试的任务。所以你会看到更多的实际例子。</p>
+<p>编写测试需要良好的 JavaScript 知识。但我们刚刚开始学习它。因此，为了解决所有问题，到目前为止，你不需要编写测试，但是你应该已经能够阅读测试了，即使它们比本章中的内容稍微复杂一些。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ce-shi-dai-ma-zhong-you-shi-mo-cuo-wu" name="ce-shi-dai-ma-zhong-you-shi-mo-cuo-wu">测试代码中有什么错误？</a></h3><a class="task__open-link" href="../task/pow-test-wrong/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面这个 <code>pow</code> 的测试代码有什么错误？</p>
+<div id="3fp4cigdyf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>it(&quot;Raises x to the power n&quot;, function() {
+  let x = 5;
+
+  let result = x;
+  assert.equal(pow(x, 1), result);
+
+  result *= x;
+  assert.equal(pow(x, 2), result);
+
+  result *= x;
+  assert.equal(pow(x, 3), result);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>附：从语法上来说这些测试代码是正确且通过的。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>这些测试代码展示了开发人员在编写测试代码时遇到的一些疑惑。</p>
+<p>我们这里实际上有三条测试，但是用了一个函数来放置 3 个断言语句。</p>
+<p>有时用这种方式编写会更容易，但是如果发生错误，那么到底什么出错了就很不明显。</p>
+<p>如果错误发生在一个复杂的执行流的中间，那么我们就必须找出那个点的数据。我们必须 <strong>调试测试</strong>。</p>
+<p>将测试分成多个具有明确输入和输出的 <code>it</code> 代码块会更好。</p>
+<p>像是这样：</p>
+<div id="fpsc4vissy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;Raises x to power n&quot;, function() {
+  it(&quot;5 in the power of 1 equals 5&quot;, function() {
+    assert.equal(pow(5, 1), 5);
+  });
+
+  it(&quot;5 in the power of 2 equals 25&quot;, function() {
+    assert.equal(pow(5, 2), 25);
+  });
+
+  it(&quot;5 in the power of 3 equals 125&quot;, function() {
+    assert.equal(pow(5, 3), 125);
+  });
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们使用 <code>describe</code> 和一组 <code>it</code> 代码块替换掉了单个的 <code>it</code>。现在，如果某个测试失败了，我们可以清楚地看到数据是什么。</p>
+<p>此外，我们可以通过编写 <code>it.only</code> 而不是 <code>it</code> 来隔离单个测试，并以独立模式运行它：</p>
+<div id="99tulymo6h" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>describe(&quot;Raises x to power n&quot;, function() {
+  it(&quot;5 in the power of 1 equals 5&quot;, function() {
+    assert.equal(pow(5, 1), 5);
+  });
+
+  // Mocha 将只运行这个代码块
+  it.only(&quot;5 in the power of 2 equals 25&quot;, function() {
+    assert.equal(pow(5, 2), 25);
+  });
+
+  it(&quot;5 in the power of 3 equals 125&quot;, function() {
+    assert.equal(pow(5, 3), 125);
+  });
+});</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../ninja-code/index.html" data-tooltip="忍者代码"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../polyfills/index.html" data-tooltip="Polyfill 和转译器"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/testing-mocha","identifier":"\/testing-mocha"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../code-quality/index.html">代码质量</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wo-men-wei-shi-mo-xu-yao-ce-shi">我们为什么需要测试？</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#hang-wei-qu-dong-kai-fa-bdd">行为驱动开发（BDD）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#kai-fa-pow-gui-fan">开发 “pow”：规范</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#kai-fa-liu-cheng">开发流程</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#hang-wei-gui-fan">行为规范</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#chu-shi-shi-xian">初始实现</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#gai-jin-gui-fan">改进规范</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#gai-jin-shi-xian">改进实现</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qian-tao-miao-shu">嵌套描述</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yan-shen-gui-fan">延伸规范</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ftesting-mocha" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/03-code-quality/05-testing-mocha" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

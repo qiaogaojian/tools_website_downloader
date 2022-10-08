@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Shadow DOM 插槽，组成</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/slots-composition"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Shadow DOM 插槽，组成"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Shadow DOM 插槽，组成"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/template-element"><link rel="next" href="/shadow-dom-style"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Shadow DOM 插槽，组成"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/slots-composition"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/slots-composition"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/slots-composition"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/slots-composition"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/slots-composition"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/slots-composition"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/slots-composition">English</option><option value="https://es.javascript.info/slots-composition">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/slots-composition">Indonesia</option><option value="https://it.javascript.info/slots-composition">Italiano</option><option value="https://ja.javascript.info/slots-composition">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/slots-composition">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/slots-composition" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="5" max="7" data-tooltip="第 5/7 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../web-components/index.html"><span>Web components</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"Web components","item":"https://zh.javascript.info/web-components"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 二月 2022"><div class="updated-at__content">4日 二月 2022</div></div></div><h1 class="main__header-title">Shadow DOM 插槽，组成</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Shadow DOM 插槽，组成"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>许多类型的组件，例如标签、菜单、照片库等等，需要内容去渲染。</p>
+<p>就像浏览器内建的 <code>&lt;select&gt;</code> 需要 <code>&lt;option&gt;</code> 子项，我们的 <code>&lt;custom-tabs&gt;</code> 可能需要实际的标签内容来起作用。并且一个 <code>&lt;custom-menu&gt;</code> 可能需要菜单子项。</p>
+<p>使用了 <code>&lt;custom-menu&gt;</code> 的代码如下所示：</p>
+<div id="nkspi3ndcj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;custom-menu&gt;
+  &lt;title&gt;Candy menu&lt;/title&gt;
+  &lt;item&gt;Lollipop&lt;/item&gt;
+  &lt;item&gt;Fruit Toast&lt;/item&gt;
+  &lt;item&gt;Cup Cake&lt;/item&gt;
+&lt;/custom-menu&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……之后，我们的组件应该正确地渲染成具有给定标题和项目、处理菜单事件等的漂亮菜单。</p>
+<p>如何实现呢？</p>
+<p>我们可以尝试分析元素内容并动态复制重新排列 DOM 节点。这是可能的，但是如果我们要将元素移动到 Shadow DOM，那么文档的 CSS 样式不能在那里应用，因此文档的视觉样式可能会丢失。看起来还需要做一些事情。</p>
+<p>幸运的是我们不需要去做。Shadow DOM 支持 <code>&lt;slot&gt;</code> 元素，由 light DOM 中的内容自动填充。</p>
+<h2><a class="main__anchor" name="ju-ming-cha-cao" href="#ju-ming-cha-cao">具名插槽</a></h2><p>让我们通过一个简单的例子看下插槽是如何工作的。</p>
+<p>在这里 <code>&lt;user-card&gt;</code> shadow DOM 提供两个插槽, 从 light DOM 填充：</p>
+<div id="uz6czfsxni" data-trusted="0" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:18,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:23}]},{&quot;start&quot;:17,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:23}]},{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:6,&quot;end&quot;:6}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('user-card', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
+      &lt;div&gt;Name:
+        &lt;slot name=&quot;username&quot;&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+      &lt;div&gt;Birthday:
+        &lt;slot name=&quot;birthday&quot;&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+    `;
+  }
+});
+&lt;/script&gt;
+
+&lt;user-card&gt;
+  &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+  &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-uz6czfsxni" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>在 shadow DOM 中，<code>&lt;slot name=&quot;X&quot;&gt;</code> 定义了一个“插入点”，一个带有 <code>slot=&quot;X&quot;</code> 的元素被渲染的地方。</p>
+<p>然后浏览器执行”组合“：它从 light DOM 中获取元素并且渲染到 shadow DOM 中的对应插槽中。最后，正是我们想要的 —— 一个能被填充数据的通用组件。</p>
+<p>这是编译后，不考虑组合的 DOM 结构：</p>
+<div id="ae2bmb9hqn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  #shadow-root
+    &lt;div&gt;Name:
+      &lt;slot name=&quot;username&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div&gt;Birthday:
+      &lt;slot name=&quot;birthday&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+  &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们创建了 shadow DOM，所以它当然就存在了，位于 <code>#shadow-root</code> 之下。现在元素同时拥有 light DOM 和 shadow DOM。</p>
+<p>为了渲染 shadow DOM 中的每一个 <code>&lt;slot name=&quot;...&quot;&gt;</code> 元素，浏览器在 light DOM 中寻找相同名字的 <code>slot=&quot;...&quot;</code>。这些元素在插槽内被渲染：</p>
+<figure><div class="image" style="width:440px">
+      <div class="image__ratio" style="padding-top:64.77272727272727%"></div>
+      <object type="image/svg+xml" data="../article/slots-composition/shadow-dom-user-card.svg" width="440" height="285" class="image__image" data-use-theme>
+        <img src="../article/slots-composition/shadow-dom-user-card.svg" alt width="440" height="285">
+      </object>
+      </div></figure><p>结果被叫做扁平化（flattened）DOM：</p>
+<div id="jxq7xy4em3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  #shadow-root
+    &lt;div&gt;Name:
+      &lt;slot name=&quot;username&quot;&gt;
+        &lt;!-- slotted element is inserted into the slot --&gt;
+        &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div&gt;Birthday:
+      &lt;slot name=&quot;birthday&quot;&gt;
+        &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是 “flattened” DOM 仅仅被创建用来渲染和事件处理，是“虚拟”的。虽然是渲染出来了，但文档中的节点事实上并没有到处移动！</p>
+<p>如果我们调用 <code>querySelectorAll</code> 那就很容易验证：节点仍在它们的位置。</p>
+<div id="g120n33qhg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// light DOM &lt;span&gt; 节点位置依然不变，在 `&lt;user-card&gt;` 里
+alert( document.querySelectorAll('user-card span').length ); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，扁平化 DOM 是通过插入插槽从 shadow DOM 派生出来的。浏览器渲染它并且用于样式继承、事件传播。但是 JavaScript 在扁平前仍按原样看到文档。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">仅顶层子元素可以设置 slot=&quot;…&quot; 特性</span></div>
+            <div class="important__content"><p><code>slot=&quot;...&quot;</code> 属性仅仅对 shadow host 的直接子代 (在我们的例子中的 <code>&lt;user-card&gt;</code> 元素) 有效。对于嵌套元素它将被忽略。</p>
+<p>例如，这里的第二个 <code>&lt;span&gt;</code> 被忽略了(因为它不是 <code>&lt;user-card&gt;</code> 的顶层子元素)：</p>
+<div id="lqfjs71sqi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+  &lt;div&gt;
+    &lt;!-- invalid slot, must be direct child of user-card --&gt;
+    &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>如果在 light DOM 里有多个相同插槽名的元素，那么它们会被一个接一个地添加到插槽中。</p>
+<p>例如这样：</p>
+<div id="nq7g2khhj8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  &lt;span slot=&quot;username&quot;&gt;John&lt;/span&gt;
+  &lt;span slot=&quot;username&quot;&gt;Smith&lt;/span&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>给这个扁平化 DOM 两个元素，插入到 <code>&lt;slot name=&quot;username&quot;&gt;</code> 里：</p>
+<div id="92ngkd1rah" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  #shadow-root
+    &lt;div&gt;Name:
+      &lt;slot name=&quot;username&quot;&gt;
+        &lt;span slot=&quot;username&quot;&gt;John&lt;/span&gt;
+        &lt;span slot=&quot;username&quot;&gt;Smith&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div&gt;Birthday:
+      &lt;slot name=&quot;birthday&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="cha-cao-hou-bei-nei-rong" href="#cha-cao-hou-bei-nei-rong">插槽后备内容</a></h2><p>如果我们在一个 <code>&lt;slot&gt;</code> 内部放点什么，它将成为后备内容。如果 light DOM 中没有相应填充物的话浏览器就展示它。</p>
+<p>例如，在这里的 shadow DOM 中，如果 light DOM 中没有 <code>slot=&quot;username&quot;</code> 的话 <code>Anonymous</code> 就被渲染。</p>
+<div id="o1smer1ff4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;Name:
+  &lt;slot name=&quot;username&quot;&gt;Anonymous&lt;/slot&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="mo-ren-cha-cao-di-yi-ge-bu-ju-ming-de-cha-cao" href="#mo-ren-cha-cao-di-yi-ge-bu-ju-ming-de-cha-cao">默认插槽：第一个不具名的插槽</a></h2><p>shadow DOM 中第一个没有名字的 <code>&lt;slot&gt;</code> 是一个默认插槽。它从 light DOM 中获取没有放置在其他位置的所有节点。</p>
+<p>例如，让我们把默认插槽添加到 <code>&lt;user-card&gt;</code>，该位置可以收集有关用户的所有未开槽（unslotted）的信息：</p>
+<div id="l64f43zecv" data-trusted="0" class="code-example" data-demo-height="140" data-highlight="[{&quot;start&quot;:24,&quot;end&quot;:24},{&quot;start&quot;:21,&quot;end&quot;:21},{&quot;start&quot;:13,&quot;end&quot;:13}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('user-card', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
+    &lt;div&gt;Name:
+      &lt;slot name=&quot;username&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div&gt;Birthday:
+      &lt;slot name=&quot;birthday&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;fieldset&gt;
+      &lt;legend&gt;Other information&lt;/legend&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/fieldset&gt;
+    `;
+  }
+});
+&lt;/script&gt;
+
+&lt;user-card&gt;
+  &lt;div&gt;I like to swim.&lt;/div&gt;
+  &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+  &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+  &lt;div&gt;...And play volleyball too!&lt;/div&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-l64f43zecv" style="height:140px" src="about:blank"></iframe>
+        </div>
+      </div><p>所有未被插入的 light DOM 内容进入 “其他信息” 字段集。</p>
+<p>元素一个接一个的附加到插槽中，因此这两个未插入插槽的信息都在默认插槽中。</p>
+<p>扁平化的 DOM 看起来像这样：</p>
+<div id="bdilhjsqqw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:17}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;user-card&gt;
+  #shadow-root
+    &lt;div&gt;Name:
+      &lt;slot name=&quot;username&quot;&gt;
+        &lt;span slot=&quot;username&quot;&gt;John Smith&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div&gt;Birthday:
+      &lt;slot name=&quot;birthday&quot;&gt;
+        &lt;span slot=&quot;birthday&quot;&gt;01.01.2001&lt;/span&gt;
+      &lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;fieldset&gt;
+      &lt;legend&gt;About me&lt;/legend&gt;
+      &lt;slot&gt;
+        &lt;div&gt;Hello&lt;/div&gt;
+        &lt;div&gt;I am John!&lt;/div&gt;
+      &lt;/slot&gt;
+    &lt;/fieldset&gt;
+&lt;/user-card&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="menuexample" href="#menuexample">Menu example</a></h2><p>现在让我们回到在本章开头提到的 <code>&lt;custom-menu&gt;</code> 。</p>
+<p>我们可以使用插槽来分配元素。</p>
+<p>这是 <code>&lt;custom-menu&gt;</code>：</p>
+<div id="vqscvjriky" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;custom-menu&gt;
+  &lt;span slot=&quot;title&quot;&gt;Candy menu&lt;/span&gt;
+  &lt;li slot=&quot;item&quot;&gt;Lollipop&lt;/li&gt;
+  &lt;li slot=&quot;item&quot;&gt;Fruit Toast&lt;/li&gt;
+  &lt;li slot=&quot;item&quot;&gt;Cup Cake&lt;/li&gt;
+&lt;/custom-menu&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>带有适当插槽的 shadow DOM 模版：</p>
+<div id="39olcmmfsm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;template id=&quot;tmpl&quot;&gt;
+  &lt;style&gt; /* menu styles */ &lt;/style&gt;
+  &lt;div class=&quot;menu&quot;&gt;
+    &lt;slot name=&quot;title&quot;&gt;&lt;/slot&gt;
+    &lt;ul&gt;&lt;slot name=&quot;item&quot;&gt;&lt;/slot&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li><code>&lt;span slot=&quot;title&quot;&gt;</code> 进入 <code>&lt;slot name=&quot;title&quot;&gt;</code>。</li>
+<li>模版中有许多 <code>&lt;li slot=&quot;item&quot;&gt;</code>，但是只有一个 <code>&lt;slot name=&quot;item&quot;&gt;</code>。因此所有带有 <code>slot=&quot;item&quot;</code> 的元素都一个接一个地附加到 <code>&lt;slot name=&quot;item&quot;&gt;</code> 上，从而形成列表。</li>
+</ol>
+<p>扁平化的 DOM 变为：</p>
+<div id="zewad2yo7e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;custom-menu&gt;
+  #shadow-root
+    &lt;style&gt; /* menu styles */ &lt;/style&gt;
+    &lt;div class=&quot;menu&quot;&gt;
+      &lt;slot name=&quot;title&quot;&gt;
+        &lt;span slot=&quot;title&quot;&gt;Candy menu&lt;/span&gt;
+      &lt;/slot&gt;
+      &lt;ul&gt;
+        &lt;slot name=&quot;item&quot;&gt;
+          &lt;li slot=&quot;item&quot;&gt;Lollipop&lt;/li&gt;
+          &lt;li slot=&quot;item&quot;&gt;Fruit Toast&lt;/li&gt;
+          &lt;li slot=&quot;item&quot;&gt;Cup Cake&lt;/li&gt;
+        &lt;/slot&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/custom-menu&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可能会注意到，在有效的 DOM 中，<code>&lt;li&gt;</code> 必须是 <code>&lt;ul&gt;</code> 的直接子代。但这是扁平化的 DOM，它描述了组件的渲染方式，这样的事情在这里自然发生。</p>
+<p>我们只需要添加一个 <code>click</code> 事件处理程序来打开/关闭列表，并且 <code>&lt;custom-menu&gt;</code> 准备好了：</p>
+<div id="lynfszlr3m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>customElements.define('custom-menu', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+
+    // tmpl is the shadow DOM template (above)
+    this.shadowRoot.append( tmpl.content.cloneNode(true) );
+
+    // we can't select light DOM nodes, so let's handle clicks on the slot
+    this.shadowRoot.querySelector('slot[name=&quot;title&quot;]').onclick = () =&gt; {
+      // open/close the menu
+      this.shadowRoot.querySelector('.menu').classList.toggle('closed');
+    };
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是完整的演示：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/5zXc8oKPV53sLXE4?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="5zXc8oKPV53sLXE4" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:140px" src="https://zh.js.cx/article/slots-composition/menu/"></iframe>
+  </div><p>当然我们可以为它添加更多的功能：事件、方法等。</p>
+<h2><a class="main__anchor" name="geng-xin-cha-cao" href="#geng-xin-cha-cao">更新插槽</a></h2><p>如果外部代码想动态 添加/移除 菜单项怎么办？</p>
+<p><strong>如果 添加/删除 了插槽元素，浏览器将监视插槽并更新渲染。</strong></p>
+<p>另外，由于不复制 light DOM 节点，而是仅在插槽中进行渲染，所以内部的变化是立即可见的。</p>
+<p>因此我们无需执行任何操作即可更新渲染。但是如果组件想知道插槽的更改，那么可以用 <code>slotchange</code> 事件。</p>
+<p>例如，这里的菜单项在 1 秒后动态插入，而且标题在 2 秒后改变。</p>
+<div id="8ffesulxbt" data-trusted="0" class="code-example" data-demo-height="80">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;custom-menu id=&quot;menu&quot;&gt;
+  &lt;span slot=&quot;title&quot;&gt;Candy menu&lt;/span&gt;
+&lt;/custom-menu&gt;
+
+&lt;script&gt;
+customElements.define('custom-menu', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `&lt;div class=&quot;menu&quot;&gt;
+      &lt;slot name=&quot;title&quot;&gt;&lt;/slot&gt;
+      &lt;ul&gt;&lt;slot name=&quot;item&quot;&gt;&lt;/slot&gt;&lt;/ul&gt;
+    &lt;/div&gt;`;
+
+    // shadowRoot can't have event handlers, so using the first child
+    this.shadowRoot.firstElementChild.addEventListener('slotchange',
+      e =&gt; alert(&quot;slotchange: &quot; + e.target.name)
+    );
+  }
+});
+
+setTimeout(() =&gt; {
+  menu.insertAdjacentHTML('beforeEnd', '&lt;li slot=&quot;item&quot;&gt;Lollipop&lt;/li&gt;')
+}, 1000);
+
+setTimeout(() =&gt; {
+  menu.querySelector('[slot=&quot;title&quot;]').innerHTML = &quot;New menu&quot;;
+}, 2000);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>菜单每次都会更新渲染而无需我们干预。</p>
+<p>这里有两个 <code>slotchange</code> 事件：</p>
+<ol>
+<li>
+<p>在初始化时:</p>
+<p><code>slotchange: title</code> 立即触发, 因为来自 light DOM 的 <code>slot=&quot;title&quot;</code> 进入了相应的插槽。</p>
+</li>
+<li>
+<p>1 秒后:</p>
+<p><code>slotchange: item</code> 触发, 当一个新的 <code>&lt;li slot=&quot;item&quot;&gt;</code> 被添加。</p>
+</li>
+</ol>
+<p>请注意：2 秒后，如果修改了 <code>slot=&quot;title&quot;</code> 的内容，则不会发生 <code>slotchange</code> 事件。因为没有插槽更改。我们修改了 slotted 元素的内容，这是另一回事。</p>
+<p>如果我们想通过 JavaScript 跟踪 light DOM 的内部修改，也可以使用更通用的机制: <a href="../mutation-observer/index.html">MutationObserver</a>。</p>
+<h2><a class="main__anchor" name="cha-cao-api" href="#cha-cao-api">插槽 API</a></h2><p>最后让我们来谈谈与插槽相关的 JavaScript 方法。</p>
+<p>正如我们之前所见，JavaScript 会查看真实的 DOM，不展开。但是如果 shadow 树有 <code>{mode: 'open'}</code> ，那么我们可以找出哪个元素被放进一个插槽，反之亦然，哪个插槽分配了给这个元素：</p>
+<ul>
+<li><code>node.assignedSlot</code> – 返回 <code>node</code> 分配给的 <code>&lt;slot&gt;</code> 元素。</li>
+<li><code>slot.assignedNodes({flatten: true/false})</code> – 分配给插槽的 DOM 节点。默认情况下，<code>flatten</code> 选项为 <code>false</code>。如果显式地设置为 <code>true</code>，则它将更深入地查看扁平化 DOM ，如果嵌套了组件，则返回嵌套的插槽，如果未分配节点，则返回备用内容。</li>
+<li><code>slot.assignedElements({flatten: true/false})</code> – 分配给插槽的 DOM 元素（与上面相同，但仅元素节点）。</li>
+</ul>
+<p>当我们不仅需要显示已插入内容的内容，还需要在 JavaScript 中对其进行跟踪时，这些方法非常有用。</p>
+<p>例如，如果 <code>&lt;custom-menu&gt;</code> 组件想知道它所显示的内容，那么它可以跟踪 <code>slotchange</code> 并从 <code>slot.assignedElements</code> 获取：</p>
+<div id="1d2j2ajgnl" data-trusted="0" class="code-example" data-demo-height="120" data-highlight="[{&quot;start&quot;:18,&quot;end&quot;:24}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;custom-menu id=&quot;menu&quot;&gt;
+  &lt;span slot=&quot;title&quot;&gt;Candy menu&lt;/span&gt;
+  &lt;li slot=&quot;item&quot;&gt;Lollipop&lt;/li&gt;
+  &lt;li slot=&quot;item&quot;&gt;Fruit Toast&lt;/li&gt;
+&lt;/custom-menu&gt;
+
+&lt;script&gt;
+customElements.define('custom-menu', class extends HTMLElement {
+  items = []
+
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `&lt;div class=&quot;menu&quot;&gt;
+      &lt;slot name=&quot;title&quot;&gt;&lt;/slot&gt;
+      &lt;ul&gt;&lt;slot name=&quot;item&quot;&gt;&lt;/slot&gt;&lt;/ul&gt;
+    &lt;/div&gt;`;
+
+    // 插槽能被添加/删除/代替
+    this.shadowRoot.firstElementChild.addEventListener('slotchange', e =&gt; {
+      let slot = e.target;
+      if (slot.name == 'item') {
+        this.items = slot.assignedElements().map(elem =&gt; elem.textContent);
+        alert(&quot;Items: &quot; + this.items);
+      }
+    });
+  }
+});
+
+// items 在 1 秒后更新
+setTimeout(() =&gt; {
+  menu.insertAdjacentHTML('beforeEnd', '&lt;li slot=&quot;item&quot;&gt;Cup Cake&lt;/li&gt;')
+}, 1000);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="xiao-jie" href="#xiao-jie">小结</a></h2><p>通常，如果一个元素含有 shadow DOM，那么其 light DOM 就不会被展示出来。插槽允许在 shadow DOM 中显示 light DOM 子元素。</p>
+<p>插槽有两种：</p>
+<ul>
+<li>具名插槽：<code>&lt;slot name=&quot;X&quot;&gt;...&lt;/slot&gt;</code> – 使用 <code>slot=&quot;X&quot;</code> 获取 light 子元素。</li>
+<li>默认插槽：第一个没有名字的 <code>&lt;slot&gt;</code>（随后的未命名插槽将被忽略）- 接受不是插槽的 light 子元素。</li>
+<li>如果同一插槽中有很多元素 – 它们会被一个接一个地添加。</li>
+<li><code>&lt;slot&gt;</code> 元素的内容作为备用。如果插槽没有 light 型的子元素，就会显示。</li>
+</ul>
+<p>在其槽内渲染插槽元素的过程称为“组合”。结果称为“扁平化 DOM”。</p>
+<p>组合不会真实的去移动节点，从 JavaScript 的视角看 DOM 仍然是相同的。</p>
+<p>JavaScript 可以使用以下的方法访问插槽：</p>
+<ul>
+<li><code>slot.assignedNodes/Elements()</code> – 返回插槽内的 节点/元素。</li>
+<li><code>node.assignedSlot</code> – 相反的方法，返回一个节点的插槽。</li>
+</ul>
+<p>如果我们想知道显示的内容，可以使用以下方法跟踪插槽位的内容：</p>
+<ul>
+<li><code>slotchange</code> 事件 – 在插槽第一次填充时触发，并且在插槽元素的 添加/删除/替换 操作（而不是其子元素）时触发，插槽是 <code>event.target</code> 。</li>
+<li>使用 <a href="../mutation-observer/index.html">MutationObserver</a> 来深入了解插槽内容，并查看其中的更改。</li>
+</ul>
+<p>现在，在 shadow DOM 中有来自 light DOM 的元素时，让我们看看如何正确的设置样式。基本规则是 shadow 元素在内部设置样式，light 元素在外部设置样式，但是有一些例外。</p>
+<p>我们将在下一章中看到详细内容。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../template-element/index.html" data-tooltip="模板元素"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../shadow-dom-style/index.html" data-tooltip="给 Shadow DOM 添加样式"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/slots-composition","identifier":"\/slots-composition"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../web-components/index.html">Web components</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ju-ming-cha-cao">具名插槽</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cha-cao-hou-bei-nei-rong">插槽后备内容</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mo-ren-cha-cao-di-yi-ge-bu-ju-ming-de-cha-cao">默认插槽：第一个不具名的插槽</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#menuexample">Menu example</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#geng-xin-cha-cao">更新插槽</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cha-cao-api">插槽 API</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xiao-jie">小结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fslots-composition" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/8-web-components/5-slots-composition" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

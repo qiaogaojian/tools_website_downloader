@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">简介：回调</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/callbacks"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="简介：回调"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="简介：回调"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/async"><link rel="next" href="/promise-basics"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="简介：回调"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/callbacks"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/callbacks"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/callbacks"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/callbacks"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/callbacks"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/callbacks"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/callbacks"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/callbacks"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/callbacks"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/callbacks"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/callbacks"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/callbacks">عربي</option><option value="https://javascript.info/callbacks">English</option><option value="https://es.javascript.info/callbacks">Español</option><option value="https://fr.javascript.info/callbacks">Français</option><option value="https://id.javascript.info/callbacks">Indonesia</option><option value="https://it.javascript.info/callbacks">Italiano</option><option value="https://ja.javascript.info/callbacks">日本語</option><option value="https://ko.javascript.info/callbacks">한국어</option><option value="https://learn.javascript.ru/callbacks">Русский</option><option value="https://tr.javascript.info/callbacks">Türkçe</option><option value="https://uk.javascript.info/callbacks">Українська</option><option value="https://zh.javascript.info/callbacks" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="75" max="92" data-tooltip="第 75/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../async/index.html"><span>Promise，async/await</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Promise，async/await","item":"https://zh.javascript.info/async"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">简介：回调</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="简介：回调"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><div class="important important_warn">
+            <div class="important__header"><span class="important__type">我们在这里的示例中使用了浏览器方法</span></div>
+            <div class="important__content"><p>为了演示回调、promise 和其他抽象概念的使用，我们将使用一些浏览器方法：具体地说，是加载脚本和执行简单的文档操作的方法。</p>
+<p>如果你不熟悉这些方法，并且对它们在这些示例中的用法感到疑惑，那么你可能需要阅读本教程 <a href="../document/index.html">下一部分</a> 中的几章。</p>
+<p>但是，我们会尽全力使讲解变得更加清晰。在这儿不会有浏览器方面的真正复杂的东西。</p>
+</div></div>
+<p>JavaScript 主机（host）环境提供了许多函数，这些函数允许我们计划 <strong>异步</strong> 行为（action）。换句话说，我们现在开始执行的行为，但它们会在稍后完成。</p>
+<p>例如，<code>setTimeout</code> 函数就是一个这样的函数。</p>
+<p>这儿有一些实际中的异步行为的示例，例如加载脚本和模块（我们将在后面的章节中介绍）。</p>
+<p>让我们看一下函数 <code>loadScript(src)</code>，该函数使用给定的 <code>src</code> 加载脚本：</p>
+<div id="c6ohq6qm2d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src) {
+  // 创建一个 &lt;script&gt; 标签，并将其附加到页面
+  // 这将使得具有给定 src 的脚本开始加载，并在加载完成后运行
+  let script = document.createElement('script');
+  script.src = src;
+  document.head.append(script);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它使用给定的 <code>src</code> 将一个新的、动态创建的标签 <code>&lt;script src=&quot;…&quot;&gt;</code> 插入到文档中。浏览器将自动开始加载它，并在加载完成后执行它。</p>
+<p>我们可以像这样使用这个函数：</p>
+<div id="bl8rtcux9w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在给定路径下加载并执行脚本
+loadScript('/my/script.js');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>脚本是“异步”调用的，因为它从现在开始加载，但是在这个加载函数执行完成后才运行。</p>
+<p>如果在 <code>loadScript(…)</code> 下面有任何其他代码，它们不会等到脚本加载完成才执行。</p>
+<div id="77k6907m23" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js');
+// loadScript 下面的代码
+// 不会等到脚本加载完成才执行
+// ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>假设我们需要在新脚本加载后立即使用它。它声明了新函数，我们想运行它们。</p>
+<p>但如果我们在 <code>loadScript(…)</code> 调用后立即执行此操作，这将不会有效。</p>
+<div id="utqwhswt3c" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js'); // 这个脚本有 &quot;function newFunction() {…}&quot;
+
+newFunction(); // 没有这个函数！</code></pre>
+        </div>
+      </div>
+      
+      </div><p>自然情况下，浏览器可能没有时间加载脚本。到目前为止，<code>loadScript</code> 函数并没有提供跟踪加载完成的方法。脚本加载并最终运行，仅此而已。但我们希望了解脚本何时加载完成，以使用其中的新函数和变量。</p>
+<p>让我们添加一个 <code>callback</code> 函数作为 <code>loadScript</code> 的第二个参数，该函数应在脚本加载完成时执行：</p>
+<div id="2voq5pyt43" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:25,&quot;end&quot;:33}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () =&gt; callback(script);
+
+  document.head.append(script);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，如果我们想调用该脚本中的新函数，我们应该将其写在回调函数中：</p>
+<div id="6fkoh5778a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js', function() {
+  // 在脚本加载完成后，回调函数才会执行
+  newFunction(); // 现在它工作了
+  ...
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是我们的想法：第二个参数是一个函数（通常是匿名函数），该函数会在行为（action）完成时运行。</p>
+<p>这是一个带有真实脚本的可运行的示例：</p>
+<div id="fipac85w7s" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () =&gt; callback(script);
+  document.head.append(script);
+}
+
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script =&gt; {
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // 所加载的脚本中声明的函数
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这被称为“基于回调”的异步编程风格。异步执行某项功能的函数应该提供一个 <code>callback</code> 参数用于在相应事件完成时调用。（译注：上面这个例子中的相应事件是指脚本加载）</p>
+<p>这里我们在 <code>loadScript</code> 中就是这么做的，但当然这是一种通用方法。</p>
+<h2><a class="main__anchor" name="zai-hui-tiao-zhong-hui-tiao" href="#zai-hui-tiao-zhong-hui-tiao">在回调中回调</a></h2><p>我们如何依次加载两个脚本：第一个，然后是第二个？</p>
+<p>自然的解决方案是将第二个 <code>loadScript</code> 调用放入回调中，如下所示：</p>
+<div id="t2vk5qvm2a" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js', function(script) {
+
+  alert(`Cool, the ${script.src} is loaded, let's load one more`);
+
+  loadScript('/my/script2.js', function(script) {
+    alert(`Cool, the second script is loaded`);
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在外部 <code>loadScript</code> 执行完成时，内部回调就会被回调。</p>
+<p>如果我们还想要一个脚本呢？</p>
+<div id="qd6th8ok3e" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js', function(script) {
+
+  loadScript('/my/script2.js', function(script) {
+
+    loadScript('/my/script3.js', function(script) {
+      // ...加载完所有脚本后继续
+    });
+
+  });
+
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，每一个新行为（action）都在回调内部。这对于几个行为来说还好，但对于许多行为来说就不好了，所以我们很快就会看到其他变体。</p>
+<h2><a class="main__anchor" name="chu-li-error" href="#chu-li-error">处理 Error</a></h2><p>在上述示例中，我们并没有考虑出现 error 的情况。如果脚本加载失败怎么办？我们的回调应该能够对此作出反应。</p>
+<p>这是 <code>loadScript</code> 的改进版本，可以跟踪加载错误：</p>
+<div id="t7yb0jor7l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () =&gt; callback(null, script);
+  script.onerror = () =&gt; callback(new Error(`Script load error for ${src}`));
+
+  document.head.append(script);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>加载成功时，它会调用 <code>callback(null, script)</code>，否则调用 <code>callback(error)</code>。</p>
+<p>用法：</p>
+<div id="gvdjvmv8ry" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('/my/script.js', function(error, script) {
+  if (error) {
+    // 处理 error
+  } else {
+    // 脚本加载成功
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>再次强调，我们在 <code>loadScript</code> 中所使用的方案其实很普遍。它被称为“Error 优先回调（error-first callback）”风格。</p>
+<p>约定是：</p>
+<ol>
+<li><code>callback</code> 的第一个参数是为 error 而保留的。一旦出现 error，<code>callback(err)</code> 就会被调用。</li>
+<li>第二个参数（和下一个参数，如果需要的话）用于成功的结果。此时 <code>callback(null, result1, result2…)</code> 就会被调用。</li>
+</ol>
+<p>因此，单一的 <code>callback</code> 函数可以同时具有报告 error 和传递返回结果的作用。</p>
+<h2><a class="main__anchor" name="e-yun-jin-zi-ta" href="#e-yun-jin-zi-ta">厄运金字塔</a></h2><p>乍一看，它像是一种可行的异步编程方式。的确如此，对于一个或两个嵌套的调用看起来还不错。</p>
+<p>但对于一个接一个的多个异步行为，代码将会变成这样：</p>
+<div id="ure1sabx8h" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('1.js', function(error, script) {
+
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...加载完所有脚本后继续 (*)
+          }
+        });
+
+      }
+    });
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上面这段代码中：</p>
+<ol>
+<li>我们加载 <code>1.js</code>，如果没有发生错误。</li>
+<li>我们加载 <code>2.js</code>，如果没有发生错误……</li>
+<li>我们加载 <code>3.js</code>，如果没有发生错误 —— 做其他操作 <code>(*)</code>。</li>
+</ol>
+<p>随着调用嵌套的增加，代码层次变得更深，维护难度也随之增加，尤其是我们使用的是可能包含了很多循环和条件语句的真实代码，而不是例子中的 <code>...</code>。</p>
+<p>有时这些被称为“回调地狱”或“厄运金字塔”。</p>
+<!--
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...
+          }
+        });
+      }
+    });
+  }
+});
+-->
+<figure><div class="image" style="width:467px">
+      <div class="image__ratio" style="padding-top:59.743040685224834%"></div>
+      <object type="image/svg+xml" data="../article/callbacks/callback-hell.svg" width="467" height="279" class="image__image" data-use-theme>
+        <img src="../article/callbacks/callback-hell.svg" alt width="467" height="279">
+      </object>
+      </div></figure><p>嵌套调用的“金字塔”随着每个异步行为会向右增长。很快它就失控了。</p>
+<p>所以这种编码方式不是很好。</p>
+<p>我们可以通过使每个行为都成为一个独立的函数来尝试减轻这种问题，如下所示：</p>
+<div id="uu5o1gzbrm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>loadScript('1.js', step1);
+
+function step1(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', step2);
+  }
+}
+
+function step2(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('3.js', step3);
+  }
+}
+
+function step3(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...加载完所有脚本后继续 (*)
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>看到了吗？它的作用相同，但是没有深层的嵌套了，因为我们将每个行为都编写成了一个独立的顶层函数。</p>
+<p>它可以工作，但是代码看起来就像是一个被撕裂的表格。你可能已经注意到了，它的可读性很差，在阅读时你需要在各个代码块之间跳转。这很不方便，特别是如果读者对代码不熟悉，他们甚至不知道应该跳转到什么地方。</p>
+<p>此外，名为 <code>step*</code> 的函数都是一次性使用的，创建它们就是为了避免“厄运金字塔”。没有人会在行为链之外重用它们。因此，这里的命名空间有点混乱。</p>
+<p>我们希望还有更好的方法。</p>
+<p>幸运的是，有其他方法可以避免此类金字塔。最好的方法之一就是 “promise”，我们将在下一章中介绍它。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../async/index.html" data-tooltip="Promise，async/await"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../promise-basics/index.html" data-tooltip="Promise"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/callbacks","identifier":"\/callbacks"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../async/index.html">Promise，async/await</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zai-hui-tiao-zhong-hui-tiao">在回调中回调</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#chu-li-error">处理 Error</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#e-yun-jin-zi-ta">厄运金字塔</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fcallbacks" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/11-async/01-callbacks" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

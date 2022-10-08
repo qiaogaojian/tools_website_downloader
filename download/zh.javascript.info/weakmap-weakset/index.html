@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">WeakMap and WeakSet（弱映射和弱集合）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/weakmap-weakset"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="WeakMap and WeakSet（弱映射和弱集合）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="WeakMap and WeakSet（弱映射和弱集合）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/map-set"><link rel="next" href="/keys-values-entries"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="WeakMap and WeakSet（弱映射和弱集合）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/weakmap-weakset"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/weakmap-weakset"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/weakmap-weakset"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/weakmap-weakset"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/weakmap-weakset"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/weakmap-weakset"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/weakmap-weakset"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/weakmap-weakset"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/weakmap-weakset"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/weakmap-weakset"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/weakmap-weakset">عربي</option><option value="https://javascript.info/weakmap-weakset">English</option><option value="https://es.javascript.info/weakmap-weakset">Español</option><option value="https://fr.javascript.info/weakmap-weakset">Français</option><option value="https://id.javascript.info/weakmap-weakset">Indonesia</option><option value="https://it.javascript.info/weakmap-weakset">Italiano</option><option value="https://ja.javascript.info/weakmap-weakset">日本語</option><option value="https://ko.javascript.info/weakmap-weakset">한국어</option><option value="https://learn.javascript.ru/weakmap-weakset">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/weakmap-weakset">Українська</option><option value="https://zh.javascript.info/weakmap-weakset" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="44" max="92" data-tooltip="第 44/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">WeakMap and WeakSet（弱映射和弱集合）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="WeakMap and WeakSet（弱映射和弱集合）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们从前面的 <a href="../garbage-collection/index.html">垃圾回收</a> 章节中知道，JavaScript 引擎在值“可达”和可能被使用时会将其保持在内存中。</p>
+<p>例如：</p>
+<div id="7de5uf1o07" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+
+// 该对象能被访问，john 是它的引用
+
+// 覆盖引用
+john = null;
+
+// 该对象将会被从内存中清除</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，当对象、数组之类的数据结构在内存中时，它们的子元素，如对象的属性、数组的元素都被认为是可达的。</p>
+<p>例如，如果把一个对象放入到数组中，那么只要这个数组存在，那么这个对象也就存在，即使没有其他对该对象的引用。</p>
+<p>就像这样:</p>
+<div id="vyjl1worg4" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+
+let array = [ john ];
+
+john = null; // 覆盖引用
+
+// 前面由 john 所引用的那个对象被存储在了 array 中
+// 所以它不会被垃圾回收机制回收
+// 我们可以通过 array[0] 获取到它</code></pre>
+        </div>
+      </div>
+      
+      </div><p>类似的，如果我们使用对象作为常规 <code>Map</code> 的键，那么当 <code>Map</code> 存在时，该对象也将存在。它会占用内存，并且应该不会被（垃圾回收机制）回收。</p>
+<p>例如：</p>
+<div id="w4necj8tvn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+
+let map = new Map();
+map.set(john, &quot;...&quot;);
+
+john = null; // 覆盖引用
+
+// john 被存储在了 map 中，
+// 我们可以使用 map.keys() 来获取它</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>WeakMap</code> 在这方面有着根本上的不同。它不会阻止垃圾回收机制对作为键的对象（key object）的回收。</p>
+<p>让我们通过例子来看看这指的到底是什么。</p>
+<h2><a class="main__anchor" name="weakmap" href="#weakmap">WeakMap</a></h2><p><code>WeakMap</code> 和 <code>Map</code> 的第一个不同点就是，<code>WeakMap</code> 的键必须是对象，不能是原始值：</p>
+<div id="ps54121066" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let weakMap = new WeakMap();
+
+let obj = {};
+
+weakMap.set(obj, &quot;ok&quot;); // 正常工作（以对象作为键）
+
+// 不能使用字符串作为键
+weakMap.set(&quot;test&quot;, &quot;Whoops&quot;); // Error，因为 &quot;test&quot; 不是一个对象</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，如果我们在 weakMap 中使用一个对象作为键，并且没有其他对这个对象的引用 —— 该对象将会被从内存（和map）中自动清除。</p>
+<div id="mqsv9742fh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+
+let weakMap = new WeakMap();
+weakMap.set(john, &quot;...&quot;);
+
+john = null; // 覆盖引用
+
+// john 被从内存中删除了！</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与上面常规的 <code>Map</code> 的例子相比，现在如果 <code>john</code> 仅仅是作为 <code>WeakMap</code> 的键而存在 —— 它将会被从 map（和内存）中自动删除。</p>
+<p><code>WeakMap</code> 不支持迭代以及 <code>keys()</code>，<code>values()</code> 和 <code>entries()</code> 方法。所以没有办法获取 <code>WeakMap</code> 的所有键或值。</p>
+<p><code>WeakMap</code> 只有以下的方法：</p>
+<ul>
+<li><code>weakMap.get(key)</code></li>
+<li><code>weakMap.set(key, value)</code></li>
+<li><code>weakMap.delete(key)</code></li>
+<li><code>weakMap.has(key)</code></li>
+</ul>
+<p>为什么会有这种限制呢？这是技术的原因。如果一个对象丢失了其它所有引用（就像上面示例中的 <code>john</code>），那么它就会被垃圾回收机制自动回收。但是在从技术的角度并不能准确知道 <strong>何时会被回收</strong>。</p>
+<p>这些都是由 JavaScript 引擎决定的。JavaScript 引擎可能会选择立即执行内存清理，如果现在正在发生很多删除操作，那么 JavaScript 引擎可能就会选择等一等，稍后再进行内存清理。因此，从技术上讲，<code>WeakMap</code> 的当前元素的数量是未知的。JavaScript 引擎可能清理了其中的垃圾，可能没清理，也可能清理了一部分。因此，暂不支持访问 <code>WeakMap</code> 的所有键/值的方法。</p>
+<p>那么，在哪里我们会需要这样的数据结构呢？</p>
+<h2><a class="main__anchor" name="shi-yong-an-li-ewai-de-shu-ju" href="#shi-yong-an-li-ewai-de-shu-ju">使用案例：额外的数据</a></h2><p><code>WeakMap</code> 的主要应用场景是 <strong>额外数据的存储</strong>。</p>
+<p>假如我们正在处理一个“属于”另一个代码的一个对象，也可能是第三方库，并想存储一些与之相关的数据，那么这些数据就应该与这个对象共存亡 —— 这时候 <code>WeakMap</code> 正是我们所需要的利器。</p>
+<p>我们将这些数据放到 <code>WeakMap</code> 中，并使用该对象作为这些数据的键，那么当该对象被垃圾回收机制回收后，这些数据也会被自动清除。</p>
+<div id="4k98jhd61n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>weakMap.set(john, &quot;secret documents&quot;);
+// 如果 john 消失，secret documents 将会被自动清除</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们来看一个例子。</p>
+<p>例如，我们有用于处理用户访问计数的代码。收集到的信息被存储在 map 中：一个用户对象作为键，其访问次数为值。当一个用户离开时（该用户对象将被垃圾回收机制回收），这时我们就不再需要他的访问次数了。</p>
+<p>下面是一个使用 <code>Map</code> 的计数函数的例子：</p>
+<div id="grld2z1905" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 visitsCount.js
+let visitsCountMap = new Map(); // map: user =&gt; visits count
+
+// 递增用户来访次数
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>下面是其他部分的代码，可能是使用它的其它代码：</p>
+<div id="spdzus8xti" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 main.js
+let john = { name: &quot;John&quot; };
+
+countUser(john); // count his visits
+
+// 不久之后，john 离开了
+john = null;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，<code>john</code> 这个对象应该被垃圾回收，但它仍在内存中，因为它是 <code>visitsCountMap</code> 中的一个键。</p>
+<p>当我们移除用户时，我们需要清理 <code>visitsCountMap</code>，否则它将在内存中无限增大。在复杂的架构中，这种清理会成为一项繁重的任务。</p>
+<p>我们可以通过使用 <code>WeakMap</code> 来避免这样的问题：</p>
+<div id="pxd3q6fzf2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 visitsCount.js
+let visitsCountMap = new WeakMap(); // weakmap: user =&gt; visits count
+
+// 递增用户来访次数
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们不需要去清理 <code>visitsCountMap</code> 了。当 <code>john</code> 对象变成不可达时，即便它是 <code>WeakMap</code> 里的一个键，它也会连同它作为 <code>WeakMap</code> 里的键所对应的信息一同被从内存中删除。</p>
+<h2><a class="main__anchor" name="shi-yong-an-li-huan-cun" href="#shi-yong-an-li-huan-cun">使用案例：缓存</a></h2><p>另外一个常见的例子是缓存。我们可以存储（“缓存”）函数的结果，以便将来对同一个对象的调用可以重用这个结果。</p>
+<p>为了实现这一点，我们可以使用 <code>Map</code>（非最佳方案）：</p>
+<div id="yx0q6gojw2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 cache.js
+let cache = new Map();
+
+// 计算并记住结果
+function process(obj) {
+  if (!cache.has(obj)) {
+    let result = /* calculations of the result for */ obj;
+
+    cache.set(obj, result);
+  }
+
+  return cache.get(obj);
+}
+
+// 现在我们在其它文件中使用 process()
+
+// 📁 main.js
+let obj = {/* 假设我们有个对象 */};
+
+let result1 = process(obj); // 计算完成
+
+// ……稍后，来自代码的另外一个地方……
+let result2 = process(obj); // 取自缓存的被记忆的结果
+
+// ……稍后，我们不再需要这个对象时：
+obj = null;
+
+alert(cache.size); // 1（啊！该对象依然在 cache 中，并占据着内存！）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于多次调用同一个对象，它只需在第一次调用时计算出结果，之后的调用可以直接从 <code>cache</code> 中获取。这样做的缺点是，当我们不再需要这个对象的时候需要清理 <code>cache</code>。</p>
+<p>如果我们用 <code>WeakMap</code> 替代 <code>Map</code>，便不会存在这个问题。当对象被垃圾回收时，对应缓存的结果也会被自动从内存中清除。</p>
+<div id="cslexzx4q1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 cache.js
+let cache = new WeakMap();
+
+// 计算并记结果
+function process(obj) {
+  if (!cache.has(obj)) {
+    let result = /* calculate the result for */ obj;
+
+    cache.set(obj, result);
+  }
+
+  return cache.get(obj);
+}
+
+// 📁 main.js
+let obj = {/* some object */};
+
+let result1 = process(obj);
+let result2 = process(obj);
+
+// ……稍后，我们不再需要这个对象时：
+obj = null;
+
+// 无法获取 cache.size，因为它是一个 WeakMap，
+// 要么是 0，或即将变为 0
+// 当 obj 被垃圾回收，缓存的数据也会被清除</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="weakset" href="#weakset">WeakSet</a></h2><p><code>WeakSet</code> 的表现类似：</p>
+<ul>
+<li>与 <code>Set</code> 类似，但是我们只能向 <code>WeakSet</code> 添加对象（而不能是原始值）。</li>
+<li>对象只有在其它某个（些）地方能被访问的时候，才能留在 set 中。</li>
+<li>跟 <code>Set</code> 一样，<code>WeakSet</code> 支持 <code>add</code>，<code>has</code> 和 <code>delete</code> 方法，但不支持 <code>size</code> 和 <code>keys()</code>，并且不可迭代。</li>
+</ul>
+<p>变“弱（weak）”的同时，它也可以作为额外的存储空间。但并非针对任意数据，而是针对“是/否”的事实。<code>WeakSet</code> 的元素可能代表着有关该对象的某些信息。</p>
+<p>例如，我们可以将用户添加到 <code>WeakSet</code> 中，以追踪访问过我们网站的用户：</p>
+<div id="32dnoropdp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let visitedSet = new WeakSet();
+
+let john = { name: &quot;John&quot; };
+let pete = { name: &quot;Pete&quot; };
+let mary = { name: &quot;Mary&quot; };
+
+visitedSet.add(john); // John 访问了我们
+visitedSet.add(pete); // 然后是 Pete
+visitedSet.add(john); // John 再次访问
+
+// visitedSet 现在有两个用户了
+
+// 检查 John 是否来访过？
+alert(visitedSet.has(john)); // true
+
+// 检查 Mary 是否来访过？
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// visitedSet 将被自动清理(即自动清除其中已失效的值 john)</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>WeakMap</code> 和 <code>WeakSet</code> 最明显的局限性就是不能迭代，并且无法获取所有当前内容。那样可能会造成不便，但是并不会阻止 <code>WeakMap/WeakSet</code> 完成其主要工作 — 成为在其它地方管理/存储“额外”的对象数据。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>WeakMap</code> 是类似于 <code>Map</code> 的集合，它仅允许对象作为键，并且一旦通过其他方式无法访问它们，便会将它们与其关联值一同删除。</p>
+<p><code>WeakSet</code> 是类似于 <code>Set</code> 的集合，它仅存储对象，并且一旦通过其他方式无法访问它们，便会将其删除。</p>
+<p>它们的主要优点是它们对对象是弱引用，所以被它们引用的对象很容易地被垃圾收集器移除。</p>
+<p>这是以不支持 <code>clear</code>、<code>size</code>、<code>keys</code>、<code>values</code> 等作为代价换来的……</p>
+<p><code>WeakMap</code> 和 <code>WeakSet</code> 被用作“主要”对象存储之外的“辅助”数据结构。一旦将对象从主存储器中删除，如果该对象仅被用作 <code>WeakMap</code> 或 <code>WeakSet</code> 的键，那么它将被自动清除。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#cun-chu-unread-biao-shi" name="cun-chu-unread-biao-shi">存储 &quot;unread&quot; 标识</a></h3><a class="task__open-link" href="../task/recipients-read/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这里有一个 messages 数组：</p>
+<div id="80ono603g2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let messages = [
+  {text: &quot;Hello&quot;, from: &quot;John&quot;},
+  {text: &quot;How goes?&quot;, from: &quot;John&quot;},
+  {text: &quot;See you soon&quot;, from: &quot;Alice&quot;}
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你的代码可以访问它，但是 message 是由其他人的代码管理的。该代码会定期添加新消息，删除旧消息，但是你不知道这些操作确切的发生时间。</p>
+<p>现在，你应该使用什么数据结构来保存关于消息“是否已读”的信息？该结构必须很适合对给定的 message 对象给出“它读了吗？”的答案。</p>
+<p>P.S. 当一个消息被从 <code>messages</code> 中删除后，它应该也从你的数据结构中消失。</p>
+<p>P.S. 我们不能修改 message 对象，例如向其添加我们的属性。因为它们是由其他人的代码管理的，我们修改该数据可能会导致不好的后果。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>让我们将已读消息存储在 <code>WeakSet</code> 中：</p>
+<div id="4wnzg632zv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let messages = [
+  {text: &quot;Hello&quot;, from: &quot;John&quot;},
+  {text: &quot;How goes?&quot;, from: &quot;John&quot;},
+  {text: &quot;See you soon&quot;, from: &quot;Alice&quot;}
+];
+
+let readMessages = new WeakSet();
+
+// 两个消息已读
+readMessages.add(messages[0]);
+readMessages.add(messages[1]);
+// readMessages 包含两个元素
+
+// ……让我们再读一遍第一条消息！
+readMessages.add(messages[0]);
+// readMessages 仍然有两个不重复的元素
+
+// 回答：message[0] 已读？
+alert(&quot;Read message 0: &quot; + readMessages.has(messages[0])); // true
+
+messages.shift();
+// 现在 readMessages 有一个元素（技术上来讲，内存可能稍后才会被清理）</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>WeakSet</code> 允许存储一系列的消息，并且很容易就能检查它是否包含某个消息。</p>
+<p>它会自动清理自身。代价是，我们不能对它进行迭代，也不能直接从中获取“所有已读消息”。但是，我们可以通过遍历所有消息，然后找出存在于 set 的那些消息来完成这个功能。</p>
+<p>另一种不同的解决方案可以是，在读取消息后向消息添加诸如 <code>message.isRead=true</code> 之类的属性。由于 <code>messages</code> 对象是由另一个代码管理的，因此通常不建议这样做，但是我们可以使用 symbol 属性来避免冲突。</p>
+<p>像这样：</p>
+<div id="e8tnia9zpv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// symbol 属性仅对于我们的代码是已知的
+let isRead = Symbol(&quot;isRead&quot;);
+messages[0][isRead] = true;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，第三方代码可能看不到我们的额外属性。</p>
+<p>尽管 symbol 可以降低出现问题的可能性，但从架构的角度来看，还是使用 <code>WeakSet</code> 更好。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bao-cun-yue-du-ri-qi" name="bao-cun-yue-du-ri-qi">保存阅读日期</a></h3><a class="task__open-link" href="../task/recipients-when-read/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这儿有一个和 <a href="../task/recipients-read/index.html">上一个任务</a> 类似的 <code>messages</code> 数组。场景也相似。</p>
+<div id="wxzm4omjfa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let messages = [
+  {text: &quot;Hello&quot;, from: &quot;John&quot;},
+  {text: &quot;How goes?&quot;, from: &quot;John&quot;},
+  {text: &quot;See you soon&quot;, from: &quot;Alice&quot;}
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在的问题是：你建议采用什么数据结构来保存信息：“消息是什么时候被阅读的？”。</p>
+<p>在前一个任务中我们只需要保存“是/否”。现在我们需要保存日期，并且它应该在消息被垃圾回收时也被从内存中清除。</p>
+<p>P.S. 日期可以存储为内建的 <code>Date</code> 类的对象，稍后我们将进行介绍。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们可以使用 <code>WeakMap</code> 保存日期：</p>
+<div id="lgo7973dff" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let messages = [
+  {text: &quot;Hello&quot;, from: &quot;John&quot;},
+  {text: &quot;How goes?&quot;, from: &quot;John&quot;},
+  {text: &quot;See you soon&quot;, from: &quot;Alice&quot;}
+];
+
+let readMap = new WeakMap();
+
+readMap.set(messages[0], new Date(2017, 1, 1));
+// 我们稍后将学习 Date 对象</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../map-set/index.html" data-tooltip="Map and Set（映射和集合）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../keys-values-entries/index.html" data-tooltip="Object.keys，values，entries"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/weakmap-weakset","identifier":"\/weakmap-weakset"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#weakmap">WeakMap</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-an-li-ewai-de-shu-ju">使用案例：额外的数据</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-an-li-huan-cun">使用案例：缓存</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#weakset">WeakSet</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fweakmap-weakset" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/08-weakmap-weakset" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Custom elements</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/custom-elements"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Custom elements"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Custom elements"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/webcomponents-intro"><link rel="next" href="/shadow-dom"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script>
+  /*
+class TimeFormatted extends HTMLElement {
+
+  render() {
+    let date = new Date(this.getAttribute('datetime') || Date.now());
+
+    this.innerHTML = new Intl.DateTimeFormat("default", {
+      year: this.getAttribute('year') || undefined,
+      month: this.getAttribute('month') || undefined,
+      day: this.getAttribute('day') || undefined,
+      hour: this.getAttribute('hour') || undefined,
+      minute: this.getAttribute('minute') || undefined,
+      second: this.getAttribute('second') || undefined,
+      timeZoneName: this.getAttribute('time-zone-name') || undefined,
+    }).format(date);
+  }
+
+  connectedCallback() { // (2)
+    if (!this.rendered) {
+      this.render();
+      this.rendered = true;
+    }
+  }
+
+  static get observedAttributes() { // (3)
+    return ['datetime', 'year', 'month', 'day', 'hour', 'minute', 'second', 'time-zone-name'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) { // (4)
+    this.render();
+  }
+
+}
+
+window.customElements && customElements.define("time-formatted", TimeFormatted);
+*/
+</script>
+<meta property="og:title" content="Custom elements"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/custom-elements"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/custom-elements"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/custom-elements"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/custom-elements"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/custom-elements"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/custom-elements"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/custom-elements"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/custom-elements"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/custom-elements">English</option><option value="https://es.javascript.info/custom-elements">Español</option><option value="https://fr.javascript.info/custom-elements">Français</option><option value="https://id.javascript.info/custom-elements">Indonesia</option><option value="https://it.javascript.info/custom-elements">Italiano</option><option value="https://ja.javascript.info/custom-elements">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/custom-elements">Русский</option><option value="https://tr.javascript.info/custom-elements">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/custom-elements" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="7" data-tooltip="第 2/7 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../web-components/index.html"><span>Web components</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"Web components","item":"https://zh.javascript.info/web-components"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 十二月 2021"><div class="updated-at__content">4日 十二月 2021</div></div></div><h1 class="main__header-title">Custom elements</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Custom elements"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们可以通过描述带有自己的方法、属性和事件等的类来创建自定义 HTML 元素。</p>
+<p>在 custom elements （自定义标签）定义完成之后，我们可以将其和 HTML 的内建标签一同使用。</p>
+<p>这是一件好事，因为虽然 HTML 有非常多的标签，但仍然是有穷尽的。如果我们需要像 <code>&lt;easy-tabs&gt;</code>、<code>&lt;sliding-carousel&gt;</code>、<code>&lt;beautiful-upload&gt;</code>…… 这样的标签，内建标签并不能满足我们。</p>
+<p>我们可以把上述的标签定义为特殊的类，然后使用它们，就好像它们本来就是 HTML 的一部分一样。</p>
+<p>Custom elements 有两种：</p>
+<ol>
+<li><strong>Autonomous custom elements （自主自定义标签）</strong> —— “全新的” 元素, 继承自 <code>HTMLElement</code> 抽象类.</li>
+<li><strong>Customized built-in elements （自定义内建元素）</strong> —— 继承内建的 HTML 元素，比如自定义 <code>HTMLButtonElement</code> 等。</li>
+</ol>
+<p>我们将会先创建 autonomous 元素，然后再创建 customized built-in 元素。</p>
+<p>在创建 custom elements 的时候，我们需要告诉浏览器一些细节，包括：如何展示它，以及在添加元素到页面和将其从页面移除的时候需要做什么，等等。</p>
+<p>通过创建一个带有几个特殊方法的类，我们可以完成这件事。这非常容易实现，我们只需要添加几个方法就行了，同时这些方法都不是必须的。</p>
+<p>下面列出了这几个方法的概述：</p>
+<div id="lm0i3ip40y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    // 元素在这里创建
+  }
+
+  connectedCallback() {
+    // 在元素被添加到文档之后，浏览器会调用这个方法
+    //（如果一个元素被反复添加到文档／移除文档，那么这个方法会被多次调用）
+  }
+
+  disconnectedCallback() {
+    // 在元素从文档移除的时候，浏览器会调用这个方法
+    // （如果一个元素被反复添加到文档／移除文档，那么这个方法会被多次调用）
+  }
+
+  static get observedAttributes() {
+    return [/* 属性数组，这些属性的变化会被监视 */];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // 当上面数组中的属性发生变化的时候，这个方法会被调用
+  }
+
+  adoptedCallback() {
+    // 在元素被移动到新的文档的时候，这个方法会被调用
+    // （document.adoptNode 会用到, 非常少见）
+  }
+
+  // 还可以添加更多的元素方法和属性
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在申明了上面几个方法之后，我们需要注册元素：</p>
+<div id="fhlflirw5v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 让浏览器知道我们新定义的类是为 &lt;my-element&gt; 服务的
+customElements.define(&quot;my-element&quot;, MyElement);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在当任何带有 <code>&lt;my-element&gt;</code> 标签的元素被创建的时候，一个 <code>MyElement</code> 的实例也会被创建，并且前面提到的方法也会被调用。我们同样可以使用 <code>document.createElement('my-element')</code> 在 JavaScript 里创建元素。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Custom element 名称必须包括一个短横线 <code>-</code></span></div>
+            <div class="important__content"><p>Custom element 名称必须包括一个短横线 <code>-</code>, 比如 <code>my-element</code> 和 <code>super-button</code> 都是有效的元素名，但 <code>myelement</code> 并不是。</p>
+<p>这是为了确保 custom element 和内建 HTML 元素之间不会发生命名冲突。</p>
+</div></div>
+<h2><a class="main__anchor" name="li-zi-timeformatted" href="#li-zi-timeformatted">例子: “time-formatted”</a></h2><p>举个例子，HTML 里面已经有 <code>&lt;time&gt;</code> 元素了，用于显示日期／时间。但是这个标签本身并不会对时间进行任何格式化处理。</p>
+<p>让我们来创建一个可以展示适用于当前浏览器语言的时间格式的 <code>&lt;time-formatted&gt;</code> 元素：</p>
+<div id="bruka3d5v9" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:23,&quot;end&quot;:23},{&quot;start&quot;:19,&quot;end&quot;:19},{&quot;start&quot;:1,&quot;end&quot;:1}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+class TimeFormatted extends HTMLElement { // (1)
+
+  connectedCallback() {
+    let date = new Date(this.getAttribute('datetime') || Date.now());
+
+    this.innerHTML = new Intl.DateTimeFormat(&quot;default&quot;, {
+      year: this.getAttribute('year') || undefined,
+      month: this.getAttribute('month') || undefined,
+      day: this.getAttribute('day') || undefined,
+      hour: this.getAttribute('hour') || undefined,
+      minute: this.getAttribute('minute') || undefined,
+      second: this.getAttribute('second') || undefined,
+      timeZoneName: this.getAttribute('time-zone-name') || undefined,
+    }).format(date);
+  }
+
+}
+
+customElements.define(&quot;time-formatted&quot;, TimeFormatted); // (2)
+&lt;/script&gt;
+
+&lt;!-- (3) --&gt;
+&lt;time-formatted datetime=&quot;2019-12-01&quot;
+  year=&quot;numeric&quot; month=&quot;long&quot; day=&quot;numeric&quot;
+  hour=&quot;numeric&quot; minute=&quot;numeric&quot; second=&quot;numeric&quot;
+  time-zone-name=&quot;short&quot;
+&gt;&lt;/time-formatted&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-bruka3d5v9" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><ol>
+<li>这个类只有一个方法 <code>connectedCallback()</code> —— 在 <code>&lt;time-formatted&gt;</code> 元素被添加到页面的时候，浏览器会调用这个方法（或者当 HTML 解析器检测到它的时候），它使用了内建的时间格式化工具 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>，这个工具可以非常好地展示格式化之后的时间，在各浏览器中兼容性都非常好。</li>
+<li>我们需要通过 <code>customElements.define(tag, class)</code> 来注册这个新元素。</li>
+<li>接下来在任何地方我们都可以使用这个新元素了。</li>
+</ol>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Custom elements 升级</span></div>
+            <div class="important__content"><p>如果浏览器在 <code>customElements.define</code> 之前的任何地方见到了 <code>&lt;time-formatted&gt;</code> 元素，并不会报错。但会把这个元素当作未知元素，就像任何非标准标签一样。</p>
+<p><code>:not(:defined)</code> CSS 选择器可以对这样「未定义」的元素加上样式。</p>
+<p>当 <code>customElement.define</code> 被调用的时候，它们被「升级」了：一个新的 <code>TimeFormatted</code> 元素为每一个标签创建了，并且 <code>connectedCallback</code> 被调用。它们变成了 <code>:defined</code>。</p>
+<p>我们可以通过这些方法来获取更多的自定义标签的信息：</p>
+<ul>
+<li><code>customElements.get(name)</code> —— 返回指定 custom element  <code>name</code> 的类。</li>
+<li><code>customElements.whenDefined(name)</code> – 返回一个 promise，将会在这个具有给定 <code>name</code> 的 custom element 变为已定义状态的时候 resolve（不带值）。</li>
+</ul>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">在 <code>connectedCallback</code> 中渲染，而不是 <code>constructor</code> 中</span></div>
+            <div class="important__content"><p>在上面的例子中，元素里面的内容是在 <code>connectedCallback</code> 中渲染（创建）的。</p>
+<p>为什么不在 <code>constructor</code> 中渲染？</p>
+<p>原因很简单：在 <code>constructor</code> 被调用的时候，还为时过早。虽然这个元素实例已经被创建了，但还没有插入页面。在这个阶段，浏览器还没有处理／创建元素属性：调用 <code>getAttribute</code> 将会得到 <code>null</code>。所以我们并不能在那里渲染元素。</p>
+<p>而且，如果你仔细考虑，这样作对于性能更好 —— 推迟渲染直到真正需要的时候。</p>
+<p>在元素被添加到文档的时候，它的 <code>connectedCallback</code> 方法会被调用。这个元素不仅仅是被添加为了另一个元素的子元素，同样也成为了页面的一部分。因此我们可以构建分离的 DOM，创建元素并且让它们为之后的使用准备好。它们只有在插入页面的时候才会真的被渲染。</p>
+</div></div>
+<h2><a class="main__anchor" name="jian-shi-shu-xing" href="#jian-shi-shu-xing">监视属性</a></h2><p>我们目前的 <code>&lt;time-formatted&gt;</code> 实现中，在元素渲染以后，后续的属性变化并不会带来任何影响。这对于 HTML 元素来说有点奇怪。通常当我们改变一个属性的时候，比如 <code>a.href</code>，我们会预期立即看到变化。我们将会在下面修正这一点。</p>
+<p>为了监视这些属性，我们可以在 <code>observedAttributes()</code> static getter 中提供属性列表。当这些属性发生变化的时候，<code>attributeChangedCallback</code> 会被调用。出于性能优化的考虑，其他属性变化的时候并不会触发这个回调方法。</p>
+<p>以下是 <code>&lt;time-formatted&gt;</code> 的新版本，它会在属性变化的时候自动更新：</p>
+<div id="b3q7dtf4z5" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:40,&quot;end&quot;:40},{&quot;start&quot;:28,&quot;end&quot;:28},{&quot;start&quot;:24,&quot;end&quot;:24},{&quot;start&quot;:17,&quot;end&quot;:17},{&quot;start&quot;:3,&quot;end&quot;:3}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+class TimeFormatted extends HTMLElement {
+
+  render() { // (1)
+    let date = new Date(this.getAttribute('datetime') || Date.now());
+
+    this.innerHTML = new Intl.DateTimeFormat(&quot;default&quot;, {
+      year: this.getAttribute('year') || undefined,
+      month: this.getAttribute('month') || undefined,
+      day: this.getAttribute('day') || undefined,
+      hour: this.getAttribute('hour') || undefined,
+      minute: this.getAttribute('minute') || undefined,
+      second: this.getAttribute('second') || undefined,
+      timeZoneName: this.getAttribute('time-zone-name') || undefined,
+    }).format(date);
+  }
+
+  connectedCallback() { // (2)
+    if (!this.rendered) {
+      this.render();
+      this.rendered = true;
+    }
+  }
+
+  static get observedAttributes() { // (3)
+    return ['datetime', 'year', 'month', 'day', 'hour', 'minute', 'second', 'time-zone-name'];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) { // (4)
+    this.render();
+  }
+
+}
+
+customElements.define(&quot;time-formatted&quot;, TimeFormatted);
+&lt;/script&gt;
+
+&lt;time-formatted id=&quot;elem&quot; hour=&quot;numeric&quot; minute=&quot;numeric&quot; second=&quot;numeric&quot;&gt;&lt;/time-formatted&gt;
+
+&lt;script&gt;
+setInterval(() =&gt; elem.setAttribute('datetime', new Date()), 1000); // (5)
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-b3q7dtf4z5" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><ol>
+<li>渲染逻辑被移动到了 <code>render()</code> 这个辅助方法里面。</li>
+<li>这个方法在元素被插入到页面的时候调用。</li>
+<li><code>attributeChangedCallback</code> 在 <code>observedAttributes()</code> 里的属性改变的时候被调用。</li>
+<li>…… 然后重渲染元素。</li>
+<li>最终，一个计时器就这样被我们轻松地实现了。</li>
+</ol>
+<h2><a class="main__anchor" name="xuan-ran-shun-xu" href="#xuan-ran-shun-xu">渲染顺序</a></h2><p>在 HTML 解析器构建 DOM 的时候，会按照先后顺序处理元素，先处理父级元素再处理子元素。例如，如果我们有 <code>&lt;outer&gt;&lt;inner&gt;&lt;/inner&gt;&lt;/outer&gt;</code>，那么 <code>&lt;outer&gt;</code> 元素会首先被创建并接入到 DOM，然后才是 <code>&lt;inner&gt;</code>。</p>
+<p>这对 custom elements 产生了重要影响。</p>
+<p>比如，如果一个 custom element 想要在 <code>connectedCallback</code> 内访问 <code>innerHTML</code>，它什么也拿不到:</p>
+<div id="5su4awurmi" data-trusted="1" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('user-info', class extends HTMLElement {
+
+  connectedCallback() {
+    alert(this.innerHTML); // empty (*)
+  }
+
+});
+&lt;/script&gt;
+
+&lt;user-info&gt;John&lt;/user-info&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果你运行上面的代码，<code>alert</code> 出来的内容是空的。</p>
+<p>这正是因为在那个阶段，子元素还不存在，DOM 还没有完成构建。HTML 解析器先连接 custom element <code>&lt;user-info&gt;</code>，然后再处理子元素，但是那时候子元素还并没有加载上。</p>
+<p>如果我们要给 custom element 传入信息，我们可以使用元素属性。它们是即时生效的。</p>
+<p>或者，如果我们需要子元素，我们可以使用延迟时间为零的 <code>setTimeout</code> 来推迟访问子元素。</p>
+<p>这样是可行的：</p>
+<div id="btbgc8or4g" data-trusted="1" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('user-info', class extends HTMLElement {
+
+  connectedCallback() {
+    setTimeout(() =&gt; alert(this.innerHTML)); // John (*)
+  }
+
+});
+&lt;/script&gt;
+
+&lt;user-info&gt;John&lt;/user-info&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在 <code>alert</code> 在 <code>(*)</code> 行展示了 「John」，因为我们是在 HTML 解析完成之后，才异步执行了这段程序。我们在这个时候处理必要的子元素并且结束初始化过程。</p>
+<p>另一方面，这个方案并不是完美的。如果嵌套的 custom element 同样使用了 <code>setTimeout</code> 来初始化自身，那么它们会按照先后顺序执行：外层的 <code>setTimeout</code> 首先触发，然后才是内层的。</p>
+<p>这样外层元素还是早于内层元素结束初始化。</p>
+<p>让我们用一个例子来说明：</p>
+<div id="de9h5x45jc" data-trusted="1" class="code-example" data-demo-height="0" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+customElements.define('user-info', class extends HTMLElement {
+  connectedCallback() {
+    alert(`${this.id} 已连接。`);
+    setTimeout(() =&gt; alert(`${this.id} 初始化完成。`));
+  }
+});
+&lt;/script&gt;
+
+&lt;user-info id=&quot;outer&quot;&gt;
+  &lt;user-info id=&quot;inner&quot;&gt;&lt;/user-info&gt;
+&lt;/user-info&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>输出顺序：</p>
+<ol>
+<li>outer 已连接。</li>
+<li>inner 已连接。</li>
+<li>outer 初始化完成。</li>
+<li>inner 初始化完成。</li>
+</ol>
+<p>我们可以很明显地看到外层元素并没有等待内层元素。</p>
+<p>并没有任何内建的回调方法可以在嵌套元素渲染好之后通知我们。但我们可以自己实现这样的回调。比如，内层元素可以分派像 <code>initialized</code> 这样的事件，同时外层的元素监听这样的事件并做出响应。</p>
+<h2><a class="main__anchor" name="customizedbuiltinelements" href="#customizedbuiltinelements">Customized built-in elements</a></h2><p>我们创建的 <code>&lt;time-formatted&gt;</code> 这些新元素，并没有任何相关的语义。搜索引擎并不知晓它们的存在，同时无障碍设备也无法处理它们。</p>
+<p>但上述两点同样是非常重要的。比如，搜索引擎会对这些事情感兴趣，比如我们真的展示了时间。或者如果我们创建了一个特别的按钮，为什么不复用已有的 <code>&lt;button&gt;</code> 功能呢？</p>
+<p>我们可以通过继承内建元素的类来扩展和定制它们。</p>
+<p>比如，按钮是 <code>HTMLButtonElement</code> 的实例，让我们在这个基础上创建元素。</p>
+<ol>
+<li>
+<p>我们的类继承自 <code>HTMLButtonElement</code>：</p>
+<div id="358ny72ftb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class HelloButton extends HTMLButtonElement { /* custom element 方法 */ }</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>给 <code>customElements.define</code> 提供定义标签的第三个参数：</p>
+<div id="q89r9ahh6v" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:51,&quot;end&quot;:70}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>customElements.define('hello-button', HelloButton, {extends: 'button'});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这一步是必要的，因为不同的标签会共享同一个类。</p>
+</li>
+<li>
+<p>最后，插入一个普通的 <code>&lt;button&gt;</code> 标签，但添加 <code>is=&quot;hello-button&quot;</code> 到这个元素，这样就可以使用我们的 custom element：</p>
+<div id="5yvb6pl70g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button is=&quot;hello-button&quot;&gt;...&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>下面是一个完整的例子：</p>
+<div id="g46yv1k28g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:12,&quot;end&quot;:12},{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:3,&quot;end&quot;:3}]" data-autorun="no-epub">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+// 这个按钮在被点击的时候说 &quot;hello&quot;
+class HelloButton extends HTMLButtonElement {
+  constructor() {
+    super();
+    this.addEventListener('click', () =&gt; alert(&quot;Hello!&quot;));
+  }
+}
+
+customElements.define('hello-button', HelloButton, {extends: 'button'});
+&lt;/script&gt;
+
+&lt;button is=&quot;hello-button&quot;&gt;Click me&lt;/button&gt;
+
+&lt;button is=&quot;hello-button&quot; disabled&gt;Disabled&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-g46yv1k28g" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>我们新定义的按钮继承了内建按钮，所以它拥有和内建按钮相同的样式和标准特性，比如 <code>disabled</code> 属性。</p>
+<h2><a class="main__anchor" name="yin-yong-can-kao" href="#yin-yong-can-kao">引用参考</a></h2><ul>
+<li>HTML 现行标准： <a href="https://html.spec.whatwg.org/#custom-elements">https://html.spec.whatwg.org/#custom-elements</a>。</li>
+<li>兼容性： <a href="https://caniuse.com/#feat=custom-elements">https://caniuse.com/#feat=custom-elements</a>。</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>有两种 custom element：</p>
+<ol>
+<li>
+<p>“Autonomous” —— 全新的标签，继承 <code>HTMLElement</code>。</p>
+<p>定义方式：</p>
+<div id="dgv5y41lut" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyElement extends HTMLElement {
+  constructor() { super(); /* ... */ }
+  connectedCallback() { /* ... */ }
+  disconnectedCallback() { /* ... */  }
+  static get observedAttributes() { return [/* ... */]; }
+  attributeChangedCallback(name, oldValue, newValue) { /* ... */ }
+  adoptedCallback() { /* ... */ }
+ }
+customElements.define('my-element', MyElement);
+/* &lt;my-element&gt; */</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>“Customized built-in elements” —— 已有元素的扩展。</p>
+<p>需要多一个 <code>.define</code> 参数，同时 <code>is=&quot;...&quot;</code> 在 HTML 中：</p>
+<div id="csyfvw61om" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyButton extends HTMLButtonElement { /*...*/ }
+customElements.define('my-button', MyElement, {extends: 'button'});
+/* &lt;button is=&quot;my-button&quot;&gt; */</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>Custom element 在各浏览器中的兼容性已经非常好了。Edge 支持地相对较差，但是我们可以使用 polyfill <a href="https://github.com/webcomponents/webcomponentsjs">https://github.com/webcomponents/webcomponentsjs</a>。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ji-shi-qi-yuan-su-shi-li" name="ji-shi-qi-yuan-su-shi-li">计时器元素实例</a></h3><a class="task__open-link" href="../task/live-timer/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>我们已经创建了 <code>&lt;time-formatted&gt;</code> 元素用于展示格式化好的时间。</p>
+<p>创建一个 <code>&lt;live-timer&gt;</code> 元素用于展示当前时间：</p>
+<ol>
+<li>这个元素应该在内部使用 <code>&lt;time-formatted&gt;</code>，不要重复实现这个元素的功能。</li>
+<li>每秒钟更新。</li>
+<li>每一秒钟都应该有一个自定义事件 <code>tick</code> 被生成，这个事件的 <code>event.detail</code> 属性带有当前日期。（参考章节 <a href="../dispatch-events/index.html">创建自定义事件</a> ）。</li>
+</ol>
+<p>使用方式：</p>
+<div id="6jkcd5b5hs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;live-timer id=&quot;elem&quot;&gt;&lt;/live-timer&gt;
+
+&lt;script&gt;
+  elem.addEventListener('tick', event =&gt; console.log(event.detail));
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例子：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/task/live-timer/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/5h3EC2BIlTuOlhJZ?p=preview" target="_blank" data-plunk-id="5h3EC2BIlTuOlhJZ">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>请注意：</p>
+<ol>
+<li>在元素被从文档移除的时候，我们会清除 <code>setInterval</code> 的 timer。这非常重要，否则即使我们不再需要它了，它仍然会继续计时。这样浏览器就不能清除这个元素占用和被这个元素引用的内存了。</li>
+<li>我们可以通过 <code>elem.date</code> 属性得到当前时间。类所有的方法和属性天生就是元素的方法和属性。</li>
+</ol>
+<p><a href="https://plnkr.co/edit/hhtl31PgIAqhULc8?p=preview" target="_blank" data-plunk-id="hhtl31PgIAqhULc8">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../webcomponents-intro/index.html" data-tooltip="从星球轨道的高度讲起"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../shadow-dom/index.html" data-tooltip="影子 DOM（Shadow DOM）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/custom-elements","identifier":"\/custom-elements"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../web-components/index.html">Web components</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#li-zi-timeformatted">例子: “time-formatted”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jian-shi-shu-xing">监视属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xuan-ran-shun-xu">渲染顺序</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#customizedbuiltinelements">Customized built-in elements</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yin-yong-can-kao">引用参考</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fcustom-elements" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/8-web-components/2-custom-elements" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

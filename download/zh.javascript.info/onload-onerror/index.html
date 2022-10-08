@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">资源加载：onload，onerror</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/onload-onerror"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="资源加载：onload，onerror"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="资源加载：onload，onerror"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/script-async-defer"><link rel="next" href="/ui-misc"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="资源加载：onload，onerror"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/onload-onerror"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/onload-onerror"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/onload-onerror"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/onload-onerror"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/onload-onerror"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/onload-onerror"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/onload-onerror"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/onload-onerror">English</option><option value="https://es.javascript.info/onload-onerror">Español</option><option value="https://fr.javascript.info/onload-onerror">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/onload-onerror">Italiano</option><option value="https://ja.javascript.info/onload-onerror">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/onload-onerror">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/onload-onerror">Українська</option><option value="https://zh.javascript.info/onload-onerror" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="29" max="32" data-tooltip="第 29/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../loading/index.html"><span>加载文档和其他资源</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"加载文档和其他资源","item":"https://zh.javascript.info/loading"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 十一月 2020"><div class="updated-at__content">13日 十一月 2020</div></div></div><h1 class="main__header-title">资源加载：onload，onerror</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="资源加载：onload，onerror"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>浏览器允许我们跟踪外部资源的加载 —— 脚本，iframe，图片等。</p>
+<p>这里有两个事件：</p>
+<ul>
+<li><code>onload</code> —— 成功加载，</li>
+<li><code>onerror</code> —— 出现 error。</li>
+</ul>
+<h2><a class="main__anchor" name="jia-zai-jiao-ben" href="#jia-zai-jiao-ben">加载脚本</a></h2><p>假设我们需要加载第三方脚本，并调用其中的函数。</p>
+<p>我们可以像这样动态加载它：</p>
+<div id="ntmpaur42a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let script = document.createElement('script');
+script.src = &quot;my.js&quot;;
+
+document.head.append(script);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但如何运行在该脚本中声明的函数？我们需要等到该脚本加载完成，之后才能调用它。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>对于我们自己的脚本，可以使用 <a href="../modules/index.html">JavaScript module</a>，但是它们并未被广泛应用于第三方库。</p>
+</div></div>
+<h3><a class="main__anchor" name="scriptonload" href="#scriptonload">script.onload</a></h3><p>我们的得力助手是 <code>load</code> 事件。它会在脚本加载并执行完成时触发。</p>
+<p>例如：</p>
+<div id="o97nmgq4ad" data-trusted="0" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let script = document.createElement('script');
+
+// 可以从任意域（domain），加载任意脚本
+script.src = &quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js&quot;
+document.head.append(script);
+
+script.onload = function() {
+  // 该脚本创建了一个变量 &quot;_&quot;
+  alert( _.VERSION ); // 显示库的版本
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，在 <code>onload</code> 中我们可以使用脚本中的变量，运行函数等。</p>
+<p>……如果加载失败怎么办？例如，这里没有这样的脚本（error 404）或者服务器宕机（不可用）。</p>
+<h3><a class="main__anchor" name="scriptonerror" href="#scriptonerror">script.onerror</a></h3><p>发生在脚本加载期间的 error 会被 <code>error</code> 事件跟踪到。</p>
+<p>例如，我们请求一个不存在的脚本：</p>
+<div id="rykc2sbqcy" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let script = document.createElement('script');
+script.src = &quot;https://example.com/404.js&quot;; // 没有这个脚本
+document.head.append(script);
+
+script.onerror = function() {
+  alert(&quot;Error loading &quot; + this.src); // Error loading https://example.com/404.js
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，在这里我们无法获取更多 HTTP error 的详细信息。我们不知道 error 是 404 还是 500 或者其他情况。只知道是加载失败了。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">重要：</span></div>
+            <div class="important__content"><p><code>onload</code>/<code>onerror</code> 事件仅跟踪加载本身。</p>
+<p>在脚本处理和执行期间可能发生的 error 超出了这些事件跟踪的范围。也就是说：如果脚本成功加载，则即使脚本中有编程 error，也会触发 <code>onload</code> 事件。如果要跟踪脚本 error，可以使用 <code>window.onerror</code> 全局处理程序。</p>
+</div></div>
+<h2><a class="main__anchor" name="qi-ta-zi-yuan" href="#qi-ta-zi-yuan">其他资源</a></h2><p><code>load</code> 和 <code>error</code> 事件也适用于其他资源，基本上（basically）适用于具有外部 <code>src</code> 的任何资源。</p>
+<p>例如：</p>
+<div id="1cou8ys4y1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let img = document.createElement('img');
+img.src = &quot;https://js.cx/clipart/train.gif&quot;; // (*)
+
+img.onload = function() {
+  alert(`Image loaded, size ${img.width}x${img.height}`);
+};
+
+img.onerror = function() {
+  alert(&quot;Error occurred while loading image&quot;);
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是有一些注意事项：</p>
+<ul>
+<li>大多数资源在被添加到文档中后，便开始加载。但是 <code>&lt;img&gt;</code> 是个例外。它要等到获得 src <code>(*)</code> 后才开始加载。</li>
+<li>对于 <code>&lt;iframe&gt;</code> 来说，iframe 加载完成时会触发 <code>iframe.onload</code> 事件，无论是成功加载还是出现 error。</li>
+</ul>
+<p>这是出于历史原因。</p>
+<h2><a class="main__anchor" name="kua-yuan-ce-lve" href="#kua-yuan-ce-lve">跨源策略</a></h2><p>这里有一条规则：来自一个网站的脚本无法访问其他网站的内容。例如，位于 <code>https://facebook.com</code> 的脚本无法读取位于 <code>https://gmail.com</code> 的用户邮箱。</p>
+<p>或者，更确切地说，一个源（域/端口/协议三者）无法获取另一个源（origin）的内容。因此，即使我们有一个子域，或者仅仅是另一个端口，这都是不同的源，彼此无法相互访问。</p>
+<p>这个规则还影响其他域的资源。</p>
+<p>如果我们使用的是来自其他域的脚本，并且该脚本中存在 error，那么我们无法获取 error 的详细信息。</p>
+<p>例如，让我们使用一个脚本 <code>error.js</code>，该脚本只包含一个（错误）函数调用：</p>
+<div id="m78tqs6100" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 📁 error.js
+noSuchFunction();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在从它所在的同一个网站加载它：</p>
+<div id="52bek7qx7f" data-trusted="1" class="code-example" data-demo-height="0">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+window.onerror = function(message, url, line, col, errorObj) {
+  alert(`${message}\n${url}, ${line}:${col}`);
+};
+&lt;/script&gt;
+&lt;script src=&quot;/article/onload-onerror/crossorigin/error.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以看到一个很好的 error 报告，就像这样：</p>
+<div id="zajmtqje1v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Uncaught ReferenceError: noSuchFunction is not defined
+https://javascript.info/article/onload-onerror/crossorigin/error.js, 1:1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，让我们从另一个域中加载相同的脚本：</p>
+<div id="8bpuop3ecf" data-trusted="1" class="code-example" data-demo-height="0">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+window.onerror = function(message, url, line, col, errorObj) {
+  alert(`${message}\n${url}, ${line}:${col}`);
+};
+&lt;/script&gt;
+&lt;script src=&quot;https://cors.javascript.info/article/onload-onerror/crossorigin/error.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>此报告与上面那个示例中的不同，就像这样：</p>
+<div id="mwp5d27en2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Script error.
+, 0:0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>error 的详细信息可能因浏览器而异，但是原理是相同的：有关脚本内部的任何信息（包括 error 堆栈跟踪）都被隐藏了。正是因为它来自于另一个域。</p>
+<p>为什么我们需要 error 的详细信息？</p>
+<p>因为有很多服务（我们也可以构建自己的服务）使用 <code>window.onerror</code> 监听全局 error，保存 error 并提供访问和分析 error 的接口。这很好，因为我们可以看到由用户触发的实际中的 error。但是，如果一个脚本来自于另一个源（origin），那么正如我们刚刚看到的那样，其中没有太多有关 error 的信息。</p>
+<p>对其他类型的资源也执行类似的跨源策略（CORS）。</p>
+<p><strong>要允许跨源访问，<code>&lt;script&gt;</code> 标签需要具有 <code>crossorigin</code> 特性（attribute），并且远程服务器必须提供特殊的 header。</strong></p>
+<p>这里有三个级别的跨源访问：</p>
+<ol>
+<li><strong>无 <code>crossorigin</code> 特性</strong> —— 禁止访问。</li>
+<li><strong><code>crossorigin=&quot;anonymous&quot;</code></strong> —— 如果服务器的响应带有包含 <code>*</code> 或我们的源（origin）的 header <code>Access-Control-Allow-Origin</code>，则允许访问。浏览器不会将授权信息和 cookie 发送到远程服务器。</li>
+<li><strong><code>crossorigin=&quot;use-credentials&quot;</code></strong> —— 如果服务器发送回带有我们的源的 header <code>Access-Control-Allow-Origin</code> 和 <code>Access-Control-Allow-Credentials: true</code>，则允许访问。浏览器会将授权信息和 cookie 发送到远程服务器。</li>
+</ol>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>你可以在 <a href="../fetch-crossorigin/index.html">Fetch：跨源请求</a> 一章中了解有关跨源访问的更多信息。这一章描述了用于网络请求的 <code>fetch</code> 方法，但策略是完全相同的。</p>
+<p>诸如 “cookie” 之类的内容超出了本章的范围，但你可以在 <a href="../cookie/index.html">Cookie，document.cookie</a> 一章学习它们。</p>
+</div></div>
+<p>在我们的示例中没有任何跨源特性（attribute）。因此，跨源访问被禁止。让我们来添加它吧。</p>
+<p>我们可以在 <code>&quot;anonymous&quot;</code>（不会发送 cookie，需要一个服务器端的 header）和 <code>&quot;use-credentials&quot;</code>（会发送 cookie，需要两个服务器端的 header）之间进行选择。</p>
+<p>如果我们不关心 cookie，那么可以选择 <code>&quot;anonymous&quot;</code>：</p>
+<div id="f49xrtwzd6" data-trusted="1" class="code-example" data-demo-height="0" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:31}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+window.onerror = function(message, url, line, col, errorObj) {
+  alert(`${message}\n${url}, ${line}:${col}`);
+};
+&lt;/script&gt;
+&lt;script crossorigin=&quot;anonymous&quot; src=&quot;https://cors.javascript.info/article/onload-onerror/crossorigin/error.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，假设服务器提供了 <code>Access-Control-Allow-Origin</code> header，一切都正常。我们有了完整的 error 报告。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>图片 <code>&lt;img&gt;</code>，外部样式，脚本和其他资源都提供了 <code>load</code> 和 <code>error</code> 事件以跟踪它们的加载：</p>
+<ul>
+<li><code>load</code> 在成功加载时被触发。</li>
+<li><code>error</code> 在加载失败时被触发。</li>
+</ul>
+<p>唯一的例外是 <code>&lt;iframe&gt;</code>：出于历史原因，不管加载成功还是失败，即使页面没有被找到，它都会触发 <code>load</code> 事件。</p>
+<p><code>readystatechange</code> 事件也适用于资源，但很少被使用，因为 <code>load/error</code> 事件更简单。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shi-yong-hui-tiao-han-shu-jia-zai-tu-pian" name="shi-yong-hui-tiao-han-shu-jia-zai-tu-pian">使用回调函数加载图片</a></h3><a class="task__open-link" href="../task/load-img-callback/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>通常，图片在被创建时才会被加载。所以，当我们向页面中添加 <code>&lt;img&gt;</code> 时，用户不会立即看到图片。浏览器首先需要加载它。</p>
+<p>为了立即显示一张图片，我们可以“提前”创建它，像这样：</p>
+<div id="r5brsjzfvd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let img = document.createElement('img');
+img.src = 'my.jpg';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>浏览器开始加载图片，并将其保存到缓存中。以后，当相同图片出现在文档中时（无论怎样），它都会立即显示。</p>
+<p><strong>创建一个函数 <code>preloadImages(sources, callback)</code>，来加载来自数组 <code>source</code> 的所有图片，并在准备就绪时运行 <code>callback</code>。</strong></p>
+<p>例如，这段代码将在图片加载完成后显示一个 <code>alert</code>：</p>
+<div id="a6jpkixxwh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loaded() {
+  alert(&quot;Images loaded&quot;)
+}
+
+preloadImages([&quot;1.jpg&quot;, &quot;2.jpg&quot;, &quot;3.jpg&quot;], loaded);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果出现错误，函数应该仍假定图片已经“加载完成”。</p>
+<p>换句话说，当所有图片都已加载完成，或出现错误输出时，将执行 <code>callback</code>。</p>
+<p>例如，当我们计划显示一个包含很多图片的可滚动图册，并希望确保所有图片都已加载完成时，这个函数很有用。</p>
+<p>在源文档中，你可以找到指向测试图片的链接，以及检查它们是否已加载完成的代码。它应该输出 <code>300</code>。</p>
+<p><a href="https://plnkr.co/edit/A2YjseeJafHft1FB?p=preview" target="_blank" data-plunk-id="A2YjseeJafHft1FB">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>算法：</p>
+<ol>
+<li>为每个资源创建 <code>img</code>。</li>
+<li>为每个图片添加 <code>onload/onerror</code>。</li>
+<li>在 <code>onload</code> 或 <code>onerror</code> 被触发时，增加计数器。</li>
+<li>当计数器值等于资源值时 —— 我们完成了：<code>callback()</code>。</li>
+</ol>
+<p><a href="https://plnkr.co/edit/wzeODTzhSt1TDUto?p=preview" target="_blank" data-plunk-id="wzeODTzhSt1TDUto">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../script-async-defer/index.html" data-tooltip="脚本：async，defer"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../ui-misc/index.html" data-tooltip="杂项"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/onload-onerror","identifier":"\/onload-onerror"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../loading/index.html">加载文档和其他资源</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jia-zai-jiao-ben">加载脚本</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qi-ta-zi-yuan">其他资源</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#kua-yuan-ce-lve">跨源策略</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fonload-onerror" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/5-loading/03-onload-onerror" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">静态属性和静态方法</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/static-properties-methods"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="静态属性和静态方法"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="静态属性和静态方法"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/class-inheritance"><link rel="next" href="/private-protected-properties-methods"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="静态属性和静态方法"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/static-properties-methods"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/static-properties-methods"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/static-properties-methods"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/static-properties-methods"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/static-properties-methods"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/static-properties-methods"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/static-properties-methods"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/static-properties-methods"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/static-properties-methods"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/static-properties-methods"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/static-properties-methods"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/static-properties-methods">عربي</option><option value="https://javascript.info/static-properties-methods">English</option><option value="https://es.javascript.info/static-properties-methods">Español</option><option value="https://fr.javascript.info/static-properties-methods">Français</option><option value="https://id.javascript.info/static-properties-methods">Indonesia</option><option value="https://it.javascript.info/static-properties-methods">Italiano</option><option value="https://ja.javascript.info/static-properties-methods">日本語</option><option value="https://ko.javascript.info/static-properties-methods">한국어</option><option value="https://learn.javascript.ru/static-properties-methods">Русский</option><option value="https://tr.javascript.info/static-properties-methods">Türkçe</option><option value="https://uk.javascript.info/static-properties-methods">Українська</option><option value="https://zh.javascript.info/static-properties-methods" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="68" max="92" data-tooltip="第 68/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../classes/index.html"><span>类</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"类","item":"https://zh.javascript.info/classes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">静态属性和静态方法</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="静态属性和静态方法"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们可以把一个方法赋值给类的函数本身，而不是赋给它的 <code>&quot;prototype&quot;</code>。这样的方法被称为 <strong>静态的（static）</strong>。</p>
+<p>在一个类中，它们以 <code>static</code> 关键字开头，如下所示：</p>
+<div id="895f9jt98o" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  static staticMethod() {
+    alert(this === User);
+  }
+}
+
+User.staticMethod(); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这实际上跟直接将其作为属性赋值的作用相同：</p>
+<div id="vkssvy3zj3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User { }
+
+User.staticMethod = function() {
+  alert(this === User);
+};
+
+User.staticMethod(); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 <code>User.staticMethod()</code> 调用中的 <code>this</code> 的值是类构造器 <code>User</code> 自身（“点符号前面的对象”规则）。</p>
+<p>通常，静态方法用于实现属于该类但不属于该类任何特定对象的函数。</p>
+<p>例如，我们有对象 <code>Article</code>，并且需要一个方法来比较它们。一个自然的解决方案就是添加 <code>Article.compare</code> 方法，像下面这样：</p>
+<div id="2tib5099sb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:18,&quot;end&quot;:18},{&quot;start&quot;:6,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Article {
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
+
+  static compare(articleA, articleB) {
+    return articleA.date - articleB.date;
+  }
+}
+
+// 用法
+let articles = [
+  new Article(&quot;HTML&quot;, new Date(2019, 1, 1)),
+  new Article(&quot;CSS&quot;, new Date(2019, 0, 1)),
+  new Article(&quot;JavaScript&quot;, new Date(2019, 11, 1))
+];
+
+articles.sort(Article.compare);
+
+alert( articles[0].title ); // CSS</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里 <code>Article.compare</code> 代表“上面的”文章，意思是比较它们。它不是文章的方法，而是整个 class 的方法。</p>
+<p>另一个例子是所谓的“工厂”方法。想象一下，我们需要通过几种方法来创建一个文章：</p>
+<ol>
+<li>通过用给定的参数来创建（<code>title</code>，<code>date</code> 等）。</li>
+<li>使用今天的日期来创建一个空的文章。</li>
+<li>……其它方法。</li>
+</ol>
+<p>第一种方法我们可以通过 constructor 来实现。对于第二种方式，我们可以创建类的一个静态方法来实现。</p>
+<p>就像这里的 <code>Article.createTodays()</code>：</p>
+<div id="uqurqe0145" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Article {
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
+
+  static createTodays() {
+    // 记住 this = Article
+    return new this(&quot;Today's digest&quot;, new Date());
+  }
+}
+
+let article = Article.createTodays();
+
+alert( article.title ); // Today's digest</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，每当我们需要创建一个今天的文章时，我们就可以调用 <code>Article.createTodays()</code>。再说明一次，它不是一个文章的方法，而是整个 class 的方法。</p>
+<p>静态方法也被用于与数据库相关的公共类，可以用于搜索/保存/删除数据库中的条目， 就像这样：</p>
+<div id="eqnhmh9ogc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 假定 Article 是一个用来管理文章的特殊类
+// 静态方法用于移除文章：
+Article.remove({id: 12345});</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="jing-tai-shu-xing" href="#jing-tai-shu-xing">静态属性</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">A recent addition</span></div>
+            <div class="important__content">
+            This is a recent addition to the language.
+            Examples work in the recent Chrome.
+            </div></div>
+<p>静态的属性也是可能的，它们看起来就像常规的类属性，但前面加有 <code>static</code>：</p>
+<div id="i0u39eeqju" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Article {
+  static publisher = &quot;Levi Ding&quot;;
+}
+
+alert( Article.publisher ); // Levi Ding</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这等同于直接给 <code>Article</code> 赋值：</p>
+<div id="psvafg15ey" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Article.publisher = &quot;Levi Ding&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="statics-and-inheritance" href="#statics-and-inheritance">继承静态属性和方法</a></h2><p>静态属性和方法是可被继承的。</p>
+<p>例如，下面这段代码中的 <code>Animal.compare</code> 和 <code>Animal.planet</code> 是可被继承的，可以通过 <code>Rabbit.compare</code> 和 <code>Rabbit.planet</code> 来访问：</p>
+<div id="utk0gcjn98" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:31,&quot;end&quot;:31},{&quot;start&quot;:13,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Animal {
+  static planet = &quot;Earth&quot;;
+
+  constructor(name, speed) {
+    this.speed = speed;
+    this.name = name;
+  }
+
+  run(speed = 0) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
+
+}
+
+// 继承于 Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbits = [
+  new Rabbit(&quot;White Rabbit&quot;, 10),
+  new Rabbit(&quot;Black Rabbit&quot;, 5)
+];
+
+rabbits.sort(Rabbit.compare);
+
+rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们调用 <code>Rabbit.compare</code> 时，继承的 <code>Animal.compare</code> 将会被调用。</p>
+<p>它是如何工作的？再次，使用原型。你可能已经猜到了，<code>extends</code> 让 <code>Rabbit</code> 的 <code>[[Prototype]]</code> 指向了 <code>Animal</code>。</p>
+<figure><div class="image" style="width:461px">
+      <div class="image__ratio" style="padding-top:68.54663774403471%"></div>
+      <object type="image/svg+xml" data="../article/static-properties-methods/animal-rabbit-static.svg" width="461" height="316" class="image__image" data-use-theme>
+        <img src="../article/static-properties-methods/animal-rabbit-static.svg" alt width="461" height="316">
+      </object>
+      </div></figure><p>所以，<code>Rabbit extends Animal</code> 创建了两个 <code>[[Prototype]]</code> 引用：</p>
+<ol>
+<li><code>Rabbit</code> 函数原型继承自 <code>Animal</code> 函数。</li>
+<li><code>Rabbit.prototype</code> 原型继承自 <code>Animal.prototype</code>。</li>
+</ol>
+<p>结果就是，继承对常规方法和静态方法都有效。</p>
+<p>这里，让我们通过代码来检验一下：</p>
+<div id="qpul4k96w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Animal {}
+class Rabbit extends Animal {}
+
+// 对于静态的
+alert(Rabbit.__proto__ === Animal); // true
+
+// 对于常规方法
+alert(Rabbit.prototype.__proto__ === Animal.prototype); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>静态方法被用于实现属于整个类的功能。它与具体的类实例无关。</p>
+<p>举个例子， 一个用于进行比较的方法 <code>Article.compare(article1, article2)</code> 或一个工厂（factory）方法 <code>Article.createTodays()</code>。</p>
+<p>在类生命中，它们都被用关键字 <code>static</code> 进行了标记。</p>
+<p>静态属性被用于当我们想要存储类级别的数据时，而不是绑定到实例。</p>
+<p>语法如下所示：</p>
+<div id="drezki881o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyClass {
+  static property = ...;
+
+  static method() {
+    ...
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从技术上讲，静态声明与直接给类本身赋值相同：</p>
+<div id="ts8j4qo7w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>MyClass.property = ...
+MyClass.method = ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>静态属性和方法是可被继承的。</p>
+<p>对于 <code>class B extends A</code>，类 <code>B</code> 的 prototype 指向了 <code>A</code>：<code>B.[[Prototype]] = A</code>。因此，如果一个字段在 <code>B</code> 中没有找到，会继续在 <code>A</code> 中查找。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#lei-kuo-zhan-zi-dui-xiang" name="lei-kuo-zhan-zi-dui-xiang">类扩展自对象？</a></h3><a class="task__open-link" href="../task/class-extend-object/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>正如我们所知道的，所有的对象通常都继承自 <code>Object.prototype</code>，并且可以访问“通用”对象方法，例如 <code>hasOwnProperty</code> 等。</p>
+<p>例如：</p>
+<div id="o80m9xnla5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+let rabbit = new Rabbit(&quot;Rab&quot;);
+
+// hasOwnProperty 方法来自于 Object.prototype
+alert( rabbit.hasOwnProperty('name') ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是，如果我们像这样 <code>&quot;class Rabbit extends Object&quot;</code> 把它明确地写出来，那么结果会与简单的 <code>&quot;class Rabbit&quot;</code> 有所不同么？</p>
+<p>不同之处在哪里？</p>
+<p>下面是此类的示例代码（它无法正常运行 — 为什么？修复它？）：</p>
+<div id="auf5xgeitu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit extends Object {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+let rabbit = new Rabbit(&quot;Rab&quot;);
+
+alert( rabbit.hasOwnProperty('name') ); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>首先，让我们看看为什么之前的代码无法运行。</p>
+<p>如果我们尝试运行它，就会发现原因其实很明显。派生类的 constructor 必须调用 <code>super()</code>。否则 <code>&quot;this&quot;</code> 不会被定义。</p>
+<p>下面是修复后的代码：</p>
+<div id="z6bm8osgpv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit extends Object {
+  constructor(name) {
+    super(); // 需要在继承时调用父类的 constructor
+    this.name = name;
+  }
+}
+
+let rabbit = new Rabbit(&quot;Rab&quot;);
+
+alert( rabbit.hasOwnProperty('name') ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但这还不是全部原因。</p>
+<p>即便修复了它，<code>&quot;class Rabbit extends Object&quot;</code> 和 <code>class Rabbit</code> 之间仍存在着重要差异。</p>
+<p>我们知道，“extends” 语法会设置两个原型：</p>
+<ol>
+<li>在构造函数的 <code>&quot;prototype&quot;</code> 之间设置原型（为了获取实例方法）。</li>
+<li>在构造函数之间会设置原型（为了获取静态方法）。</li>
+</ol>
+<p>在我们的例子里，对于 <code>class Rabbit extends Object</code>，它意味着：</p>
+<div id="0z6055kqo8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit extends Object {}
+
+alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
+alert( Rabbit.__proto__ === Object ); // (2) true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，现在 <code>Rabbit</code> 可以通过 <code>Rabbit</code> 访问 <code>Object</code> 的静态方法，像这样：</p>
+<div id="8516osgqxl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit extends Object {}
+
+// 通常我们调用 Object.getOwnPropertyNames
+alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // a,b</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是如果我们没有 <code>extends Object</code>，那么 <code>Rabbit.__proto__</code> 将不会被设置为 <code>Object</code>。</p>
+<p>下面是示例：</p>
+<div id="l6sex8p227" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Rabbit {}
+
+alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
+alert( Rabbit.__proto__ === Object ); // (2) false (!)
+alert( Rabbit.__proto__ === Function.prototype ); // true，所有函数都是默认如此
+
+// error，Rabbit 中没有这样的函数
+alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，在这种情况下，<code>Rabbit</code> 没有提供对 <code>Object</code> 的静态方法的访问。</p>
+<p>顺便说一下，<code>Function.prototype</code> 有一些“通用”函数方法，例如 <code>call</code> 和 <code>bind</code> 等。在上述的两种情况下它们都是可用的，因为对于内建的 <code>Object</code> 构造函数而言，<code>Object.__proto__ === Function.prototype</code>。</p>
+<p>我们用一张图来解释：</p>
+<figure><div class="image" style="width:458px">
+      <div class="image__ratio" style="padding-top:75.10917030567686%"></div>
+      <object type="image/svg+xml" data="../task/class-extend-object/rabbit-extends-object.svg" width="458" height="344" class="image__image" data-use-theme>
+        <img src="../task/class-extend-object/rabbit-extends-object.svg" alt width="458" height="344">
+      </object>
+      </div></figure><p>所以，简而言之，这里有两点区别：</p>
+<table>
+<thead>
+<tr>
+<th>class Rabbit</th>
+<th>class Rabbit extends Object</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–</td>
+<td>needs to call <code>super()</code> in constructor</td>
+</tr>
+<tr>
+<td><code>Rabbit.__proto__ === Function.prototype</code></td>
+<td><code>Rabbit.__proto__ === Object</code></td>
+</tr>
+</tbody>
+</table>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../class-inheritance/index.html" data-tooltip="类继承"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../private-protected-properties-methods/index.html" data-tooltip="私有的和受保护的属性和方法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/static-properties-methods","identifier":"\/static-properties-methods"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../classes/index.html">类</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jing-tai-shu-xing">静态属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#statics-and-inheritance">继承静态属性和方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fstatic-properties-methods" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/09-classes/03-static-properties-methods" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

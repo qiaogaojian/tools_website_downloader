@@ -1,0 +1,1365 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>数学库：math.h</title>
+<meta name="keywords" content="鸟语,C语言">
+<meta name="description" content="C99为math.h头文件定义了两种类型：float_t和double_t。这两种类型分别与float和double类型至少等宽，是计算float和double时效率最高的类型。...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>数学库：math.h</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2020-3-18 19:58 
+			分类：<a href="sort%3D4.html">C</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	C99为math.h头文件定义了两种类型：float_t和double_t。这两种类型分别与float和double类型至少等宽，是计算float和double时效率最高的类型。该头文件还定义了一些宏，除了HUGE_VAL外，都是C99新增的。
+</p>
+<p>
+	数学函数通常使用double类型的值。C99新增了这些函数的float和long double版本，其函数名为分别在原函数名后添加f后缀和l后缀。例如，C语言现在提供这些函数原型： <br>
+double sin(double);<br>
+float sinf(float);<br>
+long double sinl(long double);<br>
+	<table style="width:100%;border-collapse:collapse;vertical-align:middle;" cellpadding="2" cellspacing="0" border="1" bordercolor="#a0c6e5">
+		<tbody>
+			<tr style="background-color:#D2E9FF;">
+				<td colspan="2" style="text-align:center;">
+					<span style="font-size:14px;">ANSI C标准的一些数学函数</span> 
+				</td>
+			</tr>
+			<tr style="background-color:#ECF5FF;">
+				<td style="text-align:center;">
+					原型
+				</td>
+				<td style="text-align:center;">
+					描述
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int classify(real-floating x);
+				</td>
+				<td>
+					C99宏，返回适合x的浮点分类值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isfinite(real-floating x)
+				</td>
+				<td>
+					C99宏，当且仅当x为有穷时返回一个非0值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isfin(real-floating x)
+				</td>
+				<td>
+					C99宏，当且仅当x为无穷时返回一个非0值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isnan(real-floating x)
+				</td>
+				<td>
+					C99宏，当且仅当x为NaN时返回一个非0值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					isnormal(real-floating x)
+				</td>
+				<td>
+					C99宏，当且仅当x为正常数时返回一个非0值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int signbit(real-floating x)
+				</td>
+				<td>
+					C99宏，当且仅当x的符号为负时返回一个非0值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isgreater(real-floating x, real-floating y)
+				</td>
+				<td>
+					C99宏，返回(x)&gt;(y)的值，如果有参数是NaN，不会抛出“无效”浮点异常。
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isgreaterequal(real-floating x, real-floating y)
+				</td>
+				<td>
+					C99宏，返回(x)&gt;=(y)的值，如果有参数是NaN，不会抛出无效浮点异常
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isless(real-floating x, real-floating y)
+				</td>
+				<td>
+					C99宏，返回(x)&lt;(y)的值，如果参数是NaN，不会抛出无效浮点异常
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int islessequal(real-floating x, real-floating y)
+				</td>
+				<td>
+					C99宏，返回(x)&lt;=(y)的值，如果有参数是NaN，不会抛出无效浮点异常
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int islessgreater(real-floating x, real-floating y)
+				</td>
+				<td>
+					C99宏，返回(x)&lt;(y) || (x)&gt;(y)的值，如果有参数是NaN，不会抛出无效浮点异常
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int isunordered(real-floating x, real-floating y)
+				</td>
+				<td>
+					如果参数不按顺序排列（至少有一个参数是NaN), 函数返回1；否则，返回0
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double acos(double x)
+				</td>
+				<td>
+					返回余弦值为x的角度(0~π弧度)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double asin(double x)
+				</td>
+				<td>
+					返回正弦值为x的角度（-<span style="white-space:normal;">π/2~<span style="white-space:normal;">π/2弧度</span></span>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double atan(double x)
+				</td>
+				<td>
+					返回正切值为x的角度（-<span style="white-space:normal;">π/2~<span style="white-space:normal;">π/2弧度</span></span>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double atan2(doubley, double x)
+				</td>
+				<td>
+					返回正切值为y/x的角度（-<span style="white-space:normal;">π~<span style="white-space:normal;">π弧度</span></span>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double cos(double x)
+				</td>
+				<td>
+					返回x的余弦值，x的单位为弧度
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double sin(double x)
+				</td>
+				<td>
+					返回x的正弦值，x的单位为弧度
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double tan(double x)
+				</td>
+				<td>
+					返回x的正切值，x的单位为弧度
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double cosh(double x)
+				</td>
+				<td>
+					返回x的双曲余弦值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double sinh(double x)
+				</td>
+				<td>
+					返回x的双曲正弦值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double tanh(double x)
+				</td>
+				<td>
+					返回x的双曲切值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double exp(double x)
+				</td>
+				<td>
+					返回x的指数函数的值（e<sup>x</sup>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double exp2(double x)
+				</td>
+				<td>
+					返回2的x次幂（2<sup>x</sup>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double expm1(double x)
+				</td>
+				<td>
+					返回e<sup>x</sup> - 1 （C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double frexp(double v, int *pt_e)
+				</td>
+				<td>
+					把v的值分成两部分，一个是返回的规范化小数；一个是2的幂，储存在pt_e指向的位置上
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double ldexp(double x, int p)
+				</td>
+				<td>
+					返回x乘以2的p次幂（x * 2<sup>p</sup>）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double log(double x)
+				</td>
+				<td>
+					返回x的自然对数值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double log10(double x)
+				</td>
+				<td>
+					返回x的以10为底的对数值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int ilogb(double x)
+				</td>
+				<td>
+					以signed int&nbsp;类型返回x的指数(C99)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double log1p(double x)
+				</td>
+				<td>
+					返回log(1+x)（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double log2(double x)
+				</td>
+				<td>
+					返回以2为底x的对数（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double logb(double x)
+				</td>
+				<td>
+					返回FLT_RADIX(系统内部浮点表示法中幂的底数)为底x的有符号对数（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double modf(double x, double *p)
+				</td>
+				<td>
+					把x分成整数部分和小数部分，两部分的符号相同，返回小数部分，并把整数部分储存在p所指向的位置上
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double scalbn(double x, int n)
+				</td>
+				<td>
+					返回x × FLT_RADIX<sup>n</sup>（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double scalbln(double x, long n)
+				</td>
+				<td>
+					返回x × FLT_RADIX<sup>n</sup>（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double cbrt(double x)
+				</td>
+				<td>
+					返回x的立方根（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double hypot(double x, double y)
+				</td>
+				<td>
+					返回x平方与y平方之和的平方根（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double pow(double x, double y)
+				</td>
+				<td>
+					返回x的y次幂
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double sqrt(double x)
+				</td>
+				<td>
+					返回x的平方根
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double cbrt(double x)
+				</td>
+				<td>
+					返回x的立方值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double erf(double x)
+				</td>
+				<td>
+					返回x的误差函数（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double lgamma(double x)
+				</td>
+				<td>
+					返回x的伽马函数绝对值的自然对数（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double tgamma(double x)
+				</td>
+				<td>
+					返回x的伽马函数(C99)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double ceil(double x)
+				</td>
+				<td>
+					返回不小于x的最小整数值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double fabs(double x)
+				</td>
+				<td>
+					返回x的绝对值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double floor(double x)
+				</td>
+				<td>
+					返回不大于x的最大整数值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double nearbyint(double x)
+				</td>
+				<td>
+					以浮点格式把x四舍五入为最接近的整数;使用浮点环境指定的舍入规则（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double rint(double x)
+				</td>
+				<td>
+					与nearbyint()类似，但是该函数会抛出“不精确”异常
+				</td>
+			</tr>
+			<tr>
+				<td>
+					long int lrint(double x)
+				</td>
+				<td>
+					以long int格式把x舍入为最接近的整数；使用浮点环境指定的舍入规则（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					long long int llrint(double x)
+				</td>
+				<td>
+					以long long int格式把x舍入为最接近的整数；使用浮点环境指定的舍入规则（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double round(double x)
+				</td>
+				<td>
+					以浮点格式把x舍入为最接近的整数，总是四舍五入
+				</td>
+			</tr>
+			<tr>
+				<td>
+					long int lround(double x)
+				</td>
+				<td>
+					与round()类似，但是该函数返回值的类型是long int
+				</td>
+			</tr>
+			<tr>
+				<td>
+					long long int llround(double x)
+				</td>
+				<td>
+					与round()类似，但是该函数返回值的类型是long long int
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double trunc(double x)
+				</td>
+				<td>
+					以浮点格式把x舍入为最接近的整数，其结果的绝对值不大于x的绝对值（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					int fmod(double x, double y)
+				</td>
+				<td>
+					返回x/y的小数部分，如果y不是0，则其计算结果的符号与x相同，而且该结果的绝对值要小于y的绝对值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double remainder(double x, double y)
+				</td>
+				<td>
+					返回x除以y的余数，IEC 60559定义为x - n*y，n取与x/y最接近的整数；如果(n - x/y)的绝对值是1/2，n取偶数
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double remquo(double x, double y, int *quo)
+				</td>
+				<td>
+					返回与remainder()相同的值；把x/y的整数大小求模2<sup>k</sup>的值储存在quo所指向的位置中，符号与x/y的符号相同，其中k为整数，至少是3，具体值因实现而异（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double copysign(double x, double y)
+				</td>
+				<td>
+					返回x的大小和y的符号（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double nan(const char *tagp)
+				</td>
+				<td>
+					返回以double类型表示的quiet NaN；nan("n-char-seq")与strtod("NAN(n-char-seq)"，(char **)NULL)等价；nan("")与strtod("NAN()", (char **)NULL)等价。如果不支持quiet NaN，则返回0
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double nextafter(double x, double y)
+				</td>
+				<td>
+					返回x在y方向上可表示的最接近的double类型值；如果x等于y,则返回x（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double nexttoward(double x, long double y)
+				</td>
+				<td>
+					与nextafter()类似，但该函数的第2个参数是long double类型；如果x等于y,则返回转换为double类型的y（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double fdim(double x, double y)
+				</td>
+				<td>
+					如果x大于y,则返回x-y的值；如果x小于或等于y，则返回0（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double fmax(double x, double y)
+				</td>
+				<td>
+					返回参数的最大值，如果一个参数是NaN、另一个参数是数值，则返回数值（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double fmin(double x, double y)
+				</td>
+				<td>
+					返回参数的最小值，如果一个参数是NaN、另一个参数是数值，则返回数值（C99）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					double fma(double x, double y, double z)
+				</td>
+				<td>
+					返回三元运算(x*y)+z的大小、只在最后舍入一次（C99）
+				</td>
+			</tr>
+			<tr style="background-color:#ECF5FF;">
+				<td colspan="2" style="text-align:center;">
+					math.h宏(C99)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					HUGE_VAL
+				</td>
+				<td>
+					正双精度常量，不一定能用浮点数表示；在过去，函数的计算结果超过了可表示的最大值时，就用它作为函数的返回值(C90)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					HUGE_VALF
+				</td>
+				<td>
+					与HUGE_VAL类似，适用于float类型
+				</td>
+			</tr>
+			<tr>
+				<td>
+					HUGE_VALL
+				</td>
+				<td>
+					与HUGE_VAL类似，适用于long double类型
+				</td>
+			</tr>
+			<tr>
+				<td>
+					INFINITY
+				</td>
+				<td>
+					如果允许的话，展开为一个表示无符号或正无穷大的常量float表达式；否则，展开为一个在编译时溢出的正浮点常量
+				</td>
+			</tr>
+			<tr>
+				<td>
+					NAN
+				</td>
+				<td>
+					当且仅当实现支持float类型的NaN时才被定义(NaN是Not-a-Number的缩写，表示“非数”，用于处理计算中的错误情况，以0.0或求负数的平方根)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_INFINITE
+				</td>
+				<td>
+					分类数，表示一个无穷大的浮点值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_NAN
+				</td>
+				<td>
+					分类数，表示一个不是数的浮点值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_NORMAL
+				</td>
+				<td>
+					分类数，表示一个正常的浮点值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_SUBNORMAL
+				</td>
+				<td>
+					分类数，表示一个低于正常浮点值的值（精度被降低）
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_ZERO
+				</td>
+				<td>
+					分类数，表示0的浮点值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_FAST_FMA
+				</td>
+				<td>
+					(可选)如果已定义，对于double类型的运算对象，该宏表明fma()函数与先乘法运算后加法运算的速度相当或更快
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_FAST_FMAF
+				</td>
+				<td>
+					(可选)如果已定义，对于double类型的运算对象，该宏表明fmaf()函数与先乘法运算后加法运算的速度相当或更快
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_ILOGB0
+				</td>
+				<td>
+					整型常量表达式，表示ilogn(0)的返回值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					FP_ILOGBNAN
+				</td>
+				<td>
+					整型常量表达式，表示ilogn(NaN)的返回值
+				</td>
+			</tr>
+			<tr>
+				<td>
+					MATH_ERRNO
+				</td>
+				<td>
+					展开为整型常量1
+				</td>
+			</tr>
+			<tr>
+				<td>
+					MATH_ERREXCEPT
+				</td>
+				<td>
+					展开为整型常量2
+				</td>
+			</tr>
+			<tr>
+				<td>
+					math_errhandling
+				</td>
+				<td>
+					值为MATH_ERRNO、MATH_ERREXCEPT或这两个值的按位或
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; NaN分为两类：quite NaN和singaling NaN。两者的区别是：quite NaN的尾数部分最高位定义为1，而singaling NaN最高位定义为0
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; C标准专门为float类型和long double类型提供了标准函数，即在原函数名前加上f或l前缀。因此，sqrtf()是sqrt()的float版本，sqrtl()是sqrt()的long double版本。可以利用C11新增的泛型选择表达式定义一个泛型宏，根据参数类型选择最合适的数学函数版本。
+</p>
+<p>
+	<span style="font-size:16px;"><strong>tgmath.h库（C99）</strong></span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; C99标准提供的tgmath.h头文件中定义了泛型类型宏。如果在math.h中为一个函数定义了3种类型(float、double和long double)的版本，那么tgmath.h文件就创建一个泛型类型宏，与原来double版本的函数名同名。如果编译器支持复数运算，就会支持complex.h头文件，其中声明了复数运算相关的函数。例如，声明有csqrtf()、csqrt()和csqrtl()，这些函数分别返回float complex、double complex和long double complex类型的复数平方根。如果提供这些支持，那么tgmath.h中的sqrt()宏也能展开为相应的复数平方根函数。如果包含了tgmath.h，要调用sqrt()函数而不是sqrt()宏，可以用圆括号把被调用的函数名括起来：sqrt(x)&nbsp;为调用宏，(sqrt)(x)或(*sqrt)(x)为调用函数。&nbsp;
+</p>
+<p>
+	<span style="font-size:16px;">示例：三角问题</span> 
+</p>
+<pre class="prettyprint lang-cpp linenums">//Visual Studio中加上这句才可以使用scanf()
+//否则只能使用scanf_s()
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+//malloc()、free()
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;math.h&gt;
+
+//PI的值通过计算表达式4*atan(1)得到
+#define RAD_TO_DEG (180/(4*atan(1)))
+
+typedef struct polar_v {
+	double magnitude;
+	double angle;
+} Polar_V;
+
+typedef struct rect_v {
+	double x;
+	double y;
+} Rect_V;
+
+Polar_V rect_to_polar(Rect_V);
+
+//argc: 参数个数 argv[]: 参数数组
+//int main(int argc, char **argv)
+int main(int argc, char *argv[])
+{
+	Rect_V input;
+	Polar_V result;
+
+	puts("Enter x and y coordinates; enter q to quit:");
+	while (scanf("%lf %lf", &amp;input.x, &amp;input.y) == 2)
+	{
+		result = rect_to_polar(input);
+		printf("magnitude = %0.2f, angle = %0.2f\n",
+			result.magnitude, result.angle);
+	}
+	puts("Bye.");
+
+	system("pause");
+	return 0;
+}
+
+Polar_V rect_to_polar(Rect_V rv)
+{
+	Polar_V pv;
+
+	pv.magnitude = sqrt(rv.x * rv.x + rv.y * rv.y);
+	if (pv.magnitude == 0)
+		pv.angle = 0.0;
+	else
+		pv.angle = RAD_TO_DEG * atan2(rv.y, rv.x);
+	return pv;
+}</pre>
+<p>
+	运行测试<br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/202003/72691584618034.png" id="ematt:3675"><img src="../www.devacg.com/content/uploadfile/202003/72691584618034.png" title="点击查看原图" alt="111.png" border="0" width="350" height="133"></a> 
+</p>
+<p>
+	<span style="font-size:16px;">示例：利用泛型选择表达式选择合适的函数版本</span> 
+</p>
+<pre class="prettyprint lang-cpp linenums">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt; //C99特性
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &lt;ctype.h&gt;
+
+#define RAD_TO_DEG (180/(4*atanl(1)))
+
+// 泛型平方根函数
+#define SQRT(X) _Generic((X),\
+	long double: sqrtl,\
+	default: sqrt,\
+	float: sqrtf)(X)
+
+// 泛型正弦函数，角度的单位为度
+#define SIN(X) _Generic((X),\
+	long double: sinl((X)/RAD_TO_DEG),\
+	default: sin((X)/RAD_TO_DEG),\
+	float: sinf((X)/RAD_TO_DEG)\
+)
+
+int main(int argc, char* argv[])
+{
+	float x = 45.0f;
+	double xx = 45.0;
+	long double xxx = 45.0L;
+
+	long double y = SQRT(x);
+	long double yy = SQRT(xx);
+	long double yyy = SQRT(xxx);
+
+	printf("%.17Lf\n", y);  // 匹配 float
+	printf("%.17Lf\n", yy); // 匹配 default
+	printf("%.17Lf\n", yyy); // 匹配 long double
+
+	int i = 45;
+	yy = SQRT(i); // 匹配 default
+	printf("%.17Lf\n", yy);
+	yyy = SIN(xxx); // 匹配 long double
+	printf("%.17Lf\n", yyy);
+
+	system("pause");
+	return 0;
+}</pre>
+<p>
+	<br>
+</p>	<p class="tag">标签:	<a href="tag%3DC%25E8%25AF%25AD%25E8%25A8%2580.html">C语言</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=1227&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D1228.html">RPG角色控制</a>
+				|
+				 <a href="post%3D1226.html">内联函数</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D1076.html">WPF—数据双向绑定</a></li>
+		<li><a href="post%3D1286.html">Timeline—Control Track</a></li>
+		<li><a href="post%3D535.html">向量旋转——基变换</a></li>
+		<li><a href="post%3D540.html">顶点动画——流动的河流</a></li>
+		<li><a href="post%3D1183.html">示例：计算屏幕分辨率比例</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">WebSocket</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/websocket"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="WebSocket"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="WebSocket"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/long-polling"><link rel="next" href="/server-sent-events"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="WebSocket"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/websocket"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/websocket"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/websocket"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/websocket"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/websocket"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/websocket"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/websocket"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/websocket"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/websocket">English</option><option value="https://es.javascript.info/websocket">Español</option><option value="https://fr.javascript.info/websocket">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/websocket">Italiano</option><option value="https://ja.javascript.info/websocket">日本語</option><option value="https://ko.javascript.info/websocket">한국어</option><option value="https://learn.javascript.ru/websocket">Русский</option><option value="https://tr.javascript.info/websocket">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/websocket" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="11" max="12" data-tooltip="第 11/12 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../network/index.html"><span>网络请求</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"网络请求","item":"https://zh.javascript.info/network"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">WebSocket</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="WebSocket"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在 <a href="http://tools.ietf.org/html/rfc6455">RFC 6455</a> 规范中描述的 <code>WebSocket</code> 协议提供了一种在浏览器和服务器之间建立持久连接来交换数据的方法。数据可以作为“数据包”在两个方向上传递，而不会断开连接和其他 HTTP 请求。</p>
+<p>对于需要连续数据交换的服务，例如网络游戏，实时交易系统等，WebSocket 尤其有用。</p>
+<h2><a class="main__anchor" name="yi-ge-jian-dan-li-zi" href="#yi-ge-jian-dan-li-zi">一个简单例子</a></h2><p>要打开一个 WebSocket 连接，我们需要在 url 中使用特殊的协议 <code>ws</code> 创建 <code>new WebSocket</code>：</p>
+<div id="7jzh8scd8r" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:28,&quot;end&quot;:30}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let socket = new WebSocket(&quot;ws://javascript.info&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>同样也有一个加密的 <code>wss://</code> 协议。类似于 WebSocket 中的 HTTPS。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">始终使用 <code>wss://</code></span></div>
+            <div class="important__content"><p><code>wss://</code> 协议不仅是被加密的，而且更可靠。</p>
+<p>因为 <code>ws://</code> 数据不是加密的，对于任何中间人来说其数据都是可见的。并且，旧的代理服务器不了解 WebSocket，它们可能会因为看到“奇怪的” header 而中止连接。</p>
+<p>另一方面，<code>wss://</code> 是基于 TLS 的 WebSocket，类似于 HTTPS 是基于 TLS 的 HTTP），传输安全层在发送方对数据进行了加密，在接收方进行解密。因此，数据包是通过代理加密传输的。它们看不到传输的里面的内容，且会让这些数据通过。</p>
+</div></div>
+<p>一旦 socket 被建立，我们就应该监听 socket 上的事件。一共有 4 个事件：</p>
+<ul>
+<li><strong><code>open</code></strong> —— 连接已建立，</li>
+<li><strong><code>message</code></strong> —— 接收到数据，</li>
+<li><strong><code>error</code></strong> —— WebSocket 错误，</li>
+<li><strong><code>close</code></strong> —— 连接已关闭。</li>
+</ul>
+<p>……如果我们想发送一些东西，那么可以使用 <code>socket.send(data)</code>。</p>
+<p>这是一个示例：</p>
+<div id="33gqb4a1ys" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let socket = new WebSocket(&quot;wss://javascript.info/article/websocket/demo/hello&quot;);
+
+socket.onopen = function(e) {
+  alert(&quot;[open] Connection established&quot;);
+  alert(&quot;Sending to server&quot;);
+  socket.send(&quot;My name is John&quot;);
+};
+
+socket.onmessage = function(event) {
+  alert(`[message] Data received from server: ${event.data}`);
+};
+
+socket.onclose = function(event) {
+  if (event.wasClean) {
+    alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+  } else {
+    // 例如服务器进程被杀死或网络中断
+    // 在这种情况下，event.code 通常为 1006
+    alert('[close] Connection died');
+  }
+};
+
+socket.onerror = function(error) {
+  alert(`[error] ${error.message}`);
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>出于演示目的，在上面的示例中，运行着一个用 Node.js 写的小型服务器 <a href="../article/websocket/demo/server.js">server.js</a>。它响应为 “Hello from server, John”，然后等待 5 秒，关闭连接。</p>
+<p>所以你看到的事件顺序为：<code>open</code> → <code>message</code> → <code>close</code>。</p>
+<p>这就是 WebSocket，我们已经可以使用 WebSocket 通信了。很简单，不是吗？</p>
+<p>现在让我们更深入地学习它。</p>
+<h2><a class="main__anchor" name="jian-li-websocket" href="#jian-li-websocket">建立 WebSocket</a></h2><p>当 <code>new WebSocket(url)</code> 被创建后，它将立即开始连接。</p>
+<p>在连接期间，浏览器（使用 header）问服务器：“你支持 WebSocket 吗？”如果服务器回复说“我支持”，那么通信就以 WebSocket 协议继续进行，该协议根本不是 HTTP。</p>
+<figure><div class="image" style="width:429px">
+      <div class="image__ratio" style="padding-top:81.11888111888112%"></div>
+      <object type="image/svg+xml" data="../article/websocket/websocket-handshake.svg" width="429" height="348" class="image__image" data-use-theme>
+        <img src="../article/websocket/websocket-handshake.svg" alt width="429" height="348">
+      </object>
+      </div></figure><p>这是由 <code>new WebSocket(&quot;wss://javascript.info/chat&quot;)</code> 发出的请求的浏览器 header 示例。</p>
+<div id="lgw8pjo2zm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>GET /chat
+Host: javascript.info
+Origin: https://javascript.info
+Connection: Upgrade
+Upgrade: websocket
+Sec-WebSocket-Key: Iv8io/9s+lYFgZWcXczP8Q==
+Sec-WebSocket-Version: 13</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>Origin</code> —— 客户端页面的源，例如 <code>https://javascript.info</code>。WebSocket 对象是原生支持跨源的。没有特殊的 header 或其他限制。旧的服务器无法处理 WebSocket，因此不存在兼容性问题。但是 <code>Origin</code> header 很重要，因为它允许服务器决定是否使用 WebSocket 与该网站通信。</li>
+<li><code>Connection: Upgrade</code> —— 表示客户端想要更改协议。</li>
+<li><code>Upgrade: websocket</code> —— 请求的协议是 “websocket”。</li>
+<li><code>Sec-WebSocket-Key</code> —— 浏览器随机生成的安全密钥。</li>
+<li><code>Sec-WebSocket-Version</code> —— WebSocket 协议版本，当前为 13。</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">无法模拟 WebSocket 握手</span></div>
+            <div class="important__content"><p>我们不能使用 <code>XMLHttpRequest</code> 或 <code>fetch</code> 来进行这种 HTTP 请求，因为不允许 JavaScript 设置这些 header。</p>
+</div></div>
+<p>如果服务器同意切换为 WebSocket 协议，服务器应该返回响应码 101：</p>
+<div id="7je4ujqst0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: hsBlbuDTkk24srzEOTBUlZAlC2g=</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里 <code>Sec-WebSocket-Accept</code> 是 <code>Sec-WebSocket-Key</code>，是使用特殊的算法重新编码的。浏览器使用它来确保响应与请求相对应。</p>
+<p>然后，就使用 WebSocket 协议传输数据，我们很快就会看到它的结构（“frames”）。它根本不是 HTTP。</p>
+<h3><a class="main__anchor" name="kuo-zhan-he-zi-xie-yi" href="#kuo-zhan-he-zi-xie-yi">扩展和子协议</a></h3><p>WebSocket 可能还有其他 header，<code>Sec-WebSocket-Extensions</code> 和 <code>Sec-WebSocket-Protocol</code>，它们描述了扩展和子协议。</p>
+<p>例如：</p>
+<ul>
+<li>
+<p><code>Sec-WebSocket-Extensions: deflate-frame</code> 表示浏览器支持数据压缩。扩展与传输数据有关，扩展了 WebSocket 协议的功能。<code>Sec-WebSocket-Extensions</code> header 由浏览器自动发送，其中包含其支持的所有扩展的列表。</p>
+</li>
+<li>
+<p><code>Sec-WebSocket-Protocol: soap, wamp</code> 表示我们不仅要传输任何数据，还要传输 <a href="http://en.wikipedia.org/wiki/SOAP">SOAP</a> 或 WAMP（“The WebSocket Application Messaging Protocol”）协议中的数据。WebSocket 子协议已经在 <a href="http://www.iana.org/assignments/websocket/websocket.xml">IANA catalogue</a> 中注册。</p>
+<p>这个可选的 header 是使用 <code>new WebSocket</code> 的第二个参数设置的。它是子协议数组，例如，如果我们想使用 SOAP 或 WAMP：</p>
+<div id="ui62il57vc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let socket = new WebSocket(&quot;wss://javascript.info/chat&quot;, [&quot;soap&quot;, &quot;wamp&quot;]);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ul>
+<p>服务器应该使用同意使用的协议和扩展的列表进行响应。</p>
+<p>例如，这个请求：</p>
+<div id="a6gy7jwhyy" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>GET /chat
+Host: javascript.info
+Upgrade: websocket
+Connection: Upgrade
+Origin: https://javascript.info
+Sec-WebSocket-Key: Iv8io/9s+lYFgZWcXczP8Q==
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Extensions: deflate-frame
+Sec-WebSocket-Protocol: soap, wamp</code></pre>
+        </div>
+      </div>
+      
+      </div><p>响应：</p>
+<div id="dsjmsxzq32" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: hsBlbuDTkk24srzEOTBUlZAlC2g=
+Sec-WebSocket-Extensions: deflate-frame
+Sec-WebSocket-Protocol: soap</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里服务器响应 —— 它支持扩展 “deflate-frame”，并且仅支持所请求的子协议中的 SOAP。</p>
+<h2><a class="main__anchor" name="shu-ju-chuan-shu" href="#shu-ju-chuan-shu">数据传输</a></h2><p>WebSocket 通信由 “frames”（即数据片段）组成，可以从任何一方发送，并且有以下几种类型：</p>
+<ul>
+<li>“text frames” —— 包含各方发送给彼此的文本数据。</li>
+<li>“binary data frames” —— 包含各方发送给彼此的二进制数据。</li>
+<li>“ping/pong frames” 被用于检查从服务器发送的连接，浏览器会自动响应它们。</li>
+<li>还有 “connection close frame” 以及其他服务 frames。</li>
+</ul>
+<p>在浏览器里，我们仅直接使用文本或二进制 frames。</p>
+<p><strong>WebSocket <code>.send()</code> 方法可以发送文本或二进制数据。</strong></p>
+<p><code>socket.send(body)</code> 调用允许 <code>body</code> 是字符串或二进制格式，包括 <code>Blob</code>，<code>ArrayBuffer</code> 等。不需要额外的设置：直接发送它们就可以了。</p>
+<p><strong>当我们收到数据时，文本总是以字符串形式呈现。而对于二进制数据，我们可以在 <code>Blob</code> 和 <code>ArrayBuffer</code> 格式之间进行选择。</strong></p>
+<p>它是由 <code>socket.binaryType</code> 属性设置的，默认为 <code>&quot;blob&quot;</code>，因此二进制数据通常以 <code>Blob</code> 对象呈现。</p>
+<p><a href="../blob/index.html">Blob</a> 是高级的二进制对象，它直接与 <code>&lt;a&gt;</code>，<code>&lt;img&gt;</code> 及其他标签集成在一起，因此，默认以 <code>Blob</code> 格式是一个明智的选择。但是对于二进制处理，要访问单个数据字节，我们可以将其改为 <code>&quot;arraybuffer&quot;</code>：</p>
+<div id="akcsuozyf1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>socket.binaryType = &quot;arraybuffer&quot;;
+socket.onmessage = (event) =&gt; {
+  // event.data 可以是文本（如果是文本），也可以是 arraybuffer（如果是二进制数据）
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="xian-su" href="#xian-su">限速</a></h2><p>想象一下：我们的应用程序正在生成大量要发送的数据。但是用户的网速却很慢，可能是在乡下的移动设备上。</p>
+<p>我们可以反复地调用 <code>socket.send(data)</code>。但是数据将会缓冲（储存）在内存中，并且只能在网速允许的情况下尽快将数据发送出去。</p>
+<p><code>socket.bufferedAmount</code> 属性储存目前已缓冲的字节数，等待通过网络发送。</p>
+<p>我们可以检查它以查看 socket 是否真的可用于传输。</p>
+<div id="8t3xqv2uzo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 每 100ms 检查一次 socket
+// 仅当所有现有的数据都已被发送出去时，再发送更多数据
+setInterval(() =&gt; {
+  if (socket.bufferedAmount == 0) {
+    socket.send(moreData());
+  }
+}, 100);</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="lian-jie-guan-bi" href="#lian-jie-guan-bi">连接关闭</a></h2><p>通常，当一方想要关闭连接时（浏览器和服务器都具有相同的权限），它们会发送一个带有数字码（numeric code）和文本形式的原因的 “connection close frame”。</p>
+<p>它的方法是：</p>
+<div id="ifjb3owsne" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>socket.close([code], [reason]);</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>code</code> 是一个特殊的 WebSocket 关闭码（可选）</li>
+<li><code>reason</code> 是一个描述关闭原因的字符串（可选）</li>
+</ul>
+<p>然后，另外一方通过 <code>close</code> 事件处理器获取了关闭码和关闭原因，例如：</p>
+<div id="9zvynjpxfa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 关闭方：
+socket.close(1000, &quot;Work complete&quot;);
+
+// 另一方
+socket.onclose = event =&gt; {
+  // event.code === 1000
+  // event.reason === &quot;Work complete&quot;
+  // event.wasClean === true (clean close)
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>最常见的数字码：</p>
+<ul>
+<li><code>1000</code> —— 默认，正常关闭（如果没有指明 <code>code</code> 时使用它），</li>
+<li><code>1006</code> —— 没有办法手动设定这个数字码，表示连接丢失（没有 close frame）。</li>
+</ul>
+<p>还有其他数字码，例如：</p>
+<ul>
+<li><code>1001</code> —— 一方正在离开，例如服务器正在关闭，或者浏览器离开了该页面，</li>
+<li><code>1009</code> —— 消息太大，无法处理，</li>
+<li><code>1011</code> —— 服务器上发生意外错误，</li>
+<li>……等。</li>
+</ul>
+<p>完整列表请见 <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1">RFC6455, §7.4.1</a>。</p>
+<p>WebSocket 码有点像 HTTP 码，但它们是不同的。特别是，小于 <code>1000</code> 的码都是被保留的，如果我们尝试设置这样的码，将会出现错误。</p>
+<div id="ctlh1wr18w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在连接断开的情况下
+socket.onclose = event =&gt; {
+  // event.code === 1006
+  // event.reason === &quot;&quot;
+  // event.wasClean === false（未关闭 frame）
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="lian-jie-zhuang-tai" href="#lian-jie-zhuang-tai">连接状态</a></h2><p>要获取连接状态，可以通过带有值的 <code>socket.readyState</code> 属性：</p>
+<ul>
+<li><strong><code>0</code></strong> —— “CONNECTING”：连接还未建立，</li>
+<li><strong><code>1</code></strong> —— “OPEN”：通信中，</li>
+<li><strong><code>2</code></strong> —— “CLOSING”：连接关闭中，</li>
+<li><strong><code>3</code></strong> —— “CLOSED”：连接已关闭。</li>
+</ul>
+<h2><a class="main__anchor" name="liao-tian-shi-li" href="#liao-tian-shi-li">聊天示例</a></h2><p>让我们来看一个使用浏览器 WebSocket API 和 Node.js 的 WebSocket 模块 <a href="https://github.com/websockets/ws">https://github.com/websockets/ws</a> 的聊天示例。我们将主要精力放在客户端上，但是服务端也很简单。</p>
+<p>HTML：我们需要一个 <code>&lt;form&gt;</code> 来发送消息，并且需要一个 <code>&lt;div&gt;</code> 来接收消息：</p>
+<div id="ze0v232hsy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- 消息表单 --&gt;
+&lt;form name=&quot;publish&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;message&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Send&quot;&gt;
+&lt;/form&gt;
+
+&lt;!-- 带有消息的 div --&gt;
+&lt;div id=&quot;messages&quot;&gt;&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 JavaScript 中，我们想要做三件事：</p>
+<ol>
+<li>打开连接。</li>
+<li>在表单提交中 —— <code>socket.send(message)</code> 用于消息。</li>
+<li>对于传入的消息 —— 将其附加（append）到 <code>div#messages</code> 上。</li>
+</ol>
+<p>代码如下</p>
+<div id="59beu1of1o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let socket = new WebSocket(&quot;wss://javascript.info/article/websocket/chat/ws&quot;);
+
+// 从表单发送消息
+document.forms.publish.onsubmit = function() {
+  let outgoingMessage = this.message.value;
+
+  socket.send(outgoingMessage);
+  return false;
+};
+
+// 收到消息 —— 在 div#messages 中显示消息
+socket.onmessage = function(event) {
+  let message = event.data;
+
+  let messageElem = document.createElement('div');
+  messageElem.textContent = message;
+  document.getElementById('messages').prepend(messageElem);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>服务端代码有点超出我们的范围。在这里，我们将使用 Node.js，但你不必这样做。其他平台也有使用 WebSocket 的方法。</p>
+<p>服务器端的算法为：</p>
+<ol>
+<li>创建 <code>clients = new Set()</code> —— 一系列 socket。</li>
+<li>对于每个被接受的 WebSocket，将其添加到 <code>clients.add(socket)</code>，并为其设置 <code>message</code> 事件侦听器以获取其消息。</li>
+<li>当接收到消息：遍历客户端，并将消息发送给所有人。</li>
+<li>当连接被关闭：<code>clients.delete(socket)</code>。</li>
+</ol>
+<div id="xtv8fejroz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>const ws = new require('ws');
+const wss = new ws.Server({noServer: true});
+
+const clients = new Set();
+
+http.createServer((req, res) =&gt; {
+  // 在这里，我们仅处理 WebSocket 连接
+  // 在实际项目中，我们在这里还会有其他代码，来处理非 WebSocket 请求
+  wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onSocketConnect);
+});
+
+function onSocketConnect(ws) {
+  clients.add(ws);
+
+  ws.on('message', function(message) {
+    message = message.slice(0, 50); // message 的最大长度为 50
+
+    for(let client of clients) {
+      client.send(message);
+    }
+  });
+
+  ws.on('close', function() {
+    clients.delete(ws);
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是运行示例：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="../tutorial/zipview/chat_plunkId%3DT9zKn2uinKQR2hzn.zip" target="_blank" title="下载为 zip 文件" class="toolbar__button toolbar__button_download"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:100px" src="https://zh.js.cx/article/websocket/chat/"></iframe>
+  </div><p>你也可以下载它（点击 iframe 右上角的按钮）然后在本地运行。运行之前请记得安装 <a href="https://nodejs.org/en/">Node.js</a> 和 <code>npm install ws</code>。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>WebSocket 是一种在浏览器和服务器之间建立持久连接的现代方式。</p>
+<ul>
+<li>WebSocket 没有跨源限制。</li>
+<li>浏览器对 WebSocket 支持很好。</li>
+<li>可以发送/接收字符串和二进制数据。</li>
+</ul>
+<p>WebSocket 的 API 很简单。</p>
+<p>WebSocket 方法：</p>
+<ul>
+<li><code>socket.send(data)</code>，</li>
+<li><code>socket.close([code], [reason])</code>。</li>
+</ul>
+<p>WebSocket 事件：</p>
+<ul>
+<li><code>open</code>，</li>
+<li><code>message</code>，</li>
+<li><code>error</code>，</li>
+<li><code>close</code>。</li>
+</ul>
+<p>WebSocket 自身并不包含重新连接（reconnection），身份验证（authentication）和很多其他高级机制。因此，有针对于此的客户端/服务端的库，并且也可以手动实现这些功能。</p>
+<p>有时为了将 WebSocket 集成到现有项目中，人们将主 HTTP 服务器与 WebSocket 服务器并行运行，并且它们之间共享同一个数据库。对于 WebSocket 请求使用一个通向 WebSocket 服务器的子域 <code>wss://ws.site.com</code>，而 <code>https://site.com</code> 则通向主 HTTP 服务器。</p>
+<p>当然，其他集成方式也是可行的。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../long-polling/index.html" data-tooltip="长轮询（Long polling）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../server-sent-events/index.html" data-tooltip="Server Sent Events"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/websocket","identifier":"\/websocket"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../network/index.html">网络请求</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-ge-jian-dan-li-zi">一个简单例子</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jian-li-websocket">建立 WebSocket</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-ju-chuan-shu">数据传输</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xian-su">限速</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lian-jie-guan-bi">连接关闭</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lian-jie-zhuang-tai">连接状态</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#liao-tian-shi-li">聊天示例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fwebsocket" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/5-network/11-websocket" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

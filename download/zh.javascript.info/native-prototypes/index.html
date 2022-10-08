@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">原生的原型</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/native-prototypes"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="原生的原型"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="原生的原型"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/function-prototype"><link rel="next" href="/prototype-methods"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="原生的原型"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/native-prototypes"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/native-prototypes"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/native-prototypes"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/native-prototypes"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/native-prototypes"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/native-prototypes"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/native-prototypes"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/native-prototypes"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/native-prototypes"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/native-prototypes"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/native-prototypes"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/native-prototypes">عربي</option><option value="https://javascript.info/native-prototypes">English</option><option value="https://es.javascript.info/native-prototypes">Español</option><option value="https://fr.javascript.info/native-prototypes">Français</option><option value="https://id.javascript.info/native-prototypes">Indonesia</option><option value="https://it.javascript.info/native-prototypes">Italiano</option><option value="https://ja.javascript.info/native-prototypes">日本語</option><option value="https://ko.javascript.info/native-prototypes">한국어</option><option value="https://learn.javascript.ru/native-prototypes">Русский</option><option value="https://tr.javascript.info/native-prototypes">Türkçe</option><option value="https://uk.javascript.info/native-prototypes">Українська</option><option value="https://zh.javascript.info/native-prototypes" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="64" max="92" data-tooltip="第 64/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../prototypes/index.html"><span>原型，继承</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"原型，继承","item":"https://zh.javascript.info/prototypes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">原生的原型</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="原生的原型"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><code>&quot;prototype&quot;</code> 属性在 JavaScript 自身的核心部分中被广泛地应用。所有的内建构造函数都用到了它。</p>
+<p>首先，我们将看看原生原型的详细信息，然后学习如何使用它为内建对象添加新功能。</p>
+<h2><a class="main__anchor" name="objectprototype" href="#objectprototype">Object.prototype</a></h2><p>假如我们输出一个空对象：</p>
+<div id="9hr2i28byv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {};
+alert( obj ); // &quot;[object Object]&quot; ?</code></pre>
+        </div>
+      </div>
+      
+      </div><p>生成字符串 <code>&quot;[object Object]&quot;</code> 的代码在哪里？那就是一个内建的 <code>toString</code> 方法，但是它在哪里呢？<code>obj</code> 是空的！</p>
+<p>……然而简短的表达式 <code>obj = {}</code> 和 <code>obj = new Object()</code> 是一个意思，其中 <code>Object</code> 就是一个内建的对象构造函数，其自身的 <code>prototype</code> 指向一个带有 <code>toString</code> 和其他方法的一个巨大的对象。</p>
+<p>就像这样：</p>
+<figure><div class="image" style="width:453px">
+      <div class="image__ratio" style="padding-top:20.750551876379692%"></div>
+      <object type="image/svg+xml" data="../article/native-prototypes/object-prototype.svg" width="453" height="94" class="image__image" data-use-theme>
+        <img src="../article/native-prototypes/object-prototype.svg" alt width="453" height="94">
+      </object>
+      </div></figure><p>当 <code>new Object()</code> 被调用（或一个字面量对象 <code>{...}</code> 被创建），按照前面章节中我们学习过的规则，这个对象的 <code>[[Prototype]]</code> 属性被设置为 <code>Object.prototype</code>：</p>
+<figure><div class="image" style="width:453px">
+      <div class="image__ratio" style="padding-top:43.92935982339956%"></div>
+      <object type="image/svg+xml" data="../article/native-prototypes/object-prototype-1.svg" width="453" height="199" class="image__image" data-use-theme>
+        <img src="../article/native-prototypes/object-prototype-1.svg" alt width="453" height="199">
+      </object>
+      </div></figure><p>所以，之后当 <code>obj.toString()</code> 被调用时，这个方法是从 <code>Object.prototype</code> 中获取的。</p>
+<p>我们可以这样验证它：</p>
+<div id="m02a4io5ap" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {};
+
+alert(obj.__proto__ === Object.prototype); // true
+
+alert(obj.toString === obj.__proto__.toString); //true
+alert(obj.toString === Object.prototype.toString); //true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意在 <code>Object.prototype</code> 上方的链中没有更多的 <code>[[Prototype]]</code>：</p>
+<div id="g6r15pkdrc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(Object.prototype.__proto__); // null</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="qi-ta-nei-jian-yuan-xing" href="#qi-ta-nei-jian-yuan-xing">其他内建原型</a></h2><p>其他内建对象，像 <code>Array</code>、<code>Date</code>、<code>Function</code> 及其他，都在 prototype 上挂载了方法。</p>
+<p>例如，当我们创建一个数组 <code>[1, 2, 3]</code>，在内部会默认使用 <code>new Array()</code> 构造器。因此 <code>Array.prototype</code> 变成了这个数组的 prototype，并为这个数组提供数组的操作方法。这样内存的存储效率是很高的。</p>
+<p>按照规范，所有的内建原型顶端都是 <code>Object.prototype</code>。这就是为什么有人说“一切都从对象继承而来”。</p>
+<p>下面是完整的示意图（3 个内建对象）：</p>
+<figure><div class="image" style="width:692px">
+      <div class="image__ratio" style="padding-top:59.39306358381503%"></div>
+      <object type="image/svg+xml" data="../article/native-prototypes/native-prototypes-classes.svg" width="692" height="411" class="image__image" data-use-theme>
+        <img src="../article/native-prototypes/native-prototypes-classes.svg" alt width="692" height="411">
+      </object>
+      </div></figure><p>让我们手动验证原型：</p>
+<div id="ystqpkngy8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3];
+
+// 它继承自 Array.prototype？
+alert( arr.__proto__ === Array.prototype ); // true
+
+// 接下来继承自 Object.prototype？
+alert( arr.__proto__.__proto__ === Object.prototype ); // true
+
+// 原型链的顶端为 null。
+alert( arr.__proto__.__proto__.__proto__ ); // null</code></pre>
+        </div>
+      </div>
+      
+      </div><p>一些方法在原型上可能会发生重叠，例如，<code>Array.prototype</code> 有自己的 <code>toString</code> 方法来列举出来数组的所有元素并用逗号分隔每一个元素。</p>
+<div id="pvv76leo0f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3]
+alert(arr); // 1,2,3 &lt;-- Array.prototype.toString 的结果</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们之前看到的那样，<code>Object.prototype</code> 也有 <code>toString</code> 方法，但是 <code>Array.prototype</code> 在原型链上更近，所以数组对象原型上的方法会被使用。</p>
+<figure><div class="image" style="width:209px">
+      <div class="image__ratio" style="padding-top:151.1961722488038%"></div>
+      <object type="image/svg+xml" data="../article/native-prototypes/native-prototypes-array-tostring.svg" width="209" height="316" class="image__image" data-use-theme>
+        <img src="../article/native-prototypes/native-prototypes-array-tostring.svg" alt width="209" height="316">
+      </object>
+      </div></figure><p>浏览器内的工具，像 Chrome 开发者控制台也会显示继承性（可能需要对内建对象使用 <code>console.dir</code>）：</p>
+<figure><div class="image" style="width:567px">
+      <div class="image__ratio" style="padding-top:51.49911816578483%"></div>
+      <img src="../article/native-prototypes/console_dir_array.png" alt width="567" height="292" class="image__image">
+      </div></figure><p>其他内建对象也以同样的方式运行。即使是函数 —— 它们是内建构造器 <code>Function</code> 的对象，并且它们的方法（<code>call</code>/<code>apply</code> 及其他）都取自 <code>Function.prototype</code>。函数也有自己的 <code>toString</code> 方法。</p>
+<div id="5vj09yjndo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {}
+
+alert(f.__proto__ == Function.prototype); // true
+alert(f.__proto__.__proto__ == Object.prototype); // true, inherit from objects</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ji-ben-shu-ju-lei-xing" href="#ji-ben-shu-ju-lei-xing">基本数据类型</a></h2><p>最复杂的事情发生在字符串、数字和布尔值上。</p>
+<p>正如我们记忆中的那样，它们并不是对象。但是如果我们试图访问它们的属性，那么临时包装器对象将会通过内建的构造器 <code>String</code>、<code>Number</code> 和 <code>Boolean</code> 被创建。它们提供给我们操作字符串、数字和布尔值的方法然后消失。</p>
+<p>这些对象对我们来说是无形地创建出来的。大多数引擎都会对其进行优化，但是规范中描述的就是通过这种方式。这些对象的方法也驻留在它们的 prototype 中，可以通过 <code>String.prototype</code>、<code>Number.prototype</code> 和 <code>Boolean.prototype</code> 进行获取。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">值 <code>null</code> 和 <code>undefined</code> 没有对象包装器</span></div>
+            <div class="important__content"><p>特殊值 <code>null</code> 和 <code>undefined</code> 比较特殊。它们没有对象包装器，所以它们没有方法和属性。并且它们也没有相应的原型。</p>
+</div></div>
+<h2><a class="main__anchor" name="native-prototype-change" href="#native-prototype-change">更改原生原型</a></h2><p>原生的原型是可以被修改的。例如，我们向 <code>String.prototype</code> 中添加一个方法，这个方法将对所有的字符串都是可用的：</p>
+<div id="jle8imfuje" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>String.prototype.show = function() {
+  alert(this);
+};
+
+&quot;BOOM!&quot;.show(); // BOOM!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在开发的过程中，我们可能会想要一些新的内建方法，并且想把它们添加到原生原型中。但这通常是一个很不好的想法。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">重要：</span></div>
+            <div class="important__content"><p>原型是全局的，所以很容易造成冲突。如果有两个库都添加了 <code>String.prototype.show</code> 方法，那么其中的一个方法将被另一个覆盖。</p>
+<p>所以，通常来说，修改原生原型被认为是一个很不好的想法。</p>
+</div></div>
+<p><strong>在现代编程中，只有一种情况下允许修改原生原型。那就是 polyfilling。</strong></p>
+<p>Polyfilling 是一个术语，表示某个方法在 JavaScript 规范中已存在，但是特定的 JavaScript 引擎尚不支持该方法，那么我们可以通过手动实现它，并用以填充内建原型。</p>
+<p>例如：</p>
+<div id="jz9glnrwl9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!String.prototype.repeat) { // 如果这儿没有这个方法
+  // 那就在 prototype 中添加它
+
+  String.prototype.repeat = function(n) {
+    // 重复传入的字符串 n 次
+
+    // 实际上，实现代码比这个要复杂一些（完整的方法可以在规范中找到）
+    // 但即使是不够完美的 polyfill 也常常被认为是足够好的
+    return new Array(n + 1).join(this);
+  };
+}
+
+alert( &quot;La&quot;.repeat(3) ); // LaLaLa</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="cong-yuan-xing-zhong-jie-yong" href="#cong-yuan-xing-zhong-jie-yong">从原型中借用</a></h2><p>在 <a href="../call-apply-decorators/index.html#method-borrowing">装饰器模式和转发，call/apply</a> 一章中，我们讨论了方法借用。</p>
+<p>那是指我们从一个对象获取一个方法，并将其复制到另一个对象。</p>
+<p>一些原生原型的方法通常会被借用。</p>
+<p>例如，如果我们要创建类数组对象，则可能需要向其中复制一些 <code>Array</code> 方法。</p>
+<p>例如：</p>
+<div id="t4tt25glwi" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  0: &quot;Hello&quot;,
+  1: &quot;world!&quot;,
+  length: 2,
+};
+
+obj.join = Array.prototype.join;
+
+alert( obj.join(',') ); // Hello,world!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面这段代码有效，是因为内建的方法 <code>join</code> 的内部算法只关心正确的索引和 <code>length</code> 属性。它不会检查这个对象是否是真正的数组。许多内建方法就是这样。</p>
+<p>另一种方式是通过将 <code>obj.__proto__</code> 设置为 <code>Array.prototype</code>，这样 <code>Array</code> 中的所有方法都自动地可以在 <code>obj</code> 中使用了。</p>
+<p>但是如果 <code>obj</code> 已经从另一个对象进行了继承，那么这种方法就不可行了（译注：因为这样会覆盖掉已有的继承。此处 <code>obj</code> 其实已经从 <code>Object</code> 进行了继承，但是 <code>Array</code> 也继承自 <code>Object</code>，所以此处的方法借用不会影响 <code>obj</code> 对原有继承的继承，因为 <code>obj</code> 通过原型链依旧继承了 <code>Object</code>）。请记住，我们一次只能继承一个对象。</p>
+<p>方法借用很灵活，它允许在需要时混合来自不同对象的方法。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><ul>
+<li>所有的内建对象都遵循相同的模式（pattern）：
+<ul>
+<li>方法都存储在 prototype 中（<code>Array.prototype</code>、<code>Object.prototype</code>、<code>Date.prototype</code> 等）。</li>
+<li>对象本身只存储数据（数组元素、对象属性、日期）。</li>
+</ul>
+</li>
+<li>原始数据类型也将方法存储在包装器对象的 prototype 中：<code>Number.prototype</code>、<code>String.prototype</code> 和 <code>Boolean.prototype</code>。只有 <code>undefined</code> 和 <code>null</code> 没有包装器对象。</li>
+<li>内建原型可以被修改或被用新的方法填充。但是不建议更改它们。唯一允许的情况可能是，当我们添加一个还没有被 JavaScript 引擎支持，但已经被加入 JavaScript 规范的新标准时，才可能允许这样做。</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#gei-han-shu-tian-jia-yi-ge-fdeferms-fang-fa" name="gei-han-shu-tian-jia-yi-ge-fdeferms-fang-fa">给函数添加一个 &quot;f.defer(ms)&quot; 方法</a></h3><a class="task__open-link" href="../task/defer-to-prototype/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>在所有函数的原型中添加 <code>defer(ms)</code> 方法，该方法将在 <code>ms</code> 毫秒后运行该函数。</p>
+<p>当你完成添加后，下面的代码应该是可执行的：</p>
+<div id="z4i5b0n76x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  alert(&quot;Hello!&quot;);
+}
+
+f.defer(1000); // 1 秒后显示 &quot;Hello!&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="jtc996xhcz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Function.prototype.defer = function(ms) {
+  setTimeout(this, ms);
+};
+
+function f() {
+  alert(&quot;Hello!&quot;);
+}
+
+f.defer(1000); // shows &quot;Hello!&quot; after 1 sec</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-zhuang-shi-qi-defer-tian-jia-dao-han-shu" name="jiang-zhuang-shi-qi-defer-tian-jia-dao-han-shu">将装饰器 &quot;defer()&quot; 添加到函数</a></h3><a class="task__open-link" href="../task/defer-to-prototype-extended/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>在所有函数的原型中添加 <code>defer(ms)</code> 方法，该方法返回一个包装器，将函数调用延迟 <code>ms</code> 毫秒。</p>
+<p>下面是它应该如何执行的例子：</p>
+<div id="g4wkqbh12s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f(a, b) {
+  alert( a + b );
+}
+
+f.defer(1000)(1, 2); // 1 秒后显示 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，参数应该被传给原始函数。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="vtr65fjxc6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Function.prototype.defer = function(ms) {
+  let f = this;
+  return function(...args) {
+    setTimeout(() =&gt; f.apply(this, args), ms);
+  }
+};
+
+// check it
+function f(a, b) {
+  alert( a + b );
+}
+
+f.defer(1000)(1, 2); // 1 秒后显示 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：我们在 <code>f.apply</code> 中使用 <code>this</code> 以使装饰器适用于对象方法。</p>
+<p>因此，如果将包装器函数作为对象方法调用，那么 <code>this</code> 将会被传递给原始方法 <code>f</code>。</p>
+<div id="ww3ivcrdei" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Function.prototype.defer = function(ms) {
+  let f = this;
+  return function(...args) {
+    setTimeout(() =&gt; f.apply(this, args), ms);
+  }
+};
+
+let user = {
+  name: &quot;John&quot;,
+  sayHi() {
+    alert(this.name);
+  }
+}
+
+user.sayHi = user.sayHi.defer(1000);
+
+user.sayHi();</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../function-prototype/index.html" data-tooltip="F.prototype"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../prototype-methods/index.html" data-tooltip="原型方法，没有 __proto__ 的对象"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/native-prototypes","identifier":"\/native-prototypes"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../prototypes/index.html">原型，继承</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#objectprototype">Object.prototype</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qi-ta-nei-jian-yuan-xing">其他内建原型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ji-ben-shu-ju-lei-xing">基本数据类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#native-prototype-change">更改原生原型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cong-yuan-xing-zhong-jie-yong">从原型中借用</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fnative-prototypes" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/08-prototypes/03-native-prototypes" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

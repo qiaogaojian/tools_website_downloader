@@ -1,0 +1,1370 @@
+﻿ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>序列化</title>
+<meta name="keywords" content="鸟语,C#">
+<meta name="description" content="示例一：二进制序列化 using System; using System.IO; using System.Collecti...">
+<meta name="generator" content="emlog">
+<!--<meta property="qc:admins" content="227642156766613763757" />腾讯开放平台验证(QQ登录)-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devacg.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devacg.com/wlwmanifest.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devacg.com/rss.php">
+<link href="../www.devacg.com/content/templates/default/main.css" rel="stylesheet" type="text/css">
+<link href="../www.devacg.com/admin_yl/editor/plugins/code/prettify.css" rel="stylesheet" type="text/css">
+<script src="../www.devacg.com/admin_yl/editor/plugins/code/prettify.js" type="text/javascript"></script>
+<script src="../www.devacg.com/include/lib/js/common_tpl.js" type="text/javascript"></script>
+
+<!--[if IE 6]>
+<script src="http://www.devacg.com/content/templates/default/iefix.js" type="text/javascript"></script>
+<![endif]-->
+</head>
+<body onload="onloadPage()">
+<div id="wrap">
+  <div id="header">
+    <p></p><h1><a href="../www.devacg.com/index.html">鸟语天空</a></h1>
+	<h4><div id="auth"><span id="qqLoginBtn"></span></div></h4>
+	<!--<script  type="text/javascript">
+		showLoginInfo();
+	</script>-->
+	<p></p>
+    <h3>不怨天,不尤人,下学而上达,知我者其天乎!</h3>
+  </div>
+    <div id="banner"><a href="../www.devacg.com/index.html"><img src="../www.devacg.com/content/templates/default/images/top/default.jpg" height="134" width="960"></a></div>
+  	
+  <!-- Header空位 -->
+
+  <!-- end -->
+  <div id="nav">	<ul class="bar">
+			
+					<li class="item common">
+				<a href="../www.devacg.com/index.html">首页</a>
+							</li>
+							
+					<li class="item common">
+				<a href="../www.devacg.com/t/index.html">微语</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D248.html">Unity3D</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D247.html">Android</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D257.html">C#</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D914.html">Objective-C</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D708.html">Python</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D427.html">Lua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D616.html">xLua</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D777.html">TypeScript</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D1099.html">C/C++</a>
+							</li>
+							
+					<li class="item common">
+				<a href="post%3D299.html">算法</a>
+							</li>
+							
+												
+												
+												
+												
+											
+			<li class="item common">
+			<a href="#">更多>></a>
+			<ul class="sub-nav">
+				<li><a href="post%3D409.html">Cygwin</a></li><li><a href="post%3D810.html">Matlab</a></li><li><a href="post%3D514.html">Egret</a></li><li><a href="post%3D776.html">LayaAir</a></li><li><a href="post%3D375.html">设计模式</a></li>			</ul>
+		</li>
+		</ul>
+</div><div id="content">
+<div id="contentleft">
+	<h2>序列化</h2>
+	<p class="date">作者：<a href="author%3D1.html" title=" 263665629@qq.com">追风剑情</a> 发布于：2017-9-18 21:47 
+			分类：<a href="sort%3D2.html">C#</a>
+	 
+	<!--百度分享-->
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+			<a href="#" class="bds_more" data-cmd="more"></a>
+		</div>
+		
+		<!--百度自动推送-->
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https') {
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else {
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</p>
+		
+	<p>
+	示例一：二进制序列化
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace SerializableTest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Person student = new Person { Num = 23, Name = "Jiki", Age = 16, Sex = "boy"};
+            Console.WriteLine("序列化到文件中...");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("e:/student.txt", FileMode.OpenOrCreate,
+                FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, student);
+            stream.Close();
+            Console.WriteLine("序列化完成!");
+
+            //注意：反序列化还原对象时，并不会调用Person类的构造函数
+            Stream destream = new FileStream("e:/student.txt", FileMode.Open,
+                FileAccess.Read, FileShare.Read);
+            Person de_student = (Person)formatter.Deserialize(destream);
+            stream.Close();
+            Console.WriteLine("反序列化结束，输出对象信息...");
+            Console.WriteLine(de_student.ToString());
+
+            Console.WriteLine("------------------------------------------------------");
+
+            Console.WriteLine("序列化到内存流中...");
+            
+            MemoryStream ms = new MemoryStream();
+            formatter.Serialize(ms, student);
+            ms.Flush();
+            byte[] buffer = ms.ToArray();
+            ms.Close();
+            Console.WriteLine("序列化完成!");
+
+            MemoryStream dms = new MemoryStream();
+            dms.Write(buffer, 0, buffer.Length);
+            dms.Flush();
+            dms.Position = 0;
+            Person m_student = (Person)formatter.Deserialize(dms);
+            dms.Close();
+            Console.WriteLine("反序列化结束，输出对象信息...");
+            Console.WriteLine(m_student.ToString());
+
+            Console.ReadKey();
+        }
+    }
+
+    [Serializable]
+    public class Person
+    {
+        public int Num { get; set; }
+        public string Name { get; set; }
+        public string Sex { get; set; }
+        public int Age { get; set; }
+        //私有字段也可被序列化
+        //[NonSerialized] 加了这个标签就不会被序列化了
+        private string Other = "other is private field";
+
+        public override string ToString()
+        {
+            string s = string.Format("学号: {0}, 名字: {1}, 性别: {2}, 年龄: {3}, 其它: {4}", Num, Name, Sex, Age, Other);
+            return s;
+        }
+    }
+}
+</pre>
+<p>
+	运行测试
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/201709/036c1505742491.png" id="ematt:1437"><img src="../www.devacg.com/content/uploadfile/201709/036c1505742491.png" title="点击查看原图" alt="111111.png" border="0" width="604" height="186"></a> 
+</p>
+<p>
+	<a href="post%3D973.html" target="_blank">BinaryFormatter</a> 
+</p>
+<p>
+	<span style="font-size:16px;"><strong>版本控制</strong></span> 
+</p>
+<p>
+	如果序列化类型的实例，在类型中添加新字段，然后试图反序列化不包含新字段的对象，格式化器会抛出SerializationException异常，并显示一条消息告诉你流中要反序列化的数据包含错误的成员数目。这非常不利于版本控制，因为我们经常都要在类型的新版本中添加新字段。幸好，这时可以利用<span class="code-red">System.Runtime.Serialization.OptionalFieldAttribute</span>特性。类型中新增的每个字段都要应用OptionalFieldAttribute特性。然后，当格式化器看到该特性应用于一个字段时，就不会因为流中的数据不包含这个字段而抛出SerializationException。
+</p>
+<p>
+	注意：<span style="color:#E53333;">内层对象先于外层对象完成反序列化</span> 
+</p>
+<p>
+	<span style="font-size:16px;"><strong>更多控制特性</strong></span> 
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.Runtime.Serialization;
+[Serializable]
+public class MyType
+{
+    //所有public, private, protected都可被序列化
+    Int32 x, y;
+    //该特性只能应用于字段，而且会被派生类继承
+    [NonSerialized] //不序列化此字段
+    Int32 sum;
+
+    public MyType(Int32 x, Int32 y)
+    {
+        this.x = x;
+        this.y = y;
+        sum = x + y;
+    }
+
+    [OnDeserializing] //此方法在反序列化前被调用
+    private void OnDeserializing(StreamingContext context)
+    {
+        //在这个方法中，为字段设置默认值
+    }
+
+    [OnDeserialized] //此方法在反序列化后被调用
+    private void OnDeserialized(StreamingContext context)
+    {
+        //根据字段值初始化瞬时状态
+        sum = x + y;
+    }
+
+    [OnSerializing] //此方法在序列化前被调用
+    private void OnSerializing(StreamingContext context)
+    {
+        //在序列化前修改任何需要修改的状态
+    }
+
+    [OnSerialized] //此方法在序列化后被调用
+    private void OnSerialized(StreamingContext context)
+    {
+        //在序列化后恢复任何需要恢复的状态
+    }
+}
+</pre>
+<p>
+	<br>
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;序列化对象图时，也许有的对象的类型能序列化，有的不能。考虑到性能，在序列化之前，格式化器不会验证对象图中的所有对象都能序列化。所以，序列化对象图时，在抛出SerializationException异常之前，完全有可能已经有一部分对象序列化到流中。如果发生这种情况，流中就会包含已损坏的数据。序列化对象图时，如果你认为也许有一些对象不可序列化，那么写的代码就应该能得体地从这种情况中恢复。一个方案是先将对象序列化到一个MemoryStream中。然后，如果所有对象都成功序列化，就可以将MemoryStream中的字节复制到你真正希望的目标流中（比如文件和网络）。
+</div>
+<p>
+	<br>
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;序列化对象时，类型的全名和类型定义程序集的全名会被写入流。BinaryFormatter默认输出程序集的完整标识，其中包括程序集的文件名（无扩展名）、版本号、语言文化以及公钥信息。反序列化对象时，格式化器首先获取程序集标识信息，并通过调用System.Reflection.Assembly的Load方法，确保程序集已加载到正在执行的AppDomain中。程序集加载好之后，格式化器在程序集中查找与要反序列化的对象匹配的类型。找不到匹配类型就抛出异常，不再对更多的对象进行反序列化。找到匹配的类型，就创建类型的实例，并用流中包含的值对其字段进行初始化。如果类型中的字段与流中读取的字段名不完全匹配，就抛出SerializationException异常，不再对更多的对象进行反序列化。
+</p>
+<p>
+	<span style="font-size:16px;"><strong>控制序列化/反序列化的数据</strong></span> 
+</p>
+<p>
+	控制序列化和反序列化的过程的最佳方式就是使用OnSerializing，OnSerialized，OnDeserializing，OnDeserialized，NonSerialized和OptionalField等特性。然而，在一些极少见的情况下，这些特性不能提供你想要的全部控制。此外，格式化器内部使用的是反射，而反射的速度比较慢的，这会增大序列化和反序列化对象所花的时间。为了对序列化/反序列化的数据进行完全的控制，并避免使用反射，你的类型可实现System.Runntime.Serialization.ISerializable接口，它的定义如下：
+</p>
+<pre>public interface ISerializable {
+   void GetObjectData(SerializationInfo info, StreamingContext context);
+}
+</pre>
+<p>
+	这个接口只有一个方法，即GetObjectData。但实现这个接口的大多数类型还实现了一个特殊的构造器。
+</p>
+<div class="border-radius-1">
+	<strong>要重提示</strong>&nbsp;&nbsp;ISerializable接口最大的问题在于，一旦类型实现了它，所有派生类型也必须实现它，而且派生类型必须保证调用基类的GetObjectData方法和特殊构造器。此外，一旦类型实现了该接口，便永远不能删除它，否则会失去与派生类型的兼容性。所以，密封类实现ISerializable接口是最让人放心的。使用前面描述的各种定制特性，ISerializable接口的所有问题都可以避免。
+</div>
+<br>
+<div class="border-radius-1">
+	<strong>要重提示</strong>&nbsp;&nbsp;ISerializable接口和特殊构造器旨在由格式化器使用。但其他代码可能调用GetObjectData来返回敏感数据。另外，其他代码可能构造对象，并传入损坏的数据。因此，建议向GetObjectData方法和特殊构造器应用以下特性：<br>
+[SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+</div>
+<p>
+	<br>
+</p>
+<p>
+	格式化器序列化对象图时会检查每个对象。如果发现一个对象的类型实现了ISerializable接口，就会忽略所有定制特性，改为构造新的System.Runtime.Serialization.SerializationInfo对象。该对象包含了要为对象序列化的值的集合。
+</p>
+<p>
+	构造SerializationInfo对象时，格式化器要传递两个参数：Type和System.Runtime.Serialization.IFormatterConverter。Type参数标识要序列化的对象。唯一性地标识一个类型需要两个部分的信息：类型的字符串名称及其程序集标识(包括程序集名、版本、语言文化和公钥)。构造好的SerializationInfo对象包含类型的全名(通过在内部查询Type的FullName属性)，这个字符串会存储到一个私有字段中。如果你想获取类型的全名，可查询SerializationInfo的FullTypeName属性。类似地，构造器获取类型的定义程序集(通过在内部查询Type的Module属性，再查询Module的Assembly属性，再查询Assembly的FullName属性)，这个字符串会存储在一个私有字段中。如果你想获取程序集的标识，可查询SerializationInfo的AssemblyName属性。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;虽然可以设置一个SerializationInfo的FullTypeName和AssemblyName属性，但不建议这样做。如果想更改被序列化的类型，建议调用SerializationInfo的SetType方法，传递对目标Type对象的引用。调用SetType可确保类型的全名和定义程序集被正确设置。
+</div>
+<p>
+	<br>
+</p>
+<p>
+	构造好并初始化好SerializationInfo对象后，格式化器调用类型的GetObjectData方法，向它传递对SerializationInfo对象的引用。GetObjectData方法决定需要哪些信息来序列化对象，并将这些信息添加到SerializationInfo对象中。GetObjectData调用SerializationInfo类型提供的AddValue方法的众多重载版本之一来指定要序列化的信息。针对要添加的每个数据，都要调用一次AddValue。
+</p>
+<p>
+	示例：实现ISerializable和IDeserializationCallback接口来控制序列化和反序列化
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.Collections.Generic;
+using System.Security.Permissions;
+using System.Runtime.Serialization;
+using System.Security;
+
+[Serializable]
+public class Dictionary&lt;TKey, TValue&gt; : ISerializable, IDeserializationCallback
+{
+    //私有字段放这里
+    private Int32 m_version = 1;
+    private SerializationInfo m_siInfo;//只用于反序列化
+
+    //用于控制反序列化的特殊构造器(这是ISerializable需要的),如果是密封类，建议声明为private
+    [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+    protected Dictionary(SerializationInfo info, StreamingContext context)
+    {
+        //反序列化期间，为OnDeserialization保存SerializationInfo
+        m_siInfo = info;
+    }
+
+    //控制序列化
+    [SecurityCritical]
+    public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+        //这里用AddValue方法添加要序列化的内容
+        info.AddValue("Version", m_version);
+    }
+
+    //所有key/value对象都反序列化好之后调用的方法
+    void IDeserializationCallback.OnDeserialization(object sender)
+    {
+        if (m_siInfo == null) return;
+
+        //这里用GetXX方法获取流中的值
+        //如果值在流中的类型和你试图获取(Get)的类型不符，格式化器会尝试用一个IFormatterConverter对象将流中的值转型成你指定的类型。
+        Int32 num = m_siInfo.GetInt32("Version");
+        //遍历
+        //foreach(SerializationEntry entry in m_siInfo) { }
+        m_version = num;
+        m_siInfo = null;
+    }
+}</pre>
+<p>
+	每个AddValue方法都获取一个String名称和一些数据。数据一般是简单的值类型，比如Boolean，Char，Byte，SByte，Int16，UInt16，Int32，UInt32，Int64，UInt64，Single，Double，Decimal或者DateTime。然而，还可以在调用AddValue时向它传递对一个Object(比如一个String)的引用。GetObjectData添加好所有必要的序列化信息之后，会返回至格式化器。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong>&nbsp;&nbsp;务必调用AddValue方法的某个重载版本为自己的类型添加序列化信息。如果一个字段的类型实现了ISerializable接口，就不要在字段上调用GetObjectData。相反，调用AddValue来添加字段；格式化器会注意到字段的类型实现了ISerializabel，会帮你调用GetObjectData。如果自己在字段对象上调用GetObjectData，格式化器便不知道在对流进行反序列化时创建新对象。
+</div>
+<p>
+	<span style="font-size:16px;"><strong><br>
+</strong></span> 
+</p>
+<p>
+	<span style="font-size:16px;"><strong>要实现ISerializable但基类型没有实现怎么办？</strong></span> 
+</p>
+<p>
+	ISerializable接口的功能非常强大，允许类型完全控制如何对类型的实例进行序列化和反序列化。但这个能力是有代价的：现在，该类型还要负责它的基类型的所有字段的序列化。如果基类型也实现了ISerializable接口，那么对基类型的字段进行序列化是很容易的。调用基类型的GetObjectData方法即可。
+</p>
+<p>
+	如果基类没有实现ISerializable接口。在这种情况下，派生类必须手动序列化基类的字段，具体的做法是获取它们的值，并把这些值添加到SerializationInfo集合中。然后，在你的特殊构造器中，还必须从集合中取出值，并以某种方式设置基类的字段。如果基类的字段是public或protected的，那么一切都很容易实现。如果是private字段，就很难或者根本不可能实现。
+</p>
+<p>
+	以下代码演示了如何正确实现ISerializable的GetObjectData方法和它的隐含的构造器，使基类的字段能被序列化：
+</p>
+<pre class="prettyprint lang-cs linenums">[Serializable]
+internal class Base
+{
+    protected String m_name = "Jeff";
+    public Base() { }
+}
+
+[Serializable]
+internal class Derived : Base, ISerializable
+{
+    private DateTime m_date = DateTime.Now;
+    public Derived() { }
+
+    // 如果这个构造器不存在，便会引发一个SerializationException异常、
+    // 如果这个类不是密封类，这个构造器就应该是protected的
+    [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+    protected Derived(SerializationInfo info, StreamingContext context)
+    {
+        //为我们的类和基类获取可序列化的成员集合
+        Type baseType = this.GetType().BaseType;
+        MemberInfo[] mi = FormatterServices.GetSerializableMembers(baseType, context);
+        //从info对象反序列化基类的字段
+        for (Int32 i = 0; i&lt;mi.Length; i++)
+        {
+            //获取字段，并把它设为反序列化好的值
+            FieldInfo fi = (FieldInfo)mi[i];
+            fi.SetValue(this, info.GetValue(baseType.FullName + "+" + fi.Name, fi.FieldType));
+        }
+        //反序列化为这个类序列化的值
+        m_date = info.GetDateTime("Date");
+    }
+
+    [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+    public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+        //为这个类序列化希望的值
+        info.AddValue("Date", m_date);
+        //获取我们的类和基类的可序列化的成员
+        Type baseType = this.GetType().BaseType;
+        MemberInfo[] mi = FormatterServices.GetSerializableMembers(baseType, context);
+        //将基类的字段序列化到info对象中
+        for (Int32 i=0; i&lt;mi.Length; i++)
+        {
+            //为字段名附加基类型全名作为前缀
+            info.AddValue(baseType.FullName + "+" + mi[i].Name, 
+                ((FieldInfo)mi[i]).GetValue(this));
+        }
+    }
+
+    public override string ToString()
+    {
+        return String.Format("Name={0}, Date={1}", m_name, m_date);
+    }
+}</pre>
+<p>
+	<br>
+</p>
+<p>
+	<span style="font-size:16px;"><strong>格式化器如何序列化类型实例</strong></span> 
+</p>
+<p>
+	为了简化格式化器的操作，FCL(Framework Class Library,即Framework类库)在System.Runtime.Serialization命名空间提供了一个FormatterServices类型。该类型只包含静态方法，而且类型不能实例化。
+</p>
+<p>
+	<span style="font-size:14px;">以下步骤描述了格式化器如何自动序列化类型应用了SerializableAttribute特性的对象：</span> 
+</p>
+<p>
+	1.&nbsp;格式化器调用FormatterServices的GetSerializableMembers方法: <br>
+public static MemberInfo[] GetSerializableMembers(Type type, StreamingContext context); <br>
+这个方法利用反射获取类型的public和private实例字段(标记了NonSerializedAttribute特性的字段除外)。方法返回由MemberInfo对象构成的数组，其中每个元素都对应一个可序列化的实例字段。
+</p>
+<p>
+	2.&nbsp;对象被序列化，System.Reflection.MemberInfo对象数组传给FormatterServices的静态方法GetObjectData: <br>
+public static Object[] GetObjectData(Object obj, MemberInfo[] members); <br>
+这个方法返回一个Object数组，其中每个元素都标识了被序列化的那个对象中的一个字段的值。这个Object数组和MemberInfo数组是并行(parallel)的；换言之，Object数组中的元素0是MemberInfo数组中的元素0所标识的那个成员的值。
+</p>
+<p>
+	3.&nbsp;格式化器将程序集标识和类型的完整名称写入流中。
+</p>
+<p>
+	4.&nbsp;格式化器然后遍历两个数组中的元素，将每个成员的名称和值写入流中。
+</p>
+<p>
+	<span style="font-size:14px;">以下步骤描述了格式化器如何自动反序列化类型应用了SerializableAttribute特性的对象：</span> 
+</p>
+<p>
+	1.&nbsp;格式化器从流中读取程序集标识和完整类型名称。如果程序集当前没有加载到AppDomain中，就加载。如果程序集不能加载，就抛出一个SerializationException异常，对象不能反序列化。如果程序集已加载，格式化器将程序集标识信息和类型全名传给FormatterServices的静态方法GetTypeFormAssembly: <br>
+public static Type GetTypeFromAssembly(Assembly assem, string name); <br>
+这个方法返回一个System.Type对象，它代表要反序列化的那个对象的类型。
+</p>
+<p>
+	2.&nbsp;格式化器调用FormatterServices的静态方法GetUninitializedObject: <br>
+public static Object GetUninitializedObject(Type type); <br>
+这个方法为一个新对象分配内存，但不为对象调用构造器。然而，对象的所有字节都被初始化为null或0。
+</p>
+<p>
+	3.&nbsp;格式化器现在构造并初始化一个MemberInfo数组，具体做法和前面一样，都是调用FormatterServices的GetSerializableMembers方法。这个方法返回需要反序列化的一组字段。
+</p>
+<p>
+	4.&nbsp;格式化器根据流中包含的数据创建并初始化一个Object数组。
+</p>
+<p>
+	5.&nbsp;将新分配对象、MemberInfo数组以及并行Object数组(其中包含字段值)的引用传给FormatterServices的静态方法PopulateObjectMembers: <br>
+public static Object PopulateObjectMembers(Object obj, MemberInfo[] members, Object[] data); <br>
+这个方法遍历数组，将每个字段初始化成对应的值。到此为止，对象就算是被彻底反序列化了。
+</p>
+<p>
+	<span style="font-size:16px;"><strong>流上下文(StreamingContext)</strong></span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp;一组序列化好的对象可以有许多目的地：同一个进程、同一台机器上的不同进程、不同机器上的不同进程等。在一些比较少见的情况下，一个对象可能想知道它要在什么地方序列化，从而以不同的方式生成它的状态。例如，如果对象中包装了Windows信号量(semaphore)对象，如果它知道要反序列化到同一个进程中，就可决定对它的内核句柄(kernel handle)进行序列化，这是因为内核句柄在一个进程中有效。但如果要反序列化到同一台计算机的不同进程中，就可决定对信号量的字符串名称进行序列化。最后，如果要反序列化到不同计算机上的进程，就可决定抛出异常，因为信号量只在一台机器内有效。
+</p>
+<p>
+	<table style="width:100%;border-collapse:collapse;" cellpadding="2" cellspacing="0" border="1" bordercolor="#a0c6e5">
+		<tbody>
+			<tr style="background-color:#D2E9FF;">
+				<td colspan="3" style="text-align:center;">
+					<span style="font-size:14px;">StreamingContext的公共只读属性</span> 
+				</td>
+			</tr>
+			<tr style="background-color:#ECF5FF;">
+				<td style="text-align:center;">
+					成员名称
+				</td>
+				<td style="text-align:center;">
+					成员类型
+				</td>
+				<td style="text-align:center;">
+					说明
+				</td>
+			</tr>
+			<tr>
+				<td>
+					State
+				</td>
+				<td>
+					StreamingContextStates
+				</td>
+				<td>
+					一组位标志(bit flag)，指定要序列化/反序列化的对象的来源或目的地
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Context
+				</td>
+				<td>
+					Object
+				</td>
+				<td>
+					一个对象引用，对象中包含用户希望的任何上下文信息
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</p>
+<p>
+	<table style="width:100%;border-collapse:collapse;" cellpadding="2" cellspacing="0" border="1" bordercolor="#a0c6e5">
+		<tbody>
+			<tr style="background-color:#D2E9FF;">
+				<td colspan="3" style="text-align:center;">
+					<span style="font-size:14px;">StreamingContext的标志</span> 
+				</td>
+			</tr>
+			<tr style="background-color:#ECF5FF;">
+				<td style="text-align:center;">
+					标志名称
+				</td>
+				<td style="text-align:center;">
+					标志值
+				</td>
+				<td style="text-align:center;">
+					说明
+				</td>
+			</tr>
+			<tr>
+				<td>
+					CrossProcess
+				</td>
+				<td>
+					0x0001
+				</td>
+				<td>
+					来源或目的地是同一台机器的不同进程
+				</td>
+			</tr>
+			<tr>
+				<td>
+					CrossMachines
+				</td>
+				<td>
+					0x0002
+				</td>
+				<td>
+					来源或目的地在不同机器上
+				</td>
+			</tr>
+			<tr>
+				<td>
+					File
+				</td>
+				<td>
+					0x0004
+				</td>
+				<td>
+					来源或目的地是文件。不保证反序列化数据的是同一个进程
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Persistence
+				</td>
+				<td>
+					0x0008
+				</td>
+				<td>
+					来源或目的地是存储(store)，比如数据库或文件。不保证反序列化数据的是同一个进程
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Remoting
+				</td>
+				<td>
+					0x0010
+				</td>
+				<td>
+					来源或目的地是远程的未知位置。这个位置可能在(也可能不在)同一台机器上
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Other
+				</td>
+				<td>
+					0x0020
+				</td>
+				<td>
+					来源或目的地未知
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Clone
+				</td>
+				<td>
+					0x0040
+				</td>
+				<td>
+					对象图被克隆。序列化代码可认为是由同一进程对数据进行反序列化，所以可安全地访问句柄或其他非托管资源
+				</td>
+			</tr>
+			<tr>
+				<td>
+					CrossAppDomain
+				</td>
+				<td>
+					0x0080
+				</td>
+				<td>
+					来源或目的地是不同的AppDomain
+				</td>
+			</tr>
+			<tr>
+				<td>
+					All
+				</td>
+				<td>
+					0x00FF
+				</td>
+				<td>
+					来源或目的地可能是上述任何一个上下文。这是默认设定
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; IFormatter接口（同时由BinaryFormatter和SoapFormatter类型实现）定义了StreamingContext类型的可读/可写属性Context。构造格式化器时，格式化器会初始化它的Context属性，将StreamingContextStates设为All，将对额外状态对象的引用设置为null。
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; 格式化器构造好之后，就可以使用任何StreamingContextStates位标志来构造一个StreamingContext结构，并可选择传递一个对象引用（对象中包含你需要的任何额外的上下文信息）。现在，在调用格式化器的Serialize或Deserialize方法之前，你只需要将格式化器的Context属性设为这个新的StreamingContext对象。
+</p>
+<p>
+	<span style="font-size:16px;"><strong>类型序列化为不同类型以及对象反序列化为不同对象</strong></span> 
+</p>
+<p>
+	.NET Framework的序列化架构是相当全面的。
+</p>
+<ul>
+	<li>
+		有的类型(比如System.DBNull和System.Relection.Missing)设计成每个AppDomain一个实例。经常将这些类型称为<strong>单实例</strong>(singleton)类型。给定一个DBNull对象引用，序列化和反序列化它不应造成在AppDomain中新建一个DBNull对象。反序列化后，返回的引用应指向AppDomain中现有的DBNull对象。
+	</li>
+	<li>
+		对于某些类型(例如System.Type和System.Reflection.Assembly,以及其他反射类型，例如MemberInfo)，每个类型、程序集或者成员等都只能有一个实例。例如，假定一个数组中的每个元素都引用一个MemberInfo对象，其中5个元素引用的都是一个MemberInfo对象。序列化和反序列化这个数组后，那5个元素引用的应该还是一个MemberInfo对象（而不是分别引用5个不同的对象）。除此之外，这些元素引用的MemberInfo对象还必须实际对应于AppDomain中的一个特定成员。轮询数据库连接对象或者其他任何类型的对象时，这个功能也是很好用的。
+	</li>
+	<li>
+		对于远程控制的对象，CLR序列化与服务器对象有关的信息。在客户端上反序列化时，会造成CLR创建一个代理对象。这个代理对象的类型有别于服务器对象类型，但这对于客户端代码来说是透明的（客户端不需要关心这个问题）。客户端直接在代理对象上调用实例方法。然后，代理代码内部会调用远程发送给服务器，由后者实际执行请求的操作。
+	</li>
+</ul>
+<p>
+	<br>
+</p>
+<p>
+	示例：展示了如何正确地序列化和反序列化单实例类型
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.IO;
+using System.Security.Permissions;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //单例的序列化与反序列化测试，保证AppDomain中只有Singleton类型的一个实例
+            Singleton[] a1 = { Singleton.GetSingleton(), Singleton.GetSingleton() };
+            Console.WriteLine("Do both elements refer to the same object? "
+                + (a1[0] == a1[1]));
+
+            using (var stream = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                // 先序列化再反序列化数组元素
+                // 格式化器自动检测出两个数组元素都引用一个对象，所以格式化器只序列化一个对象。
+                formatter.Serialize(stream, a1);
+                stream.Position = 0;
+                Singleton[] a2 = (Singleton[])formatter.Deserialize(stream);
+
+                // 证明它的工作和预期的一样
+                Console.WriteLine("Do both elements refer to the same object? "
+                    + (a2[0] == a2[1]));
+                Console.WriteLine("Do both elements refer to the same object? "
+                    + (a1[0] == a2[0]));
+            }
+
+            Console.ReadKey();
+        }
+    }
+
+    // 每个AppDomain应该只有这个类型的一个实例
+    [Serializable]
+    public sealed class Singleton : ISerializable
+    {
+        // 这是该类型的一个实例
+        private static readonly Singleton s_theOneObject = new Singleton();
+
+        // 这些是实例的字段
+        public String Name = "Jeff";
+        public DateTime Date = DateTime.Now;
+
+        // 私有构造器，允许这个类型构造单实例
+        private Singleton() { }
+
+        // 该方法返回对单实例的引用
+        public static Singleton GetSingleton() { return s_theOneObject; }
+
+        // 序列化一个Singleton时调用的方法
+        // 我建议在这里使用一个显式接口方法实现(EIMI)
+        // 显式接口实现: https://www.cnblogs.com/zhangyanhai/p/3364622.html
+        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            // 告诉格式化器将Singleton对象序列化成一个SingletonSerializationHelper对象。
+            info.SetType(typeof(SingletonSerializationHelper));
+            // 不需要添加其他值
+            // 由于AddValue()没有调用，所以没有额外的字段信息写入流。
+        }
+
+        [Serializable]
+        private sealed class SingletonSerializationHelper : IObjectReference
+        {
+            // 这个方法在对象（它没有字段）反序列化之后调用
+            public object GetRealObject(StreamingContext context)
+            {
+                // 返回在对象反序列化好之后你真正想引用的对象
+                return Singleton.GetSingleton();
+            }
+        }
+
+        // 注意：特殊构造器是不必要的，因为它永远不会调用
+    }
+}</pre>
+<p>
+	运行测试
+</p>
+<p>
+	<a target="_blank" href="../www.devacg.com/content/uploadfile/202010/d8f71603075155.png" id="ematt:3977"><img src="../www.devacg.com/content/uploadfile/202010/d8f71603075155.png" title="点击查看原图" alt="11111.png" border="0" width="434" height="101"></a> 
+</p>
+<p>
+	<span style="font-size:16px;"><strong>序列化代理(ISerializationSurrogate)</strong></span> 
+</p>
+<p>
+	示例：
+</p>
+<pre class="prettyprint lang-cs linenums">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+//添加引用: System.Runtime.Serialization.Formatters.Soap.dll
+using System.Runtime.Serialization.Formatters.Soap;
+
+namespace ConsoleApp8
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SerializationSurrogateDemo();
+            Console.Read();
+        }
+
+        // 演示序列化代理(ISerializationSurrogate)
+        private static void SerializationSurrogateDemo()
+        {
+            using (var stream = new MemoryStream())
+            {
+                // 1.构造所需的格式化器
+                IFormatter formatter = new SoapFormatter();
+                // 2.构造一个SurrogateSelector(代理选择器)对象
+                SurrogateSelector ss = new SurrogateSelector();
+                // 3.告诉代理选择器为DateTime对象使用我们的代理
+                // 注意：AddSurrogate可多次调用来登记多个代理
+                ss.AddSurrogate(typeof(DateTime), formatter.Context, new UniversalToLocalTimeSerializationSurrogate());
+                // 4.告诉格式化器使用代理选择器
+                formatter.SurrogateSelector = ss;
+                // 创建一个DateTime来代表机器上的本地时间，并序列化它
+                DateTime localTimeBeforeSerialize = DateTime.Now;
+                formatter.Serialize(stream, localTimeBeforeSerialize);
+                // stream将Universal时间作为一个字符器显示，证明能正常工作
+                stream.Position = 0;
+                Console.WriteLine(new StreamReader(stream).ReadToEnd());
+
+                // 反序列化Universal时间字符串，并且把它转换成本地DateTime
+                stream.Position = 0;
+                DateTime localTimeAfterDeserialize = (DateTime)formatter.Deserialize(stream);
+
+                // 证明它能正确工作
+                Console.WriteLine("localTimeBeforeSerialize = {0}", localTimeBeforeSerialize);
+                Console.WriteLine("localTimeAfterDeserialize= {0}", localTimeAfterDeserialize);
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// DateTime(值类型)类型的代理
+    /// 代理能控制DateTime对象的序列化和反序列化方式
+    /// 之所以要重写(覆盖)类型的序列化行为，主要是出于两方面的考虑:
+    /// 1.允许开发人员序列化最初没有设计成要序列化的类型
+    /// 2.允许开发人员提供一种方式将类型的一个版本映射到类型的另一个版本
+    /// &lt;/summary&gt;
+    internal sealed class UniversalToLocalTimeSerializationSurrogate : ISerializationSurrogate
+    {
+        public void GetObjectData(object obj, SerializationInfo info, StreamingContext context)
+        {
+            //将DateTime从本地时间转换成UTC
+            info.AddValue("Date", ((DateTime)obj).ToUniversalTime().ToString("u"));
+        }
+
+        public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
+        {
+            //可以使用传入的SerializationInfo中的值，并返回null
+            //可以创建一个新对象(甚至创建不同类型的对象),并返回这个新对象
+
+            //如果转进来的obj是值类型，只能重新创建一个新对象(值类型不可变)
+            //将DateTime从UTC转换成本地时间
+            return DateTime.ParseExact(info.GetString("Date"), "u", null).ToLocalTime();
+        }
+    }
+}</pre>
+<p>
+	运行测试 <br>
+<a target="_blank" href="../www.devacg.com/content/uploadfile/202010/076c1603250367.png" id="ematt:3987"><img src="../www.devacg.com/content/uploadfile/202010/076c1603250367.png" title="点击查看原图" alt="1111.png" border="0" width="744" height="280"></a> 
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong> BinaryFormatter类有一个bug，会造成代理无法序列化循环引用的对象。为了解决这个问题，需要将对自己的ISerializationSurrogate对象的引用传给FormatterServices的静态GetSurrogateForCyclicalReference方法。该方法返回一个ISerializationSurrogate对象。然后，可以将对这个对象的引用传给SurrogateSelector的AddSurrogate方法。但要注意，使用GetSurroagetForCyclicalReference方法时，代理的SetObjectData方法必须修改SetObjectData的obj参数所引用的对象中的值，而且最后要向调用方法返回null或obj。
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<span style="font-size:16px;"><strong>代理选择器(SurrogateSelector)</strong></span> 
+</p>
+<p>
+	多个SurrogateSelector对象可链接到一起。例如，可以让一个SurrogateSelector对象维护一组序列化代理，这些序列化代理(surrogate)用于将类型序列化成代理(proxy)，以便通过网络传送，或者跨越不同的AppDomain传送。还可以让另一个SurrogateSelector对象维护一组序列化代理，这些序列化代理用于将版本1的类型转换成版本2的类型。
+</p>
+<p>
+	<strong>surrogate对象负责序列化，而proxy对象负责跨越AppDomain边界访问对象</strong>。
+</p>
+<p>
+	如果有多个希望格式化器使用的SurrogateSelector对象，必须把它们链接到一个链表中。SurrogateSelector类型实现了ISurrogateSelector接口，该接口定义了三个方法。这些方法全部跟链接有关。下面展示了ISurrogateSelector接口是如何定义的：
+</p>
+<pre>public interface ISurrogateSelector {
+   void ChainSelector(ISurrogateSelector selector);
+   ISurrogateSelector GetNextSelector();
+   ISerializationSurrogate GetSurrogate(Type type, StreamingContext context, out ISurrogateSelector selector);
+}
+</pre>
+ChainSelector方法紧接在当前操作的ISurrogateSelector对象(this对象)之后插入一个ISurrogateSelector对象。GetNextSelector方法返回对链表中的下一个ISurrogateSelector对象的引用；如果当前操作的对象是链尾，就返回null。<br>
+GetSurrogate方法在this所代表的ISurrogateSelector对象中查找一对Type/StreamingContext。如果没有找到Type/StreamingContext对，就访问链中的下一个ISurrogateSelector对象，该对象负责对找到的类型进行序列化/反序列化。除此之外，GetSurrogate还会返回包含匹配项的ISurrogateSelector对象；一般都用不着这个对象，所以一般会将其忽略。如果链中所有ISurrogateSelector对象都不包含匹配的一对Type/StreamingContext，GetSurrogate将返回null。
+<div class="border-radius-1">
+	<strong>注意</strong> FCL定义了一个ISurrogateSelector接口，还定义了一个实现了该接口中的SurrogateSelector类型。然而，只有在一些非常罕见的情况下，才需要定义自己的类型来实现ISurrogateSelector接口。实现ISurrogateSelector接口的唯一原因就是将类型映射到另一个类型时需要更大的灵活性。例如，你可能希望以一种特殊方式序列化从一个特定基类继承的所有类型。System.Runtime.Remoting.Messaging.RemotingSurrogateSelector类就是一个很好的例子。出于远程访问(remoting)目的而序列化对象时，CLR使用RemotingSurrogateSelector来格式化对象。这个代理选择器(surrogate selector)以一种特殊方式序列化从System.MarshalByRefObject派生的所有对象，确保反序列化会造成在客户端创建代理对象(proxy object)。
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<span style="font-size:16px;"><strong>反序列化对象时重写程序集/类型</strong></span> 
+</p>
+<p>
+	序列化对象时，格式化器输出类型及其定义程序集的全名。反序列化对象时，格式化器根据这个信息确定要为对象构造并初始化什么类型。前面讨论了如何利用ISerializationSurrogate接口来接管特定类型的序列化和反序列化工作。实现了ISerializationSurrogate接口的类型与特定程序集中的特定类型关联。
+</p>
+<p>
+	但有时候，ISerializationSurrogate机制的灵活性显得有点不足。在下面列举的情形中，有必要将对象反序列化和序列化成不同的类型：
+</p>
+
+<ul>
+	<li>
+		开发人员可能想把一个类型的实现从一个程序集移动到另一个程序集。例如，程序集版本号的变化造成新程序集有别于原始程序集。
+	</li>
+	<li>
+		服务器对象序列化到发送给客户端的流中。客户端处理流时，可以将对象反序列化成完全不同的类型，该类型的代码知道如何向服务器的对象发出远程方法调用。
+	</li>
+	<li>
+		开发人员创建了类型的新版本，想把已序列化的对象反序列化成类型的新版本。
+	</li>
+</ul>
+
+<p>
+	利用System.Runtime.Serialization.SerializationBinder类，可以非常简单地将一个对象反序列化成不同类型。为此，要先定义自己的类型，让它从抽象类SerializationBinder派生。在下面的代码中，假定你的版本1.0.0.0的程序集定义了名为Ver1的类，并假定程序集的新版本定义了Ver1ToVer2SerializationBinder类，还定义了名为Ver2的类：
+</p>
+<pre>internal sealed class Ver1ToVer2SerializationBinder : SerializationBinder {
+   public override Type BindToType() {
+       //将任何Ver1对象从版本1.0.0.0反序列化成一个Ver2对象
+       //计算定义Ver1类型的程序集名称
+       AssemblyName assemVer1 = Assembly.GetExecutingAssembly().GetName();
+       assemVer1.Version = new Version(1, 0, 0, 0);
+       //如果从v1.0.0.0反序列化Ver1对象，就把它转变成一个Ver2对象
+       if (assemblyName == assemVer1.ToString() &amp;&amp; typeName == "Ver1")
+           return typeof(Ver2);
+       //否则，就只返回请求的同一个类型
+       return Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+   }
+}
+</pre>
+<p>
+	现在，在构造好格式化器之后，构造Ver1ToVer2SerializationBinder的实例，并设置格式化器的可读/可写属性Binder，让它引用绑定器(binder)对象。设置好Binder属性后，调用格式化器的Deserialize方法。在反序列化期间，格式化器发现已设置了一个绑定器。每个对象要反序列化时，格式化器都调用绑定器的BindToType方法，向它传递程序集名称以及格式化器想要反序列化的类型。然后，BindToType判断实际应该构建什么类型，并返回这个类型。
+</p>
+<div class="border-radius-1">
+	<strong>注意</strong> SerializationBinder类还可重写BindToName方法，从而在序列化对象时更改程序集/类型信息，这个方法看起来像下面这样:<br>
+public virtual void BindToName(Type serializedType, out string assemblyName, out string typeName)<br>
+序列化期间，格式化器调用这个方法，传递它想要序列化的类型。然后，你可以通过两个out参数返回真正想要序列化的程序集和类型。如果两个out参数返回null和null（默认实现就是这样的），就不执行任何更改。
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<a href="post%3D1322.html" target="_blank">深度拷贝对象</a> 
+</p>
+<p>
+	参考&nbsp;<a href="http://kb.cnblogs.com/page/78824/" target="_blank">http://kb.cnblogs.com/page/78824/</a> 
+</p>	<p class="tag">标签:	<a href="tag%3DC%2523.html">C#</a></p>
+	
+		<script>
+		(function() {
+		     var s = document.createElement('script');
+		     s.type = 'text/javascript';
+		     s.async = true;
+		     s.src = 'http://www.devacg.com/content/plugins/em_static/em_static_trace.php?logid=664&t='+ new Date().getTime();
+		     var x = document.getElementsByTagName('script')[0];
+		     x.parentNode.insertBefore(s, x);
+		 })();
+		 </script>		
+		<div class="nextlog">		&laquo; <a href="post%3D665.html">利用原子操作加锁确保线程安全——Interlocked</a>
+				|
+				 <a href="post%3D663.html">退出App</a>&raquo;
+	</div>
+		    <div id="pagenavi">
+	        </div>
+		<div style="clear:both;"></div>
+</div><!--end #contentleft-->
+<ul id="sidebar">
+	<li>
+	<h3><span>搜索</span></h3>
+	<ul id="logsearch">
+	<form name="keyform" method="get" action="http://www.devacg.com/index.php">
+	<input name="keyword" class="search" type="text">
+	</form>
+	</ul>
+	</li>
+	<li>
+	<h3><span>日历</span></h3>
+	<div id="calendar">
+	</div>
+	<script>sendinfo('http://www.devacg.com/?action=cal','calendar');</script>
+	</li>
+	<li>
+	<h3><span>最新文章</span></h3>
+	<ul id="newlog">
+		<li><a href="../www.devacg.com/index_post%3D1426.php.html">麦克风(Microphone)</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1425.php.html">WebRTC For Unity</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1424.php.html">LayaBox生成APK</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1423.php.html">图片合成</a></li>
+		<li><a href="../www.devacg.com/index_post%3D1422.php.html">Pro GIF Plugin for Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>随机文章</span></h3>
+	<ul id="randlog">
+		<li><a href="post%3D95.html">smcs.rsp</a></li>
+		<li><a href="post%3D1029.html">UGUI-Anchors</a></li>
+		<li><a href="post%3D1389.html">xLua——面向对象编程(OOP)</a></li>
+		<li><a href="post%3D713.html">变量、语句</a></li>
+		<li><a href="post%3D1330.html">CLR寄宿</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>热门文章</span></h3>
+	<ul id="hotlog">
+		<li><a href="post%3D545.html">Unity打Android包报错总结</a></li>
+		<li><a href="post%3D745.html">自定义Hierarchy中的对象排序——BaseHierarchySort</a></li>
+		<li><a href="post%3D81.html">使用multi_compile编译Shader的多个版本</a></li>
+		<li><a href="post%3D137.html">Unity命令行打包</a></li>
+		<li><a href="post%3D504.html">Maya导出动画到Unity</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>分类</span></h3>
+	<ul id="blogsort">
+		<li>
+	<a href="sort%3D4.html">C(161)</a>
+	<a href="../www.devacg.com/rss_sort%3D4.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D14.html">C++(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D14.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D2.html">C#(194)</a>
+	<a href="../www.devacg.com/rss_sort%3D2.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D1.html">Unity3d(348)</a>
+	<a href="../www.devacg.com/rss_sort%3D1.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			<ul>
+				<li>
+			<a href="sort%3D13.html">GUI(16)</a>
+			<a href="../www.devacg.com/rss_sort%3D13.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D5.html">NGUI(11)</a>
+			<a href="../www.devacg.com/rss_sort%3D5.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D10.html">Component(1)</a>
+			<a href="../www.devacg.com/rss_sort%3D10.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				<li>
+			<a href="sort%3D8.html">Shader(185)</a>
+			<a href="../www.devacg.com/rss_sort%3D8.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+		</li>
+				</ul>
+			</li><li>
+	<a href="sort%3D30.html">OpenGL(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D30.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D11.html">Cg(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D11.php.html"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D19.html">Android(145)</a>
+	<a href="../www.devacg.com/rss_sort%3D19.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D29.html">Objective-C(55)</a>
+	<a href="../www.devacg.com/rss_sort%3D29.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D24.html">Lua(22)</a>
+	<a href="../www.devacg.com/rss_sort%3D24.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D25.html">Python(21)</a>
+	<a href="../www.devacg.com/rss_sort%3D25.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D3.html">Algorithms(114)</a>
+	<a href="../www.devacg.com/rss_sort%3D3.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D22.html">Maya(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D22.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D23.html">Egret(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D23.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D27.html">LayaAir(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D27.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D28.html">Matlab(3)</a>
+	<a href="../www.devacg.com/rss_sort%3D28.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D7.html">计算机图形学(30)</a>
+	<a href="../www.devacg.com/rss_sort%3D7.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D18.html">批处理(4)</a>
+	<a href="../www.devacg.com/rss_sort%3D18.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D26.html">TypeScript(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D26.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D17.html">VBA(5)</a>
+	<a href="../www.devacg.com/rss_sort%3D17.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D21.html">设计模式(8)</a>
+	<a href="../www.devacg.com/rss_sort%3D21.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D15.html">读书笔记(10)</a>
+	<a href="../www.devacg.com/rss_sort%3D15.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D31.html">Redis(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D31.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D6.html">emblog(1)</a>
+	<a href="../www.devacg.com/rss_sort%3D6.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D9.html">杂谈(2)</a>
+	<a href="../www.devacg.com/rss_sort%3D9.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li><li>
+	<a href="sort%3D20.html">其他(9)</a>
+	<a href="../www.devacg.com/rss_sort%3D20.php"><img src="../www.devacg.com/content/templates/default/images/rss.png" alt="订阅该分类"></a>
+			</li></ul>
+	</li>
+	<li>
+	<h3><span>存档</span></h3>
+	<ul id="record">
+		<li><a href="record%3D202202.html">2022年2月(2)</a></li>
+		<li><a href="record%3D202201.html">2022年1月(8)</a></li>
+		<li><a href="record%3D202112.html">2021年12月(5)</a></li>
+		<li><a href="record%3D202111.html">2021年11月(3)</a></li>
+		<li><a href="record%3D202110.html">2021年10月(4)</a></li>
+		<li><a href="record%3D202109.html">2021年9月(9)</a></li>
+		<li><a href="record%3D202108.html">2021年8月(14)</a></li>
+		<li><a href="record%3D202107.html">2021年7月(8)</a></li>
+		<li><a href="record%3D202106.html">2021年6月(5)</a></li>
+		<li><a href="record%3D202105.html">2021年5月(2)</a></li>
+		<li><a href="record%3D202104.html">2021年4月(3)</a></li>
+		<li><a href="record%3D202103.html">2021年3月(7)</a></li>
+		<li><a href="record%3D202102.html">2021年2月(2)</a></li>
+		<li><a href="record%3D202101.html">2021年1月(8)</a></li>
+		<li><a href="record%3D202012.html">2020年12月(7)</a></li>
+		<li><a href="record%3D202011.html">2020年11月(2)</a></li>
+		<li><a href="record%3D202010.html">2020年10月(6)</a></li>
+		<li><a href="record%3D202009.html">2020年9月(9)</a></li>
+		<li><a href="record%3D202008.html">2020年8月(10)</a></li>
+		<li><a href="record%3D202007.html">2020年7月(9)</a></li>
+		<li><a href="record%3D202006.html">2020年6月(18)</a></li>
+		<li><a href="record%3D202005.html">2020年5月(4)</a></li>
+		<li><a href="record%3D202004.html">2020年4月(25)</a></li>
+		<li><a href="record%3D202003.html">2020年3月(38)</a></li>
+		<li><a href="record%3D202001.html">2020年1月(21)</a></li>
+		<li><a href="record%3D201912.html">2019年12月(13)</a></li>
+		<li><a href="record%3D201911.html">2019年11月(29)</a></li>
+		<li><a href="record%3D201910.html">2019年10月(44)</a></li>
+		<li><a href="record%3D201909.html">2019年9月(17)</a></li>
+		<li><a href="record%3D201908.html">2019年8月(18)</a></li>
+		<li><a href="record%3D201907.html">2019年7月(25)</a></li>
+		<li><a href="record%3D201906.html">2019年6月(25)</a></li>
+		<li><a href="record%3D201905.html">2019年5月(17)</a></li>
+		<li><a href="record%3D201904.html">2019年4月(10)</a></li>
+		<li><a href="record%3D201903.html">2019年3月(36)</a></li>
+		<li><a href="record%3D201902.html">2019年2月(35)</a></li>
+		<li><a href="record%3D201901.html">2019年1月(28)</a></li>
+		<li><a href="record%3D201812.html">2018年12月(30)</a></li>
+		<li><a href="record%3D201811.html">2018年11月(22)</a></li>
+		<li><a href="record%3D201810.html">2018年10月(4)</a></li>
+		<li><a href="record%3D201809.html">2018年9月(7)</a></li>
+		<li><a href="record%3D201808.html">2018年8月(13)</a></li>
+		<li><a href="record%3D201807.html">2018年7月(13)</a></li>
+		<li><a href="record%3D201806.html">2018年6月(6)</a></li>
+		<li><a href="record%3D201805.html">2018年5月(5)</a></li>
+		<li><a href="record%3D201804.html">2018年4月(13)</a></li>
+		<li><a href="record%3D201803.html">2018年3月(5)</a></li>
+		<li><a href="record%3D201802.html">2018年2月(3)</a></li>
+		<li><a href="record%3D201801.html">2018年1月(8)</a></li>
+		<li><a href="record%3D201712.html">2017年12月(35)</a></li>
+		<li><a href="record%3D201711.html">2017年11月(17)</a></li>
+		<li><a href="record%3D201710.html">2017年10月(16)</a></li>
+		<li><a href="record%3D201709.html">2017年9月(17)</a></li>
+		<li><a href="record%3D201708.html">2017年8月(20)</a></li>
+		<li><a href="record%3D201707.html">2017年7月(34)</a></li>
+		<li><a href="record%3D201706.html">2017年6月(17)</a></li>
+		<li><a href="record%3D201705.html">2017年5月(15)</a></li>
+		<li><a href="record%3D201704.html">2017年4月(32)</a></li>
+		<li><a href="record%3D201703.html">2017年3月(8)</a></li>
+		<li><a href="record%3D201702.html">2017年2月(2)</a></li>
+		<li><a href="record%3D201701.html">2017年1月(5)</a></li>
+		<li><a href="record%3D201612.html">2016年12月(14)</a></li>
+		<li><a href="record%3D201611.html">2016年11月(26)</a></li>
+		<li><a href="record%3D201610.html">2016年10月(12)</a></li>
+		<li><a href="record%3D201609.html">2016年9月(25)</a></li>
+		<li><a href="record%3D201608.html">2016年8月(32)</a></li>
+		<li><a href="record%3D201607.html">2016年7月(14)</a></li>
+		<li><a href="record%3D201606.html">2016年6月(21)</a></li>
+		<li><a href="record%3D201605.html">2016年5月(17)</a></li>
+		<li><a href="record%3D201604.html">2016年4月(13)</a></li>
+		<li><a href="record%3D201603.html">2016年3月(8)</a></li>
+		<li><a href="record%3D201602.html">2016年2月(8)</a></li>
+		<li><a href="record%3D201601.html">2016年1月(18)</a></li>
+		<li><a href="record%3D201512.html">2015年12月(13)</a></li>
+		<li><a href="record%3D201511.html">2015年11月(15)</a></li>
+		<li><a href="record%3D201510.html">2015年10月(12)</a></li>
+		<li><a href="record%3D201509.html">2015年9月(18)</a></li>
+		<li><a href="record%3D201508.html">2015年8月(21)</a></li>
+		<li><a href="record%3D201507.html">2015年7月(35)</a></li>
+		<li><a href="record%3D201506.html">2015年6月(13)</a></li>
+		<li><a href="record%3D201505.html">2015年5月(9)</a></li>
+		<li><a href="record%3D201504.html">2015年4月(4)</a></li>
+		<li><a href="record%3D201503.html">2015年3月(5)</a></li>
+		<li><a href="record%3D201502.html">2015年2月(4)</a></li>
+		<li><a href="record%3D201501.html">2015年1月(13)</a></li>
+		<li><a href="record%3D201412.html">2014年12月(7)</a></li>
+		<li><a href="record%3D201411.html">2014年11月(5)</a></li>
+		<li><a href="record%3D201410.html">2014年10月(4)</a></li>
+		<li><a href="record%3D201409.html">2014年9月(8)</a></li>
+		<li><a href="record%3D201408.html">2014年8月(16)</a></li>
+		<li><a href="record%3D201407.html">2014年7月(26)</a></li>
+		<li><a href="record%3D201406.html">2014年6月(22)</a></li>
+		<li><a href="record%3D201405.html">2014年5月(28)</a></li>
+		<li><a href="record%3D201404.html">2014年4月(15)</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>友情链接</span></h3>
+	<ul id="link">
+		<li><a href="https://unity.cn/" title="Unity官网" target="_blank">Unity官网</a></li>
+		<li><a href="http://game.ceeger.com/" title="unity3d圣典官方翻译网站" target="_blank">Unity圣典</a></li>
+		<li><a href="http://docs.unity3d.com/Manual/index.html" title="Unity Manual" target="_blank">Unity在线手册</a></li>
+		<li><a href="http://wiki.ceeger.com/ceeger.php" title="圣典百科" target="_blank">Unity中文手册(圣典)</a></li>
+		<li><a href="http://forum.china.unity3d.com/forum.php" title="Unity官方中文论坛" target="_blank">Unity官方中文论坛</a></li>
+		<li><a href="http://docs.manew.com/Manual/index.htm" title target="_blank">Unity游戏蛮牛用户文档</a></li>
+		<li><a href="https://unity3d.com/cn/get-unity/download/archive" title="下载Unity各历史版本及内置资源包括内置Shader" target="_blank">Unity下载存档</a></li>
+		<li><a href="https://github.com/Unity-Technologies/UnityCsReference" title="Unity引擎源码下载" target="_blank">Unity引擎源码下载</a></li>
+		<li><a href="https://unity3d.com/cn/services" title="广告、统计、内购...等功能" target="_blank">Unity服务</a></li>
+		<li><a href="https://github.com/unity-cn/unityads-help-cn/wiki" title="Unity广告SDK" target="_blank">Unity Ads</a></li>
+		<li><a href="http://wiki.unity3d.com/index.php" title="unify community" target="_blank">wiki.unity3d</a></li>
+		<li><a href="https://code.visualstudio.com/" title="VScode官网" target="_blank">Visual Studio Code官网</a></li>
+		<li><a href="http://openar.sensetime.com/docs" title="商汤科技SenseAR开发文档" target="_blank">SenseAR开发文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/" title="Microsoft开发人员" target="_blank">MSDN</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/618ayhy6(VS.110).aspx" title="C# 参考" target="_blank">C# 参考</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/67ef8sbd(v=vs.110).aspx" title="C# 编程指南" target="_blank">C# 编程指南</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/mt472912(v=vs.110).aspx" title=".NET Framework类库" target="_blank">.NET Framework类库</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/" title=".NET 文档" target="_blank">.NET 文档</a></li>
+		<li><a href="https://msdn.microsoft.com/zh-cn/library/aa139615.aspx" title=".NET 开发" target="_blank">.NET 开发</a></li>
+		<li><a href="https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/" title="Windows Presentation Foundation(WPF)" target="_blank">WPF官方文档</a></li>
+		<li><a href="http://www.ulua.org/download.html" title="uLua官网" target="_blank">uLua</a></li>
+		<li><a href="https://github.com/Tencent/xLua" title="腾讯Unity热更方案" target="_blank">xLua</a></li>
+		<li><a href="http://icsharpcode.github.io/SharpZipLib/" title="C#zip压缩解压dll" target="_blank">SharpZipLib</a></li>
+		<li><a href="https://github.com/mgravell/protobuf-net" title target="_blank">Protobuf-net</a></li>
+		<li><a href="https://github.com/dcodeIO/ProtoBuf.js" title="Protobuf JS版" target="_blank">Protobuf.js</a></li>
+		<li><a href="http://www.openssl.org/source/" title="Cryptography and SSL/TLS Toolkit" target="_blank">OpenSSL</a></li>
+		<li><a href="https://www.opencascade.com/" title="几何造型开源软件+SDK" target="_blank">OPEN CASCADE</a></li>
+		<li><a href="http://www.json.org/json-zh.html" title="开源json库" target="_blank">JSON</a></li>
+		<li><a href="https://msgpack.org/" title="将对象序列化成二进制,比JSON性能更高,占用空间更小" target="_blank">MessagePack</a></li>
+		<li><a href="http://tool.oschina.net/" title="开源中国社区" target="_blank">C在线工具</a></li>
+		<li><a href="http://bbs.9ria.com/forum.php" title="专注互联网游戏和应用的开发者平台" target="_blank">9RIA天地会</a></li>
+		<li><a href="http://www.manew.com/" title="Unity技术网站" target="_blank">游戏蛮牛</a></li>
+		<li><a href="http://www.greenvpn.wang/" title="GreenVPN网络加速器" target="_blank">GreenVPN</a></li>
+		<li><a href="https://www.juhe.cn/" title="一家数据银行" target="_blank">聚合数据</a></li>
+		<li><a href="http://game.reyun.com/index" title="游戏运营支撑平台" target="_blank">热云</a></li>
+		<li><a href="http://www.rongcloud.cn/" title="开发者首选的即时通讯云" target="_blank">融云</a></li>
+		<li><a href="https://www.qcloud.com/" title="存储、计算、监控、安全...你所需要的一切云产品" target="_blank">腾讯云</a></li>
+		<li><a href="http://open.qq.com/" title="腾讯开放平台" target="_blank">腾讯开放平台</a></li>
+		<li><a href="http://gcloud.qq.com/" title="腾讯游戏服务" target="_blank">腾讯游戏服务</a></li>
+		<li><a href="http://gad.qq.com/" title="腾讯游戏开发者平台" target="_blank">腾讯游戏开发者平台</a></li>
+		<li><a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a></li>
+		<li><a href="https://open.weixin.qq.com/" title="微信开放平台" target="_blank">微信开放平台</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/647" title="腾讯实时音视频" target="_blank">腾讯实时音视频</a></li>
+		<li><a href="https://cloud.tencent.com/document/product/269" title="腾讯即时通信IM" target="_blank">腾讯即时通信IM</a></li>
+		<li><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" title="微信公众平台技术文档" target="_blank">微信公众平台技术文档</a></li>
+		<li><a href="http://www.egret.com/" title="白鹭引擎官网" target="_blank">白鹭引擎官网</a></li>
+		<li><a href="http://open.egret.com/" title="白鹭引擎开放平台" target="_blank">白鹭引擎开放平台</a></li>
+		<li><a href="http://edn.egret.com/cn/docs/" title="白鹭引擎开发文档" target="_blank">白鹭引擎开发文档</a></li>
+		<li><a href="http://www.fairygui.com/" title="FairyGUI是一个跨平台的UI解决方案" target="_blank">FairyGUI编辑器</a></li>
+		<li><a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" title="PureMVC-TypeScript版本" target="_blank">PureMVC-TypeScript</a></li>
+		<li><a href="http://www.xfyun.cn/" title="讯飞语音开放平台" target="_blank">讯飞开放平台</a></li>
+		<li><a href="http://www.gotye.com.cn/" title="互动视频直播、即时通讯" target="_blank">亲加通讯云</a></li>
+		<li><a href="http://www.cygwin.com/" title="Cygwin" target="_blank">Cygwin</a></li>
+		<li><a href="http://www.51mono.com/" title="Mono爱好者技术分享，学习交流平台。" target="_blank">Mono开发者联盟</a></li>
+		<li><a href="http://www.scutgame.com/" title="一款开源免费的游戏服务器引擎" target="_blank">Scut游戏服务器引擎</a></li>
+		<li><a href="http://kbengine.org/cn/" title="一款开源的游戏服务端引擎" target="_blank">KBEngine游戏服务器引擎</a></li>
+		<li><a href="https://www.photonengine.com/zh-CN/PUN" title="PhotonNetwork游戏引擎" target="_blank">Photon游戏服务器引擎</a></li>
+		<li><a href="https://git.oschina.net/" title="Git代码托管" target="_blank">码云</a></li>
+		<li><a href="https://sharpsvn.open.collab.net/" title=".NET平台的一个SVN AIP实现" target="_blank">SharpSvn</a></li>
+		<li><a href="https://bugly.qq.com/v2/" title="腾讯Bugly，为移动开发者提供专业的异常上报，运营统计和内测分发解决方案" target="_blank">腾讯bugly</a></li>
+		<li><a href="http://www.4399api.com/" title="4399原创平台" target="_blank">4399原创平台</a></li>
+		<li><a href="http://www.oschina.net/" title="开源中国社区" target="_blank">开源中国</a></li>
+		<li><a href="https://firebase.google.cn/" title="Google工具包" target="_blank">Firebase</a></li>
+		<li><a href="https://github.com/unity-plugins/Firebase-Admob-Unity/" title="Google的广告与统计SDK(Unity插件)" target="_blank">Firebase-Admob-Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/google-services-unity" title="google-services-unity插件下载" target="_blank">google-services-unity</a></li>
+		<li><a href="https://firebase.google.cn/docs/unity/setup" title="Firebase SDK Unity插件" target="_blank">Firebase SDK for Unity</a></li>
+		<li><a href="https://github.com/unity-plugins/Google-Firebase-SDK" title="Google-Firebase-SDK下载地址" target="_blank">Google-Firebase-SDK</a></li>
+		<li><a href="https://support.appsflyer.com/hc/zh-cn" title="海外集成SDK" target="_blank">AppsFlyer SDK</a></li>
+		<li><a href="http://mirrors.neusoft.edu.cn/android/repository/" title="android扩展库,对应{AndroidSDK}/extras下的东西" target="_blank">android-repository</a></li>
+		<li><a href="http://www.cqaso.com/" title="中国最专业的App Store数据分析平台" target="_blank">CQASO</a></li>
+		<li><a href="https://developers.facebook.com/" title="Facebook开发者平台" target="_blank">Facebook开发者平台</a></li>
+		<li><a href="https://services.gradle.org/distributions/" title="gradle下载地址" target="_blank">gradle下载</a></li>
+		<li><a href="https://gradle.org/install" title="GradleBuildTool下载" target="_blank">GradleBuildTool下载</a></li>
+		<li><a href="https://developer.android.google.cn" title="https://developer.android.google.cn" target="_blank">Android Developers</a></li>
+		<li><a href="https://developers.google.cn/china/" title="Google为中国开发者提供的资源" target="_blank">Google中国开发者</a></li>
+		<li><a href="https://www.androiddevtools.cn/index.html" title="Android工具下载" target="_blank">AndroidDevTools</a></li>
+		<li><a href="http://www.eoeandroid.com/" title="Android开发社区" target="_blank">Android社区</a></li>
+		<li><a href="http://www.androiddevtools.cn/" title="Android开发工具下载网" target="_blank">Android开发工具</a></li>
+		<li><a href="https://developers.google.com/games/services/" title="Google游戏服务" target="_blank">Google Play Games Services</a></li>
+		<li><a href="https://play.google.com/store/search?q=The%20%20Pattern%20Balls&amp;c=apps" title="Google商店" target="_blank">Google商店</a></li>
+		<li><a href="https://developers.google.com/android/" title="Google Android API" target="_blank">Google APIs for Android</a></li>
+		<li><a href="http://jqbvpn.2123344.com/" title="可免费使用" target="_blank">金钱豹VPN</a></li>
+		<li><a href="http://immersiontouch.cn/Technology/GameSDK" title="为游戏增加触感反馈" target="_blank">TouchSense SDK</a></li>
+		<li><a href="http://www.makehuman.org/" title="一个开源的3D人物角色建模软件" target="_blank">MakeHuman</a></li>
+		<li><a href="https://superdry.apphb.com/tools/online-rsa-key-converter" title="RSA密钥格式转换工具(XML|PEM)" target="_blank">Online RSA Key Converter</a></li>
+		<li><a href="https://developer.microsoft.com/zh-cn/windows/apps/develop" title="开发Windows UWP应用" target="_blank">Windows UWP应用</a></li>
+		<li><a href="https://www.visualstudio.com/zh-hans/vs/unity-tools/" title="Unity版Visual Studio下载" target="_blank">Visual Studio For Unity</a></li>
+		<li><a href="http://www.fnidc.net/" title="免备案空间" target="_blank">E时代IDC主机</a></li>
+		<li><a href="https://www.opencascade.com/doc/occt-7.3.0/overview/html/index.html" title="几何造形工具" target="_blank">Open CASCADE Technology</a></li>
+		<li><a href="https://www.imooc.com/" title="网络课程,专为程序员服务" target="_blank">慕课网</a></li>
+		<li><a href="http://www.qy9.net/" title="奇优广告联盟" target="_blank">奇优广告联盟</a></li>
+		<li><a href="https://ecs-buy.aliyun.com/wizard?spm=5176.ecssimplebuy.header.1.15fd3675b0" title="阿里云服务器ECS" target="_blank">阿里云服务器ECS</a></li>
+		<li><a href="http://tools.bugscaner.com/tts/" title="免费文字转语音" target="_blank">在线免费文字转语音系统</a></li>
+		<li><a href="https://aistudio.baidu.com/aistudio/index" title="百度大脑教学平台" target="_blank">AI Studio</a></li>
+		<li><a href="https://i.xiaomy.net" title="内网穿透" target="_blank">网云穿</a></li>
+		<li><a href="https://pan.baidu.com/union/home" title="百度网盘开放平台" target="_blank">百度网盘开放平台</a></li>
+		<li><a href="https://www.liuchengtu.com/" title="迅捷画图,微信登录终身会员。" target="_blank">迅捷画图</a></li>
+		<li><a href="https://c.runoob.com/" title="有很多程序员用的在线工具" target="_blank">菜鸟工具</a></li>
+		<li><a href="https://edu.csdn.net/" title="学课&amp;授课" target="_blank">[CSDN] 程序员研修院</a></li>
+		<li><a href="https://support.huaweicloud.com/face/index.html" title="华为云人脸识别服务" target="_blank">华为人脸识别</a></li>
+		</ul>
+	</li>
+	<li>
+	<h3><span>交流QQ群</span></h3>
+	<ul>
+	Flash游戏设计: 86184192
+<br>
+Unity游戏设计: 171855449
+<br><br>
+游戏设计订阅号<br>
+<img src="../www.devacg.com/gh_f0fe8e830402.jpg" title="点击查看原图" alt="gh_f0fe8e830402.jpg" border="0" width="200" height="200">	</ul>
+	</li>
+	<li>
+	<h3><span>捐赠 (用于支付服务器费用)</span></h3>
+	<ul>
+	微信<br>
+<img src="../www.devacg.com/donate_wx.png" width="200" height="200"><br>
+支持宝<br>
+<img src="../www.devacg.com/donate_zfb.png" width="200" height="200"><br>
+捐赠的朋友可与博主成为微信好友，点击下方【给我写信】给博主留言。
+<br><br>
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=NwUBBAEBAgEFDndGRhlUWFo" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"></a>	</ul>
+	</li>
+<div class="rss">
+<a href="../www.devacg.com/rss.php/index.html" title="RSS订阅"><img src="../www.devacg.com/content/templates/default/images/rss.gif" alt="订阅Rss"></a>
+</div>
+</ul><!--end #siderbar-->
+</div><!--end #content-->
+<div style="clear:both;"></div>
+<div id="footerbar">
+	Powered by <a href="http://www.emlog.net" title="采用emlog系统">emlog</a> 
+	&nbsp;<a href="https://beian.miit.gov.cn" target="_blank">蜀ICP备18021003号-1</a> &nbsp;<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1274209054'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1274209054%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>	<a href="../www.devacg.com/sitemap.xml/index.html" rel="sitemap">sitemap</a>	<br>
+	<!--<div style="width:300px;margin:0 auto; padding:20px 0;">-->
+		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51019002001593" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="../www.devacg.com/content/templates/default/images/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">川公网安备 51019002001593号</p></a>
+	<!--</div>->
+</div><!--end #footerbar-->
+</div><!--end #wrap-->
+<script>prettyPrint();</script>
+		 
+<!--百度分享-->
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<!--奇优联盟广告代码 http://www.qy9.net/ -->
+<!--<script src="//mp.qy9.net/cf.aspx?action=cycadget&ad_class=7&userid=282&lowunionusername=&clickstate=2&adshowtype=AdCode_sjptzd&ad_size=640x200&showsel=3&newadsel=1&maxadid=&prohibit="></script>-->
+</div></body>
+</html>

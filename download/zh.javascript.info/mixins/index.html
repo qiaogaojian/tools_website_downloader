@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Mixin 模式</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/mixins"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Mixin 模式"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Mixin 模式"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/instanceof"><link rel="next" href="/error-handling"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script>
+let eventMixin = {
+
+  /**
+   * Subscribe to event, usage:
+   *  menu.on('select', function(item) { ... }
+  */
+  on(eventName, handler) {
+    if (!this._eventHandlers) this._eventHandlers = {};
+    if (!this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName] = [];
+    }
+    this._eventHandlers[eventName].push(handler);
+  },
+
+  /**
+   * Cancel the subscription, usage:
+   *  menu.off('select', handler)
+   */
+  off(eventName, handler) {
+    let handlers = this._eventHandlers?.[eventName];
+    if (!handlers) return;
+    for(let i = 0; i < handlers.length; i++) {
+      if (handlers[i] == handler) {
+        handlers.splice(i--, 1);
+      }
+    }
+  },
+
+  /**
+   * Generate the event and attach the data to it
+   *  this.trigger('select', data1, data2);
+   */
+  trigger(eventName, ...args) {
+    if (!this._eventHandlers || !this._eventHandlers[eventName]) {
+      return; // no handlers for that event name
+    }
+
+    // call the handlers
+    this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
+  }
+};
+</script>
+<meta property="og:title" content="Mixin 模式"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/mixins"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/mixins"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/mixins"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/mixins"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/mixins"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/mixins"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/mixins"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/mixins"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/mixins"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/mixins"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/mixins"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/mixins">عربي</option><option value="https://javascript.info/mixins">English</option><option value="https://es.javascript.info/mixins">Español</option><option value="https://fr.javascript.info/mixins">Français</option><option value="https://id.javascript.info/mixins">Indonesia</option><option value="https://it.javascript.info/mixins">Italiano</option><option value="https://ja.javascript.info/mixins">日本語</option><option value="https://ko.javascript.info/mixins">한국어</option><option value="https://learn.javascript.ru/mixins">Русский</option><option value="https://tr.javascript.info/mixins">Türkçe</option><option value="https://uk.javascript.info/mixins">Українська</option><option value="https://zh.javascript.info/mixins" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="72" max="92" data-tooltip="第 72/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../classes/index.html"><span>类</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"类","item":"https://zh.javascript.info/classes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Mixin 模式</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Mixin 模式"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在 JavaScript 中，我们只能继承单个对象。每个对象只能有一个 <code>[[Prototype]]</code>。并且每个类只可以扩展另外一个类。</p>
+<p>但是有些时候这种设定（译注：单继承）会让人感到受限制。例如，我有一个 <code>StreetSweeper</code> 类和一个 <code>Bicycle</code> 类，现在想要一个它们的 mixin：<code>StreetSweepingBicycle</code> 类。</p>
+<p>或者，我们有一个 <code>User</code> 类和一个 <code>EventEmitter</code> 类来实现事件生成（event generation），并且我们想将 <code>EventEmitter</code> 的功能添加到 <code>User</code> 中，以便我们的用户可以触发事件（emit event）。</p>
+<p>有一个概念可以帮助我们，叫做 “mixins”。</p>
+<p>根据维基百科的定义，<a href="https://en.wikipedia.org/wiki/Mixin">mixin</a> 是一个包含可被其他类使用而无需继承的方法的类。</p>
+<p>换句话说，<em>mixin</em> 提供了实现特定行为的方法，但是我们不单独使用它，而是使用它来将这些行为添加到其他类中。</p>
+<h2><a class="main__anchor" name="yi-ge-mixin-shi-li" href="#yi-ge-mixin-shi-li">一个 Mixin 实例</a></h2><p>在 JavaScript 中构造一个 mixin 最简单的方式就是构造一个拥有实用方法的对象，以便我们可以轻松地将这些实用的方法合并到任何类的原型中。</p>
+<p>例如，这个名为 <code>sayHiMixin</code> 的 mixin 用于给 <code>User</code> 添加一些“语言功能”：</p>
+<div id="hliijru3oi" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// mixin
+let sayHiMixin = {
+  sayHi() {
+    alert(`Hello ${this.name}`);
+  },
+  sayBye() {
+    alert(`Bye ${this.name}`);
+  }
+};
+
+// 用法：
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// 拷贝方法
+Object.assign(User.prototype, sayHiMixin);
+
+// 现在 User 可以打招呼了
+new User(&quot;Dude&quot;).sayHi(); // Hello Dude!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里没有继承，只有一个简单的方法拷贝。所以 <code>User</code> 可以从另一个类继承，还可以包括 mixin 来 &quot;mix-in“ 其它方法，就像这样：</p>
+<div id="kiavcl2vxa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User extends Person {
+  // ...
+}
+
+Object.assign(User.prototype, sayHiMixin);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Mixin 可以在自己内部使用继承。</p>
+<p>例如，这里的 <code>sayHiMixin</code> 继承自 <code>sayMixin</code>：</p>
+<div id="hm0g9ne1fj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayMixin = {
+  say(phrase) {
+    alert(phrase);
+  }
+};
+
+let sayHiMixin = {
+  __proto__: sayMixin, // (或者，我们可以在这儿使用 Object.setPrototypeOf 来设置原型)
+
+  sayHi() {
+    // 调用父类方法
+    super.say(`Hello ${this.name}`); // (*)
+  },
+  sayBye() {
+    super.say(`Bye ${this.name}`); // (*)
+  }
+};
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// 拷贝方法
+Object.assign(User.prototype, sayHiMixin);
+
+// 现在 User 可以打招呼了
+new User(&quot;Dude&quot;).sayHi(); // Hello Dude!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，在 <code>sayHiMixin</code> 内部对父类方法 <code>super.say()</code> 的调用（在标有 <code>(*)</code> 的行）会在 mixin 的原型中查找方法，而不是在 class 中查找。</p>
+<p>这是示意图（请参见图中右侧部分）：</p>
+<figure><div class="image" style="width:486px">
+      <div class="image__ratio" style="padding-top:60.69958847736625%"></div>
+      <object type="image/svg+xml" data="../article/mixins/mixin-inheritance.svg" width="486" height="295" class="image__image" data-use-theme>
+        <img src="../article/mixins/mixin-inheritance.svg" alt width="486" height="295">
+      </object>
+      </div></figure><p>这是因为方法 <code>sayHi</code> 和 <code>sayBye</code> 最初是在 <code>sayHiMixin</code> 中创建的。因此，即使复制了它们，但是它们的 <code>[[HomeObject]]</code> 内部属性仍引用的是 <code>sayHiMixin</code>，如上图所示。</p>
+<p>当 <code>super</code> 在 <code>[[HomeObject]].[[Prototype]]</code> 中寻找父方法时，意味着它搜索的是 <code>sayHiMixin.[[Prototype]]</code>，而不是 <code>User.[[Prototype]]</code>。</p>
+<h2><a class="main__anchor" name="eventmixin" href="#eventmixin">EventMixin</a></h2><p>现在让我们为实际运用构造一个 mixin。</p>
+<p>例如，许多浏览器对象的一个重要功能是它们可以生成事件。事件是向任何有需要的人“广播信息”的好方法。因此，让我们构造一个 mixin，使我们能够轻松地将与事件相关的函数添加到任意 class/object 中。</p>
+<ul>
+<li>Mixin 将提供 <code>.trigger(name, [...data])</code> 方法，以在发生重要的事情时“生成一个事件”。<code>name</code> 参数（arguments）是事件的名称，<code>[...data]</code> 是可选的带有事件数据的其他参数（arguments）。</li>
+<li>此外还有 <code>.on(name, handler)</code> 方法，它为具有给定名称的事件添加了 <code>handler</code> 函数作为监听器（listener）。当具有给定 <code>name</code> 的事件触发时将调用该方法，并从 <code>.trigger</code> 调用中获取参数（arguments）。</li>
+<li>……还有 <code>.off(name, handler)</code> 方法，它会删除 <code>handler</code> 监听器（listener）。</li>
+</ul>
+<p>添加完 mixin 后，对象 <code>user</code> 将能够在访客登录时生成事件 <code>&quot;login&quot;</code>。另一个对象，例如 <code>calendar</code> 可能希望监听此类事件以便为登录的人加载日历。</p>
+<p>或者，当一个菜单项被选中时，<code>menu</code> 可以生成 <code>&quot;select&quot;</code> 事件，其他对象可以分配处理程序以对该事件作出反应。诸如此类。</p>
+<p>下面是代码：</p>
+<div id="upeynrjokg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let eventMixin = {
+  /**
+   * 订阅事件，用法：
+   *  menu.on('select', function(item) { ... }
+  */
+  on(eventName, handler) {
+    if (!this._eventHandlers) this._eventHandlers = {};
+    if (!this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName] = [];
+    }
+    this._eventHandlers[eventName].push(handler);
+  },
+
+  /**
+   * 取消订阅，用法：
+   *  menu.off('select', handler)
+   */
+  off(eventName, handler) {
+    let handlers = this._eventHandlers?.[eventName];
+    if (!handlers) return;
+    for (let i = 0; i &lt; handlers.length; i++) {
+      if (handlers[i] === handler) {
+        handlers.splice(i--, 1);
+      }
+    }
+  },
+
+  /**
+   * 生成具有给定名称和数据的事件
+   *  this.trigger('select', data1, data2);
+   */
+  trigger(eventName, ...args) {
+    if (!this._eventHandlers?.[eventName]) {
+      return; // 该事件名称没有对应的事件处理程序（handler）
+    }
+
+    // 调用事件处理程序（handler）
+    this._eventHandlers[eventName].forEach(handler =&gt; handler.apply(this, args));
+  }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li><code>.on(eventName, handler)</code> — 指定函数 <code>handler</code> 以在具有对应名称的事件发生时运行。从技术上讲，这儿有一个用于存储每个事件名称对应的处理程序（handler）的 <code>_eventHandlers</code> 属性，在这儿该属性就会将刚刚指定的这个 <code>handler</code> 添加到列表中。</li>
+<li><code>.off(eventName, handler)</code> — 从处理程序列表中删除指定的函数。</li>
+<li><code>.trigger(eventName, ...args)</code> — 生成事件：所有 <code>_eventHandlers[eventName]</code> 中的事件处理程序（handler）都被调用，并且 <code>...args</code> 会被作为参数传递给它们。</li>
+</ol>
+<p>用法：</p>
+<div id="vaqtov2g9e" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 创建一个 class
+class Menu {
+  choose(value) {
+    this.trigger(&quot;select&quot;, value);
+  }
+}
+// 添加带有事件相关方法的 mixin
+Object.assign(Menu.prototype, eventMixin);
+
+let menu = new Menu();
+
+// 添加一个事件处理程序（handler），在被选择时被调用：
+menu.on(&quot;select&quot;, value =&gt; alert(`Value selected: ${value}`));
+
+// 触发事件 =&gt; 运行上述的事件处理程序（handler）并显示：
+// 被选中的值：123
+menu.choose(&quot;123&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，如果我们希望任何代码对菜单选择作出反应，我们可以使用 <code>menu.on(...)</code> 进行监听。</p>
+<p>使用 <code>eventMixin</code> 可以轻松地将此类行为添加到我们想要的多个类中，并且不会影响继承链。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><em>Mixin</em> — 是一个通用的面向对象编程术语：一个包含其他类的方法的类。</p>
+<p>一些其它编程语言允许多重继承。JavaScript 不支持多重继承，但是可以通过将方法拷贝到原型中来实现 mixin。</p>
+<p>我们可以使用 mixin 作为一种通过添加多种行为（例如上文中所提到的事件处理）来扩充类的方法。</p>
+<p>如果 Mixins 意外覆盖了现有类的方法，那么它们可能会成为一个冲突点。因此，通常应该仔细考虑 mixin 的命名方法，以最大程度地降低发生这种冲突的可能性。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../instanceof/index.html" data-tooltip="类检查：&quot;instanceof&quot;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../error-handling/index.html" data-tooltip="错误处理"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/mixins","identifier":"\/mixins"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../classes/index.html">类</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-ge-mixin-shi-li">一个 Mixin 实例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#eventmixin">EventMixin</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fmixins" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/09-classes/07-mixins" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

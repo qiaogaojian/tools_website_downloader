@@ -1,0 +1,806 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">选择（Selection）和范围（Range）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/selection-range"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="选择（Selection）和范围（Range）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="选择（Selection）和范围（Range）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/mutation-observer"><link rel="next" href="/event-loop"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><link rel="stylesheet" href="https://zh.js.cx/libs/domtree.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://zh.js.cx/libs/domtree.js"></script><meta property="og:title" content="选择（Selection）和范围（Range）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/selection-range"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/selection-range"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/selection-range"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/selection-range"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/selection-range"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/selection-range"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/selection-range"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/selection-range">English</option><option value="https://es.javascript.info/selection-range">Español</option><option value="https://fr.javascript.info/selection-range">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/selection-range">Italiano</option><option value="https://ja.javascript.info/selection-range">日本語</option><option value="https://ko.javascript.info/selection-range">한국어</option><option value="https://learn.javascript.ru/selection-range">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/selection-range" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="31" max="32" data-tooltip="第 31/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../ui-misc/index.html"><span>杂项</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"杂项","item":"https://zh.javascript.info/ui-misc"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">选择（Selection）和范围（Range）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="选择（Selection）和范围（Range）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在本章中，我们将介绍文档中的选择以及在表单字段（如 <code>&lt;input&gt;</code>）中的选择。</p>
+<p>JavaScript 可以获取现有选择，选择/取消全部或部分选择，从文档中删除所选部分，将其包装到一个标签（tag）中，等。</p>
+<p>你可以在本文最后的“总结”部分中找到使用方法。但是，如果你阅读整篇内容，将会有更多收获。底层的（underlying）<code>Range</code> 和 <code>Selection</code> 对象很容易掌握，因此，你不需要任何诀窍便可以使用它们做你想要做的事儿。</p>
+<h2><a class="main__anchor" name="fan-wei" href="#fan-wei">范围</a></h2><p>选择的基本概念是 <a href="https://dom.spec.whatwg.org/#ranges">Range</a>：本质上是一对“边界点”：范围起点和范围终点。</p>
+<p>每个点都被表示为一个带有相对于起点的相对偏移（offset）的父 DOM 节点。如果父节点是元素节点，则偏移量是子节点的编号，对于文本节点，则是文本中的位置。下面举例说明。</p>
+<p>让我们选择一些东西。</p>
+<p>首先，我们可以创建一个范围（构造器没有参数）：</p>
+<div id="v46g78e141" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = new Range();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后，我们可以使用 <code>range.setStart(node, offset)</code> 和 <code>range.setEnd(node, offset)</code> 来设置选择边界。</p>
+<p>例如，考虑以下 HTML 片段：</p>
+<div id="ukk1qixk9j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是其 DOM 结构，请注意，这里的文本节点对我们很重要：</p>
+<div class="select-p-domtree"></div>
+<script>
+let selectPDomtree = {
+  "name": "P",
+  "nodeType": 1,
+  "children": [{
+    "name": "#text",
+    "nodeType": 3,
+    "content": "Example: "
+  }, {
+    "name": "I",
+    "nodeType": 1,
+    "children": [{
+      "name": "#text",
+      "nodeType": 3,
+      "content": "italic"
+    }]
+  }, {
+    "name": "#text",
+    "nodeType": 3,
+    "content": " and "
+  }, {
+    "name": "B",
+    "nodeType": 1,
+    "children": [{
+      "name": "#text",
+      "nodeType": 3,
+      "content": "bold"
+    }]
+  }]
+}
+
+drawHtmlTree(selectPDomtree, 'div.select-p-domtree', 690, 320);
+</script>
+<p>让我们来选择 <code>&quot;Example: &lt;i&gt;italic&lt;/i&gt;&quot;</code>。它是 <code>&lt;p&gt;</code> 的前两个子节点（文本节点也算在内）：</p>
+<figure><div class="image" style="width:640px">
+      <div class="image__ratio" style="padding-top:13.90625%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/range-example-p-0-1.svg" width="640" height="89" class="image__image" data-use-theme>
+        <img src="../article/selection-range/range-example-p-0-1.svg" alt width="640" height="89">
+      </object>
+      </div></figure><div id="myhufy5r2h" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  let range = new Range();
+
+  range.setStart(p, 0);
+  range.setEnd(p, 2);
+
+  // 范围的 toString 以文本形式返回其内容（不带标签）
+  alert(range); // Example: italic
+
+  // 将此范围应用于文档选择（后文有解释）
+  document.getSelection().addRange(range);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>range.setStart(p, 0)</code> —— 将起点设置为 <code>&lt;p&gt;</code> 的第 0 个子节点（即文本节点 <code>&quot;Example: &quot;</code>）。</li>
+<li><code>range.setEnd(p, 2)</code> —— 覆盖范围至（但不包括）<code>&lt;p&gt;</code> 的第 2 个子节点（即文本节点 <code>&quot; and &quot;</code>，但由于不包括末节点，所以最后选择的节点是 <code>&lt;i&gt;</code>）。</li>
+</ul>
+<p>这是一个更灵活的测试台，你可以在其中尝试更多不同的情况：</p>
+<div id="7anvst31ep" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:9}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+From &lt;input id=&quot;start&quot; type=&quot;number&quot; value=1&gt; – To &lt;input id=&quot;end&quot; type=&quot;number&quot; value=4&gt;
+&lt;button id=&quot;button&quot;&gt;Click to select&lt;/button&gt;
+&lt;script&gt;
+  button.onclick = () =&gt; {
+    let range = new Range();
+
+    range.setStart(p, start.value);
+    range.setEnd(p, end.value);
+
+    // 应用选择，后文有解释
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(range);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-7anvst31ep" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>例如，从 <code>1</code> 到 <code>4</code> 选择得到的范围为 <code>&lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;</code>。</p>
+<figure><div class="image" style="width:640px">
+      <div class="image__ratio" style="padding-top:13.90625%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/range-example-p-1-3.svg" width="640" height="89" class="image__image" data-use-theme>
+        <img src="../article/selection-range/range-example-p-1-3.svg" alt width="640" height="89">
+      </object>
+      </div></figure><p>我们不必在 <code>setStart</code> 和 <code>setEnd</code> 中使用相同的节点。一个范围可能跨越许多不相关的节点。唯一要注意的是终点要在起点之后。</p>
+<h3><a class="main__anchor" name="xuan-ze-wen-ben-jie-dian-de-yi-bu-fen" href="#xuan-ze-wen-ben-jie-dian-de-yi-bu-fen">选择文本节点的一部分</a></h3><p>让我们选择部分文本，像这样：</p>
+<figure><div class="image" style="width:640px">
+      <div class="image__ratio" style="padding-top:13.90625%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/range-example-p-2-b-3.svg" width="640" height="89" class="image__image" data-use-theme>
+        <img src="../article/selection-range/range-example-p-2-b-3.svg" alt width="640" height="89">
+      </object>
+      </div></figure><p>这也是可以做到的，我们只需要将起点和终点设置为文本节点中的相对偏移量即可。</p>
+<p>我们需要创建一个范围，它：</p>
+<ul>
+<li>从 <code>&lt;p&gt;</code> 的第一个子节点的位置 2 开始（选择 &quot;Ex<b>ample:</b> &quot; 中除前两个字母外的所有字母）</li>
+<li>到 <code>&lt;b&gt;</code> 的第一个子节点的位置 3 结束（选择 “<b>bol</b>d” 的前三个字母，就这些）：</li>
+</ul>
+<div id="zsd4ei7gg2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  let range = new Range();
+
+  range.setStart(p.firstChild, 2);
+  range.setEnd(p.querySelector('b').firstChild, 3);
+
+  alert(range); // ample: italic and bol
+
+  // 使用此范围进行选择（后文有解释）
+  window.getSelection().addRange(range);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>range</code> 对象具有以下属性：</p>
+<figure><div class="image" style="width:683px">
+      <div class="image__ratio" style="padding-top:33.52855051244509%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/range-example-p-2-b-3-range.svg" width="683" height="229" class="image__image" data-use-theme>
+        <img src="../article/selection-range/range-example-p-2-b-3-range.svg" alt width="683" height="229">
+      </object>
+      </div></figure><ul>
+<li><code>startContainer</code>，<code>startOffset</code> —— 起始节点和偏移量，
+<ul>
+<li>在上例中：分别是 <code>&lt;p&gt;</code> 中的第一个文本节点和 <code>2</code>。</li>
+</ul>
+</li>
+<li><code>endContainer</code>，<code>endOffset</code> —— 结束节点和偏移量，
+<ul>
+<li>在上例中：分别是 <code>&lt;b&gt;</code> 中的第一个文本节点和 <code>3</code>。</li>
+</ul>
+</li>
+<li><code>collapsed</code> —— 布尔值，如果范围在同一点上开始和结束（所以范围内没有内容）则为 <code>true</code>，
+<ul>
+<li>在上例中：<code>false</code></li>
+</ul>
+</li>
+<li><code>commonAncestorContainer</code> —— 在范围内的所有节点中最近的共同祖先节点，
+<ul>
+<li>在上例中：<code>&lt;p&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h2><a class="main__anchor" name="range-fang-fa" href="#range-fang-fa">Range 方法</a></h2><p>有许多便利的方法可以操纵范围。</p>
+<p>设置范围的起点：</p>
+<ul>
+<li><code>setStart(node, offset)</code> 将起点设置在：<code>node</code> 中的位置 <code>offset</code></li>
+<li><code>setStartBefore(node)</code> 将起点设置在：<code>node</code> 前面</li>
+<li><code>setStartAfter(node)</code> 将起点设置在：<code>node</code> 后面</li>
+</ul>
+<p>设置范围的终点（类似的方法）：</p>
+<ul>
+<li><code>setEnd(node, offset)</code> 将终点设置为：<code>node</code> 中的位置 <code>offset</code></li>
+<li><code>setEndBefore(node)</code> 将终点设置为：<code>node</code> 前面</li>
+<li><code>setEndAfter(node)</code> 将终点设置为：<code>node</code> 后面</li>
+</ul>
+<p><strong>如前所述，<code>node</code> 既可以是文本节点，也可以是元素节点：对于文本节点，<code>offset</code> 偏移的是字符数，而对于元素节点则是子节点数。</strong></p>
+<p>其他：</p>
+<ul>
+<li><code>selectNode(node)</code> 设置范围以选择整个 <code>node</code></li>
+<li><code>selectNodeContents(node)</code> 设置范围以选择整个 <code>node</code> 的内容</li>
+<li><code>collapse(toStart)</code> 如果 <code>toStart=true</code> 则设置 end=start，否则设置 start=end，从而折叠范围</li>
+<li><code>cloneRange()</code> 创建一个具有相同起点/终点的新范围</li>
+</ul>
+<p>如要操纵范围内的内容：</p>
+<ul>
+<li><code>deleteContents()</code> —— 从文档中删除范围内容</li>
+<li><code>extractContents()</code> —— 从文档中删除范围内容，并将删除的内容作为 <a href="../modifying-document/index.html#document-fragment">DocumentFragment</a> 返回</li>
+<li><code>cloneContents()</code> —— 复制范围内容，并将复制的内容作为 <a href="../modifying-document/index.html#document-fragment">DocumentFragment</a> 返回</li>
+<li><code>insertNode(node)</code> —— 在范围的起始处将 <code>node</code> 插入文档</li>
+<li><code>surroundContents(node)</code> —— 使用 <code>node</code> 将所选范围内容包裹起来。要使此操作有效，则该范围必须包含其中所有元素的开始和结束标签：不能像 <code>&lt;i&gt;abc</code> 这样的部分范围。</li>
+</ul>
+<p>使用这些方法，我们基本上可以对选定的节点执行任何操作。</p>
+<p>这是在测试台上看到它们的实际效果：</p>
+<div id="1xwamaal37" data-trusted="1" class="code-example" data-demo-height="260" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>点击按钮运行所选内容上的方法，点击 &quot;resetExample&quot; 进行重置。
+
+&lt;p id=&quot;p&quot;&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+&lt;script&gt;
+  let range = new Range();
+
+  // 下面演示了上述的每个方法：
+  let methods = {
+    deleteContents() {
+      range.deleteContents()
+    },
+    extractContents() {
+      let content = range.extractContents();
+      result.innerHTML = &quot;&quot;;
+      result.append(&quot;extracted: &quot;, content);
+    },
+    cloneContents() {
+      let content = range.cloneContents();
+      result.innerHTML = &quot;&quot;;
+      result.append(&quot;cloned: &quot;, content);
+    },
+    insertNode() {
+      let newNode = document.createElement('u');
+      newNode.innerHTML = &quot;NEW NODE&quot;;
+      range.insertNode(newNode);
+    },
+    surroundContents() {
+      let newNode = document.createElement('u');
+      try {
+        range.surroundContents(newNode);
+      } catch(e) { alert(e) }
+    },
+    resetExample() {
+      p.innerHTML = `Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;`;
+      result.innerHTML = &quot;&quot;;
+
+      range.setStart(p.firstChild, 2);
+      range.setEnd(p.querySelector('b').firstChild, 3);
+
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  };
+
+  for(let method in methods) {
+    document.write(`&lt;div&gt;&lt;button onclick=&quot;methods.${method}()&quot;&gt;${method}&lt;/button&gt;&lt;/div&gt;`);
+  }
+
+  methods.resetExample();
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-1xwamaal37" style="height:260px" src="about:blank"></iframe>
+        </div>
+      </div><p>还有比较范围的方法，但是很少使用。当你需要它们时，请参考 <a href="https://dom.spec.whatwg.org/#interface-range">规范</a> 或 <a href="https://developer.mozilla.org/zh/docs/Web/api/Range">MDN 手册</a>。</p>
+<h2><a class="main__anchor" name="xuan-ze" href="#xuan-ze">选择</a></h2><p><code>Range</code> 是用于管理选择范围的通用对象。我们可能会创建此类对象，并传递它们 —— 它们在视觉上不会自行选择任何内容。</p>
+<p>文档选择是由 <code>Selection</code> 对象表示的，可通过 <code>window.getSelection()</code> 或 <code>document.getSelection()</code> 来获取。</p>
+<p>一个选择可以包括零个或多个范围。至少，<a href="https://www.w3.org/TR/selection-api/">Selection API 规范</a> 是这么说的。不过实际上，只有 Firefox 允许使用 <kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>click</kbd> (Mac 上用 <kbd class="shortcut">Cmd<span class="shortcut__plus">+</span>click</kbd>) 在文档中选择多个范围。</p>
+<p>这是在 Firefox 中做的一个具有 3 个范围的选择的截图：</p>
+<figure><div class="image" style="width:556px">
+      <div class="image__ratio" style="padding-top:76.97841726618705%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/selection-firefox.svg" width="556" height="428" class="image__image" data-use-theme>
+        <img src="../article/selection-range/selection-firefox.svg" alt width="556" height="428">
+      </object>
+      </div></figure><p>其他浏览器最多支持 1 个范围。正如我们将看到的，某些 <code>Selection</code> 方法暗示可能有多个范围，但同样，在除 Firefox 之外的所有浏览器中，范围最多是 1。</p>
+<h2><a class="main__anchor" name="xuan-ze-shu-xing" href="#xuan-ze-shu-xing">选择属性</a></h2><p>与范围相似，选择的起点称为“锚点（anchor）”，终点称为“焦点（focus）”。</p>
+<p>主要的选择属性有：</p>
+<ul>
+<li><code>anchorNode</code> —— 选择的起始节点，</li>
+<li><code>anchorOffset</code> —— 选择开始的 <code>anchorNode</code> 中的偏移量，</li>
+<li><code>focusNode</code> —— 选择的结束节点，</li>
+<li><code>focusOffset</code> —— 选择开始处 <code>focusNode</code> 的偏移量，</li>
+<li><code>isCollapsed</code> —— 如果未选择任何内容（空范围）或不存在，则为 <code>true</code> 。</li>
+<li><code>rangeCount</code> —— 选择中的范围数，除 Firefox 外，其他浏览器最多为 <code>1</code>。</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">在文档中，选择的终点可能在起点之前</span></div>
+            <div class="important__content"><p>有很多选择内容的方式，取决于用户的操作：鼠标，热键，手机上的点击等。</p>
+<p>其中的某些方式，例如鼠标，允许从两个方向创建相同的选择：“从左到右”和“从右到左”。</p>
+<p>如果在文档中，选择的起点（anchor）在终点（focus）之前，则称此选择具有 “forward” 方向。</p>
+<p>例如，如果用户使用鼠标从 “Example” 开始选择到 “italic”：</p>
+<figure><div class="image" style="width:563px">
+      <div class="image__ratio" style="padding-top:16.69626998223801%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/selection-direction-forward.svg" width="563" height="94" class="image__image" data-use-theme>
+        <img src="../article/selection-range/selection-direction-forward.svg" alt width="563" height="94">
+      </object>
+      </div></figure><p>否则，如果是从 “italic” 的末尾开始选择到 “Example”，则所选内容将被定向为 “backward”，其焦点（focus）将在锚点（anchor）之前：</p>
+<figure><div class="image" style="width:559px">
+      <div class="image__ratio" style="padding-top:16.815742397137747%"></div>
+      <object type="image/svg+xml" data="../article/selection-range/selection-direction-backward.svg" width="559" height="94" class="image__image" data-use-theme>
+        <img src="../article/selection-range/selection-direction-backward.svg" alt width="559" height="94">
+      </object>
+      </div></figure><p>这与始终指向前方的 <code>Range</code> 对象不同：范围的起点不能在终点之后。</p>
+</div></div>
+<h2><a class="main__anchor" name="xuan-ze-shi-jian" href="#xuan-ze-shi-jian">选择事件</a></h2><p>有一些事件可以跟踪选择：</p>
+<ul>
+<li><code>elem.onselectstart</code> —— 当选择从 <code>elem</code> 上开始时，例如，用户按下鼠标键并开始移动鼠标。
+<ul>
+<li>阻止默认行为会使选择无法开始。</li>
+</ul>
+</li>
+<li><code>document.onselectionchange</code> —— 当选择变动时。
+<ul>
+<li>请注意：此处理程序只能在 <code>document</code> 上设置。</li>
+</ul>
+</li>
+</ul>
+<h3><a class="main__anchor" name="xuan-ze-gen-zong-yan-shi" href="#xuan-ze-gen-zong-yan-shi">选择跟踪演示</a></h3><p>下面是一个小型演示，它随更改动态显示选择边界：</p>
+<div id="hcslf3jrvz" data-trusted="1" class="code-example" data-demo-height="80">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Select me: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+From &lt;input id=&quot;from&quot; disabled&gt; – To &lt;input id=&quot;to&quot; disabled&gt;
+&lt;script&gt;
+  document.onselectionchange = function() {
+    let {anchorNode, anchorOffset, focusNode, focusOffset} = document.getSelection();
+
+    from.value = `${anchorNode &amp;&amp; anchorNode.data}:${anchorOffset}`;
+    to.value = `${focusNode &amp;&amp; focusNode.data}:${focusOffset}`;
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="xuan-ze-huo-qu-yan-shi" href="#xuan-ze-huo-qu-yan-shi">选择获取演示</a></h3><p>要获取整个选择：</p>
+<ul>
+<li>作为文本：只需调用 <code>document.getSelection().toString()</code>。</li>
+<li>作为 DOM 节点：获取底层的（underlying）范围，并调用它们的 <code>cloneContents()</code> 方法（如果我们不支持 Firefox 多选的话，则仅取第一个范围）。</li>
+</ul>
+<p>下面是将选择内容获取为文本和 DOM 节点的演示：</p>
+<div id="wefc93kg87" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Select me: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+Cloned: &lt;span id=&quot;cloned&quot;&gt;&lt;/span&gt;
+&lt;br&gt;
+As text: &lt;span id=&quot;astext&quot;&gt;&lt;/span&gt;
+
+&lt;script&gt;
+  document.onselectionchange = function() {
+    let selection = document.getSelection();
+
+    cloned.innerHTML = astext.innerHTML = &quot;&quot;;
+
+    // 从范围复制 DOM 节点（这里我们支持多选）
+    for (let i = 0; i &lt; selection.rangeCount; i++) {
+      cloned.append(selection.getRangeAt(i).cloneContents());
+    }
+
+    // 获取为文本形式
+    astext.innerHTML += selection;
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="xuan-ze-fang-fa" href="#xuan-ze-fang-fa">选择方法</a></h2><p>添加/移除范围的选择方法：</p>
+<ul>
+<li><code>getRangeAt(i)</code> —— 获取从 <code>0</code> 开始的第 i 个范围。在除 Firefox 之外的所有浏览器中，仅使用 <code>0</code>。</li>
+<li><code>addRange(range)</code> —— 将 <code>range</code> 添加到选择中。如果选择已有关联的范围，则除 Firefox 外的所有浏览器都将忽略该调用。</li>
+<li><code>removeRange(range)</code> —— 从选择中删除 <code>range</code>。</li>
+<li><code>removeAllRanges()</code> —— 删除所有范围。</li>
+<li><code>empty()</code> —— <code>removeAllRanges</code> 的别名。</li>
+</ul>
+<p>另外，还有一些方便的方法可以直接操作选择范围，而无需使用 <code>Range</code>：</p>
+<ul>
+<li><code>collapse(node, offset)</code> —— 用一个新的范围替换选定的范围，该新范围从给定的 <code>node</code> 处开始，到偏移 <code>offset</code> 处结束。</li>
+<li><code>setPosition(node, offset)</code> —— <code>collapse</code> 的别名。</li>
+<li><code>collapseToStart()</code> —— 折叠（替换为空范围）到选择起点，</li>
+<li><code>collapseToEnd()</code> —— 折叠到选择终点，</li>
+<li><code>extend(node, offset)</code> —— 将选择的焦点（focus）移到给定的 <code>node</code>，位置偏移 <code>oofset</code>，</li>
+<li><code>setBaseAndExtent(anchorNode, anchorOffset, focusNode, focusOffset)</code> —— 用给定的起点 <code>anchorNode/anchorOffset</code> 和终点 <code>focusNode/focusOffset</code> 来替换选择范围。选中它们之间的所有内容。</li>
+<li><code>selectAllChildren(node)</code> —— 选择 <code>node</code> 的所有子节点。</li>
+<li><code>deleteFromDocument()</code> —— 从文档中删除所选择的内容。</li>
+<li><code>containsNode(node, allowPartialContainment = false)</code> —— 检查选择中是否包含 <code>node</code>（特别是如果第二个参数是 <code>true</code> 的话）</li>
+</ul>
+<p>因此，对于许多任务，我们可以调用 <code>Selection</code> 方法，而无需访问底层的（underlying）<code>Range</code> 对象。</p>
+<p>例如，选择段落 <code>&lt;p&gt;</code> 的全部内容：</p>
+<div id="nvwedqfh9j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Select me: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  // 从 &lt;p&gt; 的第 0 个子节点选择到最后一个子节点
+  document.getSelection().setBaseAndExtent(p, 0, p, p.childNodes.length);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用范围来完成同一个操作：</p>
+<div id="695nsoihya" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p id=&quot;p&quot;&gt;Select me: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  let range = new Range();
+  range.selectNodeContents(p); // 或者也可以使用 selectNode(p) 来选择 &lt;p&gt; 标签
+
+  document.getSelection().removeAllRanges(); // 清除现有选择（如果有的话）
+  document.getSelection().addRange(range);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">如要选择，请先移除现有的选择</span></div>
+            <div class="important__content"><p>如果选择已存在，则首先使用 <code>removeAllRanges()</code> 将其清空。然后添加范围。否则，除 Firefox 外的所有浏览器都将忽略新范围。</p>
+<p>某些选择方法例外，它们会替换现有的选择，例如 <code>setBaseAndExtent</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="biao-dan-kong-jian-zhong-de-xuan-ze" href="#biao-dan-kong-jian-zhong-de-xuan-ze">表单控件中的选择</a></h2><p>诸如 <code>input</code> 和 <code>textarea</code> 等表单元素提供了 <a href="https://html.spec.whatwg.org/#textFieldSelection">专用的选择 API</a>，没有 <code>Selection</code> 或 <code>Range</code> 对象。由于输入值是纯文本而不是 HTML，因此不需要此类对象，一切都变得更加简单。</p>
+<p>属性：</p>
+<ul>
+<li><code>input.selectionStart</code> —— 选择的起始位置（可写），</li>
+<li><code>input.selectionEnd</code> —— 选择的结束位置（可写），</li>
+<li><code>input.selectionDirection</code> —— 选择方向，其中之一：“forward”，“backward” 或 “none”（例如使用鼠标双击进行的选择），</li>
+</ul>
+<p>事件：</p>
+<ul>
+<li><code>input.onselect</code> —— 当某个东西被选择时触发。</li>
+</ul>
+<p>方法：</p>
+<ul>
+<li>
+<p><code>input.select()</code> —— 选择文本控件中的所有内容（可以是 <code>textarea</code> 而不是 <code>input</code>），</p>
+</li>
+<li>
+<p><code>input.setSelectionRange(start, end, [direction])</code> —— 在给定方向上（可选），从 <code>start</code> 一直选择到 <code>end</code>。</p>
+</li>
+<li>
+<p><code>input.setRangeText(replacement, [start], [end], [selectionMode])</code> —— 用新文本替换范围中的文本。</p>
+<p>可选参数 <code>start</code> 和 <code>end</code>，如果提供的话，则设置范围的起点和终点，否则使用用户的选择。</p>
+<p>最后一个参数 <code>selectionMode</code> 决定替换文本后如何设置选择。可能的值为：</p>
+<ul>
+<li><code>&quot;select&quot;</code> —— 将选择新插入的文本。</li>
+<li><code>&quot;start&quot;</code> —— 选择范围将在插入的文本之前折叠（光标将在其之前）。</li>
+<li><code>&quot;end&quot;</code> —— 选择范围将在插入的文本之后折叠（光标将紧随其后）。</li>
+<li><code>&quot;preserve&quot;</code> —— 尝试保留选择。这是默认值。</li>
+</ul>
+</li>
+</ul>
+<p>现在，让我们看看这些方法的实际使用。</p>
+<h3><a class="main__anchor" name="shi-li-gen-zong-xuan-ze" href="#shi-li-gen-zong-xuan-ze">示例：跟踪选择</a></h3><p>例如，此段代码使用 <code>onselect</code> 事件来跟踪选择：</p>
+<div id="x06wp80e92" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;textarea id=&quot;area&quot; style=&quot;width:80%;height:60px&quot;&gt;
+Selecting in this text updates values below.
+&lt;/textarea&gt;
+&lt;br&gt;
+From &lt;input id=&quot;from&quot; disabled&gt; – To &lt;input id=&quot;to&quot; disabled&gt;
+
+&lt;script&gt;
+  area.onselect = function() {
+    from.value = area.selectionStart;
+    to.value = area.selectionEnd;
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-x06wp80e92" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>请注意：</p>
+<ul>
+<li><code>onselect</code> 是在某项被选择时触发，而在选择被删除时不触发。</li>
+<li>根据 <a href="https://w3c.github.io/selection-api/#dfn-selectionchange">规范</a>，发表单控件内的选择不应该触发 <code>document.onselectionchange</code> 事件，因为它与 <code>document</code> 选择和范围不相关。一些浏览器会生成它，但我们不应该依赖它。</li>
+</ul>
+<h3><a class="main__anchor" name="shi-li-yi-dong-guang-biao" href="#shi-li-yi-dong-guang-biao">示例：移动光标</a></h3><p>我们可以更改 <code>selectionStart</code> 和 <code>selectionEnd</code>，二者设定了选择。</p>
+<p>一个重要的边界情况是 <code>selectionStart</code> 和 <code>selectionEnd</code> 彼此相等。那正是光标位置。或者，换句话说，当未选择任何内容时，选择会折叠在光标位置。</p>
+<p>因此，通过将 <code>selectionStart</code> 和 <code>selectionEnd</code> 设置为相同的值，我们可以移动光标。</p>
+<p>例如：</p>
+<div id="jufkyry8zk" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;textarea id=&quot;area&quot; style=&quot;width:80%;height:60px&quot;&gt;
+Focus on me, the cursor will be at position 10.
+&lt;/textarea&gt;
+
+&lt;script&gt;
+  area.onfocus = () =&gt; {
+    // 设置零延迟 setTimeout 以在浏览器 &quot;focus&quot; 行为完成后运行
+    setTimeout(() =&gt; {
+      // 我们可以设置任何选择
+      // 如果 start=end，则光标就会在该位置
+      area.selectionStart = area.selectionEnd = 10;
+    });
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-jufkyry8zk" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><h3><a class="main__anchor" name="shi-li-xiu-gai-xuan-ze" href="#shi-li-xiu-gai-xuan-ze">示例：修改选择</a></h3><p>如要修改选择的内容，我们可以使用 <code>input.setRangeText()</code> 方法。当然，我们可以读取 <code>selectionStart/End</code>，并在了解选择的情况下更改 <code>value</code> 的相应子字符串，但是 <code>setRangeText</code> 功能更强大，通常更方便。</p>
+<p>那是一个有点复杂的方法。使用其最简单的单参数形式，它可以替换用户选择的范围并删除该选择。</p>
+<p>例如，这里的用户的选择将被包装在 <code>*...*</code> 中：</p>
+<div id="12q0h64kog" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input id=&quot;input&quot; style=&quot;width:200px&quot; value=&quot;Select here and click the button&quot;&gt;
+&lt;button id=&quot;button&quot;&gt;Wrap selection in stars *...*&lt;/button&gt;
+
+&lt;script&gt;
+button.onclick = () =&gt; {
+  if (input.selectionStart == input.selectionEnd) {
+    return; // 什么都没选
+  }
+
+  let selected = input.value.slice(input.selectionStart, input.selectionEnd);
+  input.setRangeText(`*${selected}*`);
+};
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-12q0h64kog" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>使用更多参数，我们可以设置范围 <code>start</code> 和 <code>end</code>。</p>
+<p>在下面这个示例中，我们在输入文本中找到 <code>&quot;THIS&quot;</code>，将其替换，并保持替换文本的选中状态：</p>
+<div id="xqczy12sll" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input id=&quot;input&quot; style=&quot;width:200px&quot; value=&quot;Replace THIS in text&quot;&gt;
+&lt;button id=&quot;button&quot;&gt;Replace THIS&lt;/button&gt;
+
+&lt;script&gt;
+button.onclick = () =&gt; {
+  let pos = input.value.indexOf(&quot;THIS&quot;);
+  if (pos &gt;= 0) {
+    input.setRangeText(&quot;*THIS*&quot;, pos, pos + 4, &quot;select&quot;);
+    input.focus(); // 聚焦（focus），以使选择可见
+  }
+};
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-xqczy12sll" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><h3><a class="main__anchor" name="shi-li-zai-guang-biao-chu-cha-ru" href="#shi-li-zai-guang-biao-chu-cha-ru">示例：在光标处插入</a></h3><p>如果未选择任何内容，或者我们在 <code>setRangeText</code> 中使用了相同的 <code>start</code> 和 <code>end</code>，则仅插入新文本，不会删除任何内容。</p>
+<p>我们也可以使用 <code>setRangeText</code> 在“光标处”插入一些东西。</p>
+<p>这是一个按钮，按下后会在光标位置插入 <code>&quot;HELLO&quot;</code>，然后光标紧随其后。如果选择不为空，则将其替换（我们可以通过比较 <code>selectionStart!=selectionEnd</code> 来进行检查，为空则执行其他操作）：</p>
+<div id="0kxjdprxai" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input id=&quot;input&quot; style=&quot;width:200px&quot; value=&quot;Text Text Text Text Text&quot;&gt;
+&lt;button id=&quot;button&quot;&gt;Insert &quot;HELLO&quot; at cursor&lt;/button&gt;
+
+&lt;script&gt;
+  button.onclick = () =&gt; {
+    input.setRangeText(&quot;HELLO&quot;, input.selectionStart, input.selectionEnd, &quot;end&quot;);
+    input.focus();
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-0kxjdprxai" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><h2><a class="main__anchor" name="shi-bu-ke-xuan" href="#shi-bu-ke-xuan">使不可选</a></h2><p>要使某些内容不可选，有三种方式：</p>
+<ol>
+<li>
+<p>使用 CSS 属性 <code>user-select: none</code>。</p>
+<div id="df14egajqg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+#elem {
+  user-select: none;
+}
+&lt;/style&gt;
+&lt;div&gt;Selectable &lt;div id=&quot;elem&quot;&gt;Unselectable&lt;/div&gt; Selectable&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样不允许选择从 <code>elem</code> 开始。但是用户可以在其他地方开始选择，并将 <code>elem</code> 包含在内。</p>
+<p>然后 <code>elem</code> 将成为 <code>document.getSelection()</code> 的一部分，因此选择实际发生了，但是在复制粘贴中，其内容通常会被忽略。</p>
+</li>
+<li>
+<p>防止 <code>onselectstart</code> 或 <code>mousedown</code> 事件中的默认行为。</p>
+<div id="gbf8387maa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;Selectable &lt;div id=&quot;elem&quot;&gt;Unselectable&lt;/div&gt; Selectable&lt;/div&gt;
+
+&lt;script&gt;
+  elem.onselectstart = () =&gt; false;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样可以防止在 <code>elem</code> 上开始选择，但是访问者可以在另一个元素上开始选择，然后扩展到 <code>elem</code>。</p>
+<p>当同一行为上有另一个事件处理程序触发选择时（例如 <code>mousedown</code>），这会很方便。因此我们禁用选择以避免冲突，仍然允许复制 <code>elem</code> 内容。</p>
+</li>
+<li>
+<p>我们还可以使用 <code>document.getSelection().empty()</code> 来在选择发生后清除选择。很少使用这种方法，因为这会在选择项消失时导致不必要的闪烁。</p>
+</li>
+</ol>
+<h2><a class="main__anchor" name="can-kao" href="#can-kao">参考</a></h2><ul>
+<li><a href="https://dom.spec.whatwg.org/#ranges">DOM 规范：范围（Range）</a></li>
+<li><a href="https://www.w3.org/TR/selection-api/#dom-globaleventhandlers-onselectstart">选择（Selection）API</a></li>
+<li><a href="https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#textFieldSelection">HTML 规范：用于文本控件选择的 API</a></li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>我们介绍了用于选择的两种不同的 API：</p>
+<ol>
+<li>对于文档：<code>Selection</code> 和 <code>Range</code> 对象。</li>
+<li>对于 <code>input</code>，<code>textarea</code>：其他方法和属性。</li>
+</ol>
+<p>第二个 API 非常简单，因为它处理的是文本。</p>
+<p>最常用的方案一般是：</p>
+<ol>
+<li>获取选择：<div id="oevaknez2v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let selection = document.getSelection();
+
+let cloned = /* 要将所选的节点克隆到的元素 */;
+
+// 然后将 Range 方法应用于 selection.getRangeAt(0)
+// 或者，像这样，用于所有范围，以支持多选
+for (let i = 0; i &lt; selection.rangeCount; i++) {
+  cloned.append(selection.getRangeAt(i).cloneContents());
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>设置选择<div id="g2zp295nzk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let selection = document.getSelection();
+
+// 直接：
+selection.setBaseAndExtent(...from...to...);
+
+// 或者我们可以创建一个范围并：
+selection.removeAllRanges();
+selection.addRange(range);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>最后，关于光标。在诸如 <code>&lt;textarea&gt;</code> 之类的可编辑元素中，光标的位置始终位于选择的起点或终点。我们可以通过设置 <code>elem.selectionStart</code> 和 <code>elem.selectionEnd</code> 来获取光标位置或移动光标。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../mutation-observer/index.html" data-tooltip="DOM 变动观察器（Mutation observer）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../event-loop/index.html" data-tooltip="事件循环：微任务和宏任务"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/selection-range","identifier":"\/selection-range"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../ui-misc/index.html">杂项</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fan-wei">范围</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#range-fang-fa">Range 方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xuan-ze">选择</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xuan-ze-shu-xing">选择属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xuan-ze-shi-jian">选择事件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xuan-ze-fang-fa">选择方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#biao-dan-kong-jian-zhong-de-xuan-ze">表单控件中的选择</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-bu-ke-xuan">使不可选</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#can-kao">参考</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fselection-range" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/99-ui-misc/02-selection-range" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

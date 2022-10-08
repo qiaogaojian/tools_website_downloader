@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">逻辑运算符</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/logical-operators"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="逻辑运算符"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="逻辑运算符"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/ifelse"><link rel="next" href="/nullish-coalescing-operator"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="逻辑运算符"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/logical-operators"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/logical-operators"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/logical-operators"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/logical-operators"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/logical-operators"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/logical-operators"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/logical-operators"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/logical-operators"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/logical-operators"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/logical-operators"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/logical-operators"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/logical-operators">عربي</option><option value="https://javascript.info/logical-operators">English</option><option value="https://es.javascript.info/logical-operators">Español</option><option value="https://fr.javascript.info/logical-operators">Français</option><option value="https://id.javascript.info/logical-operators">Indonesia</option><option value="https://it.javascript.info/logical-operators">Italiano</option><option value="https://ja.javascript.info/logical-operators">日本語</option><option value="https://ko.javascript.info/logical-operators">한국어</option><option value="https://learn.javascript.ru/logical-operators">Русский</option><option value="https://tr.javascript.info/logical-operators">Türkçe</option><option value="https://uk.javascript.info/logical-operators">Українська</option><option value="https://zh.javascript.info/logical-operators" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="15" max="92" data-tooltip="第 15/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../first-steps/index.html"><span>JavaScript 基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"JavaScript 基础知识","item":"https://zh.javascript.info/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">逻辑运算符</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="逻辑运算符"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>JavaScript 中有四个逻辑运算符：<code>||</code>（或），<code>&amp;&amp;</code>（与），<code>!</code>（非），<code>??</code>（空值合并运算符）。本文我们先介绍前三个，在下一篇文章中再详细介绍 <code>??</code> 运算符。</p>
+<p>虽然它们被称为“逻辑”运算符，但这些运算符却可以被应用于任意类型的值，而不仅仅是布尔值。它们的结果也同样可以是任意类型。</p>
+<p>让我们来详细看一下。</p>
+<h2><a class="main__anchor" name="huo" href="#huo">||（或）</a></h2><p>两个竖线符号表示“或”运算符：</p>
+<div id="522rjrdz27" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>result = a || b;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在传统的编程中，逻辑或仅能够操作布尔值。如果参与运算的任意一个参数为 <code>true</code>，返回的结果就为 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>在 JavaScript 中，逻辑运算符更加灵活强大。但是，首先让我们看一下操作数是布尔值的时候发生了什么。</p>
+<p>下面是四种可能的逻辑组合：</p>
+<div id="8h212xz03b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( true || true );   // true
+alert( false || true );  // true
+alert( true || false );  // true
+alert( false || false ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所见，除了两个操作数都是 <code>false</code> 的情况，结果都是 <code>true</code>。</p>
+<p>如果操作数不是布尔值，那么它将会被转化为布尔值来参与运算。</p>
+<p>例如，数字 <code>1</code> 被作为 <code>true</code> 处理，数字 <code>0</code> 则被作为 <code>false</code>：</p>
+<div id="jqj0445w0c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (1 || 0) { // 工作原理相当于 if( true || false )
+  alert( 'truthy!' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>大多数情况下，逻辑或 <code>||</code> 会被用在 <code>if</code> 语句中，用来测试是否有 <strong>任何</strong> 给定的条件为 <code>true</code>。</p>
+<p>例如：</p>
+<div id="7xygaqadvo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let hour = 9;
+
+if (hour &lt; 10 || hour &gt; 18) {
+  alert( 'The office is closed.' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以传入更多的条件：</p>
+<div id="dbj3iyivur" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let hour = 12;
+let isWeekend = true;
+
+if (hour &lt; 10 || hour &gt; 18 || isWeekend) {
+  alert( 'The office is closed.' ); // 是周末
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="or-finds-the-first-truthy-value" href="#or-finds-the-first-truthy-value">或运算寻找第一个真值</a></h2><p>上文提到的逻辑处理多少有些传统了。下面让我们看看 JavaScript 的“附加”特性。</p>
+<p>拓展的算法如下所示。</p>
+<p>给定多个参与或运算的值：</p>
+<div id="1gbvkrqd3k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>result = value1 || value2 || value3;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或运算符 <code>||</code> 做了如下的事情：</p>
+<ul>
+<li>从左到右依次计算操作数。</li>
+<li>处理每一个操作数时，都将其转化为布尔值。如果结果是 <code>true</code>，就停止计算，返回这个操作数的初始值。</li>
+<li>如果所有的操作数都被计算过（也就是，转换结果都是 <code>false</code>），则返回最后一个操作数。</li>
+</ul>
+<p>返回的值是操作数的初始形式，不会做布尔转换。</p>
+<p>换句话说，一个或运算 <code>||</code> 的链，将返回第一个真值，如果不存在真值，就返回该链的最后一个值。</p>
+<p>例如：</p>
+<div id="y8h9a49414" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 || 0 ); // 1（1 是真值）
+
+alert( null || 1 ); // 1（1 是第一个真值）
+alert( null || 0 || 1 ); // 1（第一个真值）
+
+alert( undefined || null || 0 ); // 0（都是假值，返回最后一个值）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与“纯粹的、传统的、仅仅处理布尔值的或运算”相比，这个规则就引起了一些很有趣的用法。</p>
+<ol>
+<li>
+<p><strong>获取变量列表或者表达式中的第一个真值。</strong></p>
+<p>例如，我们有变量 <code>firstName</code>、<code>lastName</code> 和 <code>nickName</code>，都是可选的（即可以是 undefined，也可以是假值）。</p>
+<p>我们用或运算 <code>||</code> 来选择有数据的那一个，并显示出来（如果没有设置，则用 <code>&quot;Anonymous&quot;</code>）：</p>
+<div id="m0zb029772" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let firstName = &quot;&quot;;
+let lastName = &quot;&quot;;
+let nickName = &quot;SuperCoder&quot;;
+
+alert( firstName || lastName || nickName || &quot;Anonymous&quot;); // SuperCoder</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果所有变量的值都为假，结果就是 <code>&quot;Anonymous&quot;</code>。</p>
+</li>
+<li>
+<p><strong>短路求值（Short-circuit evaluation）。</strong></p>
+<p>或运算符 <code>||</code> 的另一个用途是所谓的“短路求值”。</p>
+<p>这指的是，<code>||</code> 对其参数进行处理，直到达到第一个真值，然后立即返回该值，而无需处理其他参数。</p>
+<p>如果操作数不仅仅是一个值，而是一个有副作用的表达式，例如变量赋值或函数调用，那么这一特性的重要性就变得显而易见了。</p>
+<p>在下面这个例子中，只会打印第二条信息：</p>
+<div id="6m05y5j7g0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:5}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:4}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>true || alert(&quot;not printed&quot;);
+false || alert(&quot;printed&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在第一行中，或运算符 <code>||</code> 在遇到 <code>true</code> 时立即停止运算，所以 <code>alert</code> 没有运行。</p>
+<p>有时，人们利用这个特性，只在左侧的条件为假时才执行命令。</p>
+</li>
+</ol>
+<h2><a class="main__anchor" name="yu" href="#yu">&amp;&amp;（与）</a></h2><p>两个 &amp; 符号表示 <code>&amp;&amp;</code> 与运算符：</p>
+<div id="ims9jr711g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>result = a &amp;&amp; b;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在传统的编程中，当两个操作数都是真值时，与运算返回 <code>true</code>，否则返回 <code>false</code>：</p>
+<div id="h04l4nfnc3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( true &amp;&amp; true );   // true
+alert( false &amp;&amp; true );  // false
+alert( true &amp;&amp; false );  // false
+alert( false &amp;&amp; false ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>带有 <code>if</code> 语句的示例：</p>
+<div id="2mbd90s6l8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let hour = 12;
+let minute = 30;
+
+if (hour == 12 &amp;&amp; minute == 30) {
+  alert( 'Time is 12:30' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>就像或运算一样，与运算的操作数可以是任意类型的值：</p>
+<div id="eb6l2i9p3k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (1 &amp;&amp; 0) { // 作为 true &amp;&amp; false 来执行
+  alert( &quot;won't work, because the result is falsy&quot; );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="yu-yun-suan-xun-zhao-di-yi-ge-jia-zhi" href="#yu-yun-suan-xun-zhao-di-yi-ge-jia-zhi">与运算寻找第一个假值</a></h2><p>给出多个参加与运算的值：</p>
+<div id="6d2sbi4sy2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>result = value1 &amp;&amp; value2 &amp;&amp; value3;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与运算 <code>&amp;&amp;</code> 做了如下的事：</p>
+<ul>
+<li>从左到右依次计算操作数。</li>
+<li>在处理每一个操作数时，都将其转化为布尔值。如果结果是 <code>false</code>，就停止计算，并返回这个操作数的初始值。</li>
+<li>如果所有的操作数都被计算过（例如都是真值），则返回最后一个操作数。</li>
+</ul>
+<p>换句话说，与运算返回第一个假值，如果没有假值就返回最后一个值。</p>
+<p>上面的规则和或运算很像。区别就是与运算返回第一个假值，而或运算返回第一个真值。</p>
+<p>例如：</p>
+<div id="cu37v4jd6h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 如果第一个操作数是真值，
+// 与运算返回第二个操作数：
+alert( 1 &amp;&amp; 0 ); // 0
+alert( 1 &amp;&amp; 5 ); // 5
+
+// 如果第一个操作数是假值，
+// 与运算将直接返回它。第二个操作数会被忽略
+alert( null &amp;&amp; 5 ); // null
+alert( 0 &amp;&amp; &quot;no matter what&quot; ); // 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以在一行代码上串联多个值。查看第一个假值是如何被返回的：</p>
+<div id="sg6jmezi0e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 &amp;&amp; 2 &amp;&amp; null &amp;&amp; 3 ); // null</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果所有的值都是真值，最后一个值将会被返回：</p>
+<div id="v7w535rr6l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 &amp;&amp; 2 &amp;&amp; 3 ); // 3，最后一个值</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">与运算 <code>&amp;&amp;</code> 在或运算 <code>||</code> 之前进行</span></div>
+            <div class="important__content"><p>与运算 <code>&amp;&amp;</code> 的优先级比或运算 <code>||</code> 要高。</p>
+<p>所以代码 <code>a &amp;&amp; b || c &amp;&amp; d</code> 跟 <code>&amp;&amp;</code> 表达式加了括号完全一样：<code>(a &amp;&amp; b) || (c &amp;&amp; d)</code>。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">不要用 <code>||</code> 或 <code>&amp;&amp;</code> 来取代 <code>if</code></span></div>
+            <div class="important__content"><p>有时候，有人会将与运算符 <code>&amp;&amp;</code> 作为“简化 <code>if</code>”的一种方式。</p>
+<p>例如：</p>
+<div id="j1xik5hog2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+(x &gt; 0) &amp;&amp; alert( 'Greater than zero!' );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>&amp;&amp;</code> 右边的代码只有运算抵达到那里才能被执行。也就是，当且仅当 <code>(x &gt; 0)</code> 为真。</p>
+<p>所以我们基本可以类似地得到：</p>
+<div id="paq2ex8xjt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+if (x &gt; 0) alert( 'Greater than zero!' );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>虽然使用 <code>&amp;&amp;</code> 写出的变体看起来更短，但 <code>if</code> 更明显，并且往往更具可读性。因此，我们建议根据每个语法结构的用途来使用：如果我们想要 <code>if</code>，就使用 <code>if</code>；如果我们想要逻辑与，就使用 <code>&amp;&amp;</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="fei" href="#fei">!（非）</a></h2><p>感叹符号 <code>!</code> 表示布尔非运算符。</p>
+<p>语法相当简单：</p>
+<div id="bjlnrytemb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>result = !value;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>逻辑非运算符接受一个参数，并按如下运作：</p>
+<ol>
+<li>将操作数转化为布尔类型：<code>true/false</code>。</li>
+<li>返回相反的值。</li>
+</ol>
+<p>例如：</p>
+<div id="n4f40xnic5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( !true ); // false
+alert( !0 ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>两个非运算 <code>!!</code> 有时候用来将某个值转化为布尔类型：</p>
+<div id="zlgk5laizr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( !!&quot;non-empty string&quot; ); // true
+alert( !!null ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>也就是，第一个非运算将该值转化为布尔类型并取反，第二个非运算再次取反。最后我们就得到了一个任意值到布尔值的转化。</p>
+<p>有更多详细的方法可以完成同样的事 —— 一个内建的 <code>Boolean</code> 函数：</p>
+<div id="6gewf0lmmk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( Boolean(&quot;non-empty string&quot;) ); // true
+alert( Boolean(null) ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>非运算符 <code>!</code> 的优先级在所有逻辑运算符里面最高，所以它总是在 <code>&amp;&amp;</code> 和 <code>||</code> 之前执行。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#huo-yun-suan-de-jie-guo-shi-shi-mo" name="huo-yun-suan-de-jie-guo-shi-shi-mo">或运算的结果是什么？</a></h3><a class="task__open-link" href="../task/alert-null-2-undefined/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>如下代码将会输出什么？</p>
+<div id="pk9r2c845w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( null || 2 || undefined );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>结果是 <code>2</code>，这是第一个真值。</p>
+<div id="o5lyrvnad0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( null || 2 || undefined );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#huo-yun-suan-he-alerts-de-jie-guo-shi-shi-mo" name="huo-yun-suan-he-alerts-de-jie-guo-shi-shi-mo">或运算和 alerts 的结果是什么？</a></h3><a class="task__open-link" href="../task/alert-or/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>下面的代码将会输出什么？</p>
+<div id="1ecrmg4o2r" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( alert(1) || 2 || alert(3) );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：首先是 <code>1</code>，然后是 <code>2</code>。</p>
+<div id="onxgx7jv9k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( alert(1) || 2 || alert(3) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对 <code>alert</code> 的调用没有返回值。或者说返回的是 <code>undefined</code>。</p>
+<ol>
+<li>第一个或运算 <code>||</code> 对它的左值 <code>alert(1)</code> 进行了计算。这就显示了第一条信息 <code>1</code>。</li>
+<li>函数 <code>alert</code> 返回了 <code>undefined</code>，所以或运算继续检查第二个操作数以寻找真值。</li>
+<li>第二个操作数 <code>2</code> 是真值，所以执行就中断了。<code>2</code> 被返回，并且被外层的 alert 显示。</li>
+</ol>
+<p>这里不会显示 <code>3</code>，因为运算没有抵达 <code>alert(3)</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yu-cao-zuo-de-jie-guo-shi-shi-mo" name="yu-cao-zuo-de-jie-guo-shi-shi-mo">与操作的结果是什么？</a></h3><a class="task__open-link" href="../task/alert-1-null-2/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面这段代码将会显示什么？</p>
+<div id="56c59ycp1s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 &amp;&amp; null &amp;&amp; 2 );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<code>null</code>，因为它是列表中第一个假值。</p>
+<div id="7un7wb3sr0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 &amp;&amp; null &amp;&amp; 2 );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yu-yun-suan-lian-jie-de-alerts-de-jie-guo-shi-shi-mo" name="yu-yun-suan-lian-jie-de-alerts-de-jie-guo-shi-shi-mo">与运算连接的 alerts 的结果是什么？</a></h3><a class="task__open-link" href="../task/alert-and/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>这段代码将会显示什么？</p>
+<div id="qy7txgm1kr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( alert(1) &amp;&amp; alert(2) );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<code>1</code>，然后 <code>undefined</code>。</p>
+<div id="2hxfrs092m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( alert(1) &amp;&amp; alert(2) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>alert</code> 返回了 <code>undefined</code>（它只展示消息，所以没有有意义的返回值）。</p>
+<p>因此，<code>&amp;&amp;</code> 计算了它左边的操作数（显示 <code>1</code>），然后立即停止了，因为 <code>undefined</code> 是一个假值。<code>&amp;&amp;</code> 就是寻找假值然后返回它，所以运算结束。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#huo-yun-suan-yu-yun-suan-huo-yun-suan-chuan-lian-de-jie-guo" name="huo-yun-suan-yu-yun-suan-huo-yun-suan-chuan-lian-de-jie-guo">或运算、与运算、或运算串联的结果</a></h3><a class="task__open-link" href="../task/alert-and-or/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>结果将会是什么？</p>
+<div id="azgjtvtwhy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( null || 2 &amp;&amp; 3 || 4 );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<code>3</code>。</p>
+<div id="wsb5u31npb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( null || 2 &amp;&amp; 3 || 4 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与运算 <code>&amp;&amp;</code> 的优先级比 <code>||</code> 高，所以它第一个被执行。</p>
+<p>结果是 <code>2 &amp;&amp; 3 = 3</code>，所以表达式变成了：</p>
+<div id="vt70tg9pdl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>null || 3 || 4</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在的结果就是第一个真值：<code>3</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jian-cha-zhi-shi-fou-wei-yu-fan-wei-qu-jian-nei" name="jian-cha-zhi-shi-fou-wei-yu-fan-wei-qu-jian-nei">检查值是否位于范围区间内</a></h3><a class="task__open-link" href="../task/check-if-in-range/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>写一个 <code>if</code> 条件句来检查 <code>age</code> 是否位于 <code>14</code> 到 <code>90</code> 的闭区间。</p>
+<p>“闭区间”意味着，<code>age</code> 的值可以取 <code>14</code> 或 <code>90</code>。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="6d187zrr2a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (age &gt;= 14 &amp;&amp; age &lt;= 90)</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jian-cha-zhi-shi-fou-wei-yu-fan-wei-zhi-wai" name="jian-cha-zhi-shi-fou-wei-yu-fan-wei-zhi-wai">检查值是否位于范围之外</a></h3><a class="task__open-link" href="../task/check-if-out-range/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>写一个 <code>if</code> 条件句，检查 <code>age</code> 是否不位于 <code>14</code> 到 <code>90</code> 的闭区间。</p>
+<p>创建两个表达式：第一个用非运算 <code>!</code>，第二个不用。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>第一个表达式：</p>
+<div id="vxcsgcbkch" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (!(age &gt;= 14 &amp;&amp; age &lt;= 90))</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第二个表达式：</p>
+<div id="cc84ggjw5o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (age &lt; 14 || age &gt; 90)</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yi-ge-guan-yu-if-de-wen-ti" name="yi-ge-guan-yu-if-de-wen-ti">一个关于 &quot;if&quot; 的问题</a></h3><a class="task__open-link" href="../task/if-question/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面哪一个 <code>alert</code> 将会被执行？</p>
+<p><code>if(...)</code> 语句内表达式的结果是什么？</p>
+<div id="a5e6i56gu3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (-1 || 0) alert( 'first' );
+if (-1 &amp;&amp; 0) alert( 'second' );
+if (null || -1 &amp;&amp; 1) alert( 'third' );</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：第一个和第三个将会被执行。</p>
+<p>详解：</p>
+<div id="vw8h07yuoo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 执行。
+// -1 || 0 的结果为 -1，真值
+if (-1 || 0) alert( 'first' );
+
+// 不执行。
+// -1 &amp;&amp; 0 = 0，假值
+if (-1 &amp;&amp; 0) alert( 'second' );
+
+// 执行
+// &amp;&amp; 运算的优先级比 || 高
+// 所以 -1 &amp;&amp; 1 先执行，给出如下运算链：
+// null || -1 &amp;&amp; 1  -&gt;  null || 1  -&gt;  1
+if (null || -1 &amp;&amp; 1) alert( 'third' );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#deng-lu-yan-zheng" name="deng-lu-yan-zheng">登陆验证</a></h3><a class="task__open-link" href="../task/check-login/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>实现使用 <code>prompt</code> 进行登陆校验的代码。</p>
+<p>如果访问者输入 <code>&quot;Admin&quot;</code>，那么使用 <code>prompt</code> 引导获取密码，如果输入的用户名为空或者按下了 <kbd class="shortcut">Esc</kbd> 键 —— 显示 “Canceled”，如果是其他字符串 —— 显示 “I don’t know you”。</p>
+<p>密码的校验规则如下：</p>
+<ul>
+<li>如果输入的是 “TheMaster”，显示 “Welcome!”，</li>
+<li>其他字符串 —— 显示 “Wrong password”，</li>
+<li>空字符串或取消了输入，显示 “Canceled.”。</li>
+</ul>
+<p>流程图：</p>
+<figure><div class="image" style="width:599px">
+      <div class="image__ratio" style="padding-top:82.30383973288815%"></div>
+      <object type="image/svg+xml" data="../task/check-login/ifelse_task.svg" width="599" height="493" class="image__image" data-use-theme>
+        <img src="../task/check-login/ifelse_task.svg" alt width="599" height="493">
+      </object>
+      </div></figure><p>请使用嵌套的 <code>if</code> 块。注意代码整体的可读性。</p>
+<p>提示：将空字符串输入，prompt 会获取到一个空字符串 <code>''</code>。Prompt 运行过程中，按下 <kbd class="shortcut">ESC</kbd> 键会得到 <code>null</code>。</p>
+<p><a href="#" onclick="event.preventDefault(); runDemo(this)">运行 demo</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="n6f5qivjzu" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userName = prompt(&quot;Who's there?&quot;, '');
+
+if (userName === 'Admin') {
+
+  let pass = prompt('Password?', '');
+
+  if (pass === 'TheMaster') {
+    alert( 'Welcome!' );
+  } else if (pass === '' || pass === null) {
+    alert( 'Canceled' );
+  } else {
+    alert( 'Wrong password' );
+  }
+
+} else if (userName === '' || userName === null) {
+  alert( 'Canceled' );
+} else {
+  alert( &quot;I don't know you&quot; );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意 <code>if</code> 块中水平方向的缩进。技术上是非必需的，但会增加代码的可读性。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../ifelse/index.html" data-tooltip="条件分支：if 和 '?'"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../nullish-coalescing-operator/index.html" data-tooltip="空值合并运算符 '??'"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/logical-operators","identifier":"\/logical-operators"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../first-steps/index.html">JavaScript 基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#huo">||（或）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#or-finds-the-first-truthy-value">或运算寻找第一个真值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yu">&amp;&amp;（与）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yu-yun-suan-xun-zhao-di-yi-ge-jia-zhi">与运算寻找第一个假值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fei">!（非）</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (9)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Flogical-operators" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/02-first-steps/11-logical-operators" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

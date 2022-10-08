@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">搜索：getElement*，querySelector*</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/searching-elements-dom"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="搜索：getElement*，querySelector*"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="搜索：getElement*，querySelector*"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/dom-navigation"><link rel="next" href="/basic-dom-node-properties"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="搜索：getElement*，querySelector*"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/searching-elements-dom"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/searching-elements-dom"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/searching-elements-dom"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/searching-elements-dom"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/searching-elements-dom"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/searching-elements-dom"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/searching-elements-dom"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/searching-elements-dom"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/searching-elements-dom">English</option><option value="https://es.javascript.info/searching-elements-dom">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/searching-elements-dom">Indonesia</option><option value="https://it.javascript.info/searching-elements-dom">Italiano</option><option value="https://ja.javascript.info/searching-elements-dom">日本語</option><option value="https://ko.javascript.info/searching-elements-dom">한국어</option><option value="https://learn.javascript.ru/searching-elements-dom">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/searching-elements-dom">Українська</option><option value="https://zh.javascript.info/searching-elements-dom" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="4" max="32" data-tooltip="第 4/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../document/index.html"><span>Document</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"Document","item":"https://zh.javascript.info/document"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 二月 2022"><div class="updated-at__content">4日 二月 2022</div></div></div><h1 class="main__header-title">搜索：getElement*，querySelector*</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="搜索：getElement*，querySelector*"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>当元素彼此靠得近时，DOM 导航属性（navigation property）非常有用。如果不是，那该怎么办？如何去获取页面上的任意元素？</p>
+<p>还有其他搜索方法。</p>
+<h2><a class="main__anchor" name="documentgetelementbyid-huo-zhe-zhi-shi-yong-id" href="#documentgetelementbyid-huo-zhe-zhi-shi-yong-id">document.getElementById 或者只使用 id</a></h2><p>如果一个元素有 <code>id</code> 特性（attribute），那我们就可以使用 <code>document.getElementById(id)</code> 方法获取该元素，无论它在哪里。</p>
+<p>例如：</p>
+<div id="rh2tu5p2gc" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem&quot;&gt;
+  &lt;div id=&quot;elem-content&quot;&gt;Element&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // 获取该元素
+  let elem = document.getElementById('elem');
+
+  // 将该元素背景改为红色
+  elem.style.background = 'red';
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>此外，还有一个通过 <code>id</code> 命名的全局变量，它引用了元素：</p>
+<div id="mc0grauqjn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:11,&quot;end&quot;:23}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:9,&quot;end&quot;:13}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem&quot;&gt;
+  &lt;div id=&quot;elem-content&quot;&gt;Element&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // elem 是对带有 id=&quot;elem&quot; 的 DOM 元素的引用
+  elem.style.background = 'red';
+
+  // id=&quot;elem-content&quot; 内有连字符，所以它不能成为一个变量
+  // ...但是我们可以通过使用方括号 window['elem-content'] 来访问它
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……除非我们声明一个具有相同名称的 JavaScript 变量，否则它具有优先权：</p>
+<div id="5f8g2qqerp" data-trusted="0" class="code-example" data-demo-height="0">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;elem&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  let elem = 5; // 现在 elem 是 5，而不是对 &lt;div id=&quot;elem&quot;&gt; 的引用
+
+  alert(elem); // 5
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">请不要使用以 id 命名的全局变量来访问元素</span></div>
+            <div class="important__content"><p><a href="http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem">在规范中</a> 对此行为进行了描述，所以它是一种标准。但这是注意考虑到兼容性才支持的。</p>
+<p>浏览器尝试通过混合 JavaScript 和 DOM 的命名空间来帮助我们。对于内联到 HTML 中的简单脚本来说，这还行，但是通常来说，这不是一件好事。因为这可能会造成命名冲突。另外，当人们阅读 JavaScript 代码且看不到对应的 HTML 时，变量的来源就会不明显。</p>
+<p>在本教程中，我们只会在元素来源非常明显时，为了简洁起见，才会使用 <code>id</code> 直接引用对应的元素。</p>
+<p>在实际开发中，<code>document.getElementById</code> 是首选方法。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>id</code> 必须是唯一的</span></div>
+            <div class="important__content"><p><code>id</code> 必须是唯一的。在文档中，只能有一个元素带有给定的 <code>id</code>。</p>
+<p>如果有多个元素都带有同一个 <code>id</code>，那么使用它的方法的行为是不可预测的，例如 <code>document.getElementById</code> 可能会随机返回其中一个元素。因此，请遵守规则，保持 <code>id</code> 的唯一性。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">只有 <code>document.getElementById</code>，没有 <code>anyElem.getElementById</code></span></div>
+            <div class="important__content"><p><code>getElementById</code> 方法只能被在 <code>document</code> 对象上调用。它会在整个文档中查找给定的 <code>id</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="querySelectorAll" href="#querySelectorAll">querySelectorAll</a></h2><p>到目前为止，最通用的方法是 <code>elem.querySelectorAll(css)</code>，它返回 <code>elem</code> 中与给定 CSS 选择器匹配的所有元素。</p>
+<p>在这里，我们查找所有为最后一个子元素的 <code>&lt;li&gt;</code> 元素：</p>
+<div id="7fcy47ncqx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul&gt;
+  &lt;li&gt;The&lt;/li&gt;
+  &lt;li&gt;test&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li&gt;has&lt;/li&gt;
+  &lt;li&gt;passed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  let elements = document.querySelectorAll('ul &gt; li:last-child');
+
+  for (let elem of elements) {
+    alert(elem.innerHTML); // &quot;test&quot;, &quot;passed&quot;
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个方法确实功能强大，因为可以使用任何 CSS 选择器。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">也可以使用伪类</span></div>
+            <div class="important__content"><p>CSS 选择器的伪类，例如 <code>:hover</code> 和 <code>:active</code> 也都是被支持的。例如，<code>document.querySelectorAll(':hover')</code> 将会返回鼠标指针正处于其上方的元素的集合（按嵌套顺序：从最外层 <code>&lt;html&gt;</code> 到嵌套最多的元素）。</p>
+</div></div>
+<h2><a class="main__anchor" name="querySelector" href="#querySelector">querySelector</a></h2><p><code>elem.querySelector(css)</code> 调用会返回给定 CSS 选择器的第一个元素。</p>
+<p>换句话说，结果与 <code>elem.querySelectorAll(css)[0]</code> 相同，但是后者会查找 <strong>所有</strong> 元素，并从中选取一个，而 <code>elem.querySelector</code> 只会查找一个。因此它在速度上更快，并且写起来更短。</p>
+<h2><a class="main__anchor" name="matches" href="#matches">matches</a></h2><p>之前的方法是搜索 DOM。</p>
+<p><a href="http://dom.spec.whatwg.org/#dom-element-matches">elem.matches(css)</a> 不会查找任何内容，它只会检查 <code>elem</code> 是否与给定的 CSS 选择器匹配。它返回 <code>true</code> 或 <code>false</code>。</p>
+<p>当我们遍历元素（例如数组或其他内容）并试图过滤那些我们感兴趣的元素时，这个方法会很有用。</p>
+<p>例如：</p>
+<div id="e7x5ze0x7y" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;http://example.com/file.zip&quot;&gt;...&lt;/a&gt;
+&lt;a href=&quot;http://ya.ru&quot;&gt;...&lt;/a&gt;
+
+&lt;script&gt;
+  // 不一定是 document.body.children，还可以是任何集合
+  for (let elem of document.body.children) {
+    if (elem.matches('a[href$=&quot;zip&quot;]')) {
+      alert(&quot;The archive reference: &quot; + elem.href );
+    }
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="closest" href="#closest">closest</a></h2><p>元素的祖先（ancestor）是：父级，父级的父级，它的父级等。祖先们一起组成了从元素到顶端的父级链。</p>
+<p><code>elem.closest(css)</code> 方法会查找与 CSS 选择器匹配的最近的祖先。<code>elem</code> 自己也会被搜索。</p>
+<p>换句话说，方法 <code>closest</code> 在元素中得到了提升，并检查每个父级。如果它与选择器匹配，则停止搜索并返回该祖先。</p>
+<p>例如：</p>
+<div id="wxgsdk619t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;h1&gt;Contents&lt;/h1&gt;
+
+&lt;div class=&quot;contents&quot;&gt;
+  &lt;ul class=&quot;book&quot;&gt;
+    &lt;li class=&quot;chapter&quot;&gt;Chapter 1&lt;/li&gt;
+    &lt;li class=&quot;chapter&quot;&gt;Chapter 1&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  let chapter = document.querySelector('.chapter'); // LI
+
+  alert(chapter.closest('.book')); // UL
+  alert(chapter.closest('.contents')); // DIV
+
+  alert(chapter.closest('h1')); // null（因为 h1 不是祖先）
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="getelementsby" href="#getelementsby">getElementsBy*</a></h2><p>还有其他通过标签，类等查找节点的方法。</p>
+<p>如今，它们大多已经成为了历史，因为 <code>querySelector</code> 功能更强大，写起来更短。</p>
+<p>因此，这里我们介绍它们只是为了完整起见，而你仍然可以在旧脚本中找到这些方法。</p>
+<ul>
+<li><code>elem.getElementsByTagName(tag)</code> 查找具有给定标签的元素，并返回它们的集合。<code>tag</code> 参数也可以是对于“任何标签”的星号 <code>&quot;*&quot;</code>。</li>
+<li><code>elem.getElementsByClassName(className)</code> 返回具有给定CSS类的元素。</li>
+<li><code>document.getElementsByName(name)</code> 返回在文档范围内具有给定 <code>name</code> 特性的元素。很少使用。</li>
+</ul>
+<p>例如：</p>
+<div id="73akpumg80" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 获取文档中的所有 div
+let divs = document.getElementsByTagName('div');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们查找 table 中的所有 <code>input</code> 标签：</p>
+<div id="np5us32j1n" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:19,&quot;end&quot;:19}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;table id=&quot;table&quot;&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Your age:&lt;/td&gt;
+
+    &lt;td&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;age&quot; value=&quot;young&quot; checked&gt; less than 18
+      &lt;/label&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;age&quot; value=&quot;mature&quot;&gt; from 18 to 50
+      &lt;/label&gt;
+      &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;age&quot; value=&quot;senior&quot;&gt; more than 60
+      &lt;/label&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;script&gt;
+  let inputs = table.getElementsByTagName('input');
+
+  for (let input of inputs) {
+    alert( input.value + ': ' + input.checked );
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">不要忘记字母 <code>&quot;s&quot;</code>！</span></div>
+            <div class="important__content"><p>新手开发者有时会忘记字符 <code>&quot;s&quot;</code>。也就是说，他们会调用 <code>getElementByTagName</code> 而不是 <code>getElement<b>s</b>ByTagName</code>。</p>
+<p><code>getElementById</code> 中没有字母 <code>&quot;s&quot;</code>，是因为它只返回单个元素。但是 <code>getElementsByTagName</code> 返回的是元素的集合，所以里面有 <code>&quot;s&quot;</code>。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">它返回的是一个集合，不是一个元素！</span></div>
+            <div class="important__content"><p>新手的另一个普遍的错误是写：</p>
+<div id="vmxjaxy3lc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 行不通
+document.getElementsByTagName('input').value = 5;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是行不通的，因为它需要的是一个 input 的 <strong>集合</strong>，并将值赋（assign）给它，而不是赋值给其中的一个元素。</p>
+<p>我们应该遍历集合或通过对应的索引来获取元素，然后赋值，如下所示：</p>
+<div id="h8a9bt2gtp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 应该可以运行（如果有 input）
+document.getElementsByTagName('input')[0].value = 5;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>查找 <code>.article</code> 元素：</p>
+<div id="bss59u1kr9" data-trusted="1" class="code-example" data-demo-height="50">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;form name=&quot;my-form&quot;&gt;
+  &lt;div class=&quot;article&quot;&gt;Article&lt;/div&gt;
+  &lt;div class=&quot;long article&quot;&gt;Long article&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  // 按 name 特性查找
+  let form = document.getElementsByName('my-form')[0];
+
+  // 在 form 中按 class 查找
+  let articles = form.getElementsByClassName('article');
+  alert(articles.length); // 2, found two elements with class &quot;article&quot;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="shi-shi-de-ji-he" href="#shi-shi-de-ji-he">实时的集合</a></h2><p>所有的 <code>&quot;getElementsBy*&quot;</code> 方法都会返回一个 <strong>实时的（live）</strong> 集合。这样的集合始终反映的是文档的当前状态，并且在文档发生更改时会“自动更新”。</p>
+<p>在下面的例子中，有两个脚本。</p>
+<ol>
+<li>第一个创建了对 <code>&lt;div&gt;</code> 的集合的引用。截至目前，它的长度是 <code>1</code>。</li>
+<li>第二个脚本在浏览器再遇到一个 <code>&lt;div&gt;</code> 时运行，所以它的长度是 <code>2</code>。</li>
+</ol>
+<div id="7wurzs5yxw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;First div&lt;/div&gt;
+
+&lt;script&gt;
+  let divs = document.getElementsByTagName('div');
+  alert(divs.length); // 1
+&lt;/script&gt;
+
+&lt;div&gt;Second div&lt;/div&gt;
+
+&lt;script&gt;
+  alert(divs.length); // 2
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>相反，<code>querySelectorAll</code> 返回的是一个 <strong>静态的</strong> 集合。就像元素的固定数组。</p>
+<p>如果我们使用它，那么两个脚本都会输出 <code>1</code>：</p>
+<div id="ku0nblmhxa" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div&gt;First div&lt;/div&gt;
+
+&lt;script&gt;
+  let divs = document.querySelectorAll('div');
+  alert(divs.length); // 1
+&lt;/script&gt;
+
+&lt;div&gt;Second div&lt;/div&gt;
+
+&lt;script&gt;
+  alert(divs.length); // 1
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们可以很容易地看到不同之处。在文档中出现新的 <code>div</code> 后，静态集合并没有增加。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>有 6 种主要的方法，可以在 DOM 中搜索元素节点：</p>
+<table>
+<thead>
+<tr>
+<td>方法名</td>
+<td>搜索方式</td>
+<td>可以在元素上调用？</td>
+<td>实时的？</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>querySelector</code></td>
+<td>CSS-selector</td>
+<td>✔</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>querySelectorAll</code></td>
+<td>CSS-selector</td>
+<td>✔</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>getElementById</code></td>
+<td><code>id</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>getElementsByName</code></td>
+<td><code>name</code></td>
+<td>-</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><code>getElementsByTagName</code></td>
+<td>tag or <code>'*'</code></td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td><code>getElementsByClassName</code></td>
+<td>class</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+</tbody>
+</table>
+<p>目前为止，最常用的是 <code>querySelector</code> 和 <code>querySelectorAll</code>，但是 <code>getElement(s)By*</code> 可能会偶尔有用，或者可以在旧脚本中找到。</p>
+<p>此外：</p>
+<ul>
+<li><code>elem.matches(css)</code> 用于检查 <code>elem</code> 与给定的 CSS 选择器是否匹配。</li>
+<li><code>elem.closest(css)</code> 用于查找与给定 CSS 选择器相匹配的最近的祖先。<code>elem</code> 本身也会被检查。</li>
+</ul>
+<p>让我们在这里提一下另一种用来检查子级与父级之间关系的方法，因为它有时很有用：</p>
+<ul>
+<li>如果 <code>elemB</code> 在 <code>elemA</code> 内（<code>elemA</code> 的后代）或者 <code>elemA==elemB</code>，<code>elemA.contains(elemB)</code> 将返回 true。</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sou-suo-yuan-su" name="sou-suo-yuan-su">搜索元素</a></h3><a class="task__open-link" href="../task/find-elements/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>这是带有表格（table）和表单（form）的文档。</p>
+<p>如何查找？……</p>
+<ol>
+<li>带有 <code>id=&quot;age-table&quot;</code> 的表格。</li>
+<li>表格内的所有 <code>label</code> 元素（应该有三个）。</li>
+<li>表格中的第一个 <code>td</code>（带有 “Age” 字段）。</li>
+<li>带有 <code>name=&quot;search&quot;</code> 的 <code>form</code>。</li>
+<li>表单中的第一个 <code>input</code>。</li>
+<li>表单中的最后一个 <code>input</code>。</li>
+</ol>
+<p>在一个单独的窗口中打开 <a href="../task/find-elements/table.html">table.html</a> 页面，并对此页面使用浏览器开发者工具。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>实现的方式有很多种。</p>
+<p>以下列举的是其中一些方法：</p>
+<div id="b3ld2nyi8l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 1. 带有 id=&quot;age-table&quot; 的表格。
+let table = document.getElementById('age-table')
+
+// 2. 表格内的所有 label 元素
+table.getElementsByTagName('label')
+// 或
+document.querySelectorAll('#age-table label')
+
+// 3. 表格中的第一个 td（带有 &quot;Age&quot; 字段）
+table.rows[0].cells[0]
+// 或
+table.getElementsByTagName('td')[0]
+// 或
+table.querySelector('td')
+
+// 4. 带有 name=&quot;search&quot; 的 form。
+// 假设文档中只有一个 name=&quot;search&quot; 的元素
+let form = document.getElementsByName('search')[0]
+// 或者，专门对于 form
+document.querySelector('form[name=&quot;search&quot;]')
+
+// 5. 表单中的第一个 input
+form.getElementsByTagName('input')[0]
+// 或
+form.querySelector('input')
+
+// 6. 表单中的最后一个 input
+let inputs = form.querySelectorAll('input') // 查找所有 input
+inputs[inputs.length-1] // 取出最后一个</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../dom-navigation/index.html" data-tooltip="遍历 DOM"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../basic-dom-node-properties/index.html" data-tooltip="节点属性：type，tag 和 content"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/searching-elements-dom","identifier":"\/searching-elements-dom"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../document/index.html">Document</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#documentgetelementbyid-huo-zhe-zhi-shi-yong-id">document.getElementById 或者只使用 id</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#querySelectorAll">querySelectorAll</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#querySelector">querySelector</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#matches">matches</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#closest">closest</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#getelementsby">getElementsBy*</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-shi-de-ji-he">实时的集合</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fsearching-elements-dom" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/1-document/04-searching-elements-dom" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

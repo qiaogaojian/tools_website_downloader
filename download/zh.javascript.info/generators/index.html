@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Generator</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/generators"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Generator"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Generator"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/generators-iterators"><link rel="next" href="/async-iterators-generators"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Generator"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/generators"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/generators"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/generators"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/generators"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/generators"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/generators"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/generators"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/generators"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/generators"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/generators"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/generators">عربي</option><option value="https://javascript.info/generators">English</option><option value="https://es.javascript.info/generators">Español</option><option value="https://fr.javascript.info/generators">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/generators">Italiano</option><option value="https://ja.javascript.info/generators">日本語</option><option value="https://ko.javascript.info/generators">한국어</option><option value="https://learn.javascript.ru/generators">Русский</option><option value="https://tr.javascript.info/generators">Türkçe</option><option value="https://uk.javascript.info/generators">Українська</option><option value="https://zh.javascript.info/generators" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="83" max="92" data-tooltip="第 83/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../generators-iterators/index.html"><span>Generator，高级 iteration</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Generator，高级 iteration","item":"https://zh.javascript.info/generators-iterators"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">Generator</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Generator"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>常规函数只会返回一个单一值（或者不返回任何值）。</p>
+<p>而 Generator 可以按需一个接一个地返回（“yield”）多个值。它们可与 <a href="../iterable/index.html">iterable</a> 完美配合使用，从而可以轻松地创建数据流。</p>
+<h2><a class="main__anchor" name="generator-han-shu" href="#generator-han-shu">Generator 函数</a></h2><p>要创建一个 generator，我们需要一个特殊的语法结构：<code>function*</code>，即所谓的 “generator function”。</p>
+<p>它看起来像这样：</p>
+<div id="szlnsayigt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Generator 函数与常规函数的行为不同。在此类函数被调用时，它不会运行其代码。而是返回一个被称为 “generator object” 的特殊对象，来管理执行流程。</p>
+<p>我们来看一个例子：</p>
+<div id="95iskjpadr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+// &quot;generator function&quot; 创建了一个 &quot;generator object&quot;
+let generator = generateSequence();
+alert(generator); // [object Generator]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>到目前为止，上面这段代码中的 <strong>函数体</strong> 代码还没有开始执行：</p>
+<figure><div class="image" style="width:353px">
+      <div class="image__ratio" style="padding-top:42.492917847025495%"></div>
+      <object type="image/svg+xml" data="../article/generators/generateSequence-1.svg" width="353" height="150" class="image__image" data-use-theme>
+        <img src="../article/generators/generateSequence-1.svg" alt width="353" height="150">
+      </object>
+      </div></figure><p>一个 generator 的主要方法就是 <code>next()</code>。当被调用时（译注：指 <code>next()</code> 方法），它会恢复上图所示的运行，执行直到最近的 <code>yield &lt;value&gt;</code> 语句（<code>value</code> 可以被省略，默认为 <code>undefined</code>）。然后函数执行暂停，并将产出的（yielded）值返回到外部代码。</p>
+<p><code>next()</code> 的结果始终是一个具有两个属性的对象：</p>
+<ul>
+<li><code>value</code>: 产出的（yielded）的值。</li>
+<li><code>done</code>: 如果 generator 函数已执行完成则为 <code>true</code>，否则为 <code>false</code>。</li>
+</ul>
+<p>例如，我们可以创建一个 generator 并获取其第一个产出的（yielded）值：</p>
+<div id="ln5sxu5lt3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+
+let one = generator.next();
+
+alert(JSON.stringify(one)); // {value: 1, done: false}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>截至目前，我们只获得了第一个值，现在函数执行处在第二行：</p>
+<figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <object type="image/svg+xml" data="../article/generators/generateSequence-2.svg" width="519" height="150" class="image__image" data-use-theme>
+        <img src="../article/generators/generateSequence-2.svg" alt width="519" height="150">
+      </object>
+      </div></figure><p>让我们再次调用 <code>generator.next()</code>。代码恢复执行并返回下一个 <code>yield</code> 的值：</p>
+<div id="ukzmcjzhgn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let two = generator.next();
+
+alert(JSON.stringify(two)); // {value: 2, done: false}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <object type="image/svg+xml" data="../article/generators/generateSequence-3.svg" width="519" height="150" class="image__image" data-use-theme>
+        <img src="../article/generators/generateSequence-3.svg" alt width="519" height="150">
+      </object>
+      </div></figure><p>如果我们第三次调用 <code>generator.next()</code>，代码将会执行到 <code>return</code> 语句，此时就完成这个函数的执行：</p>
+<div id="ibn4kj3i5v" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:44,&quot;end&quot;:54}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let three = generator.next();
+
+alert(JSON.stringify(three)); // {value: 3, done: true}</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:519px">
+      <div class="image__ratio" style="padding-top:28.901734104046245%"></div>
+      <object type="image/svg+xml" data="../article/generators/generateSequence-4.svg" width="519" height="150" class="image__image" data-use-theme>
+        <img src="../article/generators/generateSequence-4.svg" alt width="519" height="150">
+      </object>
+      </div></figure><p>现在 generator 执行完成。我们通过 <code>done:true</code> 可以看出来这一点，并且将 <code>value:3</code> 处理为最终结果。</p>
+<p>再对 <code>generator.next()</code> 进行新的调用不再有任何意义。如果我们这样做，它将返回相同的对象：<code>{done: true}</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>function* f(…)</code> 或 <code>function *f(…)</code>？</span></div>
+            <div class="important__content"><p>这两种语法都是对的。</p>
+<p>但是通常更倾向于第一种语法，因为星号 <code>*</code> 表示它是一个 generator 函数，它描述的是函数种类而不是名称，因此 <code>*</code> 应该和 <code>function</code> 关键字紧贴一起。</p>
+</div></div>
+<h2><a class="main__anchor" name="generator-shi-ke-die-dai-de" href="#generator-shi-ke-die-dai-de">Generator 是可迭代的</a></h2><p>当你看到 <code>next()</code> 方法，或许你已经猜到了 generator 是 <a href="../iterable/index.html">可迭代（iterable）</a>的。（译注：<code>next()</code> 是 iterator 的必要方法）</p>
+<p>我们可以使用 <code>for..of</code> 循环遍历它所有的值：</p>
+<div id="yfo3zxacm1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+  alert(value); // 1，然后是 2
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>for..of</code> 写法是不是看起来比 <code>.next().value</code> 优雅多了？</p>
+<p>……但是请注意：上面这个例子会先显示 <code>1</code>，然后是 <code>2</code>，然后就没了。它不会显示 <code>3</code>！</p>
+<p>这是因为当 <code>done: true</code> 时，<code>for..of</code> 循环会忽略最后一个 <code>value</code>。因此，如果我们想要通过 <code>for..of</code> 循环显示所有的结果，我们必须使用 <code>yield</code> 返回它们：</p>
+<div id="uvq7za8u6x" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+let generator = generateSequence();
+
+for(let value of generator) {
+  alert(value); // 1，然后是 2，然后是 3
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因为 generator 是可迭代的，我们可以使用 iterator 的所有相关功能，例如：spread 语法 <code>...</code>：</p>
+<div id="grjv3ivptl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+let sequence = [0, ...generateSequence()];
+
+alert(sequence); // 0, 1, 2, 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上面这段代码中，<code>...generateSequence()</code> 将可迭代的 generator 对象转换为了一个数组（关于 spread 语法的更多细节请见 <a href="../rest-parameters-spread/index.html#spread-syntax">Rest 参数与 Spread 语法</a>）。</p>
+<h2><a class="main__anchor" name="shi-yong-generator-jin-hang-die-dai" href="#shi-yong-generator-jin-hang-die-dai">使用 generator 进行迭代</a></h2><p>在前面的 <a href="../iterable/index.html">Iterable object（可迭代对象）</a> 一章中，我们创建了一个可迭代的 <code>range</code> 对象，它返回 <code>from..to</code> 的值。</p>
+<p>现在，我们回忆一下代码：</p>
+<div id="wcuvd3dd5j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  from: 1,
+  to: 5,
+
+  // for..of range 在一开始就调用一次这个方法
+  [Symbol.iterator]() {
+    // ...它返回 iterator object：
+    // 后续的操作中，for..of 将只针对这个对象，并使用 next() 向它请求下一个值
+    return {
+      current: this.from,
+      last: this.to,
+
+      // for..of 循环在每次迭代时都会调用 next()
+      next() {
+        // 它应该以对象 {done:.., value :...} 的形式返回值
+        if (this.current &lt;= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+// 迭代整个 range 对象，返回从 `range.from` 到 `range.to` 范围的所有数字
+alert([...range]); // 1,2,3,4,5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以通过提供一个 generator 函数作为 <code>Symbol.iterator</code>，来使用 generator 进行迭代：</p>
+<p>下面是一个相同的 <code>range</code>，但紧凑得多：</p>
+<div id="6wc7xh8piq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() { // [Symbol.iterator]: function*() 的简写形式
+    for(let value = this.from; value &lt;= this.to; value++) {
+      yield value;
+    }
+  }
+};
+
+alert( [...range] ); // 1,2,3,4,5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>之所以代码正常工作，是因为 <code>range[Symbol.iterator]()</code> 现在返回一个 generator，而 generator 方法正是 <code>for..of</code> 所期望的：</p>
+<ul>
+<li>它具有 <code>.next()</code> 方法</li>
+<li>它以 <code>{value: ..., done: true/false}</code> 的形式返回值</li>
+</ul>
+<p>当然，这不是巧合。Generator 被添加到 JavaScript 语言中是有对 iterator 的考量的，以便更容易地实现 iterator。</p>
+<p>带有 generator 的变体比原来的 <code>range</code> 迭代代码简洁得多，并且保持了相同的功能。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Generator 可以永远产出（yield）值</span></div>
+            <div class="important__content"><p>在上面的示例中，我们生成了有限序列，但是我们也可以创建一个生成无限序列的 generator，它可以一直产出（yield）值。例如，无序的伪随机数序列。</p>
+<p>这种情况下肯定需要在 generator 的 <code>for..of</code> 循环中添加一个 <code>break</code>（或者 <code>return</code>）。否则循环将永远重复下去并挂起。</p>
+</div></div>
+<h2><a class="main__anchor" name="generator-zu-he" href="#generator-zu-he">Generator 组合</a></h2><p>Generator 组合（composition）是 generator 的一个特殊功能，它允许透明地（transparently）将 generator 彼此“嵌入（embed）”到一起。</p>
+<p>例如，我们有一个生成数字序列的函数：</p>
+<div id="udpawp778h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+  for (let i = start; i &lt;= end; i++) yield i;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，我们想重用它来生成一个更复杂的序列：</p>
+<ul>
+<li>首先是数字 <code>0..9</code>（字符代码为 48…57），</li>
+<li>接下来是大写字母 <code>A..Z</code>（字符代码为 65…90）</li>
+<li>接下来是小写字母 <code>a...z</code>（字符代码为 97…122）</li>
+</ul>
+<p>我们可以对这个序列进行应用，例如，我们可以从这个序列中选择字符来创建密码（也可以添加语法字符），但让我们先生成它。</p>
+<p>在常规函数中，要合并其他多个函数的结果，我们需要调用它们，存储它们的结果，最后再将它们合并到一起。</p>
+<p>对于 generator 而言，我们可以使用 <code>yield*</code> 这个特殊的语法来将一个 generator “嵌入”（组合）到另一个 generator 中：</p>
+<p>组合的 generator 的例子：</p>
+<div id="p34klipv98" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+  for (let i = start; i &lt;= end; i++) yield i;
+}
+
+function* generatePasswordCodes() {
+
+  // 0..9
+  yield* generateSequence(48, 57);
+
+  // A..Z
+  yield* generateSequence(65, 90);
+
+  // a..z
+  yield* generateSequence(97, 122);
+
+}
+
+let str = '';
+
+for(let code of generatePasswordCodes()) {
+  str += String.fromCharCode(code);
+}
+
+alert(str); // 0..9A..Za..z</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>yield*</code> 指令将执行 <strong>委托</strong> 给另一个 generator。这个术语意味着 <code>yield* gen</code> 在 generator <code>gen</code> 上进行迭代，并将其产出（yield）的值透明地（transparently）转发到外部。就好像这些值就是由外部的 generator yield 的一样。</p>
+<p>执行结果与我们内联嵌套 generator 中的代码获得的结果相同：</p>
+<div id="j66j18m19y" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:13}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generateSequence(start, end) {
+  for (let i = start; i &lt;= end; i++) yield i;
+}
+
+function* generateAlphaNum() {
+
+  // yield* generateSequence(48, 57);
+  for (let i = 48; i &lt;= 57; i++) yield i;
+
+  // yield* generateSequence(65, 90);
+  for (let i = 65; i &lt;= 90; i++) yield i;
+
+  // yield* generateSequence(97, 122);
+  for (let i = 97; i &lt;= 122; i++) yield i;
+
+}
+
+let str = '';
+
+for(let code of generateAlphaNum()) {
+  str += String.fromCharCode(code);
+}
+
+alert(str); // 0..9A..Za..z</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Generator 组合（composition）是将一个 generator 流插入到另一个 generator 流的自然的方式。它不需要使用额外的内存来存储中间结果。</p>
+<h2><a class="main__anchor" name="yield-shi-yi-tiao-shuang-xiang-lu" href="#yield-shi-yi-tiao-shuang-xiang-lu">“yield” 是一条双向路</a></h2><p>目前看来，generator 和可迭代对象类似，都具有用来生成值的特殊语法。但实际上，generator 更加强大且灵活。</p>
+<p>这是因为 <code>yield</code> 是一条双向路（two-way street）：它不仅可以向外返回结果，而且还可以将外部的值传递到 generator 内。</p>
+<p>调用 <code>generator.next(arg)</code>，我们就能将参数 <code>arg</code> 传递到 generator 内部。这个 <code>arg</code> 参数会变成 <code>yield</code> 的结果。</p>
+<p>我们来看一个例子：</p>
+<div id="r800w3aifh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  // 向外部代码传递一个问题并等待答案
+  let result = yield &quot;2 + 2 = ?&quot;; // (*)
+
+  alert(result);
+}
+
+let generator = gen();
+
+let question = generator.next().value; // &lt;-- yield 返回的 value
+
+generator.next(4); // --&gt; 将结果传递到 generator 中</code></pre>
+        </div>
+      </div>
+      
+      </div><figure><div class="image" style="width:559px">
+      <div class="image__ratio" style="padding-top:38.64042933810376%"></div>
+      <object type="image/svg+xml" data="../article/generators/genYield2.svg" width="559" height="216" class="image__image" data-use-theme>
+        <img src="../article/generators/genYield2.svg" alt width="559" height="216">
+      </object>
+      </div></figure><ol>
+<li>第一次调用 <code>generator.next()</code> 应该是不带参数的（如果带参数，那么该参数会被忽略）。它开始执行并返回第一个 <code>yield &quot;2 + 2 = ?&quot;</code> 的结果。此时，generator 执行暂停，而停留在 <code>(*)</code> 行上。</li>
+<li>然后，正如上面图片中显示的那样，<code>yield</code> 的结果进入调用代码中的 <code>question</code> 变量。</li>
+<li>在 <code>generator.next(4)</code>，generator 恢复执行，并获得了 <code>4</code> 作为结果：<code>let result = 4</code>。</li>
+</ol>
+<p>请注意，外部代码不必立即调用 <code>next(4)</code>。外部代码可能需要一些时间。这没问题：generator 将等待它。</p>
+<p>例如：</p>
+<div id="kq619jrge2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 一段时间后恢复 generator
+setTimeout(() =&gt; generator.next(4), 1000);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以看到，与常规函数不同，generator 和调用 generator 的代码可以通过在 <code>next/yield</code> 中传递值来交换结果。</p>
+<p>为了讲得更浅显易懂，我们来看另一个例子，其中包含了许多调用：</p>
+<div id="dlh3x3b33w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  let ask1 = yield &quot;2 + 2 = ?&quot;;
+
+  alert(ask1); // 4
+
+  let ask2 = yield &quot;3 * 3 = ?&quot;
+
+  alert(ask2); // 9
+}
+
+let generator = gen();
+
+alert( generator.next().value ); // &quot;2 + 2 = ?&quot;
+
+alert( generator.next(4).value ); // &quot;3 * 3 = ?&quot;
+
+alert( generator.next(9).done ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>执行图：</p>
+<figure><div class="image" style="width:461px">
+      <div class="image__ratio" style="padding-top:55.9652928416486%"></div>
+      <object type="image/svg+xml" data="../article/generators/genYield2-2.svg" width="461" height="258" class="image__image" data-use-theme>
+        <img src="../article/generators/genYield2-2.svg" alt width="461" height="258">
+      </object>
+      </div></figure><ol>
+<li>第一个 <code>.next()</code> 启动了 generator 的执行……执行到达第一个 <code>yield</code>。</li>
+<li>结果被返回到外部代码中。</li>
+<li>第二个 <code>.next(4)</code> 将 <code>4</code> 作为第一个 <code>yield</code> 的结果传递回 generator 并恢复 generator 的执行。</li>
+<li>……执行到达第二个 <code>yield</code>，它变成了 generator 调用的结果。</li>
+<li>第三个 <code>next(9)</code> 将 <code>9</code> 作为第二个 <code>yield</code> 的结果传入 generator 并恢复 generator 的执行，执行现在到达了函数的最底部，所以返回 <code>done: true</code>。</li>
+</ol>
+<p>这个过程就像“乒乓球”游戏。每个 <code>next(value)</code>（除了第一个）传递一个值到 generator 中，该值变成了当前 <code>yield</code> 的结果，然后获取下一个 <code>yield</code> 的结果。</p>
+<h2><a class="main__anchor" name="generatorthrow" href="#generatorthrow">generator.throw</a></h2><p>正如我们在上面的例子中观察到的那样，外部代码可能会将一个值传递到 generator，作为 <code>yield</code> 的结果。</p>
+<p>……但是它也可以在那里发起（抛出）一个 error。这很自然，因为 error 本身也是一种结果。</p>
+<p>要向 <code>yield</code> 传递一个 error，我们应该调用 <code>generator.throw(err)</code>。在这种情况下，<code>err</code> 将被抛到对应的 <code>yield</code> 所在的那一行。</p>
+<p>例如，<code>&quot;2 + 2?&quot;</code> 的 yield 导致了一个 error：</p>
+<div id="otblg3l2tx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* gen() {
+  try {
+    let result = yield &quot;2 + 2 = ?&quot;; // (1)
+
+    alert(&quot;The execution does not reach here, because the exception is thrown above&quot;);
+  } catch(e) {
+    alert(e); // 显示这个 error
+  }
+}
+
+let generator = gen();
+
+let question = generator.next().value;
+
+generator.throw(new Error(&quot;The answer is not found in my database&quot;)); // (2)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 <code>(2)</code> 行引入到 generator 的 error 导致了在 <code>(1)</code> 行中的 <code>yield</code> 出现了一个异常。在上面这个例子中，<code>try..catch</code> 捕获并显示了这个 error。</p>
+<p>如果我们没有捕获它，那么就会像其他的异常一样，它将从 generator “掉出”到调用代码中。</p>
+<p>调用代码的当前行是 <code>generator.throw</code> 所在的那一行，标记为 <code>(2)</code>。所以我们可以在这里捕获它，就像这样：</p>
+<div id="xwkzl51ea9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* generate() {
+  let result = yield &quot;2 + 2 = ?&quot;; // 这行出现 error
+}
+
+let generator = generate();
+
+let question = generator.next().value;
+
+try {
+  generator.throw(new Error(&quot;The answer is not found in my database&quot;));
+} catch(e) {
+  alert(e); // 显示这个 error
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们没有在那里捕获这个 error，那么，通常，它会掉入外部调用代码（如果有），如果在外部也没有被捕获，则会杀死脚本。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><ul>
+<li>Generator 是通过 generator 函数 <code>function* f(…) {…}</code> 创建的。</li>
+<li>在 generator（仅在）内部，存在 <code>yield</code> 操作。</li>
+<li>外部代码和 generator 可能会通过 <code>next/yield</code> 调用交换结果。</li>
+</ul>
+<p>在现代 JavaScript 中，generator 很少被使用。但有时它们会派上用场，因为函数在执行过程中与调用代码交换数据的能力是非常独特的。而且，当然，它们非常适合创建可迭代对象。</p>
+<p>并且，在下一章我们将会学习 async generator，它们被用于在 <code>for await ... of</code> 循环中读取异步生成的数据流（例如，通过网络分页提取 (paginated fetches over a network)）。</p>
+<p>在 Web 编程中，我们经常使用数据流，因此这是另一个非常重要的使用场景。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#wei-sui-ji-generator" name="wei-sui-ji-generator">伪随机 generator</a></h3><a class="task__open-link" href="../task/pseudo-random-generator/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>在很多地方我们都需要随机数据。</p>
+<p>其中之一就是测试。我们可能需要随机数据：文本，数字等，以便很好地进行测试。</p>
+<p>在 JavaScript 中，我们可以使用 <code>Math.random()</code>。但是如果什么地方出现了问题，我们希望能使用完全相同的数据进行重复测试。</p>
+<p>为此，我们可以使用所谓的“种子伪随机（seeded pseudo-random）generator”。它们将“种子（seed）”作为第一个值，然后使用公式生成下一个值。以便相同的种子（seed）可以产出（yield）相同的序列，因此整个数据流很容易复现。我们只需要记住种子并重复它即可。</p>
+<p>这样的公式的一个示例如下，它可以生成一些均匀分布的值：</p>
+<div id="i6j7p80ymc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>next = previous * 16807 % 2147483647</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们使用 <code>1</code> 作为种子，生成的值将会是：</p>
+<ol>
+<li><code>16807</code></li>
+<li><code>282475249</code></li>
+<li><code>1622650073</code></li>
+<li>……等……</li>
+</ol>
+<p>这里的任务是创建一个 generator 函数 <code>pseudoRandom(seed)</code>，它将 <code>seed</code> 作为参数并使用此公式创建 generator。</p>
+<p>使用范例：</p>
+<div id="5tqtuyzgfo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let generator = pseudoRandom(1);
+
+alert(generator.next().value); // 16807
+alert(generator.next().value); // 282475249
+alert(generator.next().value); // 1622650073</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Oijqf6R8uHcD9m6k?p=preview" target="_blank" data-plunk-id="Oijqf6R8uHcD9m6k">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="5bbrz91upr" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function* pseudoRandom(seed) {
+  let value = seed;
+
+  while(true) {
+    value = value * 16807 % 2147483647
+    yield value;
+  }
+
+};
+
+let generator = pseudoRandom(1);
+
+alert(generator.next().value); // 16807
+alert(generator.next().value); // 282475249
+alert(generator.next().value); // 1622650073</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，也可以使用常规函数来完成相同的操作，就像这样：</p>
+<div id="68lebkzddt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pseudoRandom(seed) {
+  let value = seed;
+
+  return function() {
+    value = value * 16807 % 2147483647;
+    return value;
+  }
+}
+
+let generator = pseudoRandom(1);
+
+alert(generator()); // 16807
+alert(generator()); // 282475249
+alert(generator()); // 1622650073</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这也可以工作。但是这样我们就失去了使用 <code>for..of</code> 来进行迭代以及使用 generator 组合（composition）的能力，这些可能在其他地方很有用。</p>
+<p><a href="https://plnkr.co/edit/w6vOJDn2ZyrDUcOB?p=preview" target="_blank" data-plunk-id="w6vOJDn2ZyrDUcOB">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../generators-iterators/index.html" data-tooltip="Generator，高级 iteration"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../async-iterators-generators/index.html" data-tooltip="异步迭代和 generator"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/generators","identifier":"\/generators"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../generators-iterators/index.html">Generator，高级 iteration</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#generator-han-shu">Generator 函数</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#generator-shi-ke-die-dai-de">Generator 是可迭代的</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-generator-jin-hang-die-dai">使用 generator 进行迭代</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#generator-zu-he">Generator 组合</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yield-shi-yi-tiao-shuang-xiang-lu">“yield” 是一条双向路</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#generatorthrow">generator.throw</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fgenerators" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/12-generators-iterators/1-generators" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

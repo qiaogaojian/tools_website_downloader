@@ -1,0 +1,1092 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">变量作用域，闭包</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/closure"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="变量作用域，闭包"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="变量作用域，闭包"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/rest-parameters-spread"><link rel="next" href="/var"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="变量作用域，闭包"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/closure"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/closure"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/closure"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/closure"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/closure"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/closure"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/closure"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/closure"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/closure"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/closure"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/closure"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/closure">عربي</option><option value="https://javascript.info/closure">English</option><option value="https://es.javascript.info/closure">Español</option><option value="https://fr.javascript.info/closure">Français</option><option value="https://id.javascript.info/closure">Indonesia</option><option value="https://it.javascript.info/closure">Italiano</option><option value="https://ja.javascript.info/closure">日本語</option><option value="https://ko.javascript.info/closure">한국어</option><option value="https://learn.javascript.ru/closure">Русский</option><option value="https://tr.javascript.info/closure">Türkçe</option><option value="https://uk.javascript.info/closure">Українська</option><option value="https://zh.javascript.info/closure" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="51" max="92" data-tooltip="第 51/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../advanced-functions/index.html"><span>函数进阶内容</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"函数进阶内容","item":"https://zh.javascript.info/advanced-functions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">变量作用域，闭包</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="变量作用域，闭包"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>JavaScript 是一种非常面向函数的语言。它给了我们很大的自由度。在 JavaScript 中，我们可以随时创建函数，可以将函数作为参数传递给另一个函数，并在完全不同的代码位置进行调用。</p>
+<p>我们已经知道函数可以访问其外部的变量。</p>
+<p>但是，如果在函数被创建之后，外部变量发生了变化会怎样？函数会获得新值还是旧值？</p>
+<p>如果将函数作为参数传递并在代码中的另一个位置调用它，该函数将访问的是新位置的外部变量吗？</p>
+<p>让我们通过本文来学习这些相关知识，以了解在这些场景以及更复杂的场景下到底会发生什么。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">我们将在这探讨一下 <code>let/const</code></span></div>
+            <div class="important__content"><p>在 JavaScript 中，有三种声明变量的方式：<code>let</code>，<code>const</code>（现代方式），<code>var</code>（过去留下来的方式）。</p>
+<ul>
+<li>在本文的示例中，我们将使用 <code>let</code> 声明变量。</li>
+<li>用 <code>const</code> 声明的变量的行为也相同（译注：与 <code>let</code> 在作用域等特性上是相同的），因此，本文也涉及用 <code>const</code> 进行变量声明。</li>
+<li>旧的 <code>var</code> 与上面两个有着明显的区别，我们将在 <a href="../var/index.html">旧时的 &quot;var&quot;</a> 中详细介绍。</li>
+</ul>
+</div></div>
+<h2><a class="main__anchor" name="dai-ma-kuai" href="#dai-ma-kuai">代码块</a></h2><p>如果在代码块 <code>{...}</code> 内声明了一个变量，那么这个变量只在该代码块内可见。</p>
+<p>例如：</p>
+<div id="taadtkbozf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{
+  // 使用在代码块外不可见的局部变量做一些工作
+
+  let message = &quot;Hello&quot;; // 只在此代码块内可见
+
+  alert(message); // Hello
+}
+
+alert(message); // Error: message is not defined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以使用它来隔离一段代码，该段代码执行自己的任务，并使用仅属于自己的变量：</p>
+<div id="qrar8xcqbl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{
+  // 显示 message
+  let message = &quot;Hello&quot;;
+  alert(message);
+}
+
+{
+  // 显示另一个 message
+  let message = &quot;Goodbye&quot;;
+  alert(message);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">这里如果没有代码块则会报错</span></div>
+            <div class="important__content"><p>请注意，如果我们使用 <code>let</code> 对已存在的变量进行重复声明，如果对应的变量没有单独的代码块，则会出现错误：</p>
+<div id="g9696rwj4d" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 显示 message
+let message = &quot;Hello&quot;;
+alert(message);
+
+// 显示另一个 message
+let message = &quot;Goodbye&quot;; // Error: variable already declared
+alert(message);</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p>对于 <code>if</code>，<code>for</code> 和 <code>while</code> 等，在 <code>{...}</code> 中声明的变量也仅在内部可见：</p>
+<div id="nqa57gjd1q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (true) {
+  let phrase = &quot;Hello!&quot;;
+
+  alert(phrase); // Hello!
+}
+
+alert(phrase); // Error, no such variable!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这儿，当 <code>if</code> 执行完毕，则下面的 <code>alert</code> 将看不到 <code>phrase</code>，因此会出现错误。（译注：就算下面的 <code>alert</code> 想在 <code>if</code> 没执行完成时去取 <code>phrase</code>（虽然这种情况不可能发生）也是取不到的，因为 <code>let</code> 声明的变量在代码块外不可见。）</p>
+<p>太好了，因为这就允许我们创建特定于 <code>if</code> 分支的块级局部变量。</p>
+<p>对于 <code>for</code> 和 <code>while</code> 循环也是如此：</p>
+<div id="glq31o0t6y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let i = 0; i &lt; 3; i++) {
+  // 变量 i 仅在这个 for 循环的内部可见
+  alert(i); // 0，然后是 1，然后是 2
+}
+
+alert(i); // Error, no such variable</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从视觉上看，<code>let i</code> 位于 <code>{...}</code> 之外。但是 <code>for</code> 构造在这里很特殊：在其中声明的变量被视为块的一部分。</p>
+<h2><a class="main__anchor" name="qian-tao-han-shu" href="#qian-tao-han-shu">嵌套函数</a></h2><p>如果一个函数是在另一个函数中创建的，该函数就被称为“嵌套”函数。</p>
+<p>在 JavaScript 中很容易实现这一点。</p>
+<p>我们可以使用嵌套来组织代码，比如这样：</p>
+<div id="y0a6072rpj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sayHiBye(firstName, lastName) {
+
+  // 辅助嵌套函数使用如下
+  function getFullName() {
+    return firstName + &quot; &quot; + lastName;
+  }
+
+  alert( &quot;Hello, &quot; + getFullName() );
+  alert( &quot;Bye, &quot; + getFullName() );
+
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里创建的 <strong>嵌套</strong> 函数 <code>getFullName()</code> 是为了更加方便。它可以访问外部变量，因此可以返回全名。嵌套函数在 JavaScript 中很常见。</p>
+<p>更有意思的是，可以返回一个嵌套函数：作为一个新对象的属性或作为结果返回。之后可以在其他地方使用。不论在哪里调用，它仍然可以访问相同的外部变量。</p>
+<p>下面的 <code>makeCounter</code> 创建了一个 “counter” 函数，该函数在每次调用时返回下一个数字：</p>
+<div id="oyhs7380au" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return count++;
+  };
+}
+
+let counter = makeCounter();
+
+alert( counter() ); // 0
+alert( counter() ); // 1
+alert( counter() ); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>尽管很简单，但稍加变型就具有很强的实际用途，比如，用作 <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">随机数生成器</a> 以生成用于自动化测试的随机数值。</p>
+<p>这是如何运作的呢？如果我们创建多个计数器，它们会是独立的吗？这里的变量是怎么回事？</p>
+<p>理解这些内容对于掌握 JavaScript 的整体知识很有帮助，并且对于应对更复杂的场景也很有益处。因此，让我们继续深入探究。</p>
+<h2><a class="main__anchor" name="ci-fa-huan-jing" href="#ci-fa-huan-jing">词法环境</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">前方高能！</span></div>
+            <div class="important__content"><p>一大波深入的技术讲解即将到来。</p>
+<p>尽管我很想避免编程语言的一些底层细节，但是如果没有它们，我们就无法完整地理解词法作用域，所以我们这就开始吧！</p>
+</div></div>
+<p>为了使内容更清晰，这里将分步骤进行讲解。</p>
+<h3><a class="main__anchor" name="step-1-bian-liang" href="#step-1-bian-liang">Step 1. 变量</a></h3><p>在 JavaScript 中，每个运行的函数，代码块 <code>{...}</code> 以及整个脚本，都有一个被称为 <strong>词法环境（Lexical Environment）</strong> 的内部（隐藏）的关联对象。</p>
+<p>词法环境对象由两部分组成：</p>
+<ol>
+<li><strong>环境记录（Environment Record）</strong> —— 一个存储所有局部变量作为其属性（包括一些其他信息，例如 <code>this</code> 的值）的对象。</li>
+<li>对 <strong>外部词法环境</strong> 的引用，与外部代码相关联。</li>
+</ol>
+<p>一个“变量”只是 <strong>环境记录</strong> 这个特殊的内部对象的一个属性。“获取或修改变量”意味着“获取或修改词法环境的一个属性”。</p>
+<p>举个例子，这段没有函数的简单的代码中只有一个词法环境：</p>
+<figure><div class="image" style="width:492px">
+      <div class="image__ratio" style="padding-top:21.951219512195124%"></div>
+      <object type="image/svg+xml" data="../article/closure/lexical-environment-global.svg" width="492" height="108" class="image__image" data-use-theme>
+        <img src="../article/closure/lexical-environment-global.svg" alt width="492" height="108">
+      </object>
+      </div></figure><p>这就是所谓的与整个脚本相关联的 <strong>全局</strong> 词法环境。</p>
+<p>在上面的图片中，矩形表示环境记录（变量存储），箭头表示外部引用。全局词法环境没有外部引用，所以箭头指向了 <code>null</code>。</p>
+<p>随着代码开始并继续运行，词法环境发生了变化。</p>
+<p>这是更长的代码：</p>
+<figure><div class="image" style="width:550px">
+      <div class="image__ratio" style="padding-top:27.27272727272727%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-variable-phrase.svg" width="550" height="150" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-variable-phrase.svg" alt width="550" height="150">
+      </object>
+      </div></figure><p>右侧的矩形演示了执行过程中全局词法环境的变化：</p>
+<ol>
+<li>当脚本开始运行，词法环境预先填充了所有声明的变量。
+<ul>
+<li>最初，它们处于“未初始化（Uninitialized）”状态。这是一种特殊的内部状态，这意味着引擎知道变量，但是在用 <code>let</code> 声明前，不能引用它。几乎就像变量不存在一样。</li>
+</ul>
+</li>
+<li>然后 <code>let phrase</code> 定义出现了。它尚未被赋值，因此它的值为 <code>undefined</code>。从这一刻起，我们就可以使用变量了。</li>
+<li><code>phrase</code> 被赋予了一个值。</li>
+<li><code>phrase</code> 的值被修改。</li>
+</ol>
+<p>现在看起来都挺简单的，是吧？</p>
+<ul>
+<li>变量是特殊内部对象的属性，与当前正在执行的（代码）块/函数/脚本有关。</li>
+<li>操作变量实际上是操作该对象的属性。</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">词法环境是一个规范对象</span></div>
+            <div class="important__content"><p>“词法环境”是一个规范对象（specification object）：它仅仅是存在于 <a href="https://tc39.es/ecma262/#sec-lexical-environments">编程语言规范</a> 中的“理论上”存在的，用于描述事物如何运作的对象。我们无法在代码中获取该对象并直接对其进行操作。</p>
+<p>但 JavaScript 引擎同样可以优化它，比如清除未被使用的变量以节省内存和执行其他内部技巧等，但显性行为应该是和上述的无差。</p>
+</div></div>
+<h3><a class="main__anchor" name="step-2-han-shu-sheng-ming" href="#step-2-han-shu-sheng-ming">Step 2. 函数声明</a></h3><p>一个函数其实也是一个值，就像变量一样。</p>
+<p><strong>不同之处在于函数声明的初始化会被立即完成。</strong></p>
+<p>当创建了一个词法环境（Lexical Environment）时，函数声明会立即变为即用型函数（不像 <code>let</code> 那样直到声明处才可用）。</p>
+<p>这就是为什么我们可以在（函数声明）的定义之前调用函数声明。</p>
+<p>例如，这是添加一个函数时全局词法环境的初始状态：</p>
+<figure><div class="image" style="width:678px">
+      <div class="image__ratio" style="padding-top:24.926253687315633%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-function-declaration.svg" width="678" height="169" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-function-declaration.svg" alt width="678" height="169">
+      </object>
+      </div></figure><p>正常来说，这种行为仅适用于函数声明，而不适用于我们将函数分配给变量的函数表达式，例如 <code>let say = function(name)...</code>。</p>
+<h3><a class="main__anchor" name="step-3-nei-bu-he-wai-bu-de-ci-fa-huan-jing" href="#step-3-nei-bu-he-wai-bu-de-ci-fa-huan-jing">Step 3. 内部和外部的词法环境</a></h3><p>在一个函数运行时，在调用刚开始时，会自动创建一个新的词法环境以存储这个调用的局部变量和参数。</p>
+<p>例如，对于 <code>say(&quot;John&quot;)</code>，它看起来像这样（当前执行位置在箭头标记的那一行上）：</p>
+<!--
+    ```js
+    let phrase = "Hello";
+
+    function say(name) {
+     alert( `${phrase}, ${name}` );
+    }
+
+    say("John"); // Hello, John
+    ```-->
+<figure><div class="image" style="width:723px">
+      <div class="image__ratio" style="padding-top:20.74688796680498%"></div>
+      <object type="image/svg+xml" data="../article/closure/lexical-environment-simple.svg" width="723" height="150" class="image__image" data-use-theme>
+        <img src="../article/closure/lexical-environment-simple.svg" alt width="723" height="150">
+      </object>
+      </div></figure><p>在这个函数调用期间，我们有两个词法环境：内部一个（用于函数调用）和外部一个（全局）：</p>
+<ul>
+<li>内部词法环境与 <code>say</code> 的当前执行相对应。它具有一个单独的属性：<code>name</code>，函数的参数。我们调用的是 <code>say(&quot;John&quot;)</code>，所以 <code>name</code> 的值为 <code>&quot;John&quot;</code>。</li>
+<li>外部词法环境是全局词法环境。它具有 <code>phrase</code> 变量和函数本身。</li>
+</ul>
+<p>内部词法环境引用了 <code>outer</code>。</p>
+<p><strong>当代码要访问一个变量时 —— 首先会搜索内部词法环境，然后搜索外部环境，然后搜索更外部的环境，以此类推，直到全局词法环境。</strong></p>
+<p>如果在任何地方都找不到这个变量，那么在严格模式下就会报错（在非严格模式下，为了向下兼容，给未定义的变量赋值会创建一个全局变量）。</p>
+<p>在这个示例中，搜索过程如下：</p>
+<ul>
+<li>对于 <code>name</code> 变量，当 <code>say</code> 中的 <code>alert</code> 试图访问 <code>name</code> 时，会立即在内部词法环境中找到它。</li>
+<li>当它试图访问 <code>phrase</code> 时，然而内部没有 <code>phrase</code>，所以它顺着对外部词法环境的引用找到了它。</li>
+</ul>
+<figure><div class="image" style="width:711px">
+      <div class="image__ratio" style="padding-top:21.09704641350211%"></div>
+      <object type="image/svg+xml" data="../article/closure/lexical-environment-simple-lookup.svg" width="711" height="150" class="image__image" data-use-theme>
+        <img src="../article/closure/lexical-environment-simple-lookup.svg" alt width="711" height="150">
+      </object>
+      </div></figure><h3><a class="main__anchor" name="step-4-fan-hui-han-shu" href="#step-4-fan-hui-han-shu">Step 4. 返回函数</a></h3><p>让我们回到 <code>makeCounter</code> 这个例子。</p>
+<div id="87j9orxet4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return count++;
+  };
+}
+
+let counter = makeCounter();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在每次 <code>makeCounter()</code> 调用的开始，都会创建一个新的词法环境对象，以存储该 <code>makeCounter</code> 运行时的变量。</p>
+<p>因此，我们有两层嵌套的词法环境，就像上面的示例一样：</p>
+<figure><div class="image" style="width:711px">
+      <div class="image__ratio" style="padding-top:24.331926863572434%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-makecounter.svg" width="711" height="173" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-makecounter.svg" alt width="711" height="173">
+      </object>
+      </div></figure><p>不同的是，在执行 <code>makeCounter()</code> 的过程中创建了一个仅占一行的嵌套函数：<code>return count++</code>。我们尚未运行它，仅创建了它。</p>
+<p>所有的函数在“诞生”时都会记住创建它们的词法环境。从技术上讲，这里没有什么魔法：所有函数都有名为 <code>[[Environment]]</code> 的隐藏属性，该属性保存了对创建该函数的词法环境的引用。</p>
+<figure><div class="image" style="width:775px">
+      <div class="image__ratio" style="padding-top:22.193548387096772%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-makecounter-environment.svg" width="775" height="172" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-makecounter-environment.svg" alt width="775" height="172">
+      </object>
+      </div></figure><p>因此，<code>counter.[[Environment]]</code> 有对 <code>{count: 0}</code> 词法环境的引用。这就是函数记住它创建于何处的方式，与函数被在哪儿调用无关。<code>[[Environment]]</code> 引用在函数创建时被设置并永久保存。</p>
+<p>稍后，当调用 <code>counter()</code> 时，会为该调用创建一个新的词法环境，并且其外部词法环境引用获取于 <code>counter.[[Environment]]</code>：</p>
+<figure><div class="image" style="width:774px">
+      <div class="image__ratio" style="padding-top:27.131782945736433%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-makecounter-nested-call.svg" width="774" height="210" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-makecounter-nested-call.svg" alt width="774" height="210">
+      </object>
+      </div></figure><p>现在，当 <code>counter()</code> 中的代码查找 <code>count</code> 变量时，它首先搜索自己的词法环境（为空，因为那里没有局部变量），然后是外部 <code>makeCounter()</code> 的词法环境，并且在哪里找到就在哪里修改。</p>
+<p><strong>在变量所在的词法环境中更新变量。</strong></p>
+<p>这是执行后的状态：</p>
+<figure><div class="image" style="width:774px">
+      <div class="image__ratio" style="padding-top:28.68217054263566%"></div>
+      <object type="image/svg+xml" data="../article/closure/closure-makecounter-nested-call-2.svg" width="774" height="222" class="image__image" data-use-theme>
+        <img src="../article/closure/closure-makecounter-nested-call-2.svg" alt width="774" height="222">
+      </object>
+      </div></figure><p>如果我们调用 <code>counter()</code> 多次，<code>count</code> 变量将在同一位置增加到 <code>2</code>，<code>3</code> 等。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">闭包</span></div>
+            <div class="important__content"><p>开发者通常应该都知道“闭包”这个通用的编程术语。</p>
+<p><a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">闭包</a> 是指内部函数总是可以访问其所在的外部函数中声明的变量和参数，即使在其外部函数被返回（寿命终结）了之后。在某些编程语言中，这是不可能的，或者应该以特殊的方式编写函数来实现。但是如上所述，在 JavaScript 中，所有函数都是天生闭包的（只有一个例外，将在 <a href="../new-function/index.html">&quot;new Function&quot; 语法</a> 中讲到）。</p>
+<p>也就是说：JavaScript 中的函数会自动通过隐藏的 <code>[[Environment]]</code> 属性记住创建它们的位置，所以它们都可以访问外部变量。</p>
+<p>在面试时，前端开发者通常会被问到“什么是闭包？”，正确的回答应该是闭包的定义，并解释清楚为什么 JavaScript 中的所有函数都是闭包的，以及可能的关于 <code>[[Environment]]</code> 属性和词法环境原理的技术细节。</p>
+</div></div>
+<h2><a class="main__anchor" name="la-ji-shou-ji" href="#la-ji-shou-ji">垃圾收集</a></h2><p>通常，函数调用完成后，会将词法环境和其中的所有变量从内存中删除。因为现在没有任何对它们的引用了。与 JavaScript 中的任何其他对象一样，词法环境仅在可达时才会被保留在内存中。</p>
+<p>但是，如果有一个嵌套的函数在函数结束后仍可达，则它将具有引用词法环境的 <code>[[Environment]]</code> 属性。</p>
+<p>在下面这个例子中，即使在（外部）函数执行完成后，它的词法环境仍然可达。因此，此词法环境仍然有效。</p>
+<p>例如：</p>
+<div id="vnkitowegh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  let value = 123;
+
+  return function() {
+    alert(value);
+  }
+}
+
+let g = f(); // g.[[Environment]] 存储了对相应 f() 调用的词法环境的引用</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，如果多次调用 <code>f()</code>，并且返回的函数被保存，那么所有相应的词法环境对象也会保留在内存中。下面代码中有三个这样的函数：</p>
+<div id="paneekgzib" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  let value = Math.random();
+
+  return function() { alert(value); };
+}
+
+// 数组中的 3 个函数，每个都与来自对应的 f() 的词法环境相关联
+let arr = [f(), f(), f()];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当词法环境对象变得不可达时，它就会死去（就像其他任何对象一样）。换句话说，它仅在至少有一个嵌套函数引用它时才存在。</p>
+<p>在下面的代码中，嵌套函数被删除后，其封闭的词法环境（以及其中的 <code>value</code>）也会被从内存中删除：</p>
+<div id="kt34ifxpre" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  let value = 123;
+
+  return function() {
+    alert(value);
+  }
+}
+
+let g = f(); // 当 g 函数存在时，该值会被保留在内存中
+
+g = null; // ……现在内存被清理了</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="shi-ji-kai-fa-zhong-de-you-hua" href="#shi-ji-kai-fa-zhong-de-you-hua">实际开发中的优化</a></h3><p>正如我们所看到的，理论上当函数可达时，它外部的所有变量也都将存在。</p>
+<p>但在实际中，JavaScript 引擎会试图优化它。它们会分析变量的使用情况，如果从代码中可以明显看出有未使用的外部变量，那么就会将其删除。</p>
+<p><strong>在 V8（Chrome，Edge，Opera）中的一个重要的副作用是，此类变量在调试中将不可用。</strong></p>
+<p>打开 Chrome 浏览器的开发者工具，并尝试运行下面的代码。</p>
+<p>当代码执行暂停时，在控制台中输入 <code>alert(value)</code>。</p>
+<div id="6enmd7z5v5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  let value = Math.random();
+
+  function g() {
+    debugger; // 在 Console 中：输入 alert(value); No such variable!
+  }
+
+  return g;
+}
+
+let g = f();
+g();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如你所见的 —— No such variable! 理论上，它应该是可以访问的，但引擎把它优化掉了。</p>
+<p>这可能会导致有趣的（如果不是那么耗时的）调试问题。其中之一 —— 我们可以看到的是一个同名的外部变量，而不是预期的变量：</p>
+<div id="8ey2xhlem8" data-trusted="1" data-global="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let value = &quot;Surprise!&quot;;
+
+function f() {
+  let value = &quot;the closest value&quot;;
+
+  function g() {
+    debugger; // 在 console 中：输入 alert(value); Surprise!
+  }
+
+  return g;
+}
+
+let g = f();
+g();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>V8 引擎的这个特性你真的应该知道。如果你要使用 Chrome/Edge/Opera 进行代码调试，迟早会遇到这样的问题。</p>
+<p>这不是调试器的 bug，而是 V8 的一个特别的特性。也许以后会被修改。你始终可以通过运行本文中的示例来进行检查。</p>
+<!--
+
+## 补充内容
+
+```smart header="说明"
+为了更清晰地讲解闭包，本文经过大幅重写，以下内容是重写时部分被优化掉的内容，译者认为还是很有学习价值的，遂保留下来供大家学习。
+```
+
+### 代码块
+
+我们可以使用“空”的代码块将变量隔离到“局部作用域”中。
+
+比如，在 Web 浏览器中，所有脚本都共享同一个全局环境。如果我们在一个脚本中创建一个全局变量，对于其他脚本来说它也是可用的。但是如果两个脚本有使用同一个变量并且相互覆盖，那么这会成为冲突的根源。
+
+如果变量名是一个被广泛使用的词，并且不同脚本的作者可能彼此也不知道。
+
+如果我们要避免这个，我们可以使用代码块来隔离整个脚本或其中一部分：
+
+```js run
+{
+  // 用局部变量完成一些不应该被外面访问的工作
+
+  let message = "Hello";
+
+  alert(message); // Hello
+}
+
+alert(message); // Error: message is not defined
+```
+
+这是因为代码块有其自身的词法环境，块之外（或另一个脚本内）的代码访问不到代码块内的变量。
+
+--></div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#han-shu-hui-xuan-ze-zui-xin-de-nei-rong-ma" name="han-shu-hui-xuan-ze-zui-xin-de-nei-rong-ma">函数会选择最新的内容吗？</a></h3><a class="task__open-link" href="../task/closure-latest-changes/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>函数 sayHi 使用外部变量。当函数运行时，将使用哪个值？</p>
+<div id="5k16tzhq2y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let name = &quot;John&quot;;
+
+function sayHi() {
+  alert(&quot;Hi, &quot; + name);
+}
+
+name = &quot;Pete&quot;;
+
+sayHi(); // 会显示什么：&quot;John&quot; 还是 &quot;Pete&quot;？</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这种情况在浏览器和服务器端开发中都很常见。一个函数可能被计划在创建之后一段时间后才执行，例如在用户行为或网络请求之后。</p>
+<p>因此，问题是：它会接收最新的修改吗？</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<strong>Pete</strong>。</p>
+<p>函数将从内到外依次在对应的词法环境中寻找目标变量，它使用最新的值。</p>
+<p>旧变量值不会保存在任何地方。当一个函数想要一个变量时，它会从自己的词法环境或外部词法环境中获取当前值。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#na-xie-bian-liang-ke-yong-ni" name="na-xie-bian-liang-ke-yong-ni">哪些变量可用呢？</a></h3><a class="task__open-link" href="../task/closure-variable-access/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面的 <code>makeWorker</code> 函数创建了另一个函数并返回该函数。可以在其他地方调用这个新函数。</p>
+<p>它是否可以从它被创建的位置或调用位置（或两者）访问外部变量？</p>
+<div id="5cw0738ccq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeWorker() {
+  let name = &quot;Pete&quot;;
+
+  return function() {
+    alert(name);
+  };
+}
+
+let name = &quot;John&quot;;
+
+// create a function
+let work = makeWorker();
+
+// call it
+work(); // 会显示什么？</code></pre>
+        </div>
+      </div>
+      
+      </div><p>会显示哪个值？“Pete” 还是 “John”？</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<strong>Pete</strong>.</p>
+<p>下方代码中的函数 <code>work()</code> 在其被创建的位置通过外部词法环境引用获取 <code>name</code>：</p>
+<figure><div class="image" style="width:762px">
+      <div class="image__ratio" style="padding-top:29.527559055118108%"></div>
+      <object type="image/svg+xml" data="../task/closure-variable-access/lexenv-nested-work.svg" width="762" height="225" class="image__image" data-use-theme>
+        <img src="../task/closure-variable-access/lexenv-nested-work.svg" alt width="762" height="225">
+      </object>
+      </div></figure><p>所以这里的结果是 <code>&quot;Pete&quot;</code>。</p>
+<p>但如果在 <code>makeWorker()</code> 中没有 <code>let name</code>，那么将继续向外搜索并最终找到全局变量，正如我们可以从上图中看到的那样。在这种情况下，结果将是 <code>&quot;John&quot;</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#counter-shi-du-li-de-ma" name="counter-shi-du-li-de-ma">Counter 是独立的吗？</a></h3><a class="task__open-link" href="../task/counter-independent/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>在这儿我们用相同的 <code>makeCounter</code> 函数创建了两个计数器（counters）：<code>counter</code> 和 <code>counter2</code>。</p>
+<p>它们是独立的吗？第二个 counter 会显示什么？<code>0,1</code> 或 <code>2,3</code> 还是其他？</p>
+<div id="9zbnw18huf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return count++;
+  };
+}
+
+let counter = makeCounter();
+let counter2 = makeCounter();
+
+alert( counter() ); // 0
+alert( counter() ); // 1
+
+alert( counter2() ); // ?
+alert( counter2() ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案是：<strong>0，1。</strong></p>
+<p>函数 <code>counter</code> 和 <code>counter2</code> 是通过 <code>makeCounter</code> 的不同调用创建的。</p>
+<p>因此，它们具有独立的外部词法环境，每一个都有自己的 <code>count</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#counter-dui-xiang" name="counter-dui-xiang">Counter 对象</a></h3><a class="task__open-link" href="../task/counter-object-independent/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这里通过构造函数创建了一个 counter 对象。</p>
+<p>它能正常工作吗？它会显示什么呢？</p>
+<div id="xrg25yafiv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Counter() {
+  let count = 0;
+
+  this.up = function() {
+    return ++count;
+  };
+  this.down = function() {
+    return --count;
+  };
+}
+
+let counter = new Counter();
+
+alert( counter.up() ); // ?
+alert( counter.up() ); // ?
+alert( counter.down() ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>当然行得通。</p>
+<p>这两个嵌套函数都是在同一个词法环境中创建的，所以它们可以共享对同一个 count 变量的访问：</p>
+<div id="eums28yx8i" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Counter() {
+  let count = 0;
+
+  this.up = function() {
+    return ++count;
+  };
+
+  this.down = function() {
+    return --count;
+  };
+}
+
+let counter = new Counter();
+
+alert( counter.up() ); // 1
+alert( counter.up() ); // 2
+alert( counter.down() ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#if-nei-de-han-shu" name="if-nei-de-han-shu">if 内的函数</a></h3><a class="task__open-link" href="../task/function-in-if/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>看看下面这个代码。最后一行代码的执行结果是什么？</p>
+<div id="nlptwks741" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let phrase = &quot;Hello&quot;;
+
+if (true) {
+  let user = &quot;John&quot;;
+
+  function sayHi() {
+    alert(`${phrase}, ${user}`);
+  }
+}
+
+sayHi();</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<strong>error</strong>。</p>
+<p>函数 <code>sayHi</code> 是在 <code>if</code> 内声明的，所以它只存在于 <code>if</code> 中。外部是没有 <code>sayHi</code> 的。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bi-bao-sum" name="bi-bao-sum">闭包 sum</a></h3><a class="task__open-link" href="../task/closure-sum/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>编写一个像 <code>sum(a)(b) = a+b</code> 这样工作的 <code>sum</code> 函数。</p>
+<p>是的，就是这种通过双括号的方式（并不是错误）。</p>
+<p>举个例子：</p>
+<div id="qfsmyenqn5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>sum(1)(2) = 3
+sum(5)(-1) = 4</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为了使第二个括号有效，第一个（括号）必须返回一个函数。</p>
+<p>就像这样：</p>
+<div id="7tkh7mf9o3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sum(a) {
+
+  return function(b) {
+    return a + b; // 从外部词法环境获得 &quot;a&quot;
+  };
+
+}
+
+alert( sum(1)(2) ); // 3
+alert( sum(5)(-1) ); // 4</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bian-liang-ke-jian-ma" name="bian-liang-ke-jian-ma">变量可见吗？</a></h3><a class="task__open-link" href="../task/let-scope/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>下面这段代码的结果会是什么？</p>
+<div id="vetct7e2lx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+function func() {
+  console.log(x); // ?
+
+  let x = 2;
+}
+
+func();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 这个任务有一个陷阱。解决方案并不明显。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>答案：<strong>error</strong>。</p>
+<p>你运行一下试试：</p>
+<div id="fep047ie4q" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 1;
+
+function func() {
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+  let x = 2;
+}
+
+func();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这个例子中，我们可以观察到“不存在”的变量和“未初始化”的变量之间的特殊差异。</p>
+<p>你可能已经在 <a href="index.html">变量作用域，闭包</a> 中学过了，从程序执行进入代码块（或函数）的那一刻起，变量就开始进入“未初始化”状态。它一直保持未初始化状态，直至程序执行到相应的 <code>let</code> 语句。</p>
+<p>换句话说，一个变量从技术的角度来讲是存在的，但是在 <code>let</code> 之前还不能使用。</p>
+<p>下面的这段代码证实了这一点。</p>
+<div id="seitch8vzo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function func() {
+  // 引擎从函数开始就知道局部变量 x，
+  // 但是变量 x 一直处于“未初始化”（无法使用）的状态，直到结束 let（“死区”）
+  // 因此答案是 error
+
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+
+  let x = 2;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>变量暂时无法使用的区域（从代码块的开始到 <code>let</code>）有时被称为“死区”。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#tong-guo-han-shu-shai-xuan" name="tong-guo-han-shu-shai-xuan">通过函数筛选</a></h3><a class="task__open-link" href="../task/filter-through-function/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们有一个内建的数组方法 <code>arr.filter(f)</code>。它通过函数 <code>f</code> 过滤元素。如果它返回 <code>true</code>，那么该元素会被返回到结果数组中。</p>
+<p>制造一系列“即用型”过滤器：</p>
+<ul>
+<li><code>inBetween(a, b)</code> —— 在 <code>a</code> 和 <code>b</code> 之间或与它们相等（包括）。</li>
+<li><code>inArray([...])</code> —— 包含在给定的数组中。</li>
+</ul>
+<p>用法如下所示：</p>
+<ul>
+<li><code>arr.filter(inBetween(3,6))</code> —— 只挑选范围在 3 到 6 的值。</li>
+<li><code>arr.filter(inArray([1,2,3]))</code> —— 只挑选与 <code>[1,2,3]</code> 中的元素匹配的元素。</li>
+</ul>
+<p>例如：</p>
+<div id="tg19dhmdod" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>/* .. inBetween 和 inArray 的代码 */
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/SpPrrEUk5Nfmpj3S?p=preview" target="_blank" data-plunk-id="SpPrrEUk5Nfmpj3S">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">inBetween 筛选器</button><div class="task__answer-content"><h4 class="task__step-title">inBetween 筛选器</h4><div class="formatted"><div id="sgywe3odwp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function inBetween(a, b) {
+  return function(x) {
+    return x &gt;= a &amp;&amp; x &lt;= b;
+  };
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div></div><div class="task__step task__step_open"><button class="task__step-show" type="button" onclick="showStep(this)">inArray 筛选器</button><div class="task__answer-content"><h4 class="task__step-title">inArray 筛选器</h4><div class="formatted"><div id="623ifq807b" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function inArray(arr) {
+  return function(x) {
+    return arr.includes(x);
+  };
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/vnosZsXTaKsRTi0T?p=preview" target="_blank" data-plunk-id="vnosZsXTaKsRTi0T">使用沙箱的测试功能打开解决方案。</a></p></div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#an-zi-duan-pai-xu" name="an-zi-duan-pai-xu">按字段排序</a></h3><a class="task__open-link" href="../task/sort-by-field/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们有一组要排序的对象：</p>
+<div id="yboy2b8x9h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let users = [
+  { name: &quot;John&quot;, age: 20, surname: &quot;Johnson&quot; },
+  { name: &quot;Pete&quot;, age: 18, surname: &quot;Peterson&quot; },
+  { name: &quot;Ann&quot;, age: 19, surname: &quot;Hathaway&quot; }
+];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常的做法应该是这样的：</p>
+<div id="g11qtp0j4t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 通过 name (Ann, John, Pete)
+users.sort((a, b) =&gt; a.name &gt; b.name ? 1 : -1);
+
+// 通过 age (Pete, Ann, John)
+users.sort((a, b) =&gt; a.age &gt; b.age ? 1 : -1);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以让它更加简洁吗，比如这样？</p>
+<div id="fg45gye1bt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>users.sort(byField('name'));
+users.sort(byField('age'));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样我们就只需要写 <code>byField(fieldName)</code>，而不是写一个函数。</p>
+<p>编写函数 <code>byField</code> 来实现这个需求。</p>
+<p><a href="https://plnkr.co/edit/XwzhWJXnpuodkMz6?p=preview" target="_blank" data-plunk-id="XwzhWJXnpuodkMz6">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="yu6yo9r9v2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function byField(fieldName){
+  return (a, b) =&gt; a[fieldName] &gt; b[fieldName] ? 1 : -1;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/3tw2OY8kwucsEXyb?p=preview" target="_blank" data-plunk-id="3tw2OY8kwucsEXyb">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#han-shu-da-jun" name="han-shu-da-jun">函数大军</a></h3><a class="task__open-link" href="../task/make-army/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下列的代码创建了一个 <code>shooters</code> 数组。</p>
+<p>每个函数都应该输出其编号。但好像出了点问题……</p>
+<div id="cle3adhh0v" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:18,&quot;end&quot;:21}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i &lt; 10) {
+    let shooter = function() { // 创建一个 shooter 函数，
+      alert( i ); // 应该显示其编号
+    };
+    shooters.push(shooter); // 将此 shooter 函数添加到数组中
+    i++;
+  }
+
+  // ……返回 shooters 数组
+  return shooters;
+}
+
+let army = makeArmy();
+
+// ……所有的 shooter 显示的都是 10，而不是它们的编号 0, 1, 2, 3...
+army[0](); // 编号为 0 的 shooter 显示的是 10
+army[1](); // 编号为 1 的 shooter 显示的是 10
+army[2](); // 10，其他的也是这样。</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么所有的 shooter 显示的都是同样的值？</p>
+<p>修改代码以使得代码能够按照我们预期的那样工作。</p>
+<p><a href="https://plnkr.co/edit/eiDKgUGWXvLDbCJ4?p=preview" target="_blank" data-plunk-id="eiDKgUGWXvLDbCJ4">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>让我们检查一下 <code>makeArmy</code> 内部到底发生了什么，那样答案就显而易见了。</p>
+<ol>
+<li>
+<p>它创建了一个空数组 <code>shooters</code>：</p>
+<div id="sq98h8x451" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let shooters = [];</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>在循环中，通过 <code>shooters.push(function)</code> 用函数填充它。</p>
+<p>每个元素都是函数，所以数组看起来是这样的：</p>
+<div id="1je6p1a8ez" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>shooters = [
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); },
+  function () { alert(i); }
+];</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>该数组返回自函数。</p>
+<p>然后，对数组中的任意数组项的调用，例如调用 <code>army[5]()</code>（它是一个函数），将首先从数组中获取元素 <code>army[5]()</code> 并调用它。</p>
+<p>那么，为什么所有此类函数都显示的是相同的值，<code>10</code> 呢？</p>
+<p>这是因为 <code>shooter</code> 函数内没有局部变量 <code>i</code>。当一个这样的函数被调用时，<code>i</code> 是来自于外部词法环境的。</p>
+<p>那么，<code>i</code> 的值是什么呢？</p>
+<p>如果我们看一下源代码：</p>
+<div id="b1exthoqls" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeArmy() {
+  ...
+  let i = 0;
+  while (i &lt; 10) {
+    let shooter = function() { // shooter 函数
+      alert( i ); // 应该显示它自己的编号
+    };
+    shooters.push(shooter); // 将 shooter 函数添加到该数组中
+      i++;
+  }
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……我们可以看到，所有的 <code>shooter</code> 函数都是在 <code>makeArmy()</code> 的词法环境中被创建的。但当 <code>army[5]()</code> 被调用时，<code>makeArmy</code> 已经运行完了，最后 <code>i</code> 的值为 <code>10</code>（<code>while</code> 循环在 <code>i=10</code> 时停止）。</p>
+<p>因此，所有的 <code>shooter</code> 函数获得的都是外部词法环境中的同一个值，即最后的 <code>i=10</code>。</p>
+<figure><div class="image" style="width:566px">
+      <div class="image__ratio" style="padding-top:32.332155477031804%"></div>
+      <object type="image/svg+xml" data="../task/make-army/lexenv-makearmy-empty.svg" width="566" height="183" class="image__image" data-use-theme>
+        <img src="../task/make-army/lexenv-makearmy-empty.svg" alt width="566" height="183">
+      </object>
+      </div></figure><p>正如你在上边所看到的那样，在 <code>while {...}</code> 块的每次迭代中，都会创建一个新的词法环境。因此，要解决此问题，我们可以将 <code>i</code> 的值复制到 <code>while {...}</code> 块内的变量中，如下所示：</p>
+<div id="har5jp5aul" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;cols&quot;:[{&quot;start&quot;:15,&quot;end&quot;:16}]},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i &lt; 10) {
+      let j = i;
+      let shooter = function() { // shooter 函数
+        alert( j ); // 应该显示它自己的编号
+      };
+    shooters.push(shooter);
+    i++;
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+// 现在代码正确运行了
+army[0](); // 0
+army[5](); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里，<code>let j = i</code> 声明了一个“局部迭代”变量 <code>j</code>，并将 <code>i</code> 复制到其中。原始类型是“按值”复制的，因此实际上我们得到的是属于当前循环迭代的独立的 <code>i</code> 的副本。</p>
+<p>shooter 函数正确运行了，因为 <code>i</code> 值的位置更近了（译注：指转到了更内部的词法环境）。不是在 <code>makeArmy()</code> 的词法环境中，而是在与当前循环迭代相对应的词法环境中：</p>
+<figure><div class="image" style="width:566px">
+      <div class="image__ratio" style="padding-top:32.332155477031804%"></div>
+      <object type="image/svg+xml" data="../task/make-army/lexenv-makearmy-while-fixed.svg" width="566" height="183" class="image__image" data-use-theme>
+        <img src="../task/make-army/lexenv-makearmy-while-fixed.svg" alt width="566" height="183">
+      </object>
+      </div></figure><p>如果我们一开始使用 <code>for</code> 循环，也可以避免这样的问题，像这样：</p>
+<div id="7sgdjualtm" data-trusted="1" class="code-example" data-demo="1" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeArmy() {
+
+  let shooters = [];
+
+  for(let i = 0; i &lt; 10; i++) {
+    let shooter = function() { // shooter 函数
+      alert( i ); // 应该显示它自己的编号
+    };
+    shooters.push(shooter);
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+army[0](); // 0
+army[5](); // 5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这本质上是一样的，因为 <code>for</code> 循环在每次迭代中，都会生成一个带有自己的变量 <code>i</code> 的新词法环境。因此，在每次迭代中生成的 <code>shooter</code> 函数引用的都是自己的 <code>i</code>。</p>
+<figure><div class="image" style="width:566px">
+      <div class="image__ratio" style="padding-top:32.332155477031804%"></div>
+      <object type="image/svg+xml" data="../task/make-army/lexenv-makearmy-for-fixed.svg" width="566" height="183" class="image__image" data-use-theme>
+        <img src="../task/make-army/lexenv-makearmy-for-fixed.svg" alt width="566" height="183">
+      </object>
+      </div></figure></li>
+</ol>
+<p>至此，你已经花了很长时间来阅读本文，发现最终的解决方案就这么简单 — 使用 <code>for</code> 循环，你可能会疑问 —— 我花了这么长时间读这篇文章，值得吗？</p>
+<p>其实，如果你可以轻松地明白并答对本题目，你应该就不会阅读它的答案。所以，希望这个题目可以帮助你更好地理解闭包。</p>
+<p>此外，确实存在有些人相较于 <code>for</code> 更喜欢 <code>while</code>，以及其他情况。</p>
+<p><a href="https://plnkr.co/edit/cclMoKOydEAqkijL?p=preview" target="_blank" data-plunk-id="cclMoKOydEAqkijL">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../rest-parameters-spread/index.html" data-tooltip="Rest 参数与 Spread 语法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../var/index.html" data-tooltip="旧时的 &quot;var&quot;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/closure","identifier":"\/closure"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../advanced-functions/index.html">函数进阶内容</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dai-ma-kuai">代码块</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qian-tao-han-shu">嵌套函数</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ci-fa-huan-jing">词法环境</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#la-ji-shou-ji">垃圾收集</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (10)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fclosure" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/06-advanced-functions/03-closure" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

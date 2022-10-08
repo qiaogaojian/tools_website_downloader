@@ -1,0 +1,1058 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">日期和时间</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/date"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="日期和时间"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="日期和时间"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/destructuring-assignment"><link rel="next" href="/json"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="日期和时间"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/date"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/date"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/date"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/date"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/date"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/date"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/date"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/date"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/date"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/date"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/date"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/date">عربي</option><option value="https://javascript.info/date">English</option><option value="https://es.javascript.info/date">Español</option><option value="https://fr.javascript.info/date">Français</option><option value="https://id.javascript.info/date">Indonesia</option><option value="https://it.javascript.info/date">Italiano</option><option value="https://ja.javascript.info/date">日本語</option><option value="https://ko.javascript.info/date">한국어</option><option value="https://learn.javascript.ru/date">Русский</option><option value="https://tr.javascript.info/date">Türkçe</option><option value="https://uk.javascript.info/date">Українська</option><option value="https://zh.javascript.info/date" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="47" max="92" data-tooltip="第 47/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">日期和时间</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="日期和时间"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>让我一起学习一个新的内建对象：<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date">日期（Date）</a>。该对象存储日期和时间，并提供了日期/时间的管理方法。</p>
+<p>例如，我们可以使用它来存储创建/修改时间，或者用来测量时间，再或者仅用来打印当前时间。</p>
+<h2><a class="main__anchor" name="chuang-jian" href="#chuang-jian">创建</a></h2><p>创建一个新的 <code>Date</code> 对象，只需要调用 <code>new Date()</code>，在调用时可以带有下面这些参数之一：</p>
+<dl>
+<dt><code>new Date()</code></dt>
+<dd>
+<p>不带参数 —— 创建一个表示当前日期和时间的 <code>Date</code> 对象：</p>
+<div id="gtgefv7ibw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let now = new Date();
+alert( now ); // 显示当前的日期/时间</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(milliseconds)</code></dt>
+<dd>
+<p>创建一个 <code>Date</code> 对象，其时间等于 1970 年 1 月 1 日 UTC+0 之后经过的毫秒数（1/1000 秒）。</p>
+<div id="zdy6js3dfd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 0 表示 01.01.1970 UTC+0
+let Jan01_1970 = new Date(0);
+alert( Jan01_1970 );
+
+// 现在增加 24 小时，得到 02.01.1970 UTC+0
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+alert( Jan02_1970 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>传入的整数参数代表的是自 1970-01-01 00:00:00 以来经过的毫秒数，该整数被称为 <strong>时间戳</strong>。</p>
+<p>这是一种日期的轻量级数字表示形式。我们通常使用 <code>new Date(timestamp)</code> 通过时间戳来创建日期，并可以使用 <code>date.getTime()</code> 将现有的 <code>Date</code> 对象转化为时间戳（下文会讲到）。</p>
+<p>在 01.01.1970 之前的日期带有负的时间戳，例如：</p>
+<div id="6kgfyngf4u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 31 Dec 1969
+let Dec31_1969 = new Date(-24 * 3600 * 1000);
+alert( Dec31_1969 );</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(datestring)</code></dt>
+<dd>
+<p>如果只有一个参数，并且是字符串，那么它会被自动解析。该算法与 <code>Date.parse</code> 所使用的算法相同，我们将在下文中进行介绍。</p>
+<div id="qpellg5zct" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(&quot;2017-01-26&quot;);
+alert(date);
+// 该时间未被设定，因此被假定为格林尼治标准时间（GMT）的午夜（midnight）
+// 并会根据你运行代码时的时区进行调整
+// 因此，结果可能是
+// Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
+// 或
+// Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>new Date(year, month, date, hours, minutes, seconds, ms)</code></dt>
+<dd>
+<p>使用当前时区中的给定组件创建日期。只有前两个参数是必须的。</p>
+<ul>
+<li><code>year</code> 必须是四位数：<code>2013</code> 是合法的，<code>98</code> 是不合法的。</li>
+<li><code>month</code> 计数从 <code>0</code>（一月）开始，到 <code>11</code>（十二月）结束。</li>
+<li><code>date</code> 是当月的具体某一天，如果缺失，则为默认值 <code>1</code>。</li>
+<li>如果 <code>hours/minutes/seconds/ms</code> 缺失，则均为默认值 <code>0</code>。</li>
+</ul>
+<p>例如：</p>
+<div id="1h7cafpsjs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
+new Date(2011, 0, 1); // 同样，时分秒等均为默认值 0</code></pre>
+        </div>
+      </div>
+      
+      </div><p>时间度量最大精确到 1 毫秒（1/1000 秒）：</p>
+<div id="9mub6gd9bl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2011, 0, 1, 2, 3, 4, 567);
+alert( date ); // 1.01.2011, 02:03:04.567</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<h2><a class="main__anchor" name="fang-wen-ri-qi-zu-jian" href="#fang-wen-ri-qi-zu-jian">访问日期组件</a></h2><p>从 <code>Date</code> 对象中访问年、月等信息有多种方式：</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear">getFullYear()</a></dt>
+<dd>获取年份（4 位数）</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth">getMonth()</a></dt>
+<dd>获取月份，<strong>从 0 到 11</strong>。</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate">getDate()</a></dt>
+<dd>获取当月的具体日期，从 1 到 31，这个方法名称可能看起来有些令人疑惑。</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getHours">getHours()</a>，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getMinutes">getMinutes()</a>，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getSeconds">getSeconds()</a>，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getMilliseconds">getMilliseconds()</a></dt>
+<dd>获取相应的时间组件。</dd>
+</dl>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">不是 <code>getYear()</code>，而是 <code>getFullYear()</code></span></div>
+            <div class="important__content"><p>很多 JavaScript 引擎都实现了一个非标准化的方法 <code>getYear()</code>。不推荐使用这个方法。它有时候可能会返回 2 位的年份信息。永远都不要使用它。要获取年份就使用 <code>getFullYear()</code>。</p>
+</div></div>
+<p>另外，我们还可以获取一周中的第几天：</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay">getDay()</a></dt>
+<dd>获取一周中的第几天，从 <code>0</code>（星期日）到 <code>6</code>（星期六）。第一天始终是星期日，在某些国家可能不是这样的习惯，但是这不能被改变。</dd>
+</dl>
+<p><strong>以上的所有方法返回的组件都是基于当地时区的。</strong></p>
+<p>当然，也有与当地时区的 UTC 对应项，它们会返回基于 UTC+0 时区的日、月、年等：<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear">getUTCFullYear()</a>，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCMonth">getUTCMonth()</a>，<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCDay">getUTCDay()</a>。只需要在 <code>&quot;get&quot;</code> 之后插入 <code>&quot;UTC&quot;</code> 即可。</p>
+<p>如果你当地时区相对于 UTC 有偏移，那么下面代码会显示不同的小时数：</p>
+<div id="9nxgl4g02y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>//  当前日期
+let date = new Date();
+
+// 当地时区的小时数
+alert( date.getHours() );
+
+// 在 UTC+0 时区的小时数（非夏令时的伦敦时间）
+alert( date.getUTCHours() );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>除了上述给定的方法，还有两个没有 UTC 变体的特殊方法：</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime">getTime()</a></dt>
+<dd>
+<p>返回日期的时间戳 —— 从 1970-1-1 00:00:00 UTC+0 开始到现在所经过的毫秒数。</p>
+</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset">getTimezoneOffset()</a></dt>
+<dd>
+<p>返回 UTC 与本地时区之间的时差，以分钟为单位：</p>
+<div id="6lftpimb9b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 如果你在时区 UTC-1，输出 60
+// 如果你在时区 UTC+3，输出 -180
+alert( new Date().getTimezoneOffset() );</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<h2><a class="main__anchor" name="she-zhi-ri-qi-zu-jian" href="#she-zhi-ri-qi-zu-jian">设置日期组件</a></h2><p>下列方法可以设置日期/时间组件：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setFullYear"><code>setFullYear(year, [month], [date])</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth"><code>setMonth(month, [date])</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate"><code>setDate(date)</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setHours"><code>setHours(hour, [min], [sec], [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setMinutes"><code>setMinutes(min, [sec], [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setSeconds"><code>setSeconds(sec, [ms])</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setMilliseconds"><code>setMilliseconds(ms)</code></a></li>
+<li><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/setTime"><code>setTime(milliseconds)</code></a>（使用自 1970-01-01 00:00:00 UTC+0 以来的毫秒数来设置整个日期）</li>
+</ul>
+<p>以上方法除了 <code>setTime()</code> 都有 UTC 变体，例如：<code>setUTCHours()</code>。</p>
+<p>我们可以看到，有些方法可以一次性设置多个组件，比如 <code>setHours</code>。未提及的组件不会被修改。</p>
+<p>举个例子：</p>
+<div id="dpe70m9nwb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let today = new Date();
+
+today.setHours(0);
+alert(today); // 日期依然是今天，但是小时数被改为了 0
+
+today.setHours(0, 0, 0, 0);
+alert(today); // 日期依然是今天，时间为 00:00:00。</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zi-dong-xiao-zhun-autocorrection" href="#zi-dong-xiao-zhun-autocorrection">自动校准（Autocorrection）</a></h2><p><strong>自动校准</strong> 是 <code>Date</code> 对象的一个非常方便的特性。我们可以设置超范围的数值，它会自动校准。</p>
+<p>举个例子：</p>
+<div id="19gd3j088n" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:29,&quot;end&quot;:31}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2013, 0, 32); // 32 Jan 2013 ?!?
+alert(date); // ……是 1st Feb 2013!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>超出范围的日期组件将会被自动分配。</p>
+<p>假设我们要在日期 “28 Feb 2016” 上加 2 天。结果可能是 “2 Mar” 或 “1 Mar”，因为存在闰年。但是我们不需要去考虑这些，只需要直接加 2 天，剩下的 <code>Date</code> 对象会帮我们处理：</p>
+<div id="h86rk7be18" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2016, 1, 28);
+date.setDate(date.getDate() + 2);
+
+alert( date ); // 1 Mar 2016</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个特性经常被用来获取给定时间段后的日期。例如，我们想获取“现在 70 秒后”的日期：</p>
+<div id="v4jgnv53gp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date();
+date.setSeconds(date.getSeconds() + 70);
+
+alert( date ); // 显示正确的日期信息</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们还可以设置 0 甚至可以设置负值。例如：</p>
+<div id="4hs40ujemt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2016, 0, 2); // 2016 年 1 月 2 日
+
+date.setDate(1); // 设置为当月的第一天
+alert( date );
+
+date.setDate(0); // 天数最小可以设置为 1，所以这里设置的是上一月的最后一天
+alert( date ); // 31 Dec 2015</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ri-qi-zhuan-hua-wei-shu-zi-ri-qi-cha-zhi" href="#ri-qi-zhuan-hua-wei-shu-zi-ri-qi-cha-zhi">日期转化为数字，日期差值</a></h2><p>当 <code>Date</code> 对象被转化为数字时，得到的是对应的时间戳，与使用 <code>date.getTime()</code> 的结果相同：</p>
+<div id="anruohl9t1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date();
+alert(+date); // 以毫秒为单位的数值，与使用 date.getTime() 的结果相同</code></pre>
+        </div>
+      </div>
+      
+      </div><p>有一个重要的副作用：日期可以相减，相减的结果是以毫秒为单位时间差。</p>
+<p>这个作用可以用于时间测量：</p>
+<div id="11n8hqauw8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = new Date(); // 开始测量时间
+
+// do the job
+for (let i = 0; i &lt; 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = new Date(); // 结束测量时间
+
+alert( `The loop took ${end - start} ms` );</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="datenow" href="#datenow">Date.now()</a></h2><p>如果我们仅仅想要测量时间间隔，我们不需要 <code>Date</code> 对象。</p>
+<p>有一个特殊的方法 <code>Date.now()</code>，它会返回当前的时间戳。</p>
+<p>它相当于 <code>new Date().getTime()</code>，但它不会创建中间的 <code>Date</code> 对象。因此它更快，而且不会对垃圾处理造成额外的压力。</p>
+<p>这种方法很多时候因为方便，又或是因性能方面的考虑而被采用，例如使用 JavaScript 编写游戏或其他的特殊应用场景。</p>
+<p>因此这样做可能会更好：</p>
+<div id="4zxmi1zgma" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7},{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = Date.now(); // 从 1 Jan 1970 至今的时间戳
+
+// do the job
+for (let i = 0; i &lt; 100000; i++) {
+  let doSomething = i * i * i;
+}
+
+let end = Date.now(); // 完成
+
+alert( `The loop took ${end - start} ms` ); // 相减的是时间戳，而不是日期</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="du-liang-benchmarking" href="#du-liang-benchmarking">度量（Benchmarking）</a></h2><p>如果我们想要为一个很耗 CPU 性能的函数提供一个可靠的度量（benchmark），我们应该小心一点。</p>
+<p>例如，我们想判断两个计算日期差值的函数：哪个更快？</p>
+<p>这种性能测量通常称为“度量（benchmark）”。</p>
+<div id="nfkc5xbivb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 我们有 date1 和 date2，哪个函数会更快地返回两者的时间差？
+function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+// or
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这两个函数做的事情完全相同，但是其中一个函数使用显性的 <code>date.getTime()</code> 来获取毫秒形式的日期，另一个则依赖于“日期 — 数字”的转换。它们的结果是一样的。</p>
+<p>那么，哪个更快呢？</p>
+<p>首先想到的方法可能是连续运行它们很多次，并计算时间差。就我们的例子而言，函数非常简单，所以我们必须执行至少 100000 次。</p>
+<p>让我们开始测量：</p>
+<div id="172dv0xx3k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i &lt; 100000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
+alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>哇！使用 <code>getTime()</code> 这种方式快得多！原因是它没有类型转化，这样对引擎优化来说更加简单。</p>
+<p>好，我们得到了结论，但是这并不是一个很好的度量的例子。</p>
+<p>想象一下当运行 <code>bench(diffSubtract)</code> 的同时，CPU 还在并行处理其他事务，并且这也会占用资源。然而，运行 <code>bench(diffGetTime)</code> 的时候，并行处理的事务完成了。</p>
+<p>这是对于现代多进程操作系统来说的一个非常真实的场景。</p>
+<p>结果就是，第一个函数相比于第二个函数，缺少 CPU 资源。这可能导致错误的结论。</p>
+<p><strong>为了得到更加可靠的度量，整个度量测试包应该重新运行多次。</strong></p>
+<p>例如，像下面的代码这样：</p>
+<div id="gqbjecd50w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:20,&quot;end&quot;:24}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i &lt; 100000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+let time1 = 0;
+let time2 = 0;
+
+// 交替运行 bench(diffSubtract) 和 bench(diffGetTime) 各 10 次
+for (let i = 0; i &lt; 10; i++) {
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
+}
+
+alert( 'Total time for diffSubtract: ' + time1 );
+alert( 'Total time for diffGetTime: ' + time2 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现代的 JavaScript 引擎的先进优化策略只对执行很多次的 “hot code” 有效（对于执行很少次数的代码没有必要优化）。因此，在上面的例子中，第一次执行的优化程度不高。我们可能需要增加一个升温步骤：</p>
+<div id="u2p8qyxsdv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在主循环中增加“升温”环节
+bench(diffSubtract);
+bench(diffGetTime);
+
+// 开始度量
+for (let i = 0; i &lt; 10; i++) {
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">进行微度量测试时要小心</span></div>
+            <div class="important__content"><p>现代的 JavaScript 引擎执行了很多优化。与“正常使用”相比，它们可能会改变“人为测试”的结果，特别是在我们对很细微的东西进行度量测试时，例如 operator 的工作方式或内建函数。因此，如果你想好好了解一下性能，请学习 JavaScript 引擎的工作原理。在那之后，你可能再也不需要微度量了。</p>
+<p>关于 V8 引擎的大量文章，可以在 <a href="http://mrale.ph">http://mrale.ph</a> 找到。</p>
+</div></div>
+<h2><a class="main__anchor" name="dui-yi-ge-zi-fu-chuan-shi-yong-dateparse" href="#dui-yi-ge-zi-fu-chuan-shi-yong-dateparse">对一个字符串使用 Date.parse</a></h2><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Date.parse(str)</a> 方法可以从一个字符串中读取日期。</p>
+<p>字符串的格式应该为：<code>YYYY-MM-DDTHH:mm:ss.sssZ</code>，其中：</p>
+<ul>
+<li><code>YYYY-MM-DD</code> —— 日期：年-月-日。</li>
+<li>字符 <code>&quot;T&quot;</code> 是一个分隔符。</li>
+<li><code>HH:mm:ss.sss</code> —— 时间：小时，分钟，秒，毫秒。</li>
+<li>可选字符 <code>'Z'</code> 为 <code>+-hh:mm</code> 格式的时区。单个字符 <code>Z</code> 代表 UTC+0 时区。</li>
+</ul>
+<p>简短形式也是可以的，比如 <code>YYYY-MM-DD</code> 或 <code>YYYY-MM</code>，甚至可以是 <code>YYYY</code>。</p>
+<p><code>Date.parse(str)</code> 调用会解析给定格式的字符串，并返回时间戳（自 1970-01-01 00:00:00 起所经过的毫秒数）。如果给定字符串的格式不正确，则返回 <code>NaN</code>。</p>
+<p>举个例子：</p>
+<div id="xg1tgfm0bw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
+
+alert(ms); // 1327611110417  (时间戳)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以通过时间戳来立即创建一个 <code>new Date</code> 对象：</p>
+<div id="6381uz7mp5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+
+alert(date);</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><ul>
+<li>在 JavaScript 中，日期和时间使用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> 对象来表示。我们不能只创建日期，或者只创建时间，<code>Date</code> 对象总是同时创建两者。</li>
+<li>月份从 0 开始计数（对，一月是 0）。</li>
+<li>一周中的某一天 <code>getDay()</code> 同样从 0 开始计算（0 代表星期日）。</li>
+<li>当设置了超出范围的组件时，<code>Date</code> 会进行自我校准。这一点对于日/月/小时的加减很有用。</li>
+<li>日期可以相减，得到的是以毫秒表示的两者的差值。因为当 <code>Date</code> 被转换为数字时，<code>Date</code> 对象会被转换为时间戳。</li>
+<li>使用 <code>Date.now()</code> 可以更快地获取当前时间的时间戳。</li>
+</ul>
+<p>和其他系统不同，JavaScript 中时间戳以毫秒为单位，而不是秒。</p>
+<p>有时我们需要更加精准的时间度量。JavaScript 自身并没有测量微秒的方法（百万分之一秒），但大多数运行环境会提供。例如：浏览器有 <a href="https://developer.mozilla.org/zh/docs/Web/API/Performance/now">performance.now()</a> 方法来给出从页面加载开始的以毫秒为单位的微秒数（精确到毫秒的小数点后三位）：</p>
+<div id="bo36rrlln6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(`Loading started ${performance.now()}ms ago`);
+// 类似于 &quot;Loading started 34731.26000000001ms ago&quot;
+// .26 表示的是微秒（260 微秒）
+// 小数点后超过 3 位的数字是精度错误，只有前三位数字是正确的</code></pre>
+        </div>
+      </div>
+      
+      </div><p>Node.js 有 <code>microtime</code> 模块以及其他方法。从技术上讲，几乎所有的设备和环境都允许获取更高精度的数值，只是不是通过 <code>Date</code> 对象。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#chuang-jian-ri-qi" name="chuang-jian-ri-qi">创建日期</a></h3><a class="task__open-link" href="../task/new-date/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个 <code>Date</code> 对象，日期是：Feb 20, 2012, 3:12am。时区是当地时区。</p>
+<p>使用 <code>alert</code> 显示结果。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><code>new Date</code> 构造函数默认使用本地时区。所以唯一需要牢记的就是月份从 0 开始计数。</p>
+<p>所以二月对应的数值是 1。</p>
+<p>这是一个以数字作为日期参数的示例：</p>
+<div id="r1nkriha6t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// new Date(year, month, date, hour, minute, second, millisecond)
+let d1 = new Date(2012, 1, 20, 3, 12);
+alert( d1 );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们还可以从字符串创建日期，像这样：</p>
+<div id="8bfcm1u4cp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// new Date(datastring)
+let d2 = new Date(&quot;February 20, 2012 03:12:00&quot;);
+alert( d2 );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xian-shi-xing-qi-shu" name="xian-shi-xing-qi-shu">显示星期数</a></h3><a class="task__open-link" href="../task/get-week-day/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>编写一个函数 <code>getWeekDay(date)</code> 以短格式来显示一个日期的星期数：‘MO’，‘TU’，‘WE’，‘TH’，‘FR’，‘SA’，‘SU’。</p>
+<p>例如：</p>
+<div id="4ihgohxky0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2012, 0, 3);  // 3 Jan 2012
+alert( getWeekDay(date) );        // 应该输出 &quot;TU&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Cef534NovJDyc3qj?p=preview" target="_blank" data-plunk-id="Cef534NovJDyc3qj">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><code>date.getDay()</code> 方法返回从星期日开始的星期数。</p>
+<p>我们创建一个关于星期的数组，这样我们就可以通过编号获取正确的日期名称：</p>
+<div id="lulihq2dv8" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getWeekDay(date) {
+  let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+
+  return days[date.getDay()];
+}
+
+let date = new Date(2014, 0, 3); // 3 Jan 2014
+alert( getWeekDay(date) ); // FR</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/nYVyz9W2SNw3yP0K?p=preview" target="_blank" data-plunk-id="nYVyz9W2SNw3yP0K">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ou-zhou-de-xing-qi-biao-shi-fang-fa" name="ou-zhou-de-xing-qi-biao-shi-fang-fa">欧洲的星期表示方法</a></h3><a class="task__open-link" href="../task/weekday/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>欧洲国家的星期计算是从星期一（数字 1）开始的，然后是星期二（数字 2），直到星期日（数字 7）。编写一个函数 <code>getLocalDay(date)</code>，并返回日期的欧洲式星期数。</p>
+<div id="wde8rj6o2m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2012, 0, 3);  // 3 Jan 2012
+alert( getLocalDay(date) );       // 星期二，应该显示 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/XU3uet9MZKC4MDl8?p=preview" target="_blank" data-plunk-id="XU3uet9MZKC4MDl8">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="l4ptcfnkts" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getLocalDay(date) {
+
+  let day = date.getDay();
+
+  if (day == 0) { // weekday 0 (sunday) is 7 in european
+    day = 7;
+  }
+
+  return day;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/OKkYxIBp880S3Go0?p=preview" target="_blank" data-plunk-id="OKkYxIBp880S3Go0">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#xu-duo-tian-zhi-qian-shi-na-ge-yue-ji-hao" name="xu-duo-tian-zhi-qian-shi-na-ge-yue-ji-hao">许多天之前是哪个月几号？</a></h3><a class="task__open-link" href="../task/get-date-ago/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>getDateAgo(date, days)</code>，返回特定日期 <code>date</code> 往前 <code>days</code> 天是哪个月的哪一天。</p>
+<p>例如，假设今天是 20 号，那么 <code>getDateAgo(new Date(), 1)</code> 的结果应该是 19 号，<code>getDateAgo(new Date(), 2)</code> 的结果应该是 18 号。</p>
+<p>跨月、年也应该是正确输出：</p>
+<div id="ijcjh07igy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let date = new Date(2015, 0, 2);
+
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 函数不应该修改给定的 <code>date</code> 值。</p>
+<p><a href="https://plnkr.co/edit/ppADQ8BKZFdGtFMm?p=preview" target="_blank" data-plunk-id="ppADQ8BKZFdGtFMm">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>思路很简单：从 <code>date</code> 中减去给定的天数：</p>
+<div id="3tyh9nsu3h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getDateAgo(date, days) {
+  date.setDate(date.getDate() - days);
+  return date.getDate();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是函数不能修改 <code>date</code>。这一点很重要，因为我们提供日期的外部代码不希望它被修改。</p>
+<p>要实现这一点，我们可以复制这个日期，就像这样：</p>
+<div id="1u6dg6rhr8" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getDateAgo(date, days) {
+  let dateCopy = new Date(date);
+
+  dateCopy.setDate(date.getDate() - days);
+  return dateCopy.getDate();
+}
+
+let date = new Date(2015, 0, 2);
+
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/P58xWPRIesIx0uw8?p=preview" target="_blank" data-plunk-id="P58xWPRIesIx0uw8">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#mou-yue-de-zui-hou-yi-tian" name="mou-yue-de-zui-hou-yi-tian">某月的最后一天？</a></h3><a class="task__open-link" href="../task/last-day-of-month/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>getLastDayOfMonth(year, month)</code> 返回 month 月的最后一天。有时候是 30，有时是 31，甚至在二月的时候会是 28/29。</p>
+<p>参数：</p>
+<ul>
+<li><code>year</code> —— 四位数的年份，比如 2012。</li>
+<li><code>month</code> —— 月份，从 0 到 11。</li>
+</ul>
+<p>举个例子，<code>getLastDayOfMonth(2012, 1) = 29</code>（闰年，二月）</p>
+<p><a href="https://plnkr.co/edit/cyZHqTtdymWZ6KMi?p=preview" target="_blank" data-plunk-id="cyZHqTtdymWZ6KMi">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>让我们使用下个月创建日期，但将零作为天数（day）传递：</p>
+<div id="dah1nl4hqa" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month + 1, 0);
+  return date.getDate();
+}
+
+alert( getLastDayOfMonth(2012, 0) ); // 31
+alert( getLastDayOfMonth(2012, 1) ); // 29
+alert( getLastDayOfMonth(2013, 1) ); // 28</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，日期从 1 开始，但从技术上讲，我们可以传递任何数字，日期会自动进行调整。因此，当我们传递 0 时，它的意思是“一个月的第一天的前一天”，换句话说：“上个月的最后一天”。</p>
+<p><a href="https://plnkr.co/edit/2GWSGaW8iG36H3fv?p=preview" target="_blank" data-plunk-id="2GWSGaW8iG36H3fv">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jin-tian-guo-qu-le-duo-shao-miao" name="jin-tian-guo-qu-le-duo-shao-miao">今天过去了多少秒？</a></h3><a class="task__open-link" href="../task/get-seconds-today/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>getSecondsToday()</code>，返回今天已经过去了多少秒？</p>
+<p>例如：如果现在是 <code>10:00 am</code>，并且没有夏令时转换，那么：</p>
+<div id="p9fqiwptt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getSecondsToday() == 36000 // (3600 * 10)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为获取秒数，我们可以使用今天的日期和 00:00:00 这个时间创建一个日期，然后使用当前时间减去该时间。</p>
+<p>不同之处在于，从今天之初开始算起的时间是以毫秒计算的，我们应该将其除以 1000，进而得到秒数：</p>
+<div id="dsvq7tlruu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToday() {
+  let now = new Date();
+
+  // 使用当前的 day/month/year 创建一个对象
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  let diff = now - today; // ms difference
+  return Math.round(diff / 1000); // make seconds
+}
+
+alert( getSecondsToday() );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>另一种解决方法是获取 hours/minutes/seconds，然后把它们转换为秒数：</p>
+<div id="gi5505ctau" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToday() {
+  let d = new Date();
+  return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+};
+
+alert( getSecondsToday() );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ju-li-ming-tian-huan-you-duo-shao-miao" name="ju-li-ming-tian-huan-you-duo-shao-miao">距离明天还有多少秒？</a></h3><a class="task__open-link" href="../task/get-seconds-to-tomorrow/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>getSecondsToTomorrow()</code>，返回距离明天的秒数。</p>
+<p>例如，现在是 <code>23:00</code>，那么：</p>
+<div id="2i8jwotnjb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>getSecondsToTomorrow() == 3600</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为获取距离明天的毫秒数，我们可以用“明天 00:00:00”这个日期减去当前的日期。</p>
+<p>首先我们生成“明天”，然后对其进行减法操作：</p>
+<div id="c8gxos75oj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:61,&quot;end&quot;:76}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToTomorrow() {
+  let now = new Date();
+
+  // tomorrow date
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+  let diff = tomorrow - now; // difference in ms
+  return Math.round(diff / 1000); // convert to seconds
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>另一种解法：</p>
+<div id="zpj6uh06n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getSecondsToTomorrow() {
+  let now = new Date();
+  let hour = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+  let totalSecondsToday = (hour * 60 + minutes) * 60 + seconds;
+  let totalSecondsInADay = 86400;
+
+  return totalSecondsInADay - totalSecondsToday;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，很多国家有夏令时（DST），因此他们的一天可能有 23 小时或者 25 小时。我们对这些天数要区别对待。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ge-shi-hua-xiang-dui-ri-qi" name="ge-shi-hua-xiang-dui-ri-qi">格式化相对日期</a></h3><a class="task__open-link" href="../task/format-date-relative/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>formatDate(date)</code>，能够对 <code>date</code> 进行如下格式化：</p>
+<ul>
+<li>如果 <code>date</code> 距离现在不到 1 秒，输出 <code>&quot;right now&quot;</code>。</li>
+<li>否则，如果 <code>date</code> 距离现在不到 1 分钟，输出 <code>&quot;n sec. ago&quot;</code>。</li>
+<li>否则，如果不到 1 小时，输出 <code>&quot;m min. ago&quot;</code>。</li>
+<li>否则，以 <code>&quot;DD.MM.YY HH:mm&quot;</code> 格式输出完整日期。即：<code>&quot;day.month.year hours:minutes&quot;</code>，全部以两位数格式表示，例如：<code>31.12.16 10:00</code>。</li>
+</ul>
+<p>举个例子：</p>
+<div id="eest3rwphe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( formatDate(new Date(new Date - 1)) ); // &quot;right now&quot;
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // &quot;30 sec. ago&quot;
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // &quot;5 min. ago&quot;
+
+// 昨天的日期，例如 31.12.16 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/MZpFF3bq1lhmjIVh?p=preview" target="_blank" data-plunk-id="MZpFF3bq1lhmjIVh">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为了获取 <code>date</code> 距离当前时间的间隔 —— 我们将两个日期相减。</p>
+<div id="ftawr0x322" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function formatDate(date) {
+  let diff = new Date() - date; // 以毫秒表示的差值
+
+  if (diff &lt; 1000) { // 少于 1 秒
+    return 'right now';
+  }
+
+  let sec = Math.floor(diff / 1000); // 将 diff 转换为秒
+
+  if (sec &lt; 60) {
+    return sec + ' sec. ago';
+  }
+
+  let min = Math.floor(diff / 60000); // 将 diff 转换为分钟
+  if (min &lt; 60) {
+    return min + ' min. ago';
+  }
+
+  // 格式化 date
+  // 将前置 0 加到一位数 day/month/hours/minutes 前
+  let d = date;
+  d = [
+    '0' + d.getDate(),
+    '0' + (d.getMonth() + 1),
+    '' + d.getFullYear(),
+    '0' + d.getHours(),
+    '0' + d.getMinutes()
+  ].map(component =&gt; component.slice(-2)); // 得到每个组件的后两位
+
+  // 将时间信息和日期组合在一起
+ return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+}
+
+alert( formatDate(new Date(new Date - 1)) ); // &quot;right now&quot;
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // &quot;30 sec. ago&quot;
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // &quot;5 min. ago&quot;
+
+// 昨天的日期如：31.12.2016 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>另一种解法：</p>
+<div id="s1ct61cui3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function formatDate(date) {
+  let dayOfMonth = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let hour = date.getHours();
+  let minutes = date.getMinutes();
+  let diffMs = new Date() - date;
+  let diffSec = Math.round(diffMs / 1000);
+  let diffMin = diffSec / 60;
+  let diffHour = diffMin / 60;
+
+  // 格式化
+  year = year.toString().slice(-2);
+  month = month &lt; 10 ? '0' + month : month;
+  dayOfMonth = dayOfMonth &lt; 10 ? '0' + dayOfMonth : dayOfMonth;
+  hour = hour &lt; 10 ? '0' + hour : hour;
+  minutes = minutes &lt; 10 ? '0' + minutes : minutes;
+
+  if (diffSec &lt; 1) {
+    return 'right now';
+  } else if (diffMin &lt; 1) {
+    return `${diffSec} sec. ago`
+  } else if (diffHour &lt; 1) {
+    return `${diffMin} min. ago`
+  } else {
+    return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Evq19ebGsXUpMgAF?p=preview" target="_blank" data-plunk-id="Evq19ebGsXUpMgAF">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../destructuring-assignment/index.html" data-tooltip="解构赋值"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../json/index.html" data-tooltip="JSON 方法，toJSON"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/date","identifier":"\/date"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#chuang-jian">创建</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fang-wen-ri-qi-zu-jian">访问日期组件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#she-zhi-ri-qi-zu-jian">设置日期组件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-dong-xiao-zhun-autocorrection">自动校准（Autocorrection）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ri-qi-zhuan-hua-wei-shu-zi-ri-qi-cha-zhi">日期转化为数字，日期差值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#datenow">Date.now()</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#du-liang-benchmarking">度量（Benchmarking）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dui-yi-ge-zi-fu-chuan-shi-yong-dateparse">对一个字符串使用 Date.parse</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (8)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fdate" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/11-date" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

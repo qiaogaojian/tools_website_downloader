@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Iterable object（可迭代对象）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/iterable"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Iterable object（可迭代对象）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Iterable object（可迭代对象）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/array-methods"><link rel="next" href="/map-set"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Iterable object（可迭代对象）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/iterable"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/iterable"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/iterable"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/iterable"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/iterable"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/iterable"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/iterable"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/iterable"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/iterable"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/iterable"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/iterable"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/iterable">عربي</option><option value="https://javascript.info/iterable">English</option><option value="https://es.javascript.info/iterable">Español</option><option value="https://fr.javascript.info/iterable">Français</option><option value="https://id.javascript.info/iterable">Indonesia</option><option value="https://it.javascript.info/iterable">Italiano</option><option value="https://ja.javascript.info/iterable">日本語</option><option value="https://ko.javascript.info/iterable">한국어</option><option value="https://learn.javascript.ru/iterable">Русский</option><option value="https://tr.javascript.info/iterable">Türkçe</option><option value="https://uk.javascript.info/iterable">Українська</option><option value="https://zh.javascript.info/iterable" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="42" max="92" data-tooltip="第 42/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Iterable object（可迭代对象）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Iterable object（可迭代对象）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><strong>可迭代（Iterable）</strong> 对象是数组的泛化。这个概念是说任何对象都可以被定制为可在 <code>for..of</code> 循环中使用的对象。</p>
+<p>数组是可迭代的。但不仅仅是数组。很多其他内建对象也都是可迭代的。例如字符串也是可迭代的。</p>
+<p>如果从技术上讲，对象不是数组，而是表示某物的集合（列表，集合），<code>for..of</code> 是一个能够遍历它的很好的语法，因此，让我们来看看如何使其发挥作用。</p>
+<h2><a class="main__anchor" name="symboliterator" href="#symboliterator">Symbol.iterator</a></h2><p>通过自己创建一个对象，我们就可以轻松地掌握可迭代的概念。</p>
+<p>例如，我们有一个对象，它并不是数组，但是看上去很适合使用 <code>for..of</code> 循环。</p>
+<p>比如一个 <code>range</code> 对象，它代表了一个数字区间：</p>
+<div id="qqlahpl01p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  from: 1,
+  to: 5
+};
+
+// 我们希望 for..of 这样运行：
+// for(let num of range) ... num=1,2,3,4,5</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了让 <code>range</code> 对象可迭代（也就让 <code>for..of</code> 可以运行）我们需要为对象添加一个名为 <code>Symbol.iterator</code> 的方法（一个专门用于使对象可迭代的内建 symbol）。</p>
+<ol>
+<li>当 <code>for..of</code> 循环启动时，它会调用这个方法（如果没找到，就会报错）。这个方法必须返回一个 <strong>迭代器（iterator）</strong> —— 一个有 <code>next</code> 方法的对象。</li>
+<li>从此开始，<code>for..of</code> <strong>仅适用于这个被返回的对象</strong>。</li>
+<li>当 <code>for..of</code> 循环希望取得下一个数值，它就调用这个对象的 <code>next()</code> 方法。</li>
+<li><code>next()</code> 方法返回的结果的格式必须是 <code>{done: Boolean, value: any}</code>，当 <code>done=true</code> 时，表示循环结束，否则 <code>value</code> 是下一个值。</li>
+</ol>
+<p>这是带有注释的 <code>range</code> 的完整实现：</p>
+<div id="v6dmsyokrd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  from: 1,
+  to: 5
+};
+
+// 1. for..of 调用首先会调用这个：
+range[Symbol.iterator] = function() {
+
+  // ……它返回迭代器对象（iterator object）：
+  // 2. 接下来，for..of 仅与下面的迭代器对象一起工作，要求它提供下一个值
+  return {
+    current: this.from,
+    last: this.to,
+
+    // 3. next() 在 for..of 的每一轮循环迭代中被调用
+    next() {
+      // 4. 它将会返回 {done:.., value :...} 格式的对象
+      if (this.current &lt;= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
+    }
+  };
+};
+
+// 现在它可以运行了！
+for (let num of range) {
+  alert(num); // 1, 然后是 2, 3, 4, 5
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意可迭代对象的核心功能：关注点分离。</p>
+<ul>
+<li><code>range</code> 自身没有 <code>next()</code> 方法。</li>
+<li>相反，是通过调用 <code>range[Symbol.iterator]()</code> 创建了另一个对象，即所谓的“迭代器”对象，并且它的 <code>next</code> 会为迭代生成值。</li>
+</ul>
+<p>因此，迭代器对象和与其进行迭代的对象是分开的。</p>
+<p>从技术上说，我们可以将它们合并，并使用 <code>range</code> 自身作为迭代器来简化代码。</p>
+<p>就像这样：</p>
+<div id="hanj64vppk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let range = {
+  from: 1,
+  to: 5,
+
+  [Symbol.iterator]() {
+    this.current = this.from;
+    return this;
+  },
+
+  next() {
+    if (this.current &lt;= this.to) {
+      return { done: false, value: this.current++ };
+    } else {
+      return { done: true };
+    }
+  }
+};
+
+for (let num of range) {
+  alert(num); // 1, 然后是 2, 3, 4, 5
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在 <code>range[Symbol.iterator]()</code> 返回的是 <code>range</code> 对象自身：它包括了必需的 <code>next()</code> 方法，并通过 <code>this.current</code> 记忆了当前的迭代进程。这样更短，对吗？是的。有时这样也可以。</p>
+<p>但缺点是，现在不可能同时在对象上运行两个 <code>for..of</code> 循环了：它们将共享迭代状态，因为只有一个迭代器，即对象本身。但是两个并行的 <code>for..of</code> 是很罕见的，即使在异步情况下。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">无穷迭代器（iterator）</span></div>
+            <div class="important__content"><p>无穷迭代器也是可能的。例如，将 <code>range</code> 设置为 <code>range.to = Infinity</code>，这时 <code>range</code> 则成为了无穷迭代器。或者我们可以创建一个可迭代对象，它生成一个无穷伪随机数序列。也是可能的。</p>
+<p><code>next</code> 没有什么限制，它可以返回越来越多的值，这是正常的。</p>
+<p>当然，迭代这种对象的 <code>for..of</code> 循环将不会停止。但是我们可以通过使用 <code>break</code> 来停止它。</p>
+</div></div>
+<h2><a class="main__anchor" name="zi-fu-chuan-shi-ke-die-dai-de" href="#zi-fu-chuan-shi-ke-die-dai-de">字符串是可迭代的</a></h2><p>数组和字符串是使用最广泛的内建可迭代对象。</p>
+<p>对于一个字符串，<code>for..of</code> 遍历它的每个字符：</p>
+<div id="wrh7c6snro" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let char of &quot;test&quot;) {
+  // 触发 4 次，每个字符一次
+  alert( char ); // t, then e, then s, then t
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于代理对（surrogate pairs），它也能正常工作！（译注：这里的代理对也就指的是 UTF-16 的扩展字符）</p>
+<div id="6iqzac2i7m" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '𝒳😂';
+for (let char of str) {
+    alert( char ); // 𝒳，然后是 😂
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="xian-shi-tiao-yong-die-dai-qi" href="#xian-shi-tiao-yong-die-dai-qi">显式调用迭代器</a></h2><p>为了更深层地了解底层知识，让我们来看看如何显式地使用迭代器。</p>
+<p>我们将会采用与 <code>for..of</code> 完全相同的方式遍历字符串，但使用的是直接调用。这段代码创建了一个字符串迭代器，并“手动”从中获取值。</p>
+<div id="vgj8h6e5cn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Hello&quot;;
+
+// 和 for..of 做相同的事
+// for (let char of str) alert(char);
+
+let iterator = str[Symbol.iterator]();
+
+while (true) {
+  let result = iterator.next();
+  if (result.done) break;
+  alert(result.value); // 一个接一个地输出字符
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>很少需要我们这样做，但是比 <code>for..of</code> 给了我们更多的控制权。例如，我们可以拆分迭代过程：迭代一部分，然后停止，做一些其他处理，然后再恢复迭代。</p>
+<h2><a class="main__anchor" name="array-like" href="#array-like">可迭代（iterable）和类数组（array-like）</a></h2><p>这两个官方术语看起来差不多，但其实大不相同。请确保你能够充分理解它们的含义，以免造成混淆。</p>
+<ul>
+<li><strong>Iterable</strong> 如上所述，是实现了 <code>Symbol.iterator</code> 方法的对象。</li>
+<li><strong>Array-like</strong> 是有索引和 <code>length</code> 属性的对象，所以它们看起来很像数组。</li>
+</ul>
+<p>当我们将 JavaScript 用于编写在浏览器或任何其他环境中的实际任务时，我们可能会遇到可迭代对象或类数组对象，或两者兼有。</p>
+<p>例如，字符串即是可迭代的（<code>for..of</code> 对它们有效），又是类数组的（它们有数值索引和 <code>length</code> 属性）。</p>
+<p>但是一个可迭代对象也许不是类数组对象。反之亦然，类数组对象可能不可迭代。</p>
+<p>例如，上面例子中的 <code>range</code> 是可迭代的，但并非类数组对象，因为它没有索引属性，也没有 <code>length</code> 属性。</p>
+<p>下面这个对象则是类数组的，但是不可迭代：</p>
+<div id="8hhc3aymxy" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arrayLike = { // 有索引和 length 属性 =&gt; 类数组对象
+  0: &quot;Hello&quot;,
+  1: &quot;World&quot;,
+  length: 2
+};
+
+// Error (no Symbol.iterator)
+for (let item of arrayLike) {}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可迭代对象和类数组对象通常都 <strong>不是数组</strong>，它们没有 <code>push</code> 和 <code>pop</code> 等方法。如果我们有一个这样的对象，并想像数组那样操作它，那就非常不方便。例如，我们想使用数组方法操作 <code>range</code>，应该如何实现呢？</p>
+<h2><a class="main__anchor" name="arrayfrom" href="#arrayfrom">Array.from</a></h2><p>有一个全局方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from</a> 可以接受一个可迭代或类数组的值，并从中获取一个“真正的”数组。然后我们就可以对其调用数组方法了。</p>
+<p>例如：</p>
+<div id="l44seefvbu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arrayLike = {
+  0: &quot;Hello&quot;,
+  1: &quot;World&quot;,
+  length: 2
+};
+
+let arr = Array.from(arrayLike); // (*)
+alert(arr.pop()); // World（pop 方法有效）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 <code>(*)</code> 行的 <code>Array.from</code> 方法接受对象，检查它是一个可迭代对象或类数组对象，然后创建一个新数组，并将该对象的所有元素复制到这个新数组。</p>
+<p>如果是可迭代对象，也是同样：</p>
+<div id="72ugu24ktq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 假设 range 来自上文的例子中
+let arr = Array.from(range);
+alert(arr); // 1,2,3,4,5 （数组的 toString 转化方法生效）</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Array.from</code> 的完整语法允许我们提供一个可选的“映射（mapping）”函数：</p>
+<div id="x0vzoz3i5c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Array.from(obj[, mapFn, thisArg])</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可选的第二个参数 <code>mapFn</code> 可以是一个函数，该函数会在对象中的元素被添加到数组前，被应用于每个元素，此外 <code>thisArg</code> 允许我们为该函数设置 <code>this</code>。</p>
+<p>例如：</p>
+<div id="gd5gij394v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 假设 range 来自上文例子中
+
+// 求每个数的平方
+let arr = Array.from(range, num =&gt; num * num);
+
+alert(arr); // 1,4,9,16,25</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们用 <code>Array.from</code> 将一个字符串转换为单个字符的数组：</p>
+<div id="z0vcxk0bkm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '𝒳😂';
+
+// 将 str 拆分为字符数组
+let chars = Array.from(str);
+
+alert(chars[0]); // 𝒳
+alert(chars[1]); // 😂
+alert(chars.length); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与 <code>str.split</code> 方法不同，它依赖于字符串的可迭代特性。因此，就像 <code>for..of</code> 一样，可以正确地处理代理对（surrogate pair）。（译注：代理对也就是 UTF-16 扩展字符。）</p>
+<p>技术上来讲，它和下面这段代码做的是相同的事：</p>
+<div id="6jtpu9ugob" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '𝒳😂';
+
+let chars = []; // Array.from 内部执行相同的循环
+for (let char of str) {
+  chars.push(char);
+}
+
+alert(chars);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但 <code>Array.from</code> 精简很多。</p>
+<p>我们甚至可以基于 <code>Array.from</code> 创建代理感知（surrogate-aware）的<code>slice</code> 方法（译注：也就是能够处理 UTF-16 扩展字符的 <code>slice</code> 方法）：</p>
+<div id="0urg4oj7av" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function slice(str, start, end) {
+  return Array.from(str).slice(start, end).join('');
+}
+
+let str = '𝒳😂𩷶';
+
+alert( slice(str, 1, 3) ); // 😂𩷶
+
+// 原生方法不支持识别代理对（译注：UTF-16 扩展字符）
+alert( str.slice(1, 3) ); // 乱码（两个不同 UTF-16 扩展字符碎片拼接的结果）</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>可以应用 <code>for..of</code> 的对象被称为 <strong>可迭代的</strong>。</p>
+<ul>
+<li>技术上来说，可迭代对象必须实现 <code>Symbol.iterator</code> 方法。
+<ul>
+<li><code>obj[Symbol.iterator]()</code> 的结果被称为 <strong>迭代器（iterator）</strong>。由它处理进一步的迭代过程。</li>
+<li>一个迭代器必须有 <code>next()</code> 方法，它返回一个 <code>{done: Boolean, value: any}</code> 对象，这里 <code>done:true</code> 表明迭代结束，否则 <code>value</code> 就是下一个值。</li>
+</ul>
+</li>
+<li><code>Symbol.iterator</code> 方法会被 <code>for..of</code> 自动调用，但我们也可以直接调用它。</li>
+<li>内建的可迭代对象例如字符串和数组，都实现了 <code>Symbol.iterator</code>。</li>
+<li>字符串迭代器能够识别代理对（surrogate pair）。（译注：代理对也就是 UTF-16 扩展字符。）</li>
+</ul>
+<p>有索引属性和 <code>length</code> 属性的对象被称为 <strong>类数组对象</strong>。这种对象可能还具有其他属性和方法，但是没有数组的内建方法。</p>
+<p>如果我们仔细研究一下规范 —— 就会发现大多数内建方法都假设它们需要处理的是可迭代对象或者类数组对象，而不是“真正的”数组，因为这样抽象度更高。</p>
+<p><code>Array.from(obj[, mapFn, thisArg])</code> 将可迭代对象或类数组对象 <code>obj</code> 转化为真正的数组 <code>Array</code>，然后我们就可以对它应用数组的方法。可选参数 <code>mapFn</code> 和 <code>thisArg</code> 允许我们将函数应用到每个元素。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../array-methods/index.html" data-tooltip="数组方法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../map-set/index.html" data-tooltip="Map and Set（映射和集合）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/iterable","identifier":"\/iterable"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#symboliterator">Symbol.iterator</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-fu-chuan-shi-ke-die-dai-de">字符串是可迭代的</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xian-shi-tiao-yong-die-dai-qi">显式调用迭代器</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#array-like">可迭代（iterable）和类数组（array-like）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#arrayfrom">Array.from</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fiterable" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/06-iterable" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

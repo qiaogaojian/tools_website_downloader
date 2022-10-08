@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">私有的和受保护的属性和方法</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/private-protected-properties-methods"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="私有的和受保护的属性和方法"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="私有的和受保护的属性和方法"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/static-properties-methods"><link rel="next" href="/extend-natives"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="私有的和受保护的属性和方法"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/private-protected-properties-methods"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/private-protected-properties-methods"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/private-protected-properties-methods">عربي</option><option value="https://javascript.info/private-protected-properties-methods">English</option><option value="https://es.javascript.info/private-protected-properties-methods">Español</option><option value="https://fr.javascript.info/private-protected-properties-methods">Français</option><option value="https://id.javascript.info/private-protected-properties-methods">Indonesia</option><option value="https://it.javascript.info/private-protected-properties-methods">Italiano</option><option value="https://ja.javascript.info/private-protected-properties-methods">日本語</option><option value="https://ko.javascript.info/private-protected-properties-methods">한국어</option><option value="https://learn.javascript.ru/private-protected-properties-methods">Русский</option><option value="https://tr.javascript.info/private-protected-properties-methods">Türkçe</option><option value="https://uk.javascript.info/private-protected-properties-methods">Українська</option><option value="https://zh.javascript.info/private-protected-properties-methods" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="69" max="92" data-tooltip="第 69/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../classes/index.html"><span>类</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"类","item":"https://zh.javascript.info/classes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">私有的和受保护的属性和方法</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="私有的和受保护的属性和方法"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>面向对象编程最重要的原则之一 —— 将内部接口与外部接口分隔开来。</p>
+<p>在开发比 “hello world” 应用程序更复杂的东西时，这是“必须”遵守的做法。</p>
+<p>为了理解这一点，让我们脱离开发过程，把目光转向现实世界。</p>
+<p>通常，我们使用的设备都非常复杂。但是，将内部接口与外部接口分隔开来可以让我们使用它们且没有任何问题。</p>
+<h2><a class="main__anchor" name="yi-ge-xian-shi-sheng-huo-zhong-de-li-zi" href="#yi-ge-xian-shi-sheng-huo-zhong-de-li-zi">一个现实生活中的例子</a></h2><p>例如，一个咖啡机。从外面看很简单：一个按钮，一个显示器，几个洞……当然，结果就是 —— 很棒的咖啡！:)</p>
+<figure><div class="image" style="width:240px">
+      <div class="image__ratio" style="padding-top:166.66666666666669%"></div>
+      <img src="../article/private-protected-properties-methods/coffee.jpg" alt width="240" height="400" class="image__image">
+      </div></figure><p>但是在内部……（一张摘自维修手册的图片）</p>
+<figure><div class="image" style="width:239px">
+      <div class="image__ratio" style="padding-top:167.36401673640165%"></div>
+      <img src="../article/private-protected-properties-methods/coffee-inside.jpg" alt width="239" height="400" class="image__image">
+      </div></figure><p>有非常多的细节。但我们可以在完全不了解这些内部细节的情况下使用它。</p>
+<p>咖啡机非常可靠，不是吗？一台咖啡机我们可以使用好几年，只有在出现问题时 —— 把它送去维修。</p>
+<p>咖啡机的可靠性和简洁性的秘诀 —— 所有细节都经过精心校并 <strong>隐藏</strong> 在内部。</p>
+<p>如果我们从咖啡机上取下保护罩，那么使用它将变得复杂得多（要按哪里？），并且很危险（会触电）。</p>
+<p>正如我们所看到的，在编程中，对象就像咖啡机。</p>
+<p>但是为了隐藏内部细节，我们不会使用保护罩，而是使用语言和约定中的特殊语法。</p>
+<h2><a class="main__anchor" name="nei-bu-jie-kou-he-wai-bu-jie-kou" href="#nei-bu-jie-kou-he-wai-bu-jie-kou">内部接口和外部接口</a></h2><p>在面向对象的编程中，属性和方法分为两组：</p>
+<ul>
+<li><strong>内部接口</strong> —— 可以通过该类的其他方法访问，但不能从外部访问的方法和属性。</li>
+<li><strong>外部接口</strong> —— 也可以从类的外部访问的方法和属性。</li>
+</ul>
+<p>如果我们继续用咖啡机进行类比 —— 内部隐藏的内容：锅炉管，加热元件等 —— 是咖啡机的内部接口。</p>
+<p>内部接口用于对象工作，它的细节相互使用。例如，锅炉管连接到加热元件。</p>
+<p>但是从外面看，一台咖啡机被保护壳罩住了，所以没有人可以接触到其内部接口。细节信息被隐藏起来并且无法访问。我们可以通过外部接口使用它的功能。</p>
+<p>所以，我们需要使用一个对象时只需知道它的外部接口。我们可能完全不知道它的内部是如何工作的，这太好了。</p>
+<p>这是个概括性的介绍。</p>
+<p>在 JavaScript 中，有两种类型的对象字段（属性和方法）：</p>
+<ul>
+<li>公共的：可从任何地方访问。它们构成了外部接口。到目前为止，我们只使用了公共的属性和方法。</li>
+<li>私有的：只能从类的内部访问。这些用于内部接口。</li>
+</ul>
+<p>在许多其他编程语言中，还存在“受保护”的字段：只能从类的内部和基于其扩展的类的内部访问（例如私有的，但可以从继承的类进行访问）。它们对于内部接口也很有用。从某种意义上讲，它们比私有的属性和方法更为广泛，因为我们通常希望继承类来访问它们。</p>
+<p>受保护的字段不是在语言级别的 Javascript 中实现的，但实际上它们非常方便，因为它们是在 Javascript 中模拟的类定义语法。</p>
+<p>现在，我们将使用所有这些类型的属性在 Javascript 中制作咖啡机。咖啡机有很多细节，我们不会对它们进行全面模拟以保持简洁（尽管我们可以）。</p>
+<h2><a class="main__anchor" name="shou-bao-hu-de-wateramount" href="#shou-bao-hu-de-wateramount">受保护的 “waterAmount”</a></h2><p>首先，让我们做一个简单的咖啡机类：</p>
+<div id="i8udb6mjes" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+  waterAmount = 0; // 内部的水量
+
+  constructor(power) {
+    this.power = power;
+    alert( `Created a coffee-machine, power: ${power}` );
+  }
+
+}
+
+// 创建咖啡机
+let coffeeMachine = new CoffeeMachine(100);
+
+// 加水
+coffeeMachine.waterAmount = 200;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，属性 <code>waterAmount</code> 和 <code>power</code> 是公共的。我们可以轻松地从外部将它们 get/set 成任何值。</p>
+<p>让我们将 <code>waterAmount</code> 属性更改为受保护的属性，以对其进行更多控制。例如，我们不希望任何人将它的值设置为小于零的数。</p>
+<p><strong>受保护的属性通常以下划线 <code>_</code> 作为前缀。</strong></p>
+<p>这不是在语言级别强制实施的，但是程序员之间有一个众所周知的约定，即不应该从外部访问此类型的属性和方法。</p>
+<p>所以我们的属性将被命名为 <code>_waterAmount</code>：</p>
+<div id="e8874z2x74" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+  _waterAmount = 0;
+
+  set waterAmount(value) {
+    if (value &lt; 0) {
+      value = 0;
+    }
+    this._waterAmount = value;
+  }
+
+  get waterAmount() {
+    return this._waterAmount;
+  }
+
+  constructor(power) {
+    this._power = power;
+  }
+
+}
+
+// 创建咖啡机
+let coffeeMachine = new CoffeeMachine(100);
+
+// 加水
+coffeeMachine.waterAmount = -10; // _waterAmount 将变为 0，而不是 -10</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在访问已受到控制，因此将水量的值设置为小于零的数变得不可能。</p>
+<h2><a class="main__anchor" name="zhi-du-de-power" href="#zhi-du-de-power">只读的 “power”</a></h2><p>对于 <code>power</code> 属性，让我们将它设为只读。有时候一个属性必须只能被在创建时进行设置，之后不再被修改。</p>
+<p>咖啡机就是这种情况：功率永远不会改变。</p>
+<p>要做到这一点，我们只需要设置 getter，而不设置 setter：</p>
+<div id="5wuvp9e5jj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+  // ...
+
+  constructor(power) {
+    this._power = power;
+  }
+
+  get power() {
+    return this._power;
+  }
+
+}
+
+// 创建咖啡机
+let coffeeMachine = new CoffeeMachine(100);
+
+alert(`Power is: ${coffeeMachine.power}W`); // 功率是：100W
+
+coffeeMachine.power = 25; // Error（没有 setter）</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">Getter/setter 函数</span></div>
+            <div class="important__content"><p>这里我们使用了 getter/setter 语法。</p>
+<p>但大多数时候首选 <code>get.../set...</code> 函数，像这样：</p>
+<div id="78fvshoqwj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:18}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:23}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+  _waterAmount = 0;
+
+  setWaterAmount(value) {
+    if (value &lt; 0) value = 0;
+    this._waterAmount = value;
+  }
+
+  getWaterAmount() {
+    return this._waterAmount;
+  }
+}
+
+new CoffeeMachine().setWaterAmount(100);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这看起来有点长，但函数更灵活。它们可以接受多个参数（即使我们现在还不需要）。</p>
+<p>另一方面，get/set 语法更短，所以最终没有严格的规定，而是由你自己来决定。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">受保护的字段是可以被继承的</span></div>
+            <div class="important__content"><p>如果我们继承 <code>class MegaMachine extends CoffeeMachine</code>，那么什么都无法阻止我们从新的类中的方法访问 <code>this._waterAmount</code> 或 <code>this._power</code>。</p>
+<p>所以受保护的字段是自然可被继承的。与我们接下来将看到的私有字段不同。</p>
+</div></div>
+<h2><a class="main__anchor" name="si-you-de-waterlimit" href="#si-you-de-waterlimit">私有的 “#waterLimit”</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">A recent addition</span></div>
+            <div class="important__content">
+            This is a recent addition to the language.
+            Not supported in JavaScript engines, or supported partially yet, requires polyfilling.
+            </div></div>
+<p>这儿有一个马上就会被加到规范中的已完成的 Javascript 提案，它为私有属性和方法提供语言级支持。</p>
+<p>私有属性和方法应该以 <code>#</code> 开头。它们只在类的内部可被访问。</p>
+<p>例如，这儿有一个私有属性 <code>#waterLimit</code> 和检查水量的私有方法 <code>#fixWaterAmount</code>：</p>
+<div id="e5wmn5540l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:17},{&quot;start&quot;:3,&quot;end&quot;:6},{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+  #waterLimit = 200;
+
+  #fixWaterAmount(value) {
+    if (value &lt; 0) return 0;
+    if (value &gt; this.#waterLimit) return this.#waterLimit;
+  }
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
+}
+
+let coffeeMachine = new CoffeeMachine();
+
+// 不能从类的外部访问类的私有属性和方法
+coffeeMachine.#fixWaterAmount(123); // Error
+coffeeMachine.#waterLimit = 1000; // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在语言级别，<code>#</code> 是该字段为私有的特殊标志。我们无法从外部或从继承的类中访问它。</p>
+<p>私有字段与公共字段不会发生冲突。我们可以同时拥有私有的 <code>#waterAmount</code> 和公共的 <code>waterAmount</code> 字段。</p>
+<p>例如，让我们使 <code>waterAmount</code> 成为 <code>#waterAmount</code> 的一个访问器：</p>
+<div id="v6hkhb3495" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class CoffeeMachine {
+
+  #waterAmount = 0;
+
+  get waterAmount() {
+    return this.#waterAmount;
+  }
+
+  set waterAmount(value) {
+    if (value &lt; 0) value = 0;
+    this.#waterAmount = value;
+  }
+}
+
+let machine = new CoffeeMachine();
+
+machine.waterAmount = 100;
+alert(machine.#waterAmount); // Error</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与受保护的字段不同，私有字段由语言本身强制执行。这是好事儿。</p>
+<p>但是如果我们继承自 <code>CoffeeMachine</code>，那么我们将无法直接访问 <code>#waterAmount</code>。我们需要依靠 <code>waterAmount</code> getter/setter：</p>
+<div id="70a1gxb6yk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MegaCoffeeMachine extends CoffeeMachine {
+  method() {
+    alert( this.#waterAmount ); // Error: can only access from CoffeeMachine
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在许多情况下，这种限制太严重了。如果我们扩展 <code>CoffeeMachine</code>，则可能有正当理由访问其内部。这就是为什么大多数时候都会使用受保护字段，即使它们不受语言语法的支持。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">私有字段不能通过 this[name] 访问</span></div>
+            <div class="important__content"><p>私有字段很特别。</p>
+<p>正如我们所知道的，通常我们可以使用 <code>this[name]</code> 访问字段：</p>
+<div id="8m2n7fwpka" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:35}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  ...
+  sayHi() {
+    let fieldName = &quot;name&quot;;
+    alert(`Hello, ${this[fieldName]}`);
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于私有字段来说，这是不可能的：<code>this['#name']</code> 不起作用。这是确保私有性的语法限制。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>就面向对象编程（OOP）而言，内部接口与外部接口的划分被称为 <a href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)">封装</a>。</p>
+<p>它具有以下优点：</p>
+<dl>
+<dt>保护用户，使他们不会误伤自己</dt>
+<dd>
+<p>想象一下，有一群开发人员在使用一个咖啡机。这个咖啡机是由“最好的咖啡机”公司制造的，工作正常，但是保护罩被拿掉了。因此内部接口暴露了出来。</p>
+<p>所有的开发人员都是文明的 —— 他们按照预期使用咖啡机。但其中的一个人，约翰，他认为自己是最聪明的人，并对咖啡机的内部做了一些调整。然而，咖啡机两天后就坏了。</p>
+<p>这肯定不是约翰的错，而是那个取下保护罩并让约翰进行操作的人的错。</p>
+<p>编程也一样。如果一个 class 的使用者想要改变那些本不打算被从外部更改的东西 —— 后果是不可预测的。</p>
+</dd>
+<dt>可支持性</dt>
+<dd>
+<p>编程的情况比现实生活中的咖啡机要复杂得多，因为我们不只是购买一次。我们还需要不断开发和改进代码。</p>
+<p><strong>如果我们严格界定内部接口，那么这个 class 的开发人员可以自由地更改其内部属性和方法，甚至无需通知用户。</strong></p>
+<p>如果你是这样的 class 的开发者，那么你会很高兴知道可以安全地重命名私有变量，可以更改甚至删除其参数，因为没有外部代码依赖于它们。</p>
+<p>对于用户来说，当新版本问世时，应用的内部可能被进行了全面检修，但如果外部接口相同，则仍然很容易升级。</p>
+</dd>
+<dt>隐藏复杂性</dt>
+<dd>
+<p>人们喜欢使用简单的东西。至少从外部来看是这样。内部的东西则是另外一回事了。</p>
+<p>程序员也不例外。</p>
+<p><strong>当实施细节被隐藏，并提供了简单且有据可查的外部接口时，总是很方便的。</strong></p>
+</dd>
+</dl>
+<p>为了隐藏内部接口，我们使用受保护的或私有的属性：</p>
+<ul>
+<li>受保护的字段以 <code>_</code> 开头。这是一个众所周知的约定，不是在语言级别强制执行的。程序员应该只通过它的类和从它继承的类中访问以 <code>_</code> 开头的字段。</li>
+<li>私有字段以 <code>#</code> 开头。JavaScript 确保我们只能从类的内部访问它们。</li>
+</ul>
+<p>目前，各个浏览器对私有字段的支持不是很好，但可以用 polyfill 解决。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../static-properties-methods/index.html" data-tooltip="静态属性和静态方法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../extend-natives/index.html" data-tooltip="扩展内建类"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/private-protected-properties-methods","identifier":"\/private-protected-properties-methods"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../classes/index.html">类</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-ge-xian-shi-sheng-huo-zhong-de-li-zi">一个现实生活中的例子</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nei-bu-jie-kou-he-wai-bu-jie-kou">内部接口和外部接口</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shou-bao-hu-de-wateramount">受保护的 “waterAmount”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhi-du-de-power">只读的 “power”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#si-you-de-waterlimit">私有的 “#waterLimit”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fprivate-protected-properties-methods" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/09-classes/04-private-protected-properties-methods" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

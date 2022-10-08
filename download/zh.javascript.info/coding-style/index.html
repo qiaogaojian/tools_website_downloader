@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">代码风格</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/coding-style"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="代码风格"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="代码风格"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/debugging-chrome"><link rel="next" href="/comments"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="代码风格"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/coding-style"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/coding-style"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/coding-style"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/coding-style"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/coding-style"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/coding-style"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/coding-style"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/coding-style"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/coding-style"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/coding-style"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/coding-style"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/coding-style">عربي</option><option value="https://javascript.info/coding-style">English</option><option value="https://es.javascript.info/coding-style">Español</option><option value="https://fr.javascript.info/coding-style">Français</option><option value="https://id.javascript.info/coding-style">Indonesia</option><option value="https://it.javascript.info/coding-style">Italiano</option><option value="https://ja.javascript.info/coding-style">日本語</option><option value="https://ko.javascript.info/coding-style">한국어</option><option value="https://learn.javascript.ru/coding-style">Русский</option><option value="https://tr.javascript.info/coding-style">Türkçe</option><option value="https://uk.javascript.info/coding-style">Українська</option><option value="https://zh.javascript.info/coding-style" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="24" max="92" data-tooltip="第 24/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../code-quality/index.html"><span>代码质量</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"代码质量","item":"https://zh.javascript.info/code-quality"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">代码风格</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="代码风格"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们的代码必须尽可能的清晰和易读。</p>
+<p>这实际上是一种编程艺术 —— 以一种正确并且人们易读的方式编码来完成一个复杂的任务。一个良好的代码风格大大有助于实现这一点。</p>
+<h2><a class="main__anchor" name="yu-fa" href="#yu-fa">语法</a></h2><p>下面是一个备忘单，其中列出了一些建议的规则（详情请参阅下文）：</p>
+<figure><div class="image" style="width:715px">
+      <div class="image__ratio" style="padding-top:73.84615384615385%"></div>
+      <object type="image/svg+xml" data="../article/coding-style/code-style.svg" width="715" height="528" class="image__image" data-use-theme>
+        <img src="../article/coding-style/code-style.svg" alt width="715" height="528">
+      </object>
+      </div></figure><!--
+```js
+function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt("x?", "");
+let n = prompt("n?", "");
+
+if (n < 0) {
+  alert(`Power ${n} is not supported,
+    please enter a non-negative integer number`);
+} else {
+  alert( pow(x, n) );
+}
+```
+
+-->
+<p>现在，让我们详细讨论一下这些规则和它们的原因吧。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">没有什么规则是“必须”的</span></div>
+            <div class="important__content"><p>没有什么规则是“刻在石头上”的。这些是风格偏好，而不是宗教教条。</p>
+</div></div>
+<h3><a class="main__anchor" name="hua-kuo-hao" href="#hua-kuo-hao">花括号</a></h3><p>在大多数的 JavaScript 项目中，花括号以 “Egyptian” 风格（译注：“egyptian” 风格又称 K&amp;R 风格 — 代码段的开括号位于一行的末尾，而不是另起一行的风格）书写，左花括号与相应的关键词在同一行上 — 而不是新起一行。左括号前还应该有一个空格，如下所示：</p>
+<div id="vppomp9kpi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (condition) {
+  // do this
+  // ...and that
+  // ...and that
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>单行构造（如 <code>if (condition) doSomething()</code>）也是一个重要的用例。我们是否应该使用花括号？如果是，那么在哪里？</p>
+<p>下面是这几种情况的注释，你可以自己判断一下它们的可读性：</p>
+<ol>
+<li>😠 初学者常这样写。非常不好！这里不需要花括号：<div id="2x80e12di5" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:11,&quot;end&quot;:12},{&quot;start&quot;:49,&quot;end&quot;:50}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) {alert(`Power ${n} is not supported`);}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😠 拆分为单独的行，不带花括号。永远不要这样做，添加新行很容易出错：<div id="h0mseuvia9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0)
+  alert(`Power ${n} is not supported`);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😏 写成一行，不带花括号 — 如果短的话，也是可以的：<div id="qe44z6ud2z" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) alert(`Power ${n} is not supported`);</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>😃 最好的方式：<div id="qtk12t922c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (n &lt; 0) {
+  alert(`Power ${n} is not supported`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>对于很短的代码，写成一行是可以接受的：例如 <code>if (cond) return null</code>。但是代码块（最后一个示例）通常更具可读性。</p>
+<h3><a class="main__anchor" name="hang-de-chang-du" href="#hang-de-chang-du">行的长度</a></h3><p>没有人喜欢读一长串代码，最好将代码分割一下。</p>
+<p>例如：</p>
+<div id="8bmgtfo2s7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 回勾引号 ` 允许将字符串拆分为多行
+let str = `
+  ECMA International's TC39 is a group of JavaScript developers,
+  implementers, academics, and more, collaborating with the community
+  to maintain and evolve the definition of JavaScript.
+`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于 <code>if</code> 语句：</p>
+<div id="8yshs1okw6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (
+  id === 123 &amp;&amp;
+  moonPhase === 'Waning Gibbous' &amp;&amp;
+  zodiacSign === 'Libra'
+) {
+  letTheSorceryBegin();
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>一行代码的最大长度应该在团队层面上达成一致。通常是 80 或 120 个字符。</p>
+<h3><a class="main__anchor" name="suo-jin" href="#suo-jin">缩进</a></h3><p>有两种类型的缩进：</p>
+<ul>
+<li>
+<p><strong>水平方向上的缩进：2 或 4 个空格。</strong></p>
+<p>一个水平缩进通常由 2 或 4 个空格或者 “Tab” 制表符（<kbd class="shortcut">Tab</kbd> 键）构成。选择哪一个方式是一场古老的圣战。如今空格更普遍一点。</p>
+<p>选择空格而不是 tabs 的优点之一是，这允许你做出比 “Tab” 制表符更加灵活的缩进配置。</p>
+<p>例如，我们可以将参数与左括号对齐，像下面这样：</p>
+<div id="mxfsgixyvr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>show(parameters,
+     aligned, // 左边有 5 个空格
+     one,
+     after,
+     another
+  ) {
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><strong>垂直方向上的缩进：用于将代码拆分成逻辑块的空行。</strong></p>
+<p>即使是单个函数通常也被分割为数个逻辑块。在下面的示例中，初始化的变量、主循环结构和返回值都被垂直分割了：</p>
+<div id="celif2hzq2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = 1;
+  //              &lt;--
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+  //              &lt;--
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>插入一个额外的空行有助于使代码更具可读性。写代码时，不应该出现连续超过 9 行都没有被垂直分割的代码。</p>
+</li>
+</ul>
+<h3><a class="main__anchor" name="fen-hao" href="#fen-hao">分号</a></h3><p>每一个语句后面都应该有一个分号。即使它可以被跳过。</p>
+<p>有一些编程语言的分号确实是可选的，那些语言中也很少使用分号。但是在 JavaScript 中，极少数情况下，换行符有时不会被解释为分号，这时代码就容易出错。更多内容请参阅 <a href="../structure/index.html#semicolon">代码结构</a> 一章的内容。</p>
+<p>如果你是一个有经验的 JavaScript 程序员，你可以选择像 <a href="https://standardjs.com/">StandardJS</a> 这样的无分号的代码风格。否则，最好使用分号以避免可能出现的陷阱。大多数开发人员都应该使用分号。</p>
+<h3><a class="main__anchor" name="qian-tao-de-ceng-ji" href="#qian-tao-de-ceng-ji">嵌套的层级</a></h3><p>尽量避免代码嵌套层级过深。</p>
+<p>例如，在循环中，有时候使用 <a href="../while-for/index.html#continue"><code>continue</code></a> 指令以避免额外的嵌套是一个好主意。</p>
+<p>例如，不应该像下面这样添加嵌套的 <code>if</code> 条件：</p>
+<div id="97q0fmorra" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let i = 0; i &lt; 10; i++) {
+  if (cond) {
+    ... // &lt;- 又一层嵌套
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以这样写：</p>
+<div id="uqyxuc5nxt" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:21}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let i = 0; i &lt; 10; i++) {
+  if (!cond) continue;
+  ...  // &lt;- 没有额外的嵌套
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用 <code>if/else</code> 和 <code>return</code> 也可以做类似的事情。</p>
+<p>例如，下面的两个结构是相同的。</p>
+<p>第一个：</p>
+<div id="qw7ha9ppum" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) {
+    alert(&quot;Negative 'n' not supported&quot;);
+  } else {
+    let result = 1;
+
+    for (let i = 0; i &lt; n; i++) {
+      result *= x;
+    }
+
+    return result;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第二个：</p>
+<div id="40drjjaf2x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  if (n &lt; 0) {
+    alert(&quot;Negative 'n' not supported&quot;);
+    return;
+  }
+
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是第二个更具可读性，因为 <code>n &lt; 0</code> 这个“特殊情况”在一开始就被处理了。一旦条件通过检查，代码执行就可以进入到“主”代码流，而不需要额外的嵌套。</p>
+<h2><a class="main__anchor" name="han-shu-wei-zhi" href="#han-shu-wei-zhi">函数位置</a></h2><p>如果你正在写几个“辅助”函数和一些使用它们的代码，那么有三种方式来组织这些函数。</p>
+<ol>
+<li>
+<p>在调用这些函数的代码的 <strong>上方</strong> 声明这些函数：</p>
+<div id="b03qs5yzex" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:10}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:7}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 函数声明
+function createElement() {
+  ...
+}
+
+function setHandler(elem) {
+  ...
+}
+
+function walkAround() {
+  ...
+}
+
+// 调用函数的代码
+let elem = createElement();
+setHandler(elem);
+walkAround();</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>先写调用代码，再写函数</p>
+<div id="enhpamtjal" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:7,&quot;end&quot;:11}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:3,&quot;end&quot;:10}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 调用函数的代码
+let elem = createElement();
+setHandler(elem);
+walkAround();
+
+// --- 辅助函数 ---
+function createElement() {
+  ...
+}
+
+function setHandler(elem) {
+  ...
+}
+
+function walkAround() {
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>混合：在第一次使用一个函数时，对该函数进行声明。</p>
+</li>
+</ol>
+<p>大多数情况下，第二种方式更好。</p>
+<p>这是因为阅读代码时，我们首先想要知道的是“它做了什么”。如果代码先行，那么在整个程序的最开始就展示出了这些信息。之后，可能我们就不需要阅读这些函数了，尤其是它们的名字清晰地展示出了它们的功能的时候。</p>
+<h2><a class="main__anchor" name="feng-ge-zhi-nan" href="#feng-ge-zhi-nan">风格指南</a></h2><p>风格指南包含了“如何编写”代码的通用规则，例如：使用哪个引号、用多少空格来缩进、一行代码最大长度等非常多的细节。</p>
+<p>当团队中的所有成员都使用相同的风格指南时，代码看起来将是统一的。无论是团队中谁写的，都是一样的风格。</p>
+<p>当然，一个团队可以制定他们自己的风格指南，但是没必要这样做。现在已经有了很多制定好的代码风格指南可供选择。</p>
+<p>一些受欢迎的选择：</p>
+<ul>
+<li><a href="https://google.github.io/styleguide/jsguide.html">Google JavaScript 风格指南</a></li>
+<li><a href="https://github.com/airbnb/javascript">Airbnb JavaScript 风格指南</a></li>
+<li><a href="https://github.com/rwaldron/idiomatic.js">Idiomatic.JS</a></li>
+<li><a href="https://standardjs.com/">StandardJS</a></li>
+<li>还有很多……</li>
+</ul>
+<p>如果你是一个初学者，你可以从本章中上面的内容开始。然后你可以浏览其他风格指南，并选择一个你最喜欢的。</p>
+<h2><a class="main__anchor" name="zi-dong-jian-cha-qi" href="#zi-dong-jian-cha-qi">自动检查器</a></h2><p>检查器（Linters）是可以自动检查代码样式，并提出改进建议的工具。</p>
+<p>它们的妙处在于进行代码风格检查时，还可以发现一些代码错误，例如变量或函数名中的错别字。因此，即使你不想坚持某一种特定的代码风格，我也建议你安装一个检查器。</p>
+<p>下面是一些最出名的代码检查工具：</p>
+<ul>
+<li><a href="https://www.jslint.com/">JSLint</a> — 第一批检查器之一。</li>
+<li><a href="https://www.jshint.com/">JSHint</a> — 比 JSLint 多了更多设置。</li>
+<li><a href="https://eslint.org/">ESLint</a> — 应该是最新的一个。</li>
+</ul>
+<p>它们都能够做好代码检查。我使用的是 <a href="https://eslint.org/">ESLint</a>。</p>
+<p>大多数检查器都可以与编辑器集成在一起：只需在编辑器中启用插件并配置代码风格即可。</p>
+<p>例如，要使用 ESLint 你应该这样做：</p>
+<ol>
+<li>安装 <a href="https://nodejs.org/">Node.JS</a>。</li>
+<li>使用 <code>npm install -g eslint</code> 命令（npm 是一个 JavaScript 包安装工具）安装 ESLint。</li>
+<li>在你的 JavaScript 项目的根目录（包含该项目的所有文件的那个文件夹）创建一个名为 <code>.eslintrc</code> 的配置文件。</li>
+<li>在集成了 ESLint 的编辑器中安装/启用插件。大多数编辑器都有这个选项。</li>
+</ol>
+<p>下面是一个 <code>.eslintrc</code> 文件的例子：</p>
+<div id="2429td58m7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>{
+  &quot;extends&quot;: &quot;eslint:recommended&quot;,
+  &quot;env&quot;: {
+    &quot;browser&quot;: true,
+    &quot;node&quot;: true,
+    &quot;es6&quot;: true
+  },
+  &quot;rules&quot;: {
+    &quot;no-console&quot;: 0,
+    &quot;indent&quot;: 2
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里的 <code>&quot;extends&quot;</code> 指令表示我们是基于 “eslint:recommended” 的设置项而进行设置的。之后，我们制定我们自己的规则。</p>
+<p>你也可以从网上下载风格规则集并进行扩展。有关安装的更多详细信息，请参见 <a href="https://eslint.org/docs/user-guide/getting-started">https://eslint.org/docs/user-guide/getting-started</a>。</p>
+<p>此外，某些 IDE 有内建的检查器，这非常方便，但是不像 ESLint 那样可自定义。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>本章描述的（和提到的代码风格指南中的）所有语法规则，都旨在帮助你提高代码可读性。它们都是值得商榷的。</p>
+<p>当我们思考如何写“更好”的代码的时候，我们应该问自己的问题是：“什么可以让代码可读性更高，更容易被理解？”和“什么可以帮助我们避免错误？”这些是我们讨论和选择代码风格时要牢记的主要原则。</p>
+<p>阅读流行的代码风格指南，可以帮助你了解有关代码风格的变化趋势和最佳实践的最新想法。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bu-hao-de-feng-ge" name="bu-hao-de-feng-ge">不好的风格</a></h3><a class="task__open-link" href="../task/style-errors/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>下面的代码风格有什么问题？</p>
+<div id="pvwnrpdfmz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x,n)
+{
+  let result=1;
+  for(let i=0;i&lt;n;i++) {result*=x;}
+  return result;
+}
+
+let x=prompt(&quot;x?&quot;,''), n=prompt(&quot;n?&quot;,'')
+if (n&lt;=0)
+{
+  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+}
+else
+{
+  alert(pow(x,n))
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>修复它。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>你可以注意到以下几点：</p>
+<div id="z6of779s4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x,n)  // &lt;- 参数之间没有空格
+{  // &lt;- 花括号独占了一行
+  let result=1;   // &lt;- = 号两边没有空格
+  for(let i=0;i&lt;n;i++) {result*=x;}   // &lt;- 没有空格
+  // { ... } 里面的内容应该在新的一行上
+  return result;
+}
+
+let x=prompt(&quot;x?&quot;,''), n=prompt(&quot;n?&quot;,'') // &lt;-- 从技术的角度来看是可以的，
+// 但是拆分成 2 行会更好，并且这里也缺了空格和分号 ;
+if (n&lt;=0)  // &lt;- (n &lt;= 0) 里面没有空格，并且应该在本行上面加一个空行
+{   // &lt;- 花括号独占了一行
+  // 下面的一行代码太长了，可以将其拆分成 2 行以提高可读性
+  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+}
+else // &lt;- 可以像 &quot;} else {&quot; 这样写在一行上
+{
+  alert(pow(x,n))  // 缺失了空格和分号 ;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>修改后的版本：</p>
+<div id="5rrye9zikp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt(&quot;x?&quot;, &quot;&quot;);
+let n = prompt(&quot;n?&quot;, &quot;&quot;);
+
+if (n &lt;= 0) {
+  alert(`Power ${n} is not supported,
+    please enter an integer number greater than zero`);
+} else {
+  alert( pow(x, n) );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../debugging-chrome/index.html" data-tooltip="在浏览器中调试"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../comments/index.html" data-tooltip="注释"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/coding-style","identifier":"\/coding-style"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../code-quality/index.html">代码质量</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yu-fa">语法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#han-shu-wei-zhi">函数位置</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#feng-ge-zhi-nan">风格指南</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-dong-jian-cha-qi">自动检查器</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fcoding-style" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/03-code-quality/02-coding-style" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

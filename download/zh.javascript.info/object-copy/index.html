@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">对象引用和复制</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/object-copy"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="对象引用和复制"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="对象引用和复制"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/object"><link rel="next" href="/garbage-collection"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="对象引用和复制"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/object-copy"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/object-copy"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/object-copy"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/object-copy"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/object-copy"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/object-copy"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/object-copy"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/object-copy"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/object-copy"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/object-copy"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/object-copy">عربي</option><option value="https://javascript.info/object-copy">English</option><option value="https://es.javascript.info/object-copy">Español</option><option value="https://fr.javascript.info/object-copy">Français</option><option value="https://id.javascript.info/object-copy">Indonesia</option><option value="https://it.javascript.info/object-copy">Italiano</option><option value="https://ja.javascript.info/object-copy">日本語</option><option value="https://ko.javascript.info/object-copy">한국어</option><option value="https://learn.javascript.ru/object-copy">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/object-copy">Українська</option><option value="https://zh.javascript.info/object-copy" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="30" max="92" data-tooltip="第 30/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../object-basics/index.html"><span>Object（对象）：基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Object（对象）：基础知识","item":"https://zh.javascript.info/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">对象引用和复制</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="对象引用和复制"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>与原始类型相比，对象的根本区别之一是对象是“通过引用”被存储和复制的，与原始类型值相反：字符串，数字，布尔值等 —— 始终是以“整体值”的形式被复制的。</p>
+<p>如果我们深入了解复制值时会发生什么，就很容易理解了。</p>
+<p>让我们从原始类型开始，例如一个字符串。</p>
+<p>这里我们将 <code>message</code> 复制到 <code>phrase</code>：</p>
+<div id="3eyt2rmzhv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let message = &quot;Hello!&quot;;
+let phrase = message;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果我们就有了两个独立的变量，每个都存储着字符串 <code>&quot;Hello!&quot;</code>。</p>
+<figure><div class="image" style="width:359px">
+      <div class="image__ratio" style="padding-top:39.83286908077994%"></div>
+      <object type="image/svg+xml" data="../article/object-copy/variable-copy-value.svg" width="359" height="143" class="image__image" data-use-theme>
+        <img src="../article/object-copy/variable-copy-value.svg" alt width="359" height="143">
+      </object>
+      </div></figure><p>显而易见的结果，对吧？</p>
+<p>但是，对象不是这样的。</p>
+<p><strong>赋值了对象的变量存储的不是对象本身，而是该对象“在内存中的地址” —— 换句话说就是对该对象的“引用”。</strong></p>
+<p>让我们看一个这样的变量的例子：</p>
+<div id="4dtxt737xd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是它实际存储在内存中的方式：</p>
+<figure><div class="image" style="width:370px">
+      <div class="image__ratio" style="padding-top:67.29729729729729%"></div>
+      <object type="image/svg+xml" data="../article/object-copy/variable-contains-reference.svg" width="370" height="249" class="image__image" data-use-theme>
+        <img src="../article/object-copy/variable-contains-reference.svg" alt width="370" height="249">
+      </object>
+      </div></figure><p>该对象被存储在内存中的某个位置（在图片的右侧），而变量 <code>user</code>（在左侧）保存的是对其的“引用”。</p>
+<p>我们可以将一个对象变量（例如 <code>user</code>）想象成一张写有对象的地址的纸。</p>
+<p>当我们对对象执行操作时，例如获取一个属性 <code>user.name</code>，JavaScript 引擎会查看该地址中的内容，并在实际对象上执行操作。</p>
+<p>现在，这就是为什么它很重要。</p>
+<p><strong>当一个对象变量被复制 —— 引用被复制，而该对象自身并没有被复制。</strong></p>
+<p>例如：</p>
+<div id="j4qqgsvkoo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: &quot;John&quot; };
+
+let admin = user; // 复制引用</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们有了两个变量，它们保存的都是对同一个对象的引用：</p>
+<figure><div class="image" style="width:599px">
+      <div class="image__ratio" style="padding-top:43.40567612687813%"></div>
+      <object type="image/svg+xml" data="../article/object-copy/variable-copy-reference.svg" width="599" height="260" class="image__image" data-use-theme>
+        <img src="../article/object-copy/variable-copy-reference.svg" alt width="599" height="260">
+      </object>
+      </div></figure><p>正如你所看到的，这里仍然只有一个对象，但现在有两个引用它的变量。</p>
+<p>我们可以通过其中任意一个变量来访问该对象并修改它的内容：</p>
+<div id="jlr48p8n8x" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;cols&quot;:[{&quot;start&quot;:6,&quot;end&quot;:15}]},{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // 通过 &quot;admin&quot; 引用来修改
+
+alert(user.name); // 'Pete'，修改能通过 &quot;user&quot; 引用看到</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这就像我们有一个带有两把钥匙的柜子，使用其中一把钥匙（<code>admin</code>）打开柜子并更改了里面的东西。那么，如果我们稍后用另一把钥匙（<code>user</code>），我们仍然可以打开同一个柜子并且可以访问更改的内容。</p>
+<h2><a class="main__anchor" name="tong-guo-yin-yong-lai-bi-jiao" href="#tong-guo-yin-yong-lai-bi-jiao">通过引用来比较</a></h2><p>仅当两个对象为同一对象时，两者才相等。</p>
+<p>例如，这里 <code>a</code> 和 <code>b</code> 两个变量都引用同一个对象，所以它们相等：</p>
+<div id="d6jgbmwx15" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = {};
+let b = a; // 复制引用
+
+alert( a == b ); // true，都引用同一对象
+alert( a === b ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>而这里两个独立的对象则并不相等，即使它们看起来很像（都为空）：</p>
+<div id="sn9gukrtcc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let a = {};
+let b = {}; // 两个独立的对象
+
+alert( a == b ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于类似 <code>obj1 &gt; obj2</code> 的比较，或者跟一个原始类型值的比较 <code>obj == 5</code>，对象都会被转换为原始值。我们很快就会学到对象是如何转换的，但是说实话，很少需要进行这样的比较 —— 通常是在编程错误的时候才会出现这种情况。</p>
+<h2><a class="main__anchor" name="cloning-and-merging-object-assign" href="#cloning-and-merging-object-assign">克隆与合并，Object.assign</a></h2><p>那么，拷贝一个对象变量会又创建一个对相同对象的引用。</p>
+<p>但是，如果我们想要复制一个对象，那该怎么做呢？创建一个独立的拷贝，克隆？</p>
+<p>这也是可行的，但稍微有点困难，因为 JavaScript 没有提供对此操作的内建的方法。但很少需要这样做 —— 通过引用进行拷贝在大多数情况下已经满足了。</p>
+<p>但是，如果我们真的想要这样做，那么就需要创建一个新对象，并通过遍历现有属性的结构，在原始类型值的层面，将其复制到新对象，以复制已有对象的结构。</p>
+<p>就像这样：</p>
+<div id="h7xbci5tp8" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:10}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let clone = {}; // 新的空对象
+
+// 将 user 中所有的属性拷贝到其中
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+// 现在 clone 是带有相同内容的完全独立的对象
+clone.name = &quot;Pete&quot;; // 改变了其中的数据
+
+alert( user.name ); // 原来的对象中的 name 属性依然是 John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> 方法来达成同样的效果。</p>
+<p>语法是：</p>
+<div id="b46orfiezq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Object.assign(dest, [src1, src2, src3...])</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li>第一个参数 <code>dest</code> 是指目标对象。</li>
+<li>更后面的参数 <code>src1, ..., srcN</code>（可按需传递多个参数）是源对象。</li>
+<li>该方法将所有源对象的属性拷贝到目标对象 <code>dest</code> 中。换句话说，从第二个开始的所有参数的属性都被拷贝到第一个参数的对象中。</li>
+<li>调用结果返回 <code>dest</code>。</li>
+</ul>
+<p>例如，我们可以用它来合并多个对象：</p>
+<div id="pb26fevogi" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: &quot;John&quot; };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// 将 permissions1 和 permissions2 中的所有属性都拷贝到 user 中
+Object.assign(user, permissions1, permissions2);
+
+// 现在 user = { name: &quot;John&quot;, canView: true, canEdit: true }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果被拷贝的属性的属性名已经存在，那么它会被覆盖：</p>
+<div id="jbs8jfbdno" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = { name: &quot;John&quot; };
+
+Object.assign(user, { name: &quot;Pete&quot; });
+
+alert(user.name); // 现在 user = { name: &quot;Pete&quot; }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以用 <code>Object.assign</code> 代替 <code>for..in</code> 循环来进行简单克隆：</p>
+<div id="ujoy8arfof" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let clone = Object.assign({}, user);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它将 <code>user</code> 中的所有属性拷贝到了一个空对象中，并返回这个新的对象。</p>
+<p>还有其他克隆对象的方法，例如使用 <a href="../rest-parameters-spread/index.html">spread 语法</a> <code>clone = {...user}</code>，在后面的章节中我们会讲到。</p>
+<h2><a class="main__anchor" name="shen-ceng-ke-long" href="#shen-ceng-ke-long">深层克隆</a></h2><p>到现在为止，我们都假设 <code>user</code> 的所有属性均为原始类型。但属性可以是对其他对象的引用。那应该怎样处理它们呢？</p>
+<p>例如：</p>
+<div id="5jbpnhpsxk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+alert( user.sizes.height ); // 182</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在这样拷贝 <code>clone.sizes = user.sizes</code> 已经不足够了，因为 <code>user.sizes</code> 是个对象，它会以引用形式被拷贝。因此 <code>clone</code> 和 <code>user</code> 会共用一个 sizes：</p>
+<p>就像这样：</p>
+<div id="aebzypa8vl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+  name: &quot;John&quot;,
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+let clone = Object.assign({}, user);
+
+alert( user.sizes === clone.sizes ); // true，同一个对象
+
+// user 和 clone 分享同一个 sizes
+user.sizes.width++;       // 通过其中一个改变属性值
+alert(clone.sizes.width); // 51，能从另外一个看到变更的结果</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了解决这个问题，我们应该使用一个拷贝循环来检查 <code>user[key]</code> 的每个值，如果它是一个对象，那么也复制它的结构。这就是所谓的“深拷贝”。</p>
+<p>我们可以使用递归来实现它。或者为了不重复造轮子，采用现有的实现，例如 <a href="https://lodash.com">lodash</a> 库的 <a href="https://lodash.com/docs#cloneDeep">_.cloneDeep(obj)</a>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">使用 const 声明的对象也是可以被修改的</span></div>
+            <div class="important__content"><p>通过引用对对象进行存储的一个重要的副作用是声明为 <code>const</code> 的对象 <strong>可以</strong> 被修改。</p>
+<p>例如：</p>
+<div id="7d57foqs2k" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>const user = {
+  name: &quot;John&quot;
+};
+
+user.name = &quot;Pete&quot;; // (*)
+
+alert(user.name); // Pete</code></pre>
+        </div>
+      </div>
+      
+      </div><p>看起来 <code>(*)</code> 行的代码会触发一个错误，但实际并没有。<code>user</code> 的值是一个常量，它必须始终引用同一个对象，但该对象的属性可以被自由修改。</p>
+<p>换句话说，只有当我们尝试将 <code>user=...</code> 作为一个整体进行赋值时，<code>const user</code> 才会报错。</p>
+<p>也就是说，如果我们真的需要创建常量对象属性，也是可以的，但使用的是完全不同的方法。我们将在 <a href="../property-descriptors/index.html">属性标志和属性描述符</a> 一章中学习它。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>对象通过引用被赋值和拷贝。换句话说，一个变量存储的不是“对象的值”，而是一个对值的“引用”（内存地址）。因此，拷贝此类变量或将其作为函数参数传递时，所拷贝的是引用，而不是对象本身。</p>
+<p>所有通过被拷贝的引用的操作（如添加、删除属性）都作用在同一个对象上。</p>
+<p>为了创建“真正的拷贝”（一个克隆），我们可以使用 <code>Object.assign</code> 来做所谓的“浅拷贝”（嵌套对象被通过引用进行拷贝）或者使用“深拷贝”函数，例如 <a href="https://lodash.com/docs#cloneDeep">_.cloneDeep(obj)</a>。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../object/index.html" data-tooltip="对象"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../garbage-collection/index.html" data-tooltip="垃圾回收"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/object-copy","identifier":"\/object-copy"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../object-basics/index.html">Object（对象）：基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tong-guo-yin-yong-lai-bi-jiao">通过引用来比较</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cloning-and-merging-object-assign">克隆与合并，Object.assign</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shen-ceng-ke-long">深层克隆</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fobject-copy" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/04-object-basics/02-object-copy" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

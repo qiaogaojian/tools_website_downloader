@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">DOM 变动观察器（Mutation observer）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/mutation-observer"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="DOM 变动观察器（Mutation observer）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="DOM 变动观察器（Mutation observer）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/ui-misc"><link rel="next" href="/selection-range"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="DOM 变动观察器（Mutation observer）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/mutation-observer"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/mutation-observer"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/mutation-observer"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/mutation-observer"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/mutation-observer"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/mutation-observer"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/mutation-observer"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/mutation-observer">English</option><option value="https://es.javascript.info/mutation-observer">Español</option><option value="https://fr.javascript.info/mutation-observer">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/mutation-observer">Italiano</option><option value="https://ja.javascript.info/mutation-observer">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/mutation-observer">Русский</option><option value="https://tr.javascript.info/mutation-observer">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/mutation-observer" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="30" max="32" data-tooltip="第 30/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../ui-misc/index.html"><span>杂项</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"杂项","item":"https://zh.javascript.info/ui-misc"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十一月 2020"><div class="updated-at__content">15日 十一月 2020</div></div></div><h1 class="main__header-title">DOM 变动观察器（Mutation observer）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="DOM 变动观察器（Mutation observer）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><code>MutationObserver</code> 是一个内建对象，它观察 DOM 元素，并在检测到更改时触发回调。</p>
+<p>我们将首先看一下语法，然后探究一个实际的用例，以了解它在什么地方有用。</p>
+<h2><a class="main__anchor" name="yu-fa" href="#yu-fa">语法</a></h2><p><code>MutationObserver</code> 使用简单。</p>
+<p>首先，我们创建一个带有回调函数的观察器：</p>
+<div id="iw3nc49bim" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let observer = new MutationObserver(callback);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后将其附加到一个 DOM 节点：</p>
+<div id="sd1018wq2p" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>observer.observe(node, config);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>config</code> 是一个具有布尔选项的对象，该布尔选项表示“将对哪些更改做出反应”：</p>
+<ul>
+<li><code>childList</code> —— <code>node</code> 的直接子节点的更改，</li>
+<li><code>subtree</code> —— <code>node</code> 的所有后代的更改，</li>
+<li><code>attributes</code> —— <code>node</code> 的特性（attribute），</li>
+<li><code>attributeFilter</code> —— 特性名称数组，只观察选定的特性。</li>
+<li><code>characterData</code> —— 是否观察 <code>node.data</code>（文本内容），</li>
+</ul>
+<p>其他几个选项：</p>
+<ul>
+<li><code>attributeOldValue</code> —— 如果为 <code>true</code>，则将特性的旧值和新值都传递给回调（参见下文），否则只传新值（需要 <code>attributes</code> 选项），</li>
+<li><code>characterDataOldValue</code> —— 如果为 <code>true</code>，则将 <code>node.data</code> 的旧值和新值都传递给回调（参见下文），否则只传新值（需要 <code>characterData</code> 选项）。</li>
+</ul>
+<p>然后，在发生任何更改后，将执行“回调”：更改被作为一个 <a href="https://dom.spec.whatwg.org/#mutationrecord">MutationRecord</a> 对象列表传入第一个参数，而观察器自身作为第二个参数。</p>
+<p><a href="https://dom.spec.whatwg.org/#mutationrecord">MutationRecord</a> 对象具有以下属性：</p>
+<ul>
+<li><code>type</code> —— 变动类型，以下类型之一：
+<ul>
+<li><code>&quot;attributes&quot;</code>：特性被修改了，</li>
+<li><code>&quot;characterData&quot;</code>：数据被修改了，用于文本节点，</li>
+<li><code>&quot;childList&quot;</code>：添加/删除了子元素。</li>
+</ul>
+</li>
+<li><code>target</code> —— 更改发生在何处：<code>&quot;attributes&quot;</code> 所在的元素，或 <code>&quot;characterData&quot;</code> 所在的文本节点，或 <code>&quot;childList&quot;</code> 变动所在的元素，</li>
+<li><code>addedNodes/removedNodes</code> —— 添加/删除的节点，</li>
+<li><code>previousSibling/nextSibling</code> —— 添加/删除的节点的上一个/下一个兄弟节点，</li>
+<li><code>attributeName/attributeNamespace</code> —— 被更改的特性的名称/命名空间（用于 XML），</li>
+<li><code>oldValue</code> —— 之前的值，仅适用于特性或文本更改，如果设置了相应选项 <code>attributeOldValue</code>/<code>characterDataOldValue</code>。</li>
+</ul>
+<p>例如，这里有一个 <code>&lt;div&gt;</code>，它具有 <code>contentEditable</code> 特性。该特性使我们可以聚焦和编辑元素。</p>
+<div id="mwxs0r3kgs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div contentEditable id=&quot;elem&quot;&gt;Click and &lt;b&gt;edit&lt;/b&gt;, please&lt;/div&gt;
+
+&lt;script&gt;
+let observer = new MutationObserver(mutationRecords =&gt; {
+  console.log(mutationRecords); // console.log(the changes)
+});
+
+// 观察除了特性之外的所有变动
+observer.observe(elem, {
+  childList: true, // 观察直接子节点
+  subtree: true, // 及其更低的后代节点
+  characterDataOldValue: true // 将旧的数据传递给回调
+});
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们在浏览器中运行上面这段代码，并聚焦到给定的 <code>&lt;div&gt;</code> 上，然后更改 <code>&lt;b&gt;edit&lt;/b&gt;</code> 中的文本，<code>console.log</code> 将显示一个变动：</p>
+<div id="dxx5h8blhf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>mutationRecords = [{
+  type: &quot;characterData&quot;,
+  oldValue: &quot;edit&quot;,
+  target: &lt;text node&gt;,
+  // 其他属性为空
+}];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们进行更复杂的编辑操作，例如删除 <code>&lt;b&gt;edit&lt;/b&gt;</code>，那么变动事件可能会包含多个变动记录：</p>
+<div id="529ieet2rx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>mutationRecords = [{
+  type: &quot;childList&quot;,
+  target: &lt;div#elem&gt;,
+  removedNodes: [&lt;b&gt;],
+  nextSibling: &lt;text node&gt;,
+  previousSibling: &lt;text node&gt;
+  // 其他属性为空
+}, {
+  type: &quot;characterData&quot;
+  target: &lt;text node&gt;
+  // ...变动的详细信息取决于浏览器如何处理此类删除
+  // 它可能是将两个相邻的文本节点 &quot;edit &quot; 和 &quot;, please&quot; 合并成一个节点，
+  // 或者可能将它们留在单独的文本节点中
+}];</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，<code>MutationObserver</code> 允许对 DOM 子树中的任何更改作出反应。</p>
+<h2><a class="main__anchor" name="yong-yu-ji-cheng" href="#yong-yu-ji-cheng">用于集成</a></h2><p>在什么时候可能有用？</p>
+<p>想象一下，你需要添加一个第三方脚本，该脚本不仅包含有用的功能，还会执行一些我们不想要的操作，例如显示广告 <code>&lt;div class=&quot;ads&quot;&gt;Unwanted ads&lt;/div&gt;</code>。</p>
+<p>当然，第三方脚本没有提供删除它的机制。</p>
+<p>使用 <code>MutationObserver</code>，我们可以监测到我们不需要的元素何时出现在我们的 DOM 中，并将其删除。</p>
+<p>还有一些其他情况，例如第三方脚本会将某些内容添加到我们的文档中，并且我们希望检测出这种情况何时发生，以调整页面，动态调整某些内容的大小等。</p>
+<p><code>MutationObserver</code> 使我们能够实现这种需求。</p>
+<h2><a class="main__anchor" name="yong-yu-jia-gou" href="#yong-yu-jia-gou">用于架构</a></h2><p>从架构的角度来看，在某些情况下，<code>MutationObserver</code> 有不错的作用。</p>
+<p>假设我们正在建立一个有关编程的网站。自然地，文章和其他材料中可能包含源代码段。</p>
+<p>在 HTML 标记（markup）中的此类片段如下所示：</p>
+<div id="k81jyi0sd9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>...
+&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;
+  // 这里是代码
+  let hello = &quot;world&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了提高可读性，同时对其进行美化，我们将在我们的网站上使用 JavaScript 语法高亮显示库，例如 <a href="https://prismjs.com/">Prism.js</a>。为了使用 Prism 对以上代码片段进行语法高亮显示，我们调用了 <code>Prism.highlightElem(pre)</code>，它会检查此类 <code>pre</code> 元素的内容，并为这些元素添加特殊的标签（tag）和样式，以进行彩色语法高亮显示，类似于你在本文的示例中看到的那样。</p>
+<p>那么，我们应该在什么时候执行该高亮显示方法呢？我们可以在 <code>DOMContentLoaded</code> 事件中执行，或者将脚本放在页面的底部。DOM 就绪后，我们可以搜索元素 <code>pre[class*=&quot;language&quot;]</code> 并对其调用 <code>Prism.highlightElem</code>：</p>
+<div id="wz7g83sjsl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 高亮显示页面上的所有代码段
+document.querySelectorAll('pre[class*=&quot;language&quot;]').forEach(Prism.highlightElem);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>到目前为止，一切都很简单，对吧？我们找到 HTML 中的代码片段并高亮显示它们。</p>
+<p>现在让我们继续。假设我们要从服务器动态获取资料。我们将 <a href="../fetch/index.html">在本教程的后续章节</a> 中学习进行此操作的方法。目前，只需要关心我们从网络服务器获取 HTML 文章并按需显示：</p>
+<div id="4td62i3scu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let article = /* 从服务器获取新内容 */
+articleElem.innerHTML = article;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>新的 <code>article</code> HTML 可能包含代码段。我们需要对其调用 <code>Prism.highlightElem</code>，否则它们将不会被高亮显示。</p>
+<p><strong>对于动态加载的文章，应该在何处何时调用 <code>Prism.highlightElem</code>？</strong></p>
+<p>我们可以将该调用附加到加载文章的代码中，如下所示：</p>
+<div id="ckquazbhtb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let article = /* 从服务器获取新内容 */
+articleElem.innerHTML = article;
+
+let snippets = articleElem.querySelectorAll('pre[class*=&quot;language-&quot;]');
+snippets.forEach(Prism.highlightElem);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是，想象一下，如果代码中有很多地方都是在加载内容：文章，测验和论坛帖子等。我们是否需要在每个地方都附加一个高亮显示调用，以在内容加载完成后，高亮内容中的代码。那很不方便。</p>
+<p>并且，如果内容是由第三方模块加载的，该怎么办？例如，我们有一个由其他人编写的论坛，该论坛可以动态加载内容，并且我们想为其添加语法高亮显示。没有人喜欢修补第三方脚本。</p>
+<p>幸运的是，还有另一种选择。</p>
+<p>我们可以使用 <code>MutationObserver</code> 来自动检测何时在页面中插入了代码段，并高亮显示它们。</p>
+<p>因此，我们在一个地方处理高亮显示功能，从而使我们无需集成它。</p>
+<h3><a class="main__anchor" name="dong-tai-gao-liang-xian-shi-shi-li" href="#dong-tai-gao-liang-xian-shi-shi-li">动态高亮显示示例</a></h3><p>这是一个工作示例。</p>
+<p>如果你运行这段代码，它将开始观察下面的元素，并高亮显示现在此处的所有代码段：</p>
+<div id="g096c3wusl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let observer = new MutationObserver(mutations =&gt; {
+
+  for(let mutation of mutations) {
+    // 检查新节点，有什么需要高亮显示的吗？
+
+    for(let node of mutation.addedNodes) {
+      // 我们只跟踪元素，跳过其他节点（例如文本节点）
+      if (!(node instanceof HTMLElement)) continue;
+
+      // 检查插入的元素是否为代码段
+      if (node.matches('pre[class*=&quot;language-&quot;]')) {
+        Prism.highlightElement(node);
+      }
+
+      // 或者可能在子树的某个地方有一个代码段？
+      for(let elem of node.querySelectorAll('pre[class*=&quot;language-&quot;]')) {
+        Prism.highlightElement(elem);
+      }
+    }
+  }
+
+});
+
+let demoElem = document.getElementById('highlight-demo');
+
+observer.observe(demoElem, {childList: true, subtree: true});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>下面有一个 HTML 元素，以及使用 <code>innerHTML</code> 动态填充它的 JavaScript。</p>
+<p>请先运行前面那段代码（上面那段，观察元素），然后运行下面这段代码。你将看到 <code>MutationObserver</code> 是如何检测并高亮显示代码段的。</p>
+<p id="highlight-demo" style="border: 1px solid #ddd">一个具有 <code>id="highlight-demo"</code> 的示例元素，运行上面那段代码来观察它。</p>
+<p>下面这段代码填充了其 <code>innerHTML</code>，这导致 <code>MutationObserver</code> 作出反应，并突出显示其内容：</p>
+<div id="th2dzh6hiv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let demoElem = document.getElementById('highlight-demo');
+
+// 动态插入带有代码段的内容
+demoElem.innerHTML = `下面是一个代码段：
+  &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt; let hello = &quot;world!&quot;; &lt;/code&gt;&lt;/pre&gt;
+  &lt;div&gt;另一个代码段：&lt;/div&gt;
+  &lt;div&gt;
+    &lt;pre class=&quot;language-css&quot;&gt;&lt;code&gt;.class { margin: 5px; } &lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们有了 <code>MutationObserver</code>，它可以跟踪观察到的元素中的，或者整个 <code>document</code> 中的所有高亮显示。我们可以在 HTML 中添加/删除代码段，而无需考虑高亮问题。</p>
+<h2><a class="main__anchor" name="qi-ta-fang-fa" href="#qi-ta-fang-fa">其他方法</a></h2><p>有一个方法可以停止观察节点：</p>
+<ul>
+<li><code>observer.disconnect()</code> —— 停止观察。</li>
+</ul>
+<p>当我们停止观察时，观察器可能尚未处理某些更改。在种情况下，我们使用：</p>
+<ul>
+<li><code>observer.takeRecords()</code> —— 获取尚未处理的变动记录列表，表中记录的是已经发生，但回调暂未处理的变动。</li>
+</ul>
+<p>这些方法可以一起使用，如下所示：</p>
+<div id="3owm7ubqr5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 如果你关心可能未处理的近期的变动
+// 那么，应该在 disconnect 前调用获取未处理的变动列表
+let mutationRecords = observer.takeRecords();
+
+// 停止跟踪变动
+observer.disconnect();
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>observer.takeRecords()</code> 返回的记录被从处理队列中移除</span></div>
+            <div class="important__content"><p>回调函数不会被 <code>observer.takeRecords()</code> 返回的记录调用。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">垃圾回收</span></div>
+            <div class="important__content"><p>观察器在内部对节点使用弱引用。也就是说，如果一个节点被从 DOM 中移除了，并且该节点变得不可访问，那么它就可以被垃圾回收。</p>
+<p>观察到 DOM 节点这一事实并不能阻止垃圾回收。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>MutationObserver</code> 可以对 DOM 的变化作出反应 —— 特性（attribute），文本内容，添加/删除元素。</p>
+<p>我们可以用它来跟踪代码其他部分引入的更改，以及与第三方脚本集成。</p>
+<p><code>MutationObserver</code> 可以跟踪任何更改。<code>config</code> “要观察的内容”选项用于优化，避免不必要的回调调用以节省资源。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../ui-misc/index.html" data-tooltip="杂项"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../selection-range/index.html" data-tooltip="选择（Selection）和范围（Range）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/mutation-observer","identifier":"\/mutation-observer"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../ui-misc/index.html">杂项</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yu-fa">语法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yong-yu-ji-cheng">用于集成</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yong-yu-jia-gou">用于架构</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qi-ta-fang-fa">其他方法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fmutation-observer" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/99-ui-misc/01-mutation-observer" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

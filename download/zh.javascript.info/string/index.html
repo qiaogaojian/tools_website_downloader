@@ -1,0 +1,1314 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">字符串</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/string"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="字符串"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="字符串"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/number"><link rel="next" href="/array"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="字符串"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/string"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/string"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/string"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/string"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/string"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/string"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/string"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/string"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/string"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/string"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/string"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/string">عربي</option><option value="https://javascript.info/string">English</option><option value="https://es.javascript.info/string">Español</option><option value="https://fr.javascript.info/string">Français</option><option value="https://id.javascript.info/string">Indonesia</option><option value="https://it.javascript.info/string">Italiano</option><option value="https://ja.javascript.info/string">日本語</option><option value="https://ko.javascript.info/string">한국어</option><option value="https://learn.javascript.ru/string">Русский</option><option value="https://tr.javascript.info/string">Türkçe</option><option value="https://uk.javascript.info/string">Українська</option><option value="https://zh.javascript.info/string" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="39" max="92" data-tooltip="第 39/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">字符串</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="字符串"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在 JavaScript 中，文本数据被以字符串形式存储，单个字符没有单独的类型。</p>
+<p>字符串的内部格式始终是 <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a>，它不依赖于页面编码。</p>
+<h2><a class="main__anchor" name="yin-hao-quotes" href="#yin-hao-quotes">引号（Quotes）</a></h2><p>让我们回忆一下引号的种类。</p>
+<p>字符串可以包含在单引号、双引号或反引号中：</p>
+<div id="q866falq8t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let single = 'single-quoted';
+let double = &quot;double-quoted&quot;;
+
+let backticks = `backticks`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>单引号和双引号基本相同。但是，反引号允许我们通过 <code>${…}</code> 将任何表达式嵌入到字符串中：</p>
+<div id="k58fbh462f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sum(a, b) {
+  return a + b;
+}
+
+alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用反引号的另一个优点是它们允许字符串跨行：</p>
+<div id="z09j4i44wi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
+
+alert(guestList); // 客人清单，多行</code></pre>
+        </div>
+      </div>
+      
+      </div><p>看起来很自然，不是吗？但是单引号和双引号可不能这样做。</p>
+<p>如果我们使用单引号或双引号来实现字符串跨行的话，则会出现错误：</p>
+<div id="pdf2x8puic" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let guestList = &quot;Guests: // Error: Unexpected token ILLEGAL
+  * John&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当不考虑多行字符串的需要时，单引号和双引号来自语言创建的古时代。反引号出现较晚，因此更通用。</p>
+<p>反引号还允许我们在第一个反引号之前指定一个“模版函数”。语法是：<code>func`string`</code>。函数 <code>func</code> 被自动调用，接收字符串和嵌入式表达式，并处理它们。你可以在 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals">docs</a> 中阅读更多关于它们的信息。这叫做 “tagged templates”。此功能可以更轻松地将字符串包装到自定义模版或其他函数中，但这很少使用。</p>
+<h2><a class="main__anchor" name="te-shu-zi-fu" href="#te-shu-zi-fu">特殊字符</a></h2><p>我们仍然可以通过使用“换行符（newline character）”，以支持使用单引号和双引号来创建跨行字符串。换行符写作 <code>\n</code>，用来表示换行：</p>
+<div id="pndu4sn7o3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let guestList = &quot;Guests:\n * John\n * Pete\n * Mary&quot;;
+
+alert(guestList); // 一个多行的客人列表</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，这两行描述的是一样的，只是书写方式不同：</p>
+<div id="b78ao9mti0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str1 = &quot;Hello\nWorld&quot;; // 使用“换行符”创建的两行字符串
+
+// 使用反引号和普通的换行创建的两行字符串
+let str2 = `Hello
+World`;
+
+alert(str1 == str2); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>还有其他不常见的“特殊”字符。</p>
+<p>这是完整列表：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>在 Windows 文本文件中，两个字符 <code>\r\n</code> 的组合代表一个换行。而在非 Windows 操作系统上，它就是 <code>\n</code>。这是历史原因造成的，大多数的 Windows 软件也理解 <code>\n</code>。</td>
+</tr>
+<tr>
+<td><code>\'</code>, <code>\&quot;</code></td>
+<td>引号</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>反斜线</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>制表符</td>
+</tr>
+<tr>
+<td><code>\b</code>, <code>\f</code>, <code>\v</code></td>
+<td>退格，换页，垂直标签 —— 为了兼容性，现在已经不使用了。</td>
+</tr>
+<tr>
+<td><code>\xXX</code></td>
+<td>具有给定十六进制 Unicode <code>XX</code> 的 Unicode 字符，例如：<code>'\x7A'</code> 和 <code>'z'</code> 相同。</td>
+</tr>
+<tr>
+<td><code>\uXXXX</code></td>
+<td>以 UTF-16 编码的十六进制代码 <code>XXXX</code> 的 Unicode 字符，例如 <code>\u00A9</code> —— 是版权符号 <code>©</code> 的 Unicode。它必须正好是 4 个十六进制数字。</td>
+</tr>
+<tr>
+<td><code>\u{X…XXXXXX}</code>（1 到 6 个十六进制字符）</td>
+<td>具有给定 UTF-32 编码的 Unicode 符号。一些罕见的字符用两个 Unicode 符号编码，占用 4 个字节。这样我们就可以插入长代码了。</td>
+</tr>
+</tbody>
+</table>
+<p>Unicode 示例：</p>
+<div id="rpsvyoyob8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;\u00A9&quot; ); // ©
+alert( &quot;\u{20331}&quot; ); // 佫，罕见的中国象形文字（长 Unicode）
+alert( &quot;\u{1F60D}&quot; ); // 😍，笑脸符号（另一个长 Unicode）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所有的特殊字符都以反斜杠字符 <code>\</code> 开始。它也被称为“转义字符”。</p>
+<p>如果我们想要在字符串中插入一个引号，我们也会使用它。</p>
+<p>例如：</p>
+<div id="o8q4pv875r" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:9,&quot;end&quot;:11},{&quot;start&quot;:32,&quot;end&quot;:35}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'I\'m the Walrus!' ); // I'm the Walrus!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如你所看到的，我们必须在内部引号前加上反斜杠 <code>\'</code>，否则它将表示字符串结束。</p>
+<p>当然，只有与外部闭合引号相同的引号才需要转义。因此，作为一个更优雅的解决方案，我们可以改用双引号或者反引号：</p>
+<div id="v6lyai6jx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( `I'm the Walrus!` ); // I'm the Walrus!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意反斜杠 <code>\</code> 在 JavaScript 中用于正确读取字符串，然后消失。内存中的字符串没有 <code>\</code>。你从上述示例中的 <code>alert</code> 可以清楚地看到这一点。</p>
+<p>但是如果我们需要在字符串中显示一个实际的反斜杠 <code>\</code> 应该怎么做？</p>
+<p>我们可以这样做，只需要将其书写两次 <code>\\</code>：</p>
+<div id="jcs03dgpk4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( `The backslash: \\` ); // The backslash: \</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zi-fu-chuan-chang-du" href="#zi-fu-chuan-chang-du">字符串长度</a></h2><p><code>length</code> 属性表示字符串长度：</p>
+<div id="uqka08mbnk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( `My\n`.length ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意 <code>\n</code> 是一个单独的“特殊”字符，所以长度确实是 <code>3</code>。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>length</code> 是一个属性</span></div>
+            <div class="important__content"><p>掌握其他编程语言的人，有时会错误地调用 <code>str.length()</code> 而不是 <code>str.length</code>。这是行不通的。</p>
+<p>请注意 <code>str.length</code> 是一个数字属性，而不是函数。后面不需要添加括号。</p>
+</div></div>
+<h2><a class="main__anchor" name="fang-wen-zi-fu" href="#fang-wen-zi-fu">访问字符</a></h2><p>要获取在 <code>pos</code> 位置的一个字符，可以使用方括号 <code>[pos]</code> 或者调用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/charAt">str.charAt(pos)</a> 方法。第一个字符从零位置开始：</p>
+<div id="hffsrz2yt4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = `Hello`;
+
+// 第一个字符
+alert( str[0] ); // H
+alert( str.charAt(0) ); // H
+
+// 最后一个字符
+alert( str[str.length - 1] ); // o</code></pre>
+        </div>
+      </div>
+      
+      </div><p>方括号是获取字符的一种现代化方法，而 <code>charAt</code> 是历史原因才存在的。</p>
+<p>它们之间的唯一区别是，如果没有找到字符，<code>[]</code> 返回 <code>undefined</code>，而 <code>charAt</code> 返回一个空字符串：</p>
+<div id="ary49cxaod" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = `Hello`;
+
+alert( str[1000] ); // undefined
+alert( str.charAt(1000) ); // ''（空字符串）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以使用 <code>for..of</code> 遍历字符：</p>
+<div id="qhmb1htrty" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>for (let char of &quot;Hello&quot;) {
+  alert(char); // H,e,l,l,o（char 变为 &quot;H&quot;，然后是 &quot;e&quot;，然后是 &quot;l&quot; 等）
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zi-fu-chuan-shi-bu-ke-bian-de" href="#zi-fu-chuan-shi-bu-ke-bian-de">字符串是不可变的</a></h2><p>在 JavaScript 中，字符串不可更改。改变字符是不可能的。</p>
+<p>我们证明一下为什么不可能：</p>
+<div id="589ccncb7s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = 'Hi';
+
+str[0] = 'h'; // error
+alert( str[0] ); // 无法运行</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常的解决方法是创建一个新的字符串，并将其分配给 <code>str</code> 而不是以前的字符串。</p>
+<p>例如：</p>
+<div id="4q08g4cvyq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = 'Hi';
+
+str = 'h' + str[1];  // 替换字符串
+
+alert( str ); // hi</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在接下来的章节，我们将看到更多相关示例。</p>
+<h2><a class="main__anchor" name="gai-bian-da-xiao-xie" href="#gai-bian-da-xiao-xie">改变大小写</a></h2><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase">toLowerCase()</a> 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase">toUpperCase()</a> 方法可以改变大小写：</p>
+<div id="e1mayj5mg5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Interface'.toUpperCase() ); // INTERFACE
+alert( 'Interface'.toLowerCase() ); // interface</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或者我们想要使一个字符变成小写：</p>
+<div id="r35a3o1a9y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Interface'[0].toLowerCase() ); // 'i'</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="cha-zhao-zi-zi-fu-chuan" href="#cha-zhao-zi-zi-fu-chuan">查找子字符串</a></h2><p>在字符串中查找子字符串有很多种方法。</p>
+<h3><a class="main__anchor" name="strindexof" href="#strindexof">str.indexOf</a></h3><p>第一个方法是 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf">str.indexOf(substr, pos)</a>。</p>
+<p>它从给定位置 <code>pos</code> 开始，在 <code>str</code> 中查找 <code>substr</code>，如果没有找到，则返回 <code>-1</code>，否则返回匹配成功的位置。</p>
+<p>例如：</p>
+<div id="00k3qs5bk1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = 'Widget with id';
+
+alert( str.indexOf('Widget') ); // 0，因为 'Widget' 一开始就被找到
+alert( str.indexOf('widget') ); // -1，没有找到，检索是大小写敏感的
+
+alert( str.indexOf(&quot;id&quot;) ); // 1，&quot;id&quot; 在位置 1 处（……idget 和 id）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可选的第二个参数允许我们从一个给定的位置开始检索。</p>
+<p>例如，<code>&quot;id&quot;</code> 第一次出现的位置是 <code>1</code>。查询下一个存在位置时，我们从 <code>2</code> 开始检索：</p>
+<div id="20jq08v62u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = 'Widget with id';
+
+alert( str.indexOf('id', 2) ) // 12</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们对所有存在位置都感兴趣，可以在一个循环中使用 <code>indexOf</code>。每一次新的调用都发生在上一匹配位置之后：</p>
+<div id="bjbydhpe52" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = 'As sly as a fox, as strong as an ox';
+
+let target = 'as'; // 这是我们要查找的目标
+
+let pos = 0;
+while (true) {
+  let foundPos = str.indexOf(target, pos);
+  if (foundPos == -1) break;
+
+  alert( `Found at ${foundPos}` );
+  pos = foundPos + 1; // 继续从下一个位置查找
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>相同的算法可以简写：</p>
+<div id="x7lte0agdu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;As sly as a fox, as strong as an ox&quot;;
+let target = &quot;as&quot;;
+
+let pos = -1;
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+  alert( pos );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>str.lastIndexOf(substr, pos)</code></span></div>
+            <div class="important__content"><p>还有一个类似的方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/lastIndexOf">str.lastIndexOf(substr, position)</a>，它从字符串的末尾开始搜索到开头。</p>
+<p>它会以相反的顺序列出这些事件。</p>
+</div></div>
+<p>在 <code>if</code> 测试中 <code>indexOf</code> 有一点不方便。我们不能像这样把它放在 <code>if</code> 中：</p>
+<div id="pol43mvnrj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Widget with id&quot;;
+
+if (str.indexOf(&quot;Widget&quot;)) {
+    alert(&quot;We found it&quot;); // 不工作！
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上述示例中的 <code>alert</code> 不会显示，因为 <code>str.indexOf(&quot;Widget&quot;)</code> 返回 <code>0</code>（意思是它在起始位置就查找到了匹配项）。是的，但是 <code>if</code> 认为 <code>0</code> 表示 <code>false</code>。</p>
+<p>因此我们应该检查 <code>-1</code>，像这样：</p>
+<div id="dnffzd1px0" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Widget with id&quot;;
+
+if (str.indexOf(&quot;Widget&quot;) != -1) {
+    alert(&quot;We found it&quot;); // 现在工作了！
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h4><a class="main__anchor" name="an-wei-bitwisenot-ji-qiao" href="#an-wei-bitwisenot-ji-qiao">按位（bitwise）NOT 技巧</a></h4><p>这里使用的一个老技巧是 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT">bitwise NOT</a> <code>~</code> 运算符。它将数字转换为 32-bit 整数（如果存在小数部分，则删除小数部分），然后对其二进制表示形式中的所有位均取反。</p>
+<p>实际上，这意味着一件很简单的事儿：对于 32-bit 整数，<code>~n</code> 等于 <code>-(n+1)</code>。</p>
+<p>例如：</p>
+<div id="0igqyg3cok" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( ~2 ); // -3，和 -(2+1) 相同
+alert( ~1 ); // -2，和 -(1+1) 相同
+alert( ~0 ); // -1，和 -(0+1) 相同
+alert( ~-1 ); // 0，和 -(-1+1) 相同</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们看到这样，只有当 <code>n == -1</code> 时，<code>~n</code> 才为零（适用于任何 32-bit 带符号的整数 <code>n</code>）。</p>
+<p>因此，仅当 <code>indexOf</code> 的结果不是 <code>-1</code> 时，检查 <code>if ( ~str.indexOf(&quot;...&quot;) )</code> 才为真。换句话说，当有匹配时。</p>
+<p>人们用它来简写 <code>indexOf</code> 检查：</p>
+<div id="e2l0hqxck3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Widget&quot;;
+
+if (~str.indexOf(&quot;Widget&quot;)) {
+  alert( 'Found it!' ); // 正常运行
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常不建议以非显而易见的方式使用语言特性，但这种特殊技巧在旧代码中仍被广泛使用，所以我们应该理解它。</p>
+<p>只要记住：<code>if (~str.indexOf(...))</code> 读作 “if found”。</p>
+<p>确切地说，由于 <code>~</code> 运算符将大数字截断为 32 位，因此存在给出 <code>0</code> 的其他数字，最小的数字是 <code>~4294967295=0</code>。这使得这种检查只有在字符串没有那么长的情况下才是正确的。</p>
+<p>现在我们只会在旧的代码中看到这个技巧，因为现代 JavaScript 提供了 <code>.includes</code> 方法（见下文）。</p>
+<h3><a class="main__anchor" name="includesstartswithendswith" href="#includesstartswithendswith">includes，startsWith，endsWith</a></h3><p>更现代的方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/includes">str.includes(substr, pos)</a> 根据 <code>str</code> 中是否包含 <code>substr</code> 来返回 <code>true/false</code>。</p>
+<p>如果我们需要检测匹配，但不需要它的位置，那么这是正确的选择：</p>
+<div id="sw08qo64pz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;Widget with id&quot;.includes(&quot;Widget&quot;) ); // true
+
+alert( &quot;Hello&quot;.includes(&quot;Bye&quot;) ); // false</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>str.includes</code> 的第二个可选参数是开始搜索的起始位置：</p>
+<div id="ctwrrylskt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;Midget&quot;.includes(&quot;id&quot;) ); // true
+alert( &quot;Midget&quot;.includes(&quot;id&quot;, 3) ); // false, 从位置 3 开始没有 &quot;id&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith">str.startsWith</a> 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith">str.endsWith</a> 的功能与其名称所表示的意思相同：</p>
+<div id="a3ql90zz0s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;Widget&quot;.startsWith(&quot;Wid&quot;) ); // true，&quot;Widget&quot; 以 &quot;Wid&quot; 开始
+alert( &quot;Widget&quot;.endsWith(&quot;get&quot;) ); // true，&quot;Widget&quot; 以 &quot;get&quot; 结束</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="huo-qu-zi-zi-fu-chuan" href="#huo-qu-zi-zi-fu-chuan">获取子字符串</a></h2><p>JavaScript 中有三种获取字符串的方法：<code>substring</code>、<code>substr</code> 和 <code>slice</code>。</p>
+<dl>
+<dt><code>str.slice(start [, end])</code></dt>
+<dd>
+<p>返回字符串从 <code>start</code> 到（但不包括）<code>end</code> 的部分。</p>
+<p>例如：</p>
+<div id="hihsab5t8e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+alert( str.slice(0, 5) ); // 'strin'，从 0 到 5 的子字符串（不包括 5）
+alert( str.slice(0, 1) ); // 's'，从 0 到 1，但不包括 1，所以只有在 0 处的字符</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果没有第二个参数，<code>slice</code> 会一直运行到字符串末尾：</p>
+<div id="qrqlff0lbh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:20}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+alert( str.slice(2) ); // 从第二个位置直到结束</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>start/end</code> 也有可能是负值。它们的意思是起始位置从字符串结尾计算：</p>
+<div id="1nyj01aiqr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:16,&quot;end&quot;:19}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+
+// 从右边的第四个位置开始，在右边的第一个位置结束
+alert( str.slice(-4, -1) ); // 'gif'</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>str.substring(start [, end])</code></dt>
+<dd>
+<p>返回字符串在 <code>start</code> 和 <code>end</code> <strong>之间</strong> 的部分。</p>
+<p>这与 <code>slice</code> 几乎相同，但它允许 <code>start</code> 大于 <code>end</code>。</p>
+<p>例如：</p>
+<div id="ulguxjsu5z" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:17}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+
+// 这些对于 substring 是相同的
+alert( str.substring(2, 6) ); // &quot;ring&quot;
+alert( str.substring(6, 2) ); // &quot;ring&quot;
+
+// ……但对 slice 是不同的：
+alert( str.slice(2, 6) ); // &quot;ring&quot;（一样）
+alert( str.slice(6, 2) ); // &quot;&quot;（空字符串）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>不支持负参数（不像 slice），它们被视为 <code>0</code>。</p>
+</dd>
+<dt><code>str.substr(start [, length])</code></dt>
+<dd>
+<p>返回字符串从 <code>start</code> 开始的给定 <code>length</code> 的部分。</p>
+<p>与以前的方法相比，这个允许我们指定 <code>length</code> 而不是结束位置：</p>
+<div id="48icor47p9" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:13,&quot;end&quot;:17}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+alert( str.substr(2, 4) ); // 'ring'，从位置 2 开始，获取 4 个字符</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第一个参数可能是负数，从结尾算起：</p>
+<div id="gqylpbqxwk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:16,&quot;end&quot;:18}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;stringify&quot;;
+alert( str.substr(-4, 2) ); // 'gi'，从第 4 位获取 2 个字符</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<p>我们回顾一下这些方法，以免混淆：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>选择方式……</th>
+<th>负值参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>slice(start, end)</code></td>
+<td>从 <code>start</code> 到 <code>end</code>（不含 <code>end</code>）</td>
+<td>允许</td>
+</tr>
+<tr>
+<td><code>substring(start, end)</code></td>
+<td><code>start</code> 与 <code>end</code> 之间（包括 <code>start</code>，但不包括 <code>end</code>）</td>
+<td>负值代表 <code>0</code></td>
+</tr>
+<tr>
+<td><code>substr(start, length)</code></td>
+<td>从 <code>start</code> 开始获取长为 <code>length</code> 的字符串</td>
+<td>允许 <code>start</code> 为负数</td>
+</tr>
+</tbody>
+</table>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">使用哪一个？</span></div>
+            <div class="important__content"><p>它们可以完成这项工作。形式上，<code>substr</code> 有一个小缺点：它不是在 JavaScript 核心规范中描述的，而是在附录 B 中，它涵盖了主要由于历史原因而存在的仅浏览器特性。因此，非浏览器环境可能无法支持它。但实际上它在任何地方都有效。</p>
+<p>相较于其他两个变体，<code>slice</code> 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 <code>slice</code> 就足够了。</p>
+</div></div>
+<h2><a class="main__anchor" name="bi-jiao-zi-fu-chuan" href="#bi-jiao-zi-fu-chuan">比较字符串</a></h2><p>正如我们从 <a href="../comparison/index.html">值的比较</a> 一章中了解到的，字符串按字母顺序逐字比较。</p>
+<p>不过，也有一些奇怪的地方。</p>
+<ol>
+<li>
+<p>小写字母总是大于大写字母：</p>
+<div id="tilfkj0cf8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'a' &gt; 'Z' ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>带变音符号的字母存在“乱序”的情况：</p>
+<div id="e50hlallz0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Österreich' &gt; 'Zealand' ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们对这些国家名进行排序，可能会导致奇怪的结果。通常，人们会期望 <code>Zealand</code> 在名单中的 <code>Österreich</code> 之后出现。</p>
+</li>
+</ol>
+<p>为了明白发生了什么，我们回顾一下在 JavaScript 中字符串的内部表示。</p>
+<p>所有的字符串都使用 <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> 编码。即：每个字符都有对应的数字代码。有特殊的方法可以获取代码表示的字符，以及字符对应的代码。</p>
+<dl>
+<dt><code>str.codePointAt(pos)</code></dt>
+<dd>
+<p>返回在 <code>pos</code> 位置的字符代码 :</p>
+<div id="wq3j4s29ba" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 不同的字母有不同的代码
+alert( &quot;z&quot;.codePointAt(0) ); // 122
+alert( &quot;Z&quot;.codePointAt(0) ); // 90</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt><code>String.fromCodePoint(code)</code></dt>
+<dd>
+<p>通过数字 <code>code</code> 创建字符</p>
+<div id="hfe5gzmvkh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( String.fromCodePoint(90) ); // Z</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们还可以用 <code>\u</code> 后跟十六进制代码，通过这些代码添加 Unicode 字符：</p>
+<div id="1xa9770wrv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在十六进制系统中 90 为 5a
+alert( '\u005a' ); // Z</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+</dl>
+<p>现在我们看一下代码为 <code>65..220</code> 的字符（拉丁字母和一些额外的字符），方法是创建一个字符串：</p>
+<div id="f3r48q4p3c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '';
+
+for (let i = 65; i &lt;= 220; i++) {
+  str += String.fromCodePoint(i);
+}
+alert( str );
+// ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+// ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ</code></pre>
+        </div>
+      </div>
+      
+      </div><p>看到没？先是大写字符，然后是一些特殊字符，然后是小写字符，而 <code>Ö</code> 几乎是最后输出。</p>
+<p>现在很明显为什么 <code>a &gt; Z</code>。</p>
+<p>字符通过数字代码进行比较。越大的代码意味着字符越大。<code>a</code>（97）的代码大于 <code>Z</code>（90）的代码。</p>
+<ul>
+<li>所有小写字母追随在大写字母之后，因为它们的代码更大。</li>
+<li>一些像 <code>Ö</code> 的字母与主要字母表不同。这里，它的代码比任何从 <code>a</code> 到 <code>z</code> 的代码都要大。</li>
+</ul>
+<h3><a class="main__anchor" name="正确的比较" href="#正确的比较">正确的比较</a></h3><p>执行字符串比较的“正确”算法比看起来更复杂，因为不同语言的字母都不相同。</p>
+<p>因此浏览器需要知道要比较的语言。</p>
+<p>幸运的是，所有现代浏览器（IE10- 需要额外的库 <a href="https://github.com/andyearnshaw/Intl.js/">Intl.JS</a>) 都支持国际化标准 <a href="http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf">ECMA-402</a>。</p>
+<p>它提供了一种特殊的方法来比较不同语言的字符串，遵循它们的规则。</p>
+<p>调用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare">str.localeCompare(str2)</a> 会根据语言规则返回一个整数，这个整数能指示字符串 <code>str</code> 在排序顺序中排在字符串 <code>str2</code> 前面、后面、还是相同：</p>
+<ul>
+<li>如果 <code>str</code> 排在 <code>str2</code> 前面，则返回负数。</li>
+<li>如果 <code>str</code> 排在 <code>str2</code> 后面，则返回正数。</li>
+<li>如果它们在相同位置，则返回 <code>0</code>。</li>
+</ul>
+<p>例如：</p>
+<div id="vzsiiem3dv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Österreich'.localeCompare('Zealand') ); // -1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个方法实际上在 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare">文档</a> 中指定了两个额外的参数，这两个参数允许它指定语言（默认语言从环境中获取，字符顺序视语言不同而不同）并设置诸如区分大小写，或应该将 <code>&quot;a&quot;</code> 和 <code>&quot;á&quot;</code> 作相同处理等附加的规则。</p>
+<h2><a class="main__anchor" name="nei-bu-unicode" href="#nei-bu-unicode">内部，Unicode</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">进阶内容</span></div>
+            <div class="important__content"><p>这部分会深入字符串内部。如果你计划处理 emoji、罕见的数学或象形文字或其他罕见的符号，这些知识会对你有用。</p>
+<p>如果你不打算支持它们，你可以跳过这一部分。</p>
+</div></div>
+<h3><a class="main__anchor" name="dai-li-dui" href="#dai-li-dui">代理对</a></h3><p>所有常用的字符都是一个 2 字节的代码。大多数欧洲语言，数字甚至大多数象形文字中的字母都有 2 字节的表示形式。</p>
+<p>但 2 字节只允许 65536 个组合，这对于表示每个可能的符号是不够的。所以稀有的符号被称为“代理对”的一对 2 字节的符号编码。</p>
+<p>这些符号的长度是 <code>2</code>：</p>
+<div id="iwgc905j4l" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '𝒳'.length ); // 2，大写数学符号 X
+alert( '😂'.length ); // 2，笑哭表情
+alert( '𩷶'.length ); // 2，罕见的中国象形文字</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意，代理对在 JavaScript 被创建时并不存在，因此无法被编程语言正确处理！</p>
+<p>我们实际上在上面的每个字符串中都有一个符号，但 <code>length</code> 显示长度为 <code>2</code>。</p>
+<p><code>String.fromCodePoint</code> 和 <code>str.codePointAt</code> 是几种处理代理对的少数方法。它们最近才出现在编程语言中。在它们之前，只有 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode">String.fromCharCode</a> 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt">str.charCodeAt</a>。这些方法实际上与 <code>fromCodePoint/codePointAt</code> 相同，但是不适用于代理对。</p>
+<p>获取符号可能会非常麻烦，因为代理对被认为是两个字符：</p>
+<div id="wjclap62dv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '𝒳'[0] ); // 奇怪的符号……
+alert( '𝒳'[1] ); // ……代理对的一块</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，代理对的各部分没有任何意义。因此，上述示例中的 alert 显示的实际上是垃圾信息。</p>
+<p>技术角度来说，代理对也是可以通过它们的代码检测到的：如果一个字符的代码在 <code>0xd800..0xdbff</code> 范围内，那么它是代理对的第一部分。下一个字符（第二部分）必须在 <code>0xdc00..0xdfff</code> 范围中。这些范围是按照标准专门为代理对保留的。</p>
+<p>在上述示例中：</p>
+<div id="y93crfcyvp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// charCodeAt 不理解代理对，所以它给出了代理对的代码
+
+alert( '𝒳'.charCodeAt(0).toString(16) ); // d835，在 0xd800 和 0xdbff 之间
+alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 在 0xdc00 和 0xdfff 之间</code></pre>
+        </div>
+      </div>
+      
+      </div><p>本章节后面的 <a href="../iterable/index.html">Iterable object（可迭代对象）</a> 章节中，你可以找到更多处理代理对的方法。可能也专门的库，这里没有什么足够好的建议了。</p>
+<h3><a class="main__anchor" name="bian-yin-fu-hao-yu-gui-fan-hua" href="#bian-yin-fu-hao-yu-gui-fan-hua">变音符号与规范化</a></h3><p>在许多语言中，都有一些由基本字符组成的符号，在其上方/下方有一个标记。</p>
+<p>例如，字母 <code>a</code> 可以是 <code>àáâäãåā</code> 的基本字符。最常见的“复合”字符在 UTF-16 表中都有自己的代码。但不是全部，因为可能的组合太多。</p>
+<p>为了支持任意组合，UTF-16 允许我们使用多个 Unicode 字符：基本字符紧跟“装饰”它的一个或多个“标记”字符。</p>
+<p>例如，如果我们 <code>S</code> 后跟有特殊的 “dot above” 字符（代码 <code>\u0307</code>），则显示 Ṡ。</p>
+<div id="aiq92mgjkh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'S\u0307' ); // Ṡ</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们需要在字母上方（或下方）添加额外的标记 —— 没问题，只需要添加必要的标记字符即可。</p>
+<p>例如，如果我们追加一个字符 “dot below”（代码 <code>\u0323</code>），那么我们将得到“S 上面和下面都有点”的字符：<code>Ṩ</code>。</p>
+<p>例如：</p>
+<div id="03r4tygr1s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'S\u0307\u0323' ); // Ṩ</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这在提供良好灵活性的同时，也存在一个有趣的问题：两个视觉上看起来相同的字符，可以用不同的 Unicode 组合表示。</p>
+<p>例如：</p>
+<div id="pfazbqzpmk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let s1 = 'S\u0307\u0323'; // Ṩ，S + 上点 + 下点
+let s2 = 'S\u0323\u0307'; // Ṩ，S + 下点 + 上点
+
+alert( `s1: ${s1}, s2: ${s2}` );
+
+alert( s1 == s2 ); // false，尽管字符看起来相同（?!）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为了解决这个问题，有一个 “Unicode 规范化”算法，它将每个字符串都转化成单个“通用”格式。</p>
+<p>它由 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/normalize">str.normalize()</a> 实现。</p>
+<div id="6tps9g0cxi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;S\u0307\u0323&quot;.normalize() == &quot;S\u0323\u0307&quot;.normalize() ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>有趣的是，在实际情况下，<code>normalize()</code> 实际上将一个由 3 个字符组成的序列合并为一个：<code>\u1e68</code>（S 有两个点）。</p>
+<div id="6vvw86j7d0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;S\u0307\u0323&quot;.normalize().length ); // 1
+
+alert( &quot;S\u0307\u0323&quot;.normalize() == &quot;\u1e68&quot; ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>事实上，情况并非总是如此，因为符号 <code>Ṩ</code> 是“常用”的，所以 UTF-16 创建者把它包含在主表中并给它了对应的代码。</p>
+<p>如果你想了解更多关于规范化规则和变体的信息 —— 它们在 Unicode 标准附录中有详细描述：<a href="http://www.unicode.org/reports/tr15/">Unicode 规范化形式</a>，但对于大多数实际目的来说，本文的内容就已经足够了。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><ul>
+<li>有 3 种类型的引号。反引号允许字符串跨越多行并可以使用 <code>${…}</code> 在字符串中嵌入表达式。</li>
+<li>JavaScript 中的字符串使用的是 UTF-16 编码。</li>
+<li>我们可以使用像 <code>\n</code> 这样的特殊字符或通过使用 <code>\u...</code> 来操作它们的 Unicode 进行字符插入。</li>
+<li>获取字符时，使用 <code>[]</code>。</li>
+<li>获取子字符串，使用 <code>slice</code> 或 <code>substring</code>。</li>
+<li>字符串的大/小写转换，使用：<code>toLowerCase/toUpperCase</code>。</li>
+<li>查找子字符串时，使用 <code>indexOf</code> 或 <code>includes/startsWith/endsWith</code> 进行简单检查。</li>
+<li>根据语言比较字符串时使用 <code>localeCompare</code>，否则将按字符代码进行比较。</li>
+</ul>
+<p>还有其他几种有用的字符串方法：</p>
+<ul>
+<li><code>str.trim()</code> —— 删除字符串前后的空格 (“trims”)。</li>
+<li><code>str.repeat(n)</code> —— 重复字符串 <code>n</code> 次。</li>
+<li>……更多内容细节请参见 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String">手册</a>。</li>
+</ul>
+<p>字符串还具有使用正则表达式进行搜索/替换的方法。但这个话题很大，因此我们将在本教程中单独的 <a href="../regular-expressions/index.html">正则表达式</a> 章节中进行讨论。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shou-zi-mu-da-xie" name="shou-zi-mu-da-xie">首字母大写</a></h3><a class="task__open-link" href="../task/ucfirst/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>ucFirst(str)</code>，并返回首字母大写的字符串 <code>str</code>，例如：</p>
+<div id="h8h69jeiyk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ucFirst(&quot;john&quot;) == &quot;John&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/6KhZ4VuPsXG98Xpl?p=preview" target="_blank" data-plunk-id="6KhZ4VuPsXG98Xpl">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们不能“替换”第一个字符，因为在 JavaScript 中字符串是不可变的。</p>
+<p>但是我们可以根据已有字符串创建一个首字母大写的新字符串：</p>
+<div id="48blbhwn88" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let newStr = str[0].toUpperCase() + str.slice(1);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里存在一个小问题。如果 <code>str</code> 是空的，那么 <code>str[0]</code> 就是 <code>undefined</code>，但由于 <code>undefined</code> 并没有 <code>toUpperCase()</code> 方法，因此我们会得到一个错误。</p>
+<p>存在如下两种变体：</p>
+<ol>
+<li>使用 <code>str.charAt(0)</code>，因为它总是会返回一个字符串（可能为空）。</li>
+<li>为空字符添加测试。</li>
+</ol>
+<p>这是第二种变体：</p>
+<div id="bljz70jh3e" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function ucFirst(str) {
+  if (!str) return str;
+
+  return str[0].toUpperCase() + str.slice(1);
+}
+
+alert( ucFirst(&quot;john&quot;) ); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Fxihn5HhSYKHtp9I?p=preview" target="_blank" data-plunk-id="Fxihn5HhSYKHtp9I">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jian-cha-spam" name="jian-cha-spam">检查 spam</a></h3><a class="task__open-link" href="../task/check-spam/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>checkSpam(str)</code>，如果 <code>str</code> 包含 <code>viagra</code> 或 <code>XXX</code> 就返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>函数必须不区分大小写：</p>
+<div id="4xubn6s36y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>checkSpam('buy ViAgRA now') == true
+checkSpam('free xxxxx') == true
+checkSpam(&quot;innocent rabbit&quot;) == false</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/82iRa51XfQELjrZJ?p=preview" target="_blank" data-plunk-id="82iRa51XfQELjrZJ">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为了使搜索不区分大小写，我们将字符串改为小写，然后搜索：</p>
+<div id="cds71nz0yp" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkSpam(str) {
+  let lowerStr = str.toLowerCase();
+
+  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+}
+
+alert( checkSpam('buy ViAgRA now') );
+alert( checkSpam('free xxxxx') );
+alert( checkSpam(&quot;innocent rabbit&quot;) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/79vmXQ8DDDBpn41U?p=preview" target="_blank" data-plunk-id="79vmXQ8DDDBpn41U">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jie-duan-wen-ben" name="jie-duan-wen-ben">截断文本</a></h3><a class="task__open-link" href="../task/truncate/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建函数 <code>truncate(str, maxlength)</code> 来检查 <code>str</code> 的长度，如果超过 <code>maxlength</code> —— 应使用 <code>&quot;…&quot;</code> 来代替 <code>str</code> 的结尾部分，长度仍然等于 <code>maxlength</code>。</p>
+<p>函数的结果应该是截断后的文本（如果需要的话）。</p>
+<p>例如：</p>
+<div id="cab5ddao0b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>truncate(&quot;What I'd like to tell on this topic is:&quot;, 20) = &quot;What I'd like to te…&quot;
+
+truncate(&quot;Hi everyone!&quot;, 20) = &quot;Hi everyone!&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Wm1iuNUbRyGtZrou?p=preview" target="_blank" data-plunk-id="Wm1iuNUbRyGtZrou">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>最大长度必须是 <code>maxlength</code>，因此为了给省略号留空间我们需要缩短它。</p>
+<p>请注意，省略号实际上有一个单独的 Unicode 字符，而不是三个点。</p>
+<div id="eaalfwvg2u" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function truncate(str, maxlength) {
+  return (str.length &gt; maxlength) ?
+    str.slice(0, maxlength - 1) + '…' : str;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/hdoYmelHDqpEtyN8?p=preview" target="_blank" data-plunk-id="hdoYmelHDqpEtyN8">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ti-qu-huo-bi" name="ti-qu-huo-bi">提取货币</a></h3><a class="task__open-link" href="../task/extract-currency/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>我们有以 <code>&quot;$120&quot;</code> 这样的格式表示的花销。意味着：先是美元符号，然后才是数值。</p>
+<p>创建函数 <code>extractCurrencyValue(str)</code> 从字符串中提取数值并返回。</p>
+<p>例如：</p>
+<div id="cqpj6u1b2a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( extractCurrencyValue('$120') === 120 ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/hX19JgKNFTisMmml?p=preview" target="_blank" data-plunk-id="hX19JgKNFTisMmml">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="3pihl8atr6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function extractCurrencyValue(str) {
+  return +str.slice(1);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Avxs0FdJVLSjEvDu?p=preview" target="_blank" data-plunk-id="Avxs0FdJVLSjEvDu">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../number/index.html" data-tooltip="数字类型"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../array/index.html" data-tooltip="数组"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/string","identifier":"\/string"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yin-hao-quotes">引号（Quotes）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#te-shu-zi-fu">特殊字符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-fu-chuan-chang-du">字符串长度</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fang-wen-zi-fu">访问字符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-fu-chuan-shi-bu-ke-bian-de">字符串是不可变的</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#gai-bian-da-xiao-xie">改变大小写</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cha-zhao-zi-zi-fu-chuan">查找子字符串</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#huo-qu-zi-zi-fu-chuan">获取子字符串</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bi-jiao-zi-fu-chuan">比较字符串</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#nei-bu-unicode">内部，Unicode</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fstring" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/03-string" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

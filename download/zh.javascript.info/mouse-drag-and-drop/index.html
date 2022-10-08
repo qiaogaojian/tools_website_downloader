@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">鼠标拖放事件</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/mouse-drag-and-drop"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="鼠标拖放事件"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="鼠标拖放事件"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/mousemove-mouseover-mouseout-mouseenter-mouseleave"><link rel="next" href="/pointer-events"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="鼠标拖放事件"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/mouse-drag-and-drop"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/mouse-drag-and-drop"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/mouse-drag-and-drop">English</option><option value="https://es.javascript.info/mouse-drag-and-drop">Español</option><option value="https://fr.javascript.info/mouse-drag-and-drop">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/mouse-drag-and-drop">Italiano</option><option value="https://ja.javascript.info/mouse-drag-and-drop">日本語</option><option value="https://ko.javascript.info/mouse-drag-and-drop">한국어</option><option value="https://learn.javascript.ru/mouse-drag-and-drop">Русский</option><option value="https://tr.javascript.info/mouse-drag-and-drop">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/mouse-drag-and-drop" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="19" max="32" data-tooltip="第 19/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../event-details/index.html"><span>UI 事件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"UI 事件","item":"https://zh.javascript.info/event-details"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">鼠标拖放事件</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="鼠标拖放事件"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>拖放（Drag’n’Drop）是一个很赞的界面解决方案。取某件东西并将其拖放是执行许多东西的一种简单明了的方式，从复制和移动文档（如在文件管理器中）到订购（将物品放入购物车）。</p>
+<p>在现代 HTML 标准中有一个 <a href="https://html.spec.whatwg.org/multipage/interaction.html#dnd">关于拖放的部分</a>，其中包含了例如 <code>dragstart</code> 和 <code>dragend</code> 等特殊事件。</p>
+<p>这些事件使我们能够支持特殊类型的拖放，例如处理从 OS 文件管理器中拖动文件，并将其拖放到浏览器窗口中。之后，JavaScript 便可以访问此类文件中的内容。</p>
+<p>但是，原生的拖放事件也有其局限性。例如，我们无法阻止从特定区域的拖动。并且，我们无法将拖动变成“水平”或“竖直”的。还有很多其他使用它们无法完成的拖放任务。并且，移动设备对此类事件的支持非常有限。</p>
+<p>因此，在这里我们将看到，如何使用鼠标事件来实现拖放。</p>
+<h2><a class="main__anchor" name="tuo-fang-suan-fa" href="#tuo-fang-suan-fa">拖放算法</a></h2><p>基础的拖放算法如下所示：</p>
+<ol>
+<li>在 <code>mousedown</code> 上 —— 根据需要准备要移动的元素（也许创建一个它的副本，向其中添加一个类或其他任何东西）。</li>
+<li>然后在 <code>mousemove</code> 上，通过更改 <code>position:absolute</code> 情况下的 <code>left/top</code> 来移动它。</li>
+<li>在 <code>mouseup</code> 上 —— 执行与完成的拖放相关的所有行为。</li>
+</ol>
+<p>这些都是基础内容。稍后，我们将看到如何实现其他功能，例如当我们将一个东西拖动到一个元素上方时，高亮显示该元素。</p>
+<p>下面是拖放一个球的实现代码：</p>
+<div id="hzaxqt04as" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.onmousedown = function(event) {
+  // (1) 准备移动：确保 absolute，并通过设置 z-index 以确保球在顶部
+  ball.style.position = 'absolute';
+  ball.style.zIndex = 1000;
+
+  // 将其从当前父元素中直接移动到 body 中
+  // 以使其定位是相对于 body 的
+  document.body.append(ball);
+
+  // 现在球的中心在 (pageX, pageY) 坐标上
+  function moveAt(pageX, pageY) {
+    ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+    ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+  }
+
+  // 将我们绝对定位的球移到指针下方
+  moveAt(event.pageX, event.pageY);
+
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+  }
+
+  // (2) 在 mousemove 事件上移动球
+  document.addEventListener('mousemove', onMouseMove);
+
+  // (3) 放下球，并移除不需要的处理程序
+  ball.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    ball.onmouseup = null;
+  };
+
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们运行这段代码，我们会发现一些奇怪的事情。在拖放的一开始，球“分叉”了：我们开始拖动它的“克隆”。</p>
+<p>这是一个正在运行中的示例：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:230px" src="https://zh.js.cx/article/mouse-drag-and-drop/ball/"></iframe>
+  </div><p>尝试使用鼠标进行拖放，你会看到这种奇怪的行为。</p>
+<p>这是因为浏览器有自己的对图片和一些其他元素的拖放处理。它会在我们进行拖放操作时自动运行，并与我们的拖放处理产生了冲突。</p>
+<p>禁用它：</p>
+<div id="1djgpadl57" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.ondragstart = function() {
+  return false;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在一切都正常了。</p>
+<p>这是一个正在运行中的示例：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:230px" src="https://zh.js.cx/article/mouse-drag-and-drop/ball2/"></iframe>
+  </div><p>另一个重要的方面是 —— 我们在 <code>document</code> 上跟踪 <code>mousemove</code>，而不是在 <code>ball</code> 上。乍一看，鼠标似乎总是在球的上方，我们可以将 <code>mousemove</code> 放在球上。</p>
+<p>但正如我们所记得的那样，<code>mousemove</code> 会经常被触发，但不会针对每个像素都如此。因此，在快速移动鼠标后，鼠标指针可能会从球上跳转至文档中间的某个位置（甚至跳转至窗口外）。</p>
+<p>因此，我们应该监听 <code>document</code> 以捕获它。</p>
+<h2><a class="main__anchor" name="xiu-zheng-ding-wei" href="#xiu-zheng-ding-wei">修正定位</a></h2><p>在上述示例中，球在移动时，球的中心始终位于鼠标指针下方：</p>
+<div id="lcis59tm36" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+ball.style.top = pageY - ball.offsetHeight / 2 + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>不错，但这存在副作用。要启动拖放，我们可以在球上的任意位置 <code>mousedown</code>。但是，如果从球的边缘“抓住”球，那么球会突然“跳转”以使球的中心位于鼠标指针下方。</p>
+<p>如果我们能够保持元素相对于鼠标指针的初始偏移，那就更好了。</p>
+<p>例如，我们按住球的边缘处开始拖动，那么在拖动时，鼠标指针应该保持在一开始所按住的边缘位置上。</p>
+<figure><div class="image" style="width:149px">
+      <div class="image__ratio" style="padding-top:89.26174496644296%"></div>
+      <object type="image/svg+xml" data="../article/mouse-drag-and-drop/ball_shift.svg" width="149" height="133" class="image__image" data-use-theme>
+        <img src="../article/mouse-drag-and-drop/ball_shift.svg" alt width="149" height="133">
+      </object>
+      </div></figure><p>让我们更新一下我们的算法：</p>
+<ol>
+<li>
+<p>当访问者按下按钮（<code>mousedown</code>）时 —— 我们可以在变量 <code>shiftX/shiftY</code> 中记住鼠标指针到球左上角的距离。我们应该在拖动时保持这个距离。</p>
+<p>我们可以通过坐标相减来获取这个偏移：</p>
+<div id="v0dsatlk7v" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// onmousedown
+let shiftX = event.clientX - ball.getBoundingClientRect().left;
+let shiftY = event.clientY - ball.getBoundingClientRect().top;</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>然后，在拖动球时，我们将鼠标指针相对于球的这个偏移也考虑在内，像这样：</p>
+<div id="h2vktm752g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:31,&quot;end&quot;:37}]},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:32,&quot;end&quot;:38}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// onmousemove
+// 球具有 position:absoute
+ball.style.left = event.pageX - shiftX + 'px';
+ball.style.top = event.pageY - shiftY + 'px';</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>能够更好地进行定位的最终代码：</p>
+<div id="ine9838xus" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;cols&quot;:[{&quot;start&quot;:29,&quot;end&quot;:35}]},{&quot;start&quot;:14,&quot;cols&quot;:[{&quot;start&quot;:30,&quot;end&quot;:36}]},{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>ball.onmousedown = function(event) {
+
+  let shiftX = event.clientX - ball.getBoundingClientRect().left;
+  let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+  ball.style.position = 'absolute';
+  ball.style.zIndex = 1000;
+  document.body.append(ball);
+
+  moveAt(event.pageX, event.pageY);
+
+  // 移动现在位于坐标 (pageX, pageY) 上的球
+  // 将初始的偏移考虑在内
+  function moveAt(pageX, pageY) {
+    ball.style.left = pageX - shiftX + 'px';
+    ball.style.top = pageY - shiftY + 'px';
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+  }
+
+  // 在 mousemove 事件上移动球
+  document.addEventListener('mousemove', onMouseMove);
+
+  // 放下球，并移除不需要的处理程序
+  ball.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    ball.onmouseup = null;
+  };
+
+};
+
+ball.ondragstart = function() {
+  return false;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>In action (inside <code>&lt;iframe&gt;</code>):</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:230px" src="https://zh.js.cx/article/mouse-drag-and-drop/ball3/"></iframe>
+  </div><p>如果我们按住球的右下角来进行拖动，这种差异会尤其明显。在前面的示例中，球会在鼠标指针下“跳转”一下。现在，更新后的代码可以让我们从当前位置流畅地跟随鼠标。</p>
+<h2><a class="main__anchor" name="qian-zai-de-fang-zhi-mu-biao" href="#qian-zai-de-fang-zhi-mu-biao">潜在的放置目标</a></h2><p>在前面的示例中，球可以被放置（drop）到“任何地方”。在实际中，我们通常是将一个元素放到另一个元素上。例如，将一个“文件”放置到一个“文件夹”或者其他地方。</p>
+<p>抽象地讲，我们取一个 “draggable” 的元素，并将其放在 “droppable” 的元素上。</p>
+<p>我们需要知道：</p>
+<ul>
+<li>在拖放结束时，所拖动的元素要放在哪里 —— 执行相应的行为</li>
+<li>并且，最好知道我们所拖动到的 “droppable” 的元素的位置，并高亮显示 “droppable” 的元素。</li>
+</ul>
+<p>这个解决方案很有意思，只是有点麻烦，所以我们在这儿对此进行介绍。</p>
+<p>第一个想法是什么？可能是将 <code>onmouseover/mouseup</code> 处理程序放在潜在的 “droppable” 的元素中？</p>
+<p>但这行不通。</p>
+<p>问题在于，当我们拖动时，可拖动元素一直是位于其他元素上的。而鼠标事件只发生在顶部元素上，而不是发生在那些下面的元素。</p>
+<p>例如，下面有两个 <code>&lt;div&gt;</code> 元素，红色的在蓝色的上面（完全覆盖）。这里，在蓝色的 <code>&lt;div&gt;</code> 中没有办法来捕获事件，因为红色的 <code>&lt;div&gt;</code> 在它上面：</p>
+<div id="ss2bolud4h" data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  div {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+  }
+&lt;/style&gt;
+&lt;div style=&quot;background:blue&quot; onmouseover=&quot;alert('never works')&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;background:red&quot; onmouseover=&quot;alert('over red!')&quot;&gt;&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-ss2bolud4h" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>与可拖动的元素相同。球始终位于其他元素之上，因此事件会发生在球上。无论我们在较低的元素上设置什么处理程序，它们都不会起作用。</p>
+<p>这就是一开始的那个想法，将处理程序放在潜在的 “droppable” 的元素，在实际操作中不起作用的原因。它们不会运行。</p>
+<p>那么，该怎么办？</p>
+<p>有一个叫做 <code>document.elementFromPoint(clientX, clientY)</code> 的方法。它会返回在给定的窗口相对坐标处的嵌套的最深的元素（如果给定的坐标在窗口外，则返回 <code>null</code>）。</p>
+<p>我们可以在我们的任何鼠标事件处理程序中使用它，以检测鼠标指针下的潜在的 “droppable” 的元素，就像这样：</p>
+<div id="0k9126q30g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 在一个鼠标事件处理程序中
+ball.hidden = true; // (*) 隐藏我们拖动的元素
+
+let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+// elemBelow 是球下方的元素，可能是 droppable 的元素
+
+ball.hidden = false;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：我们需要在调用 <code>(*)</code> 之前隐藏球。否则，我们通常会在这些坐标上有一个球，因为它是在鼠标指针下的最顶部的元素：<code>elemBelow=ball</code>。</p>
+<p>我们可以使用该代码来检查我们正在“飞过”的元素是什么。并在放置（drop）时，对放置进行处理。</p>
+<p>基于 <code>onMouseMove</code> 扩展的代码，用于查找 “droppable” 的元素：</p>
+<div id="7ftna5vs53" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 我们当前正在飞过的潜在的 droppable 的元素
+let currentDroppable = null;
+
+function onMouseMove(event) {
+  moveAt(event.pageX, event.pageY);
+
+  ball.hidden = true;
+  let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+  ball.hidden = false;
+
+  // mousemove 事件可能会在窗口外被触发（当球被拖出屏幕时）
+  // 如果 clientX/clientY 在窗口外，那么 elementfromPoint 会返回 null
+  if (!elemBelow) return;
+
+  // 潜在的 droppable 的元素被使用 &quot;droppable&quot; 类进行标记（也可以是其他逻辑）
+  let droppableBelow = elemBelow.closest('.droppable');
+
+  if (currentDroppable != droppableBelow) {
+    // 我们正在飞入或飞出...
+    // 注意：它们两个的值都可能为 null
+    //   currentDroppable=null —— 如果我们在此事件之前，鼠标指针不是在一个 droppable 的元素上（例如空白处）
+    //   droppableBelow=null —— 如果现在，在当前事件中，我们的鼠标指针不是在一个 droppable 的元素上
+
+    if (currentDroppable) {
+      // 处理“飞出” droppable 的元素时的处理逻辑（移除高亮）
+      leaveDroppable(currentDroppable);
+    }
+    currentDroppable = droppableBelow;
+    if (currentDroppable) {
+      // 处理“飞入” droppable 的元素时的逻辑
+      enterDroppable(currentDroppable);
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在下面这个示例中，当球被拖到球门上时，球门会被高亮显示。</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/mouse-drag-and-drop/ball4/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/JSAKYGhbG8l0dT9x?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:250px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/mouse-drag-and-drop/ball4/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#gate {
+  cursor: pointer;
+  margin-bottom: 100px;
+  width: 83px;
+  height: 46px;
+}
+
+#ball {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;p&gt;Drag the ball.&lt;/p&gt;
+
+  &lt;img src=&quot;https://en.js.cx/clipart/soccer-gate.svg&quot; id=&quot;gate&quot; class=&quot;droppable&quot;&gt;
+
+  &lt;img src=&quot;https://en.js.cx/clipart/ball.svg&quot; id=&quot;ball&quot;&gt;
+
+  &lt;script&gt;
+    let currentDroppable = null;
+
+    ball.onmousedown = function(event) {
+
+      let shiftX = event.clientX - ball.getBoundingClientRect().left;
+      let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+      ball.style.position = 'absolute';
+      ball.style.zIndex = 1000;
+      document.body.append(ball);
+
+      moveAt(event.pageX, event.pageY);
+
+      function moveAt(pageX, pageY) {
+        ball.style.left = pageX - shiftX + 'px';
+        ball.style.top = pageY - shiftY + 'px';
+      }
+
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+
+        ball.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        ball.hidden = false;
+
+        if (!elemBelow) return;
+
+        let droppableBelow = elemBelow.closest('.droppable');
+        if (currentDroppable != droppableBelow) {
+          if (currentDroppable) { // null when we were not over a droppable before this event
+            leaveDroppable(currentDroppable);
+          }
+          currentDroppable = droppableBelow;
+          if (currentDroppable) { // null if we're not coming over a droppable now
+            // (maybe just left the droppable)
+            enterDroppable(currentDroppable);
+          }
+        }
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      ball.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        ball.onmouseup = null;
+      };
+
+    };
+
+    function enterDroppable(elem) {
+      elem.style.background = 'pink';
+    }
+
+    function leaveDroppable(elem) {
+      elem.style.background = '';
+    }
+
+    ball.ondragstart = function() {
+      return false;
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>现在，我们在整个处理过程中，在当前变量 <code>currentDroppable</code> 中都存储了当前的“放置目标”，可以用它来进行高亮显示或者其他操作。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>我们考虑了一种基础的拖放算法。</p>
+<p>关键部分：</p>
+<ol>
+<li>事件流：<code>ball.mousedown</code> → <code>document.mousemove</code> → <code>ball.mouseup</code>（不要忘记取消原生 <code>ondragstart</code>）。</li>
+<li>在拖动开始时 —— 记住鼠标指针相对于元素的初始偏移（shift）：<code>shiftX/shiftY</code>，并在拖动过程中保持它不变。</li>
+<li>使用 <code>document.elementFromPoint</code> 检测鼠标指针下的 “droppable” 的元素。</li>
+</ol>
+<p>我们可以在此基础上做很多事情。</p>
+<ul>
+<li>在 <code>mouseup</code> 上，我们可以智能地完成放置（drop）：更改数据，移动元素。</li>
+<li>我们可以高亮我们正在“飞过”的元素。</li>
+<li>我们可以将拖动限制在特定的区域或者方向。</li>
+<li>我们可以对 <code>mousedown/up</code> 使用事件委托。一个大范围的用于检查 <code>event.target</code> 的事件处理程序可以管理数百个元素的拖放。</li>
+<li>等。</li>
+</ul>
+<p>有一些在此基础上已经将体系结构构建好的框架：<code>DragZone</code>，<code>Droppable</code>，<code>Draggable</code> 及其他 class。它们中的大多数做的都是与上述类似的事情，所以现在你应该很容易理解它们了。或者自己动手实现。正如你所看到的，其实挺简单的，有时候比基于第三方解决方案进行改写还容易。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#hua-dong-tiao" name="hua-dong-tiao">滑动条</a></h3><a class="task__open-link" href="../task/slider/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个滑动条（slider）：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:60px" src="https://zh.js.cx/task/slider/solution/"></iframe>
+  </div><p>用鼠标拖动蓝色的滑块（thumb）并移动它。</p>
+<p>重要的细节：</p>
+<ul>
+<li>当鼠标按钮被按下时，在滑动过程中，鼠标指针可能会移动到滑块的上方或下方。此时滑块仍会继续移动（方便用户）。</li>
+<li>如果鼠标非常快地向左边或者向右边移动，那么滑块应该恰好停在边缘。</li>
+</ul>
+<p><a href="https://plnkr.co/edit/wUVdmjJaJbvXCUOr?p=preview" target="_blank" data-plunk-id="wUVdmjJaJbvXCUOr">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>正如我们从 HTML/CSS 中所看到的，滑动条就是一个带有彩色背景的 <code>&lt;div&gt;</code>，其中包含一个滑块 —— 另一个具有 <code>position:relative</code> 的 <code>&lt;div&gt;</code>。</p>
+<p>为了对滑块进行定位，我们使用 <code>position:relative</code> 来提供相对于其父元素的坐标，在这儿它比 <code>position:absolute</code> 更方便。</p>
+<p>然后我们通过限制宽度来实现仅水平方向的拖放。</p>
+<p><a href="https://plnkr.co/edit/K3bICf3FLLGL2C89?p=preview" target="_blank" data-plunk-id="K3bICf3FLLGL2C89">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-chao-ji-ying-xiong-fang-zhi-zai-zu-qiu-chang-zhou-wei" name="jiang-chao-ji-ying-xiong-fang-zhi-zai-zu-qiu-chang-zhou-wei">将超级英雄放置在足球场周围</a></h3><a class="task__open-link" href="../task/drag-heroes/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>这个任务可以帮助你检查你对拖放和 DOM 的一些方面的理解程度。</p>
+<p>使所有元素都具有类 <code>draggable</code> —— 可拖动。就像本章中的球一样。</p>
+<p>要求：</p>
+<ul>
+<li>使用事件委托来跟踪拖动的开始：一个在 <code>document</code> 上的用于 <code>mousedown</code> 的处理程序。</li>
+<li>如果元素被拖动到了窗口的顶端/末端 —— 页面会向上/向下滚动以允许进一步的拖动。</li>
+<li>没有水平滚动（这使本任务更简单，但添加水平滚动也很简单）。</li>
+<li>即使在快速移动鼠标后，可拖动元素或该元素的部分也绝不应该离开窗口。</li>
+</ul>
+<p>这个示例太大了，不适合放在这里，所以在下面给出了示例链接。</p>
+<p><a href="https://zh.js.cx/task/drag-heroes/solution/" target="blank">在新窗口中演示</a></p><p><a href="https://plnkr.co/edit/sTvqaFg9sJo1MoOt?p=preview" target="_blank" data-plunk-id="sTvqaFg9sJo1MoOt">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>要拖动元素，我们可以使用 <code>position:fixed</code>，它使坐标更易于管理。最后，我们应该将其切换回 <code>position:absolute</code>，以使元素放置到文档中。</p>
+<p>当坐标位于窗口顶端/底端时，我们使用 <code>window.scrollTo</code> 来滚动它。</p>
+<p>更多细节请见代码注释。</p>
+<p><a href="https://plnkr.co/edit/UETJwUGy8rvzoHBQ?p=preview" target="_blank" data-plunk-id="UETJwUGy8rvzoHBQ">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../mousemove-mouseover-mouseout-mouseenter-mouseleave/index.html" data-tooltip="移动鼠标：mouseover/out，mouseenter/leave"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../pointer-events/index.html" data-tooltip="指针事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/mouse-drag-and-drop","identifier":"\/mouse-drag-and-drop"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../event-details/index.html">UI 事件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tuo-fang-suan-fa">拖放算法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xiu-zheng-ding-wei">修正定位</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qian-zai-de-fang-zhi-mu-biao">潜在的放置目标</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fmouse-drag-and-drop" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/3-event-details/4-mouse-drag-and-drop" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

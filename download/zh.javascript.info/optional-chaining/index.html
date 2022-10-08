@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">可选链 &quot;?.&quot;</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/optional-chaining"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="可选链 &quot;?.&quot;"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="可选链 &quot;?.&quot;"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/constructor-new"><link rel="next" href="/symbol"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="可选链 &quot;?.&quot;"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/optional-chaining"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/optional-chaining"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/optional-chaining"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/optional-chaining"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/optional-chaining"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/optional-chaining"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/optional-chaining"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/optional-chaining"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/optional-chaining"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/optional-chaining">عربي</option><option value="https://javascript.info/optional-chaining">English</option><option value="https://es.javascript.info/optional-chaining">Español</option><option value="https://fr.javascript.info/optional-chaining">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/optional-chaining">Italiano</option><option value="https://ja.javascript.info/optional-chaining">日本語</option><option value="https://ko.javascript.info/optional-chaining">한국어</option><option value="https://learn.javascript.ru/optional-chaining">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/optional-chaining">Українська</option><option value="https://zh.javascript.info/optional-chaining" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="34" max="92" data-tooltip="第 34/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../object-basics/index.html"><span>Object（对象）：基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Object（对象）：基础知识","item":"https://zh.javascript.info/object-basics"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 十二月 2021"><div class="updated-at__content">4日 十二月 2021</div></div></div><h1 class="main__header-title">可选链 &quot;?.&quot;</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="可选链 &quot;?.&quot;"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><div class="important important_warn">
+            <div class="important__header"><span class="important__type">A recent addition</span></div>
+            <div class="important__content">
+            This is a recent addition to the language.
+            Old browsers may need polyfills.
+            </div></div>
+<p>可选链 <code>?.</code> 是一种访问嵌套对象属性的安全的方式。即使中间的属性不存在，也不会出现错误。</p>
+<h2><a class="main__anchor" name="bu-cun-zai-de-shu-xing-de-wen-ti" href="#bu-cun-zai-de-shu-xing-de-wen-ti">“不存在的属性”的问题</a></h2><p>如果你才刚开始读此教程并学习 JavaScript，那可能还没接触到这个问题，但它却相当常见。</p>
+<p>举个例子，假设我们有很多个 <code>user</code> 对象，其中存储了我们的用户数据。</p>
+<p>我们大多数用户的地址都存储在 <code>user.address</code> 中，街道地址存储在 <code>user.address.street</code> 中，但有些用户没有提供这些信息。</p>
+<p>在这种情况下，当我们尝试获取 <code>user.address.street</code>，而该用户恰好没提供地址信息，我们则会收到一个错误：</p>
+<div id="1dwmyncy5h" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {}; // 一个没有 &quot;address&quot; 属性的 user 对象
+
+alert(user.address.street); // Error!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这是预期的结果。JavaScript 的工作原理就是这样的。因为 <code>user.address</code> 为 <code>undefined</code>，尝试读取 <code>user.address.street</code> 会失败，并收到一个错误。</p>
+<p>但是在很多实际场景中，我们更希望得到的是 <code>undefined</code>（表示没有 <code>street</code> 属性）而不是一个错误。</p>
+<p>……还有另一个例子。在 Web 开发中，我们可以使用特殊的方法调用（例如 <code>document.querySelector('.elem')</code>）以对象的形式获取一个网页元素，如果没有这种对象，则返回 <code>null</code>。</p>
+<div id="y62w7vmp94" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 如果 document.querySelector('.elem') 的结果为 null，则这里不存在这个元素
+let html = document.querySelector('.elem').innerHTML; // 如果 document.querySelector('.elem') 的结果为 null，则会出现错误</code></pre>
+        </div>
+      </div>
+      
+      </div><p>同样，如果该元素不存在，则访问 <code>null</code> 的 <code>.innerHTML</code> 时会出错。在某些情况下，当元素的缺失是没问题的时候，我们希望避免出现这种错误，而是接受 <code>html = null</code> 作为结果。</p>
+<p>我们如何实现这一点呢？</p>
+<p>可能最先想到的方案是在访问该值的属性之前，使用 <code>if</code> 或条件运算符 <code>?</code> 对该值进行检查，像这样：</p>
+<div id="qt8qkru6sn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {};
+
+alert(user.address ? user.address.street : undefined);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样可以，这里就不会出现错误了……但是不够优雅。就像你所看到的，<code>&quot;user.address&quot;</code> 在代码中出现了两次。对于嵌套层次更深的属性就会出现更多次这样的重复，这就是问题了。</p>
+<p>例如，让我们尝试获取 <code>user.address.street.name</code>。</p>
+<p>我们既需要检查 <code>user.address</code>，又需要检查 <code>user.address.street</code>：</p>
+<div id="cuc88e02xk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {}; // user 没有 address 属性
+
+alert(user.address ? user.address.street ? user.address.street.name : null : null);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样就太扯淡了，并且这可能导致写出来的代码很难让别人理解。</p>
+<p>甚至我们可以先忽略这个问题，因为我们有一种更好的实现方式，就是使用 <code>&amp;&amp;</code> 运算符：</p>
+<div id="6zxjtl6qtt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {}; // user 没有 address 属性
+
+alert( user.address &amp;&amp; user.address.street &amp;&amp; user.address.street.name ); // undefined（不报错）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>依次对整条路径上的属性使用与运算进行判断，以确保所有节点是存在的（如果不存在，则停止计算），但仍然不够优雅。</p>
+<p>就像你所看到的，在代码中我们仍然重复写了好几遍对象属性名。例如在上面的代码中，<code>user.address</code> 被重复写了三遍。</p>
+<p>这就是为什么可选链 <code>?.</code> 被加入到了 JavaScript 这门编程语言中。那就是彻底地解决以上所有问题！</p>
+<h2><a class="main__anchor" name="ke-xuan-lian" href="#ke-xuan-lian">可选链</a></h2><p>如果可选链 <code>?.</code> 前面的值为 <code>undefined</code> 或者 <code>null</code>，它会停止运算并返回 <code>undefined</code>。</p>
+<p><strong>为了简明起见，在本文接下来的内容中，我们会说如果一个属性既不是 <code>null</code> 也不是 <code>undefined</code>，那么它就“存在”。</strong></p>
+<p>换句话说，例如 <code>value?.prop</code>：</p>
+<ul>
+<li>如果 <code>value</code> 存在，则结果与 <code>value.prop</code> 相同，</li>
+<li>否则（当 <code>value</code> 为 <code>undefined/null</code> 时）则返回 <code>undefined</code>。</li>
+</ul>
+<p>下面这是一种使用 <code>?.</code> 安全地访问 <code>user.address.street</code> 的方式：</p>
+<div id="p5b2a5y3rv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {}; // user 没有 address 属性
+
+alert( user?.address?.street ); // undefined（不报错）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>代码简洁明了，也不用重复写好几遍属性名。</p>
+<p>即使 对象 <code>user</code> 不存在，使用 <code>user?.address</code> 来读取地址也没问题：</p>
+<div id="avfjj0b87w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = null;
+
+alert( user?.address ); // undefined
+alert( user?.address.street ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：<code>?.</code> 语法使其前面的值成为可选值，但不会对其后面的起作用。</p>
+<p>例如，在 <code>user?.address.street.name</code> 中，<code>?.</code> 允许 <code>user</code> 为 <code>null/undefined</code>（在这种情况下会返回 <code>undefined</code>）也不会报错，但这仅对于 <code>user</code>。更深层次的属性是通过常规方式访问的。如果我们希望它们中的一些也是可选的，那么我们需要使用更多的 <code>?.</code> 来替换 <code>.</code>。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">不要过度使用可选链</span></div>
+            <div class="important__content"><p>我们应该只将 <code>?.</code> 使用在一些东西可以不存在的地方。</p>
+<p>例如，如果根据我们的代码逻辑，<code>user</code> 对象必须存在，但 <code>address</code> 是可选的，那么我们应该这样写 <code>user.address?.street</code>，而不是这样 <code>user?.address?.street</code>。</p>
+<p>所以，如果 <code>user</code> 恰巧因为失误变为 undefined，我们会看到一个编程错误并修复它。否则，代码中的错误在不恰当的地方被消除了，这会导致调试更加困难。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>?.</code> 前的变量必须已声明</span></div>
+            <div class="important__content"><p>如果未声明变量 <code>user</code>，那么 <code>user?.anything</code> 会触发一个错误：</p>
+<div id="gdfahkqwpe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// ReferenceError: user is not defined
+user?.address;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>?.</code> 前的变量必须已声明（例如 <code>let/const/var user</code> 或作为一个函数参数）。可选链仅适用于已声明的变量。</p>
+</div></div>
+<h2><a class="main__anchor" name="duan-lu-xiao-ying" href="#duan-lu-xiao-ying">短路效应</a></h2><p>正如前面所说的，如果 <code>?.</code> 左边部分不存在，就会立即停止运算（“短路效应”）。</p>
+<p>所以，如果后面有任何函数调用或者副作用，它们均不会执行。</p>
+<p>例如：</p>
+<div id="r27307l93e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = null;
+let x = 0;
+
+user?.sayHi(x++); // 没有 &quot;sayHi&quot;，因此代码执行没有触达 x++
+
+alert(x); // 0，值没有增加</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="qi-ta-bian-ti" href="#qi-ta-bian-ti">其它变体：?.()，?.[]</a></h2><p>可选链 <code>?.</code> 不是一个运算符，而是一个特殊的语法结构。它还可以与函数和方括号一起使用。</p>
+<p>例如，将 <code>?.()</code> 用于调用一个可能不存在的函数。</p>
+<p>在下面这段代码中，有些用户具有 <code>admin</code> 方法，而有些没有：</p>
+<div id="k7ddv76rzb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userAdmin = {
+  admin() {
+    alert(&quot;I am admin&quot;);
+  }
+};
+
+let userGuest = {};
+
+userAdmin.admin?.(); // I am admin
+
+userGuest.admin?.(); // 啥都没有（没有这样的方法）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这两行代码中，我们首先使用点符号（<code>userAdmin.admin</code>）来获取 <code>admin</code> 属性，因为我们假定对象 <code>userAdmain</code> 存在，因此可以安全地读取它。</p>
+<p>然后 <code>?.()</code> 会检查它左边的部分：如果 <code>admin</code> 函数存在，那么就调用运行它（对于 <code>userAdmin</code>）。否则（对于 <code>userGuest</code>）运算停止，没有报错。</p>
+<p>如果我们想使用方括号 <code>[]</code> 而不是点符号 <code>.</code> 来访问属性，语法 <code>?.[]</code> 也可以使用。跟前面的例子类似，它允许从一个可能不存在的对象上安全地读取属性。</p>
+<div id="jppb59g1ct" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let key = &quot;firstName&quot;;
+
+let user1 = {
+  firstName: &quot;John&quot;
+};
+
+let user2 = null;
+
+alert( user1?.[key] ); // John
+alert( user2?.[key] ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>此外，我们还可以将 <code>?.</code> 跟 <code>delete</code> 一起使用：</p>
+<div id="1opcjf5yb1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>delete user?.name; // 如果 user 存在，则删除 user.name</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">我们可以使用 <code>?.</code> 来安全地读取或删除，但不能写入</span></div>
+            <div class="important__content"><p>可选链 <code>?.</code> 不能用在赋值语句的左侧。</p>
+<p>例如：</p>
+<div id="venmdqc9cd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = null;
+
+user?.name = &quot;John&quot;; // Error，不起作用
+// 因为它在计算的是 undefined = &quot;John&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这还不是那么智能。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>可选链 <code>?.</code> 语法有三种形式：</p>
+<ol>
+<li><code>obj?.prop</code> —— 如果 <code>obj</code> 存在则返回 <code>obj.prop</code>，否则返回 <code>undefined</code>。</li>
+<li><code>obj?.[prop]</code> —— 如果 <code>obj</code> 存在则返回 <code>obj[prop]</code>，否则返回 <code>undefined</code>。</li>
+<li><code>obj.method?.()</code> —— 如果 <code>obj.method</code> 存在则调用 <code>obj.method()</code>，否则返回 <code>undefined</code>。</li>
+</ol>
+<p>正如我们所看到的，这些语法形式用起来都很简单直接。<code>?.</code> 检查左边部分是否为 <code>null/undefined</code>，如果不是则继续运算。</p>
+<p><code>?.</code> 链使我们能够安全地访问嵌套属性。</p>
+<p>但是，我们应该谨慎地使用 <code>?.</code>，仅在当左边部分不存在也没问题的情况下使用为宜。以保证在代码中有编程上的错误出现时，也不会对我们隐藏。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../constructor-new/index.html" data-tooltip="构造器和操作符 &quot;new&quot;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../symbol/index.html" data-tooltip="Symbol 类型"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/optional-chaining","identifier":"\/optional-chaining"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../object-basics/index.html">Object（对象）：基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bu-cun-zai-de-shu-xing-de-wen-ti">“不存在的属性”的问题</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ke-xuan-lian">可选链</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#duan-lu-xiao-ying">短路效应</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qi-ta-bian-ti">其它变体：?.()，?.[]</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Foptional-chaining" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/04-object-basics/07-optional-chaining" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

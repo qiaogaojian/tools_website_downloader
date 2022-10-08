@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">表单属性和方法</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/form-elements"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="表单属性和方法"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="表单属性和方法"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/forms-controls"><link rel="next" href="/focus-blur"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="表单属性和方法"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/form-elements"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/form-elements"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/form-elements"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/form-elements"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/form-elements"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/form-elements"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/form-elements"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/form-elements"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/form-elements"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/form-elements">English</option><option value="https://es.javascript.info/form-elements">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/form-elements">Indonesia</option><option value="https://it.javascript.info/form-elements">Italiano</option><option value="https://ja.javascript.info/form-elements">日本語</option><option value="https://ko.javascript.info/form-elements">한국어</option><option value="https://learn.javascript.ru/form-elements">Русский</option><option value="https://tr.javascript.info/form-elements">Türkçe</option><option value="https://uk.javascript.info/form-elements">Українська</option><option value="https://zh.javascript.info/form-elements" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="23" max="32" data-tooltip="第 23/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../forms-controls/index.html"><span>表单，控件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"表单，控件","item":"https://zh.javascript.info/forms-controls"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">表单属性和方法</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="表单属性和方法"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>表单（form）以及例如 <code>&lt;input&gt;</code> 的控件（control）元素有许多特殊的属性和事件。</p>
+<p>当我们学习了这些相关内容后，处理表单会变得更加方便。</p>
+<h2><a class="main__anchor" name="dao-hang-biao-dan-he-yuan-su" href="#dao-hang-biao-dan-he-yuan-su">导航：表单和元素</a></h2><p>文档中的表单是特殊集合 <code>document.forms</code> 的成员。</p>
+<p>这就是所谓的“命名的集合”：既是被命名了的，也是有序的。我们既可以使用名字，也可以使用在文档中的编号来获取表单。</p>
+<div id="1xp8m0sro0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.forms.my - name=&quot;my&quot; 的表单
+document.forms[0] - 文档中的第一个表单</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当我们有了一个表单时，其中的任何元素都可以通过命名的集合 <code>form.elements</code> 来获取到。</p>
+<p>例如：</p>
+<div id="a68ly7qkbz" data-trusted="1" class="code-example" data-demo-height="40">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;form name=&quot;my&quot;&gt;
+  &lt;input name=&quot;one&quot; value=&quot;1&quot;&gt;
+  &lt;input name=&quot;two&quot; value=&quot;2&quot;&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  // 获取表单
+  let form = document.forms.my; // &lt;form name=&quot;my&quot;&gt; 元素
+
+  // 获取表单中的元素
+  let elem = form.elements.one; // &lt;input name=&quot;one&quot;&gt; 元素
+
+  alert(elem.value); // 1
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可能会有多个名字相同的元素，这种情况经常在处理单选按钮中出现。</p>
+<p>在这种情况下，<code>form.elements[name]</code> 将会是一个集合，例如：</p>
+<div id="r6zf41ocsg" data-trusted="1" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10},{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:32}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:32}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;form&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;age&quot; value=&quot;10&quot;&gt;
+  &lt;input type=&quot;radio&quot; name=&quot;age&quot; value=&quot;20&quot;&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+let form = document.forms[0];
+
+let ageElems = form.elements.age;
+
+alert(ageElems[0]); // [object HTMLInputElement]
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这些导航（navigation）属性并不依赖于标签的结构。所有的控件元素，无论它们在表单中有多深，都可以通过 <code>form.elements</code> 获取到。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Fieldset 作为“子表单”</span></div>
+            <div class="important__content"><p>一个表单内会有一个或多个 <code>&lt;fieldset&gt;</code> 元素。它们也具有 <code>elements</code> 属性，该属性列出了 <code>&lt;fieldset&gt;</code> 中的表单控件。</p>
+<p>例如：</p>
+<div id="wwawszfli0" data-trusted="1" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:15}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;form id=&quot;form&quot;&gt;
+    &lt;fieldset name=&quot;userFields&quot;&gt;
+      &lt;legend&gt;info&lt;/legend&gt;
+      &lt;input name=&quot;login&quot; type=&quot;text&quot;&gt;
+    &lt;/fieldset&gt;
+  &lt;/form&gt;
+
+  &lt;script&gt;
+    alert(form.elements.login); // &lt;input name=&quot;login&quot;&gt;
+
+    let fieldset = form.elements.userFields;
+    alert(fieldset); // HTMLFieldSetElement
+
+    // 我们可以通过名字从表单和 fieldset 中获取 input
+    alert(fieldset.elements.login == form.elements.login); // true
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">更简短的表示方式：<code>form.name</code></span></div>
+            <div class="important__content"><p>还有一个更简短的表示方式：我们可以通过 <code>form[index/name]</code> 来访问元素。</p>
+<p>换句话说，我们可以将 <code>form.elements.login</code> 写成 <code>form.login</code>。</p>
+<p>这也有效，但是会有一个小问题：如果我们访问一个元素，然后修改它的 <code>name</code>，之后它仍然可以被通过旧的 <code>name</code> 访问到（当然也能通过新的 <code>name</code> 访问）。</p>
+<p>我们可以很直观地通过一个例子看到这个情况：</p>
+<div id="5nl2l4rzo4" data-trusted="1" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;form id=&quot;form&quot;&gt;
+  &lt;input name=&quot;login&quot;&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  alert(form.elements.login == form.login); // true，与 &lt;input&gt; 相同
+
+  form.login.name = &quot;username&quot;; // 修改 input 的 name
+
+  // form.elements 更新了 name：
+  alert(form.elements.login); // undefined
+  alert(form.elements.username); // input
+
+  // form 允许我们使用两个名字：新的名字和旧的名字
+  alert(form.username == form.login); // true
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这通常来说并不是一个问题，因为我们很少修改表单元素的名字。</p>
+</div></div>
+<h2><a class="main__anchor" name="fan-xiang-yin-yong-elementform" href="#fan-xiang-yin-yong-elementform">反向引用：element.form</a></h2><p>对于任何元素，其对应的表单都可以通过 <code>element.form</code> 访问到。因此，表单引用了所有元素，元素也引用了表单。</p>
+<p>这是一张示意图：</p>
+<figure><div class="image" style="width:463px">
+      <div class="image__ratio" style="padding-top:32.39740820734342%"></div>
+      <object type="image/svg+xml" data="../article/form-elements/form-navigation.svg" width="463" height="150" class="image__image" data-use-theme>
+        <img src="../article/form-elements/form-navigation.svg" alt width="463" height="150">
+      </object>
+      </div></figure><p>例如：</p>
+<div id="cl8ufvqy5d" data-trusted="1" class="code-example" data-demo-height="40" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;form id=&quot;form&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;login&quot;&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  // form -&gt; element
+  let login = form.login;
+
+  // element -&gt; form
+  alert(login.form); // HTMLFormElement
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="biao-dan-yuan-su" href="#biao-dan-yuan-su">表单元素</a></h2><p>让我们来谈谈表单控件。</p>
+<h3><a class="main__anchor" name="input-he-textarea" href="#input-he-textarea">input 和 textarea</a></h3><p>我们可以通过 <code>input.value</code>（字符串）或 <code>input.checked</code>（布尔值）来访问复选框（checkbox）中的它们的 <code>value</code>。</p>
+<p>像这样：</p>
+<div id="t1vkjcg6oz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>input.value = &quot;New value&quot;;
+textarea.value = &quot;New text&quot;;
+
+input.checked = true; // 对于复选框（checkbox）或单选按钮（radio button）</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">使用 <code>textarea.value</code> 而不是 <code>textarea.innerHTML</code></span></div>
+            <div class="important__content"><p>请注意，即使 <code>&lt;textarea&gt;...&lt;/textarea&gt;</code> 将它们的 <code>value</code> 作为嵌套的 HTML 标签来保存，我们也绝不应该使用 <code>textarea.innerHTML</code> 来访问它。</p>
+<p>它仅存储最初在页面上的 HTML，而不是存储的当前 <code>value</code>。</p>
+</div></div>
+<h3><a class="main__anchor" name="select-he-option" href="#select-he-option">select 和 option</a></h3><p>一个 <code>&lt;select&gt;</code> 元素有 3 个重要的属性：</p>
+<ol>
+<li><code>select.options</code> —— <code>&lt;option&gt;</code> 的子元素的集合，</li>
+<li><code>select.value</code> —— 当前所选择的 <code>&lt;option&gt;</code> 的 <code>value</code>，</li>
+<li><code>select.selectedIndex</code> —— 当前所选择的 <code>&lt;option&gt;</code> 的编号。</li>
+</ol>
+<p>它们提供了三种为 <code>&lt;select&gt;</code> 设置 <code>value</code> 的不同方式：</p>
+<ol>
+<li>找到对应的 <code>&lt;option&gt;</code> 元素，并将 <code>option.selected</code> 设置为 <code>true</code>。</li>
+<li>将 <code>select.value</code> 设置为对应的 <code>value</code>。</li>
+<li>将 <code>select.selectedIndex</code> 设置为对应 <code>&lt;option&gt;</code> 的编号。</li>
+</ol>
+<p>第一个方式最明显，但是 <code>(2)</code> 和 <code>(3)</code> 通常来说会更方便。</p>
+<p>下面是一个例子：</p>
+<div id="ult6lxsl7r" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;select id=&quot;select&quot;&gt;
+  &lt;option value=&quot;apple&quot;&gt;Apple&lt;/option&gt;
+  &lt;option value=&quot;pear&quot;&gt;Pear&lt;/option&gt;
+  &lt;option value=&quot;banana&quot;&gt;Banana&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+  // 所有这三行做的是同一件事
+  select.options[2].selected = true;
+  select.selectedIndex = 2;
+  select.value = 'banana';
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>和大多数其它控件不同，如果 <code>&lt;select&gt;</code> 具有 <code>multiple</code> 特性（attribute），则允许多选。尽管这种功能可用，但很少被使用。</p>
+<p>如果必须使用的话，请使用第一种方式：在子元素 <code>&lt;option&gt;</code> 中添加/移除 <code>selected</code> 属性。</p>
+<p>我们可以通过 <code>select.options</code> 来获取它们的集合，例如：</p>
+<div id="d7fc7a5rhl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:28}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;select id=&quot;select&quot; multiple&gt;
+  &lt;option value=&quot;blues&quot; selected&gt;Blues&lt;/option&gt;
+  &lt;option value=&quot;rock&quot; selected&gt;Rock&lt;/option&gt;
+  &lt;option value=&quot;classic&quot;&gt;Classic&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+  // 从 multi-select 中获取所有选定的 `value`
+  let selected = Array.from(select.options)
+    .filter(option =&gt; option.selected)
+    .map(option =&gt; option.value);
+
+  alert(selected); // blues,rock
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>&lt;select&gt;</code> 元素的完整规范可以在规范 <a href="https://html.spec.whatwg.org/multipage/forms.html#the-select-element">https://html.spec.whatwg.org/multipage/forms.html#the-select-element</a> 中找到。</p>
+<h3><a class="main__anchor" name="newoption" href="#newoption">new Option</a></h3><p>这很少单独使用。但它仍然是一个有趣的东西。</p>
+<p>在 <a href="https://html.spec.whatwg.org/multipage/forms.html#the-option-element">规范</a> 中，有一个很好的简短语法可以创建 <code>&lt;option&gt;</code> 元素：</p>
+<div id="ns664ikvjd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>option = new Option(text, value, defaultSelected, selected);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>参数：</p>
+<ul>
+<li><code>text</code> —— <code>&lt;option&gt;</code> 中的文本，</li>
+<li><code>value</code> —— <code>&lt;option&gt;</code> 的 <code>value</code>，</li>
+<li><code>defaultSelected</code> —— 如果为 <code>true</code>，那么 <code>selected</code> HTML-特性（attribute）就会被创建，</li>
+<li><code>selected</code> —— 如果为 <code>true</code>，那么这个 <code>&lt;option&gt;</code> 就会被选中。</li>
+</ul>
+<p>你可能会对 <code>defaultSelected</code> 和 <code>selected</code> 有一些疑惑。这很简单：<code>defaultSelected</code> 设置的是 HTML-特性（attribute），我们可以使用 <code>option.getAttribute('selected')</code> 来获得。而 <code>selected</code> —— 无论这个 <code>option</code> 是否被选择，它都很重要。通常，这两个值都设置为 <code>true</code>，或者都不设置（与设置为 <code>false</code> 是一样的）。</p>
+<p>例如：</p>
+<div id="l47si9bqog" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let option = new Option(&quot;Text&quot;, &quot;value&quot;);
+// 创建 &lt;option value=&quot;value&quot;&gt;Text&lt;/option&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>选择相同的元素：</p>
+<div id="emuyle9upc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let option = new Option(&quot;Text&quot;, &quot;value&quot;, true, true);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>&lt;option&gt;</code> 元素具有以下属性：</p>
+<dl>
+<dt><code>option.selected</code></dt>
+<dd><code>&lt;option&gt;</code> 是否被选择。</dd>
+<dt><code>option.index</code></dt>
+<dd><code>&lt;option&gt;</code> 在其所属的 <code>&lt;select&gt;</code> 中的编号。</dd>
+<dt><code>option.text</code></dt>
+<dd><code>&lt;option&gt;</code> 的文本内容（可以被访问者看到）。</dd>
+</dl>
+<h2><a class="main__anchor" name="can-kao-zi-liao" href="#can-kao-zi-liao">参考资料</a></h2><ul>
+<li>规范：<a href="https://html.spec.whatwg.org/multipage/forms.html">https://html.spec.whatwg.org/multipage/forms.html</a>.</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>表单导航：</p>
+<dl>
+<dt><code>document.forms</code></dt>
+<dd>一个表单元素可以通过 <code>document.forms[name/index]</code> 访问到。</dd>
+<dt><code>form.elements</code></dt>
+<dd>表单元素可以通过 <code>form.elements[name/index]</code> 的方式访问，或者也可以使用 <code>form[name/index]</code>。<code>elements</code> 属性也适用于 <code>&lt;fieldset&gt;</code>。</dd>
+<dt><code>element.form</code></dt>
+<dd>元素通过 <code>form</code> 属性来引用它们所属的表单。</dd>
+</dl>
+<p><code>value</code> 可以被通过 <code>input.value</code>，<code>textarea.value</code>，<code>select.value</code> 等来获取到，对于单选按钮和复选框来说可以使用 <code>input.checked</code>。</p>
+<p>对于 <code>&lt;select&gt;</code> 元素，们可以通过索引 <code>select.selectedIndex</code> 来获取它的 <code>value</code>，也可以通过 <code>&lt;option&gt;</code> 集合 <code>select.options</code>。</p>
+<p>这些是开始使用表单的基础。我们将在本教程中进一步介绍更多示例。</p>
+<p>在下一章中，我们将介绍可能在任何元素上出现，但主要在表单上处理的 <code>focus</code> 和 <code>blur</code> 事件。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zai-select-yuan-su-zhong-tian-jia-yi-ge-xuan-xiang" name="zai-select-yuan-su-zhong-tian-jia-yi-ge-xuan-xiang">在 select 元素中添加一个选项</a></h3><a class="task__open-link" href="../task/add-select-option/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面是一个 <code>&lt;select&gt;</code> 元素：</p>
+<div id="crkq3qgjmb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;select id=&quot;genres&quot;&gt;
+  &lt;option value=&quot;rock&quot;&gt;Rock&lt;/option&gt;
+  &lt;option value=&quot;blues&quot; selected&gt;Blues&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用 JavaScript 来实现：</p>
+<ol>
+<li>显示所选选项的值和文本。</li>
+<li>添加一个选项：<code>&lt;option value=&quot;classic&quot;&gt;Classic&lt;/option&gt;</code>。</li>
+<li>使之变为可选的。</li>
+</ol>
+<p>请注意，如果你已正确完成所有事项，那么 <code>alert</code> 应该显示 <code>blues</code>。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>解决方案，分步进行：</p>
+<div id="mizhk060eh" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;select id=&quot;genres&quot;&gt;
+  &lt;option value=&quot;rock&quot;&gt;Rock&lt;/option&gt;
+  &lt;option value=&quot;blues&quot; selected&gt;Blues&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script&gt;
+  // 1)
+  let selectedOption = genres.options[genres.selectedIndex];
+  alert( selectedOption.value );
+
+  // 2)
+  let newOption = new Option(&quot;Classic&quot;, &quot;classic&quot;);
+  genres.append(newOption);
+
+  // 3)
+  newOption.selected = true;
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../forms-controls/index.html" data-tooltip="表单，控件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../focus-blur/index.html" data-tooltip="聚焦：focus/blur"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/form-elements","identifier":"\/form-elements"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../forms-controls/index.html">表单，控件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dao-hang-biao-dan-he-yuan-su">导航：表单和元素</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fan-xiang-yin-yong-elementform">反向引用：element.form</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#biao-dan-yuan-su">表单元素</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#can-kao-zi-liao">参考资料</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fform-elements" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/4-forms-controls/1-form-elements" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

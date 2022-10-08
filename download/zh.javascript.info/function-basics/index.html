@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">函数</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/function-basics"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="函数"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="函数"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/switch"><link rel="next" href="/function-expressions"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="函数"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/function-basics"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/function-basics"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/function-basics"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/function-basics"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/function-basics"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/function-basics"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/function-basics"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/function-basics"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/function-basics"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/function-basics"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/function-basics"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/function-basics">عربي</option><option value="https://javascript.info/function-basics">English</option><option value="https://es.javascript.info/function-basics">Español</option><option value="https://fr.javascript.info/function-basics">Français</option><option value="https://id.javascript.info/function-basics">Indonesia</option><option value="https://it.javascript.info/function-basics">Italiano</option><option value="https://ja.javascript.info/function-basics">日本語</option><option value="https://ko.javascript.info/function-basics">한국어</option><option value="https://learn.javascript.ru/function-basics">Русский</option><option value="https://tr.javascript.info/function-basics">Türkçe</option><option value="https://uk.javascript.info/function-basics">Українська</option><option value="https://zh.javascript.info/function-basics" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="19" max="92" data-tooltip="第 19/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../first-steps/index.html"><span>JavaScript 基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"JavaScript 基础知识","item":"https://zh.javascript.info/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 4日 十二月 2021"><div class="updated-at__content">4日 十二月 2021</div></div></div><h1 class="main__header-title">函数</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="函数"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们经常需要在脚本的许多地方执行很相似的操作。</p>
+<p>例如，当访问者登录、注销或者在其他地方时，我们需要显示一条好看的信息。</p>
+<p>函数是程序的主要“构建模块”。函数使该段代码可以被调用很多次，而不需要写重复的代码。</p>
+<p>我们已经看到了内建函数的示例，如 <code>alert(message)</code>、<code>prompt(message, default)</code> 和 <code>confirm(question)</code>。但我们也可以创建自己的函数。</p>
+<h2><a class="main__anchor" name="han-shu-sheng-ming" href="#han-shu-sheng-ming">函数声明</a></h2><p>使用 <strong>函数声明</strong> 创建函数。</p>
+<p>看起来就像这样：</p>
+<div id="dppvcuxgrw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage() {
+  alert( 'Hello everyone!' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>function</code> 关键字首先出现，然后是 <strong>函数名</strong>，然后是括号之间的 <strong>参数</strong> 列表（用逗号分隔，在上述示例中为空，我们将在接下来的示例中看到），最后是花括号之间的代码（即“函数体”）。</p>
+<div id="cgpye8b6rs" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function name(parameter1, parameter2, ... parameterN) {
+  ...body...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们的新函数可以通过名称调用：<code>showMessage()</code>。</p>
+<p>例如：</p>
+<div id="2vusoxwd56" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage() {
+  alert( 'Hello everyone!' );
+}
+
+showMessage();
+showMessage();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>showMessage()</code> 执行函数的代码。这里我们会看到显示两次消息。</p>
+<p>这个例子清楚地演示了函数的主要目的之一：避免代码重复。</p>
+<p>如果我们需要更改消息或其显示方式，只需在一个地方修改代码：输出它的函数。</p>
+<h2><a class="main__anchor" name="ju-bu-bian-liang" href="#ju-bu-bian-liang">局部变量</a></h2><p>在函数中声明的变量只在该函数内部可见。</p>
+<p>例如：</p>
+<div id="lf6h0rqat6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage() {
+  let message = &quot;Hello, I'm JavaScript!&quot;; // 局部变量
+
+  alert( message );
+}
+
+showMessage(); // Hello, I'm JavaScript!
+
+alert( message ); // &lt;-- 错误！变量是函数的局部变量</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="wai-bu-bian-liang" href="#wai-bu-bian-liang">外部变量</a></h2><p>函数也可以访问外部变量，例如：</p>
+<div id="4tmxqvszz1" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:28,&quot;end&quot;:36}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:12}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userName = 'John';
+
+function showMessage() {
+  let message = 'Hello, ' + userName;
+  alert(message);
+}
+
+showMessage(); // Hello, John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>函数对外部变量拥有全部的访问权限。函数也可以修改外部变量。</p>
+<p>例如：</p>
+<div id="zu7bdp0acs" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:25}]},{&quot;start&quot;:9,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:26}]},{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:28,&quot;end&quot;:36}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:10}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:12}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userName = 'John';
+
+function showMessage() {
+  userName = &quot;Bob&quot;; // (1) 改变外部变量
+
+  let message = 'Hello, ' + userName;
+  alert(message);
+}
+
+alert( userName ); // John 在函数调用之前
+
+showMessage();
+
+alert( userName ); // Bob，值被函数修改了</code></pre>
+        </div>
+      </div>
+      
+      </div><p>只有在没有局部变量的情况下才会使用外部变量。</p>
+<p>如果在函数内部声明了同名变量，那么函数会 <strong>遮蔽</strong> 外部变量。例如，在下面的代码中，函数使用局部的 <code>userName</code>，而外部变量被忽略：</p>
+<div id="dyomxrixcg" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:26}]},{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:41,&quot;end&quot;:44}]},{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userName = 'John';
+
+function showMessage() {
+  let userName = &quot;Bob&quot;; // 声明一个局部变量
+
+  let message = 'Hello, ' + userName; // Bob
+  alert(message);
+}
+
+// 函数会创建并使用它自己的 userName
+showMessage();
+
+alert( userName ); // John，未被更改，函数没有访问外部变量。</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">全局变量</span></div>
+            <div class="important__content"><p>任何函数之外声明的变量，例如上述代码中的外部变量 <code>userName</code>，都被称为 <strong>全局</strong> 变量。</p>
+<p>全局变量在任意函数中都是可见的（除非被局部变量遮蔽）。</p>
+<p>减少全局变量的使用是一种很好的做法。现代的代码有很少甚至没有全局变量。大多数变量存在于它们的函数中。但是有时候，全局变量能够用于存储项目级别的数据。</p>
+</div></div>
+<h2><a class="main__anchor" name="can-shu" href="#can-shu">参数</a></h2><p>我们可以通过参数将任意数据传递给函数。</p>
+<p>在如下示例中，函数有两个参数：<code>from</code> 和 <code>text</code>。</p>
+<div id="0rql2d020f" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:33}]},{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:0,&quot;end&quot;:29}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:31}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(from, text) { // 参数：from 和 text
+  alert(from + ': ' + text);
+}
+
+showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+showMessage('Ann', &quot;What's up?&quot;); // Ann: What's up? (**)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当函数在 <code>(*)</code> 和 <code>(**)</code> 行中被调用时，给定值被复制到了局部变量 <code>from</code> 和 <code>text</code>。然后函数使用它们进行计算。</p>
+<p>这里还有一个例子：我们有一个变量 <code>from</code>，并将它传递给函数。请注意：函数会修改 <code>from</code>，但在函数外部看不到更改，因为函数修改的是复制的变量值副本：</p>
+<div id="k0op88qees" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(from, text) {
+
+  from = '*' + from + '*'; // 让 &quot;from&quot; 看起来更优雅
+
+  alert( from + ': ' + text );
+}
+
+let from = &quot;Ann&quot;;
+
+showMessage(from, &quot;Hello&quot;); // *Ann*: Hello
+
+// &quot;from&quot; 值相同，函数修改了一个局部的副本。
+alert( from ); // Ann</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当一个值被作为函数参数（parameter）传递时，它也被称为 <strong>参数（argument）</strong>。</p>
+<p>换一种方式，我们把这些术语搞清楚：</p>
+<ul>
+<li>参数（parameter）是函数声明中括号内列出的变量（它是函数声明时的术语）。</li>
+<li>参数（argument）是调用函数时传递给函数的值（它是函数调用时的术语）。</li>
+</ul>
+<p>我们声明函数时列出它们的参数（parameters），然后调用它们传递参数（arguments）。</p>
+<p>在上面的例子中，我们可以说：“函数 <code>showMessage</code> 被声明，并且带有两个参数（parameters），随后它被调用，两个参数（arguments）分别为 <code>from</code> 和 <code>&quot;Hello&quot;</code>”。</p>
+<h2><a class="main__anchor" name="mo-ren-zhi" href="#mo-ren-zhi">默认值</a></h2><p>如果一个函数被调用，但有参数（argument）未被提供，那么相应的值就会变成 <code>undefined</code>。</p>
+<p>例如，之前提到的函数 <code>showMessage(from, text)</code> 可以只使用一个参数（argument）调用：</p>
+<div id="g1g0nufiyy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>showMessage(&quot;Ann&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>那不是错误，这样调用将输出 <code>&quot;*Ann*: undefined&quot;</code>。因为参数 <code>text</code> 的值未被传递，所以变成了 <code>undefined</code>。</p>
+<p>我们可以使用 <code>=</code> 为函数声明中的参数指定所谓的“默认”（如果对应参数的值未被传递则使用）值：</p>
+<div id="9zi71n4g9r" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:27,&quot;end&quot;:49}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(from, text = &quot;no text given&quot;) {
+  alert( from + &quot;: &quot; + text );
+}
+
+showMessage(&quot;Ann&quot;); // Ann: no text given</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在如果 <code>text</code> 参数未被传递，它将会得到值 <code>&quot;no text given&quot;</code>。</p>
+<p>这里 <code>&quot;no text given&quot;</code> 是一个字符串，但它可以是更复杂的表达式，并且只会在缺少参数时才会被计算和分配。所以，这也是可能的：</p>
+<div id="q295drhwwu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(from, text = anotherFunction()) {
+  // anotherFunction() 仅在没有给定 text 时执行
+  // 其运行结果将成为 text 的值
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">默认参数的计算</span></div>
+            <div class="important__content"><p>在 JavaScript 中，每次函数在没带个别参数的情况下被调用，默认参数会被计算出来。</p>
+<p>在上面的例子中，如果传递了参数 <code>text</code>，那么 <code>anotherFunction()</code> 就不会被调用。</p>
+<p>如果没传递参数 <code>text</code>，那么 <code>anotherFunction()</code> 就会被调用。</p>
+</div></div>
+<h3><a class="main__anchor" name="hou-bei-de-mo-ren-can-shu" href="#hou-bei-de-mo-ren-can-shu">后备的默认参数</a></h3><p>有些时候，将参数默认值的设置放在函数执行（相较更后期）而不是函数声明时，也行得通。</p>
+<p>我们可以通过将参数与 <code>undefined</code> 进行比较，来检查该参数是否在函数执行期间被传递进来：</p>
+<div id="oj4by0ax26" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(text) {
+  // ...
+
+  if (text === undefined) { // 如果参数未被传递进来
+    text = 'empty message';
+  }
+
+  alert(text);
+}
+
+showMessage(); // empty message</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……或者我们可以使用 <code>||</code> 运算符：</p>
+<div id="xyjeee3jr1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMessage(text) {
+  // 如果 text 为 undefined 或者为假值，那么将其赋值为 'empty'
+  text = text || 'empty';
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现代 JavaScript 引擎支持 <a href="../nullish-coalescing-operator/index.html">空值合并运算符</a> <code>??</code>，它在大多数假值（例如 <code>0</code>）应该被视为“正常值”时更具优势：</p>
+<div id="gmvwn365m0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showCount(count) {
+  // 如果 count 为 undefined 或 null，则提示 &quot;unknown&quot;
+  alert(count ?? &quot;unknown&quot;);
+}
+
+showCount(0); // 0
+showCount(null); // unknown
+showCount(); // unknown</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="fan-hui-zhi" href="#fan-hui-zhi">返回值</a></h2><p>函数可以将一个值返回到调用代码中作为结果。</p>
+<p>最简单的例子是将两个值相加的函数：</p>
+<div id="k02tysm48" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:2,&quot;end&quot;:8}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sum(a, b) {
+  return a + b;
+}
+
+let result = sum(1, 2);
+alert( result ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>指令 <code>return</code> 可以在函数的任意位置。当执行到达时，函数停止，并将值返回给调用代码（分配给上述代码中的 <code>result</code>）。</p>
+<p>在一个函数中可能会出现很多次 <code>return</code>。例如：</p>
+<div id="3xz6b6ca7x" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4},{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  if (age &gt;= 18) {
+    return true;
+  } else {
+    return confirm('Got a permission from the parents?');
+  }
+}
+
+let age = prompt('How old are you?', 18);
+
+if ( checkAge(age) ) {
+  alert( 'Access granted' );
+} else {
+  alert( 'Access denied' );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>只使用 <code>return</code> 但没有返回值也是可行的。但这会导致函数立即退出。</p>
+<p>例如：</p>
+<div id="9jr2fosszb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showMovie(age) {
+  if ( !checkAge(age) ) {
+    return;
+  }
+
+  alert( &quot;Showing you the movie&quot; ); // (*)
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上述代码中，如果 <code>checkAge(age)</code> 返回 <code>false</code>，那么 <code>showMovie</code> 将不会运行到 <code>alert</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">空值的 <code>return</code> 或没有 <code>return</code> 的函数返回值为 <code>undefined</code></span></div>
+            <div class="important__content"><p>如果函数无返回值，它就会像返回 <code>undefined</code> 一样：</p>
+<div id="pcwllqzaag" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function doNothing() { /* 没有代码 */ }
+
+alert( doNothing() === undefined ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>空值的 <code>return</code> 和 <code>return undefined</code> 等效：</p>
+<div id="qoz6jnhb5x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function doNothing() {
+  return;
+}
+
+alert( doNothing() === undefined ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">不要在 <code>return</code> 与返回值之间添加新行</span></div>
+            <div class="important__content"><p>对于 <code>return</code> 的长表达式，可能你会很想将其放在单独一行，如下所示：</p>
+<div id="cp4cnh0rmf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>return
+ (some + long + expression + or + whatever * f(a) + f(b))</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但这不行，因为 JavaScript 默认会在 <code>return</code> 之后加上分号。上面这段代码和下面这段代码运行流程相同：</p>
+<div id="h947ts9avz" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:6,&quot;end&quot;:7}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>return;
+ (some + long + expression + or + whatever * f(a) + f(b))</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因此，实际上它的返回值变成了空值。</p>
+<p>如果我们想要将返回的表达式写成跨多行的形式，那么应该在 <code>return</code> 的同一行开始写此表达式。或者至少按照如下的方式放上左括号：</p>
+<div id="mdwiymmert" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>return (
+  some + long + expression
+  + or +
+  whatever * f(a) + f(b)
+  )</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后它就能像我们预想的那样正常运行了。</p>
+</div></div>
+<h2><a class="main__anchor" name="function-naming" href="#function-naming">函数命名</a></h2><p>函数就是行为（action）。所以它们的名字通常是动词。它应该简短且尽可能准确地描述函数的作用。这样读代码的人就能清楚地知道这个函数的功能。</p>
+<p>一种普遍的做法是用动词前缀来开始一个函数，这个前缀模糊地描述了这个行为。团队内部必须就前缀的含义达成一致。</p>
+<p>例如，以 <code>&quot;show&quot;</code> 开头的函数通常会显示某些内容。</p>
+<p>函数以 XX 开始……</p>
+<ul>
+<li><code>&quot;get…&quot;</code> —— 返回一个值，</li>
+<li><code>&quot;calc…&quot;</code> —— 计算某些内容，</li>
+<li><code>&quot;create…&quot;</code> —— 创建某些内容，</li>
+<li><code>&quot;check…&quot;</code> —— 检查某些内容并返回 boolean 值，等。</li>
+</ul>
+<p>这类名字的示例：</p>
+<div id="a7mm3vooyf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>showMessage(..)     // 显示信息
+getAge(..)          // 返回 age（gets it somehow）
+calcSum(..)         // 计算求和并返回结果
+createForm(..)      // 创建表单（通常会返回它）
+checkPermission(..) // 检查权限并返回 true/false</code></pre>
+        </div>
+      </div>
+      
+      </div><p>有了前缀，只需瞥一眼函数名，就可以了解它的功能是什么，返回什么样的值。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">一个函数 —— 一个行为</span></div>
+            <div class="important__content"><p>一个函数应该只包含函数名所指定的功能，而不是做更多与函数名无关的功能。</p>
+<p>两个独立的行为通常需要两个函数，即使它们通常被一起调用（在这种情况下，我们可以创建第三个函数来调用这两个函数）。</p>
+<p>有几个违反这一规则的例子：</p>
+<ul>
+<li><code>getAge</code> —— 如果它通过 <code>alert</code> 将 age 显示出来，那就有问题了（只应该是获取）。</li>
+<li><code>createForm</code> —— 如果它包含修改文档的操作，例如向文档添加一个表单，那就有问题了（只应该创建表单并返回）。</li>
+<li><code>checkPermission</code> —— 如果它显示 <code>access granted/denied</code> 消息，那就有问题了（只应执行检查并返回结果）。</li>
+</ul>
+<p>这些例子假设函数名前缀具有通用的含义。你和你的团队可以自定义这些函数名前缀的含义，但是通常都没有太大的不同。无论怎样，你都应该对函数名前缀的含义、带特定前缀的函数可以做什么以及不可以做什么有深刻的了解。所有相同前缀的函数都应该遵守相同的规则。并且，团队成员应该形成共识。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">非常短的函数命名</span></div>
+            <div class="important__content"><p>常用的函数有时会有<strong>非常短</strong>的名字。</p>
+<p>例如，<a href="http://jquery.com">jQuery</a> 框架用 <code>$</code> 定义一个函数。<a href="http://lodash.com/">LoDash</a> 库的核心函数用 <code>_</code> 命名。</p>
+<p>这些都是例外，一般而言，函数名应简明扼要且具有描述性。</p>
+</div></div>
+<h2><a class="main__anchor" name="han-shu-zhu-shi" href="#han-shu-zhu-shi">函数 == 注释</a></h2><p>函数应该简短且只有一个功能。如果这个函数功能复杂，那么把该函数拆分成几个小的函数是值得的。有时候遵循这个规则并不是那么容易，但这绝对是件好事。</p>
+<p>一个单独的函数不仅更容易测试和调试 —— 它的存在本身就是一个很好的注释！</p>
+<p>例如，比较如下两个函数 <code>showPrimes(n)</code>。它们的功能都是输出到 <code>n</code> 的 <a href="https://en.wikipedia.org/wiki/Prime_number">素数</a>。</p>
+<p>第一个变体使用了一个标签：</p>
+<div id="gofc6orm4t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showPrimes(n) {
+  nextPrime: for (let i = 2; i &lt; n; i++) {
+
+    for (let j = 2; j &lt; i; j++) {
+      if (i % j == 0) continue nextPrime;
+    }
+
+    alert( i ); // 一个素数
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第二个变体使用附加函数 <code>isPrime(n)</code> 来检验素数：</p>
+<div id="hn5l2rt3xx" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:4,&quot;end&quot;:30}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function showPrimes(n) {
+
+  for (let i = 2; i &lt; n; i++) {
+    if (!isPrime(i)) continue;
+
+    alert(i);  // 一个素数
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i &lt; n; i++) {
+    if ( n % i == 0) return false;
+  }
+  return true;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第二个变体更容易理解，不是吗？我们通过函数名（<code>isPrime</code>）就可以看出函数的行为，而不需要通过代码。人们通常把这样的代码称为 <strong>自描述</strong>。</p>
+<p>因此，即使我们不打算重用它们，也可以创建函数。函数可以让代码结构更清晰，可读性更强。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>函数声明方式如下所示：</p>
+<div id="d2vhk46btj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function name(parameters, delimited, by, comma) {
+  /* code */
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li>作为参数传递给函数的值，会被复制到函数的局部变量。</li>
+<li>函数可以访问外部变量。但它只能从内到外起作用。函数外部的代码看不到函数内的局部变量。</li>
+<li>函数可以返回值。如果没有返回值，则其返回的结果是 <code>undefined</code>。</li>
+</ul>
+<p>为了使代码简洁易懂，建议在函数中主要使用局部变量和参数，而不是外部变量。</p>
+<p>与不获取参数但将修改外部变量作为副作用的函数相比，获取参数、使用参数并返回结果的函数更容易理解。</p>
+<p>函数命名：</p>
+<ul>
+<li>函数名应该清楚地描述函数的功能。当我们在代码中看到一个函数调用时，一个好的函数名能够让我们马上知道这个函数的功能是什么，会返回什么。</li>
+<li>一个函数是一个行为，所以函数名通常是动词。</li>
+<li>目前有许多优秀的函数名前缀，如 <code>create…</code>、<code>show…</code>、<code>get…</code>、<code>check…</code> 等等。使用它们来提示函数的作用吧。</li>
+</ul>
+<p>函数是脚本的主要构建块。现在我们已经介绍了基本知识，现在我们就可以开始创建和使用函数了。但这只是学习和使用函数的开始。我们将继续学习更多函数的相关知识，更深入地研究它们的先进特征。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shi-fou-xu-yao-else" name="shi-fou-xu-yao-else">是否需要 “else”？</a></h3><a class="task__open-link" href="../task/if-else-required/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>如果参数 <code>age</code> 大于 <code>18</code>，那么下面的函数将返回 <code>true</code>。</p>
+<p>否则它将会要求进行确认，并返回确认结果：</p>
+<div id="71ua274byr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  if (age &gt; 18) {
+    return true;
+  } else {
+    // ...
+    return confirm('Did parents allow you?');
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果 <code>else</code> 被删除，函数的工作方式会不同吗？</p>
+<div id="3v95n5k4ef" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  if (age &gt; 18) {
+    return true;
+  }
+  // ...
+  return confirm('Did parents allow you?');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这两个变体的行为是否有区别？</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>没有区别。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shi-yong-huo-zhe-zhong-xie-han-shu" name="shi-yong-huo-zhe-zhong-xie-han-shu">使用 '?' 或者 '||' 重写函数</a></h3><a class="task__open-link" href="../task/rewrite-function-question-or/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>如果参数 <code>age</code> 大于 <code>18</code>，那么下面的函数返回 <code>true</code>。</p>
+<p>否则它将会要求进行确认，并返回确认结果：</p>
+<div id="87rljnj1y1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  if (age &gt; 18) {
+    return true;
+  } else {
+    return confirm('Do you have your parents permission to access this page?');
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>重写这个函数并保证效果相同，不使用 <code>if</code>，且只需一行代码。</p>
+<p>编写 <code>checkAge</code> 的两个变体：</p>
+<ol>
+<li>使用问号运算符 <code>?</code></li>
+<li>使用或运算符 <code>||</code></li>
+</ol>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>使用问号运算符 <code>'?'</code>：</p>
+<div id="sddwyyk6yy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  return (age &gt; 18) ? true : confirm('Did parents allow you?');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用或运算符 <code>||</code>（最短的变体）：</p>
+<div id="jh5qlkolwe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function checkAge(age) {
+  return (age &gt; 18) || confirm('Did parents allow you?');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意此处不需要 <code>age &gt; 18</code> 左右的括号。写上括号是为了提高可读性。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#han-shu-minab" name="han-shu-minab">函数 min(a, b)</a></h3><a class="task__open-link" href="../task/min/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 1</span></div><div class="task__content"><div class="task__formatted"><p>写一个返回数字 <code>a</code> 和 <code>b</code> 中较小的那个数字的函数 <code>min(a,b)</code>。</p>
+<p>例如：</p>
+<div id="4b7fjjrcnl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>min(2, 5) == 2
+min(3, -1) == -1
+min(1, 1) == 1</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>使用 <code>if</code> 的解决方案：</p>
+<div id="x0wkye9nur" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function min(a, b) {
+  if (a &lt; b) {
+    return a;
+  } else {
+    return b;
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用问号运算符 <code>'?'</code> 的解决方案：</p>
+<div id="xxkgekxauo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function min(a, b) {
+  return a &lt; b ? a : b;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 在 <code>a == b</code> 的情况下，返回什么都无关紧要。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#han-shu-powxn" name="han-shu-powxn">函数 pow(x,n)</a></h3><a class="task__open-link" href="../task/pow/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>pow(x,n)</code>，返回 <code>x</code> 的 <code>n</code> 次方。换句话说，将 <code>x</code> 与自身相乘 <code>n</code> 次，返回最终结果。</p>
+<div id="kkxgjmnfrt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>pow(3, 2) = 3 * 3 = 9
+pow(3, 3) = 3 * 3 * 3 = 27
+pow(1, 100) = 1 * 1 * ...*1 = 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>创建一个 web  页面，提示输入 <code>x</code> 和 <code>n</code>，然后返回 <code>pow(x,n)</code> 的运算结果。</p>
+<p><a href="#" onclick="event.preventDefault(); runDemo(this)">运行 demo</a></p><p>P.S. 在这个任务中，函数应该只支持自然数 <code>n</code>：从 <code>1</code> 开始的整数。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="8ef14djv7l" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function pow(x, n) {
+  let result = x;
+
+  for (let i = 1; i &lt; n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt(&quot;x?&quot;, '');
+let n = prompt(&quot;n?&quot;, '');
+
+if (n &lt; 1) {
+  alert(`Power ${n} is not supported, use a positive integer`);
+} else {
+  alert( pow(x, n) );
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../switch/index.html" data-tooltip="&quot;switch&quot; 语句"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../function-expressions/index.html" data-tooltip="函数表达式"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/function-basics","identifier":"\/function-basics"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../first-steps/index.html">JavaScript 基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#han-shu-sheng-ming">函数声明</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ju-bu-bian-liang">局部变量</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wai-bu-bian-liang">外部变量</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#can-shu">参数</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mo-ren-zhi">默认值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fan-hui-zhi">返回值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#function-naming">函数命名</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#han-shu-zhu-shi">函数 == 注释</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ffunction-basics" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/02-first-steps/15-function-basics" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

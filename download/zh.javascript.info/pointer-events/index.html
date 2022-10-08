@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">指针事件</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/pointer-events"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="指针事件"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="指针事件"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/mouse-drag-and-drop"><link rel="next" href="/keyboard-events"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="指针事件"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/pointer-events"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/pointer-events"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/pointer-events"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/pointer-events"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/pointer-events"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/pointer-events"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/pointer-events"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/pointer-events"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/pointer-events"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/pointer-events">عربي</option><option value="https://javascript.info/pointer-events">English</option><option value="https://es.javascript.info/pointer-events">Español</option><option value="https://fr.javascript.info/pointer-events">Français</option><option value="https://id.javascript.info/pointer-events">Indonesia</option><option value="https://it.javascript.info/pointer-events">Italiano</option><option value="https://ja.javascript.info/">日本語</option><option value="https://ko.javascript.info/pointer-events">한국어</option><option value="https://learn.javascript.ru/pointer-events">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/pointer-events">Українська</option><option value="https://zh.javascript.info/pointer-events" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="20" max="32" data-tooltip="第 20/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../event-details/index.html"><span>UI 事件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"UI 事件","item":"https://zh.javascript.info/event-details"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 22日 十二月 2021"><div class="updated-at__content">22日 十二月 2021</div></div></div><h1 class="main__header-title">指针事件</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="指针事件"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>指针事件（Pointer Events）是一种用于处理来自各种输入设备（例如鼠标、触控笔和触摸屏等）的输入信息的现代化解决方案。</p>
+<h2><a class="main__anchor" name="yi-duan-jian-shi" href="#yi-duan-jian-shi">一段简史</a></h2><p>让我们先做一个简短的概览，以便你对指针事件及其在其它事件类型中所处位置有个粗略认识。</p>
+<ul>
+<li>
+<p>很早以前，只存在鼠标事件。</p>
+<p>后来，触屏设备开始普及，尤其是手机和平板电脑。为了使现有的脚本仍能正常工作，它们生成（现在仍生成）鼠标事件。例如，轻触屏幕就会生成 <code>mousedown</code> 事件。因此，触摸设备可以很好地与网页配合使用。</p>
+<p>但是，触摸设备比鼠标具有更多的功能。例如，我们可以同时触控多点（多点触控）。然而，鼠标事件并没有相关属性来处理这种多点触控。</p>
+</li>
+<li>
+<p>因此，引入了触摸事件，例如 <code>touchstart</code>、<code>touchend</code> 和 <code>touchmove</code>，它们具有特定于触摸的属性（这里不再赘述这些特性，因为指针事件更加完善）。</p>
+<p>不过这还是不够完美。因为很多其他输入设备（如触控笔）都有自己的特性。而且同时维护两份分别处理鼠标事件和触摸事件的代码，显得有些笨重了。</p>
+</li>
+<li>
+<p>为了解决这些问题，人们引入了全新的规范「指针事件」。它为各种指针输入设备提供了一套统一的事件。</p>
+</li>
+</ul>
+<p>目前，各大主流浏览器已经支持了 <a href="https://www.w3.org/TR/pointerevents2/">Pointer Events Level 2</a> 标准，版本更新的 <a href="https://w3c.github.io/pointerevents/">Pointer Events Level 3</a> 已经发布，并且大多数情况下与 Pointer Events Level 2 兼容。</p>
+<p>因此，除非你写的代码需要兼容旧版本的浏览器，例如 IE 10 或 Safari 12 或更低的版本，否则无需继续使用鼠标事件或触摸事件 —— 我们可以使用指针事件。</p>
+<p>这样，你的代码就可以在触摸设备和鼠标设备上都能正常工作了。</p>
+<p>话虽如此，指针事件仍然有一些重要的奇怪特性，你应当对它们有所了解以正确使用指针事件，并避免一些意料之外的错误。我们将在本文中对它们进行介绍。</p>
+<h2><a class="main__anchor" name="zhi-zhen-shi-jian-lei-xing" href="#zhi-zhen-shi-jian-lei-xing">指针事件类型</a></h2><p>指针事件的命名方式和鼠标事件类似：</p>
+<table>
+<thead>
+<tr>
+<th>指针事件</th>
+<th>类似的鼠标事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pointerdown</code></td>
+<td><code>mousedown</code></td>
+</tr>
+<tr>
+<td><code>pointerup</code></td>
+<td><code>mouseup</code></td>
+</tr>
+<tr>
+<td><code>pointermove</code></td>
+<td><code>mousemove</code></td>
+</tr>
+<tr>
+<td><code>pointerover</code></td>
+<td><code>mouseover</code></td>
+</tr>
+<tr>
+<td><code>pointerout</code></td>
+<td><code>mouseout</code></td>
+</tr>
+<tr>
+<td><code>pointerenter</code></td>
+<td><code>mouseenter</code></td>
+</tr>
+<tr>
+<td><code>pointerleave</code></td>
+<td><code>mouseleave</code></td>
+</tr>
+<tr>
+<td><code>pointercancel</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>gotpointercapture</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>lostpointercapture</code></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>不难发现，每一个 <code>mouse&lt;event&gt;</code> 都有与之相对应的 <code>pointer&lt;event&gt;</code>。同时还有 3 个额外的事件没有相应的 <code>mouse...</code>，我们会在稍后详细解释它们。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">在代码中用 <code>pointer&lt;event&gt;</code> 替换 <code>mouse&lt;event&gt;</code></span></div>
+            <div class="important__content"><p>我们可以把代码中的 <code>mouse&lt;event&gt;</code> 都替换成 <code>pointer&lt;event&gt;</code>，程序仍然正常兼容鼠标设备。</p>
+<p>替换之后，程序对触屏设备的支持会“魔法般”地提升。但是，我们可能需要在 CSS 中的某些地方添加 <code>touch-action: none</code>。我们会在下文的 <code>pointercancel</code> 一节中描述这里面的细节。</p>
+</div></div>
+<h2><a class="main__anchor" name="zhi-zhen-shi-jian-shu-xing" href="#zhi-zhen-shi-jian-shu-xing">指针事件属性</a></h2><p>指针事件具备和鼠标事件完全相同的属性，包括 <code>clientX/Y</code> 和 <code>target</code> 等，以及一些其他属性：</p>
+<ul>
+<li>
+<p><code>pointerId</code> —— 触发当前事件的指针唯一标识符。</p>
+<p>浏览器生成的。使我们能够处理多指针的情况，例如带有触控笔和多点触控功能的触摸屏（下文会有相关示例）。</p>
+</li>
+<li>
+<p><code>pointerType</code> —— 指针的设备类型。必须为字符串，可以是：“mouse”、“pen” 或 “touch”。</p>
+<p>我们可以使用这个属性来针对不同类型的指针输入做出不同响应。</p>
+</li>
+<li>
+<p><code>isPrimary</code> —— 当指针为首要指针（多点触控时按下的第一根手指）时为 <code>true</code>。</p>
+</li>
+</ul>
+<p>有些指针设备会测量接触面积和点按压力（例如一根手指压在触屏上），对于这种情况可以使用以下属性：</p>
+<ul>
+<li><code>width</code> —— 指针（例如手指）接触设备的区域的宽度。对于不支持的设备（如鼠标），这个值总是 <code>1</code>。</li>
+<li><code>height</code> —— 指针（例如手指）接触设备的区域的长度。对于不支持的设备，这个值总是 <code>1</code>。</li>
+<li><code>pressure</code> —— 触摸压力，是一个介于 0 到 1 之间的浮点数。对于不支持压力检测的设备，这个值总是 <code>0.5</code>（按下时）或 <code>0</code>。</li>
+<li><code>tangentialPressure</code> —— 归一化后的切向压力（tangential pressure）。</li>
+<li><code>tiltX</code>, <code>tiltY</code>, <code>twist</code> —— 针对触摸笔的几个属性，用于描述笔和屏幕表面的相对位置。</li>
+</ul>
+<p>大多数设备都不支持这些属性，因此它们很少被使用。如果你需要使用它们，可以在 <a href="https://w3c.github.io/pointerevents/#pointerevent-interface">规范文档</a> 中查看更多有关它们的详细信息。</p>
+<h2><a class="main__anchor" name="duo-dian-chu-kong" href="#duo-dian-chu-kong">多点触控</a></h2><p>多点触控（用户在手机或平板上同时点击若干个位置，或执行特殊手势）是鼠标事件完全不支持的功能之一。</p>
+<p>指针事件使我们能够通过 <code>pointerId</code> 和 <code>isPrimary</code> 属性的帮助，能够处理多点触控。</p>
+<p>当用户用一根手指触摸触摸屏的某个位置，然后将另一根手指放在该触摸屏的其他位置时，会发生以下情况：</p>
+<ol>
+<li>第一个手指触摸：
+<ul>
+<li><code>pointerdown</code> 事件触发，<code>isPrimary=true</code>，并且被指派了一个 <code>pointerId</code>。</li>
+</ul>
+</li>
+<li>第二个和后续的更多个手指触摸（假设第一个手指仍在触摸）：
+<ul>
+<li><code>pointerdown</code> 事件触发，<code>isPrimary=false</code>，并且每一个触摸都被指派了不同的 <code>pointerId</code>。</li>
+</ul>
+</li>
+</ol>
+<p>请注意：<code>pointerId</code> 不是分配给整个设备的，而是分配给每一个触摸的。如果 5 根手指同时触摸屏幕，我们会得到 5 个 <code>pointerdown</code> 事件和相应的坐标以及 5 个不同的 <code>pointerId</code>。</p>
+<p>和第一个触摸相关联的事件总有 <code>isPrimary=true</code>。</p>
+<p>利用 <code>pointerId</code>，我们可以追踪多根正在触摸屏幕的手指。当用户移动或抬起某根手指时，我们会得到和 <code>pointerdown</code> 事件具有相同 <code>pointerId</code> 的 <code>pointermove</code> 或 <code>pointerup</code> 事件。</p>
+<p>这是一个记录 <code>pointerdown</code> 和 <code>pointerup</code> 事件的演示:</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/jSeR2SfQCrxPoXow?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="jSeR2SfQCrxPoXow" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:200px" src="https://zh.js.cx/article/pointer-events/multitouch/"></iframe>
+  </div><p>请注意：你使用的必须是一个多点触控设备（如平板或手机）才能在 <code>pointerId/isPrimary</code> 中看到区别。对于使用鼠标这样的单点触控设备，所有指针事件都会具有相同的 <code>pointerId</code> 和 <code>isPrimary=true</code> 属性。</p>
+<h2><a class="main__anchor" name="shi-jian-pointercancel" href="#shi-jian-pointercancel">事件：pointercancel</a></h2><p><code>pointercancel</code> 事件将会在一个正处于活跃状态的指针交互由于某些原因被中断时触发。也就是在这个事件之后，该指针就不会继续触发更多事件了。</p>
+<p>导致指针中断的可能原因如下：</p>
+<ul>
+<li>指针设备硬件在物理层面上被禁用。</li>
+<li>设备方向旋转（例如给平板转了个方向）。</li>
+<li>浏览器打算自行处理这一交互，比如将其看作是一个专门的鼠标手势或缩放操作等。</li>
+</ul>
+<p>我们会用一个实际例子来阐释 <code>pointercancel</code> 的影响。</p>
+<p>例如，我们想要实现一个像 <a href="../mouse-drag-and-drop/index.html">鼠标拖放事件</a> 中开头提到的那样的一个对球的拖放操作。</p>
+<p>用户的操作流和对应的事件如下：</p>
+<ol>
+<li>用户按住了一张图片，开始拖拽
+<ul>
+<li><code>pointerdown</code> 事件触发</li>
+</ul>
+</li>
+<li>用户开始移动指针（从而拖动图片）
+<ul>
+<li><code>pointermove</code> 事件触发，可能触发多次</li>
+</ul>
+</li>
+<li>然后意料之外的情况发生了！浏览器有自己原生的图片拖放操作，接管了之前的拖放过程，于是触发了 <code>pointercancel</code> 事件。
+<ul>
+<li>现在拖放图片的操作由浏览器自行实现。用户甚至可能会把图片拖出浏览器，放进他们的邮件程序或文件管理器。</li>
+<li>我们不会再得到 <code>pointermove</code> 事件了。</li>
+</ul>
+</li>
+</ol>
+<p>这里的问题就在于浏览器”劫持“了这一个互动操作：在“拖放”过程开始时触发了 <code>pointercancel</code> 事件，并且不再有 <code>pointermove</code> 事件会被生成。</p>
+<p>这里是拖放示例的演示，并且在拖放过程中，指针事件（只包含 <code>up/down</code>、<code>move</code> 和 <code>cancel）的触发会被记录在</code>textarea` 中：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/HhavZG2QiNHGs0yc?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="HhavZG2QiNHGs0yc" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:240px" src="https://zh.js.cx/article/pointer-events/ball/"></iframe>
+  </div><p>我们想要实现自己的拖放操作，所以让我们来看看如何告诉浏览器不要接管拖放操作。</p>
+<p><strong>阻止浏览器的默认行为来防止 <code>pointercancel</code> 触发。</strong></p>
+<p>我们需要做两件事：</p>
+<ol>
+<li>阻止原生的拖放操作发生：
+<ul>
+<li>正如我们在 <a href="../mouse-drag-and-drop/index.html">鼠标拖放事件</a> 中描述的那样，我们可以通过设置 <code>ball.ondragstart = () =&gt; false</code> 来实现这一需求。</li>
+<li>这种方式也适用于鼠标事件。</li>
+</ul>
+</li>
+<li>对于触屏设备，还有其他和触摸相关的浏览器行为（除了拖放）。为了避免它们所引发的问题：
+<ul>
+<li>我们可以通过在 CSS 中设置 <code>#ball { touch-action: none }</code> 来阻止它们。</li>
+<li>之后我们的代码便可以在触屏设备中正常工作了。</li>
+</ul>
+</li>
+</ol>
+<p>经过上述操作，事件将会按照我们预期的方式触发，浏览器不会劫持拖放过程，也不会触发 <code>pointercancel</code> 事件。</p>
+<p>这个演示增加了以下几行：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/98xaTApGeIHHVB4F?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="98xaTApGeIHHVB4F" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:240px" src="https://zh.js.cx/article/pointer-events/ball-2/"></iframe>
+  </div><p>可以看到，<code>pointercancel</code> 事件不再被触发。</p>
+<p>现在我们就可以添加让球的位置移动的代码了，并且我们的代码对鼠标和触控设备都有效。</p>
+<h2><a class="main__anchor" name="zhi-zhen-bu-huo" href="#zhi-zhen-bu-huo">指针捕获</a></h2><p>指针捕获（Pointer capturing）是针对指针事件的一个特性。</p>
+<p>这个想法很简单，但是乍一看可能感觉很奇怪，因为在其他任何事件类型中都没有这种东西。</p>
+<p>主要的方法是：</p>
+<ul>
+<li><code>elem.setPointerCapture(pointerId)</code> —— 将给定的 <code>pointerId</code> 绑定到 <code>elem</code>。在调用之后，所有具有相同 <code>pointerId</code> 的指针事件都将 <code>elem</code> 作为目标（就像事件发生在 <code>elem</code> 上一样），无论这些 <code>elem</code> 在文档中的实际位置是什么。</li>
+</ul>
+<p>换句话说，<code>elem.setPointerCapture(pointerId)</code> 将所有具有给定 <code>pointerId</code> 的后续事件重新定位到 <code>elem</code>。</p>
+<p>绑定会在以下情况下被移除：</p>
+<ul>
+<li>当 <code>pointerup</code> 或 <code>pointercancel</code> 事件出现时，绑定会被自动地移除。</li>
+<li>当 <code>elem</code> 被从文档中移除后，绑定会被自动地移除。</li>
+<li>当 <code>elem.releasePointerCapture(pointerId)</code> 被调用，绑定会被移除。</li>
+</ul>
+<p>那么，它有什么用？我们一起来看一个实际的例子吧。</p>
+<p><strong>指针捕获可以被用于简化拖放类的交互。</strong></p>
+<p>让我们来回忆一下在 <a href="../mouse-drag-and-drop/index.html">鼠标拖放事件</a> 中提到的，如何实现一个自定义滑动条。</p>
+<p>我们可以创建一个带有条形图的、并且内部有一个“滑块”（<code>thumb</code>）的滑动条元素（<code>slider</code>）：</p>
+<div id="fpih5mx2ik" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div class=&quot;slider&quot;&gt;
+  &lt;div class=&quot;thumb&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>添加样式后的效果如下：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/jC8TqsSuWqMzCZ6x?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="jC8TqsSuWqMzCZ6x" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/pointer-events/slider-html/"></iframe>
+  </div><p></p>
+<p>用指针事件替换鼠标事件后的实现逻辑：</p>
+<ol>
+<li>用户按下滑动条的滑块 <code>thumb</code> —— <code>pointerdown</code> 事件被触发。</li>
+<li>然后用户移动指针 —— <code>pointermove</code> 事件被触发，我们让移动事件只作用在 <code>thumb</code> 上。
+<ul>
+<li>……在指针的移动过程中，指针可能会离开滑动条的 <code>thumb</code> 元素，移动到 <code>thumb</code> 之上或之下的位置。而 <code>thumb</code> 应该严格在水平方向上移动，并与指针保持对齐。</li>
+</ul>
+</li>
+</ol>
+<p>在基于鼠标事件实现的方案中，要跟踪指针的所有移动，包括指针移动到 <code>thumb</code> 之上或之下的位置时，我们必须在整个文档 <code>document</code> 上分配 <code>mousemove</code> 事件处理程序。</p>
+<p>不过，这并不是一个没有副作用的解决方案。其中的一个问题就是，指针在文档周围的移动可能会引起副作用，在其他元素上触发事件处理程序（例如 <code>mouseover</code>）并调用其他元素上与滑动条不相关的功能，这不是我们预期的效果。</p>
+<p>这就是 <code>setPointerCapture</code> 适用的场景。</p>
+<ul>
+<li>我们可以在 <code>pointerdown</code> 事件的处理程序中调用 <code>thumb.setPointerCapture(event.pointerId)</code>，</li>
+<li>这样接下来在 <code>pointerup/cancel</code> 之前发生的所有指针事件都会被重定向到 <code>thumb</code> 上。</li>
+<li>当 <code>pointerup</code> 发生时（拖动完成），绑定会被自动移除，我们不需要关心它。</li>
+</ul>
+<p>因此，即使用户在整个文档上移动指针，事件处理程序也将仅在 <code>thumb</code> 上被调用。尽管如此，事件对象的坐标属性，例如 <code>clientX/clientY</code> 仍将是正确的 —— 捕获仅影响 <code>target/currentTarget</code>。</p>
+<p>主要代码如下：</p>
+<div id="sln5n2d7si" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>thumb.onpointerdown = function(event) {
+  // 把所有指针事件（pointerup 之前发生的）重定向到 thumb
+  thumb.setPointerCapture(event.pointerId);
+
+  // 开始跟踪指针的移动
+  thumb.onpointermove = function(event) {
+    // 移动滑动条：在 thumb 上监听即可，因为所有指针事件都被重定向到了 thumb
+    let newLeft = event.clientX - slider.getBoundingClientRect().left;
+    thumb.style.left = newLeft + 'px';
+  };
+
+  // 当结束(pointerup)时取消对指针移动的跟踪
+  thumb.onpointerup = function(event) {
+    thumb.onpointermove = null;
+    thumb.onpointerup = null;
+    // ...这里还可以处理“拖动结束”相关的逻辑
+  };
+};
+
+// 注意：无需调用 thumb.releasePointerCapture，
+// 它会在 pointerup 时被自动调用</code></pre>
+        </div>
+      </div>
+      
+      </div><p>完整示例：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/8nTbBqKfLutT7oOx?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="8nTbBqKfLutT7oOx" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:100px" src="https://zh.js.cx/article/pointer-events/slider/"></iframe>
+  </div><p></p>
+<p>在这个 demo 中还有一个元素，当它的 <code>onmouseover</code> 处理程序被触发时会显示当前的时间。</p>
+<p>请注意：当你拖动滑块的时候，鼠标可能会悬停在这个元素上，它的 <code>onmouseover</code> 处理程序<strong>不会</strong>被触发。</p>
+<p>借助于 <code>setPointerCapture</code>，现在拖动滑块不会再产生副作用了。</p>
+<p>言而总之，指针捕获为我们带来了两个好处：</p>
+<ol>
+<li>代码变得更加简洁，我们不再需要在整个 <code>document</code> 上添加/移除处理程序。绑定会被自动释放。</li>
+<li>如果文档中有其他指针事件处理程序，则在用户拖动滑动条时，它们不会因指针的移动被意外地触发。</li>
+</ol>
+<h3><a class="main__anchor" name="zhi-zhen-bu-huo-shi-jian" href="#zhi-zhen-bu-huo-shi-jian">指针捕获事件</a></h3><p>完整起见，这里还需要提及一个知识点。</p>
+<p>还有两个与指针捕获相关的事件：</p>
+<ul>
+<li><code>gotpointercapture</code> 会在一个元素使用 <code>setPointerCapture</code> 来启用捕获后触发。</li>
+<li><code>lostpointercapture</code> 会在捕获被释放后触发：其触发可能是由于 <code>releasePointerCapture</code> 的显式调用，或是 <code>pointerup</code>/<code>pointercancel</code> 事件触发后的自动调用。</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>指针事件允许我们通过一份代码，同时处理鼠标、触摸和触控笔事件。</p>
+<p>指针事件是鼠标事件的拓展。我们可以在事件名称中用 <code>pointer</code> 替换 <code>mouse</code> 来让我们的代码既能继续支持鼠标，也能更好地支持其他类型的设备。</p>
+<p>对于浏览器可能会决定进行劫持并自行处理的拖放和复杂的触控交互 —— 请记住取消事件的默认操作，并在 CSS 中为涉及到的元素设置 <code>touch-action: none</code>。</p>
+<p>指针事件还额外具备以下能力：</p>
+<ul>
+<li>基于 <code>pointerId</code> 和 <code>isPrimary</code> 的多点触控支持。</li>
+<li>针对特定设备的属性，例如 <code>pressure</code> 和 <code>width/height</code> 等。</li>
+<li>指针捕获：我们可以把 <code>pointerup</code>/<code>pointercancel</code> 之前的所有指针事件重定向到一个特定的元素。</li>
+</ul>
+<p>目前，指针事件已经被各大主流浏览器支持，尤其是如果不需要支持 IE10 和 Safari 12 以下的版本，我们可以放心地使用它们。不过即便是针对这些老式浏览器，也可以通过 polyfill 来让它们支持指针事件。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../mouse-drag-and-drop/index.html" data-tooltip="鼠标拖放事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../keyboard-events/index.html" data-tooltip="键盘：keydown 和 keyup"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/pointer-events","identifier":"\/pointer-events"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../event-details/index.html">UI 事件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yi-duan-jian-shi">一段简史</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhi-zhen-shi-jian-lei-xing">指针事件类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhi-zhen-shi-jian-shu-xing">指针事件属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#duo-dian-chu-kong">多点触控</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-jian-pointercancel">事件：pointercancel</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhi-zhen-bu-huo">指针捕获</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fpointer-events" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/3-event-details/6-pointer-events" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

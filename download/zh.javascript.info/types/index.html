@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">数据类型</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/types"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="数据类型"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="数据类型"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/variables"><link rel="next" href="/alert-prompt-confirm"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="数据类型"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/types"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/types"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/types"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/types"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/types"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/types"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/types"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/types"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/types"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/types"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/types"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/types">عربي</option><option value="https://javascript.info/types">English</option><option value="https://es.javascript.info/types">Español</option><option value="https://fr.javascript.info/types">Français</option><option value="https://id.javascript.info/types">Indonesia</option><option value="https://it.javascript.info/types">Italiano</option><option value="https://ja.javascript.info/types">日本語</option><option value="https://ko.javascript.info/types">한국어</option><option value="https://learn.javascript.ru/types">Русский</option><option value="https://tr.javascript.info/types">Türkçe</option><option value="https://uk.javascript.info/types">Українська</option><option value="https://zh.javascript.info/types" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="9" max="92" data-tooltip="第 9/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../first-steps/index.html"><span>JavaScript 基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"JavaScript 基础知识","item":"https://zh.javascript.info/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 12日 二月 2022"><div class="updated-at__content">12日 二月 2022</div></div></div><h1 class="main__header-title">数据类型</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="数据类型"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>JavaScript 中的值都具有特定的类型。例如，字符串或数字。</p>
+<p>在 JavaScript 中有 8 种基本的数据类型（译注：7 种原始类型和 1 种引用类型）。在这里，我们将对它们进行大体的介绍，在下一章中，我们将详细讨论它们。</p>
+<p>我们可以将任何类型的值存入变量。例如，一个变量可以在前一刻是个字符串，下一刻就存储一个数字：</p>
+<div id="mtvos99kje" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 没有错误
+let message = &quot;hello&quot;;
+message = 123456;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>允许这种操作的编程语言，例如 JavaScript，被称为“动态类型”（dynamically typed）的编程语言，意思是虽然编程语言中有不同的数据类型，但是你定义的变量并不会在定义后，被限制为某一数据类型。</p>
+<h2><a class="main__anchor" name="number-lei-xing" href="#number-lei-xing">Number 类型</a></h2><div id="mvzlz22pi8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let n = 123;
+n = 12.345;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><em>number</em> 类型代表整数和浮点数。</p>
+<p>数字可以有很多操作，比如，乘法 <code>*</code>、除法 <code>/</code>、加法 <code>+</code>、减法 <code>-</code> 等等。</p>
+<p>除了常规的数字，还包括所谓的“特殊数值（“special numeric values”）”也属于这种类型：<code>Infinity</code>、<code>-Infinity</code> 和 <code>NaN</code>。</p>
+<ul>
+<li>
+<p><code>Infinity</code> 代表数学概念中的 <a href="https://en.wikipedia.org/wiki/Infinity">无穷大</a> ∞。是一个比任何数字都大的特殊值。</p>
+<p>我们可以通过除以 0 来得到它：</p>
+<div id="pi4r79i3eq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 1 / 0 ); // Infinity</code></pre>
+        </div>
+      </div>
+      
+      </div><p>或者在代码中直接使用它：</p>
+<div id="q1r9hdvq28" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( Infinity ); // Infinity</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><code>NaN</code> 代表一个计算错误。它是一个不正确的或者一个未定义的数学操作所得到的结果，比如：</p>
+<div id="syyk2qisy0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;not a number&quot; / 2 ); // NaN，这样的除法是错误的</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>NaN</code> 是粘性的。任何对 <code>NaN</code> 的进一步数学运算都会返回 <code>NaN</code>：</p>
+<div id="5pelpzq5hc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( NaN + 1 ); // NaN
+alert( 3 * NaN ); // NaN
+alert( &quot;not a number&quot; / 2 - 1 ); // NaN</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，如果在数学表达式中有一个 <code>NaN</code>，会被传播到最终结果（只有一个例外：<code>NaN ** 0</code> 结果为 <code>1</code>）。</p>
+</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">数学运算是安全的</span></div>
+            <div class="important__content"><p>在 JavaScript 中做数学运算是安全的。我们可以做任何事：除以 0，将非数字字符串视为数字，等等。</p>
+<p>脚本永远不会因为一个致命的错误（“死亡”）而停止。最坏的情况下，我们会得到 <code>NaN</code> 的结果。</p>
+</div></div>
+<p>特殊的数值属于 “number” 类型。当然，对“特殊的数值”这个词的一般认识是，它们并不是数字。</p>
+<p>我们将在 <a href="../number/index.html">数字类型</a> 一节中学习数字的更多细节。</p>
+<h2><a class="main__anchor" name="bigint-type" href="#bigint-type">BigInt 类型</a></h2><p>在 JavaScript 中，“number” 类型无法表示大于 <code>(2<sup>53</sup>-1)</code>（即 <code>9007199254740991</code>），或小于 <code>-(2<sup>53</sup>-1)</code> 的整数。这是其内部表示形式导致的技术限制。</p>
+<p>在大多数情况下，这个范围就足够了，但有时我们需要很大的数字，例如用于加密或微秒精度的时间戳。</p>
+<p><code>BigInt</code> 类型是最近被添加到 JavaScript 语言中的，用于表示任意长度的整数。</p>
+<p>可以通过将 <code>n</code> 附加到整数字段的末尾来创建 <code>BigInt</code> 值。</p>
+<div id="chsofg7y4g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 尾部的 &quot;n&quot; 表示这是一个 BigInt 类型
+const bigInt = 1234567890123456789012345678901234567890n;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>由于很少需要 <code>BigInt</code> 类型的数字，我们在这没有对其进行讲解，我们在单独的章节 <a href="../bigint/index.html">BigInt</a> 中专门对其进行了介绍。当你需要使用那样的大数字的时候，可以去阅读该章节。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">兼容性问题</span></div>
+            <div class="important__content"><p>目前 Firefox/Chrome/Edge/Safari 已经支持 <code>BigInt</code> 了，但 IE 还没有。</p>
+</div></div>
+<p>你可以查看 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility"><em>MDN</em> BigInt 兼容性表</a> 以了解哪些版本的浏览器已经支持 BigInt 了。</p>
+<h2><a class="main__anchor" name="string-lei-xing" href="#string-lei-xing">String 类型</a></h2><p>JavaScript 中的字符串必须被括在引号里。</p>
+<div id="qtjh4bzehx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Hello&quot;;
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在 JavaScript 中，有三种包含字符串的方式。</p>
+<ol>
+<li>双引号：<code>&quot;Hello&quot;</code>.</li>
+<li>单引号：<code>'Hello'</code>.</li>
+<li>反引号：<code>`Hello`</code>.</li>
+</ol>
+<p>双引号和单引号都是“简单”引用，在 JavaScript 中两者几乎没有什么差别。</p>
+<p>反引号是 <strong>功能扩展</strong> 引号。它们允许我们通过将变量和表达式包装在 <code>${…}</code> 中，来将它们嵌入到字符串中。例如：</p>
+<div id="f14qp3s858" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;cols&quot;:[{&quot;start&quot;:22,&quot;end&quot;:30}]},{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:15,&quot;end&quot;:22}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let name = &quot;John&quot;;
+
+// 嵌入一个变量
+alert( `Hello, ${name}!` ); // Hello, John!
+
+// 嵌入一个表达式
+alert( `the result is ${1 + 2}` ); // the result is 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>${…}</code> 内的表达式会被计算，计算结果会成为字符串的一部分。可以在 <code>${…}</code> 内放置任何东西：诸如名为 <code>name</code> 的变量，或者诸如 <code>1 + 2</code> 的算数表达式，或者其他一些更复杂的。</p>
+<p>需要注意的是，这仅仅在反引号内有效，其他引号不允许这种嵌入。</p>
+<div id="zkfd2g223x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( &quot;the result is ${1 + 2}&quot; ); // the result is ${1 + 2}（使用双引号则不会计算 ${…} 中的内容）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们会在 <a href="../string/index.html">字符串</a> 一节中学习字符串的更多细节。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">JavaScript 中没有 <em>character</em> 类型。</span></div>
+            <div class="important__content"><p>在一些语言中，单个字符有一个特殊的 “character” 类型，在 C 语言和 Java 语言中被称为 “char”。</p>
+<p>在 JavaScript 中没有这种类型。只有一种 <code>string</code> 类型，一个字符串可以包含零个（为空）、一个或多个字符。</p>
+</div></div>
+<h2><a class="main__anchor" name="boolean-lei-xing-luo-ji-lei-xing" href="#boolean-lei-xing-luo-ji-lei-xing">Boolean 类型（逻辑类型）</a></h2><p>boolean 类型仅包含两个值：<code>true</code> 和 <code>false</code>。</p>
+<p>这种类型通常用于存储表示 yes 或 no 的值：<code>true</code> 意味着 “yes，正确”，<code>false</code> 意味着 “no，不正确”。</p>
+<p>比如：</p>
+<div id="dbgzewyhoi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let nameFieldChecked = true; // yes, name field is checked
+let ageFieldChecked = false; // no, age field is not checked</code></pre>
+        </div>
+      </div>
+      
+      </div><p>布尔值也可作为比较的结果：</p>
+<div id="6d9iu16mah" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let isGreater = 4 &gt; 1;
+
+alert( isGreater ); // true（比较的结果是 &quot;yes&quot;）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更详细的内容将会在 <a href="../logical-operators/index.html">逻辑运算符</a> 一节中介绍。</p>
+<h2><a class="main__anchor" name="null-zhi" href="#null-zhi">“null” 值</a></h2><p>特殊的 <code>null</code> 值不属于上述任何一种类型。</p>
+<p>它构成了一个独立的类型，只包含 <code>null</code> 值：</p>
+<div id="c7mz26kk4f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let age = null;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>相比较于其他编程语言，JavaScript 中的 <code>null</code> 不是一个“对不存在的 <code>object</code> 的引用”或者 “null 指针”。</p>
+<p>JavaScript 中的 <code>null</code> 仅仅是一个代表“无”、“空”或“值未知”的特殊值。</p>
+<p>上面的代码表示 <code>age</code> 是未知的。</p>
+<h2><a class="main__anchor" name="undefined-zhi" href="#undefined-zhi">“undefined” 值</a></h2><p>特殊值 <code>undefined</code> 和 <code>null</code> 一样自成类型。</p>
+<p><code>undefined</code> 的含义是 <code>未被赋值</code>。</p>
+<p>如果一个变量已被声明，但未被赋值，那么它的值就是 <code>undefined</code>：</p>
+<div id="ry8x7iumt2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let age;
+
+alert(age); // 弹出 &quot;undefined&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从技术上讲，可以显式地将 <code>undefined</code> 赋值给变量：</p>
+<div id="f2tc1l5y8n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let age = 100;
+
+// 将值修改为 undefined
+age = undefined;
+
+alert(age); // &quot;undefined&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是不建议这样做。通常，使用 <code>null</code> 将一个“空”或者“未知”的值写入变量中，而 <code>undefined</code> 则保留作为未进行初始化的事物的默认初始值。</p>
+<h2><a class="main__anchor" name="object-lei-xing-he-symbol-lei-xing" href="#object-lei-xing-he-symbol-lei-xing">object 类型和 symbol 类型</a></h2><p><code>object</code> 类型是一个特殊的类型。</p>
+<p>其他所有的数据类型都被称为“原始类型”，因为它们的值只包含一个单独的内容（字符串、数字或者其他）。相反，<code>object</code> 则用于储存数据集合和更复杂的实体。</p>
+<p>因为它非常重要，所以我们对其进行单独讲解。在充分学习了原始类型后，我们将会在 <a href="../object/index.html">对象</a> 一章中介绍 <code>object</code>。</p>
+<p><code>symbol</code> 类型用于创建对象的唯一标识符。我们在这里提到 <code>symbol</code> 类型是为了完整性，但我们要在学完 <code>object</code> 类型后再学习它。</p>
+<h2><a class="main__anchor" name="type-typeof" href="#type-typeof">typeof 运算符</a></h2><p><code>typeof</code> 运算符返回参数的类型。当我们想要分别处理不同类型值的时候，或者想快速进行数据类型检验时，非常有用。</p>
+<p>对 <code>typeof x</code> 的调用会以字符串的形式返回数据类型：</p>
+<div id="fj0hh8drkv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:16,&quot;end&quot;:16},{&quot;start&quot;:14,&quot;end&quot;:14},{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>typeof undefined // &quot;undefined&quot;
+
+typeof 0 // &quot;number&quot;
+
+typeof 10n // &quot;bigint&quot;
+
+typeof true // &quot;boolean&quot;
+
+typeof &quot;foo&quot; // &quot;string&quot;
+
+typeof Symbol(&quot;id&quot;) // &quot;symbol&quot;
+
+typeof Math // &quot;object&quot;  (1)
+
+typeof null // &quot;object&quot;  (2)
+
+typeof alert // &quot;function&quot;  (3)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>最后三行可能需要额外的说明：</p>
+<ol>
+<li><code>Math</code> 是一个提供数学运算的内建 <code>object</code>。我们会在 <a href="../number/index.html">数字类型</a> 一节中学习它。此处仅作为一个 <code>object</code> 的示例。</li>
+<li><code>typeof null</code> 的结果为 <code>&quot;object&quot;</code>。这是官方承认的 <code>typeof</code> 的错误，这个问题来自于 JavaScript 语言的早期阶段，并为了兼容性而保留了下来。<code>null</code> 绝对不是一个 <code>object</code>。<code>null</code> 有自己的类型，它是一个特殊值。<code>typeof</code> 的行为在这里是错误的。</li>
+<li><code>typeof alert</code> 的结果是 <code>&quot;function&quot;</code>，因为 <code>alert</code> 在 JavaScript 语言中是一个函数。我们会在下一章学习函数，那时我们会了解到，在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 <code>object</code> 类型。但是 <code>typeof</code> 会对函数区分对待，并返回 <code>&quot;function&quot;</code>。这也是来自于 JavaScript 语言早期的问题。从技术上讲，这种行为是不正确的，但在实际编程中却非常方便。</li>
+</ol>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>typeof(x)</code> 语法</span></div>
+            <div class="important__content"><p>你可能还会遇到另一种语法：<code>typeof(x)</code>。它与 <code>typeof x</code> 相同。</p>
+<p>简单点说：<code>typeof</code> 是一个操作符，不是一个函数。这里的括号不是 <code>typeof</code> 的一部分。它是数学运算分组的括号。</p>
+<p>通常，这样的括号里包含的是一个数学表达式，例如 <code>(2 + 2)</code>，但这里它只包含一个参数 <code>(x)</code>。从语法上讲，它们允许在 <code>typeof</code> 运算符和其参数之间不打空格，有些人喜欢这样的风格。</p>
+<p>有些人更喜欢用 <code>typeof(x)</code>，尽管 <code>typeof x</code> 语法更为常见。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>JavaScript 中有八种基本的数据类型（译注：前七种为基本数据类型，也称为原始类型，而 <code>object</code> 为复杂数据类型）。</p>
+<ul>
+<li><code>number</code> 用于任何类型的数字：整数或浮点数，在 <code>±(2<sup>53</sup>-1)</code> 范围内的整数。</li>
+<li><code>bigint</code> 用于任意长度的整数。</li>
+<li><code>string</code> 用于字符串：一个字符串可以包含 0 个或多个字符，所以没有单独的单字符类型。</li>
+<li><code>boolean</code> 用于 <code>true</code> 和 <code>false</code>。</li>
+<li><code>null</code> 用于未知的值 —— 只有一个 <code>null</code> 值的独立类型。</li>
+<li><code>undefined</code> 用于未定义的值 —— 只有一个 <code>undefined</code> 值的独立类型。</li>
+<li><code>symbol</code> 用于唯一的标识符。</li>
+<li><code>object</code> 用于更复杂的数据结构。</li>
+</ul>
+<p>我们可以通过 <code>typeof</code> 运算符查看存储在变量中的数据类型。</p>
+<ul>
+<li>通常用作 <code>typeof x</code>，但 <code>typeof(x)</code> 也可行。</li>
+<li>以字符串的形式返回类型名称，例如 <code>&quot;string&quot;</code>。</li>
+<li><code>typeof null</code> 会返回 <code>&quot;object&quot;</code> —— 这是 JavaScript 编程语言的一个错误，实际上它并不是一个 <code>object</code>。</li>
+</ul>
+<p>在接下来的章节中，我们将重点介绍原始类型值，当你掌握了原始数据类型后，我们将继续学习 <code>object</code>。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zi-fu-chuan-de-yin-hao" name="zi-fu-chuan-de-yin-hao">字符串的引号</a></h3><a class="task__open-link" href="../task/string-quotes/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>下面的脚本会输出什么？</p>
+<div id="uov5zknkzc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let name = &quot;Ilya&quot;;
+
+alert( `hello ${1}` ); // ?
+
+alert( `hello ${&quot;name&quot;}` ); // ?
+
+alert( `hello ${name}` ); // ?</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>反引号将包装在 <code>${...}</code> 中的表达式嵌入到了字符串。</p>
+<div id="yrjwa6gx88" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let name = &quot;Ilya&quot;;
+
+// 表达式为数字 1
+alert( `hello ${1}` ); // hello 1
+
+// 表达式是一个字符串 &quot;name&quot;
+alert( `hello ${&quot;name&quot;}` ); // hello name
+
+// 表达式是一个变量，嵌入进去了。
+alert( `hello ${name}` ); // hello Ilya</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../variables/index.html" data-tooltip="变量"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../alert-prompt-confirm/index.html" data-tooltip="交互：alert、prompt 和 confirm"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/types","identifier":"\/types"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../first-steps/index.html">JavaScript 基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#number-lei-xing">Number 类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bigint-type">BigInt 类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#string-lei-xing">String 类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#boolean-lei-xing-luo-ji-lei-xing">Boolean 类型（逻辑类型）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#null-zhi">“null” 值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#undefined-zhi">“undefined” 值</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#object-lei-xing-he-symbol-lei-xing">object 类型和 symbol 类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#type-typeof">typeof 运算符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ftypes" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/02-first-steps/05-types" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

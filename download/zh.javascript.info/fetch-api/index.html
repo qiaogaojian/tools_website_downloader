@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Fetch API</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/fetch-api"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Fetch API"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Fetch API"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/fetch-crossorigin"><link rel="next" href="/url"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Fetch API"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/fetch-api"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/fetch-api"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/fetch-api"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/fetch-api"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/fetch-api"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/fetch-api"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/fetch-api"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/fetch-api"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/fetch-api">English</option><option value="https://es.javascript.info/fetch-api">Español</option><option value="https://fr.javascript.info/fetch-api">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/fetch-api">Italiano</option><option value="https://ja.javascript.info/fetch-api">日本語</option><option value="https://ko.javascript.info/fetch-api">한국어</option><option value="https://learn.javascript.ru/fetch-api">Русский</option><option value="https://tr.javascript.info/fetch-api">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/fetch-api" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="6" max="12" data-tooltip="第 6/12 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../network/index.html"><span>网络请求</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"网络请求","item":"https://zh.javascript.info/network"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 22日 十二月 2021"><div class="updated-at__content">22日 十二月 2021</div></div></div><h1 class="main__header-title">Fetch API</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Fetch API"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>到目前为止，我们已经对 <code>fetch</code> 相当了解了。</p>
+<p>现在让我们来看看 <code>fetch</code> 的剩余 API，来了解它的全部本领吧。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>请注意：这些选项 (option) 大多都很少使用。即使跳过本章，你也可以很好地使用 <code>fetch</code>。</p>
+<p>但是，知道 <code>fetch</code> 可以做什么还是很好的，所以如果需要，你可以来看看这些细节内容。</p>
+</div></div>
+<p>这是所有可能的 <code>fetch</code> 选项及其默认值（注释中标注了可选值）的完整列表：</p>
+<div id="h9ucd075yc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = fetch(url, {
+  method: &quot;GET&quot;, // POST，PUT，DELETE，等。
+  headers: {
+    // 内容类型 header 值通常是自动设置的
+    // 取决于 request body
+    &quot;Content-Type&quot;: &quot;text/plain;charset=UTF-8&quot;
+  },
+  body: undefined // string，FormData，Blob，BufferSource，或 URLSearchParams
+  referrer: &quot;about:client&quot;, // 或 &quot;&quot; 以不发送 Referer header，
+  // 或者是当前源的 url
+  referrerPolicy: &quot;no-referrer-when-downgrade&quot;, // no-referrer，origin，same-origin...
+  mode: &quot;cors&quot;, // same-origin，no-cors
+  credentials: &quot;same-origin&quot;, // omit，include
+  cache: &quot;default&quot;, // no-store，reload，no-cache，force-cache，或 only-if-cached
+  redirect: &quot;follow&quot;, // manual，error
+  integrity: &quot;&quot;, // 一个 hash，像 &quot;sha256-abcdef1234567890&quot;
+  keepalive: false, // true
+  signal: undefined, // AbortController 来中止请求
+  window: window // null
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>一个令人印象深刻的列表，对吧?</p>
+<p>我们已经在 <a href="../fetch/index.html">Fetch</a> 一章中详细介绍了 <code>method</code>，<code>headers</code> 和 <code>body</code>。</p>
+<p>在 <a href="../fetch-abort/index.html">Fetch：中止（Abort）</a> 一章中介绍了 <code>signal</code> 选项。</p>
+<p>现在让我们学习其余的本领。</p>
+<h2><a class="main__anchor" name="referrerreferrerpolicy" href="#referrerreferrerpolicy">referrer，referrerPolicy</a></h2><p>这些选项决定了 <code>fetch</code> 如何设置 HTTP 的 <code>Referer</code> header。</p>
+<p>通常来说，这个 header 是被自动设置的，并包含了发出请求的页面的 url。在大多数情况下，它一点也不重要，但有时出于安全考虑，删除或缩短它是有意义的。</p>
+<p><strong><code>referer</code> 选项允许设置在当前域的任何 <code>Referer</code>，或者移除它。</strong></p>
+<p>要不发送 referer，可以将 <code>referer</code> 设置为空字符串：</p>
+<div id="kqupudxtga" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fetch('/page', {
+  referrer: &quot;&quot; // 没有 Referer header
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>设置在当前域内的另一个 url：</p>
+<div id="9h1r94n10b" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fetch('/page', {
+  // 假设我们在 https://javascript.info
+  // 我们可以设置任何 Referer header，但必须是在当前域内的
+  referrer: &quot;https://javascript.info/anotherpage&quot;
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong><code>referrerPolicy</code> 选项为 <code>Referer</code> 设置一般的规则。</strong></p>
+<p>请求分为 3 种类型：</p>
+<ol>
+<li>同源请求。</li>
+<li>跨源请求。</li>
+<li>从 HTTPS 到 HTTP 的请求 (从安全协议到不安全协议)。</li>
+</ol>
+<p>与 <code>referrer</code> 选项允许设置确切的 <code>Referer</code> 值不同，<code>referrerPolicy</code> 告诉浏览器针对各个请求类型的一般的规则。</p>
+<p>可能的值在 <a href="https://w3c.github.io/webappsec-referrer-policy/">Referrer Policy 规范</a>中有详细描述：</p>
+<ul>
+<li><strong><code>&quot;no-referrer-when-downgrade&quot;</code></strong> —— 默认值：除非我们从 HTTPS 发送请求到 HTTP（到安全性较低的协议），否则始终会发送完整的 <code>Referer</code>。</li>
+<li><strong><code>&quot;no-referrer&quot;</code></strong> —— 从不发送 <code>Referer</code>。</li>
+<li><strong><code>&quot;origin&quot;</code></strong> —— 只发送在 <code>Referer</code> 中的域，而不是完整的页面 URL，例如，只发送 <code>http://site.com</code> 而不是 <code>http://site.com/path</code>。</li>
+<li><strong><code>&quot;origin-when-cross-origin&quot;</code></strong> —— 发送完整的 <code>Referer</code> 到相同的源，但对于跨源请求，只发送域部分（同上）。</li>
+<li><strong><code>&quot;same-origin&quot;</code></strong> —— 发送完整的 <code>Referer</code> 到相同的源，但对于跨源请求，不发送 <code>Referer</code>。</li>
+<li><strong><code>&quot;strict-origin&quot;</code></strong> —— 只发送域，对于 HTTPS→HTTP 请求，则不发送 <code>Referer</code>。</li>
+<li><strong><code>&quot;strict-origin-when-cross-origin&quot;</code></strong> —— 对于同源情况下则发送完整的 <code>Referer</code>，对于跨源情况下，则只发送域，如果是 HTTPS→HTTP 请求，则什么都不发送。</li>
+<li><strong><code>&quot;unsafe-url&quot;</code></strong> —— 在 <code>Referer</code> 中始终发送完整的 url，即使是 HTTPS→HTTP 请求。</li>
+</ul>
+<p>这是一个包含所有组合的表格：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>同源</th>
+<th>跨源</th>
+<th>HTTPS→HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;no-referrer&quot;</code></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>&quot;no-referrer-when-downgrade&quot;</code> 或 <code>&quot;&quot;</code>（默认）</td>
+<td>完整的 url</td>
+<td>完整的 url</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>&quot;origin&quot;</code></td>
+<td>仅域</td>
+<td>仅域</td>
+<td>仅域</td>
+</tr>
+<tr>
+<td><code>&quot;origin-when-cross-origin&quot;</code></td>
+<td>完整的 url</td>
+<td>仅域</td>
+<td>仅域</td>
+</tr>
+<tr>
+<td><code>&quot;same-origin&quot;</code></td>
+<td>完整的 url</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>&quot;strict-origin&quot;</code></td>
+<td>仅域</td>
+<td>仅域</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>&quot;strict-origin-when-cross-origin&quot;</code></td>
+<td>完整的 url</td>
+<td>仅域</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>&quot;unsafe-url&quot;</code></td>
+<td>完整的 url</td>
+<td>完整的 url</td>
+<td>完整的 url</td>
+</tr>
+</tbody>
+</table>
+<p>假如我们有一个带有 URL 结构的管理区域（admin zone），它不应该被从网站外看到。</p>
+<p>如果我们发送了一个 <code>fetch</code>，则默认情况下，它总是发送带有页面完整 url 的 <code>Referer</code> header（我们从 HTTPS 向 HTTP 发送请求的情况除外，这种情况下没有 <code>Referer</code>）。</p>
+<p>例如 <code>Referer: https://javascript.info/admin/secret/paths</code>。</p>
+<p>如果我们想让其他网站只知道域的部分，而不是 URL 路径，我们可以这样设置选项：</p>
+<div id="lisa6m9bo4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fetch('https://another.com/page', {
+  // ...
+  referrerPolicy: &quot;origin-when-cross-origin&quot; // Referer: https://javascript.info
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以将其置于所有 <code>fetch</code> 调用中，也可以将其集成到我们项目的执行所有请求并在内部使用 <code>fetch</code> 的 JavaScript 库中。</p>
+<p>与默认行为相比，它的唯一区别在于，对于跨源请求，<code>fetch</code> 只发送 URL 域的部分（例如 <code>https://javascript.info</code>，没有路径）。对于同源请求，我们仍然可以获得完整的 <code>Referer</code>（可能对于调试目的是有用的）。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Referrer policy 不仅适用于 <code>fetch</code></span></div>
+            <div class="important__content"><p>在 <a href="https://w3c.github.io/webappsec-referrer-policy/">规范</a> 中描述的 referrer policy，不仅适用于 <code>fetch</code>，它还具有全局性。</p>
+<p>特别是，可以使用 <code>Referrer-Policy</code> HTTP header，或者为每个链接设置 <code>&lt;a rel=&quot;noreferrer&quot;&gt;</code>，来为整个页面设置默认策略（policy）。</p>
+</div></div>
+<h2><a class="main__anchor" name="mode" href="#mode">mode</a></h2><p><code>mode</code> 选项是一种安全措施，可以防止偶发的跨源请求：</p>
+<ul>
+<li><strong><code>&quot;cors&quot;</code></strong> —— 默认值，允许跨源请求，如 <a href="../fetch-crossorigin/index.html">Fetch：跨源请求</a> 一章所述，</li>
+<li><strong><code>&quot;same-origin&quot;</code></strong> —— 禁止跨源请求，</li>
+<li><strong><code>&quot;no-cors&quot;</code></strong> —— 只允许简单的跨源请求。</li>
+</ul>
+<p>当 <code>fetch</code> 的 URL 来自于第三方，并且我们想要一个“断电开关”来限制跨源能力时，此选项可能很有用。</p>
+<h2><a class="main__anchor" name="credentials" href="#credentials">credentials</a></h2><p><code>credentials</code> 选项指定 <code>fetch</code> 是否应该随请求发送 cookie 和 HTTP-Authorization header。</p>
+<ul>
+<li><strong><code>&quot;same-origin&quot;</code></strong> —— 默认值，对于跨源请求不发送，</li>
+<li><strong><code>&quot;include&quot;</code></strong> —— 总是发送，需要来自跨源服务器的 <code>Accept-Control-Allow-Credentials</code>，才能使 JavaScript 能够访问响应，详细内容在 <a href="../fetch-crossorigin/index.html">Fetch：跨源请求</a> 一章有详细介绍，</li>
+<li><strong><code>&quot;omit&quot;</code></strong> —— 不发送，即使对于同源请求。</li>
+</ul>
+<h2><a class="main__anchor" name="cache" href="#cache">cache</a></h2><p>默认情况下，<code>fetch</code> 请求使用标准的 HTTP 缓存。就是说，它遵从 <code>Expires</code>，<code>Cache-Control</code> header，发送 <code>If-Modified-Since</code>，等。就像常规的 HTTP 请求那样。</p>
+<p>使用 <code>cache</code> 选项可以忽略 HTTP 缓存或者对其用法进行微调：</p>
+<ul>
+<li><strong><code>&quot;default&quot;</code></strong> —— <code>fetch</code> 使用标准的 HTTP 缓存规则和 header，</li>
+<li><strong><code>&quot;no-store&quot;</code></strong> —— 完全忽略 HTTP 缓存，如果我们设置 header <code>If-Modified-Since</code>，<code>If-None-Match</code>，<code>If-Unmodified-Since</code>，<code>If-Match</code>，或 <code>If-Range</code>，则此模式会成为默认模式，</li>
+<li><strong><code>&quot;reload&quot;</code></strong> —— 不从 HTTP 缓存中获取结果（如果有），而是使用响应填充缓存（如果 response header 允许），</li>
+<li><strong><code>&quot;no-cache&quot;</code></strong> —— 如果有一个已缓存的响应，则创建一个有条件的请求，否则创建一个普通的请求。使用响应填充 HTTP 缓存，</li>
+<li><strong><code>&quot;force-cache&quot;</code></strong> —— 使用来自 HTTP 缓存的响应，即使该响应已过时（stale）。如果 HTTP 缓存中没有响应，则创建一个常规的 HTTP 请求，行为像正常那样，</li>
+<li><strong><code>&quot;only-if-cached&quot;</code></strong> —— 使用来自 HTTP 缓存的响应，即使该响应已过时（stale）。如果 HTTP 缓存中没有响应，则报错。只有当 <code>mode</code> 为 <code>same-origin</code> 时生效。</li>
+</ul>
+<h2><a class="main__anchor" name="redirect" href="#redirect">redirect</a></h2><p>通常来说，<code>fetch</code> 透明地遵循 HTTP 重定向，例如 301，302 等。</p>
+<p><code>redirect</code> 选项允许对此进行更改：</p>
+<ul>
+<li><strong><code>&quot;follow&quot;</code></strong> —— 默认值，遵循 HTTP 重定向，</li>
+<li><strong><code>&quot;error&quot;</code></strong> —— HTTP 重定向时报错，</li>
+<li><strong><code>&quot;manual&quot;</code></strong> —— 不遵循 HTTP 重定向，但 <code>response.url</code> 将是一个新的 URL，并且 <code>response redirectd</code> 将为 <code>true</code>，以便我们能够手动执行重定向到新的 URL（如果需要的话）。</li>
+</ul>
+<h2><a class="main__anchor" name="integrity" href="#integrity">integrity</a></h2><p><code>integrity</code> 选项允许检查响应是否与已知的预先校验和相匹配。</p>
+<p>正如 <a href="https://w3c.github.io/webappsec-subresource-integrity/">规范</a> 所描述的，支持的哈希函数有 SHA-256，SHA-384，和 SHA-512，可能还有其他的，这取决于浏览器。</p>
+<p>例如，我们下载一个文件，并且我们知道它的 SHA-256 校验和为 “abcdef”（当然，实际校验和会更长）。</p>
+<p>我们可以将其放在 <code>integrity</code> 选项中，就像这样:</p>
+<div id="kedmpyeaxd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>fetch('http://site.com/file', {
+  integrity: 'sha256-abcdef'
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后 <code>fetch</code> 将自行计算 SHA-256 并将其与我们的字符串进行比较。如果不匹配，则会触发错误。</p>
+<h2><a class="main__anchor" name="keepalive" href="#keepalive">keepalive</a></h2><p><code>keepalive</code> 选项表示该请求可能会在网页关闭后继续存在。</p>
+<p>例如，我们收集有关当前访问者是如何使用我们的页面（鼠标点击，他查看的页面片段）的统计信息，以分析和改善用户体验。</p>
+<p>当访问者离开我们的网页时 —— 我们希望能够将数据保存到我们的服务器上。</p>
+<p>我们可以使用 <code>window.onunload</code> 事件来实现：</p>
+<div id="zqc0nv6rj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.onunload = function() {
+  fetch('/analytics', {
+    method: 'POST',
+    body: &quot;statistics&quot;,
+    keepalive: true
+  });
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，当一个文档被卸载时（unloaded），所有相关的网络请求都会被中止。但是，<code>keepalive</code> 选项告诉浏览器，即使在离开页面后，也要在后台执行请求。所以，此选项对于我们的请求成功至关重要。</p>
+<p>它有一些限制：</p>
+<ul>
+<li>我们无法发送兆字节的数据：<code>keepalive</code> 请求的 body 限制为 64kb。
+<ul>
+<li>如果我们需要收集有关访问的大量统计信息，我们则应该将其定期以数据包的形式发送出去，这样就不会留下太多数据给最后的 <code>onunload</code> 请求了。</li>
+<li>此限制是被应用于当前所有 <code>keepalive</code> 请求的总和的。换句话说，我们可以并行执行多个 <code>keepalive</code> 请求，但它们的 body 长度之和不得超过 64KB。</li>
+</ul>
+</li>
+<li>如果文档（document）已卸载（unloaded），我们就无法处理服务器响应。因此，在我们的示例中，因为 <code>keepalive</code>，所以 <code>fetch</code> 会成功，但是后续的函数将无法正常工作。
+<ul>
+<li>在大多数情况下，例如发送统计信息，这不是问题，因为服务器只接收数据，并通常向此类请求发送空的响应。</li>
+</ul>
+</li>
+</ul>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../fetch-crossorigin/index.html" data-tooltip="Fetch：跨源请求"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../url/index.html" data-tooltip="URL 对象"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/fetch-api","identifier":"\/fetch-api"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../network/index.html">网络请求</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#referrerreferrerpolicy">referrer，referrerPolicy</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mode">mode</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#credentials">credentials</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#cache">cache</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#redirect">redirect</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#integrity">integrity</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#keepalive">keepalive</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ffetch-api" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/5-network/06-fetch-api" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

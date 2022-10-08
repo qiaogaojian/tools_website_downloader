@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">捕获组</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/regexp-groups"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="捕获组"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="捕获组"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/regexp-greedy-and-lazy"><link rel="next" href="/regexp-backreferences"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="捕获组"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/regexp-groups"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/regexp-groups"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/regexp-groups"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/regexp-groups"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/regexp-groups"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/regexp-groups"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/regexp-groups">عربي</option><option value="https://javascript.info/regexp-groups">English</option><option value="https://es.javascript.info/regexp-groups">Español</option><option value="https://fr.javascript.info/">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/regexp-groups">Italiano</option><option value="https://ja.javascript.info/regexp-groups">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/regexp-groups">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/regexp-groups" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="11" max="17" data-tooltip="第 11/17 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../regular-expressions/index.html"><span>正则表达式</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"正则表达式","item":"https://zh.javascript.info/regular-expressions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 6日 二月 2022"><div class="updated-at__content">6日 二月 2022</div></div></div><h1 class="main__header-title">捕获组</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="捕获组"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>模式的一部分可以用括号括起来 <code class="pattern">(...)</code>。这称为“捕获组（capturing group）”。</p>
+<p>这有两个影响：</p>
+<ol>
+<li>它允许将匹配的一部分作为结果数组中的单独项。</li>
+<li>如果我们将量词放在括号后，则它将括号视为一个整体。</li>
+</ol>
+<h2><a class="main__anchor" name="shi-li" href="#shi-li">示例</a></h2><p>让我们看看在示例中的括号是如何工作的。</p>
+<h3><a class="main__anchor" name="shi-li-gogogo" href="#shi-li-gogogo">示例：gogogo</a></h3><p>不带括号，模式 <code class="pattern">go+</code> 表示 <code class="subject">g</code> 字符，其后 <code class="subject">o</code> 重复一次或多次。例如 <code class="match">goooo</code> 或 <code class="match">gooooooooo</code>。</p>
+<p>括号将字符组合，所以 <code class="pattern">(go)+</code> 匹配 <code class="match">go</code>，<code class="match">gogo</code>，<code class="match">gogogo</code>等。</p>
+<div id="uuf4v7ytav" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 'Gogogo now!'.match(/(go)+/i) ); // &quot;Gogogo&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="shi-li-yu-ming" href="#shi-li-yu-ming">示例：域名</a></h3><p>让我们做些更复杂的事 —— 搜索域名的正则表达式。</p>
+<p>例如：</p>
+<div id="pf65rb4mhn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>mail.com
+users.mail.com
+smith.users.mail.com</code></pre>
+        </div>
+      </div>
+      
+      </div><p>正如我们所看到的，一个域名由重复的单词组成，每个单词后面有一个点，除了最后一个单词。</p>
+<p>在正则表达式中是 <code class="pattern">(\w+\.)+\w+</code>：</p>
+<div id="qn1x1g14c8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(\w+\.)+\w+/g;
+
+alert( &quot;site.com my.site.com&quot;.match(regexp) ); // site.com,my.site.com</code></pre>
+        </div>
+      </div>
+      
+      </div><p>搜索有效，但是该模式无法匹配带有连字符的域名，例如 my-site.com，因为连字符不属于 <code class="pattern">\w</code> 类。</p>
+<p>我们可以通过用 <code class="pattern">[\w-]</code> 替换 <code class="pattern">\w</code> 来匹配除最后一个的每个单词：<code class="pattern">([\w-]+\.)+\w+</code>。</p>
+<h3><a class="main__anchor" name="shi-li-email" href="#shi-li-email">示例：email</a></h3><p>前面的示例可以扩展。我们可以基于它为电子邮件创建一个正则表达式。</p>
+<p>email 格式为：<code>name@domain</code>。名称可以是任何单词，可以使用连字符和点。在正则表达式中为 <code class="pattern">[-.\w]+</code>。</p>
+<p>模式：</p>
+<div id="7korucswjk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+
+alert(&quot;my@mail.com @ his@site.com.uk&quot;.match(regexp)); // my@mail.com, his@site.com.uk</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该正则表达式并不完美的，但多数情况下都可以工作，并且有助于修复意外的错误类型。唯一真正可靠的 email 检查只能通过发送 email 来完成。</p>
+<h2><a class="main__anchor" name="pi-pei-kuo-hao-zhong-de-nei-rong" href="#pi-pei-kuo-hao-zhong-de-nei-rong">匹配括号中的内容</a></h2><p>括号从左到右编号。正则引擎会记住它们各自匹配的内容，并允许在结果中获得它。</p>
+<p>方法 <code>str.match(regexp)</code>，如果 <code>regexp</code> 没有 <code>g</code> 标志，将查找第一个匹配并将它作为一个数组返回：</p>
+<ol>
+<li>在索引 <code>0</code> 处：完全匹配。</li>
+<li>在索引 <code>1</code> 处：第一个括号的内容。</li>
+<li>在索引 <code>2</code> 处：第二个括号的内容。</li>
+<li>…等等…</li>
+</ol>
+<p>例如，我们想找到 HTML 标记 <code class="pattern">&lt;.*?&gt;</code> 并进行处理。这将很方便的把标签内容（尖括号内的内容）放在单独的变量中。</p>
+<p>让我们将内部内容包装在括号中，像这样：<code class="pattern">&lt;(.*?)&gt;</code>。</p>
+<p>现在，我们能在结果数组中获取标签的整体 <code class="match">&lt;h1&gt;</code> 及其内容 <code class="match">h1</code>：</p>
+<div id="uvf1geumjp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;h1&gt;Hello, world!&lt;/h1&gt;';
+
+let tag = str.match(/&lt;(.*?)&gt;/);
+
+alert( tag[0] ); // &lt;h1&gt;
+alert( tag[1] ); // h1</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="qian-tao-zu" href="#qian-tao-zu">嵌套组</a></h3><p>括号可以嵌套。在这种情况下，编号也从左到右。</p>
+<p>例如，在搜索标签 <code class="subject">&lt;span class=&quot;my&quot;&gt;</code> 时我们可能会对以下内容感兴趣：</p>
+<ol>
+<li>整个标签内容：<code class="match">span class=&quot;my&quot;</code>。</li>
+<li>标签名称：<code class="match">span</code>。</li>
+<li>标签属性：<code class="match">class=&quot;my&quot;</code>。</li>
+</ol>
+<p>让我们为它们添加括号：<code class="pattern">&lt;(([a-z]+)\s*([^&gt;]*))&gt;</code>。</p>
+<p>这是它们的编号方式（从左到右，由左括号开始）：</p>
+<figure><div class="image" style="width:320px">
+      <div class="image__ratio" style="padding-top:40.625%"></div>
+      <object type="image/svg+xml" data="../article/regexp-groups/regexp-nested-groups-pattern.svg" width="320" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-groups/regexp-nested-groups-pattern.svg" alt width="320" height="130">
+      </object>
+      </div></figure><p>实际上：</p>
+<div id="dbtjwlwvvd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;span class=&quot;my&quot;&gt;';
+
+let regexp = /&lt;(([a-z]+)\s*([^&gt;]*))&gt;/;
+
+let result = str.match(regexp);
+alert(result[0]); // &lt;span class=&quot;my&quot;&gt;
+alert(result[1]); // span class=&quot;my&quot;
+alert(result[2]); // span
+alert(result[3]); // class=&quot;my&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>result</code> 的零索引始终保持完全匹配。</p>
+<p>然后按左括号将组从左到右编号。第一组返回为 <code>result[1]</code>。它包含了整个标签内容。</p>
+<p>然后 <code>result[2]</code> 从第二个开始的括号中进入该组 <code class="pattern">([a-z]+)</code> —— 标签名称，然后在 <code>result[3]</code> 标签中：<code class="pattern">([^&gt;]*)</code>。</p>
+<p>字符串中每个组的内容：</p>
+<figure><div class="image" style="width:320px">
+      <div class="image__ratio" style="padding-top:40.625%"></div>
+      <object type="image/svg+xml" data="../article/regexp-groups/regexp-nested-groups-matches.svg" width="320" height="130" class="image__image" data-use-theme>
+        <img src="../article/regexp-groups/regexp-nested-groups-matches.svg" alt width="320" height="130">
+      </object>
+      </div></figure><h3><a class="main__anchor" name="ke-xuan-zu" href="#ke-xuan-zu">可选组</a></h3><p>即使组是可选的并且在匹配项中不存在（例如，具有数量词 <code class="pattern">(...)?</code>），也存在相应的 <code>result</code> 数组项，并且等于 <code>undefined</code>。</p>
+<p>例如，让我们考虑正则 <code class="pattern">a(z)?(c)?</code>。它寻找 <code>&quot;a&quot;</code> ，然后是可选的 <code>&quot;z&quot;</code>，然后是可选的 <code>&quot;c&quot;</code>。</p>
+<p>如果我们在单个字母的字符串上运行 <code class="subject">a</code>，则结果为：</p>
+<div id="om9i3yysns" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let match = 'a'.match(/a(z)?(c)?/);
+
+alert( match.length ); // 3
+alert( match[0] ); // a（完全匹配）
+alert( match[1] ); // undefined
+alert( match[2] ); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>数组的长度为 <code>3</code>，但所有组均为空。</p>
+<p>这是字符串的一个更复杂的匹配 <code class="subject">ac</code>：</p>
+<div id="bltzaa8kpp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let match = 'ac'.match(/a(z)?(c)?/)
+
+alert( match.length ); // 3
+alert( match[0] ); // ac（完全匹配）
+alert( match[1] ); // undefined，因为 (z)? 没匹配项
+alert( match[2] ); // c</code></pre>
+        </div>
+      </div>
+      
+      </div><p>数组长度是恒定的：<code>3</code>。但是对于组 <code class="pattern">(z)?</code> 而言，什么都没有，所以结果是 <code>[&quot;ac&quot;, undefined, &quot;c&quot;]</code>。</p>
+<h2><a class="main__anchor" name="sou-suo-suo-you-ju-you-zu-de-pi-pei-xiang-matchall" href="#sou-suo-suo-you-ju-you-zu-de-pi-pei-xiang-matchall">搜索所有具有组的匹配项：matchAll</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type"><code>matchAll</code> 是一个新方法，可能需要使用 polyfill</span></div>
+            <div class="important__content"><p>旧的浏览器不支持 <code>matchAll</code>。</p>
+<p>可能需要一个 polyfill，例如 <a href="https://github.com/ljharb/String.prototype.matchAll">https://github.com/ljharb/String.prototype.matchAll</a>.</p>
+</div></div>
+<p>当我们搜索所有匹配项（标志 <code class="pattern">g</code>）时，<code>match</code> 方法不会返回组的内容。</p>
+<p>例如，让我们查找字符串中的所有标签：</p>
+<div id="bhdh6blg3n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = '&lt;h1&gt; &lt;h2&gt;';
+
+let tags = str.match(/&lt;(.*?)&gt;/g);
+
+alert( tags ); // &lt;h1&gt;,&lt;h2&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果是一个匹配数组，但没有每个匹配项的详细信息。但是实际上，我们通常需要在结果中获取捕获组的内容。</p>
+<p>要获取它们，我们应该使用方法 <code>str.matchAll(regexp)</code> 进行搜索。</p>
+<p>在使用 <code>match</code> 很长一段时间后，它作为“新的改进版本”被加入到 JavaScript 中。</p>
+<p>就像 <code>match</code> 一样，它寻找匹配项，但有 3 个区别：</p>
+<ol>
+<li>它返回的不是数组，而是一个可迭代的对象。</li>
+<li>当标志 <code class="pattern">g</code> 存在时，它将每个匹配组作为一个数组返回。</li>
+<li>如果没有匹配项，则不返回 <code>null</code>，而是返回一个空的可迭代对象。</li>
+</ol>
+<p>例如：</p>
+<div id="w4u7d5lu68" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+// results - is not an array, but an iterable object
+alert(results); // [object RegExp String Iterator]
+
+alert(results[0]); // undefined (*)
+
+results = Array.from(results); // let's turn it into array
+
+alert(results[0]); // &lt;h1&gt;,h1 (1st tag)
+alert(results[1]); // &lt;h2&gt;,h2 (2nd tag)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以看到，第一个区别非常重要，如 <code>(*)</code> 行所示。我们无法获得 <code>results[0]</code> 的匹配内容，因为该对象是伪数组。我们可以使用 <code>Array.from</code> 把它变成一个真正的 <code>Array</code>。在 Iterable（可迭代对象）<a href="../iterable/index.html">Iterable object（可迭代对象）</a>一文中有关于伪数组和可迭代对象的更多详细信息。</p>
+<p>如果我们不需要遍历结果，则 <code>Array.from</code> 没有必要：</p>
+<div id="x5lke3qgfo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+for(let result of results) {
+  alert(result);
+  // 第一个结果: &lt;h1&gt;,h1
+  // 第二个结果: &lt;h2&gt;,h2
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……或使用解构：</p>
+<div id="nkdpu1l94q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let [tag1, tag2] = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>由 <code>matchAll</code> 所返回的每个匹配，其格式与不带标志 <code class="pattern">g</code> 的 <code>match</code> 所返回的格式相同：它是一个具有额外的 <code>index</code>（字符串中的匹配索引）属性和 <code>input</code>（源字符串）的数组：</p>
+<div id="2eoze95aiu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = '&lt;h1&gt; &lt;h2&gt;'.matchAll(/&lt;(.*?)&gt;/gi);
+
+let [tag1, tag2] = results;
+
+alert( tag1[0] ); // &lt;h1&gt;
+alert( tag1[1] ); // h1
+alert( tag1.index ); // 0
+alert( tag1.input ); // &lt;h1&gt; &lt;h2&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">为什么 <code>matchAll</code> 的结果是可迭代对象而不是数组？</span></div>
+            <div class="important__content"><p>为什么这个方法这样设计？原因很简单 — 为了优化。</p>
+<p>调用 <code>matchAll</code> 不会执行搜索。相反，它返回一个可迭代的对象，最初没有结果。每当我们对它进行迭代时才会执行搜索，例如在循环中。</p>
+<p>因此，这将根据需要找到尽可能多的结果，而不是全部。</p>
+<p>例如，文本中可能有 100 个匹配项，但是在一个 <code>for..of</code> 循环中，我们已经找到了 5 个匹配项，然后觉得足够了并做出一个 <code>break</code>。这时引擎就不会花时间查找其他 95 个匹配。</p>
+</div></div>
+<h2><a class="main__anchor" name="ming-ming-zu" href="#ming-ming-zu">命名组</a></h2><p>用数字记录组很困难。对于简单模式，它是可行的，但对于更复杂的模式，计算括号很不方便。我们有一个更好的选择：给括号起个名字。</p>
+<p>这是通过在开始括号之后立即放置 <code class="pattern">?&lt;name&gt;</code> 来完成的。</p>
+<p>例如，让我们查找 “year-month-day” 格式的日期：</p>
+<div id="5lopxaet1l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:0}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dateRegexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/;
+let str = &quot;2019-04-30&quot;;
+
+let groups = str.match(dateRegexp).groups;
+
+alert(groups.year); // 2019
+alert(groups.month); // 04
+alert(groups.day); // 30</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如您所见，匹配的组在 <code>.groups</code> 属性中。</p>
+<p>要查找所有日期，我们可以添加标志 <code class="pattern">g</code>。</p>
+<p>我们还需要 <code>matchAll</code> 获取完整的组匹配：</p>
+<div id="h2y4qz6r08" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let dateRegexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/g;
+
+let str = &quot;2019-10-30 2020-01-01&quot;;
+
+let results = str.matchAll(dateRegexp);
+
+for(let result of results) {
+  let {year, month, day} = result.groups;
+
+  alert(`${day}.${month}.${year}`);
+  // 第一个 alert：30.10.2019
+  // 第二个：01.01.2020
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ti-huan-bu-huo-zu" href="#ti-huan-bu-huo-zu">替换捕获组</a></h2><p>方法 <code>str.replace(regexp, replacement)</code> 用 <code>replacement</code> 替换 <code>str</code> 中匹配 <code>regexp</code> 的所有捕获组。这使用 <code class="pattern">$n</code> 来完成，其中 <code class="pattern">n</code> 是组号。</p>
+<p>例如，</p>
+<div id="eve08isbtf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;John Bull&quot;;
+let regexp = /(\w+) (\w+)/;
+
+alert( str.replace(regexp, '$2, $1') ); // Bull, John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于命名括号，引用为 <code class="pattern">$&lt;name&gt;</code>。</p>
+<p>例如，让我们将日期格式从 “year-month-day” 更改为 “day.month.year”：</p>
+<div id="vcd8bt6ykw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/g;
+
+let str = &quot;2019-10-30, 2020-01-01&quot;;
+
+alert( str.replace(regexp, '$&lt;day&gt;.$&lt;month&gt;.$&lt;year&gt;') );
+// 30.10.2019, 01.01.2020</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="fei-bu-huo-zu" href="#fei-bu-huo-zu">非捕获组 ?:</a></h2><p>有时我们需要括号才能正确应用量词，但我们不希望它们的内容出现在结果中。</p>
+<p>可以通过在开头添加 <code class="pattern">?:</code> 来排除组。</p>
+<p>例如，如果我们要查找 <code class="pattern">(go)+</code>，但不希望括号内容（<code>go</code>）作为一个单独的数组项，则可以编写：<code class="pattern">(?:go)+</code>。</p>
+<p>在下面的示例中，我们仅将名称 <code class="match">John</code> 作为匹配项的单独成员：</p>
+<div id="1bzc31rn85" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;Gogogo John!&quot;;
+
+// ?: 从捕获组中排除 'go'
+let regexp = /(?:go)+ (\w+)/i;
+
+let result = str.match(regexp);
+
+alert( result[0] ); // Gogogo John（完全匹配）
+alert( result[1] ); // John
+alert( result.length ); // 2（数组中没有更多项）</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>括号将正则表达式的一部分组合在一起，以便量词可以整体应用。</p>
+<p>括号组从左到右编号，可以选择用 <code>(?&lt;name&gt;...)</code> 命名。</p>
+<p>可以在结果中获得按组匹配的内容：</p>
+<ul>
+<li>方法 <code>str.match</code> 仅当不带标志 <code class="pattern">g</code> 时返回捕获组。</li>
+<li>方法 <code>str.matchAll</code> 始终返回捕获组。</li>
+</ul>
+<p>如果括号没有名称，则匹配数组按编号提供其内容。命名括号还可使用属性 <code>groups</code>。</p>
+<p>我们还可以使用 <code>str.replace</code> 来替换括号内容中的字符串：使用 <code>$n</code> 或者名称 <code>$&lt;name&gt;</code>。</p>
+<p>可以通过在组的开头添加 <code class="pattern">?:</code> 来排除编号组。当我们需要对整个组应用量词，但不希望将其作为结果数组中的单独项时这很有用。我们也不能在替换字符串时引用此类括号。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jian-cha-mac-di-zhi" name="jian-cha-mac-di-zhi">检查 MAC 地址</a></h3><a class="task__open-link" href="../task/test-mac/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>网络接口的 <a href="https://en.wikipedia.org/wiki/MAC_address">MAC 地址</a> 由 6 个以冒号分隔的两位十六进制数字组成。</p>
+<p>例如：<code class="subject">'01:32:54:67:89:AB'</code>。</p>
+<p>编写一个检查一个字符串是否为 MAC 地址的正则表达式。</p>
+<p>用例：</p>
+<div id="obcbepxf54" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /你的正则表达式/;
+
+alert( regexp.test('01:32:54:67:89:AB') ); // true
+
+alert( regexp.test('0132546789AB') ); // false (没有冒号分隔)
+
+alert( regexp.test('01:32:54:67:89') ); // false (5 个数字，必须为 6 个)
+
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (尾部为 ZZ)</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>一个两位的十六进制数可以用 <code class="pattern">[0-9a-f]{2}</code>（假设已设定修饰符 <code class="pattern">i</code>）进行匹配。</p>
+<p>我们需要匹配数字 <code>NN</code>，然后再重复 5 次 <code>:NN</code>（匹配更多数字）；</p>
+<p>所以正则表达式为：<code class="pattern">[0-9a-f]{2}(:[0-9a-f]{2}){5}</code></p>
+<p>现在让我们验证一下此匹配规则可以捕获整个文本：从开头开始，在结尾结束。这是通过将模式（pattern）包装在 <code class="pattern">^...$</code> 中实现的。</p>
+<p>最终：</p>
+<div id="176219ybut" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /^[0-9a-f]{2}(:[0-9a-f]{2}){5}$/i;
+
+alert( regexp.test('01:32:54:67:89:AB') ); // true
+
+alert( regexp.test('0132546789AB') ); // false (没有分号分隔)
+
+alert( regexp.test('01:32:54:67:89') ); // false (5 个数字，必须为 6 个)
+
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (尾部为 ZZ)</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zhao-chu-xing-ru-abc-huo-abcdef-de-yan-se-zhi" name="zhao-chu-xing-ru-abc-huo-abcdef-de-yan-se-zhi">找出形如 #abc 或 #abcdef 的颜色值</a></h3><a class="task__open-link" href="../task/find-webcolor-3-or-6/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>编写一个匹配 <code>#abc</code> 或 <code>#abcdef</code> 格式的颜色值的正则表达式。即：<code>#</code> 后跟着 3 个或 6 个十六进制的数字。</p>
+<p>用例：</p>
+<div id="hpvcri8em5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /你的正则表达式/g;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 必须只匹配 3 位或 6 位十六进制数字的颜色值。不应该匹配 4 位数字的值，例如 <code>#abcd</code>。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>查找 <code>#</code> 号后跟着 3 位十六进制数的颜色值 <code>#abc</code> 的正则表达式：<code class="pattern">/#[a-f0-9]{3}/i</code>。</p>
+<p>我们可以再添加 3 位可选的十六进制数字。这样刚好，不多不少。只匹配 <code>#</code> 号后跟着 3 位 或 6 位十六进制数字的颜色值。</p>
+<p>我们使用量词（quantifier）<code class="pattern">{1,2}</code> 来实现：所以正则表达式为 <code class="pattern">/#([a-f0-9]{3}){1,2}/i</code>。</p>
+<p>这里将模式 <code class="pattern">[a-f0-9]{3}</code> 用括号括起来，以在其外面应用量词 <code class="pattern">{1,2}</code>。</p>
+<p>用例：</p>
+<div id="pviue7o08y" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /#([a-f0-9]{3}){1,2}/gi;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef #abc</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里存在一个小问题：上面的模式会匹配 <code class="subject">#abcd</code> 中的 <code class="match">#abc</code>。为避免这一问题，我们可以在最后添加 <code class="pattern">\b</code>。</p>
+<div id="onukoefxk8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /#([a-f0-9]{3}){1,2}\b/gi;
+
+let str = &quot;color: #3f3; background-color: #AA00ef; and: #abcd&quot;;
+
+alert( str.match(regexp) ); // #3f3 #AA00ef</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zhao-chu-suo-you-shu-zi" name="zhao-chu-suo-you-shu-zi">找出所有数字</a></h3><a class="task__open-link" href="../task/find-decimal-numbers/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>编写一个正则表达式，找出所有十进制数字，包括整数、浮点数和负数。</p>
+<p>用例：</p>
+<div id="tvxlobd50t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /你的正则表达式/g;
+
+let str = &quot;-1.5 0 2 -123.4.&quot;;
+
+alert( str.match(regexp) ); // -1.5, 0, 2, -123.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>带有可选小数部分的正数：<code class="pattern">\d+(\.\d+)?</code>。</p>
+<p>让我们在开头加上可选的 <code class="pattern">-</code>：</p>
+<div id="4c2c7bycf5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /-?\d+(\.\d+)?/g;
+
+let str = &quot;-1.5 0 2 -123.4.&quot;;
+
+alert( str.match(regexp) );   // -1.5, 0, 2, -123.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jie-xi-biao-da-shi" name="jie-xi-biao-da-shi">解析表达式</a></h3><a class="task__open-link" href="../task/parse-expression/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>一个算术表达式由 2 个数字和一个它们之间的运算符组成，例如：</p>
+<ul>
+<li><code>1 + 2</code></li>
+<li><code>1.2 * 3.4</code></li>
+<li><code>-3 / -6</code></li>
+<li><code>-2 - 2</code></li>
+</ul>
+<p>运算符为 <code>&quot;+&quot;</code>、<code>&quot;-&quot;</code>、<code>&quot;*&quot;</code> 和 <code>&quot;/&quot;</code> 中之一。</p>
+<p>在开头、之间的部分或末尾可能有额外的空格。</p>
+<p>创建一个函数 <code>parse(expr)</code>，它接受一个表达式作为参数，并返回一个包含 3 个元素的数组：</p>
+<ol>
+<li>第一个数字</li>
+<li>运算符</li>
+<li>第二个数字</li>
+</ol>
+<p>用例：</p>
+<div id="fw9nui6340" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let [a, op, b] = parse(&quot;1.2 * 3.4&quot;);
+
+alert(a); // 1.2
+alert(op); // *
+alert(b); // 3.4</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>一个数字的正则表达式：<code class="pattern">-?\d+(\.\d+)?</code>。我们在上一题中创建了这个表达式。</p>
+<p>我们可以使用 <code class="pattern">[-+*/]</code> 匹配运算符。连字符 <code class="pattern">-</code> 在方括号中的最前面，因为在中间它表示字符范围，而我们只想让其表示字符 <code>-</code>。</p>
+<p>在 JavaScript 正则表达式 <code class="pattern">/.../</code> 中，我们应该对 <code>/</code> 进行转义，稍后我们会对其进行处理。</p>
+<p>我们需要一个数字、一个运算符以及另一个数字。其间可能会有空格。</p>
+<p>完整的正则表达式为：<code class="pattern">-?\d+(\.\d+)?\s*[-+*/]\s*-?\d+(\.\d+)?</code>。</p>
+<p>它包含 3 个部分，以 <code class="pattern">\s*</code> 分隔：</p>
+<ol>
+<li><code class="pattern">-?\d+(\.\d+)?</code> —— 第一个数字，</li>
+<li><code class="pattern">[-+*/]</code> —— 运算符，</li>
+<li><code class="pattern">-?\d+(\.\d+)?</code> —— 第二个数字。</li>
+</ol>
+<p>为了使这里的每一部分成为结果数组中的单独元素，所以我们把它们括在括号里：<code class="pattern">(-?\d+(\.\d+)?)\s*([-+*/])\s*(-?\d+(\.\d+)?)</code>。</p>
+<p>使用示例：</p>
+<div id="ya60jejbbc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let regexp = /(-?\d+(\.\d+)?)\s*([-+*\/])\s*(-?\d+(\.\d+)?)/;
+
+alert( &quot;1.2 + 12&quot;.match(regexp) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果包含：</p>
+<ul>
+<li><code>result[0] == &quot;1.2 + 12&quot;</code> (完全匹配)</li>
+<li><code>result[1] == &quot;1.2&quot;</code> (第一组 <code>(-?\d+(\.\d+)?)</code> —— 第一个数字，包括小数部分)</li>
+<li><code>result[2] == &quot;.2&quot;</code> (第二组 <code>(\.\d+)?</code> —— 第一个数字的小数部分)</li>
+<li><code>result[3] == &quot;+&quot;</code> (第三组 <code>([-+*\/])</code> —— 运算符)</li>
+<li><code>result[4] == &quot;12&quot;</code> (第四组 <code>(-?\d+(\.\d+)?)</code> —— 第二个数字)</li>
+<li><code>result[5] == undefined</code>（第五组 <code>(\.\d+)?</code> —— 第二个数字的小数部分不存在，所以这里是 undefined）</li>
+</ul>
+<p>我们只想要数字和运算符，不需要没有完全匹配的以及小数部分结果，所以让我们稍微“清理”一下结果。</p>
+<p>我们可以使用数组的 <code>shift</code> 方法 <code>result.shift()</code> 来删去完全匹配的结果（数组的第一项）。</p>
+<p>可以通过在开头 <code class="pattern">(?:\.\d+)?</code> 添加 <code class="pattern">?:</code> 来排除包含小数部分的组（第 2 和第 4 个）<code class="pattern">(.\d+)</code> 可以通过。</p>
+<p>最终的解决方案：</p>
+<div id="38x58w6hnp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function parse(expr) {
+  let regexp = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
+
+  let result = expr.match(regexp);
+
+  if (!result) return [];
+  result.shift();
+
+  return result;
+}
+
+alert( parse(&quot;-1.23 * 3.45&quot;) );  // -1.23, *, 3.45</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../regexp-greedy-and-lazy/index.html" data-tooltip="贪婪量词和惰性量词"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../regexp-backreferences/index.html" data-tooltip="模式中的反向引用：\N 和 \k&lt;name&gt;"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/regexp-groups","identifier":"\/regexp-groups"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../regular-expressions/index.html">正则表达式</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-li">示例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#pi-pei-kuo-hao-zhong-de-nei-rong">匹配括号中的内容</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sou-suo-suo-you-ju-you-zu-de-pi-pei-xiang-matchall">搜索所有具有组的匹配项：matchAll</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ming-ming-zu">命名组</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ti-huan-bu-huo-zu">替换捕获组</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fei-bu-huo-zu">非捕获组 ?:</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (4)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fregexp-groups" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/9-regular-expressions/11-regexp-groups" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

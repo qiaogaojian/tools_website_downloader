@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">脚本：async，defer</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/script-async-defer"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="脚本：async，defer"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="脚本：async，defer"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/onload-ondomcontentloaded"><link rel="next" href="/onload-onerror"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="脚本：async，defer"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/script-async-defer"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/script-async-defer"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/script-async-defer"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/script-async-defer"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/script-async-defer"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/script-async-defer"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/script-async-defer"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/script-async-defer"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/script-async-defer"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/script-async-defer">English</option><option value="https://es.javascript.info/script-async-defer">Español</option><option value="https://fr.javascript.info/script-async-defer">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/script-async-defer">Italiano</option><option value="https://ja.javascript.info/script-async-defer">日本語</option><option value="https://ko.javascript.info/script-async-defer">한국어</option><option value="https://learn.javascript.ru/script-async-defer">Русский</option><option value="https://tr.javascript.info/script-async-defer">Türkçe</option><option value="https://uk.javascript.info/script-async-defer">Українська</option><option value="https://zh.javascript.info/script-async-defer" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="28" max="32" data-tooltip="第 28/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../loading/index.html"><span>加载文档和其他资源</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"加载文档和其他资源","item":"https://zh.javascript.info/loading"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 14日 十一月 2020"><div class="updated-at__content">14日 十一月 2020</div></div></div><h1 class="main__header-title">脚本：async，defer</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="脚本：async，defer"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>现代的网站中，脚本往往比 HTML 更“重”：它们的大小通常更大，处理时间也更长。</p>
+<p>当浏览器加载 HTML 时遇到 <code>&lt;script&gt;...&lt;/script&gt;</code> 标签，浏览器就不能继续构建 DOM。它必须立刻执行此脚本。对于外部脚本 <code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code> 也是一样的：浏览器必须等脚本下载完，并执行结束，之后才能继续处理剩余的页面。</p>
+<p>这会导致两个重要的问题：</p>
+<ol>
+<li>脚本不能访问到位于它们下面的 DOM 元素，因此，脚本无法给它们添加处理程序等。</li>
+<li>如果页面顶部有一个笨重的脚本，它会“阻塞页面”。在该脚本下载并执行结束前，用户都不能看到页面内容：</li>
+</ol>
+<div id="i7xjitd0ag" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;...content before script...&lt;/p&gt;
+
+&lt;script src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;
+
+&lt;!-- This isn't visible until the script loads --&gt;
+&lt;p&gt;...content after script...&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里有一些解决办法。例如，我们可以把脚本放在页面底部。此时，它可以访问到它上面的元素，并且不会阻塞页面显示内容：</p>
+<div id="4ag7168871" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  ...all content is above the script...
+
+  &lt;script src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是这种解决方案远非完美。例如，浏览器只有在下载了完整的 HTML 文档之后才会注意到该脚本（并且可以开始下载它）。对于长的 HTML 文档来说，这样可能会造成明显的延迟。</p>
+<p>这对于使用高速连接的人来说，这不值一提，他们不会感受到这种延迟。但是这个世界上仍然有很多地区的人们所使用的网络速度很慢，并且使用的是远非完美的移动互联网连接。</p>
+<p>幸运的是，这里有两个 <code>&lt;script&gt;</code> 特性（attribute）可以为我们解决这个问题：<code>defer</code> 和 <code>async</code>。</p>
+<h2><a class="main__anchor" name="defer" href="#defer">defer</a></h2><p><code>defer</code> 特性告诉浏览器不要等待脚本。相反，浏览器将继续处理 HTML，构建 DOM。脚本会“在后台”下载，然后等 DOM 构建完成后，脚本才会执行。</p>
+<p>这是与上面那个相同的示例，但是带有 <code>defer</code> 特性：</p>
+<div id="oss2fs2h72" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;...content before script...&lt;/p&gt;
+
+&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;
+
+&lt;!-- 立即可见 --&gt;
+&lt;p&gt;...content after script...&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>换句话说：</p>
+<ul>
+<li>具有 <code>defer</code> 特性的脚本不会阻塞页面。</li>
+<li>具有 <code>defer</code> 特性的脚本总是要等到 DOM 解析完毕，但在 <code>DOMContentLoaded</code> 事件之前执行。</li>
+</ul>
+<p>下面这个示例演示了上面所说的第二句话：</p>
+<div id="7chcx73m4s" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;...content before scripts...&lt;/p&gt;
+
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () =&gt; alert(&quot;DOM ready after defer!&quot;));
+&lt;/script&gt;
+
+&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;...content after scripts...&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ol>
+<li>页面内容立即显示。</li>
+<li><code>DOMContentLoaded</code> 事件处理程序等待具有 <code>defer</code> 特性的脚本执行完成。它仅在脚本下载且执行结束后才会被触发。</li>
+</ol>
+<p><strong>具有 <code>defer</code> 特性的脚本保持其相对顺序，就像常规脚本一样。</strong></p>
+<p>假设，我们有两个具有 <code>defer</code> 特性的脚本：<code>long.js</code> 在前，<code>small.js</code> 在后。</p>
+<div id="6xtkb8uio" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/long.js&quot;&gt;&lt;/script&gt;
+&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/small.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>浏览器扫描页面寻找脚本，然后并行下载它们，以提高性能。因此，在上面的示例中，两个脚本是并行下载的。<code>small.js</code> 可能会先下载完成。</p>
+<p>……但是，<code>defer</code> 特性除了告诉浏览器“不要阻塞页面”之外，还可以确保脚本执行的相对顺序。因此，即使 <code>small.js</code> 先加载完成，它也需要等到 <code>long.js</code> 执行结束才会被执行。</p>
+<p>当我们需要先加载 JavaScript 库，然后再加载依赖于它的脚本时，这可能会很有用。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>defer</code> 特性仅适用于外部脚本</span></div>
+            <div class="important__content"><p>如果 <code>&lt;script&gt;</code> 脚本没有 <code>src</code>，则会忽略 <code>defer</code> 特性。</p>
+</div></div>
+<h2><a class="main__anchor" name="async" href="#async">async</a></h2><p><code>async</code> 特性与 <code>defer</code> 有些类似。它也能够让脚本不阻塞页面。但是，在行为上二者有着重要的区别。</p>
+<p><code>async</code> 特性意味着脚本是完全独立的：</p>
+<ul>
+<li>浏览器不会因 <code>async</code> 脚本而阻塞（与 <code>defer</code> 类似）。</li>
+<li>其他脚本不会等待 <code>async</code> 脚本加载完成，同样，<code>async</code> 脚本也不会等待其他脚本。</li>
+<li><code>DOMContentLoaded</code> 和异步脚本不会彼此等待：
+<ul>
+<li><code>DOMContentLoaded</code> 可能会发生在异步脚本之前（如果异步脚本在页面完成后才加载完成）</li>
+<li><code>DOMContentLoaded</code> 也可能发生在异步脚本之后（如果异步脚本很短，或者是从 HTTP 缓存中加载的）</li>
+</ul>
+</li>
+</ul>
+<p>换句话说，<code>async</code> 脚本会在后台加载，并在加载就绪时运行。DOM 和其他脚本不会等待它们，它们也不会等待其它的东西。<code>async</code> 脚本就是一个会在加载完成时执行的完全独立的脚本。就这么简单，现在明白了吧？</p>
+<p>下面是一个类似于我们在讲 <code>defer</code> 时所看到的例子：<code>long.js</code> 和 <code>small.js</code> 两个脚本，只是现在 <code>defer</code> 变成了 <code>async</code>。</p>
+<p>它们不会等待对方。先加载完成的（可能是 <code>small.js</code>）—— 先执行：</p>
+<div id="s1wrkdjf9h" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;...content before scripts...&lt;/p&gt;
+
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () =&gt; alert(&quot;DOM ready!&quot;));
+&lt;/script&gt;
+
+&lt;script async src=&quot;https://javascript.info/article/script-async-defer/long.js&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;https://javascript.info/article/script-async-defer/small.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;...content after scripts...&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li>页面内容立刻显示出来：加载写有 <code>async</code> 的脚本不会阻塞页面渲染。</li>
+<li><code>DOMContentLoaded</code> 可能在 <code>async</code> 之前或之后触发，不能保证谁先谁后。</li>
+<li>较小的脚本 <code>small.js</code> 排在第二位，但可能会比 <code>long.js</code> 这个长脚本先加载完成，所以 <code>small.js</code> 会先执行。虽然，可能是 <code>long.js</code> 先加载完成，如果它被缓存了的话，那么它就会先执行。换句话说，异步脚本以“加载优先”的顺序执行。</li>
+</ul>
+<p>当我们将独立的第三方脚本集成到页面时，此时采用异步加载方式是非常棒的：计数器，广告等，因为它们不依赖于我们的脚本，我们的脚本也不应该等待它们：</p>
+<div id="k1aou17ad2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- Google Analytics 脚本通常是这样嵌入页面的 --&gt;
+&lt;script async src=&quot;https://google-analytics.com/analytics.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="dong-tai-jiao-ben" href="#dong-tai-jiao-ben">动态脚本</a></h2><p>此外，还有一种向页面添加脚本的重要的方式。</p>
+<p>我们可以使用 JavaScript 动态地创建一个脚本，并将其附加（append）到文档（document）中：</p>
+<div id="laxwfmstrw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let script = document.createElement('script');
+script.src = &quot;/article/script-async-defer/long.js&quot;;
+document.body.append(script); // (*)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当脚本被附加到文档 <code>(*)</code> 时，脚本就会立即开始加载。</p>
+<p><strong>默认情况下，动态脚本的行为是“异步”的。</strong></p>
+<p>也就是说：</p>
+<ul>
+<li>它们不会等待任何东西，也没有什么东西会等它们。</li>
+<li>先加载完成的脚本先执行（“加载优先”顺序）。</li>
+</ul>
+<p>如果我们显式地设置了 <code>script.async=false</code>，则可以改变这个规则。然后脚本将按照脚本在文档中的顺序执行，就像 <code>defer</code> 那样。</p>
+<p>在下面这个例子中，<code>loadScript(src)</code> 函数添加了一个脚本，并将 <code>async</code> 设置为了 <code>false</code>。</p>
+<p>因此，<code>long.js</code> 总是会先执行（因为它是先被添加到文档的）：</p>
+<div id="4w67d28595" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.async = false;
+  document.body.append(script);
+}
+
+// long.js 先执行，因为代码中设置了 async=false
+loadScript(&quot;/article/script-async-defer/long.js&quot;);
+loadScript(&quot;/article/script-async-defer/small.js&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果没有 <code>script.async=false</code>，脚本则将以默认规则执行，即加载优先顺序（<code>small.js</code> 大概会先执行）。</p>
+<p>同样，和 <code>defer</code> 一样，如果我们要加载一个库和一个依赖于它的脚本，那么顺序就很重要。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>async</code> 和 <code>defer</code> 有一个共同点：加载这样的脚本都不会阻塞页面的渲染。因此，用户可以立即阅读并了解页面内容。</p>
+<p>但是，它们之间也存在一些本质的区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>顺序</th>
+<th><code>DOMContentLoaded</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>async</code></td>
+<td><strong>加载优先顺序</strong>。脚本在文档中的顺序不重要 —— 先加载完成的先执行</td>
+<td>不相关。可能在文档加载完成前加载并执行完毕。如果脚本很小或者来自于缓存，同时文档足够长，就会发生这种情况。</td>
+</tr>
+<tr>
+<td><code>defer</code></td>
+<td><strong>文档顺序</strong>（它们在文档中的顺序）</td>
+<td>在文档加载和解析完成之后（如果需要，则会等待），即在 <code>DOMContentLoaded</code> 之前执行。</td>
+</tr>
+</tbody>
+</table>
+<p>在实际开发中，<code>defer</code> 用于需要整个 DOM 的脚本，和/或脚本的相对执行顺序很重要的时候。</p>
+<p><code>async</code> 用于独立脚本，例如计数器或广告，这些脚本的相对执行顺序无关紧要。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">没有脚本的页面应该也是可用的</span></div>
+            <div class="important__content"><p>请注意：如果你使用的是 <code>defer</code> 或 <code>async</code>，那么用于将在脚本加载完成 <strong>之前</strong> 先看到页面。</p>
+<p>在这种情况下，某些图形组件可能尚未初始化完成。</p>
+<p>因此，请记得添加一个“正在加载”的提示，并禁用尚不可用的按钮。以让用户可以清楚地看到，他现在可以在页面上做什么，以及还有什么是正在准备中的。</p>
+</div></div>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../onload-ondomcontentloaded/index.html" data-tooltip="页面生命周期：DOMContentLoaded，load，beforeunload，unload"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../onload-onerror/index.html" data-tooltip="资源加载：onload，onerror"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/script-async-defer","identifier":"\/script-async-defer"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../loading/index.html">加载文档和其他资源</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#defer">defer</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#async">async</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dong-tai-jiao-ben">动态脚本</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fscript-async-defer" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/5-loading/02-script-async-defer" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

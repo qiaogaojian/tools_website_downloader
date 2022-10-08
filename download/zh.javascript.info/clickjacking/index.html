@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">点击劫持攻击</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/clickjacking"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="点击劫持攻击"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="点击劫持攻击"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/cross-window-communication"><link rel="next" href="/binary"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="点击劫持攻击"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/clickjacking"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/clickjacking"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/clickjacking"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/clickjacking"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/clickjacking"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/clickjacking"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/clickjacking"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/clickjacking">English</option><option value="https://es.javascript.info/clickjacking">Español</option><option value="https://fr.javascript.info/clickjacking">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/clickjacking">Italiano</option><option value="https://ja.javascript.info/clickjacking">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/clickjacking">Русский</option><option value="https://tr.javascript.info/clickjacking">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/clickjacking" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="3" data-tooltip="第 3/3 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../frames-and-windows/index.html"><span>Frame 和 window</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"Frame 和 window","item":"https://zh.javascript.info/frames-and-windows"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 11日 六月 2021"><div class="updated-at__content">11日 六月 2021</div></div></div><h1 class="main__header-title">点击劫持攻击</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="点击劫持攻击"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>“点击劫持”攻击允许恶意页面 <strong>以用户的名义</strong> 点击“受害网站”。</p>
+<p>许多网站都被黑客以这种方式攻击过，包括 Twitter、Facebook 和 Paypal 等许多网站。当然，它们都已经被修复了。</p>
+<h2><a class="main__anchor" name="yuan-li" href="#yuan-li">原理</a></h2><p>原理十分简单。</p>
+<p>我们以 Facebook 为例，解释点击劫持是如何完成的：</p>
+<ol>
+<li>访问者被恶意页面吸引。怎样吸引的不重要。</li>
+<li>页面上有一个看起来无害的链接（例如：“变得富有”或者“点我，超好玩！”）。</li>
+<li>恶意页面在该链接上方放置了一个透明的 <code>&lt;iframe&gt;</code>，其 <code>src</code> 来自于 facebook.com，这使得“点赞”按钮恰好位于该链接上面。这通常是通过 <code>z-index</code> 实现的。</li>
+<li>用户尝试点击该链接时，实际上点击的是“点赞”按钮。</li>
+</ol>
+<h2><a class="main__anchor" name="shi-li" href="#shi-li">示例</a></h2><p>这是恶意页面看起来的样子。为了清楚起见，我们将 <code>&lt;iframe&gt;</code> 设置成了半透明的（在真正的恶意页面中，它是全透明的）：</p>
+<div id="hfifmk6frg" data-trusted="1" class="code-example" data-demo-height="120" data-highlight="[{&quot;start&quot;:14,&quot;end&quot;:16},{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+iframe { /* 来自受害网站的 iframe */
+  width: 400px;
+  height: 100px;
+  position: absolute;
+  top:0; left:-20px;
+  opacity: 0.5; /* 在实际中为 opacity:0 */
+  z-index: 1;
+}
+&lt;/style&gt;
+
+&lt;div&gt;点击即可变得富有：&lt;/div&gt;
+
+&lt;!-- 来自受害网站的 url --&gt;
+&lt;iframe src=&quot;/clickjacking/facebook.html&quot;&gt;&lt;/iframe&gt;
+
+&lt;button&gt;点这里！&lt;/button&gt;
+
+&lt;div&gt;……你很酷（我实际上是一名帅气的黑客）！&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>完整的攻击示例如下：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">facebook.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/clickjacking/clickjacking-visible/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/dXu26rm0sghlN94x?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:160px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/clickjacking/clickjacking-visible/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body style=&quot;margin:10px;padding:10px&quot;&gt;
+
+  &lt;input type=&quot;button&quot; onclick=&quot;alert('Like pressed on facebook.html!')&quot; value=&quot;I LIKE IT !&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;style&gt;
+    iframe {
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 5px;
+      left: -14px;
+      opacity: 0.5;
+      z-index: 1;
+    }
+  &lt;/style&gt;
+
+  &lt;div&gt;点击即可变得富有：&lt;/div&gt;
+
+  &lt;!-- 来自受害网站的 url --&gt;
+  &lt;iframe src=&quot;facebook.html&quot;&gt;&lt;/iframe&gt;
+
+  &lt;button&gt;点这里！&lt;/button&gt;
+
+  &lt;div&gt;……你很酷（我实际上是一名帅气的黑客）！&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>在上面这个示例中，我们有一个半透明的 <code>&lt;iframe src=&quot;facebook.html&quot;&gt;</code>，我们可以看到，它位于按钮之上。点击按钮实际上会点击在 iframe 上，但这对用户不可见，因为 iframe 是透明的。</p>
+<p>结果，如果访问者登陆了 Facebook（“记住我”通常是打开的），那么这个行为就会点一个“赞”。Twitter 上是 “Follow” 按钮。</p>
+<p>下面是相同的示例，但 <code>iframe</code> 的透明度设置为了 <code>opacity:0</code>，更符合实际情况：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">facebook.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/clickjacking/clickjacking/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/4UWTfdySPyn4riiH?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:160px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/clickjacking/clickjacking/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;body style=&quot;margin:10px;padding:10px&quot;&gt;
+
+  &lt;input type=&quot;button&quot; onclick=&quot;alert('Like pressed on facebook.html!')&quot; value=&quot;I LIKE IT !&quot;&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;style&gt;
+    iframe {
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 5px;
+      left: -14px;
+      opacity: 0;
+      z-index: 1;
+    }
+  &lt;/style&gt;
+
+  &lt;div&gt;点击即可变得富有：&lt;/div&gt;
+
+  &lt;!-- 来自受害网站的 url --&gt;
+  &lt;iframe src=&quot;facebook.html&quot;&gt;&lt;/iframe&gt;
+
+  &lt;button&gt;点这里！&lt;/button&gt;
+
+  &lt;div&gt;……你很酷（我实际上是一名帅气的黑客）！&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><p>我们进行攻击所需要做的 —— 就是将 <code>&lt;iframe&gt;</code> 放置在恶意页面中，使得按钮恰好位于链接的正上方。这样当用户点击链接时，他们实际上点击的是按钮。这通常可以通过 CSS 实现。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">点击劫持是对点击事件，而非键盘事件</span></div>
+            <div class="important__content"><p>此攻击仅影响鼠标行为（或者类似的行为，例如在手机上的点击）。</p>
+<p>键盘输入很难重定向。从技术上讲，我们可以用 iframe 的文本区域覆盖原有的文本区域实现攻击。因此，当访问者试图聚焦页面中的输入时，实际上聚焦的是 iframe 中的输入。</p>
+<p>但是这里有个问题。访问者键入的所有内容都会被隐藏，因为该 iframe 是不可见的。</p>
+<p>当用户无法在屏幕上看到自己输入的字符时，通常会停止打字。</p>
+</div></div>
+<h2><a class="main__anchor" name="chuan-tong-fang-yu-ruo" href="#chuan-tong-fang-yu-ruo">传统防御（弱 👎）</a></h2><p>最古老的防御措施是一段用于禁止在 frame 中打开页面的 JavaScript 代码（所谓的 “framebusting”）。</p>
+<p>它看起来像这样：</p>
+<div id="s5tjymg8y3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (top != window) {
+  top.location = window.location;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>意思是说：如果 window 发现它不在顶部，那么它将自动使其自身位于顶部。</p>
+<p>这个方法并不可靠，因为有许多方式可以绕过这个限制。下面我们就介绍几个。</p>
+<h3><a class="main__anchor" name="zu-zhi-ding-ji-dao-hang" href="#zu-zhi-ding-ji-dao-hang">阻止顶级导航</a></h3><p>我们可以阻止因更改 <a href="../onload-ondomcontentloaded/index.html#window.onbeforeunload">beforeunload</a> 事件处理程序中的 <code>top.location</code> 而引起的过渡（transition）。</p>
+<p>顶级页面（从属于黑客）在 <code>beforeunload</code> 上设置了一个用于阻止的处理程序，像这样：</p>
+<div id="4l2ytjjrw3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.onbeforeunload = function() {
+  return false;
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当 <code>iframe</code> 试图更改 <code>top.location</code> 时，访问者会收到一条消息，询问他们是否要离开页面。</p>
+<p>在大多数情况下，访问者会做出否定的回答，因为他们并不知道还有这么一个 iframe，他们所看到的只有顶级页面，他们没有理由离开。所以 <code>top.location</code> 不会变化！</p>
+<p>演示示例：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">iframe.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/clickjacking/top-location/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/zKtJHiM53OYIFZwJ?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/clickjacking/top-location/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div&gt;Changes top.location to javascript.info&lt;/div&gt;
+
+  &lt;script&gt;
+    top.location = 'https://javascript.info';
+  &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+
+  &lt;style&gt;
+    iframe {
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: -20px;
+      opacity: 0;
+      z-index: 1;
+    }
+  &lt;/style&gt;
+
+  &lt;script&gt;
+    function attack() {
+
+      window.onbeforeunload = function() {
+        window.onbeforeunload = null;
+        return &quot;Want to leave without learning all the secrets (he-he)?&quot;;
+      };
+
+      document.body.insertAdjacentHTML('beforeend', '&lt;iframe src=&quot;iframe.html&quot;&gt;');
+    }
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;p&gt;点击该按钮后，访问者会收到一条关于他们是否要离开的“奇怪”问题。&lt;/p&gt;
+
+  &lt;p&gt;他们可能会回答“否”，这样就保护了 iframe 不被黑。&lt;/p&gt;
+
+  &lt;button onclick=&quot;attack()&quot;&gt;添加一个“受保护的” iframe&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><h3><a class="main__anchor" name="sandbox-te-xing" href="#sandbox-te-xing">Sandbox 特性</a></h3><p><code>sandbox</code> 特性的限制之一就是导航。沙箱化的 iframe 不能更改 <code>top.location</code>。</p>
+<p>但我们可以添加具有 <code>sandbox=&quot;allow-scripts allow-forms&quot;</code> 的 iframe。从而放开限制，允许脚本和表单。但我们没添加 <code>allow-top-navigation</code>，因此更改 <code>top.location</code> 是被禁止的。</p>
+<p>代码如下：</p>
+<div id="6kyxc9nk8l" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:43}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe sandbox=&quot;allow-scripts allow-forms&quot; src=&quot;facebook.html&quot;&gt;&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>还有其他方式可以绕过这个弱鸡防御。</p>
+<h2><a class="main__anchor" name="xframeoptions" href="#xframeoptions">X-Frame-Options</a></h2><p>服务器端 header <code>X-Frame-Options</code> 可以允许或禁止在 frame 中显示页面。</p>
+<p>它必须被完全作为 HTTP-header 发送：如果浏览器在 HTML <code>&lt;meta&gt;</code> 标签中找到它，则会忽略它。因此，<code>&lt;meta http-equiv=&quot;X-Frame-Options&quot;...&gt;</code> 没有任何作用。</p>
+<p>这个 header 可能包含 3 个值：</p>
+<dl>
+<dt><code>DENY</code></dt>
+<dd>始终禁止在 frame 中显示此页面。</dd>
+<dt><code>SAMEORIGIN</code></dt>
+<dd>允许在和父文档同源的 frame 中显示此页面。</dd>
+<dt><code>ALLOW-FROM domain</code></dt>
+<dd>允许在来自给定域的父文档的 frame 中显示此页面。</dd>
+</dl>
+<p>例如，Twitter 使用的是 <code>X-Frame-Options: SAMEORIGIN</code>。</p>
+<p>结果如下：</p>
+<div id="7y6nd7ss5a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;https://twitter.com&quot;&gt;&lt;/iframe&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><!-- ebook: prerender/ chrome headless dies and timeouts on this iframe -->
+<iframe src="https://twitter.com"></iframe>
+<p>上面这个 <code>iframe</code> 可能为空，或者通过 alert 告知你浏览器不允许以这种方式导航至该页面，这取决于你的浏览器。</p>
+<h2><a class="main__anchor" name="xian-shi-jin-yong-de-gong-neng" href="#xian-shi-jin-yong-de-gong-neng">显示禁用的功能</a></h2><p><code>X-Frame-Options</code> 有一个副作用。其他的网站即使有充分的理由也无法在 frame 中显示我们的页面。</p>
+<p>因此，还有其他解决方案……例如，我们可以用一个样式为 <code>height: 100%; width: 100%;</code> 的 <code>&lt;div&gt;</code> “覆盖”页面，这样它就能拦截所有点击。如果 <code>window == top</code> 或者我们确定不需要保护时，再将该 <code>&lt;div&gt;</code> 移除。</p>
+<p>像这样：</p>
+<div id="m8mum7s3s2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  #protector {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99999999;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;protector&quot;&gt;
+  &lt;a href=&quot;/&quot; target=&quot;_blank&quot;&gt;前往网站&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  // 如果顶级窗口来自其他源，这里则会出现一个 error
+  // 但是在本例中没有问题
+  if (top.document.domain == document.domain) {
+    protector.remove();
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>演示示例：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">iframe.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/clickjacking/protector/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/GbBFZGhpcOzAqDuX?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/clickjacking/protector/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+
+  &lt;style&gt;
+    #protector {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 99999999;
+    }
+  &lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div id=&quot;protector&quot;&gt;
+  &lt;a href=&quot;/&quot; target=&quot;_blank&quot;&gt;前往网站&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+
+  if (top.document.domain == document.domain) {
+    protector.remove();
+  }
+
+&lt;/script&gt;
+
+  文本一直是可见的。
+
+  但是，如果该页面是在来自另一个域的文档中打开的，则该页面上的 div 将阻止所有行为。
+
+  &lt;button onclick=&quot;alert(1)&quot;&gt;在这种情况下，点击不起作用&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;iframe src=&quot;iframe.html&quot;&gt;&lt;/iframe&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="samesitecookie-te-xing" href="#samesitecookie-te-xing">Samesite cookie 特性</a></h2><p><code>samesite</code> cookie 特性也可以阻止点击劫持攻击。</p>
+<p>具有 <code>samesite</code> 特性的 cookie 仅在网站是通过直接方式打开（而不是通过 frame 或其他方式）的情况下才发送到网站。更多细节请见 <a href="../cookie/index.html#samesite">Cookie，document.cookie</a>。</p>
+<p>如果网站，例如 Facebook，在其身份验证 cookie 中具有 <code>samesite</code> 特性，像这样：</p>
+<div id="ay881ed7r3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>Set-Cookie: authorization=secret; samesite</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……那么，当在另一个网站中的 iframe 中打开 Facebook 时，此类 cookie 将不会被发送。因此，攻击将失败。</p>
+<p>当不使用 cookie 时，<code>samesite</code> cookie 特性将不会有任何影响。这可以使其他网站能够轻松地在 iframe 中显示我们公开的、未进行身份验证的页面。</p>
+<p>然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>点击劫持是一种“诱骗”用户在不知情的情况下点击恶意网站的方式。如果是重要的点击操作，这是非常危险的。</p>
+<p>黑客可以通过信息发布指向他的恶意页面的链接，或者通过某些手段引诱访问者访问他的页面。当然还有很多其他变体。</p>
+<p>一方面 —— 这种攻击方式是“浅层”的：黑客所做的只是拦截一次点击。但另一方面，如果黑客知道在点击之后将出现另一个控件，则他们可能还会使用狡猾的消息来迫使用户也点击它们。</p>
+<p>这种攻击相当危险，因为在设计交互界面时，我们通常不会考虑到可能会有黑客代表用户点击界面。所以，在许多意想不到的地方可能发现攻击漏洞。</p>
+<ul>
+<li>建议在那些不希望被在 frame 中查看的页面上（或整个网站上）使用 <code>X-Frame-Options: SAMEORIGIN</code>。</li>
+<li>如果我们希望允许在 frame 中显示我们的页面，那我们使用一个 <code>&lt;div&gt;</code> 对整个页面进行遮盖，这样也是安全的。</li>
+</ul>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../cross-window-communication/index.html" data-tooltip="跨窗口通信"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../binary/index.html" data-tooltip="二进制数据，文件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/clickjacking","identifier":"\/clickjacking"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../frames-and-windows/index.html">Frame 和 window</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yuan-li">原理</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-li">示例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#chuan-tong-fang-yu-ruo">传统防御（弱 👎）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xframeoptions">X-Frame-Options</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xian-shi-jin-yong-de-gong-neng">显示禁用的功能</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#samesitecookie-te-xing">Samesite cookie 特性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fclickjacking" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/3-frames-and-windows/06-clickjacking" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

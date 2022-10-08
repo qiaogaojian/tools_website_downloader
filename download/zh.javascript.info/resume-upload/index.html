@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">可恢复的文件上传</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/resume-upload"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="可恢复的文件上传"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="可恢复的文件上传"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/xmlhttprequest"><link rel="next" href="/long-polling"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="可恢复的文件上传"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/resume-upload"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/resume-upload"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/resume-upload"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/resume-upload"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/resume-upload"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/resume-upload"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/resume-upload"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/resume-upload"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/resume-upload">English</option><option value="https://es.javascript.info/resume-upload">Español</option><option value="https://fr.javascript.info/resume-upload">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/resume-upload">Italiano</option><option value="https://ja.javascript.info/resume-upload">日本語</option><option value="https://ko.javascript.info/resume-upload">한국어</option><option value="https://learn.javascript.ru/resume-upload">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/resume-upload">Українська</option><option value="https://zh.javascript.info/resume-upload" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="9" max="12" data-tooltip="第 9/12 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../network/index.html"><span>网络请求</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"网络请求","item":"https://zh.javascript.info/network"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 11日 四月 2020"><div class="updated-at__content">11日 四月 2020</div></div></div><h1 class="main__header-title">可恢复的文件上传</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="可恢复的文件上传"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>使用 <code>fetch</code> 方法来上传文件相当容易。</p>
+<p>连接断开后如何恢复上传？这里没有对此的内建选项，但是我们有实现它的一些方式。</p>
+<p>对于大文件（如果我们可能需要恢复），可恢复的上传应该带有上传进度提示。由于 <code>fetch</code> 不允许跟踪上传进度，我们将会使用 <a href="../xmlhttprequest/index.html">XMLHttpRequest</a>。</p>
+<h2><a class="main__anchor" name="bu-tai-shi-yong-de-jin-du-shi-jian" href="#bu-tai-shi-yong-de-jin-du-shi-jian">不太实用的进度事件</a></h2><p>要恢复上传，我们需要知道在连接断开前已经上传了多少。</p>
+<p>我们有 <code>xhr.upload.onprogress</code> 来跟踪上传进度。</p>
+<p>不幸的是，它不会帮助我们在此处恢复上传，因为它会在数据 <strong>被发送</strong> 时触发，但是服务器是否接收到了？浏览器并不知道。</p>
+<p>或许它是由本地网络代理缓冲的（buffered），或者可能是远程服务器进程刚刚终止而无法处理它们，亦或是它在中间丢失了，并没有到达服务器。</p>
+<p>这就是为什么此事件仅适用于显示一个好看的进度条。</p>
+<p>要恢复上传，我们需要 <strong>确切地</strong> 知道服务器接收的字节数。而且只有服务器能告诉我们，因此，我们将发出一个额外的请求。</p>
+<h2><a class="main__anchor" name="suan-fa" href="#suan-fa">算法</a></h2><ol>
+<li>
+<p>首先，创建一个文件 id，以唯一地标识我们要上传的文件：</p>
+<div id="2gjeo0tgpi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let fileId = file.name + '-' + file.size + '-' + +file.lastModifiedDate;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在恢复上传时需要用到它，以告诉服务器我们要恢复的内容。</p>
+<p>如果名称，或大小，或最后一次修改事件发生了更改，则将有另一个 <code>fileId</code>。</p>
+</li>
+<li>
+<p>向服务器发送一个请求，询问它已经有了多少字节，像这样：</p>
+<div id="98errfef81" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let response = await fetch('status', {
+  headers: {
+    'X-File-Id': fileId
+  }
+});
+
+// 服务器已有的字节数
+let startByte = +await response.text();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这假设服务器通过 <code>X-File-Id</code> header 跟踪文件上传。应该在服务端实现。</p>
+<p>如果服务器上尚不存在该文件，则服务器响应应为 <code>0</code>。</p>
+</li>
+<li>
+<p>然后，我们可以使用 <code>Blob</code> 和 <code>slice</code> 方法来发送从 <code>startByte</code> 开始的文件：</p>
+<div id="vkz6hmj0g6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>xhr.open(&quot;POST&quot;, &quot;upload&quot;, true);
+
+// 文件 id，以便服务器知道我们要恢复的是哪个文件
+xhr.setRequestHeader('X-File-Id', fileId);
+
+// 发送我们要从哪个字节开始恢复，因此服务器知道我们正在恢复
+xhr.setRequestHeader('X-Start-Byte', startByte);
+
+xhr.upload.onprogress = (e) =&gt; {
+  console.log(`Uploaded ${startByte + e.loaded} of ${startByte + e.total}`);
+};
+
+// 文件可以是来自 input.files[0]，或者另一个源
+xhr.send(file.slice(startByte));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里我们将文件 id 作为 <code>X-File-Id</code> 发送给服务器，所以服务器知道我们正在上传哪个文件，并且，我们还将起始字节作为 <code>X-Start-Byte</code> 发送给服务器，所以服务器知道我们不是重新上传它，而是恢复其上传。</p>
+<p>服务器应该检查其记录，如果有一个上传的该文件，并且当前已上传的文件大小恰好是 <code>X-Start-Byte</code>，那么就将数据附加到该文件。</p>
+</li>
+</ol>
+<p>这是用 Node.js 写的包含客户端和服务端代码的示例。</p>
+<p>在本网站上，它只有部分能工作，因为 Node.js 位于另一个服务 Nginx 后面，该服务器缓冲（buffer）上传的内容，当完全上传后才将其传递给 Node.js。</p>
+<p>但是你可以下载这些代码，在本地运行以进行完整演示：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">server.js</div><div class="code-tabs__switch">uploader.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/resume-upload/upload-resume/index.html"></a><a class="code-tabs__button code-tabs__button_download" target="_blank" href="../tutorial/zipview/upload-resume_plunkId%3Duxj1jt1eMi25C7q1.zip"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/resume-upload/upload-resume/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>let http = require('http');
+let static = require('node-static');
+let fileServer = new static.Server('.');
+let path = require('path');
+let fs = require('fs');
+let debug = require('debug')('example:resume-upload');
+
+let uploads = Object.create(null);
+
+function onUpload(req, res) {
+
+  let fileId = req.headers['x-file-id'];
+  let startByte = +req.headers['x-start-byte'];
+
+  if (!fileId) {
+    res.writeHead(400, &quot;No file id&quot;);
+    res.end();
+  }
+
+  // 我们将“无处”保存文件
+  let filePath = '/dev/null';
+  // 可以改用真实路径，例如
+  // let filePath = path.join('/tmp', fileId);
+
+  debug(&quot;onUpload fileId: &quot;, fileId);
+
+  // 初始化一个新上传
+  if (!uploads[fileId]) uploads[fileId] = {};
+  let upload = uploads[fileId];
+
+  debug(&quot;bytesReceived:&quot; + upload.bytesReceived + &quot; startByte:&quot; + startByte)
+
+  let fileStream;
+
+  // 如果 startByte 为 0 或者没设置，创建一个新文件，否则检查大小并附加到现有的大小
+  if (!startByte) {
+    upload.bytesReceived = 0;
+    fileStream = fs.createWriteStream(filePath, {
+      flags: 'w'
+    });
+    debug(&quot;New file created: &quot; + filePath);
+  } else {
+    // 我们也可以检查磁盘上的文件大小以确保
+    if (upload.bytesReceived != startByte) {
+      res.writeHead(400, &quot;Wrong start byte&quot;);
+      res.end(upload.bytesReceived);
+      return;
+    }
+    // 附加到现有文件
+    fileStream = fs.createWriteStream(filePath, {
+      flags: 'a'
+    });
+    debug(&quot;File reopened: &quot; + filePath);
+  }
+
+
+  req.on('data', function(data) {
+    debug(&quot;bytes received&quot;, upload.bytesReceived);
+    upload.bytesReceived += data.length;
+  });
+
+  // 将 request body 发送到文件
+  req.pipe(fileStream);
+
+  // 当请求完成，并且其所有数据都以写入完成
+  fileStream.on('close', function() {
+    if (upload.bytesReceived == req.headers['x-file-size']) {
+      debug(&quot;Upload finished&quot;);
+      delete uploads[fileId];
+
+      // 可以在这里对上传的文件进行其他操作
+
+      res.end(&quot;Success &quot; + upload.bytesReceived);
+    } else {
+      // 连接断开，我们将未完成的文件保留在周围
+      debug(&quot;File unfinished, stopped at &quot; + upload.bytesReceived);
+      res.end();
+    }
+  });
+
+  // 如果发生 I/O error —— 完成请求
+  fileStream.on('error', function(err) {
+    debug(&quot;fileStream error&quot;);
+    res.writeHead(500, &quot;File error&quot;);
+    res.end();
+  });
+
+}
+
+function onStatus(req, res) {
+  let fileId = req.headers['x-file-id'];
+  let upload = uploads[fileId];
+  debug(&quot;onStatus fileId:&quot;, fileId, &quot; upload:&quot;, upload);
+  if (!upload) {
+    res.end(&quot;0&quot;)
+  } else {
+    res.end(String(upload.bytesReceived));
+  }
+}
+
+
+function accept(req, res) {
+  if (req.url == '/status') {
+    onStatus(req, res);
+  } else if (req.url == '/upload' &amp;&amp; req.method == 'POST') {
+    onUpload(req, res);
+  } else {
+    fileServer.serve(req, res);
+  }
+
+}
+
+
+
+
+// -----------------------------------
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+  console.log('Server listening at port 8080');
+} else {
+  exports.accept = accept;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>class Uploader {
+
+  constructor({file, onProgress}) {
+    this.file = file;
+    this.onProgress = onProgress;
+
+    // 创建唯一标识文件的 fileId
+    // 我们还可以添加用户会话标识符（如果有的话），以使其更具唯一性
+    this.fileId = file.name + '-' + file.size + '-' + +file.lastModifiedDate;
+  }
+
+  async getUploadedBytes() {
+    let response = await fetch('status', {
+      headers: {
+        'X-File-Id': this.fileId
+      }
+    });
+
+    if (response.status != 200) {
+      throw new Error(&quot;Can't get uploaded bytes: &quot; + response.statusText);
+    }
+
+    let text = await response.text();
+
+    return +text;
+  }
+
+  async upload() {
+    this.startByte = await this.getUploadedBytes();
+
+    let xhr = this.xhr = new XMLHttpRequest();
+    xhr.open(&quot;POST&quot;, &quot;upload&quot;, true);
+
+    // 发送文件 id，以便服务器知道要恢复哪个文件
+    xhr.setRequestHeader('X-File-Id', this.fileId);
+    // 发送我们要从哪个字节开始恢复，因此服务器知道我们正在恢复
+    xhr.setRequestHeader('X-Start-Byte', this.startByte);
+
+    xhr.upload.onprogress = (e) =&gt; {
+      this.onProgress(this.startByte + e.loaded, this.startByte + e.total);
+    };
+
+    console.log(&quot;send the file, starting from&quot;, this.startByte);
+    xhr.send(this.file.slice(this.startByte));
+
+    // return
+    //   true —— 如果上传成功，
+    //   false —— 如果被中止
+    // 出现 error 时将其抛出
+    return await new Promise((resolve, reject) =&gt; {
+
+      xhr.onload = xhr.onerror = () =&gt; {
+        console.log(&quot;upload end status:&quot; + xhr.status + &quot; text:&quot; + xhr.statusText);
+
+        if (xhr.status == 200) {
+          resolve(true);
+        } else {
+          reject(new Error(&quot;Upload failed: &quot; + xhr.statusText));
+        }
+      };
+
+      // onabort 仅在 xhr.abort() 被调用时触发
+      xhr.onabort = () =&gt; resolve(false);
+
+    });
+
+  }
+
+  stop() {
+    if (this.xhr) {
+      this.xhr.abort();
+    }
+  }
+
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+
+&lt;script src=&quot;uploader.js&quot;&gt;&lt;/script&gt;
+
+&lt;form name=&quot;upload&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; action=&quot;/upload&quot;&gt;
+  &lt;input type=&quot;file&quot; name=&quot;myfile&quot;&gt;
+  &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Upload (Resumes automatically)&quot;&gt;
+&lt;/form&gt;
+
+&lt;button onclick=&quot;uploader.stop()&quot;&gt;Stop upload&lt;/button&gt;
+
+
+&lt;div id=&quot;log&quot;&gt;Progress indication&lt;/div&gt;
+
+&lt;script&gt;
+  function log(html) {
+    document.getElementById('log').innerHTML = html;
+    console.log(html);
+  }
+
+  function onProgress(loaded, total) {
+    log(&quot;progress &quot; + loaded + ' / ' + total);
+  }
+
+  let uploader;
+
+  document.forms.upload.onsubmit = async function(e) {
+    e.preventDefault();
+
+    let file = this.elements.myfile.files[0];
+    if (!file) return;
+
+    uploader = new Uploader({file, onProgress});
+
+    try {
+      let uploaded = await uploader.upload();
+
+      if (uploaded) {
+        log('success');
+      } else {
+        log('stopped');
+      }
+
+    } catch(err) {
+      console.error(err);
+      log('error');
+    }
+  };
+
+&lt;/script&gt;</code></pre></div></div></div><p>正如我们所看到的，现代网络方法在功能上已经与文件管理器非常接近 —— 控制 header，进度指示，发送文件片段等。</p>
+<p>我们可以实现可恢复的上传等。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../xmlhttprequest/index.html" data-tooltip="XMLHttpRequest"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../long-polling/index.html" data-tooltip="长轮询（Long polling）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/resume-upload","identifier":"\/resume-upload"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../network/index.html">网络请求</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bu-tai-shi-yong-de-jin-du-shi-jian">不太实用的进度事件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#suan-fa">算法</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fresume-upload" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/5-network/09-resume-upload" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,1926 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">数组方法</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/array-methods"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="数组方法"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="数组方法"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/array"><link rel="next" href="/iterable"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="数组方法"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/array-methods"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/array-methods"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/array-methods"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/array-methods"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/array-methods"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/array-methods"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/array-methods"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/array-methods"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/array-methods"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/array-methods"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/array-methods"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/array-methods">عربي</option><option value="https://javascript.info/array-methods">English</option><option value="https://es.javascript.info/array-methods">Español</option><option value="https://fr.javascript.info/array-methods">Français</option><option value="https://id.javascript.info/array-methods">Indonesia</option><option value="https://it.javascript.info/array-methods">Italiano</option><option value="https://ja.javascript.info/array-methods">日本語</option><option value="https://ko.javascript.info/array-methods">한국어</option><option value="https://learn.javascript.ru/array-methods">Русский</option><option value="https://tr.javascript.info/array-methods">Türkçe</option><option value="https://uk.javascript.info/array-methods">Українська</option><option value="https://zh.javascript.info/array-methods" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="41" max="92" data-tooltip="第 41/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">数组方法</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="数组方法"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>数组提供的方法有很多。为了方便起见，在本章中，我们将按组讲解。</p>
+<h2><a class="main__anchor" name="tian-jia-yi-chu-shu-zu-yuan-su" href="#tian-jia-yi-chu-shu-zu-yuan-su">添加/移除数组元素</a></h2><p>我们已经学了从数组的首端或尾端添加和删除元素的方法：</p>
+<ul>
+<li><code>arr.push(...items)</code> —— 从尾端添加元素，</li>
+<li><code>arr.pop()</code> —— 从尾端提取元素，</li>
+<li><code>arr.shift()</code> —— 从首端提取元素，</li>
+<li><code>arr.unshift(...items)</code> —— 从首端添加元素。</li>
+</ul>
+<p>这里还有其他几种方法。</p>
+<h3><a class="main__anchor" name="splice" href="#splice">splice</a></h3><p>如何从数组中删除元素？</p>
+<p>数组是对象，所以我们可以尝试使用 <code>delete</code>：</p>
+<div id="h5avwxntgu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;I&quot;, &quot;go&quot;, &quot;home&quot;];
+
+delete arr[1]; // remove &quot;go&quot;
+
+alert( arr[1] ); // undefined
+
+// now arr = [&quot;I&quot;,  , &quot;home&quot;];
+alert( arr.length ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>元素被删除了，但数组仍然有 3 个元素，我们可以看到 <code>arr.length == 3</code>。</p>
+<p>这很正常，因为 <code>delete obj.key</code> 是通过 <code>key</code> 来移除对应的值。对于对象来说是可以的。但是对于数组来说，我们通常希望剩下的元素能够移动并占据被释放的位置。我们希望得到一个更短的数组。</p>
+<p>所以应该使用特殊的方法。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">arr.splice</a> 方法可以说是处理数组的瑞士军刀。它可以做所有事情：添加，删除和插入元素。</p>
+<p>语法是：</p>
+<div id="gdolfjvxk5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.splice(start[, deleteCount, elem1, ..., elemN])</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它从索引 <code>start</code> 开始修改 <code>arr</code>：删除 <code>deleteCount</code> 个元素并在当前位置插入 <code>elem1, ..., elemN</code>。最后返回已被删除元素的数组。</p>
+<p>通过例子我们可以很容易地掌握这个方法。</p>
+<p>让我们从删除开始：</p>
+<div id="563a8wat5x" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;I&quot;, &quot;study&quot;, &quot;JavaScript&quot;];
+
+arr.splice(1, 1); // 从索引 1 开始删除 1 个元素
+
+alert( arr ); // [&quot;I&quot;, &quot;JavaScript&quot;]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>简单，对吧？从索引 <code>1</code> 开始删除 <code>1</code> 个元素。（译注：当只填写了 <code>splice</code> 的 <code>start</code> 参数时，将删除从索引 <code>start</code> 开始的所有数组项）</p>
+<p>在下一个例子中，我们删除了 3 个元素，并用另外两个元素替换它们：</p>
+<div id="qibsr399d6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:36}]},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:11,&quot;end&quot;:38}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;I&quot;, &quot;study&quot;, &quot;JavaScript&quot;, &quot;right&quot;, &quot;now&quot;];
+
+// 删除数组的前三项，并使用其他内容代替它们
+arr.splice(0, 3, &quot;Let's&quot;, &quot;dance&quot;);
+
+alert( arr ) // 现在 [&quot;Let's&quot;, &quot;dance&quot;, &quot;right&quot;, &quot;now&quot;]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这里我们可以看到 <code>splice</code> 返回了已删除元素的数组：</p>
+<div id="81lc8cth4e" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:11,&quot;end&quot;:24}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;I&quot;, &quot;study&quot;, &quot;JavaScript&quot;, &quot;right&quot;, &quot;now&quot;];
+
+// 删除前两个元素
+let removed = arr.splice(0, 2);
+
+alert( removed ); // &quot;I&quot;, &quot;study&quot; &lt;-- 被从数组中删除了的元素</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以将 <code>deleteCount</code> 设置为 <code>0</code>，<code>splice</code> 方法就能够插入元素而不用删除任何元素：</p>
+<div id="4k9fu3scpv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;I&quot;, &quot;study&quot;, &quot;JavaScript&quot;];
+
+// 从索引 2 开始
+// 删除 0 个元素
+// 然后插入 &quot;complex&quot; 和 &quot;language&quot;
+arr.splice(2, 0, &quot;complex&quot;, &quot;language&quot;);
+
+alert( arr ); // &quot;I&quot;, &quot;study&quot;, &quot;complex&quot;, &quot;language&quot;, &quot;JavaScript&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">允许负向索引</span></div>
+            <div class="important__content"><p>在这里和其他数组方法中，负向索引都是被允许的。它们从数组末尾计算位置，如下所示：</p>
+<div id="plcm3k8zru" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 5];
+
+// 从索引 -1（尾端前一位）
+// 删除 0 个元素，
+// 然后插入 3 和 4
+arr.splice(-1, 0, 3, 4);
+
+alert( arr ); // 1,2,3,4,5</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h3><a class="main__anchor" name="slice" href="#slice">slice</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">arr.slice</a> 方法比 <code>arr.splice</code> 简单得多。</p>
+<p>语法是：</p>
+<div id="qn7aq4p6pn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.slice([start], [end])</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它会返回一个新数组，将所有从索引 <code>start</code> 到 <code>end</code>（不包括 <code>end</code>）的数组项复制到一个新的数组。<code>start</code> 和 <code>end</code> 都可以是负数，在这种情况下，从末尾计算索引。</p>
+<p>它和字符串的 <code>str.slice</code> 方法有点像，就是把子字符串替换成子数组。</p>
+<p>例如：</p>
+<div id="fn3tl7r48u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;t&quot;, &quot;e&quot;, &quot;s&quot;, &quot;t&quot;];
+
+alert( arr.slice(1, 3) ); // e,s（复制从位置 1 到位置 3 的元素）
+
+alert( arr.slice(-2) ); // s,t（复制从位置 -2 到尾端的元素）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以不带参数地调用它：<code>arr.slice()</code> 会创建一个 <code>arr</code> 的副本。其通常用于获取副本，以进行不影响原始数组的进一步转换。</p>
+<h3><a class="main__anchor" name="concat" href="#concat">concat</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">arr.concat</a> 创建一个新数组，其中包含来自于其他数组和其他项的值。</p>
+<p>语法：</p>
+<div id="lz8gfj7eis" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.concat(arg1, arg2...)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它接受任意数量的参数 —— 数组或值都可以。</p>
+<p>结果是一个包含来自于 <code>arr</code>，然后是 <code>arg1</code>，<code>arg2</code> 的元素的新数组。</p>
+<p>如果参数 <code>argN</code> 是一个数组，那么其中的所有元素都会被复制。否则，将复制参数本身。</p>
+<p>例如：</p>
+<div id="qme3rpg4r3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2];
+
+// create an array from: arr and [3,4]
+alert( arr.concat([3, 4]) ); // 1,2,3,4
+
+// create an array from: arr and [3,4] and [5,6]
+alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+
+// create an array from: arr and [3,4], then add values 5 and 6
+alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，它只复制数组中的元素。其他对象，即使它们看起来像数组一样，但仍然会被作为一个整体添加：</p>
+<div id="4ispytd8fl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2];
+
+let arrayLike = {
+  0: &quot;something&quot;,
+  length: 1
+};
+
+alert( arr.concat(arrayLike) ); // 1,2,[object Object]</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是，如果类似数组的对象具有 <code>Symbol.isConcatSpreadable</code> 属性，那么它就会被 <code>concat</code> 当作一个数组来处理：此对象中的元素将被添加：</p>
+<div id="aa06m2d670" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2];
+
+let arrayLike = {
+  0: &quot;something&quot;,
+  1: &quot;else&quot;,
+  [Symbol.isConcatSpreadable]: true,
+  length: 2
+};
+
+alert( arr.concat(arrayLike) ); // 1,2,something,else</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="bian-li-foreach" href="#bian-li-foreach">遍历：forEach</a></h2><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">arr.forEach</a> 方法允许为数组的每个元素都运行一个函数。</p>
+<p>语法：</p>
+<div id="k17s03gmhw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.forEach(function(item, index, array) {
+  // ... do something with item
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，下面这个程序显示了数组的每个元素：</p>
+<div id="5q70dyz42w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 对每个元素调用 alert
+[&quot;Bilbo&quot;, &quot;Gandalf&quot;, &quot;Nazgul&quot;].forEach(alert);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>而这段代码更详细地介绍了它们在目标数组中的位置：</p>
+<div id="jk9wp0kxsr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>[&quot;Bilbo&quot;, &quot;Gandalf&quot;, &quot;Nazgul&quot;].forEach((item, index, array) =&gt; {
+  alert(`${item} is at index ${index} in ${array}`);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该函数的结果（如果它有返回）会被抛弃和忽略。</p>
+<h2><a class="main__anchor" name="zai-shu-zu-zhong-sou-suo" href="#zai-shu-zu-zhong-sou-suo">在数组中搜索</a></h2><p>现在，让我们介绍在数组中进行搜索的方法。</p>
+<h3><a class="main__anchor" name="indexoflastindexof-he-includes" href="#indexoflastindexof-he-includes">indexOf/lastIndexOf 和 includes</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf">arr.indexOf</a>、<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf">arr.lastIndexOf</a> 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/includes">arr.includes</a> 方法与字符串操作具有相同的语法，并且作用基本上也与字符串的方法相同，只不过这里是对数组元素而不是字符进行操作：</p>
+<ul>
+<li><code>arr.indexOf(item, from)</code> 从索引 <code>from</code> 开始搜索 <code>item</code>，如果找到则返回索引，否则返回 <code>-1</code>。</li>
+<li><code>arr.lastIndexOf(item, from)</code> —— 和上面相同，只是从右向左搜索。</li>
+<li><code>arr.includes(item, from)</code> —— 从索引 <code>from</code> 开始搜索 <code>item</code>，如果找到则返回 <code>true</code>（译注：如果没找到，则返回 <code>false</code>）。</li>
+</ul>
+<p>例如：</p>
+<div id="6pxl0ro8ev" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 0, false];
+
+alert( arr.indexOf(0) ); // 1
+alert( arr.indexOf(false) ); // 2
+alert( arr.indexOf(null) ); // -1
+
+alert( arr.includes(1) ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，这些方法使用的是严格相等 <code>===</code> 比较。所以如果我们搜索 <code>false</code>，会精确到的确是 <code>false</code> 而不是数字 <code>0</code>。</p>
+<p>如果我们想检查是否包含某个元素，并且不想知道确切的索引，那么 <code>arr.includes</code> 是首选。</p>
+<p>此外，<code>includes</code> 的一个非常小的差别是它能正确处理<code>NaN</code>，而不像 <code>indexOf/lastIndexOf</code>：</p>
+<div id="0qb9soo2uu" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>const arr = [NaN];
+alert( arr.indexOf(NaN) ); // -1（应该为 0，但是严格相等 === equality 对 NaN 无效）
+alert( arr.includes(NaN) );// true（这个结果是对的）</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="find-he-findindex" href="#find-he-findindex">find 和 findIndex</a></h3><p>想象一下，我们有一个对象数组。我们如何找到具有特定条件的对象？</p>
+<p>这时可以用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/find">arr.find</a> 方法。</p>
+<p>语法如下：</p>
+<div id="raox0e6smf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let result = arr.find(function(item, index, array) {
+  // 如果返回 true，则返回 item 并停止迭代
+  // 对于假值（falsy）的情况，则返回 undefined
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>依次对数组中的每个元素调用该函数：</p>
+<ul>
+<li><code>item</code> 是元素。</li>
+<li><code>index</code> 是它的索引。</li>
+<li><code>array</code> 是数组本身。</li>
+</ul>
+<p>如果它返回 <code>true</code>，则搜索停止，并返回 <code>item</code>。如果没有搜索到，则返回 <code>undefined</code>。</p>
+<p>例如，我们有一个存储用户的数组，每个用户都有 <code>id</code> 和 <code>name</code> 字段。让我们找到 <code>id == 1</code> 的那个用户：</p>
+<div id="sxmfs1f8dy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let users = [
+  {id: 1, name: &quot;John&quot;},
+  {id: 2, name: &quot;Pete&quot;},
+  {id: 3, name: &quot;Mary&quot;}
+];
+
+let user = users.find(item =&gt; item.id == 1);
+
+alert(user.name); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在现实生活中，对象数组是很常见的，所以 <code>find</code> 方法非常有用。</p>
+<p>注意在这个例子中，我们传给了 <code>find</code> 一个单参数函数 <code>item =&gt; item.id == 1</code>。这很典型，并且 <code>find</code> 方法的其他参数很少使用。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex">arr.findIndex</a> 方法（与 <code>arr.find</code> 方法）基本上是一样的，但它返回找到元素的索引，而不是元素本身。并且在未找到任何内容时返回 <code>-1</code>。</p>
+<h3><a class="main__anchor" name="filter" href="#filter">filter</a></h3><p><code>find</code> 方法搜索的是使函数返回 <code>true</code> 的第一个（单个）元素。</p>
+<p>如果需要匹配的有很多，我们可以使用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">arr.filter(fn)</a>。</p>
+<p>语法与 <code>find</code> 大致相同，但是 <code>filter</code> 返回的是所有匹配元素组成的数组：</p>
+<div id="xmysa27ksi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let results = arr.filter(function(item, index, array) {
+  // 如果 true item 被 push 到 results，迭代继续
+  // 如果什么都没找到，则返回空数组
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如：</p>
+<div id="xtcj732eko" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let users = [
+  {id: 1, name: &quot;John&quot;},
+  {id: 2, name: &quot;Pete&quot;},
+  {id: 3, name: &quot;Mary&quot;}
+];
+
+// 返回前两个用户的数组
+let someUsers = users.filter(item =&gt; item.id &lt; 3);
+
+alert(someUsers.length); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="zhuan-huan-shu-zu" href="#zhuan-huan-shu-zu">转换数组</a></h2><p>让我们继续学习进行数组转换和重新排序的方法。</p>
+<h3><a class="main__anchor" name="map" href="#map">map</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/map">arr.map</a> 方法是最有用和经常使用的方法之一。</p>
+<p>它对数组的每个元素都调用函数，并返回结果数组。</p>
+<p>语法：</p>
+<div id="hxlxdpfwyr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let result = arr.map(function(item, index, array) {
+  // 返回新值而不是当前元素
+})</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，在这里我们将每个元素转换为它的字符串长度：</p>
+<div id="7jed225njv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let lengths = [&quot;Bilbo&quot;, &quot;Gandalf&quot;, &quot;Nazgul&quot;].map(item =&gt; item.length);
+alert(lengths); // 5,7,6</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="sortfn" href="#sortfn">sort(fn)</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">arr.sort</a> 方法对数组进行 <strong>原位（in-place）</strong> 排序，更改元素的顺序。(译注：原位是指在此数组内，而非生成一个新数组。)</p>
+<p>它还返回排序后的数组，但是返回值通常会被忽略，因为修改了 <code>arr</code> 本身。</p>
+<p>语法：</p>
+<div id="yca3usf3be" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:18,&quot;end&quot;:26}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [ 1, 2, 15 ];
+
+// 该方法重新排列 arr 的内容
+arr.sort();
+
+alert( arr );  // 1, 15, 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>你有没有注意到结果有什么奇怪的地方？</p>
+<p>顺序变成了 <code>1, 15, 2</code>。不对，但为什么呢？</p>
+<p><strong>这些元素默认情况下被按字符串进行排序。</strong></p>
+<p>从字面上看，所有元素都被转换为字符串，然后进行比较。对于字符串，按照词典顺序进行排序，实际上应该是 <code>&quot;2&quot; &gt; &quot;15&quot;</code>。</p>
+<p>要使用我们自己的排序顺序，我们需要提供一个函数作为 <code>arr.sort()</code> 的参数。</p>
+<p>该函数应该比较两个任意值并返回：</p>
+<div id="fhumka8pge" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function compare(a, b) {
+  if (a &gt; b) return 1; // 如果第一个值比第二个值大
+  if (a == b) return 0; // 如果两个值相等
+  if (a &lt; b) return -1; // 如果第一个值比第二个值小
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，按数字进行排序：</p>
+<div id="0q28tj96s3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:10,&quot;cols&quot;:[{&quot;start&quot;:16,&quot;end&quot;:24}]},{&quot;start&quot;:8,&quot;end&quot;:8}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function compareNumeric(a, b) {
+  if (a &gt; b) return 1;
+  if (a == b) return 0;
+  if (a &lt; b) return -1;
+}
+
+let arr = [ 1, 2, 15 ];
+
+arr.sort(compareNumeric);
+
+alert(arr);  // 1, 2, 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在结果符合预期了。</p>
+<p>我们思考一下这儿发生了什么。<code>arr</code> 可以是由任何内容组成的数组，对吗？它可能包含数字、字符串、对象或其他任何内容。我们有一组 <strong>一些元素</strong>。要对其进行排序，我们需要一个 <strong>排序函数</strong> 来确认如何比较这些元素。默认是按字符串进行排序的。</p>
+<p><code>arr.sort(fn)</code> 方法实现了通用的排序算法。我们不需要关心它的内部工作原理（大多数情况下都是经过 <a href="https://en.wikipedia.org/wiki/Quicksort">快速排序</a> 或 <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a> 算法优化的）。它将遍历数组，使用提供的函数比较其元素并对其重新排序，我们所需要的就是提供执行比较的函数 <code>fn</code>。</p>
+<p>顺便说一句，如果我们想知道要比较哪些元素 —— 那么什么都不会阻止 alert 它们：</p>
+<div id="qwruulmozk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>[1, -2, 15, 2, 0, 8].sort(function(a, b) {
+  alert( a + &quot; &lt;&gt; &quot; + b );
+  return a - b;
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该算法可以在此过程中，将一个元素与多个其他元素进行比较，但是它会尝试进行尽可能少的比较。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">比较函数可以返回任何数字</span></div>
+            <div class="important__content"><p>实际上，比较函数只需要返回一个正数表示“大于”，一个负数表示“小于”。</p>
+<p>通过这个原理我们可以编写更短的函数：</p>
+<div id="cabojkfllh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:16,&quot;end&quot;:24}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [ 1, 2, 15 ];
+
+arr.sort(function(a, b) { return a - b; });
+
+alert(arr);  // 1, 2, 15</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">箭头函数最好</span></div>
+            <div class="important__content"><p>你还记得 <a href="../arrow-functions-basics/index.html">箭头函数</a> 吗？这里使用箭头函数会更加简洁：</p>
+<div id="pikv6q8pue" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.sort( (a, b) =&gt; a - b );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这与上面更长的版本完全相同。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">使用 <code>localeCompare</code> for strings</span></div>
+            <div class="important__content"><p>你记得 <a href="../string/index.html#correct-comparisons">字符串比较</a> 算法吗？默认情况下，它通过字母的代码比较字母。</p>
+<p>对于许多字母，最好使用 <code>str.localeCompare</code> 方法正确地对字母进行排序，例如 <code>Ö</code>。</p>
+<p>例如，让我们用德语对几个国家/地区进行排序：</p>
+<div id="mjez4dozry" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let countries = ['Österreich', 'Andorra', 'Vietnam'];
+
+alert( countries.sort( (a, b) =&gt; a &gt; b ? 1 : -1) ); // Andorra, Vietnam, Österreich（错的）
+
+alert( countries.sort( (a, b) =&gt; a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam（对的！）</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h3><a class="main__anchor" name="reverse" href="#reverse">reverse</a></h3><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse">arr.reverse</a> 方法用于颠倒 <code>arr</code> 中元素的顺序。</p>
+<p>例如：</p>
+<div id="fe8ju6zosn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+
+alert( arr ); // 5,4,3,2,1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它也会返回颠倒后的数组 <code>arr</code>。</p>
+<h3><a class="main__anchor" name="split-he-join" href="#split-he-join">split 和 join</a></h3><p>举一个现实生活场景的例子。我们正在编写一个消息应用程序，并且该人员输入以逗号分隔的接收者列表：<code>John, Pete, Mary</code>。但对我们来说，名字数组比单个字符串舒适得多。怎么做才能获得这样的数组呢？</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/split">str.split(delim)</a> 方法可以做到。它通过给定的分隔符 <code>delim</code> 将字符串分割成一个数组。</p>
+<p>在下面的例子中，我们用“逗号后跟着一个空格”作为分隔符：</p>
+<div id="v00pbwyct7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let names = 'Bilbo, Gandalf, Nazgul';
+
+let arr = names.split(', ');
+
+for (let name of arr) {
+  alert( `A message to ${name}.` ); // A message to Bilbo（和其他名字）
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>split</code> 方法有一个可选的第二个数字参数 —— 对数组长度的限制。如果提供了，那么额外的元素会被忽略。但实际上它很少使用：</p>
+<div id="pdhegvo18c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+
+alert(arr); // Bilbo, Gandalf</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">拆分为字母</span></div>
+            <div class="important__content"><p>调用带有空参数 <code>s</code> 的 <code>split(s)</code>，会将字符串拆分为字母数组：</p>
+<div id="pyxddekn48" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let str = &quot;test&quot;;
+
+alert( str.split('') ); // t,e,s,t</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/join">arr.join(glue)</a> 与 <code>split</code> 相反。它会在它们之间创建一串由 <code>glue</code> 粘合的 <code>arr</code> 项。</p>
+<p>例如：</p>
+<div id="t5tupuhx3f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+
+let str = arr.join(';'); // 使用分号 ; 将数组粘合成字符串
+
+alert( str ); // Bilbo;Gandalf;Nazgul</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="reducereduceright" href="#reducereduceright">reduce/reduceRight</a></h3><p>当我们需要遍历一个数组时 —— 我们可以使用 <code>forEach</code>，<code>for</code> 或 <code>for..of</code>。</p>
+<p>当我们需要遍历并返回每个元素的数据时 —— 我们可以使用 <code>map</code>。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">arr.reduce</a> 方法和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight">arr.reduceRight</a> 方法和上面的种类差不多，但稍微复杂一点。它们用于根据数组计算单个值。</p>
+<p>语法是：</p>
+<div id="dpkv3hj8r1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let value = arr.reduce(function(accumulator, item, index, array) {
+  // ...
+}, [initial]);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该函数一个接一个地应用于所有数组元素，并将其结果“搬运（carry on）”到下一个调用。</p>
+<p>参数：</p>
+<ul>
+<li><code>accumulator</code> —— 是上一个函数调用的结果，第一次等于  <code>initial</code>（如果提供了 <code>initial</code> 的话）。</li>
+<li><code>item</code> —— 当前的数组元素。</li>
+<li><code>index</code> —— 当前索引。</li>
+<li><code>arr</code> —— 数组本身。</li>
+</ul>
+<p>应用函数时，上一个函数调用的结果将作为第一个参数传递给下一个函数。</p>
+<p>因此，第一个参数本质上是累加器，用于存储所有先前执行的组合结果。最后，它成为 <code>reduce</code> 的结果。</p>
+<p>听起来复杂吗？</p>
+<p>掌握这个知识点的最简单的方法就是通过示例。</p>
+<p>在这里，我们通过一行代码得到一个数组的总和：</p>
+<div id="woeb110d8k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3, 4, 5];
+
+let result = arr.reduce((sum, current) =&gt; sum + current, 0);
+
+alert(result); // 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>传递给 <code>reduce</code> 的函数仅使用了 2 个参数，通常这就足够了。</p>
+<p>让我们看看细节，到底发生了什么。</p>
+<ol>
+<li>在第一次运行时，<code>sum</code> 的值为初始值 <code>initial</code>（<code>reduce</code> 的最后一个参数），等于 0，<code>current</code> 是第一个数组元素，等于 <code>1</code>。所以函数运行的结果是 <code>1</code>。</li>
+<li>在第二次运行时，<code>sum = 1</code>，我们将第二个数组元素（<code>2</code>）与其相加并返回。</li>
+<li>在第三次运行中，<code>sum = 3</code>，我们继续把下一个元素与其相加，以此类推……</li>
+</ol>
+<p>计算流程：</p>
+<figure><div class="image" style="width:620px">
+      <div class="image__ratio" style="padding-top:20.806451612903228%"></div>
+      <object type="image/svg+xml" data="../article/array-methods/reduce.svg" width="620" height="129" class="image__image" data-use-theme>
+        <img src="../article/array-methods/reduce.svg" alt width="620" height="129">
+      </object>
+      </div></figure><p>或者以表格的形式表示，每一行代表的是对下一个数组元素的函数调用：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>sum</code></th>
+<th><code>current</code></th>
+<th><code>result</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 次调用</td>
+<td><code>0</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>第 2 次调用</td>
+<td><code>1</code></td>
+<td><code>2</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td>第 3 次调用</td>
+<td><code>3</code></td>
+<td><code>3</code></td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td>第 4 次调用</td>
+<td><code>6</code></td>
+<td><code>4</code></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>第 5 次调用</td>
+<td><code>10</code></td>
+<td><code>5</code></td>
+<td><code>15</code></td>
+</tr>
+</tbody>
+</table>
+<p>在这里，我们可以清楚地看到上一个调用的结果如何成为下一个调用的第一个参数。</p>
+<p>我们也可以省略初始值：</p>
+<div id="4sd3vsohm9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3, 4, 5];
+
+// 删除 reduce 的初始值（没有 0）
+let result = arr.reduce((sum, current) =&gt; sum + current);
+
+alert( result ); // 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果是一样的。这是因为如果没有初始值，那么 <code>reduce</code> 会将数组的第一个元素作为初始值，并从第二个元素开始迭代。</p>
+<p>计算表与上面相同，只是去掉第一行。</p>
+<p>但是这种使用需要非常小心。如果数组为空，那么在没有初始值的情况下调用 <code>reduce</code> 会导致错误。</p>
+<p>例如：</p>
+<div id="13pxf5bixw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [];
+
+// Error: Reduce of empty array with no initial value
+// 如果初始值存在，则 reduce 将为空 arr 返回它（即这个初始值）。
+arr.reduce((sum, current) =&gt; sum + current);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以建议始终指定初始值。</p>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight">arr.reduceRight</a> 和 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">arr.reduce</a> 方法的功能一样，只是遍历为从右到左。</p>
+<h2><a class="main__anchor" name="arrayisarray" href="#arrayisarray">Array.isArray</a></h2><p>数组是基于对象的，不构成单独的语言类型。</p>
+<p>所以 <code>typeof</code> 不能帮助从数组中区分出普通对象：</p>
+<div id="xqu3pv5z88" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(typeof {}); // object
+alert(typeof []); // same</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但是数组经常被使用，因此有一种特殊的方法用于判断：<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray">Array.isArray(value)</a>。如果 <code>value</code> 是一个数组，则返回 <code>true</code>；否则返回 <code>false</code>。</p>
+<div id="jbc1v79zvd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(Array.isArray({})); // false
+
+alert(Array.isArray([])); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="da-duo-shu-fang-fa-du-zhi-chi-thisarg" href="#da-duo-shu-fang-fa-du-zhi-chi-thisarg">大多数方法都支持 “thisArg”</a></h2><p>几乎所有调用函数的数组方法 —— 比如 <code>find</code>，<code>filter</code>，<code>map</code>，除了 <code>sort</code> 是一个特例，都接受一个可选的附加参数 <code>thisArg</code>。</p>
+<p>上面的部分中没有解释该参数，因为该参数很少使用。但是为了完整性，我们需要讲讲它。</p>
+<p>以下是这些方法的完整语法：</p>
+<div id="asmeajxvj8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+// ...
+// thisArg 是可选的最后一个参数</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>thisArg</code> 参数的值在 <code>func</code> 中变为 <code>this</code>。</p>
+<p>例如，在这里我们使用 <code>army</code> 对象方法作为过滤器，<code>thisArg</code> 用于传递上下文（passes the context）：</p>
+<div id="aq4hbeljtn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:15,&quot;end&quot;:16}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age &gt;= this.minAge &amp;&amp; user.age &lt; this.maxAge;
+  }
+};
+
+let users = [
+  {age: 16},
+  {age: 20},
+  {age: 23},
+  {age: 30}
+];
+
+// 找到 army.canJoin 返回 true 的 user
+let soldiers = users.filter(army.canJoin, army);
+
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果在上面的示例中我们使用了 <code>users.filter(army.canJoin)</code>，那么 <code>army.canJoin</code> 将被作为独立函数调用，并且这时 <code>this=undefined</code>，从而会导致即时错误。</p>
+<p>可以用 <code>users.filter(user =&gt; army.canJoin(user))</code> 替换对 <code>users.filter(army.canJoin, army)</code> 的调用。前者的使用频率更高，因为对于大多数人来说，它更容易理解。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>数组方法备忘单：</p>
+<ul>
+<li>
+<p>添加/删除元素：</p>
+<ul>
+<li><code>push(...items)</code> —— 向尾端添加元素，</li>
+<li><code>pop()</code> —— 从尾端提取一个元素，</li>
+<li><code>shift()</code> —— 从首端提取一个元素，</li>
+<li><code>unshift(...items)</code> —— 向首端添加元素，</li>
+<li><code>splice(pos, deleteCount, ...items)</code> —— 从 <code>pos</code> 开始删除 <code>deleteCount</code> 个元素，并插入 <code>items</code>。</li>
+<li><code>slice(start, end)</code> —— 创建一个新数组，将从索引 <code>start</code> 到索引 <code>end</code>（但不包括 <code>end</code>）的元素复制进去。</li>
+<li><code>concat(...items)</code> —— 返回一个新数组：复制当前数组的所有元素，并向其中添加 <code>items</code>。如果 <code>items</code> 中的任意一项是一个数组，那么就取其元素。</li>
+</ul>
+</li>
+<li>
+<p>搜索元素：</p>
+<ul>
+<li><code>indexOf/lastIndexOf(item, pos)</code> ——  从索引 <code>pos</code> 开始搜索 <code>item</code>，搜索到则返回该项的索引，否则返回 <code>-1</code>。</li>
+<li><code>includes(value)</code> —— 如果数组有 <code>value</code>，则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>find/filter(func)</code> —— 通过 <code>func</code> 过滤元素，返回使 <code>func</code> 返回 <code>true</code> 的第一个值/所有值。</li>
+<li><code>findIndex</code> 和 <code>find</code> 类似，但返回索引而不是值。</li>
+</ul>
+</li>
+<li>
+<p>遍历元素：</p>
+<ul>
+<li><code>forEach(func)</code> —— 对每个元素都调用 <code>func</code>，不返回任何内容。</li>
+</ul>
+</li>
+<li>
+<p>转换数组：</p>
+<ul>
+<li><code>map(func)</code> —— 根据对每个元素调用 <code>func</code> 的结果创建一个新数组。</li>
+<li><code>sort(func)</code> —— 对数组进行原位（in-place）排序，然后返回它。</li>
+<li><code>reverse()</code> —— 原位（in-place）反转数组，然后返回它。</li>
+<li><code>split/join</code> —— 将字符串转换为数组并返回。</li>
+<li><code>reduce/reduceRight(func, initial)</code> —— 通过对每个元素调用 <code>func</code> 计算数组上的单个值，并在调用之间传递中间结果。</li>
+</ul>
+</li>
+<li>
+<p>其他：</p>
+<ul>
+<li><code>Array.isArray(arr)</code> 检查 <code>arr</code> 是否是一个数组。</li>
+</ul>
+</li>
+</ul>
+<p>请注意，<code>sort</code>，<code>reverse</code> 和 <code>splice</code> 方法修改的是数组本身。</p>
+<p>这些是最常用的方法，它们覆盖 99％ 的用例。但是还有其他几个：</p>
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/some">arr.some(fn)</a>/<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/every">arr.every(fn)</a> 检查数组。</p>
+<p>与 <code>map</code> 类似，对数组的每个元素调用函数 <code>fn</code>。如果任何/所有结果为 <code>true</code>，则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>这两个方法的行为类似于 <code>||</code> 和 <code>&amp;&amp;</code> 运算符：如果 <code>fn</code> 返回一个真值，<code>arr.some()</code> 立即返回 <code>true</code> 并停止迭代其余数组项；如果 <code>fn</code> 返回一个假值，<code>arr.every()</code> 立即返回 <code>false</code> 并停止对其余数组项的迭代。</p>
+<p>我们可以使用 <code>every</code> 来比较数组：</p>
+<div id="wct2eu88xe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function arraysEqual(arr1, arr2) {
+  return arr1.length === arr2.length &amp;&amp; arr1.every((value, index) =&gt; value === arr2[index]);
+}
+
+alert( arraysEqual([1, 2], [1, 2])); // true</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">arr.fill(value, start, end)</a> —— 从索引 <code>start</code> 到 <code>end</code>，用重复的 <code>value</code> 填充数组。</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin">arr.copyWithin(target, start, end)</a> —— 将从位置 <code>start</code> 到 <code>end</code> 的所有元素复制到 <strong>自身</strong> 的 <code>target</code> 位置（覆盖现有元素）。</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/flat">arr.flat(depth)</a>/<a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap">arr.flatMap(fn)</a> 从多维数组创建一个新的扁平数组。</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/of">Array.of(element0[, element1[, …[, elementN]]])</a> 基于可变数量的参数创建一个新的 <code>Array</code> 实例，而不需要考虑参数的数量或类型。</p>
+</li>
+</ul>
+<p>有关完整列表，请参阅 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array">手册</a>。</p>
+<p>乍看起来，似乎有很多方法，很难记住。但实际上这比看起来要容易得多。</p>
+<p>浏览这个备忘单，以了解这些方法。然后解决本章中的习题来进行练习，以便让你有数组方法的使用经验。</p>
+<p>然后，每当你需要对数组进行某些操作，而又不知道怎么做的时候，请回到这儿，查看这个备忘单，然后找到正确的方法。示例将帮助你正确编写它。用不了多久，你就自然而然地记住这些方法了，根本不需要你死记硬背。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-borderleftwidth-zhuan-huan-cheng-borderleftwidth" name="jiang-borderleftwidth-zhuan-huan-cheng-borderleftwidth">将 border-left-width 转换成 borderLeftWidth</a></h3><a class="task__open-link" href="../task/camelcase/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>编写函数 <code>camelize(str)</code> 将诸如 “my-short-string” 之类的由短划线分隔的单词变成骆驼式的 “myShortString”。</p>
+<p>即：删除所有短横线，并将短横线后的每一个单词的首字母变为大写。</p>
+<p>示例：</p>
+<div id="p5imu8nc0c" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>camelize(&quot;background-color&quot;) == 'backgroundColor';
+camelize(&quot;list-style-image&quot;) == 'listStyleImage';
+camelize(&quot;-webkit-transition&quot;) == 'WebkitTransition';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>提示：使用 <code>split</code> 将字符串拆分成数组，对其进行转换之后再 <code>join</code> 回来。</p>
+<p><a href="https://plnkr.co/edit/AZ8QLRms2FzKxG99?p=preview" target="_blank" data-plunk-id="AZ8QLRms2FzKxG99">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="p9rstjps8u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function camelize(str) {
+  return str
+    .split('-') // splits 'my-long-word' into array ['my', 'long', 'word']
+    .map(
+      // capitalizes first letters of all array items except the first one
+      // converts ['my', 'long', 'word'] into ['my', 'Long', 'Word']
+      (word, index) =&gt; index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(''); // joins ['my', 'Long', 'Word'] into 'myLongWord'
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/siBOy371QLaRNxEb?p=preview" target="_blank" data-plunk-id="siBOy371QLaRNxEb">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#guo-lv-fan-wei" name="guo-lv-fan-wei">过滤范围</a></h3><a class="task__open-link" href="../task/filter-range/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>filterRange(arr, a, b)</code>，该函数获取一个数组 <code>arr</code>，在其中查找数值大于或等于 <code>a</code>，且小于或等于 <code>b</code> 的元素，并将结果以数组的形式返回。</p>
+<p>该函数不应该修改原数组。它应该返回新的数组。</p>
+<p>例如：</p>
+<div id="zem750c4f3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [5, 3, 8, 1];
+
+let filtered = filterRange(arr, 1, 4);
+
+alert( filtered ); // 3,1（匹配值）
+
+alert( arr ); // 5,3,8,1（未修改）</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/NsOpIFknAxkZFnWQ?p=preview" target="_blank" data-plunk-id="NsOpIFknAxkZFnWQ">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="akz8hn0wj3" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function filterRange(arr, a, b) {
+  // 在表达式周围添加了括号，以提高可读性
+  return arr.filter(item =&gt; (a &lt;= item &amp;&amp; item &lt;= b));
+}
+
+let arr = [5, 3, 8, 1];
+
+let filtered = filterRange(arr, 1, 4);
+
+alert( filtered ); // 3,1（匹配的值）
+
+alert( arr ); // 5,3,8,1（未经改动的数组中的值）</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/93upHtKjO9vRnxER?p=preview" target="_blank" data-plunk-id="93upHtKjO9vRnxER">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yuan-wei-inplace-guo-lv-fan-wei" name="yuan-wei-inplace-guo-lv-fan-wei">原位（in place）过滤范围</a></h3><a class="task__open-link" href="../task/filter-range-in-place/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>filterRangeInPlace(arr, a, b)</code>，该函数获取一个数组 <code>arr</code>，并删除其中介于 <code>a</code> 和 <code>b</code> 区间以外的所有值。检查：<code>a ≤ arr[i] ≤ b</code>。</p>
+<p>该函数应该只修改数组。它不应该返回任何东西。</p>
+<p>例如：</p>
+<div id="p68b9l0ezx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [5, 3, 8, 1];
+
+filterRangeInPlace(arr, 1, 4); // 删除了范围在 1 到 4 之外的所有值
+
+alert( arr ); // [3, 1]</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/f45PTFEY4e28LCyL?p=preview" target="_blank" data-plunk-id="f45PTFEY4e28LCyL">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="ktwpg3nae2" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function filterRangeInPlace(arr, a, b) {
+
+  for (let i = 0; i &lt; arr.length; i++) {
+    let val = arr[i];
+
+    // 如果超出范围，则删除
+    if (val &lt; a || val &gt; b) {
+      arr.splice(i, 1);
+      i--;
+    }
+  }
+
+}
+
+let arr = [5, 3, 8, 1];
+
+filterRangeInPlace(arr, 1, 4); // 删除 1 到 4 范围之外的值
+
+alert( arr ); // [3, 1]</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/pD1MfM3qsloYgDfv?p=preview" target="_blank" data-plunk-id="pD1MfM3qsloYgDfv">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-xu-pai-lie" name="jiang-xu-pai-lie">降序排列</a></h3><a class="task__open-link" href="../task/sort-back/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><div id="jdqj8lfblz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [5, 2, 1, -10, 8];
+
+// ……你的代码以降序对其进行排序
+
+alert( arr ); // 8, 5, 2, 1, -10</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="llbz5hz77f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [5, 2, 1, -10, 8];
+
+arr.sort((a, b) =&gt; b - a);
+
+alert( arr );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#fu-zhi-he-pai-xu-shu-zu" name="fu-zhi-he-pai-xu-shu-zu">复制和排序数组</a></h3><a class="task__open-link" href="../task/copy-sort-array/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们有一个字符串数组 <code>arr</code>。我们希望有一个排序过的副本，但保持 <code>arr</code> 不变。</p>
+<p>创建一个函数 <code>copySorted(arr)</code> 返回这样一个副本。</p>
+<div id="r5bzcwv9y6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;HTML&quot;, &quot;JavaScript&quot;, &quot;CSS&quot;];
+
+let sorted = copySorted(arr);
+
+alert( sorted ); // CSS, HTML, JavaScript
+alert( arr ); // HTML, JavaScript, CSS (no changes)</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>我们可以使用 <code>slice()</code> 来创建一个副本并对其进行排序：</p>
+<div id="09awv9iz3a" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function copySorted(arr) {
+  return arr.slice().sort();
+}
+
+let arr = [&quot;HTML&quot;, &quot;JavaScript&quot;, &quot;CSS&quot;];
+
+let sorted = copySorted(arr);
+
+alert( sorted );
+alert( arr );</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#chuang-jian-yi-ge-ke-kuo-zhan-de-calculator" name="chuang-jian-yi-ge-ke-kuo-zhan-de-calculator">创建一个可扩展的 calculator</a></h3><a class="task__open-link" href="../task/calculator-extendable/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个构造函数 <code>Calculator</code>，以创建“可扩展”的 calculator 对象。</p>
+<p>该任务由两部分组成。</p>
+<ol>
+<li>
+<p>首先，实现 <code>calculate(str)</code> 方法，该方法接受像 <code>&quot;1 + 2&quot;</code> 这样格式为“数字 运算符 数字”（以空格分隔）的字符串，并返回结果。该方法需要能够理解加号 <code>+</code> 和减号 <code>-</code>。</p>
+<p>用法示例：</p>
+<div id="1gmihd6mhm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let calc = new Calculator;
+
+alert( calc.calculate(&quot;3 + 7&quot;) ); // 10</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>然后添加方法 <code>addMethod(name, func)</code>，该方法教 calculator 进行新操作。它需要运算符 <code>name</code> 和实现它的双参数函数 <code>func(a,b)</code>。</p>
+<p>例如，我们添加乘法 <code>*</code>，除法 <code>/</code> 和求幂 <code>**</code>：</p>
+<div id="tc43q11u1o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let powerCalc = new Calculator;
+powerCalc.addMethod(&quot;*&quot;, (a, b) =&gt; a * b);
+powerCalc.addMethod(&quot;/&quot;, (a, b) =&gt; a / b);
+powerCalc.addMethod(&quot;**&quot;, (a, b) =&gt; a ** b);
+
+let result = powerCalc.calculate(&quot;2 ** 3&quot;);
+alert( result ); // 8</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<ul>
+<li>此任务中没有括号或复杂的表达式。</li>
+<li>数字和运算符之间只有一个空格。</li>
+<li>你可以自行选择是否添加错误处理功能。</li>
+</ul>
+<p><a href="https://plnkr.co/edit/IVnYAyls80wgMQ2C?p=preview" target="_blank" data-plunk-id="IVnYAyls80wgMQ2C">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><ul>
+<li>请注意方法的存储方式。它们只是被添加到 <code>this.methods</code> 属性中。</li>
+<li>所有检测和数字转换都通过 <code>calculate</code> 方法完成。将来可能会扩展它以支持更复杂的表达式。</li>
+</ul>
+<div id="ndder77h3g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function Calculator() {
+
+  this.methods = {
+    &quot;-&quot;: (a, b) =&gt; a - b,
+    &quot;+&quot;: (a, b) =&gt; a + b
+  };
+
+  this.calculate = function(str) {
+
+    let split = str.split(' '),
+      a = +split[0],
+      op = split[1],
+      b = +split[2];
+
+    if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+      return NaN;
+    }
+
+    return this.methods[op](a, b);
+  };
+
+  this.addMethod = function(name, func) {
+    this.methods[name] = func;
+  };
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/SI5JEHFOynlt5WbC?p=preview" target="_blank" data-plunk-id="SI5JEHFOynlt5WbC">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ying-she-dao-names" name="ying-she-dao-names">映射到 names</a></h3><a class="task__open-link" href="../task/array-get-names/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>你有一个 <code>user</code> 对象数组，每个对象都有 <code>user.name</code>。编写将其转换为 names 数组的代码。</p>
+<p>例如：</p>
+<div id="7o2qljhb9k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 28 };
+
+let users = [ john, pete, mary ];
+
+let names = /* ... your code */
+
+alert( names ); // John, Pete, Mary</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="cfx2w4tp18" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 28 };
+
+let users = [ john, pete, mary ];
+
+let names = users.map(item =&gt; item.name);
+
+alert( names ); // John, Pete, Mary</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ying-she-dao-dui-xiang" name="ying-she-dao-dui-xiang">映射到对象</a></h3><a class="task__open-link" href="../task/map-objects/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>你有一个 <code>user</code> 对象数组，每个对象都有 <code>name</code>，<code>surname</code> 和 <code>id</code>。</p>
+<p>编写代码以该数组为基础，创建另一个具有 <code>id</code> 和 <code>fullName</code> 的对象数组，其中 <code>fullName</code> 由 <code>name</code> 和 <code>surname</code> 生成。</p>
+<p>例如：</p>
+<div id="3j9u4rrckd" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, surname: &quot;Smith&quot;, id: 1 };
+let pete = { name: &quot;Pete&quot;, surname: &quot;Hunt&quot;, id: 2 };
+let mary = { name: &quot;Mary&quot;, surname: &quot;Key&quot;, id: 3 };
+
+let users = [ john, pete, mary ];
+
+let usersMapped = /* ... your code ... */
+
+/*
+usersMapped = [
+  { fullName: &quot;John Smith&quot;, id: 1 },
+  { fullName: &quot;Pete Hunt&quot;, id: 2 },
+  { fullName: &quot;Mary Key&quot;, id: 3 }
+]
+*/
+
+alert( usersMapped[0].id ) // 1
+alert( usersMapped[0].fullName ) // John Smith</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，实际上你需要将一个对象数组映射到另一个对象数组。在这儿尝试使用箭头函数 <code>=&gt;</code> 来编写。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="n411kusmds" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, surname: &quot;Smith&quot;, id: 1 };
+let pete = { name: &quot;Pete&quot;, surname: &quot;Hunt&quot;, id: 2 };
+let mary = { name: &quot;Mary&quot;, surname: &quot;Key&quot;, id: 3 };
+
+let users = [ john, pete, mary ];
+
+let usersMapped = users.map(user =&gt; ({
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id
+}));
+
+/*
+usersMapped = [
+  { fullName: &quot;John Smith&quot;, id: 1 },
+  { fullName: &quot;Pete Hunt&quot;, id: 2 },
+  { fullName: &quot;Mary Key&quot;, id: 3 }
+]
+*/
+
+alert( usersMapped[0].id ); // 1
+alert( usersMapped[0].fullName ); // John Smith</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，在箭头函数中，我们需要使用额外的括号。</p>
+<p>我们不能这样写：</p>
+<div id="ayk3q3vqit" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:36,&quot;end&quot;:37}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let usersMapped = users.map(user =&gt; {
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们记得，有两种箭头函数的写法：直接返回值 <code>value =&gt; expr</code> 和带主体的 <code>value =&gt; {...}</code>。</p>
+<p>JavaScript 在这里会把 <code>{</code> 视为函数体的开始，而不是对象的开始。解决方法是将它们包装在普通括号 <code>()</code> 中：</p>
+<div id="1t2baa156b" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:36,&quot;end&quot;:38}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let usersMapped = users.map(user =&gt; ({
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id
+}));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样就可以了。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#an-nian-ling-dui-yong-hu-pai-xu" name="an-nian-ling-dui-yong-hu-pai-xu">按年龄对用户排序</a></h3><a class="task__open-link" href="../task/sort-objects/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>编写函数 <code>sortByAge(users)</code> 获得对象数组的 <code>age</code> 属性，并根据 <code>age</code> 对这些对象数组进行排序。</p>
+<p>例如：</p>
+<div id="hzfhez7rhg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 28 };
+
+let arr = [ pete, john, mary ];
+
+sortByAge(arr);
+
+// now: [john, mary, pete]
+alert(arr[0].name); // John
+alert(arr[1].name); // Mary
+alert(arr[2].name); // Pete</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="zy4m6994ue" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sortByAge(arr) {
+  arr.sort((a, b) =&gt; a.age - b.age);
+}
+
+let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 28 };
+
+let arr = [ pete, john, mary ];
+
+sortByAge(arr);
+
+// 排序后的数组为：[john, mary, pete]
+alert(arr[0].name); // John
+alert(arr[1].name); // Mary
+alert(arr[2].name); // Pete</code></pre>
+        </div>
+      </div>
+      
+      </div><p>译注：解决方案的代码还可以更短一些</p>
+<div id="2b528p644e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sortByAge(arr) {
+  arr.sort((a, b) =&gt; a.age - b.age);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因为 <code>sort()</code> 方法的语法为 <code>arr.sort([compareFunction])</code>，如果没有指明 <code>compareFunction</code>，那么元素会被按照转换为的字符串的诸个字符的 Unicode 编码进行排序，如果指明了 <code>compareFunction</code>，那么数组会按照调用该函数的返回值排序。即 <code>a</code> 和 <code>b</code> 是两个将要被比较的元素：</p>
+<ul>
+<li>如果 <code>compareFunction(a, b)</code> 小于 <code>0</code>，那么 <code>a</code> 会被排列到 <code>b</code> 之前；</li>
+<li>如果 <code>compareFunction(a, b)</code> 等于 <code>0</code>，那么 <code>a</code> 和 <code>b</code> 的相对位置不变。备注：ECMAScript 标准并不保证这一行为，而且也不是所有浏览器都会遵守（例如 Mozilla 在 2003 年之前的版本）；</li>
+<li>如果 <code>compareFunction(a, b)</code> 大于 <code>0</code>，那么 <code>b</code> 会被排列到 <code>a</code> 之前。</li>
+</ul>
+<p>因此，升序排列的函数可以简写为：<code>(a, b) =&gt; a.age - b.age</code>。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#sui-ji-pai-lie-shu-zu" name="sui-ji-pai-lie-shu-zu">随机排列数组</a></h3><a class="task__open-link" href="../task/shuffle/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>编写函数 <code>shuffle(array)</code> 来随机排列数组的元素。</p>
+<p>多次运行 <code>shuffle</code> 可能导致元素顺序的不同。例如：</p>
+<div id="7d01qc264b" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [1, 2, 3];
+
+shuffle(arr);
+// arr = [3, 2, 1]
+
+shuffle(arr);
+// arr = [2, 1, 3]
+
+shuffle(arr);
+// arr = [3, 1, 2]
+// ...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所有元素顺序应该具有相等的概率。例如，可以将 <code>[1,2,3]</code> 重新排序为 <code>[1,2,3]</code> 或 <code>[1,3,2]</code> 或 <code>[3,1,2]</code> 等，每种情况的概率相等。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>简单的解决方案可以是：</p>
+<div id="iauhzh3fkq" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function shuffle(array) {
+  array.sort(() =&gt; Math.random() - 0.5);
+}
+
+let arr = [1, 2, 3];
+shuffle(arr);
+alert(arr);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样是可以的，因为 <code>Math.random() - 0.5</code> 是一个可能是正数或负数的随机数，因此排序函数会随机地对数组中的元素进行重新排序。</p>
+<p>但是，由于排序函数并非旨在以这种方式使用，因此并非所有的排列都具有相同的概率。</p>
+<p>例如，请考虑下面的代码。它运行 100 万次 <code>shuffle</code> 并计算所有可能结果的出现次数：</p>
+<div id="gi5gn2lrvn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function shuffle(array) {
+  array.sort(() =&gt; Math.random() - 0.5);
+}
+
+// 所有可能排列的出现次数
+let count = {
+  '123': 0,
+  '132': 0,
+  '213': 0,
+  '231': 0,
+  '321': 0,
+  '312': 0
+};
+
+for (let i = 0; i &lt; 1000000; i++) {
+  let array = [1, 2, 3];
+  shuffle(array);
+  count[array.join('')]++;
+}
+
+// 显示所有可能排列的出现次数
+for (let key in count) {
+  alert(`${key}: ${count[key]}`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>示例结果（取决于 Javascript 引擎）：</p>
+<div id="yco1h3kmy6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>123: 250706
+132: 124425
+213: 249618
+231: 124880
+312: 125148
+321: 125223</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以清楚地看到这种倾斜：<code>123</code> 和 <code>213</code> 的出现频率比其他情况高得多。</p>
+<p>使用不同的 JavaScript 引擎运行这个示例代码得到的结果可能会有所不同，但是我们已经可以看到这种方法是不可靠的。</p>
+<p>为什么它不起作用？一般来说，<code>sort</code> 是一个“黑匣子”：我们将一个数组和一个比较函数放入其中，并期望其对数组进行排序。但是由于比较的完全随机性，这个黑匣子疯了，它发疯地确切程度取决于引擎中的具体实现方法。</p>
+<p>还有其他很好的方法可以完成这项任务。例如，有一个很棒的算法叫作 <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>。其思路是：逆向遍历数组，并将每个元素与其前面的随机的一个元素互换位置：</p>
+<div id="peqpjnut58" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function shuffle(array) {
+  for (let i = array.length - 1; i &gt; 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // 从 0 到 i 的随机索引
+
+    // 交换元素 array[i] 和 array[j]
+    // 我们使用“解构分配（destructuring assignment）”语法来实现它
+    // 你将在后面的章节中找到有关该语法的更多详细信息
+    // 可以写成：
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们以相同的方式测试一下：</p>
+<div id="fs2r7mdvx8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function shuffle(array) {
+  for (let i = array.length - 1; i &gt; 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// 所有可能排列的出现次数
+let count = {
+  '123': 0,
+  '132': 0,
+  '213': 0,
+  '231': 0,
+  '321': 0,
+  '312': 0
+};
+
+for (let i = 0; i &lt; 1000000; i++) {
+  let array = [1, 2, 3];
+  shuffle(array);
+  count[array.join('')]++;
+}
+
+// 显示所有可能排列的出现次数
+for (let key in count) {
+  alert(`${key}: ${count[key]}`);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>示例输出：</p>
+<div id="uwk5314yhy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>123: 166693
+132: 166647
+213: 166628
+231: 167517
+312: 166199
+321: 166316</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在看起来不错：所有排列都以相同的概率出现。</p>
+<p>另外，在性能方面，Fisher — Yates 算法要好得多，没有“排序”开销。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#huo-qu-ping-jun-nian-ling" name="huo-qu-ping-jun-nian-ling">获取平均年龄</a></h3><a class="task__open-link" href="../task/average-age/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>编写 <code>getAverageAge(users)</code> 函数，该函数获取一个具有 <code>age</code> 属性的对象数组，并返回平均年龄。</p>
+<p>平均值的计算公式是 <code>(age1 + age2 + ... + ageN) / N</code>。</p>
+<p>例如：</p>
+<div id="ugirpfro6n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 29 };
+
+let arr = [ john, pete, mary ];
+
+alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="v3kevk9d4k" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function getAverageAge(users) {
+  return users.reduce((prev, user) =&gt; prev + user.age, 0) / users.length;
+}
+
+let john = { name: &quot;John&quot;, age: 25 };
+let pete = { name: &quot;Pete&quot;, age: 30 };
+let mary = { name: &quot;Mary&quot;, age: 29 };
+
+let arr = [ john, pete, mary ];
+
+alert( getAverageAge(arr) ); // 28</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#shu-zu-qu-zhong" name="shu-zu-qu-zhong">数组去重</a></h3><a class="task__open-link" href="../task/array-unique/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p><code>arr</code> 是一个数组。</p>
+<p>创建一个函数 <code>unique(arr)</code>，返回去除重复元素后的数组 <code>arr</code>。</p>
+<p>例如：</p>
+<div id="4rytlir004" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function unique(arr) {
+  /* your code */
+}
+
+let strings = [&quot;Hare&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Krishna&quot;,
+  &quot;Krishna&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Hare&quot;, &quot;:-O&quot;
+];
+
+alert( unique(strings) ); // Hare, Krishna, :-O</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/wMMcHVoCBiJNYkUI?p=preview" target="_blank" data-plunk-id="wMMcHVoCBiJNYkUI">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>让我们先遍历数字：</p>
+<ul>
+<li>对于每个元素，我们将检查结果数组是否已经有该元素。</li>
+<li>如果有，则忽略，否则将其添加到结果中。</li>
+</ul>
+<div id="pu8xmmzs0o" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function unique(arr) {
+  let result = [];
+
+  for (let str of arr) {
+    if (!result.includes(str)) {
+      result.push(str);
+    }
+  }
+
+  return result;
+}
+
+let strings = [&quot;Hare&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Krishna&quot;,
+  &quot;Krishna&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Hare&quot;, &quot;:-O&quot;
+];
+
+alert( unique(strings) ); // Hare, Krishna, :-O</code></pre>
+        </div>
+      </div>
+      
+      </div><p>代码有效，但其中存在潜在的性能问题。</p>
+<p>方法 <code>result.includes(str)</code> 在内部遍历数组 <code>result</code>，并将每个元素与 <code>str</code> 进行比较以找到匹配项。</p>
+<p>所以如果 <code>result</code> 中有 <code>100</code> 个元素，并且没有任何一项与 <code>str</code> 匹配，那么它将遍历整个 <code>result</code> 并进行 <code>100</code> 次比较。如果 <code>result</code> 很大，比如 <code>10000</code>，那么就会有 <code>10000</code> 次的比较。</p>
+<p>这本身并不是问题，因为 JavaScript 引擎速度非常快，所以遍历一个有 <code>10000</code> 个元素的数组只需要几微秒。</p>
+<p>但是我们在 <code>for</code>循环中对 <code>arr</code> 的每个元素都进行了一次检测。</p>
+<p>因此，如果 <code>arr.length</code> 是 <code>10000</code>，我们会有 <code>10000 * 10000</code> = 1 亿次的比较。那真的太多了。</p>
+<p>所以该解决方案仅适用于小型数组。</p>
+<p>进一步，在后面的 <a href="../map-set/index.html">Map and Set（映射和集合）</a> 一章中，我们将看到如何对该方法进行优化。</p>
+<p><a href="https://plnkr.co/edit/3V4oAEvMSFRBXv9v?p=preview" target="_blank" data-plunk-id="3V4oAEvMSFRBXv9v">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#cong-shu-zu-chuang-jian-jian-zhi-dui-xiang" name="cong-shu-zu-chuang-jian-jian-zhi-dui-xiang">从数组创建键（值）对象</a></h3><a class="task__open-link" href="../task/reduce-object/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p>假设我们收到了一个用户数组，形式为：<code>{id:..., name:..., age:... }</code>。</p>
+<p>创建一个函数 <code>groupById(arr)</code> 从该数组创建对象，以 <code>id</code> 为键（key），数组项为值。</p>
+<p>例如:</p>
+<div id="tdye3jt2yz" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let users = [
+  {id: 'john', name: &quot;John Smith&quot;, age: 20},
+  {id: 'ann', name: &quot;Ann Smith&quot;, age: 24},
+  {id: 'pete', name: &quot;Pete Peterson&quot;, age: 31},
+];
+
+let usersById = groupById(users);
+
+/*
+// 调用函数后，我们应该得到：
+
+usersById = {
+  john: {id: 'john', name: &quot;John Smith&quot;, age: 20},
+  ann: {id: 'ann', name: &quot;Ann Smith&quot;, age: 24},
+  pete: {id: 'pete', name: &quot;Pete Peterson&quot;, age: 31},
+}
+*/</code></pre>
+        </div>
+      </div>
+      
+      </div><p>处理服务端数据时，这个函数很有用。</p>
+<p>在这个任务里我们假设 <code>id</code> 是唯一的。没有两个具有相同 <code>id</code> 的数组项。</p>
+<p>请在解决方案中使用数组的 <code>.reduce</code> 方法。</p>
+<p><a href="https://plnkr.co/edit/fh89CWSNmR3z8Rtk?p=preview" target="_blank" data-plunk-id="fh89CWSNmR3z8Rtk">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="kxkoif77hf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function groupById(array) {
+  return array.reduce((obj, value) =&gt; {
+    obj[value.id] = value;
+    return obj;
+  }, {})
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/sq01XgMe6FbMg8RV?p=preview" target="_blank" data-plunk-id="sq01XgMe6FbMg8RV">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../array/index.html" data-tooltip="数组"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../iterable/index.html" data-tooltip="Iterable object（可迭代对象）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/array-methods","identifier":"\/array-methods"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tian-jia-yi-chu-shu-zu-yuan-su">添加/移除数组元素</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bian-li-foreach">遍历：forEach</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zai-shu-zu-zhong-sou-suo">在数组中搜索</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhuan-huan-shu-zu">转换数组</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#arrayisarray">Array.isArray</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#da-duo-shu-fang-fa-du-zhi-chi-thisarg">大多数方法都支持 “thisArg”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (13)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Farray-methods" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/05-array-methods" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">DOM 树</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/dom-nodes"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="DOM 树"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="DOM 树"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/browser-environment"><link rel="next" href="/dom-navigation"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><link rel="stylesheet" href="https://zh.js.cx/libs/domtree.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://zh.js.cx/libs/domtree.js"></script>
+<style>
+span.devtools {
+  display: inline-block;
+  background-image: url(../article/dom-nodes/toolbarButtonGlyphs.svg);
+  height:16px;
+  width:16px;
+}
+</style>
+<meta property="og:title" content="DOM 树"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/dom-nodes"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/dom-nodes"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/dom-nodes"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/dom-nodes"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/dom-nodes"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/dom-nodes"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/dom-nodes"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/dom-nodes"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/dom-nodes"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/dom-nodes"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/dom-nodes"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/dom-nodes">عربي</option><option value="https://javascript.info/dom-nodes">English</option><option value="https://es.javascript.info/dom-nodes">Español</option><option value="https://fr.javascript.info/dom-nodes">Français</option><option value="https://id.javascript.info/dom-nodes">Indonesia</option><option value="https://it.javascript.info/dom-nodes">Italiano</option><option value="https://ja.javascript.info/dom-nodes">日本語</option><option value="https://ko.javascript.info/dom-nodes">한국어</option><option value="https://learn.javascript.ru/dom-nodes">Русский</option><option value="https://tr.javascript.info/dom-nodes">Türkçe</option><option value="https://uk.javascript.info/dom-nodes">Українська</option><option value="https://zh.javascript.info/dom-nodes" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="32" data-tooltip="第 2/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../document/index.html"><span>Document</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"Document","item":"https://zh.javascript.info/document"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">DOM 树</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="DOM 树"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>HTML 文档的主干是标签（tag）。</p>
+<p>根据文档对象模型（DOM），每个 HTML 标签都是一个对象。嵌套的标签是闭合标签的“子标签（children）”。标签内的文本也是一个对象。</p>
+<p>所有这些对象都可以通过 JavaScript 来访问，我们可以使用它们来修改页面。</p>
+<p>例如，<code>document.body</code> 是表示 <code>&lt;body&gt;</code> 标签的对象。</p>
+<p>运行这段代码会使 <code>&lt;body&gt;</code> 保持 3 秒红色状态:</p>
+<div id="aqmocaafn9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.body.style.background = 'red'; // 将背景设置为红色
+
+setTimeout(() =&gt; document.body.style.background = '', 3000); // 恢复回去</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这，我们使用了 <code>style.background</code> 来修改 <code>document.body</code> 的背景颜色，但是还有很多其他的属性，例如：</p>
+<ul>
+<li><code>innerHTML</code> — 节点的 HTML 内容。</li>
+<li><code>offsetWidth</code> — 节点宽度（以像素度量）</li>
+<li>……等。</li>
+</ul>
+<p>很快，我们将学习更多操作 DOM 的方法，但首先我们需要了解 DOM 的结构。</p>
+<h2><a class="main__anchor" name="dom-de-li-zi" href="#dom-de-li-zi">DOM 的例子</a></h2><p>让我们从下面这个简单的文档（document）开始：</p>
+<div id="351j5urugn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;About elk&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  The truth about elk.
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：</p>
+<div class="domtree"></div>
+<script>
+let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n  "},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk."}]}]}
+
+drawHtmlTree(node1, 'div.domtree', 690, 320);
+</script>
+<p>在上面的图片中，你可以点击元素（element）节点，它们的子节点会打开/折叠。</p>
+<p>每个树的节点都是一个对象。</p>
+<p>标签被称为 <strong>元素节点</strong>（或者仅仅是元素），并形成了树状结构：<code>&lt;html&gt;</code> 在根节点，<code>&lt;head&gt;</code> 和 <code>&lt;body&gt;</code> 是其子项，等。</p>
+<p>元素内的文本形成 <strong>文本节点</strong>，被标记为 <code>＃text</code>。一个文本节点只包含一个字符串。它没有子项，并且总是树的叶子。</p>
+<p>例如，<code>&lt;title&gt;</code> 标签里面有文本 <code>&quot;About elk&quot;</code>。</p>
+<p>请注意文本节点中的特殊字符：</p>
+<ul>
+<li>换行符：<code>↵</code>（在 JavaScript 中为 <code>\n</code>）</li>
+<li>空格：<code>␣</code></li>
+</ul>
+<p>空格和换行符都是完全有效的字符，就像字母和数字。它们形成文本节点并成为 DOM 的一部分。所以，例如，在上面的示例中，<code>&lt;head&gt;</code> 标签中的 <code>&lt;title&gt;</code> 标签前面包含了一些空格，并且该文本变成了一个 <code>#text</code> 节点（它只包含一个换行符和一些空格）。</p>
+<p>只有两个顶级排除项：</p>
+<ol>
+<li>由于历史原因，<code>&lt;head&gt;</code> 之前的空格和换行符均被忽略。</li>
+<li>如果我们在 <code>&lt;/body&gt;</code> 之后放置一些东西，那么它会被自动移动到 <code>body</code> 内，并处于 <code>body</code> 中的最下方，因为 HTML 规范要求所有内容必须位于 <code>&lt;body&gt;</code> 内。所以 <code>&lt;/body&gt;</code> 之后不能有空格。</li>
+</ol>
+<p>在其他情况下，一切都很简单 — 如果文档中有空格（就像任何字符一样），那么它们将成为 DOM 中的文本节点，而如果我们删除它们，则不会有任何空格。</p>
+<p>这是没有空格的文本节点：</p>
+<div id="qrtb7o3obn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;&lt;head&gt;&lt;title&gt;About elk&lt;/title&gt;&lt;/head&gt;&lt;body&gt;The truth about elk.&lt;/body&gt;&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="domtree"></div>
+<script>
+let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]}]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"The truth about elk."}]}]}
+
+drawHtmlTree(node2, 'div.domtree', 690, 210);
+</script>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">字符串开头/结尾处的空格，以及只有空格的文本节点，通常会被工具隐藏</span></div>
+            <div class="important__content"><p>与 DOM 一起使用的浏览器工具（即将介绍）通常不会在文本的开始/结尾显示空格，并且在标签之间也不会显示空文本节点（换行符）。</p>
+<p>开发者工具通过这种方式节省屏幕空间。</p>
+<p>在本教程中，如果这些空格和空文本节点无关紧要时，我们在后面出现的关于 DOM 的示意图中会忽略它们。这样的空格通常不会影响文档的显示方式。</p>
+</div></div>
+<h2><a class="main__anchor" name="zi-dong-xiu-zheng" href="#zi-dong-xiu-zheng">自动修正</a></h2><p>如果浏览器遇到格式不正确的 HTML，它会在形成 DOM 时自动更正它。</p>
+<p>例如，顶级标签总是 <code>&lt;html&gt;</code>。即使它不存在于文档中 — 它也会出现在 DOM 中，因为浏览器会创建它。对于 <code>&lt;body&gt;</code> 也是一样。</p>
+<p>例如，如果一个 HTML 文件中只有一个单词 “Hello”，浏览器则会把它包装到 <code>&lt;html&gt;</code> 和 <code>&lt;body&gt;</code> 中，并且会添加所需的 <code>&lt;head&gt;</code>，DOM 将会变成下面这样：</p>
+<div class="domtree"></div>
+<script>
+let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Hello"}]}]}
+
+drawHtmlTree(node3, 'div.domtree', 690, 150);
+</script>
+<p>在生成 DOM 时，浏览器会自动处理文档中的错误，关闭标签等。</p>
+<p>一个没有关闭标签的文档：</p>
+<div id="oogwpgrsuw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;Hello
+&lt;li&gt;Mom
+&lt;li&gt;and
+&lt;li&gt;Dad</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……将成为一个正常的 DOM，因为浏览器在读取标签时会填补缺失的部分：</p>
+<div class="domtree"></div>
+<script>
+let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"P","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Hello"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Mom"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"and"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Dad"}]}]}]}
+
+drawHtmlTree(node4, 'div.domtree', 690, 360);
+</script>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">表格永远有 <code>&lt;tbody&gt;</code></span></div>
+            <div class="important__content"><p>表格是一个有趣的“特殊的例子”。按照 DOM 规范，它们必须具有 <code>&lt;tbody&gt;</code>，但 HTML 文本却（官方的）忽略了它。然后浏览器在创建 DOM 时，自动地创建了 <code>&lt;tbody&gt;</code>。</p>
+<p>对于 HTML：</p>
+<div id="mbmx0dhrhw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;table id=&quot;table&quot;&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>DOM 结构会变成：</p>
+<div class="domtree"></div>
+<script>
+let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":1,"children":[{"name":"TR","nodeType":1,"children":[{"name":"TD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"1"}]}]}]}]};
+
+drawHtmlTree(node5,  'div.domtree', 600, 200);
+</script>
+<p>看到了吗？<code>&lt;tbody&gt;</code> 出现了。你应该记住这一点，以免在使用表格时，对这种情况感到惊讶。</p>
+</div></div>
+<h2><a class="main__anchor" name="qi-ta-jie-dian-lei-xing" href="#qi-ta-jie-dian-lei-xing">其他节点类型</a></h2><p>除了元素和文本节点外，还有一些其他的节点类型。</p>
+<p>例如，注释：</p>
+<div id="vp3dj5eajl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;body&gt;
+  The truth about elk.
+  &lt;ol&gt;
+    &lt;li&gt;An elk is a smart&lt;/li&gt;
+    &lt;!-- comment --&gt;
+    &lt;li&gt;...and cunning animal!&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="domtree"></div>
+<script>
+let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n    "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n    "}]},{"name":"#text","nodeType":3,"content":"\n  \n"}]}]};
+
+drawHtmlTree(node6, 'div.domtree', 690, 500);
+</script>
+<p>在这里我们可以看到一个新的树节点类型 — <em>comment node</em>，被标记为 <code>#comment</code>，它在两个文本节点之间。</p>
+<p>我们可能会想 — 为什么要将注释添加到 DOM 中？它不会对视觉展现产生任何影响吗。但是有一条规则 — 如果一些内容存在于 HTML 中，那么它也必须在 DOM 树中。</p>
+<p><strong>HTML 中的所有内容，甚至注释，都会成为 DOM 的一部分。</strong></p>
+<p>甚至 HTML 开头的 <code>&lt;!DOCTYPE...&gt;</code> 指令也是一个 DOM 节点。它在 DOM 树中位于 <code>&lt;html&gt;</code> 之前。我们不会触及那个节点，出于这个原因，我们甚至不会在图表中绘制它，但它确实就在那里。</p>
+<p>表示整个文档的 <code>document</code> 对象，在形式上也是一个 DOM 节点。</p>
+<p>一共有 <a href="https://dom.spec.whatwg.org/#node">12 种节点类型</a>。实际上，我们通常用到的是其中的 4 种：</p>
+<ol>
+<li><code>document</code> — DOM 的“入口点”。</li>
+<li>元素节点 — HTML 标签，树构建块。</li>
+<li>文本节点 — 包含文本。</li>
+<li>注释 — 有时我们可以将一些信息放入其中，它不会显示，但 JS 可以从 DOM 中读取它。</li>
+</ol>
+<h2><a class="main__anchor" name="zi-ji-kan-kan" href="#zi-ji-kan-kan">自己看看</a></h2><p>要在实际中查看 DOM 结构，请尝试 <a href="http://software.hixie.ch/utilities/js/live-dom-viewer/">Live DOM Viewer</a>。只需输入文档，它将立即显示为 DOM。</p>
+<p>探索 DOM 的另一种方式是使用浏览器开发工具。实际上，这就是我们在开发中所使用的。</p>
+<p>你可以打开这个网页 <a href="../article/dom-nodes/elks.html">elks.html</a>，然后打开浏览器开发工具，并切换到元素（Elements）选项卡。</p>
+<p>它看起来像这样：</p>
+<figure><div class="image" style="width:698px">
+      <div class="image__ratio" style="padding-top:35.673352435530084%"></div>
+      <object type="image/svg+xml" data="../article/dom-nodes/elk.svg" width="698" height="249" class="image__image" data-use-theme>
+        <img src="../article/dom-nodes/elk.svg" alt width="698" height="249">
+      </object>
+      </div></figure><p>你可以看到 DOM，点击元素，查看它们的细节等。</p>
+<p>请注意，开发者工具中的 DOM 结构是经过简化的。文本节点仅以文本形式显示。并且根本没有“空白”（只有空格）的文本节点。这其实挺好，因为大多数情况下，我们只关心元素节点。</p>
+<p>点击左上角的 <span class="devtools" style="background-position:-328px -124px"></span> 按钮可以让我们使用鼠标（或其他指针设备）从网页中选择一个节点并“检查（inspect）”它（在元素选项卡中滚动到该节点）。当我们有一个巨大的 HTML 页面（和相应的巨大 DOM），并希望查看其中的一个特定元素的位置时，这很有用。</p>
+<p>另一种方法是在网页上右键单击，然后在上下文菜单中选择“检查（Inspect）”。</p>
+<figure><div class="image" style="width:696px">
+      <div class="image__ratio" style="padding-top:54.45402298850575%"></div>
+      <object type="image/svg+xml" data="../article/dom-nodes/inspect.svg" width="696" height="379" class="image__image" data-use-theme>
+        <img src="../article/dom-nodes/inspect.svg" alt width="696" height="379">
+      </object>
+      </div></figure><p>在工具的右侧部分有以下子选项卡：</p>
+<ul>
+<li><strong>Styles</strong> — 我们可以看到按规则应用于当前元素的 CSS 规则，包括内建规则（灰色）。几乎所有内容都可以就地编辑，包括下面的方框的 dimension/margin/padding。</li>
+<li><strong>Computed</strong> — 按属性查看应用于元素的 CSS：对于每个属性，我们可以都可以看到赋予它的规则（包括 CSS 继承等）。</li>
+<li><strong>Event Listeners</strong> — 查看附加到 DOM 元素的事件侦听器（我们将在本教程的下一部分介绍它们）。</li>
+<li>……等。</li>
+</ul>
+<p>学习它们的最佳方式就是多点一点看一下。大多数值都是可以就地编辑的。</p>
+<h2><a class="main__anchor" name="yu-kong-zhi-tai-jiao-hu" href="#yu-kong-zhi-tai-jiao-hu">与控制台交互</a></h2><p>在我们处理 DOM 时，我们可能还希望对其应用 JavaScript。例如：获取一个节点并运行一些代码来修改它，以查看结果。以下是在元素（Elements）选项卡和控制台（Console）之间切换的一些技巧。</p>
+<p>首先：</p>
+<ul>
+<li>在元素（Elements）选项卡中选择第一个 <code>&lt;li&gt;</code>。</li>
+<li>按下 <kbd class="shortcut">Esc</kbd> — 它将在元素（Elements）选项卡下方打开控制台（Console）。</li>
+</ul>
+<p>现在最后选中的元素可以通过 <code>$0</code> 来进行操作，先前选择的是 <code>$1</code>，等。</p>
+<p>我们可以对它们执行一些命令。例如，<code>$0.style.background = 'red'</code> 使选定的列表项（list item）变成红色，像这样：</p>
+<figure><div class="image" style="width:699px">
+      <div class="image__ratio" style="padding-top:64.37768240343348%"></div>
+      <object type="image/svg+xml" data="../article/dom-nodes/domconsole0.svg" width="699" height="450" class="image__image" data-use-theme>
+        <img src="../article/dom-nodes/domconsole0.svg" alt width="699" height="450">
+      </object>
+      </div></figure><p>这就是在控制台（Console）中获取元素（Elements）选项卡中的节点的方法。</p>
+<p>还有一种方式。如果存在引用 DOM 节点的变量，那么我们可以在控制台（Console）中使用命令 <code>inspect(node)</code>，来在元素（Elements）选项卡中查看它。</p>
+<p>或者我们可以直接在控制台（Console）中输出 DOM 节点，并“就地”探索它，例如下面的 <code>document.body</code>：</p>
+<figure><div class="image" style="width:696px">
+      <div class="image__ratio" style="padding-top:73.5632183908046%"></div>
+      <object type="image/svg+xml" data="../article/dom-nodes/domconsole1.svg" width="696" height="512" class="image__image" data-use-theme>
+        <img src="../article/dom-nodes/domconsole1.svg" alt width="696" height="512">
+      </object>
+      </div></figure><p>当然，这是出于调试目的。从下一章开始，我们将使用 JavaScript 访问和修改 DOM。</p>
+<p>浏览器开发者工具对于开发有很大的帮助：我们可以探索 DOM，尝试一些东西，并找出问题所在。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>HTML/XML 文档在浏览器内均被表示为 DOM 树。</p>
+<ul>
+<li>标签（tag）成为元素节点，并形成文档结构。</li>
+<li>文本（text）成为文本节点。</li>
+<li>……等，HTML 中的所有东西在 DOM 中都有它的位置，甚至对注释也是如此。</li>
+</ul>
+<p>我们可以使用开发者工具来检查（inspect）DOM 并手动修改它。</p>
+<p>在这里，我们介绍了基础知识，入门最常用和最重要的行为。在 <a href="https://developers.google.cn/web/tools/chrome-devtools">https://developers.google.cn/web/tools/chrome-devtools</a> 上有关于 Chrome 开发者工具的详细文档说明。学习这些工具的最佳方式就是到处点一点看一看，阅读菜单：大多数选项都很明显。而后，当你大致了解它们后，请阅读文档并学习其余内容。</p>
+<p>DOM 节点具有允许我们在它们之间移动，修改它们，在页面中移动等的属性和方法。在下一章中，我们将介绍它们。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../browser-environment/index.html" data-tooltip="浏览器环境，规格"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../dom-navigation/index.html" data-tooltip="遍历 DOM"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/dom-nodes","identifier":"\/dom-nodes"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../document/index.html">Document</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dom-de-li-zi">DOM 的例子</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-dong-xiu-zheng">自动修正</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#qi-ta-jie-dian-lei-xing">其他节点类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-ji-kan-kan">自己看看</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yu-kong-zhi-tai-jiao-hu">与控制台交互</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fdom-nodes" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/1-document/02-dom-nodes" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

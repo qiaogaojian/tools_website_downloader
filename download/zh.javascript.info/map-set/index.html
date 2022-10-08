@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Map and Set（映射和集合）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/map-set"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Map and Set（映射和集合）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Map and Set（映射和集合）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/iterable"><link rel="next" href="/weakmap-weakset"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Map and Set（映射和集合）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/map-set"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/map-set"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/map-set"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/map-set"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/map-set"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/map-set"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/map-set"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/map-set"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/map-set"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/map-set"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/map-set">عربي</option><option value="https://javascript.info/map-set">English</option><option value="https://es.javascript.info/map-set">Español</option><option value="https://fr.javascript.info/map-set">Français</option><option value="https://id.javascript.info/map-set">Indonesia</option><option value="https://it.javascript.info/map-set">Italiano</option><option value="https://ja.javascript.info/map-set">日本語</option><option value="https://ko.javascript.info/map-set">한국어</option><option value="https://learn.javascript.ru/map-set">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/map-set">Українська</option><option value="https://zh.javascript.info/map-set" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="43" max="92" data-tooltip="第 43/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../data-types/index.html"><span>数据类型</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"数据类型","item":"https://zh.javascript.info/data-types"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Map and Set（映射和集合）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Map and Set（映射和集合）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>学到现在，我们已经了解了以下复杂的数据结构：</p>
+<ul>
+<li>对象，存储带有键的数据的集合。</li>
+<li>数组，存储有序集合。</li>
+</ul>
+<p>但这还不足以应对现实情况。这就是为什么存在 <code>Map</code> 和 <code>Set</code>。</p>
+<h2><a class="main__anchor" name="map" href="#map">Map</a></h2><p><a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> 是一个带键的数据项的集合，就像一个 <code>Object</code> 一样。 但是它们最大的差别是 <code>Map</code> 允许任何类型的键（key）。</p>
+<p>它的方法和属性如下：</p>
+<ul>
+<li><code>new Map()</code> —— 创建 map。</li>
+<li><code>map.set(key, value)</code> —— 根据键存储值。</li>
+<li><code>map.get(key)</code> —— 根据键来返回值，如果 <code>map</code> 中不存在对应的 <code>key</code>，则返回 <code>undefined</code>。</li>
+<li><code>map.has(key)</code> —— 如果 <code>key</code> 存在则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>map.delete(key)</code> —— 删除指定键的值。</li>
+<li><code>map.clear()</code> —— 清空 map。</li>
+<li><code>map.size</code> —— 返回当前元素个数。</li>
+</ul>
+<p>举个例子：</p>
+<div id="4ewkmk455o" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+map.set('1', 'str1');   // 字符串键
+map.set(1, 'num1');     // 数字键
+map.set(true, 'bool1'); // 布尔值键
+
+// 还记得普通的 Object 吗? 它会将键转化为字符串
+// Map 则会保留键的类型，所以下面这两个结果不同：
+alert( map.get(1)   ); // 'num1'
+alert( map.get('1') ); // 'str1'
+
+alert( map.size ); // 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如我们所见，与对象不同，键不会被转换成字符串。键可以是任何类型。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>map[key]</code> 不是使用 <code>Map</code> 的正确方式</span></div>
+            <div class="important__content"><p>虽然 <code>map[key]</code> 也有效，例如我们可以设置 <code>map[key] = 2</code>，这样会将 <code>map</code> 视为 JavaScript 的 plain object，因此它暗含了所有相应的限制（仅支持 string/symbol 键等）。</p>
+<p>所以我们应该使用 <code>map</code> 方法：<code>set</code> 和 <code>get</code> 等。</p>
+</div></div>
+<p><strong>Map 还可以使用对象作为键。</strong></p>
+<p>例如：</p>
+<div id="0pbo82q21t" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+
+// 存储每个用户的来访次数
+let visitsCountMap = new Map();
+
+// john 是 Map 中的键
+visitsCountMap.set(john, 123);
+
+alert( visitsCountMap.get(john) ); // 123</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用对象作为键是 <code>Map</code> 最值得注意和重要的功能之一。在 <code>Object</code> 中，我们则无法使用对象作为键。在 <code>Object</code> 中使用字符串作为键是可以的，但我们无法使用另一个 <code>Object</code> 作为 <code>Object</code> 中的键。</p>
+<p>我们来尝试一下：</p>
+<div id="jbqvb214fw" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:8,&quot;end&quot;:9}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let john = { name: &quot;John&quot; };
+let ben = { name: &quot;Ben&quot; };
+
+let visitsCountObj = {}; // 尝试使用对象
+
+visitsCountObj[ben] = 234; // 尝试将对象 ben 用作键
+visitsCountObj[john] = 123; // 尝试将对象 john 用作键，但我们会发现使用对象 ben 作为键存下的值会被替换掉
+
+// 变成这样了！
+alert( visitsCountObj[&quot;[object Object]&quot;] ); // 123</code></pre>
+        </div>
+      </div>
+      
+      </div><p>因为 <code>visitsCountObj</code> 是一个对象，它会将所有 <code>Object</code> 键例如上面的 <code>john</code> 和 <code>ben</code> 转换为字符串 <code>&quot;[object Object]&quot;</code>。这显然不是我们想要的结果。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>Map</code> 是怎么比较键的？</span></div>
+            <div class="important__content"><p><code>Map</code> 使用 <a href="https://tc39.github.io/ecma262/#sec-samevaluezero">SameValueZero</a> 算法来比较键是否相等。它和严格等于 <code>===</code> 差不多，但区别是 <code>NaN</code> 被看成是等于 <code>NaN</code>。所以 <code>NaN</code> 也可以被用作键。</p>
+<p>这个算法不能被改变或者自定义。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">链式调用</span></div>
+            <div class="important__content"><p>每一次 <code>map.set</code> 调用都会返回 map 本身，所以我们可以进行“链式”调用：</p>
+<div id="k86k09jlbg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>map.set('1', 'str1')
+  .set(1, 'num1')
+  .set(true, 'bool1');</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div>
+<h2><a class="main__anchor" name="map-die-dai" href="#map-die-dai">Map 迭代</a></h2><p>如果要在 <code>map</code> 里使用循环，可以使用以下三个方法：</p>
+<ul>
+<li><code>map.keys()</code> —— 遍历并返回所有的键（returns an iterable for keys），</li>
+<li><code>map.values()</code> —— 遍历并返回所有的值（returns an iterable for values），</li>
+<li><code>map.entries()</code> —— 遍历并返回所有的实体（returns an iterable for entries）<code>[key, value]</code>，<code>for..of</code> 在默认情况下使用的就是这个。</li>
+</ul>
+<p>例如：</p>
+<div id="wg1nc9jmp5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let recipeMap = new Map([
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// 遍历所有的键（vegetables）
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+// 遍历所有的值（amounts）
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+// 遍历所有的实体 [key, value]
+for (let entry of recipeMap) { // 与 recipeMap.entries() 相同
+  alert(entry); // cucumber,500 (and so on)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">使用插入顺序</span></div>
+            <div class="important__content"><p>迭代的顺序与插入值的顺序相同。与普通的 <code>Object</code> 不同，<code>Map</code> 保留了此顺序。</p>
+</div></div>
+<p>除此之外，<code>Map</code> 有内建的 <code>forEach</code> 方法，与 <code>Array</code> 类似：</p>
+<div id="9ya85fzzcg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 对每个键值对 (key, value) 运行 forEach 函数
+recipeMap.forEach( (value, key, map) =&gt; {
+  alert(`${key}: ${value}`); // cucumber: 500 etc
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="objectentries-cong-dui-xiang-chuang-jian-map" href="#objectentries-cong-dui-xiang-chuang-jian-map">Object.entries：从对象创建 Map</a></h2><p>当创建一个 <code>Map</code> 后，我们可以传入一个带有键值对的数组（或其它可迭代对象）来进行初始化，如下所示：</p>
+<div id="vzghdcucag" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 键值对 [key, value] 数组
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+
+alert( map.get('1') ); // str1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们想从一个已有的普通对象（plain object）来创建一个 <code>Map</code>，那么我们可以使用内建方法 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/entries">Object.entries(obj)</a>，该方法返回对象的键/值对数组，该数组格式完全按照 <code>Map</code> 所需的格式。</p>
+<p>所以可以像下面这样从一个对象创建一个 Map：</p>
+<div id="05sizu81ed" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = {
+  name: &quot;John&quot;,
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+alert( map.get('name') ); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这里，<code>Object.entries</code> 返回键/值对数组：<code>[ [&quot;name&quot;,&quot;John&quot;], [&quot;age&quot;, 30] ]</code>。这就是 <code>Map</code> 所需要的格式。</p>
+<h2><a class="main__anchor" name="objectfromentries-cong-map-chuang-jian-dui-xiang" href="#objectfromentries-cong-map-chuang-jian-dui-xiang">Object.fromEntries：从 Map 创建对象</a></h2><p>我们刚刚已经学习了如何使用 <code>Object.entries(obj)</code> 从普通对象（plain object）创建 <code>Map</code>。</p>
+<p><code>Object.fromEntries</code> 方法的作用是相反的：给定一个具有 <code>[key, value]</code> 键值对的数组，它会根据给定数组创建一个对象：</p>
+<div id="oc2cfiylv2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let prices = Object.fromEntries([
+  ['banana', 1],
+  ['orange', 2],
+  ['meat', 4]
+]);
+
+// 现在 prices = { banana: 1, orange: 2, meat: 4 }
+
+alert(prices.orange); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以使用 <code>Object.fromEntries</code> 从 <code>Map</code> 得到一个普通对象（plain object）。</p>
+<p>例如，我们在 <code>Map</code> 中存储了一些数据，但是我们需要把这些数据传给需要普通对象（plain object）的第三方代码。</p>
+<p>我们来开始：</p>
+<div id="nrhgag2vco" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj = Object.fromEntries(map.entries()); // 创建一个普通对象（plain object）(*)
+
+// 完成了！
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>调用 <code>map.entries()</code> 将返回一个可迭代的键/值对，这刚好是 <code>Object.fromEntries</code> 所需要的格式。</p>
+<p>我们可以把带 <code>(*)</code> 这一行写得更短：</p>
+<div id="dxu2860r8f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let obj = Object.fromEntries(map); // 省掉 .entries()</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面的代码作用也是一样的，因为 <code>Object.fromEntries</code> 期望得到一个可迭代对象作为参数，而不一定是数组。并且 <code>map</code> 的标准迭代会返回跟 <code>map.entries()</code> 一样的键/值对。因此，我们可以获得一个普通对象（plain object），其键/值对与 <code>map</code> 相同。</p>
+<h2><a class="main__anchor" name="set" href="#set">Set</a></h2><p><code>Set</code> 是一个特殊的类型集合 —— “值的集合”（没有键），它的每一个值只能出现一次。</p>
+<p>它的主要方法如下：</p>
+<ul>
+<li><code>new Set(iterable)</code> —— 创建一个 <code>set</code>，如果提供了一个 <code>iterable</code> 对象（通常是数组），将会从数组里面复制值到 <code>set</code> 中。</li>
+<li><code>set.add(value)</code> —— 添加一个值，返回 set 本身</li>
+<li><code>set.delete(value)</code> —— 删除值，如果 <code>value</code> 在这个方法调用的时候存在则返回 <code>true</code> ，否则返回 <code>false</code>。</li>
+<li><code>set.has(value)</code> —— 如果 <code>value</code> 在 set 中，返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>set.clear()</code> —— 清空 set。</li>
+<li><code>set.size</code> —— 返回元素个数。</li>
+</ul>
+<p>它的主要特点是，重复使用同一个值调用 <code>set.add(value)</code> 并不会发生什么改变。这就是 <code>Set</code> 里面的每一个值只出现一次的原因。</p>
+<p>例如，我们有客人来访，我们想记住他们每一个人。但是已经来访过的客人再次来访，不应造成重复记录。每个访客必须只被“计数”一次。</p>
+<p><code>Set</code> 可以帮助我们解决这个问题：</p>
+<div id="d8abioba6f" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let set = new Set();
+
+let john = { name: &quot;John&quot; };
+let pete = { name: &quot;Pete&quot; };
+let mary = { name: &quot;Mary&quot; };
+
+// visits，一些访客来访好几次
+set.add(john);
+set.add(pete);
+set.add(mary);
+set.add(john);
+set.add(mary);
+
+// set 只保留不重复的值
+alert( set.size ); // 3
+
+for (let user of set) {
+  alert(user.name); // John（然后 Pete 和 Mary）
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>Set</code> 的替代方法可以是一个用户数组，用 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Array/find">arr.find</a> 在每次插入值时检查是否重复。但是这样性能会很差，因为这个方法会遍历整个数组来检查每个元素。<code>Set</code> 内部对唯一性检查进行了更好的优化。</p>
+<h2><a class="main__anchor" name="set-die-dai-iteration" href="#set-die-dai-iteration">Set 迭代（iteration）</a></h2><p>我们可以使用 <code>for..of</code> 或 <code>forEach</code> 来遍历 Set：</p>
+<div id="mxd5s7ylzb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let set = new Set([&quot;oranges&quot;, &quot;apples&quot;, &quot;bananas&quot;]);
+
+for (let value of set) alert(value);
+
+// 与 forEach 相同：
+set.forEach((value, valueAgain, set) =&gt; {
+  alert(value);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意一件有趣的事儿。<code>forEach</code> 的回调函数有三个参数：一个 <code>value</code>，然后是 <strong>同一个值</strong> <code>valueAgain</code>，最后是目标对象。没错，同一个值在参数里出现了两次。</p>
+<p><code>forEach</code> 的回调函数有三个参数，是为了与 <code>Map</code> 兼容。当然，这看起来确实有些奇怪。但是这对在特定情况下轻松地用 <code>Set</code> 代替 <code>Map</code> 很有帮助，反之亦然。</p>
+<p><code>Map</code> 中用于迭代的方法在 <code>Set</code> 中也同样支持：</p>
+<ul>
+<li><code>set.keys()</code> —— 遍历并返回所有的值（returns an iterable object for values），</li>
+<li><code>set.values()</code> —— 与 <code>set.keys()</code> 作用相同，这是为了兼容 <code>Map</code>，</li>
+<li><code>set.entries()</code> —— 遍历并返回所有的实体（returns an iterable object for entries）<code>[value, value]</code>，它的存在也是为了兼容 <code>Map</code>。</li>
+</ul>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>Map</code> —— 是一个带键的数据项的集合。</p>
+<p>方法和属性如下：</p>
+<ul>
+<li><code>new Map([iterable])</code> —— 创建 map，可选择带有 <code>[key,value]</code> 对的 <code>iterable</code>（例如数组）来进行初始化。</li>
+<li><code>map.set(key, value)</code> —— 根据键存储值，返回 map 自身。</li>
+<li><code>map.get(key)</code> —— 根据键来返回值，如果 <code>map</code> 中不存在对应的 <code>key</code>，则返回 <code>undefined</code>。</li>
+<li><code>map.has(key)</code> —— 如果 <code>key</code> 存在则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>map.delete(key)</code> —— 删除指定键对应的值，如果在调用时 <code>key</code> 存在，则返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>map.clear()</code> —— 清空 map 。</li>
+<li><code>map.size</code> —— 返回当前元素个数。</li>
+</ul>
+<p>与普通对象 <code>Object</code> 的不同点：</p>
+<ul>
+<li>任何键、对象都可以作为键。</li>
+<li>有其他的便捷方法，如 <code>size</code> 属性。</li>
+</ul>
+<p><code>Set</code> —— 是一组唯一值的集合。</p>
+<p>方法和属性：</p>
+<ul>
+<li><code>new Set([iterable])</code> —— 创建 set，可选择带有 <code>iterable</code>（例如数组）来进行初始化。</li>
+<li><code>set.add(value)</code> —— 添加一个值（如果 <code>value</code> 存在则不做任何修改），返回 set 本身。</li>
+<li><code>set.delete(value)</code> —— 删除值，如果 <code>value</code> 在这个方法调用的时候存在则返回 <code>true</code> ，否则返回 <code>false</code>。</li>
+<li><code>set.has(value)</code> —— 如果 <code>value</code> 在 set 中，返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><code>set.clear()</code> —— 清空 set。</li>
+<li><code>set.size</code> —— 元素的个数。</li>
+</ul>
+<p>在 <code>Map</code> 和 <code>Set</code> 中迭代总是按照值插入的顺序进行的，所以我们不能说这些集合是无序的，但是我们不能对元素进行重新排序，也不能直接按其编号来获取元素。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#guo-lv-shu-zu-zhong-de-wei-yi-yuan-su" name="guo-lv-shu-zu-zhong-de-wei-yi-yuan-su">过滤数组中的唯一元素</a></h3><a class="task__open-link" href="../task/array-unique-map/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>定义 <code>arr</code> 为一个数组。</p>
+<p>创建一个函数 <code>unique(arr)</code>，该函数返回一个由 <code>arr</code> 中所有唯一元素所组成的数组。</p>
+<p>例如：</p>
+<div id="okm9c4t6zn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function unique(arr) {
+  /* 你的代码 */
+}
+
+let values = [&quot;Hare&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Krishna&quot;,
+  &quot;Krishna&quot;, &quot;Krishna&quot;, &quot;Hare&quot;, &quot;Hare&quot;, &quot;:-O&quot;
+];
+
+alert( unique(values) ); // Hare, Krishna, :-O</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 这里用到了 string 类型，但其实可以是任何类型的值。</p>
+<p>P.S. 使用 <code>Set</code> 来存储唯一值。</p>
+<p><a href="https://plnkr.co/edit/1VJoUdRqeCfrpTtO?p=preview" target="_blank" data-plunk-id="1VJoUdRqeCfrpTtO">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="e48b6euqon" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function unique(arr) {
+  return Array.from(new Set(arr));
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/gz2J1u702CoAdapz?p=preview" target="_blank" data-plunk-id="gz2J1u702CoAdapz">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#guo-lv-zi-mi-anagrams" name="guo-lv-zi-mi-anagrams">过滤字谜（anagrams）</a></h3><a class="task__open-link" href="../task/filter-anagrams/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 4</span></div><div class="task__content"><div class="task__formatted"><p><a href="https://en.wikipedia.org/wiki/Anagram">Anagrams</a> 是具有相同数量相同字母但是顺序不同的单词。</p>
+<p>例如：</p>
+<div id="4h8s279efo" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>nap - pan
+ear - are - era
+cheaters - hectares - teachers</code></pre>
+        </div>
+      </div>
+      
+      </div><p>写一个函数 <code>aclean(arr)</code>，它返回被清除了字谜（anagrams）的数组。</p>
+<p>例如：</p>
+<div id="k8a4c8tknq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let arr = [&quot;nap&quot;, &quot;teachers&quot;, &quot;cheaters&quot;, &quot;PAN&quot;, &quot;ear&quot;, &quot;era&quot;, &quot;hectares&quot;];
+
+alert( aclean(arr) ); // &quot;nap,teachers,ear&quot; or &quot;PAN,cheaters,era&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对于所有的字谜（anagram）组，都应该保留其中一个词，但保留的具体是哪一个并不重要。</p>
+<p><a href="https://plnkr.co/edit/yVWhhO8wsVQ68ohH?p=preview" target="_blank" data-plunk-id="yVWhhO8wsVQ68ohH">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为了找到所有字谜（anagram），让我们把每个单词打散为字母并进行排序。当字母被排序后，所有的字谜就都一样了。</p>
+<p>例如：</p>
+<div id="1hdlqt52r3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>nap, pan -&gt; anp
+ear, era, are -&gt; aer
+cheaters, hectares, teachers -&gt; aceehrst
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们将使用进行字母排序后的单词的变体（variant）作为 map 的键，每个键仅对应存储一个值：</p>
+<div id="07rfne6j1g" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    // 将单词 split 成字母，对字母进行排序，之后再 join 回来
+    let sorted = word.toLowerCase().split('').sort().join(''); // (*)
+    map.set(sorted, word);
+  }
+
+  return Array.from(map.values());
+}
+
+let arr = [&quot;nap&quot;, &quot;teachers&quot;, &quot;cheaters&quot;, &quot;PAN&quot;, &quot;ear&quot;, &quot;era&quot;, &quot;hectares&quot;];
+
+alert( aclean(arr) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p>字母排序在 <code>(*)</code> 行以链式调用的方式完成。</p>
+<p>为了方便，我们把它分解为多行：</p>
+<div id="bt10cf7e3q" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sorted = word // PAN
+  .toLowerCase() // pan
+  .split('') // ['p','a','n']
+  .sort() // ['a','n','p']
+  .join(''); // anp</code></pre>
+        </div>
+      </div>
+      
+      </div><p>两个不同的单词 <code>'PAN'</code> 和 <code>'nap'</code> 得到了同样的字母排序形式 <code>'anp'</code>。</p>
+<p>下一行是将单词放入 map：</p>
+<div id="3vzsah40jj" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>map.set(sorted, word);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们再次遇到相同字母排序形式的单词，那么它将会覆盖 map 中有相同键的前一个值。因此，每个字母形式（译注：排序后的）最多只有一个单词。（译注：并且是每个字母形式中最靠后的那个值）</p>
+<p>最后，<code>Array.from(map.values())</code> 将 map 的值迭代（我们不需要结果的键）为数组形式，并返回这个数组。</p>
+<p>在这里，我们也可以使用普通对象（plain object）而不用 <code>Map</code>，因为键就是字符串。</p>
+<p>下面是解决方案：</p>
+<div id="b4rxkljycy" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function aclean(arr) {
+  let obj = {};
+
+  for (let i = 0; i &lt; arr.length; i++) {
+    let sorted = arr[i].toLowerCase().split(&quot;&quot;).sort().join(&quot;&quot;);
+    obj[sorted] = arr[i];
+  }
+
+  return Object.values(obj);
+}
+
+let arr = [&quot;nap&quot;, &quot;teachers&quot;, &quot;cheaters&quot;, &quot;PAN&quot;, &quot;ear&quot;, &quot;era&quot;, &quot;hectares&quot;];
+
+alert( aclean(arr) );</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/DtdYha2K9yZVfGZr?p=preview" target="_blank" data-plunk-id="DtdYha2K9yZVfGZr">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#die-dai-jian" name="die-dai-jian">迭代键</a></h3><a class="task__open-link" href="../task/iterable-keys/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>我们期望使用 <code>map.keys()</code> 得到一个数组，然后使用例如 <code>.push</code> 等特定的方法对其进行处理。</p>
+<p>但是运行不了：</p>
+<div id="zevb7vtx8u" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+map.set(&quot;name&quot;, &quot;John&quot;);
+
+let keys = map.keys();
+
+// Error: keys.push is not a function
+keys.push(&quot;more&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么？我们应该如何修改代码让 <code>keys.push</code> 工作？</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>这是因为 <code>map.keys()</code> 返回的是可迭代对象而非数组。</p>
+<p>我们可以使用方法 <code>Array.from</code> 来将它转换为数组：</p>
+<div id="p99ewd95kr" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let map = new Map();
+
+map.set(&quot;name&quot;, &quot;John&quot;);
+
+let keys = Array.from(map.keys());
+
+keys.push(&quot;more&quot;);
+
+alert(keys); // name, more</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../iterable/index.html" data-tooltip="Iterable object（可迭代对象）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../weakmap-weakset/index.html" data-tooltip="WeakMap and WeakSet（弱映射和弱集合）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/map-set","identifier":"\/map-set"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../data-types/index.html">数据类型</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#map">Map</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#map-die-dai">Map 迭代</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#objectentries-cong-dui-xiang-chuang-jian-map">Object.entries：从对象创建 Map</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#objectfromentries-cong-map-chuang-jian-dui-xiang">Object.fromEntries：从 Map 创建对象</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#set">Set</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#set-die-dai-iteration">Set 迭代（iteration）</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fmap-set" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/05-data-types/07-map-set" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

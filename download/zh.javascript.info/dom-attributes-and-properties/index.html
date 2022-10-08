@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">特性和属性（Attributes and properties）</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/dom-attributes-and-properties"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="特性和属性（Attributes and properties）"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="特性和属性（Attributes and properties）"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/basic-dom-node-properties"><link rel="next" href="/modifying-document"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="特性和属性（Attributes and properties）"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/dom-attributes-and-properties"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/dom-attributes-and-properties"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/dom-attributes-and-properties">عربي</option><option value="https://javascript.info/dom-attributes-and-properties">English</option><option value="https://es.javascript.info/dom-attributes-and-properties">Español</option><option value="https://fr.javascript.info/dom-attributes-and-properties">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/dom-attributes-and-properties">Italiano</option><option value="https://ja.javascript.info/dom-attributes-and-properties">日本語</option><option value="https://ko.javascript.info/dom-attributes-and-properties">한국어</option><option value="https://learn.javascript.ru/dom-attributes-and-properties">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/dom-attributes-and-properties">Українська</option><option value="https://zh.javascript.info/dom-attributes-and-properties" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="6" max="32" data-tooltip="第 6/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../document/index.html"><span>Document</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"Document","item":"https://zh.javascript.info/document"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 21日 十一月 2020"><div class="updated-at__content">21日 十一月 2020</div></div></div><h1 class="main__header-title">特性和属性（Attributes and properties）</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="特性和属性（Attributes and properties）"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>当浏览器加载页面时，它会“读取”（或者称之为：“解析”）HTML 并从中生成 DOM 对象。对于元素节点，大多数标准的 HTML 特性（attributes）会自动变成 DOM 对象的属性（properties）。（译注：attribute 和 property 两词意思相近，为作区分，全文将 attribute 译为“特性”，property 译为“属性”，请读者注意区分。）</p>
+<p>例如，如果标签是 <code>&lt;body id=&quot;page&quot;&gt;</code>，那么 DOM 对象就会有 <code>body.id=&quot;page&quot;</code>。</p>
+<p>但特性—属性映射并不是一一对应的！在本章，我们将带领你一起分清楚这两个概念，了解如何使用它们，了解它们何时相同何时不同。</p>
+<h2><a class="main__anchor" name="dom-shu-xing" href="#dom-shu-xing">DOM 属性</a></h2><p>我们已经见过了内建 DOM 属性。它们数量庞大。但是从技术上讲，没有人会限制我们，如果我们觉得这些 DOM 还不够，我们可以添加我们自己的。</p>
+<p>DOM 节点是常规的 JavaScript 对象。我们可以 alert 它们。</p>
+<p>例如，让我们在 <code>document.body</code> 中创建一个新的属性：</p>
+<div id="s4mo8gu1ij" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.body.myData = {
+  name: 'Caesar',
+  title: 'Imperator'
+};
+
+alert(document.body.myData.title); // Imperator</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以像下面这样添加一个方法：</p>
+<div id="uhy0lfeb7n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.body.sayTagName = function() {
+  alert(this.tagName);
+};
+
+document.body.sayTagName(); // BODY（这个方法中的 &quot;this&quot; 的值是 document.body）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们还可以修改内建属性的原型，例如修改 <code>Element.prototype</code> 为所有元素添加一个新方法：</p>
+<div id="c3z34r0fg9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>Element.prototype.sayHi = function() {
+  alert(`Hello, I'm ${this.tagName}`);
+};
+
+document.documentElement.sayHi(); // Hello, I'm HTML
+document.body.sayHi(); // Hello, I'm BODY</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，DOM 属性和方法的行为就像常规的 Javascript 对象一样：</p>
+<ul>
+<li>它们可以有很多值。</li>
+<li>它们是大小写敏感的（要写成 <code>elem.nodeType</code>，而不是 <code>elem.NoDeTyPe</code>）。</li>
+</ul>
+<h2><a class="main__anchor" name="html-te-xing" href="#html-te-xing">HTML 特性</a></h2><p>在 HTML 中，标签可能拥有特性（attributes）。当浏览器解析 HTML 文本，并根据标签创建 DOM 对象时，浏览器会辨别 <strong>标准的</strong> 特性并以此创建 DOM 属性。</p>
+<p>所以，当一个元素有 <code>id</code> 或其他 <strong>标准的</strong> 特性，那么就会生成对应的 DOM 属性。但是非 <strong>标准的</strong> 特性则不会。</p>
+<p>例如：</p>
+<div id="pm8vpv9wu6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body id=&quot;test&quot; something=&quot;non-standard&quot;&gt;
+  &lt;script&gt;
+    alert(document.body.id); // test
+    // 非标准的特性没有获得对应的属性
+    alert(document.body.something); // undefined
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，一个元素的标准的特性对于另一个元素可能是未知的。例如 <code>&quot;type&quot;</code> 是 <code>&lt;input&gt;</code> 的一个标准的特性（<a href="https://html.spec.whatwg.org/#htmlinputelement">HTMLInputElement</a>），但对于 <code>&lt;body&gt;</code>（<a href="https://html.spec.whatwg.org/#htmlbodyelement">HTMLBodyElement</a>）来说则不是。规范中对相应元素类的标准的属性进行了详细的描述。</p>
+<p>这里我们可以看到：</p>
+<div id="b3j0jdn6xn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body id=&quot;body&quot; type=&quot;...&quot;&gt;
+  &lt;input id=&quot;input&quot; type=&quot;text&quot;&gt;
+  &lt;script&gt;
+    alert(input.type); // text
+    alert(body.type); // undefined：DOM 属性没有被创建，因为它不是一个标准的特性
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，如果一个特性不是标准的，那么就没有相对应的 DOM 属性。那我们有什么方法来访问这些特性吗？</p>
+<p>当然。所有特性都可以通过使用以下方法进行访问：</p>
+<ul>
+<li><code>elem.hasAttribute(name)</code> — 检查特性是否存在。</li>
+<li><code>elem.getAttribute(name)</code> — 获取这个特性值。</li>
+<li><code>elem.setAttribute(name, value)</code> — 设置这个特性值。</li>
+<li><code>elem.removeAttribute(name)</code> — 移除这个特性。</li>
+</ul>
+<p>这些方法操作的实际上是 HTML 中的内容。</p>
+<p>我们也可以使用 <code>elem.attributes</code> 读取所有特性：属于内建 <a href="https://dom.spec.whatwg.org/#attr">Attr</a> 类的对象的集合，具有 <code>name</code> 和 <code>value</code> 属性。</p>
+<p>下面是一个读取非标准的特性的示例：</p>
+<div id="gxgek4oxpj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body something=&quot;non-standard&quot;&gt;
+  &lt;script&gt;
+    alert(document.body.getAttribute('something')); // 非标准的
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>HTML 特性有以下几个特征：</p>
+<ul>
+<li>它们的名字是大小写不敏感的（<code>id</code> 与 <code>ID</code> 相同）。</li>
+<li>它们的值总是字符串类型的。</li>
+</ul>
+<p>下面是一个使用特性的扩展示例：</p>
+<div id="rx39r9j6k2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body&gt;
+  &lt;div id=&quot;elem&quot; about=&quot;Elephant&quot;&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    alert( elem.getAttribute('About') ); // (1) 'Elephant'，读取
+
+    elem.setAttribute('Test', 123); // (2) 写入
+
+    alert( elem.outerHTML ); // (3) 查看特性是否在 HTML 中（在）
+
+    for (let attr of elem.attributes) { // (4) 列出所有
+      alert( `${attr.name} = ${attr.value}` );
+    }
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：</p>
+<ol>
+<li><code>getAttribute('About')</code> — 这里的第一个字母是大写的，但是在 HTML 中，它们都是小写的。但这没有影响：特性的名称是大小写不敏感的。</li>
+<li>我们可以将任何东西赋值给特性，但是这些东西会变成字符串类型的。所以这里我们的值为 <code>&quot;123&quot;</code>。</li>
+<li>所有特性，包括我们设置的那个特性，在 <code>outerHTML</code> 中都是可见的。</li>
+<li><code>attributes</code> 集合是可迭代对象，该对象将所有元素的特性（标准和非标准的）作为 <code>name</code> 和 <code>value</code> 属性存储在对象中。</li>
+</ol>
+<h2><a class="main__anchor" name="shu-xing-te-xing-tong-bu" href="#shu-xing-te-xing-tong-bu">属性—特性同步</a></h2><p>当一个标准的特性被改变，对应的属性也会自动更新，（除了几个特例）反之亦然。</p>
+<p>在下面这个示例中，<code>id</code> 被修改为特性，我们可以看到对应的属性也发生了变化。然后反过来也是同样的效果：</p>
+<div id="spxkf1ts42" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input&gt;
+
+&lt;script&gt;
+  let input = document.querySelector('input');
+
+  // 特性 =&gt; 属性
+  input.setAttribute('id', 'id');
+  alert(input.id); // id（被更新了）
+
+  // 属性 =&gt; 特性
+  input.id = 'newId';
+  alert(input.getAttribute('id')); // newId（被更新了）
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但这里也有些例外，例如 <code>input.value</code> 只能从特性同步到属性，反过来则不行：</p>
+<div id="qg4ihotsjb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:11}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input&gt;
+
+&lt;script&gt;
+  let input = document.querySelector('input');
+
+  // 特性 =&gt; 属性
+  input.setAttribute('value', 'text');
+  alert(input.value); // text
+
+  // 这个操作无效，属性 =&gt; 特性
+  input.value = 'newValue';
+  alert(input.getAttribute('value')); // text（没有被更新！）
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在上面这个例子中：</p>
+<ul>
+<li>改变特性值 <code>value</code> 会更新属性。</li>
+<li>但是属性的更改不会影响特性。</li>
+</ul>
+<p>这个“功能”在实际中会派上用场，因为用户行为可能会导致 <code>value</code> 的更改，然后在这些操作之后，如果我们想从 HTML 中恢复“原始”值，那么该值就在特性中。</p>
+<h2><a class="main__anchor" name="dom-shu-xing-shi-duo-lei-xing-de" href="#dom-shu-xing-shi-duo-lei-xing-de">DOM 属性是多类型的</a></h2><p>DOM 属性不总是字符串类型的。例如，<code>input.checked</code> 属性（对于 checkbox 的）是布尔型的。</p>
+<div id="bkzlcn30p3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input id=&quot;input&quot; type=&quot;checkbox&quot; checked&gt; checkbox
+
+&lt;script&gt;
+  alert(input.getAttribute('checked')); // 特性值是：空字符串
+  alert(input.checked); // 属性值是：true
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>还有其他的例子。<code>style</code> 特性是字符串类型的，但 <code>style</code> 属性是一个对象：</p>
+<div id="2eq7dedfab" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div id=&quot;div&quot; style=&quot;color:red;font-size:120%&quot;&gt;Hello&lt;/div&gt;
+
+&lt;script&gt;
+  // 字符串
+  alert(div.getAttribute('style')); // color:red;font-size:120%
+
+  // 对象
+  alert(div.style); // [object CSSStyleDeclaration]
+  alert(div.style.color); // red
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>尽管大多数 DOM 属性都是字符串类型的。</p>
+<p>有一种非常少见的情况，即使一个 DOM 属性是字符串类型的，但它可能和 HTML 特性也是不同的。例如，<code>href</code> DOM 属性一直是一个 <strong>完整的</strong> URL，即使该特性包含一个相对路径或者包含一个 <code>#hash</code>。</p>
+<p>这里有一个例子：</p>
+<div id="4pjwilsc71" data-trusted="1" class="code-example" data-demo-height="30">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a id=&quot;a&quot; href=&quot;#hello&quot;&gt;link&lt;/a&gt;
+&lt;script&gt;
+  // 特性
+  alert(a.getAttribute('href')); // #hello
+
+  // 属性
+  alert(a.href ); // http://site.com/page#hello 形式的完整 URL
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们需要 <code>href</code> 特性的值，或者其他与 HTML 中所写的完全相同的特性，则可以使用 <code>getAttribute</code>。</p>
+<h2><a class="main__anchor" name="fei-biao-zhun-de-te-xing-dataset" href="#fei-biao-zhun-de-te-xing-dataset">非标准的特性，dataset</a></h2><p>当编写 HTML 时，我们会用到很多标准的特性。但是非标准的，自定义的呢？首先，让我们看看它们是否有用？用来做什么？</p>
+<p>有时，非标准的特性常常用于将自定义的数据从 HTML 传递到 JavaScript，或者用于为 JavaScript “标记” HTML 元素。</p>
+<p>像这样：</p>
+<div id="c9w70cxk5a" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;cols&quot;:[{&quot;start&quot;:5,&quot;end&quot;:20}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:5,&quot;end&quot;:21}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- 标记这个 div 以在这显示 &quot;name&quot; --&gt;
+&lt;div show-info=&quot;name&quot;&gt;&lt;/div&gt;
+&lt;!-- 标记这个 div 以在这显示 &quot;age&quot; --&gt;
+&lt;div show-info=&quot;age&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  // 这段代码找到带有标记的元素，并显示需要的内容
+  let user = {
+    name: &quot;Pete&quot;,
+    age: 25
+  };
+
+  for(let div of document.querySelectorAll('[show-info]')) {
+    // 在字段中插入相应的信息
+    let field = div.getAttribute('show-info');
+    div.innerHTML = user[field]; // 首先 &quot;name&quot; 变为 Pete，然后 &quot;age&quot; 变为 25
+  }
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>它们还可以用来设置元素的样式。</p>
+<p>例如，这里使用 <code>order-state</code> 特性来设置订单状态：</p>
+<div id="7771zj9366" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  /* 样式依赖于自定义特性 &quot;order-state&quot; */
+  .order[order-state=&quot;new&quot;] {
+    color: green;
+  }
+
+  .order[order-state=&quot;pending&quot;] {
+    color: blue;
+  }
+
+  .order[order-state=&quot;canceled&quot;] {
+    color: red;
+  }
+&lt;/style&gt;
+
+&lt;div class=&quot;order&quot; order-state=&quot;new&quot;&gt;
+  A new order.
+&lt;/div&gt;
+
+&lt;div class=&quot;order&quot; order-state=&quot;pending&quot;&gt;
+  A pending order.
+&lt;/div&gt;
+
+&lt;div class=&quot;order&quot; order-state=&quot;canceled&quot;&gt;
+  A canceled order.
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>为什么使用特性比使用 <code>.order-state-new</code>，<code>.order-state-pending</code>，<code>.order-state-canceled</code> 这些样式类要好？</p>
+<p>因为特性值更容易管理。我们可以轻松地更改状态：</p>
+<div id="z865ruw667" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 比删除旧的或者添加一个新的类要简单一些
+div.setAttribute('order-state', 'canceled');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>但是自定义的特性也存在问题。如果我们出于我们的目的使用了非标准的特性，之后它被引入到了标准中并有了其自己的用途，该怎么办？HTML 语言是在不断发展的，并且更多的特性出现在了标准中，以满足开发者的需求。在这种情况下，自定义的属性可能会产生意料不到的影响。</p>
+<p>为了避免冲突，存在 <a href="https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes">data-*</a> 特性。</p>
+<p><strong>所有以 “data-” 开头的特性均被保留供程序员使用。它们可在 <code>dataset</code> 属性中使用。</strong></p>
+<p>例如，如果一个 <code>elem</code> 有一个名为 <code>&quot;data-about&quot;</code> 的特性，那么可以通过 <code>elem.dataset.about</code> 取到它。</p>
+<p>像这样：</p>
+<div id="a15075ogy0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;body data-about=&quot;Elephants&quot;&gt;
+&lt;script&gt;
+  alert(document.body.dataset.about); // Elephants
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>像 <code>data-order-state</code> 这样的多词特性可以以驼峰式进行调用：<code>dataset.orderState</code>。</p>
+<p>这里是 “order state” 那个示例的重构版：</p>
+<div id="4ou5x1172u" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;style&gt;
+  .order[data-order-state=&quot;new&quot;] {
+    color: green;
+  }
+
+  .order[data-order-state=&quot;pending&quot;] {
+    color: blue;
+  }
+
+  .order[data-order-state=&quot;canceled&quot;] {
+    color: red;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;order&quot; class=&quot;order&quot; data-order-state=&quot;new&quot;&gt;
+  A new order.
+&lt;/div&gt;
+
+&lt;script&gt;
+  // 读取
+  alert(order.dataset.orderState); // new
+
+  // 修改
+  order.dataset.orderState = &quot;pending&quot;; // (*)
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>使用 <code>data-*</code> 特性是一种合法且安全的传递自定义数据的方式。</p>
+<p>请注意，我们不仅可以读取数据，还可以修改数据属性（data-attributes）。然后 CSS 会更新相应的视图：在上面这个例子中的最后一行 <code>(*)</code> 将颜色更改为了蓝色。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><ul>
+<li>特性（attribute）— 写在 HTML 中的内容。</li>
+<li>属性（property）— DOM 对象中的内容。</li>
+</ul>
+<p>简略的对比：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>属性</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>任何值，标准的属性具有规范中描述的类型</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>名字</td>
+<td>名字（name）是大小写敏感的</td>
+<td>名字（name）是大小写不敏感的</td>
+</tr>
+</tbody>
+</table>
+<p>操作特性的方法：</p>
+<ul>
+<li><code>elem.hasAttribute(name)</code> — 检查是否存在这个特性。</li>
+<li><code>elem.getAttribute(name)</code> — 获取这个特性值。</li>
+<li><code>elem.setAttribute(name, value)</code> — 设置这个特性值。</li>
+<li><code>elem.removeAttribute(name)</code> — 移除这个特性。</li>
+<li><code>elem.attributes</code> — 所有特性的集合。</li>
+</ul>
+<p>在大多数情况下，最好使用 DOM 属性。仅当 DOM 属性无法满足开发需求，并且我们真的需要特性时，才使用特性，例如：</p>
+<ul>
+<li>我们需要一个非标准的特性。但是如果它以 <code>data-</code> 开头，那么我们应该使用 <code>dataset</code>。</li>
+<li>我们想要读取 HTML 中“所写的”值。对应的 DOM 属性可能不同，例如 <code>href</code> 属性一直是一个 <strong>完整的</strong> URL，但是我们想要的是“原始的”值。</li>
+</ul>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#huo-qu-te-xing" name="huo-qu-te-xing">获取特性</a></h3><a class="task__open-link" href="../task/get-user-attribute/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>编写代码，从文档（document）中获取带有 <code>data-widget-name</code> 特性（attribute）的元素，并读取它的值。</p>
+<div id="xdctkchboa" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+  &lt;div data-widget-name=&quot;menu&quot;&gt;Choose the genre&lt;/div&gt;
+
+  &lt;script&gt;
+    /* your code */
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="vvwi5pp2ai" data-trusted="1" class="code-example" data-demo-height="100">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+  &lt;div data-widget-name=&quot;menu&quot;&gt;Choose the genre&lt;/div&gt;
+
+  &lt;script&gt;
+    // 获取它
+    let elem = document.querySelector('[data-widget-name]');
+
+    // 读取值
+    alert(elem.dataset.widgetName);
+    // 或
+    alert(elem.getAttribute('data-widget-name'));
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#jiang-wai-bu-lian-jie-she-wei-cheng-se" name="jiang-wai-bu-lian-jie-she-wei-cheng-se">将外部链接设为橙色</a></h3><a class="task__open-link" href="../task/yellow-links/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>通过修改 <code>style</code> 属性，将所有外部链接变为橙色。</p>
+<p>如果一个链接是外部的：</p>
+<ul>
+<li>其 <code>href</code> 中包含 <code>://</code></li>
+<li>但不是以 <code>http://internal.com</code> 开头。</li>
+</ul>
+<p>例如：</p>
+<div id="ookul4exy7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a name=&quot;list&quot;&gt;the list&lt;/a&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://google.com&quot;&gt;http://google.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/tutorial&quot;&gt;/tutorial.html&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;local/path&quot;&gt;local/path&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;ftp://ftp.com/my.zip&quot;&gt;ftp://ftp.com/my.zip&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nodejs.org&quot;&gt;http://nodejs.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://internal.com/test&quot;&gt;http://internal.com/test&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+  // 为单个链接设置样式
+  let link = document.querySelector('a');
+  link.style.color = 'orange';
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>结果应该是：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://zh.js.cx/task/yellow-links/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/t7x23GMNXvjcM3MG?p=preview" target="_blank" data-plunk-id="t7x23GMNXvjcM3MG">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>首先，我们需要找到所有外部链接。</p>
+<p>这里有两种方式。</p>
+<p>第一种是使用 <code>document.querySelectorAll('a')</code> 找到所有链接，然后过滤出我们需要的部分：</p>
+<div id="eppwxoyppb" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:3}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let links = document.querySelectorAll('a');
+
+for (let link of links) {
+  let href = link.getAttribute('href');
+  if (!href) continue; // 没有特性
+
+  if (!href.includes('://')) continue; // 没有协议
+
+  if (href.startsWith('http://internal.com')) continue; // 内部的
+
+  link.style.color = 'orange';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：我们用的是 <code>link.getAttribute('href')</code>。而不是 <code>link.href</code>，因为我们需要的是来自 HTML 的值。</p>
+<p>……另一种更简单的方法，是使用 CSS 选择器进行检查：</p>
+<div id="zccna1wdsx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 查找所有 href 中包含 :// 的链接
+// 但 href 不是以 http://internal.com 开头
+let selector = 'a[href*=&quot;://&quot;]:not([href^=&quot;http://internal.com&quot;])';
+let links = document.querySelectorAll(selector);
+
+links.forEach(link =&gt; link.style.color = 'orange');</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/6dER8BxMAYR3RVl9?p=preview" target="_blank" data-plunk-id="6dER8BxMAYR3RVl9">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../basic-dom-node-properties/index.html" data-tooltip="节点属性：type，tag 和 content"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../modifying-document/index.html" data-tooltip="修改文档（document）"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/dom-attributes-and-properties","identifier":"\/dom-attributes-and-properties"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../document/index.html">Document</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dom-shu-xing">DOM 属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#html-te-xing">HTML 特性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-te-xing-tong-bu">属性—特性同步</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dom-shu-xing-shi-duo-lei-xing-de">DOM 属性是多类型的</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fei-biao-zhun-de-te-xing-dataset">非标准的特性，dataset</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fdom-attributes-and-properties" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/1-document/06-dom-attributes-and-properties" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

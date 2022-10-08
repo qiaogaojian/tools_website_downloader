@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">浏览器默认行为</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/default-browser-action"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="浏览器默认行为"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="浏览器默认行为"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/event-delegation"><link rel="next" href="/dispatch-events"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="浏览器默认行为"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/default-browser-action"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/default-browser-action"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/default-browser-action"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/default-browser-action"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/default-browser-action"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/default-browser-action"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/default-browser-action"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/default-browser-action"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/default-browser-action"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/default-browser-action"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/default-browser-action"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/default-browser-action">عربي</option><option value="https://javascript.info/default-browser-action">English</option><option value="https://es.javascript.info/default-browser-action">Español</option><option value="https://fr.javascript.info/default-browser-action">Français</option><option value="https://id.javascript.info/default-browser-action">Indonesia</option><option value="https://it.javascript.info/default-browser-action">Italiano</option><option value="https://ja.javascript.info/default-browser-action">日本語</option><option value="https://ko.javascript.info/default-browser-action">한국어</option><option value="https://learn.javascript.ru/default-browser-action">Русский</option><option value="https://tr.javascript.info/default-browser-action">Türkçe</option><option value="https://uk.javascript.info/default-browser-action">Українська</option><option value="https://zh.javascript.info/default-browser-action" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="15" max="32" data-tooltip="第 15/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../events/index.html"><span>事件简介</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"事件简介","item":"https://zh.javascript.info/events"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 16日 十二月 2021"><div class="updated-at__content">16日 十二月 2021</div></div></div><h1 class="main__header-title">浏览器默认行为</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="浏览器默认行为"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>许多事件会自动触发浏览器执行某些行为。</p>
+<p>例如：</p>
+<ul>
+<li>点击一个链接 —— 触发导航（navigation）到该 URL。</li>
+<li>点击表单的提交按钮 —— 触发提交到服务器的行为。</li>
+<li>在文本上按下鼠标按钮并移动 —— 选中文本。</li>
+</ul>
+<p>如果我们使用 JavaScript 处理一个事件，那么我们通常不希望发生相应的浏览器行为。而是想要实现其他行为进行替代。</p>
+<h2><a class="main__anchor" name="zu-zhi-liu-lan-qi-hang-wei" href="#zu-zhi-liu-lan-qi-hang-wei">阻止浏览器行为</a></h2><p>有两种方式来告诉浏览器我们不希望它执行默认行为：</p>
+<ul>
+<li>主流的方式是使用 <code>event</code> 对象。有一个 <code>event.preventDefault()</code> 方法。</li>
+<li>如果处理程序是使用 <code>on&lt;event&gt;</code>（而不是 <code>addEventListener</code>）分配的，那返回 <code>false</code> 也同样有效。</li>
+</ul>
+<p>在下面这个示例中，点击链接不会触发导航（navigation），浏览器不会执行任何操作：</p>
+<div id="k63mj1ekdz" data-trusted="1" class="code-example" data-demo-height="60" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;a href=&quot;/&quot; onclick=&quot;return false&quot;&gt;Click here&lt;/a&gt;
+or
+&lt;a href=&quot;/&quot; onclick=&quot;event.preventDefault()&quot;&gt;here&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-k63mj1ekdz" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><p>在下一个示例中，我们将使用此技术来创建 JavaScript 驱动的菜单。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">从处理程序返回 <code>false</code> 是一个例外</span></div>
+            <div class="important__content"><p>事件处理程序返回的值通常会被忽略。</p>
+<p>唯一的例外是从使用 <code>on&lt;event&gt;</code> 分配的处理程序中返回的 <code>return false</code>。</p>
+<p>在所有其他情况下，<code>return</code> 值都会被忽略。并且，返回 <code>true</code> 没有意义。</p>
+</div></div>
+<h3><a class="main__anchor" name="shi-li-cai-dan" href="#shi-li-cai-dan">示例：菜单</a></h3><p>考虑一个网站菜单，如下所示：</p>
+<div id="8fkm3r4uu5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;ul id=&quot;menu&quot; class=&quot;menu&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;/html&quot;&gt;HTML&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/javascript&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/css&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>下面经过 CSS 渲染的外观：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/default-browser-action/menu/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      <div class="toolbar__tool">
+        <a href="https://plnkr.co/edit/z60957Y49mu17cMR?p=preview" target="_blank" title="在沙箱中打开" data-plunk-id="z60957Y49mu17cMR" class="toolbar__button toolbar__button_edit"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:70px" src="https://zh.js.cx/article/default-browser-action/menu/"></iframe>
+  </div><p>菜单项是通过使用 HTML 链接 <code>&lt;a&gt;</code> 实现的，而不是使用按钮 <code>&lt;button&gt;</code>。这样做有几个原因，例如：</p>
+<ul>
+<li>许多人喜欢使用“右键单击” —— “在一个新窗口打开链接”。如果我们使用 <code>&lt;button&gt;</code> 或 <code>&lt;span&gt;</code>，这个效果就无法实现。</li>
+<li>搜索引擎在建立索引时遵循 <code>&lt;a href=&quot;...&quot;&gt;</code> 链接。</li>
+</ul>
+<p>所以我们在标记（markup）中使用了 <code>&lt;a&gt;</code>。但通常我们打算处理 JavaScript 中的点击。因此，我们应该阻止浏览器默认行为。</p>
+<p>像这样：</p>
+<div id="2dp36zjq8w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>menu.onclick = function(event) {
+  if (event.target.nodeName != 'A') return;
+
+  let href = event.target.getAttribute('href');
+  alert( href ); // ...可以从服务器加载，UI 生成等
+
+  return false; // 阻止浏览器行为（不前往访问 URL）
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们省略 <code>return false</code>，那么在我们的代码执行完毕后，浏览器将执行它的“默认行为” —— 导航至在 <code>href</code> 中的 URL。</p>
+<p>顺便说一句，这里使用事件委托会使我们的菜单更灵活。我们可以添加嵌套列表并使用 CSS 对其进行样式设置来实现 “slide down” 的效果。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">后续事件</span></div>
+            <div class="important__content"><p>某些事件会相互转化。如果我们阻止了第一个事件，那就没有第二个事件了。</p>
+<p>例如，在 <code>&lt;input&gt;</code> 字段上的 <code>mousedown</code> 会导致在其中获得焦点，以及 <code>focus</code> 事件。如果我们阻止 <code>mousedown</code> 事件，在这就没有焦点了。</p>
+<p>尝试点击下面的第一个 <code>&lt;input&gt;</code> —— 会发生 <code>focus</code> 事件。但是如果你点击第二个，则没有聚焦。</p>
+<div id="1gfr2ps3uj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:7,&quot;end&quot;:33}]}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input value=&quot;Focus works&quot; onfocus=&quot;this.value=''&quot;&gt;
+&lt;input onmousedown=&quot;return false&quot; onfocus=&quot;this.value=''&quot; value=&quot;Click me&quot;&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-1gfr2ps3uj" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>这是因为浏览器行为在 <code>mousedown</code> 上被取消。如果我们用另一种方式进行输入，则仍然可以进行聚焦。例如，可以使用 <kbd class="shortcut">Tab</kbd> 键从第一个输入切换到第二个输入。但鼠标点击则不行。</p>
+</div></div>
+<h2><a class="main__anchor" name="chu-li-cheng-xu-xuan-xiang-passive" href="#chu-li-cheng-xu-xuan-xiang-passive">处理程序选项 “passive”</a></h2><p><code>addEventListener</code> 的可选项 <code>passive: true</code> 向浏览器发出信号，表明处理程序将不会调用 <code>preventDefault()</code>。</p>
+<p>为什么需要这样做？</p>
+<p>移动设备上会发生一些事件，例如 <code>touchmove</code>（当用户在屏幕上移动手指时），默认情况下会导致滚动，但是可以使用处理程序的 <code>preventDefault()</code> 来阻止滚动。</p>
+<p>因此，当浏览器检测到此类事件时，它必须首先处理所有处理程序，然后如果没有任何地方调用 <code>preventDefault</code>，则页面可以继续滚动。但这可能会导致 UI 中不必要的延迟和“抖动”。</p>
+<p><code>passive: true</code> 选项告诉浏览器，处理程序不会取消滚动。然后浏览器立即滚动页面以提供最大程度的流畅体验，并通过某种方式处理事件。</p>
+<p>对于某些浏览器（Firefox，Chrome），默认情况下，<code>touchstart</code> 和 <code>touchmove</code> 事件的 <code>passive</code> 为 <code>true</code>。</p>
+<h2><a class="main__anchor" name="eventdefaultprevented" href="#eventdefaultprevented">event.defaultPrevented</a></h2><p>如果默认行为被阻止，那么 <code>event.defaultPrevented</code> 属性为 <code>true</code>，否则为 <code>false</code>。</p>
+<p>这儿有一个有趣的用例。</p>
+<p>你还记得我们在 <a href="../bubbling-and-capturing/index.html">冒泡和捕获</a> 一章中讨论过的 <code>event.stopPropagation()</code>，以及为什么停止冒泡是不好的吗？</p>
+<p>有时我们可以使用 <code>event.defaultPrevented</code> 来代替，来通知其他事件处理程序，该事件已经被处理。</p>
+<p>我们来看一个实际的例子。</p>
+<p>默认情况下，浏览器在 <code>contextmenu</code> 事件（单击鼠标右键）时，显示带有标准选项的上下文菜单。我们可以阻止它并显示我们自定义的菜单，就像这样：</p>
+<div id="bj87nj39nx" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:8,&quot;end&quot;:60}]}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button&gt;Right-click shows browser context menu&lt;/button&gt;
+
+&lt;button oncontextmenu=&quot;alert('Draw our menu'); return false&quot;&gt;
+  Right-click shows our context menu
+&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-bj87nj39nx" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在，除了该上下文菜单外，我们还想实现文档范围的上下文菜单。</p>
+<p>右键单击时，应该显示最近的上下文菜单：</p>
+<div id="hfncfv65vp" data-trusted="1" class="code-example" data-demo-height="80" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;Right-click here for the document context menu&lt;/p&gt;
+&lt;button id=&quot;elem&quot;&gt;Right-click here for the button context menu&lt;/button&gt;
+
+&lt;script&gt;
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert(&quot;Button context menu&quot;);
+  };
+
+  document.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert(&quot;Document context menu&quot;);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-hfncfv65vp" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>问题是，当我们点击 <code>elem</code> 时，我们会得到两个菜单：按钮级和文档级（事件冒泡）的菜单。</p>
+<p>如何修复呢？其中一个解决方案是：“当我们在按钮处理程序中处理鼠标右键单击事件时，我们阻止其冒泡”，使用 <code>event.stopPropagation()</code>：</p>
+<div id="f2c8eluzd4" data-trusted="1" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;Right-click for the document menu&lt;/p&gt;
+&lt;button id=&quot;elem&quot;&gt;Right-click for the button menu (fixed with event.stopPropagation)&lt;/button&gt;
+
+&lt;script&gt;
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    alert(&quot;Button context menu&quot;);
+  };
+
+  document.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert(&quot;Document context menu&quot;);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-f2c8eluzd4" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在按钮级菜单如期工作。但是代价太大，我们永远拒绝访问外部代码中的有关右键单击的信息，包括收集统计信息的计数器等。这是非常不明智的。</p>
+<p>另一个替代方案是，检查 <code>document</code> 处理程序是否阻止了浏览器的默认行为？如果阻止了，那么该事件已经得到了处理，我们无需再对此事件做出反应。</p>
+<div id="3dn27nbip9" data-trusted="1" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:10,&quot;end&quot;:10}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;p&gt;Right-click for the document menu (added a check for event.defaultPrevented)&lt;/p&gt;
+&lt;button id=&quot;elem&quot;&gt;Right-click for the button menu&lt;/button&gt;
+
+&lt;script&gt;
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert(&quot;Button context menu&quot;);
+  };
+
+  document.oncontextmenu = function(event) {
+    if (event.defaultPrevented) return;
+
+    event.preventDefault();
+    alert(&quot;Document context menu&quot;);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-3dn27nbip9" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在一切都可以正常工作了。如果我们有嵌套的元素，并且每个元素都有自己的上下文菜单，那么这也是可以运行的。只需确保检查每个 <code>contextmenu</code> 处理程序中的 <code>event.defaultPrevented</code>。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">event.stopPropagation() 和 event.preventDefault()</span></div>
+            <div class="important__content"><p>正如我们所看到的，<code>event.stopPropagation()</code> 和 <code>event.preventDefault()</code>（也被认为是 <code>return false</code>）是两个不同的东西。它们之间毫无关联。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">嵌套的上下文菜单结构</span></div>
+            <div class="important__content"><p>还有其他实现嵌套上下文菜单的方式。其中之一是拥有一个具有 <code>document.oncontextmenu</code> 处理程序的全局对象，以及使我们能够在其中存储其他处理程序的方法。</p>
+<p>该对象将捕获任何右键单击，浏览存储的处理程序并运行适当的处理程序。</p>
+<p>但是，每段需要上下文菜单的代码都应该了解该对象，并使用它的帮助，而不是使用自己的 <code>contextmenu</code> 处理程序。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>有很多默认的浏览器行为：</p>
+<ul>
+<li><code>mousedown</code> —— 开始选择（移动鼠标进行选择）。</li>
+<li>在 <code>&lt;input type=&quot;checkbox&quot;&gt;</code> 上的 <code>click</code> —— 选中/取消选中的 <code>input</code>。</li>
+<li><code>submit</code> —— 点击 <code>&lt;input type=&quot;submit&quot;&gt;</code> 或者在表单字段中按下 <kbd class="shortcut">Enter</kbd> 键会触发该事件，之后浏览器将提交表单。</li>
+<li><code>keydown</code> —— 按下一个按键会导致将字符添加到字段，或者触发其他行为。</li>
+<li><code>contextmenu</code> —— 事件发生在鼠标右键单击时，触发的行为是显示浏览器上下文菜单。</li>
+<li>……还有更多……</li>
+</ul>
+<p>如果我们只想通过 JavaScript 来处理事件，那么所有默认行为都是可以被阻止的。</p>
+<p>想要阻止默认行为 —— 可以使用 <code>event.preventDefault()</code> 或 <code>return false</code>。第二个方法只适用于通过 <code>on&lt;event&gt;</code> 分配的处理程序。</p>
+<p><code>addEventListener</code> 的 <code>passive: true</code> 选项告诉浏览器该行为不会被阻止。这对于某些移动端的事件（像 <code>touchstart</code> 和 <code>touchmove</code>）很有用，用以告诉浏览器在滚动之前不应等待所有处理程序完成。</p>
+<p>如果默认行为被阻止，<code>event.defaultPrevented</code> 的值会变成 <code>true</code>，否则为 <code>false</code>。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">保持语义，不要滥用</span></div>
+            <div class="important__content"><p>从技术上来说，通过阻止默认行为并添加 JavaScript，我们可以自定义任何元素的行为。例如，我们可以使链接 <code>&lt;a&gt;</code> 像按钮一样工作，而按钮 <code>&lt;button&gt;</code> 也可以像链接那样工作（重定向到另一个 URL 等）。</p>
+<p>但我们通常应该保留 HTML 元素的语义。例如 <code>&lt;a&gt;</code> 应该表现为导航（navigation），而不是按钮。</p>
+<p>除了“只是一件好事”之外，这还会使你的 HTML 具有更好的可访问性。</p>
+<p>另外，如果我们考虑使用带有 <code>&lt;a&gt;</code> 的示例，那么请注意：浏览器允许我们在新窗口中打开此类链接（通过右键单击它们以及其他方式）。大家都喜欢这么做。但是，如果我们使用 JavaScript 让按钮行为表现得像链接，甚至使用 CSS 将其样式设置成看起来也像链接，即使这样，但仍然无法在按钮上使用特定于 <code>&lt;a&gt;</code> 的浏览器功能。</p>
+</div></div>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#wei-shi-mo-returnfalse-bu-qi-zuo-yong" name="wei-shi-mo-returnfalse-bu-qi-zuo-yong">为什么 &quot;return false&quot; 不起作用？</a></h3><a class="task__open-link" href="../task/why-return-false-fails/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 3</span></div><div class="task__content"><div class="task__formatted"><p>为什么下面这段代码中的 <code>return false</code> 不起作用？</p>
+<div id="v30739hohx" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  function handler() {
+    alert( &quot;...&quot; );
+    return false;
+  }
+&lt;/script&gt;
+
+&lt;a href=&quot;https://w3.org&quot; onclick=&quot;handler()&quot;&gt;the browser will go to w3.org&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-v30739hohx" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>浏览器在点击时会根据 URL 进行跳转，但这不是我们想要的。</p>
+<p>如何修复它？</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>当浏览器读取诸如 <code>onclick</code> 之类的 <code>on*</code> 特性（attribute）时，浏览器会根据其内容创建对应的处理程序。</p>
+<p>对于 <code>onclick=&quot;handler()&quot;</code> 来说，函数是：</p>
+<div id="i4etyohcuv" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function(event) {
+  handler() // onclick 的内容
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在我们可以看到 <code>handler()</code> 的返回值并没有被使用，也没有对结果产生影响。</p>
+<p>修复起来很简单：</p>
+<div id="l5seacj0jk" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;cols&quot;:[{&quot;start&quot;:34,&quot;end&quot;:50}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  function handler() {
+    alert(&quot;...&quot;);
+    return false;
+  }
+&lt;/script&gt;
+
+&lt;a href=&quot;https://w3.org&quot; onclick=&quot;return handler()&quot;&gt;w3.org&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以使用 <code>event.preventDefault()</code>，像这样：</p>
+<div id="881wzfvdwj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;cols&quot;:[{&quot;start&quot;:34,&quot;end&quot;:48}]},{&quot;start&quot;:1,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  function handler(event) {
+    alert(&quot;...&quot;);
+    event.preventDefault();
+  }
+&lt;/script&gt;
+
+&lt;a href=&quot;https://w3.org&quot; onclick=&quot;handler(event)&quot;&gt;w3.org&lt;/a&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#bu-huo-yuan-su-zhong-de-lian-jie" name="bu-huo-yuan-su-zhong-de-lian-jie">捕获元素中的链接</a></h3><a class="task__open-link" href="../task/catch-link-navigation/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>使所有包含 <code>id=&quot;contents&quot;</code> 的元素内的链接询问用户是否真的要离开。如果用户不想离开，那就不离开。</p>
+<p>像这样：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:100px" src="https://zh.js.cx/task/catch-link-navigation/solution/"></iframe>
+  </div><p>细节：</p>
+<ul>
+<li>元素内的 HTML 可以被随时动态加载或重新生成，因此，我们无法找到所有链接并为其添加处理程序。这里使用事件委托。</li>
+<li>内容中可能有嵌套的标签。链接中也是，例如 <code>&lt;a href=&quot;..&quot;&gt;&lt;i&gt;...&lt;/i&gt;&lt;/a&gt;</code>。</li>
+</ul>
+<p><a href="https://plnkr.co/edit/FIYQgZu4mSgXDab5?p=preview" target="_blank" data-plunk-id="FIYQgZu4mSgXDab5">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>这是一个很好的使用事件委托模式的案例。</p>
+<p>在现实生活中，我们可以向服务器发送一个 “logging” 请求而不是询问，该请求会保存关于访问者离开位置的信息。或者，我们可以加载内容，并将其显示在页面中（如果允许的话）。</p>
+<p>我们只需要捕获 <code>contents.onclick</code>，然后使用 <code>confirm</code> 来询问用户。一个好主意是使用 <code>link.getAttribute('href')</code> 来代替 <code>link.href</code>。详情请参见解决方案。</p>
+<p><a href="https://plnkr.co/edit/v7STtEHc4BKuxMBz?p=preview" target="_blank" data-plunk-id="v7STtEHc4BKuxMBz">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#tu-ce" name="tu-ce">图册</a></h3><a class="task__open-link" href="../task/image-gallery/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个图册，通过点击缩略图可以更改主图片。</p>
+<p>像这样：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:600px" src="https://zh.js.cx/task/image-gallery/solution/"></iframe>
+  </div><p>P.S. 使用事件委托。</p>
+<p><a href="https://plnkr.co/edit/ZQdC9wmRJpI1qLPO?p=preview" target="_blank" data-plunk-id="ZQdC9wmRJpI1qLPO">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>解决方案是将处理程序分配给容器，并追踪点击。如果点击在 <code>&lt;a&gt;</code> 链接上，则将 <code>#largeImg</code> 的 <code>src</code> 修改为该缩略图的 <code>href</code>。</p>
+<p><a href="https://plnkr.co/edit/gevwQepkonLkMr93?p=preview" target="_blank" data-plunk-id="gevwQepkonLkMr93">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../event-delegation/index.html" data-tooltip="事件委托"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../dispatch-events/index.html" data-tooltip="创建自定义事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/default-browser-action","identifier":"\/default-browser-action"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../events/index.html">事件简介</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zu-zhi-liu-lan-qi-hang-wei">阻止浏览器行为</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#chu-li-cheng-xu-xuan-xiang-passive">处理程序选项 “passive”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#eventdefaultprevented">event.defaultPrevented</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fdefault-browser-action" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/2-events/04-default-browser-action" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

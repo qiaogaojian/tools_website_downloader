@@ -1,0 +1,820 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">JavaScript 动画</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/js-animation"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="JavaScript 动画"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JavaScript 动画"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/css-animations"><link rel="next" href="/web-components"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="JavaScript 动画"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/js-animation"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/js-animation"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/js-animation"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/js-animation"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/js-animation"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/js-animation"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/js-animation">English</option><option value="https://es.javascript.info/js-animation">Español</option><option value="https://fr.javascript.info/js-animation">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/js-animation">Italiano</option><option value="https://ja.javascript.info/js-animation">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/js-animation">Русский</option><option value="https://tr.javascript.info/">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/js-animation" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="3" max="3" data-tooltip="第 3/3 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../animation/index.html"><span>动画</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"动画","item":"https://zh.javascript.info/animation"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 15日 十二月 2021"><div class="updated-at__content">15日 十二月 2021</div></div></div><h1 class="main__header-title">JavaScript 动画</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="JavaScript 动画"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>JavaScript 动画可以处理 CSS 无法处理的事情。</p>
+<p>例如，沿着具有与 Bezier 曲线不同的时序函数的复杂路径移动，或者实现画布上的动画。</p>
+<h2><a class="main__anchor" name="shi-yong-setinterval" href="#shi-yong-setinterval">使用 setInterval</a></h2><p>从 HTML/CSS 的角度来看，动画是 style 属性的逐渐变化。例如，将 <code>style.left</code> 从 <code>0px</code> 变化到 <code>100px</code> 可以移动元素。</p>
+<p>如果我们用 <code>setInterval</code> 每秒做 50 次小变化，看起来会更流畅。电影也是这样的原理：每秒 24 帧或更多帧足以使其看起来流畅。</p>
+<p>伪代码如下：</p>
+<div id="8jj2x03ot1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let delay = 1000 / 50; // 每秒 50 帧
+let timer = setInterval(function() {
+  if (animation complete) clearInterval(timer);
+  else increase style.left
+}, delay)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更完整的动画示例：</p>
+<div id="iaz0wgj1ur" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let start = Date.now(); // 保存开始时间
+
+let timer = setInterval(function() {
+  // 距开始过了多长时间
+  let timePassed = Date.now() - start;
+
+  if (timePassed &gt;= 2000) {
+    clearInterval(timer); // 2 秒后结束动画
+    return;
+  }
+
+  // 在 timePassed 时刻绘制动画
+  draw(timePassed);
+
+}, 20);
+
+// 随着 timePassed 从 0 增加到 2000
+// 将 left 的值从 0px 增加到 400px
+function draw(timePassed) {
+  train.style.left = timePassed / 5 + 'px';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>点击演示：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/js-animation/move/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/xS2LwvelKh2W7MKr?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/js-animation/move/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;style&gt;
+    #train {
+      position: relative;
+      cursor: pointer;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;img id=&quot;train&quot; src=&quot;https://js.cx/clipart/train.gif&quot;&gt;
+
+
+  &lt;script&gt;
+    train.onclick = function() {
+      let start = Date.now();
+
+      let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+
+        train.style.left = timePassed / 5 + 'px';
+
+        if (timePassed &gt; 2000) clearInterval(timer);
+
+      }, 20);
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="shi-yong-requestanimationframe" href="#shi-yong-requestanimationframe">使用 requestAnimationFrame</a></h2><p>假设我们有几个同时运行的动画。</p>
+<p>如果我们单独运行它们，每个都有自己的 <code>setInterval(..., 20)</code>，那么浏览器必须以比 <code>20ms</code> 更频繁的速度重绘。</p>
+<p>每个 <code>setInterval</code> 每 <code>20ms</code> 触发一次，但它们相互独立，因此 <code>20ms</code> 内将有多个独立运行的重绘。</p>
+<p>这几个独立的重绘应该组合在一起，以使浏览器更加容易处理。</p>
+<p>换句话说，像下面这样：</p>
+<div id="2qts6zaa5j" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setInterval(function() {
+  animate1();
+  animate2();
+  animate3();
+}, 20)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……比这样更好：</p>
+<div id="bfbb6hcwsl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>setInterval(animate1, 20);
+setInterval(animate2, 20);
+setInterval(animate3, 20);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>还有一件事需要记住。有时当 CPU 过载时，或者有其他原因需要降低重绘频率。例如，如果浏览器选项卡被隐藏，那么绘图完全没有意义。</p>
+<p>有一个标准<a href="http://www.w3.org/TR/animation-timing/">动画时序</a>提供了 <code>requestAnimationFrame</code> 函数。</p>
+<p>它解决了所有这些问题，甚至更多其它的问题。</p>
+<p>语法：</p>
+<div id="kseuc7igtg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let requestId = requestAnimationFrame(callback);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这会让 <code>callback</code> 函数在浏览器每次重绘的最近时间运行。</p>
+<p>如果我们对 <code>callback</code> 中的元素进行变化，这些变化将与其他 <code>requestAnimationFrame</code> 回调和 CSS 动画组合在一起。因此，只会有一次几何重新计算和重绘，而不是多次。</p>
+<p>返回值 <code>requestId</code> 可用来取消回调：</p>
+<div id="cxngz5b2ok" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 取消回调的周期执行
+cancelAnimationFrame(requestId);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>callback</code> 得到一个参数 —— 从页面加载开始经过的毫秒数。这个时间也可通过调用 <a href="https://developer.mozilla.org/zh/docs/Web/API/Performance/now">performance.now()</a> 得到。</p>
+<p>通常 <code>callback</code> 很快就会运行，除非 CPU 过载或笔记本电量消耗殆尽，或者其他原因。</p>
+<p>下面的代码显示了 <code>requestAnimationFrame</code> 的前 10 次运行之间的时间间隔。通常是 10-20ms：</p>
+<div id="5j7tl6v53g" data-trusted="1" class="code-example" data-demo-height="40" data-refresh="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;script&gt;
+  let prev = performance.now();
+  let times = 0;
+
+  requestAnimationFrame(function measure(time) {
+    document.body.insertAdjacentHTML(&quot;beforeEnd&quot;, Math.floor(time - prev) + &quot; &quot;);
+    prev = time;
+
+    if (times++ &lt; 10) requestAnimationFrame(measure);
+  });
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="jie-gou-hua-dong-hua" href="#jie-gou-hua-dong-hua">结构化动画</a></h2><p>现在我们可以在 <code>requestAnimationFrame</code> 基础上创建一个更通用的动画函数：</p>
+<div id="tpmnn7yqpe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function animate({timing, draw, duration}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction 从 0 增加到 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    // 计算当前动画状态
+    let progress = timing(timeFraction);
+
+    draw(progress); // 绘制
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>animate</code> 函数接受 3 个描述动画的基本参数：</p>
+<dl>
+<dt><code>duration</code></dt>
+<dd>
+<p>动画总时间，比如 <code>1000</code>。</p>
+</dd>
+<dt><code>timing(timeFraction)</code></dt>
+<dd>
+<p>时序函数，类似 CSS 属性 <code>transition-timing-function</code>，传入一个已过去的时间与总时间之比的小数（<code>0</code> 代表开始，<code>1</code> 代表结束），返回动画完成度（类似 Bezier 曲线中的 <code>y</code>）。</p>
+<p>例如，线性函数意味着动画以相同的速度均匀地进行：</p>
+<div id="rxgf55nwt4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function linear(timeFraction) {
+  return timeFraction;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>图像如下：</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/linear.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/linear.svg" alt width="234" height="240">
+      </object>
+      </div></figure><p>它类似于 <code>transition-timing-function: linear</code>。后文有更多有趣的变体。</p>
+</dd>
+<dt><code>draw(progress)</code></dt>
+<dd>
+<p>获取动画完成状态并绘制的函数。值 <code>progress = 0</code> 表示开始动画状态，<code>progress = 1</code> 表示结束状态。</p>
+<p>这是实际绘制动画的函数。</p>
+<p>它可以移动元素：</p>
+<div id="rq5ge11y9a" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function draw(progress) {
+  train.style.left = progress + 'px';
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……或者做任何其他事情，我们可以以任何方式为任何事物制作动画。</p>
+</dd>
+</dl>
+<p>让我们使用我们的函数将元素的 <code>width</code> 从 <code>0</code> 变化为 <code>100%</code>。</p>
+<p>点击演示元素：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">animate.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/js-animation/width/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/mtdDQ89NcD1flbGv?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:60px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/js-animation/width/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>function animate({duration, draw, timing}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    let progress = timing(timeFraction)
+
+    draw(progress);
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;style&gt;
+    progress {
+      width: 5%;
+    }
+  &lt;/style&gt;
+  &lt;script src=&quot;animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;progress id=&quot;elem&quot;&gt;&lt;/progress&gt;
+
+  &lt;script&gt;
+    elem.onclick = function() {
+      animate({
+        duration: 1000,
+        timing: function(timeFraction) {
+          return timeFraction;
+        },
+        draw: function(progress) {
+          elem.style.width = progress * 100 + '%';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>它的代码如下：</p>
+<div id="1961uatyho" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>animate({
+  duration: 1000,
+  timing(timeFraction) {
+    return timeFraction;
+  },
+  draw(progress) {
+    elem.style.width = progress * 100 + '%';
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>与 CSS 动画不同，我们可以在这里设计任何时序函数和任何绘图函数。时序函数不受 Bezier 曲线的限制。并且 <code>draw</code> 不局限于操作 CSS 属性，还可以为类似烟花动画或其他动画创建新元素。</p>
+<h2><a class="main__anchor" name="shi-xu-han-shu" href="#shi-xu-han-shu">时序函数</a></h2><p>上文我们看到了最简单的线性时序函数。</p>
+<p>让我们看看更多。我们将尝试使用不同时序函数的移动动画来查看它们的工作原理。</p>
+<h3><a class="main__anchor" name="n-ci-mi" href="#n-ci-mi">n 次幂</a></h3><p>如果我们想加速动画，我们可以让 <code>progress</code> 为 <code>n</code> 次幂。</p>
+<p>例如，抛物线：</p>
+<div id="m1jm1okry6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function quad(timeFraction) {
+  return Math.pow(timeFraction, 2)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>图像如下：</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/quad.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/quad.svg" alt width="234" height="240">
+      </object>
+      </div></figure><p>看看实际效果（点击激活）：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/quad/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/quad/"></iframe>
+  </div><p>……或者三次曲线甚至使用更大的 <code>n</code>。增大幂会让动画加速得更快。</p>
+<p>下面是 <code>progress</code> 为 <code>5</code> 次幂的图像:</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/quint.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/quint.svg" alt width="234" height="240">
+      </object>
+      </div></figure><p>实际效果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/quint/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/quint/"></iframe>
+  </div><h3><a class="main__anchor" name="yuan-hu" href="#yuan-hu">圆弧</a></h3><p>函数：</p>
+<div id="pt3jbf6mbn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function circ(timeFraction) {
+  return 1 - Math.sin(Math.acos(timeFraction));
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>图像：</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/circ.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/circ.svg" alt width="234" height="240">
+      </object>
+      </div></figure><div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/circ/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/circ/"></iframe>
+  </div><h3><a class="main__anchor" name="fan-dan-gong-jian-she-ji" href="#fan-dan-gong-jian-she-ji">反弹：弓箭射击</a></h3><p>此函数执行“弓箭射击”。首先，我们“拉弓弦”，然后“射击”。</p>
+<p>与以前的函数不同，它取决于附加参数 <code>x</code>，即“弹性系数”。“拉弓弦”的距离由它定义。</p>
+<p>代码如下：</p>
+<div id="xh3yap9ghq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function back(x, timeFraction) {
+  return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong><code>x = 1.5</code> 时的图像：</strong></p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/back.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/back.svg" alt width="234" height="240">
+      </object>
+      </div></figure><p>在动画中我们使用特定的 <code>x</code> 值。下面是 <code>x = 1.5</code> 时的例子：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/back/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/back/"></iframe>
+  </div><h3><a class="main__anchor" name="dan-tiao" href="#dan-tiao">弹跳</a></h3><p>想象一下，我们正在抛球。球落下之后，弹跳几次然后停下来。</p>
+<p><code>bounce</code> 函数也是如此，但顺序相反：“bouncing”立即启动。它使用了几个特殊的系数：</p>
+<div id="602e4c28yn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function bounce(timeFraction) {
+  for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
+    if (timeFraction &gt;= (7 - 4 * a) / 11) {
+      return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>演示：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/bounce/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/bounce/"></iframe>
+  </div><h3><a class="main__anchor" name="shen-suo-dong-hua" href="#shen-suo-dong-hua">伸缩动画</a></h3><p>另一个“伸缩”函数接受附加参数 <code>x</code> 作为“初始范围”。</p>
+<div id="2dwbq40wfe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function elastic(x, timeFraction) {
+  return Math.pow(2, 10 * (timeFraction - 1)) * Math.cos(20 * Math.PI * x / 3 * timeFraction)
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><strong><code>x=1.5</code> 时的图像：</strong>
+<img src="../article/js-animation/elastic.svg" alt width="233" height="388"></p>
+<p><code>x=1.5</code> 时的演示</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"><div class="toolbar__tool">
+        <a href="https://zh.js.cx/article/js-animation/elastic/" target="_blank" title="在新窗口中打开" class="toolbar__button toolbar__button_external"></a>
+      </div>
+      </div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:40px" src="https://zh.js.cx/article/js-animation/elastic/"></iframe>
+  </div><h2><a class="main__anchor" name="ni-zhuan-ease" href="#ni-zhuan-ease">逆转：ease*</a></h2><p>我们有一组时序函数。它们的直接应用称为“easeIn”。</p>
+<p>有时我们需要以相反的顺序显示动画。这是通过“easeOut”变换完成的。</p>
+<h3><a class="main__anchor" name="easeout" href="#easeout">easeOut</a></h3><p>在“easeOut”模式中，我们将 <code>timing</code> 函数封装到 <code>timingEaseOut</code>中：</p>
+<div id="pnnvgclrqd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>timingEaseOut(timeFraction) = 1 - timing(1 - timeFraction);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>换句话说，我们有一个“变换”函数 <code>makeEaseOut</code>，它接受一个“常规”时序函数 <code>timing</code> 并返回一个封装器，里面封装了 <code>timing</code> 函数：</p>
+<div id="044ccpr4hl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 接受时序函数，返回变换后的变体
+function makeEaseOut(timing) {
+  return function(timeFraction) {
+    return 1 - timing(1 - timeFraction);
+  }
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，我们可以使用上面描述的 <code>bounce</code> 函数：</p>
+<div id="ku686c9mzi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let bounceEaseOut = makeEaseOut(bounce);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样，弹跳不会在动画开始时执行，而是在动画结束时。这样看起来更好：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/js-animation/bounce-easeout/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/CMtBB5AZhMaBWHu8?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/js-animation/bounce-easeout/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#brick {
+  width: 40px;
+  height: 20px;
+  background: #EE6B47;
+  position: relative;
+  cursor: pointer;
+}
+
+#path {
+  outline: 1px solid #E8C48E;
+  width: 540px;
+  height: 20px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;div id=&quot;path&quot;&gt;
+    &lt;div id=&quot;brick&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    function makeEaseOut(timing) {
+      return function(timeFraction) {
+        return 1 - timing(1 - timeFraction);
+      }
+    }
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+
+    let bounceEaseOut = makeEaseOut(bounce);
+
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: bounceEaseOut,
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>在这里，我们可以看到变换如何改变函数的行为：</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/bounce-inout.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/bounce-inout.svg" alt width="234" height="240">
+      </object>
+      </div></figure><p>如果在开始时有动画效果，比如弹跳 —— 那么它将在最后显示。</p>
+<p>上图中<span style="color:#EE6B47">常规弹跳</span>为红色，<span style="color:#62C0DC">easeOut 弹跳</span>为蓝色。</p>
+<ul>
+<li>常规弹跳 —— 物体在底部弹跳，然后突然跳到顶部。</li>
+<li><code>easeOut</code> 变换之后 —— 物体跳到顶部之后，在那里弹跳。</li>
+</ul>
+<h3><a class="main__anchor" name="easeinout" href="#easeinout">easeInOut</a></h3><p>我们还可以在动画的开头和结尾都显示效果。该变换称为“easeInOut”。</p>
+<p>给定时序函数，我们按下面的方式计算动画状态：</p>
+<div id="f6yfp2kfm6" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (timeFraction &lt;= 0.5) { // 动画前半部分
+  return timing(2 * timeFraction) / 2;
+} else { // 动画后半部分
+  return (2 - timing(2 * (1 - timeFraction))) / 2;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>封装器代码：</p>
+<div id="hjyinm85q2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeEaseInOut(timing) {
+  return function(timeFraction) {
+    if (timeFraction &lt; .5)
+      return timing(2 * timeFraction) / 2;
+    else
+      return (2 - timing(2 * (1 - timeFraction))) / 2;
+  }
+}
+
+bounceEaseInOut = makeEaseInOut(bounce);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>bounceEaseInOut</code> 演示如下:</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/js-animation/bounce-easeinout/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/6UyJGES6NkcXMRmW?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/js-animation/bounce-easeinout/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>#brick {
+  width: 40px;
+  height: 20px;
+  background: #EE6B47;
+  position: relative;
+  cursor: pointer;
+}
+
+#path {
+  outline: 1px solid #E8C48E;
+  width: 540px;
+  height: 20px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;div id=&quot;path&quot;&gt;
+    &lt;div id=&quot;brick&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    function makeEaseInOut(timing) {
+      return function(timeFraction) {
+        if (timeFraction &lt; .5)
+          return timing(2 * timeFraction) / 2;
+        else
+          return (2 - timing(2 * (1 - timeFraction))) / 2;
+      }
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+
+    let bounceEaseInOut = makeEaseInOut(bounce);
+
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: bounceEaseInOut,
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><p>“easeInOut” 变换将两个图像连接成一个：动画的前半部分为“easeIn”（常规），后半部分为“easeOut”（反向）。</p>
+<p>如果我们比较 <code>circ</code> 时序函数的 <code>easeIn</code>、<code>easeOut</code> 和 <code>easeInOut</code> 的图像，就可以清楚地看到效果：</p>
+<figure><div class="image" style="width:234px">
+      <div class="image__ratio" style="padding-top:102.56410256410255%"></div>
+      <object type="image/svg+xml" data="../article/js-animation/circ-ease.svg" width="234" height="240" class="image__image" data-use-theme>
+        <img src="../article/js-animation/circ-ease.svg" alt width="234" height="240">
+      </object>
+      </div></figure><ul>
+<li><span style="color:#EE6B47">红色</span>是 <code>circ</code>（<code>easeIn</code>）的常规变体。</li>
+<li><span style="color:#8DB173">绿色</span> —— <code>easeOut</code>。</li>
+<li><span style="color:#62C0DC">蓝色</span> —— <code>easeInOut</code>。</li>
+</ul>
+<p>正如我们所看到的，动画前半部分的图形是缩小的“easeIn”，后半部分是缩小的“easeOut”。结果是动画以相同的效果开始和结束。</p>
+<h2><a class="main__anchor" name="geng-you-qu-de-draw" href="#geng-you-qu-de-draw">更有趣的 “draw”</a></h2><p>除了移动元素，我们还可以做其他事情。我们所需要的只是写出合适的 <code>draw</code>。</p>
+<p>这是动画形式的“弹跳”文字输入：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">style.css</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/js-animation/text/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/2xgcs2upgj9hZoi6?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/js-animation/text/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-css line-numbers"><code>textarea {
+  display: block;
+  border: 1px solid #BBB;
+  color: #444;
+  font-size: 110%;
+}
+
+button {
+  margin-top: 10px;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;https://js.cx/libs/animate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+  &lt;textarea id=&quot;textExample&quot; rows=&quot;5&quot; cols=&quot;60&quot;&gt;He took his vorpal sword in hand:
+Long time the manxome foe he sought—
+So rested he by the Tumtum tree,
+And stood awhile in thought.
+  &lt;/textarea&gt;
+
+  &lt;button onclick=&quot;animateText(textExample)&quot;&gt;Run the animated typing!&lt;/button&gt;
+
+  &lt;script&gt;
+    function animateText(textArea) {
+      let text = textArea.value;
+      let to = text.length,
+        from = 0;
+
+      animate({
+        duration: 5000,
+        timing: bounce,
+        draw: function(progress) {
+          let result = (to - from) * progress + from;
+          textArea.value = text.substr(0, Math.ceil(result))
+        }
+      });
+    }
+
+
+    function bounce(timeFraction) {
+      for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
+        if (timeFraction &gt;= (7 - 4 * a) / 11) {
+          return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+        }
+      }
+    }
+  &lt;/script&gt;
+
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>JavaScript 动画应该通过 <code>requestAnimationFrame</code> 实现。该内建方法允许设置回调函数，以便在浏览器准备重绘时运行。那通常很快，但确切的时间取决于浏览器。</p>
+<p>当页面在后台时，根本没有重绘，因此回调将不会运行：动画将被暂停并且不会消耗资源。那很棒。</p>
+<p>这是设置大多数动画的 helper 函数 <code>animate</code>：</p>
+<div id="0ahlqvstgi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function animate({timing, draw, duration}) {
+
+  let start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction 从 0 增加到 1
+    let timeFraction = (time - start) / duration;
+    if (timeFraction &gt; 1) timeFraction = 1;
+
+    // 计算当前动画状态
+    let progress = timing(timeFraction);
+
+    draw(progress); // 绘制
+
+    if (timeFraction &lt; 1) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>参数：</p>
+<ul>
+<li><code>duration</code> —— 动画运行的总毫秒数。</li>
+<li><code>timing</code> —— 计算动画进度的函数。获取从 0 到 1 的小数时间，返回动画进度，通常也是从 0 到 1。</li>
+<li><code>draw</code> —— 绘制动画的函数。</li>
+</ul>
+<p>当然我们可以改进它，增加更多花里胡哨的东西，但 JavaScript 动画不是经常用到。它们用于做一些有趣和不标准的事情。因此，您大可在必要时再添加所需的功能。</p>
+<p>JavaScript 动画可以使用任何时序函数。我们介绍了很多例子和变换，使它们更加通用。与 CSS 不同，我们不仅限于 Bezier 曲线。</p>
+<p><code>draw</code> 也是如此：我们可以将任何东西动画化，而不仅仅是 CSS 属性。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#wei-dan-tiao-de-qiu-she-zhi-dong-hua" name="wei-dan-tiao-de-qiu-she-zhi-dong-hua">为弹跳的球设置动画</a></h3><a class="task__open-link" href="../task/animate-ball/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>做一个弹跳的球。点击查看应有的效果：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/task/animate-ball/solution/"></iframe>
+  </div><p><a href="https://plnkr.co/edit/8NZsuZsiZveDBR2C?p=preview" target="_blank" data-plunk-id="8NZsuZsiZveDBR2C">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>为了达到反弹效果，我们可以在带有 <code>position:relative</code> 属性的区域内，给小球使用 <code>top</code> 和 <code>position:absolute</code> CSS 属性。</p>
+<p>field 区域的底部坐标是 <code>field.clientHeight</code>。<code>top</code> 属性给出了球顶部的坐标，在最底部时达到 <code>field.clientHeight - ball.clientHeight</code>。</p>
+<p>因此，我们将 <code>top</code> 从 <code>0</code> 变化到 <code>field.clientHeight - ball.clientHeight</code> 来设置动画。</p>
+<p>现在为了获得“弹跳”效果，我们可以在 <code>easeOut</code> 模式下使用时序函数 <code>bounce</code>。</p>
+<p>这是动画的最终代码：</p>
+<div id="4i2m6hmclx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let to = field.clientHeight - ball.clientHeight;
+
+animate({
+  duration: 2000,
+  timing: makeEaseOut(bounce),
+  draw(progress) {
+    ball.style.top = to * progress + 'px'
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/faOIQ4hGyHixFrKj?p=preview" target="_blank" data-plunk-id="faOIQ4hGyHixFrKj">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#she-zhi-dong-hua-shi-qiu-xiang-you-yi-dong" name="she-zhi-dong-hua-shi-qiu-xiang-you-yi-dong">设置动画使球向右移动</a></h3><a class="task__open-link" href="../task/animate-ball-hops/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>让球向右移动。像这样：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:250px" src="https://zh.js.cx/task/animate-ball-hops/solution/"></iframe>
+  </div><p>编写动画代码。终止时球到左侧的距离是 <code>100px</code>。</p>
+<p>从前一个任务 <a href="../task/animate-ball/index.html">为弹跳的球设置动画</a> 的答案开始。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>在任务 <a href="../task/animate-ball/index.html">为弹跳的球设置动画</a> 中，我们只有一个需要添加动画的属性。现在多了一个 <code>elem.style.left</code>。</p>
+<p>水平坐标由另一个定律改变：它不会“反弹”，而是逐渐增加使球逐渐向右移动。</p>
+<p>我们可以为它多写一个 <code>animate</code>。</p>
+<p>至于时序函数，我们可以使用 <code>linear</code>，但像 <code>makeEaseOut(quad)</code> 这样的函数看起来要好得多。</p>
+<p>代码：</p>
+<div id="30eaw2e8fg" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let height = field.clientHeight - ball.clientHeight;
+let width = 100;
+
+// 设置 top 动画（弹跳）
+animate({
+  duration: 2000,
+  timing: makeEaseOut(bounce),
+  draw: function(progress) {
+    ball.style.top = height * progress + 'px'
+  }
+});
+
+// 设置 left 动画（向右移动）
+animate({
+  duration: 2000,
+  timing: makeEaseOut(quad),
+  draw: function(progress) {
+    ball.style.left = width * progress + &quot;px&quot;
+  }
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/QfuFvm4c0Yir4Jd6?p=preview" target="_blank" data-plunk-id="QfuFvm4c0Yir4Jd6">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../css-animations/index.html" data-tooltip="CSS 动画"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../web-components/index.html" data-tooltip="Web components"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/js-animation","identifier":"\/js-animation"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../animation/index.html">动画</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-setinterval">使用 setInterval</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-yong-requestanimationframe">使用 requestAnimationFrame</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jie-gou-hua-dong-hua">结构化动画</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-xu-han-shu">时序函数</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ni-zhuan-ease">逆转：ease*</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#geng-you-qu-de-draw">更有趣的 “draw”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fjs-animation" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/7-animation/3-js-animation" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

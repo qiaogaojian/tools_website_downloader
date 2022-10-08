@@ -1,0 +1,463 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">跨窗口通信</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/cross-window-communication"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="跨窗口通信"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="跨窗口通信"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/popup-windows"><link rel="next" href="/clickjacking"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="跨窗口通信"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/cross-window-communication"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/cross-window-communication"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/cross-window-communication"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/cross-window-communication"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/cross-window-communication"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/cross-window-communication"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/cross-window-communication"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/cross-window-communication">English</option><option value="https://es.javascript.info/cross-window-communication">Español</option><option value="https://fr.javascript.info/cross-window-communication">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/cross-window-communication">Italiano</option><option value="https://ja.javascript.info/cross-window-communication">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/cross-window-communication">Русский</option><option value="https://tr.javascript.info/cross-window-communication">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/cross-window-communication" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="2" max="3" data-tooltip="第 2/3 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../frames-and-windows/index.html"><span>Frame 和 window</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"Frame 和 window","item":"https://zh.javascript.info/frames-and-windows"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 十一月 2020"><div class="updated-at__content">13日 十一月 2020</div></div></div><h1 class="main__header-title">跨窗口通信</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="跨窗口通信"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>“同源（Same Origin）”策略限制了窗口（window）和 frame 之间的相互访问。</p>
+<p>这个想法出于这样的考虑，如果一个用户有两个打开的页面：一个来自 <code>john-smith.com</code>，另一个是 <code>gmail.com</code>，那么用户将不希望 <code>john-smith.com</code> 的脚本可以读取 <code>gmail.com</code> 中的邮件。所以，“同源”策略的目的是保护用户免遭信息盗窃。</p>
+<h2><a class="main__anchor" name="same-origin" href="#same-origin">同源</a></h2><p>如果两个 URL 具有相同的协议，域和端口，则称它们是“同源”的。</p>
+<p>以下的几个 URL 都是同源的：</p>
+<ul>
+<li><code>http://site.com</code></li>
+<li><code>http://site.com/</code></li>
+<li><code>http://site.com/my/page.html</code></li>
+</ul>
+<p>但是下面这几个不是：</p>
+<ul>
+<li><code>http://<b>www.</b>site.com</code>（另一个域：<code>www.</code> 影响）</li>
+<li><code>http://<b>site.org</b></code>（另一个域：<code>.org</code> 影响）</li>
+<li><code><b>https://</b>site.com</code>（另一个协议：<code>https</code>）</li>
+<li><code>http://site.com:<b>8080</b></code>（另一个端口：<code>8080</code>）</li>
+</ul>
+<p>“同源”策略规定：</p>
+<ul>
+<li>如果我们有对另外一个窗口（例如，一个使用 <code>window.open</code> 创建的弹窗，或者一个窗口中的 iframe）的引用，并且该窗口是同源的，那么我们就具有对该窗口的全部访问权限。</li>
+<li>否则，如果该窗口不是同源的，那么我们就无法访问该窗口中的内容：变量，文档，任何东西。唯一的例外是 <code>location</code>：我们可以修改它（进而重定向用户）。但是我们无法读取 <code>location</code>（因此，我们无法看到用户当前所处的位置，也就不会泄漏任何信息）。</li>
+</ul>
+<h3><a class="main__anchor" name="shi-li-iframe" href="#shi-li-iframe">实例：iframe</a></h3><p>一个 <code>&lt;iframe&gt;</code> 标签承载了一个单独的嵌入的窗口，它具有自己的 <code>document</code> 和 <code>window</code>。</p>
+<p>我们可以使用以下属性访问它们：</p>
+<ul>
+<li><code>iframe.contentWindow</code> 来获取 <code>&lt;iframe&gt;</code> 中的 window。</li>
+<li><code>iframe.contentDocument</code> 来获取 <code>&lt;iframe&gt;</code> 中的 document，是 <code>iframe.contentWindow.document</code> 的简写形式。</li>
+</ul>
+<p>当我们访问嵌入的窗口中的东西时，浏览器会检查 iframe 是否具有相同的源。如果不是，则会拒绝访问（对 <code>location</code> 进行写入是一个例外，它是会被允许的）。</p>
+<p>例如，让我们尝试对来自另一个源的 <code>&lt;iframe&gt;</code> 进行读取和写入：</p>
+<div id="p3ee9pv7a6" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:22,&quot;end&quot;:22},{&quot;start&quot;:16,&quot;end&quot;:16},{&quot;start&quot;:8,&quot;end&quot;:8},{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;https://example.com&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  iframe.onload = function() {
+    // 我们可以获取对内部 window 的引用
+    let iframeWindow = iframe.contentWindow; // OK
+    try {
+      // ...但是无法获取其中的文档
+      let doc = iframe.contentDocument; // ERROR
+    } catch(e) {
+      alert(e); // Security Error（另一个源）
+    }
+
+    // 并且，我们也无法 **读取** iframe 中页面的 URL
+    try {
+      // 无法从 location 对象中读取 URL
+      let href = iframe.contentWindow.location.href; // ERROR
+    } catch(e) {
+      alert(e); // Security Error
+    }
+
+    // ...我们可以 **写入** location（所以，在 iframe 中加载了其他内容）！
+    iframe.contentWindow.location = '/'; // OK
+
+    iframe.onload = null; // 清空处理程序，在 location 更改后不要再运行它
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上述代码除了以下操作都会报错：</p>
+<ul>
+<li>通过 <code>iframe.contentWindow</code> 获取对内部 window 的引用 —— 这是被允许的。</li>
+<li>对 <code>location</code> 进行写入</li>
+</ul>
+<p>与此相反，如果 <code>&lt;iframe&gt;</code> 具有相同的源，我们可以使用它做任何事情：</p>
+<div id="7swlgtaxnp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;!-- 来自同一个网站的 iframe --&gt;
+&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  iframe.onload = function() {
+    // 可以做任何事儿
+    iframe.contentDocument.body.prepend(&quot;Hello, world!&quot;);
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>iframe.onload</code> vs <code>iframe.contentWindow.onload</code></span></div>
+            <div class="important__content"><p><code>iframe.onload</code> 事件（在 <code>&lt;iframe&gt;</code> 标签上）与 <code>iframe.contentWindow.onload</code>（在嵌入的 window 对象上）基本相同。当嵌入的窗口的所有资源都完全加载完毕时触发。</p>
+<p>……但是，我们无法使用 <code>iframe.contentWindow.onload</code> 访问不同源的 iframe。因此，请使用 <code>iframe.onload</code>，</p>
+</div></div>
+<h2><a class="main__anchor" name="zi-yu-shang-de-windowdocumentdomain" href="#zi-yu-shang-de-windowdocumentdomain">子域上的 window：document.domain</a></h2><p>根据定义，两个具有不同域的 URL 具有不同的源。</p>
+<p>但是，如果窗口的二级域相同，例如 <code>john.site.com</code>，<code>peter.site.com</code> 和 <code>site.com</code>（它们共同的二级域是 <code>site.com</code>），我们可以使浏览器忽略该差异，使得它们可以被作为“同源”的来对待，以便进行跨窗口通信。</p>
+<p>为了做到这一点，每个这样的窗口都应该执行下面这行代码：</p>
+<div id="wby5upf4wm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>document.domain = 'site.com';</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这样就可以了。现在它们可以无限制地进行交互了。但是再强调一遍，这仅适用于具有相同二级域的页面。</p>
+<h2><a class="main__anchor" name="iframe-cuo-wu-wen-dang-xian-jing" href="#iframe-cuo-wu-wen-dang-xian-jing">Iframe：错误文档陷阱</a></h2><p>当一个 iframe 来自同一个源时，我们可能会访问其 <code>document</code>，但是这里有一个陷阱。它与跨源无关，但你一定要知道。</p>
+<p>在创建 iframe 后，iframe 会立即就拥有了一个文档。但是该文档不同于加载到其中的文档！</p>
+<p>因此，如果我们要立即对文档进行操作，就可能出问题。</p>
+<p>看一下下面这段代码：</p>
+<div id="n9iuixajtj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  let oldDoc = iframe.contentDocument;
+  iframe.onload = function() {
+    let newDoc = iframe.contentDocument;
+    // 加载的文档与初始的文档不同！
+    alert(oldDoc == newDoc); // false
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们不应该对尚未加载完成的 iframe 的文档进行处理，因为那是 <strong>错误的文档</strong>。如果我们在其上设置了任何事件处理程序，它们将会被忽略。</p>
+<p>如何检测文档就位（加载完成）的时刻呢？</p>
+<p>正确的文档在 <code>iframe.onload</code> 触发时肯定就位了。但是，只有在整个 iframe 和它所有资源都加载完成时，<code>iframe.onload</code> 才会触发。</p>
+<p>我们可以尝试通过在 <code>setInterval</code> 中进行检查，以更早地捕获该时刻：</p>
+<div id="1msfe5k65s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  let oldDoc = iframe.contentDocument;
+
+  // 每 100ms 检查一次文档是否为新文档
+  let timer = setInterval(() =&gt; {
+    let newDoc = iframe.contentDocument;
+    if (newDoc == oldDoc) return;
+
+    alert(&quot;New document is here!&quot;);
+
+    clearInterval(timer); // 取消 setInterval，不再需要它做任何事儿
+  }, 100);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="ji-he-windowframes" href="#ji-he-windowframes">集合：window.frames</a></h2><p>获取 <code>&lt;iframe&gt;</code> 的 window 对象的另一个方式是从命名集合 <code>window.frames</code> 中获取：</p>
+<ul>
+<li>通过索引获取：<code>window.frames[0]</code> —— 文档中的第一个 iframe 的 window 对象。</li>
+<li>通过名称获取：<code>window.frames.iframeName</code> —— 获取 <code>name=&quot;iframeName&quot;</code> 的 iframe 的 window 对象。</li>
+</ul>
+<p>例如：</p>
+<div id="46ubmp4m8e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;/&quot; style=&quot;height:80px&quot; name=&quot;win&quot; id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  alert(iframe.contentWindow == frames[0]); // true
+  alert(iframe.contentWindow == frames.win); // true
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>一个 iframe 内可能嵌套了其他的 iframe。相应的 <code>window</code> 对象会形成一个层次结构（hierarchy）。</p>
+<p>可以通过以下方式获取：</p>
+<ul>
+<li><code>window.frames</code> —— “子”窗口的集合（用于嵌套的 iframe）。</li>
+<li><code>window.parent</code> —— 对“父”（外部）窗口的引用。</li>
+<li><code>window.top</code> —— 对最顶级父窗口的引用。</li>
+</ul>
+<p>例如：</p>
+<div id="reg4hgirgd" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.frames[0].parent === window; // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们可以使用 <code>top</code> 属性来检查当前的文档是否是在 iframe 内打开的：</p>
+<div id="m81viclfio" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>if (window == top) { // 当前 window == window.top?
+  alert('The script is in the topmost window, not in a frame');
+} else {
+  alert('The script runs in a frame!');
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="sandboxiframe-te-xing" href="#sandboxiframe-te-xing">“sandbox” iframe 特性</a></h2><p><code>sandbox</code> 特性（attribute）允许在 <code>&lt;iframe&gt;</code> 中禁止某些特定行为，以防止其执行不被信任的代码。它通过将 iframe 视为非同源的，或者应用其他限制来实现 iframe 的“沙盒化”。</p>
+<p>对于 <code>&lt;iframe sandbox src=&quot;...&quot;&gt;</code>，有一个应用于其上的默认的限制集。但是，我们可以通过提供一个以空格分隔的限制列表作为特性的值，来放宽这些限制，该列表中的各项为不应该应用于这个 iframe 的限制，例如：<code>&lt;iframe sandbox=&quot;allow-forms allow-popups&quot;&gt;</code>。</p>
+<p>换句话说，一个空的 <code>&quot;sandbox&quot;</code> 特性会施加最严格的限制，但是我们用一个以空格分隔的列表，列出要移除的限制。</p>
+<p>以下是限制的列表：</p>
+<dl>
+<dt><code>allow-same-origin</code></dt>
+<dd>默认情况下，<code>&quot;sandbox&quot;</code> 会为 iframe 强制实施“不同来源”的策略。换句话说，它使浏览器将 <code>iframe</code> 视为来自另一个源，即使其 <code>src</code> 指向的是同一个网站也是如此。具有所有隐含的脚本限制。此选项会移除这些限制。</dd>
+<dt><code>allow-top-navigation</code></dt>
+<dd>允许 <code>iframe</code> 更改 <code>parent.location</code>。</dd>
+<dt><code>allow-forms</code></dt>
+<dd>允许在 <code>iframe</code> 中提交表单。</dd>
+<dt><code>allow-scripts</code></dt>
+<dd>允许在 <code>iframe</code> 中运行脚本。</dd>
+<dt><code>allow-popups</code></dt>
+<dd>允许在 <code>iframe</code> 中使用 <code>window.open</code> 打开弹窗。</dd>
+</dl>
+<p>查看 <a href="https://developer.mozilla.org/zh/docs/Web/HTML/Element/iframe">官方手册</a> 获取更多内容。</p>
+<p>下面的示例演示了一个具有默认限制集的沙盒 iframe：<code>&lt;iframe sandbox src=&quot;...&quot;&gt;</code>。它有一些 JavaScript 代码和一个表单。</p>
+<p>请注意，这里没有东西会运行。可见默认设置非常苛刻：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">index.html</div><div class="code-tabs__switch">sandboxed.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/cross-window-communication/sandbox/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/ucOI96Jl5kfG8h2Y?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:140px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/cross-window-communication/sandbox/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;div&gt;The iframe below has the &lt;code&gt;sandbox&lt;/code&gt; attribute.&lt;/div&gt;
+
+  &lt;iframe sandbox src=&quot;sandboxed.html&quot; style=&quot;height:60px;width:90%&quot;&gt;&lt;/iframe&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;button onclick=&quot;alert(123)&quot;&gt;Click to run a script (doesn't work)&lt;/button&gt;
+
+  &lt;form action=&quot;http://google.com&quot;&gt;
+    &lt;input type=&quot;text&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Submit (doesn't work)&quot;&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p><code>&quot;sandbox&quot;</code> 特性的目的仅是 <strong>添加更多</strong> 限制。它无法移除这些限制。尤其是，如果 iframe 来自其他源，则无法放宽同源策略。</p>
+</div></div>
+<h2><a class="main__anchor" name="kua-chuang-kou-tong-xin" href="#kua-chuang-kou-tong-xin">跨窗口通信</a></h2><p><code>postMessage</code> 接口允许窗口之间相互通信，无论它们来自什么源。</p>
+<p>因此，这是解决“同源”策略的方式之一。它允许来自于 <code>john-smith.com</code> 的窗口与来自于 <code>gmail.com</code> 的窗口进行通信，并交换信息，但前提是它们双方必须均同意并调用相应的 JavaScript 函数。这可以保护用户的安全。</p>
+<p>这个接口有两个部分。</p>
+<h3><a class="main__anchor" name="postmessage" href="#postmessage">postMessage</a></h3><p>想要发送消息的窗口需要调用接收窗口的 <a href="https://developer.mozilla.org/zh/docs/Web/API/Window.postMessage">postMessage</a> 方法。换句话说，如果我们想把消息发送给 <code>win</code>，我们应该调用 <code>win.postMessage(data, targetOrigin)</code>。</p>
+<p>参数：</p>
+<dl>
+<dt><code>data</code></dt>
+<dd>要发送的数据。可以是任何对象，数据会被通过使用“结构化序列化算法（structured serialization algorithm）”进行克隆。IE 浏览器只支持字符串，因此我们需要对复杂的对象调用 <code>JSON.stringify</code> 方法进行处理，以支持该浏览器。</dd>
+<dt><code>targetOrigin</code></dt>
+<dd>指定目标窗口的源，以便只有来自给定的源的窗口才能获得该消息。</dd>
+</dl>
+<p><code>targetOrigin</code> 是一种安全措施。请记住，如果目标窗口是非同源的，我们无法在发送方窗口读取它的 <code>location</code>。因此，我们无法确定当前在预期的窗口中打开的是哪个网站：用户随时可以导航离开，并且发送方窗口对此一无所知。</p>
+<p>指定 <code>targetOrigin</code> 可以确保窗口仅在当前仍处于正确的网站时接收数据。在有敏感数据时，这非常重要。</p>
+<p>例如，这里的 <code>win</code> 仅在它拥有来自 <code>http://example.com</code> 这个源的文档时，才会接收消息：</p>
+<div id="c9n0yslrut" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;http://example.com&quot; name=&quot;example&quot;&gt;
+
+&lt;script&gt;
+  let win = window.frames.example;
+
+  win.postMessage(&quot;message&quot;, &quot;http://example.com&quot;);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们不希望做这个检查，可以将 <code>targetOrigin</code> 设置为 <code>*</code>。</p>
+<div id="eixpbru11w" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:5,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;iframe src=&quot;http://example.com&quot; name=&quot;example&quot;&gt;
+
+&lt;script&gt;
+  let win = window.frames.example;
+
+  win.postMessage(&quot;message&quot;, &quot;*&quot;);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="onmessage" href="#onmessage">onmessage</a></h3><p>为了接收消息，目标窗口应该在 <code>message</code> 事件上有一个处理程序。当 <code>postMessage</code> 被调用时触发该事件（并且 <code>targetOrigin</code> 检查成功）。</p>
+<p>event 对象具有特殊属性：</p>
+<dl>
+<dt><code>data</code></dt>
+<dd>从 <code>postMessage</code> 传递来的数据。</dd>
+<dt><code>origin</code></dt>
+<dd>发送方的源，例如 <code>http://javascript.info</code>。</dd>
+<dt><code>source</code></dt>
+<dd>对发送方窗口的引用。如果我们想，我们可以立即 <code>source.postMessage(...)</code> 回去。</dd>
+</dl>
+<p>要为 <code>message</code> 事件分配处理程序，我们应该使用 <code>addEventListener</code>，简短的语法 <code>window.onmessage</code> 不起作用。</p>
+<p>这里有一个例子：</p>
+<div id="577lv94rka" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>window.addEventListener(&quot;message&quot;, function(event) {
+  if (event.origin != 'http://javascript.info') {
+    // 来自未知的源的内容，我们忽略它
+    return;
+  }
+
+  alert( &quot;received: &quot; + event.data );
+
+  // 可以使用 event.source.postMessage(...) 向回发送消息
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>完整示例：</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">iframe.html</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/cross-window-communication/postmessage/index.html"></a><a class="code-tabs__button code-tabs__button_edit" target="_blank" title="在沙箱中编辑" href="https://plnkr.co/edit/mTT1G37hpkrYSBNt?p=preview"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:120px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/cross-window-communication/postmessage/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  Receiving iframe.
+  &lt;script&gt;
+    window.addEventListener('message', function(event) {
+      alert(`Received ${event.data} from ${event.origin}`);
+    });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;form id=&quot;form&quot;&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Enter message&quot; name=&quot;message&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Click to send&quot;&gt;
+  &lt;/form&gt;
+
+  &lt;iframe src=&quot;iframe.html&quot; id=&quot;iframe&quot; style=&quot;display:block;height:60px&quot;&gt;&lt;/iframe&gt;
+
+  &lt;script&gt;
+    form.onsubmit = function() {
+      iframe.contentWindow.postMessage(this.message.value, '*');
+      return false;
+    };
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div></div></div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>要调用另一个窗口的方法或者访问另一个窗口的内容，我们应该首先拥有对其的引用。</p>
+<p>对于弹窗，我们有两个引用：</p>
+<ul>
+<li>从打开窗口的（opener）窗口：<code>window.open</code> —— 打开一个新的窗口，并返回对它的引用，</li>
+<li>从弹窗：<code>window.opener</code> —— 是从弹窗中对打开此弹窗的窗口（opener）的引用。</li>
+</ul>
+<p>对于 iframe，我们可以使用以下方式访问父/子窗口：</p>
+<ul>
+<li><code>window.frames</code> —— 一个嵌套的 window 对象的集合，</li>
+<li><code>window.parent</code>，<code>window.top</code> 是对父窗口和顶级窗口的引用，</li>
+<li><code>iframe.contentWindow</code> 是 <code>&lt;iframe&gt;</code> 标签内的 window 对象。</li>
+</ul>
+<p>如果几个窗口的源相同（域，端口，协议），那么这几个窗口可以彼此进行所需的操作。</p>
+<p>否则，只能进行以下操作：</p>
+<ul>
+<li>更改另一个窗口的 <code>location</code>（只能写入）。</li>
+<li>向其发送一条消息。</li>
+</ul>
+<p>例外情况：</p>
+<ul>
+<li>对于二级域相同的窗口：<code>a.site.com</code> 和 <code>b.site.com</code>。通过在这些窗口中均设置 <code>document.domain='site.com'</code>，可以使它们处于“同源”状态。</li>
+<li>如果一个 iframe 具有 <code>sandbox</code> 特性（attribute），则它会被强制处于“非同源”状态，除非在其特性值中指定了 <code>allow-same-origin</code>。这可用于在同一网站的 iframe 中运行不受信任的代码。</li>
+</ul>
+<p><code>postMessage</code> 接口允许两个具有任何源的窗口之间进行通信：</p>
+<ol>
+<li>
+<p>发送方调用 <code>targetWin.postMessage(data, targetOrigin)</code>。</p>
+</li>
+<li>
+<p>如果 <code>targetOrigin</code> 不是 <code>'*'</code>，那么浏览器会检查窗口 <code>targetWin</code> 是否具有源 <code>targetOrigin</code>。</p>
+</li>
+<li>
+<p>如果它具有，<code>targetWin</code> 会触发具有特殊的属性的 <code>message</code> 事件：</p>
+<ul>
+<li><code>origin</code> —— 发送方窗口的源（比如 <code>http://my.site.com</code>）。</li>
+<li><code>source</code> —— 对发送方窗口的引用。</li>
+<li><code>data</code> —— 数据，可以是任何对象。但是 IE 浏览器只支持字符串，因此我们需要对复杂的对象调用 <code>JSON.stringify</code> 方法进行处理，以支持该浏览器。</li>
+</ul>
+<p>我们应该使用 <code>addEventListener</code> 来在目标窗口中设置 <code>message</code> 事件的处理程序。</p>
+</li>
+</ol>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../popup-windows/index.html" data-tooltip="弹窗和 window 的方法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../clickjacking/index.html" data-tooltip="点击劫持攻击"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/cross-window-communication","identifier":"\/cross-window-communication"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../frames-and-windows/index.html">Frame 和 window</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#same-origin">同源</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-yu-shang-de-windowdocumentdomain">子域上的 window：document.domain</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#iframe-cuo-wu-wen-dang-xian-jing">Iframe：错误文档陷阱</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ji-he-windowframes">集合：window.frames</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#sandboxiframe-te-xing">“sandbox” iframe 特性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#kua-chuang-kou-tong-xin">跨窗口通信</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fcross-window-communication" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/3-frames-and-windows/03-cross-window-communication" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

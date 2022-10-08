@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">创建自定义事件</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/dispatch-events"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="创建自定义事件"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="创建自定义事件"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/default-browser-action"><link rel="next" href="/event-details"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="创建自定义事件"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/dispatch-events"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/dispatch-events"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/dispatch-events"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/dispatch-events"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/dispatch-events"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/dispatch-events"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/dispatch-events"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/dispatch-events"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/dispatch-events"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/dispatch-events">English</option><option value="https://es.javascript.info/dispatch-events">Español</option><option value="https://fr.javascript.info/dispatch-events">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/dispatch-events">Italiano</option><option value="https://ja.javascript.info/dispatch-events">日本語</option><option value="https://ko.javascript.info/dispatch-events">한국어</option><option value="https://learn.javascript.ru/dispatch-events">Русский</option><option value="https://tr.javascript.info/dispatch-events">Türkçe</option><option value="https://uk.javascript.info/dispatch-events">Українська</option><option value="https://zh.javascript.info/dispatch-events" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="16" max="32" data-tooltip="第 16/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../events/index.html"><span>事件简介</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"事件简介","item":"https://zh.javascript.info/events"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 8日 十一月 2020"><div class="updated-at__content">8日 十一月 2020</div></div></div><h1 class="main__header-title">创建自定义事件</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="创建自定义事件"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们不仅可以分配事件处理程序，还可以从 JavaScript 生成事件。</p>
+<p>自定义事件可用于创建“图形组件”。例如，我们自己的基于 JavaScript 的菜单的根元素可能会触发 <code>open</code>（打开菜单），<code>select</code>（有一项被选中）等事件来告诉菜单发生了什么。另一个代码可能会监听事件，并观察菜单发生了什么。</p>
+<p>我们不仅可以生成出于自身目的而创建的全新事件，还可以生成例如 <code>click</code> 和 <code>mousedown</code> 等内建事件。这可能会有助于自动化测试。</p>
+<h2><a class="main__anchor" name="shi-jian-gou-zao-qi" href="#shi-jian-gou-zao-qi">事件构造器</a></h2><p>内建事件类形成一个层次结构（hierarchy），类似于 DOM 元素类。根是内建的 <a href="http://www.w3.org/TR/dom/#event">Event</a> 类。</p>
+<p>我们可以像这样创建 <code>Event</code> 对象：</p>
+<div id="aa387gelkk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let event = new Event(type[, options]);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>参数：</p>
+<ul>
+<li>
+<p><strong>type</strong> —— 事件类型，可以是像这样 <code>&quot;click&quot;</code> 的字符串，或者我们自己的像这样 <code>&quot;my-event&quot;</code> 的参数。</p>
+</li>
+<li>
+<p><strong>options</strong> —— 具有两个可选属性的对象：</p>
+<ul>
+<li><code>bubbles: true/false</code> —— 如果为 <code>true</code>，那么事件会冒泡。</li>
+<li><code>cancelable: true/false</code> —— 如果为 <code>true</code>，那么“默认行为”就会被阻止。稍后我们会看到对于自定义事件，它意味着什么。</li>
+</ul>
+<p>默认情况下，以上两者都为 false：<code>{bubbles: false, cancelable: false}</code>。</p>
+</li>
+</ul>
+<h2><a class="main__anchor" name="dispatchevent" href="#dispatchevent">dispatchEvent</a></h2><p>事件对象被创建后，我们应该使用 <code>elem.dispatchEvent(event)</code> 调用在元素上“运行”它。</p>
+<p>然后，处理程序会对它做出反应，就好像它是一个常规的浏览器事件一样。如果事件是用 <code>bubbles</code> 标志创建的，那么它会冒泡。</p>
+<p>在下面这个示例中，<code>click</code> 事件是用 JavaScript 初始化创建的。处理程序工作方式和点击按钮的方式相同：</p>
+<div id="i66vkd5qc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;elem&quot; onclick=&quot;alert('Click!');&quot;&gt;Autoclick&lt;/button&gt;
+
+&lt;script&gt;
+  let event = new Event(&quot;click&quot;);
+  elem.dispatchEvent(event);
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_smart">
+            <div class="important__header"><span class="important__type">event.isTrusted</span></div>
+            <div class="important__content"><p>有一种方法可以区分“真实”用户事件和通过脚本生成的事件。</p>
+<p>对于来自真实用户操作的事件，<code>event.isTrusted</code> 属性为 <code>true</code>，对于脚本生成的事件，<code>event.isTrusted</code> 属性为 <code>false</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="mao-pao-shi-li" href="#mao-pao-shi-li">冒泡示例</a></h2><p>我们可以创建一个名为 <code>&quot;hello&quot;</code> 的冒泡事件，并在 <code>document</code> 上捕获它。</p>
+<p>我们需要做的就是将 <code>bubbles</code> 设置为 <code>true</code>：</p>
+<div id="z9o9dbnjye" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;h1 id=&quot;elem&quot;&gt;Hello from the script!&lt;/h1&gt;
+
+&lt;script&gt;
+  // 在 document 上捕获...
+  document.addEventListener(&quot;hello&quot;, function(event) { // (1)
+    alert(&quot;Hello from &quot; + event.target.tagName); // Hello from H1
+  });
+
+  // ...在 elem 上 dispatch！
+  let event = new Event(&quot;hello&quot;, {bubbles: true}); // (2)
+  elem.dispatchEvent(event);
+
+  // 在 document 上的处理程序将被激活，并显示消息。
+
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>注意：</p>
+<ol>
+<li>我们应该对我们的自定义事件使用 <code>addEventListener</code>，因为 <code>on&lt;event&gt;</code> 仅存在于内建事件中，<code>document.onhello</code> 则无法运行。</li>
+<li>必须设置 <code>bubbles:true</code>，否则事件不会向上冒泡。</li>
+</ol>
+<p>内建事件（<code>click</code>）和自定义事件（<code>hello</code>）的冒泡机制相同。自定义事件也有捕获阶段和冒泡阶段。</p>
+<h2><a class="main__anchor" name="mouseeventkeyboardevent-ji-qi-ta" href="#mouseeventkeyboardevent-ji-qi-ta">MouseEvent，KeyboardEvent 及其他</a></h2><p>这是一个摘自于 <a href="https://www.w3.org/TR/uievents">UI 事件规范</a> 的一个简短的 UI 事件类列表：</p>
+<ul>
+<li><code>UIEvent</code></li>
+<li><code>FocusEvent</code></li>
+<li><code>MouseEvent</code></li>
+<li><code>WheelEvent</code></li>
+<li><code>KeyboardEvent</code></li>
+<li>…</li>
+</ul>
+<p>如果我们想要创建这样的事件，我们应该使用它们而不是 <code>new Event</code>。例如，<code>new MouseEvent(&quot;click&quot;)</code>。</p>
+<p>正确的构造器允许为该类型的事件指定标准属性。</p>
+<p>就像鼠标事件的 <code>clientX/clientY</code> 一样：</p>
+<div id="q08cx3k0hf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let event = new MouseEvent(&quot;click&quot;, {
+  bubbles: true,
+  cancelable: true,
+  clientX: 100,
+  clientY: 100
+});
+
+alert(event.clientX); // 100</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意：通用的 <code>Event</code> 构造器不允许这样做。</p>
+<p>让我们试试：</p>
+<div id="1gkdoz7ztm" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let event = new Event(&quot;click&quot;, {
+  bubbles: true, // 构造器 Event 中只有 bubbles 和 cancelable 可以工作
+  cancelable: true,
+  clientX: 100,
+  clientY: 100
+});
+
+alert(event.clientX); // undefined，未知的属性被忽略了！</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从技术上讲，我们可以通过在创建后直接分配 <code>event.clientX=100</code> 来解决这个问题。所以，这是一个方便和遵守规则的问题。浏览器生成的事件始终具有正确的类型。</p>
+<p>规范中提供了不同 UI 事件的属性的完整列表，例如 <a href="https://www.w3.org/TR/uievents/#mouseevent">MouseEvent</a>。</p>
+<h2><a class="main__anchor" name="zi-ding-yi-shi-jian" href="#zi-ding-yi-shi-jian">自定义事件</a></h2><p>对于我们自己的全新事件类型，例如 <code>&quot;hello&quot;</code>，我们应该使用 <code>new CustomEvent</code>。从技术上讲，<a href="https://dom.spec.whatwg.org/#customevent">CustomEvent</a> 和 <code>Event</code> 一样。除了一点不同。</p>
+<p>在第二个参数（对象）中，我们可以为我们想要与事件一起传递的任何自定义信息添加一个附加的属性 <code>detail</code>。</p>
+<p>例如：</p>
+<div id="gpo98j7vvv" data-trusted="1" class="code-example" data-refresh="1" data-highlight="[{&quot;start&quot;:9,&quot;end&quot;:9},{&quot;start&quot;:5,&quot;cols&quot;:[{&quot;start&quot;:10,&quot;end&quot;:27}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;h1 id=&quot;elem&quot;&gt;Hello for John!&lt;/h1&gt;
+
+&lt;script&gt;
+  // 事件附带给处理程序的其他详细信息
+  elem.addEventListener(&quot;hello&quot;, function(event) {
+    alert(event.detail.name);
+  });
+
+  elem.dispatchEvent(new CustomEvent(&quot;hello&quot;, {
+    detail: { name: &quot;John&quot; }
+  }));
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>detail</code> 属性可以有任何数据。从技术上讲，我们可以不用，因为我们可以在创建后将任何属性分配给常规的 <code>new Event</code> 对象中。但是 <code>CustomEvent</code> 提供了特殊的 <code>detail</code> 字段，以避免与其他事件属性的冲突。</p>
+<p>此外，事件类描述了它是“什么类型的事件”，如果事件是自定义的，那么我们应该使用 <code>CustomEvent</code> 来明确它是什么。</p>
+<h2><a class="main__anchor" name="eventpreventdefault" href="#eventpreventdefault">event.preventDefault()</a></h2><p>许多浏览器事件都有“默认行为”，例如，导航到链接，开始一个选择，等。</p>
+<p>对于新的，自定义的事件，绝对没有默认的浏览器行为，但是分派（dispatch）此类事件的代码可能有自己的计划，触发该事件之后应该做什么。</p>
+<p>通过调用 <code>event.preventDefault()</code>，事件处理程序可以发出一个信号，指出这些行为应该被取消。</p>
+<p>在这种情况下，<code>elem.dispatchEvent(event)</code> 的调用会返回 <code>false</code>。那么分派（dispatch）该事件的代码就会知道不应该再继续。</p>
+<p>让我们看一个实际的例子 —— 一只隐藏的兔子（可以是关闭菜单或者其他）。</p>
+<p>在下面，你可以看到一个在其上分派了 <code>&quot;hide&quot;</code> 事件的 <code>#rabbit</code> 和 <code>hide()</code> 函数，以使所有感兴趣的各方面都知道这只兔子要隐藏起来。</p>
+<p>任何处理程序都可以使用 <code>rabbit.addEventListener('hide',...)</code> 来监听该事件，并在需要时使用 <code>event.preventDefault()</code> 来取消该行为。然后兔子就不会藏起来了：</p>
+<div id="gsujj74jl8" data-trusted="1" class="code-example" data-refresh="1" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;pre id=&quot;rabbit&quot;&gt;
+  |\   /|
+   \|_|/
+   /. .\
+  =\_Y_/=
+   {&gt;o&lt;}
+&lt;/pre&gt;
+&lt;button onclick=&quot;hide()&quot;&gt;Hide()&lt;/button&gt;
+
+&lt;script&gt;
+  function hide() {
+    let event = new CustomEvent(&quot;hide&quot;, {
+      cancelable: true // 没有这个标志，preventDefault 将不起作用
+    });
+    if (!rabbit.dispatchEvent(event)) {
+      alert('The action was prevented by a handler');
+    } else {
+      rabbit.hidden = true;
+    }
+  }
+
+  rabbit.addEventListener('hide', function(event) {
+    if (confirm(&quot;Call preventDefault?&quot;)) {
+      event.preventDefault();
+    }
+  });
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-gsujj74jl8" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>请注意：该事件必须具有 <code>cancelable: true</code> 标志，否则 <code>event.preventDefault()</code> 调用将会被忽略。</p>
+<h2><a class="main__anchor" name="shi-jian-zhong-de-shi-jian-shi-tong-bu-de" href="#shi-jian-zhong-de-shi-jian-shi-tong-bu-de">事件中的事件是同步的</a></h2><p>通常事件是在队列中处理的。也就是说：如果浏览器正在处理 <code>onclick</code>，这时发生了一个新的事件，例如鼠标移动了，那么它的处理程序会被排入队列，相应的 <code>mousemove</code> 处理程序将在 <code>onclick</code> 事件处理完成后被调用。</p>
+<p>值得注意的例外情况就是，一个事件是在另一个事件中发起的。例如使用 <code>dispatchEvent</code>。这类事件将会被立即处理，即在新的事件处理程序被调用之后，恢复到当前的事件处理程序。</p>
+<p>例如，在下面的代码中，<code>menu-open</code> 事件是在 <code>onclick</code> 事件执行过程中被调用的。</p>
+<p>它会被立即执行，而不必等待 <code>onclick</code> 处理程序结束：</p>
+<div id="tuxm10keg7" data-trusted="1" class="code-example" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;menu&quot;&gt;Menu (click me)&lt;/button&gt;
+
+&lt;script&gt;
+  menu.onclick = function() {
+    alert(1);
+
+    menu.dispatchEvent(new CustomEvent(&quot;menu-open&quot;, {
+      bubbles: true
+    }));
+
+    alert(2);
+  };
+
+  // 在 1 和 2 之间触发
+  document.addEventListener('menu-open', () =&gt; alert('nested'));
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-tuxm10keg7" style="height:200px" src="about:blank"></iframe>
+        </div>
+      </div><p>输出顺序为：1 → nested → 2。</p>
+<p>请注意，嵌套事件 <code>menu-open</code> 会在 <code>document</code> 上被捕获。嵌套事件的传播（propagation）和处理先被完成，然后处理过程才会返回到外部代码（<code>onclick</code>）。</p>
+<p>这不只是与 <code>dispatchEvent</code> 有关，还有其他情况。如果一个事件处理程序调用了触发其他事件的方法 —— 它们同样也会被以嵌套的方式同步处理。</p>
+<p>不过有时候，这并不是我们期望的结果。我们想让 <code>onclick</code> 不受 <code>menu-open</code> 或者其它嵌套事件的影响，优先被处理完毕。</p>
+<p>那么，我们就可以将 <code>dispatchEvent</code>（或另一个触发事件的调用）放在 <code>onclick</code> 末尾，或者最好将其包装到零延迟的 <code>setTimeout</code> 中：</p>
+<div id="o4lm9j9qoe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="展示" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;menu&quot;&gt;Menu (click me)&lt;/button&gt;
+
+&lt;script&gt;
+  menu.onclick = function() {
+    alert(1);
+
+    setTimeout(() =&gt; menu.dispatchEvent(new CustomEvent(&quot;menu-open&quot;, {
+      bubbles: true
+    })));
+
+    alert(2);
+  };
+
+  document.addEventListener('menu-open', () =&gt; alert('nested'));
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在，<code>dispatchEvent</code> 在当前代码执行完成之后异步运行，包括 <code>mouse.onclick</code>，因此，事件处理程序是完全独立的。</p>
+<p>输出顺序变成：1 → 2 → nested。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>要从代码生成一个事件，我们首先需要创建一个事件对象。</p>
+<p>通用的 <code>Event(name, options)</code> 构造器接受任意事件名称和具有两个属性的 <code>options</code> 对象：</p>
+<ul>
+<li>如果事件应该冒泡，则 <code>bubbles: true</code>。</li>
+<li>如果 <code>event.preventDefault()</code> 应该有效，则 <code>cancelable: true</code>。</li>
+</ul>
+<p>其他像 <code>MouseEvent</code> 和 <code>KeyboardEvent</code> 这样的原生事件的构造器，都接受特定于该事件类型的属性。例如，鼠标事件的 <code>clientX</code>。</p>
+<p>对于自定义事件，我们应该使用 <code>CustomEvent</code> 构造器。它有一个名为 <code>detail</code> 的附加选项，我们应该将事件特定的数据分配给它。然后，所有处理程序可以以 <code>event.detail</code> 的形式来访问它。</p>
+<p>尽管技术上可以生成像 <code>click</code> 或 <code>keydown</code> 这样的浏览器事件，但我们还是应谨慎使用它们。</p>
+<p>我们不应该生成浏览器事件，因为这是运行处理程序的一种怪异（hacky）方式。大多数时候，这都是糟糕的架构。</p>
+<p>可以生成原生事件：</p>
+<ul>
+<li>如果第三方程序库不提供其他交互方式，那么这是使第三方程序库工作所需的一种肮脏手段。</li>
+<li>对于自动化测试，要在脚本中“点击按钮”并查看接口是否正确响应。</li>
+</ul>
+<p>使用我们自己的名称的自定义事件通常是出于架构的目的而创建的，以指示发生在菜单（menu），滑块（slider），轮播（carousel）等内部发生了什么。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../default-browser-action/index.html" data-tooltip="浏览器默认行为"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../event-details/index.html" data-tooltip="UI 事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/dispatch-events","identifier":"\/dispatch-events"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../events/index.html">事件简介</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-jian-gou-zao-qi">事件构造器</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dispatchevent">dispatchEvent</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mao-pao-shi-li">冒泡示例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#mouseeventkeyboardevent-ji-qi-ta">MouseEvent，KeyboardEvent 及其他</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-ding-yi-shi-jian">自定义事件</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#eventpreventdefault">event.preventDefault()</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-jian-zhong-de-shi-jian-shi-tong-bu-de">事件中的事件是同步的</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fdispatch-events" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/2-events/05-dispatch-events" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

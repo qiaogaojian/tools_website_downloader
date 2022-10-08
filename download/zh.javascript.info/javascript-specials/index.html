@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">JavaScript 特性</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/javascript-specials"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="JavaScript 特性"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JavaScript 特性"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/arrow-functions-basics"><link rel="next" href="/code-quality"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="JavaScript 特性"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/javascript-specials"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/javascript-specials"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/javascript-specials"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/javascript-specials"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/javascript-specials"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/javascript-specials"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/javascript-specials"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/javascript-specials"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/javascript-specials"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/javascript-specials"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/javascript-specials"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/javascript-specials">عربي</option><option value="https://javascript.info/javascript-specials">English</option><option value="https://es.javascript.info/javascript-specials">Español</option><option value="https://fr.javascript.info/javascript-specials">Français</option><option value="https://id.javascript.info/javascript-specials">Indonesia</option><option value="https://it.javascript.info/javascript-specials">Italiano</option><option value="https://ja.javascript.info/javascript-specials">日本語</option><option value="https://ko.javascript.info/javascript-specials">한국어</option><option value="https://learn.javascript.ru/javascript-specials">Русский</option><option value="https://tr.javascript.info/javascript-specials">Türkçe</option><option value="https://uk.javascript.info/javascript-specials">Українська</option><option value="https://zh.javascript.info/javascript-specials" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="22" max="92" data-tooltip="第 22/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../first-steps/index.html"><span>JavaScript 基础知识</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"JavaScript 基础知识","item":"https://zh.javascript.info/first-steps"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 8日 八月 2021"><div class="updated-at__content">8日 八月 2021</div></div></div><h1 class="main__header-title">JavaScript 特性</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="JavaScript 特性"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>本章简要回顾我们到现在为止学到的 JavaScript 特性，并特别注意了一些细节。</p>
+<h2><a class="main__anchor" name="dai-ma-jie-gou" href="#dai-ma-jie-gou">代码结构</a></h2><p>语句用分号分隔：</p>
+<div id="sx911cyhbt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert('Hello'); alert('World');</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通常，换行符也被视为分隔符，因此下面的例子也能正常运行：</p>
+<div id="9e34wfoplp" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert('Hello')
+alert('World')</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这就是所谓的「自动分号插入」。但有时它不起作用，例如：</p>
+<div id="4gv0g5lbjn" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert(&quot;There will be an error after this message&quot;)
+
+[1, 2].forEach(alert)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>大多数代码风格指南都认为我们应该在每个语句后面都加上分号。</p>
+<p>在代码块 <code>{...}</code> 后以及有代码块的语法结构（例如循环）后不需要加分号：</p>
+<div id="2mocniysni" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f() {
+  // 函数声明后不需要加分号
+}
+
+for(;;) {
+  // 循环语句后不需要加分号
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……但即使我们在某处添加了「额外的」分号，这也不是错误。分号会被忽略的。</p>
+<p>更多内容：<a href="../structure/index.html">代码结构</a>。</p>
+<h2><a class="main__anchor" name="yan-ge-mo-shi" href="#yan-ge-mo-shi">严格模式</a></h2><p>为了完全启用现代 JavaScript 的所有特性，我们应该在脚本顶部写上 <code>&quot;use strict&quot;</code> 指令。</p>
+<div id="7zu7s975wm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>'use strict';
+
+...</code></pre>
+        </div>
+      </div>
+      
+      </div><p>该指令必须位于 JavaScript 脚本的顶部或函数体的开头。</p>
+<p>如果没有 <code>&quot;use strict&quot;</code>，所有东西仍可以正常工作，但是某些特性的表现方式与旧式「兼容」方式相同。我们通常更喜欢现代的方式。</p>
+<p>语言的一些现代特征（比如我们将来要学习的类）会隐式地启用严格模式。</p>
+<p>更多内容：<a href="../strict-mode/index.html">现代模式，&quot;use strict&quot;</a>。</p>
+<h2><a class="main__anchor" name="bian-liang" href="#bian-liang">变量</a></h2><p>可以使用以下方式声明变量：</p>
+<ul>
+<li><code>let</code></li>
+<li><code>const</code>（不变的，不能被改变）</li>
+<li><code>var</code>（旧式的，稍后会看到）</li>
+</ul>
+<p>一个变量名可以由以下组成：</p>
+<ul>
+<li>字母和数字，但是第一个字符不能是数字。</li>
+<li>字符 <code>$</code> 和 <code>_</code> 是允许的，用法同字母。</li>
+<li>非拉丁字母和象形文字也是允许的，但通常不会使用。</li>
+</ul>
+<p>变量是动态类型的，它们可以存储任何值：</p>
+<div id="994i0t0w7e" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let x = 5;
+x = &quot;John&quot;;</code></pre>
+        </div>
+      </div>
+      
+      </div><p>有 8 种数据类型：</p>
+<ul>
+<li><code>number</code> — 可以是浮点数，也可以是整数，</li>
+<li><code>bigint</code> — 用于任意长度的整数，</li>
+<li><code>string</code> — 字符串类型，</li>
+<li><code>boolean</code> — 逻辑值：<code>true/false</code>，</li>
+<li><code>null</code> — 具有单个值 <code>null</code> 的类型，表示“空”或“不存在”，</li>
+<li><code>undefined</code> — 具有单个值 <code>undefined</code> 的类型，表示“未分配（未定义）”，</li>
+<li><code>object</code> 和 <code>symbol</code> — 对于复杂的数据结构和唯一标识符，我们目前还没学习这个类型。</li>
+</ul>
+<p><code>typeof</code> 运算符返回值的类型，但有两个例外：</p>
+<div id="bhstp208ui" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>typeof null == &quot;object&quot; // JavaScript 编程语言的设计错误
+typeof function(){} == &quot;function&quot; // 函数被特殊对待</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更多内容：<a href="../variables/index.html">变量</a> 和 <a href="../types/index.html">数据类型</a>。</p>
+<h2><a class="main__anchor" name="jiao-hu" href="#jiao-hu">交互</a></h2><p>我们使用浏览器作为工作环境，所以基本的 UI 功能将是：</p>
+<dl>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/API/Window/prompt"><code>prompt(question[, default])</code></a></dt>
+<dd>提出一个问题，并返回访问者输入的内容，如果他按下「取消」则返回 <code>null</code>。</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/API/Window/confirm"><code>confirm(question)</code></a></dt>
+<dd>提出一个问题，并建议用户在“确定”和“取消”之间进行选择。选择结果以 <code>true/false</code> 形式返回。</dd>
+<dt><a href="https://developer.mozilla.org/zh/docs/Web/API/Window/alert"><code>alert(message)</code></a></dt>
+<dd>输出一个 <code>消息</code>。</dd>
+</dl>
+<p>这些函数都会产生 <strong>模态框</strong>，它们会暂停代码执行并阻止访问者与页面的其他部分进行交互，直到用户做出回答为止。</p>
+<p>举个例子：</p>
+<div id="8x07257ec4" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let userName = prompt(&quot;Your name?&quot;, &quot;Alice&quot;);
+let isTeaWanted = confirm(&quot;Do you want some tea?&quot;);
+
+alert( &quot;Visitor: &quot; + userName ); // Alice
+alert( &quot;Tea wanted: &quot; + isTeaWanted ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更多内容：<a href="../alert-prompt-confirm/index.html">交互：alert、prompt 和 confirm</a>。</p>
+<h2><a class="main__anchor" name="yun-suan-fu" href="#yun-suan-fu">运算符</a></h2><p>JavaScript 支持以下运算符：</p>
+<dl>
+<dt>算数运算符</dt>
+<dd>
+<p>常规的：<code>+ - * /</code>（加减乘除），取余运算符 <code>%</code> 和幂运算符 <code>**</code>。</p>
+<p>二进制加号 <code>+</code> 可以连接字符串。如果任何一个操作数是一个字符串，那么另一个操作数也将被转换为字符串：</p>
+<div id="y2pefkt8ta" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( '1' + 2 ); // '12'，字符串
+alert( 1 + '2' ); // '12'，字符串</code></pre>
+        </div>
+      </div>
+      
+      </div></dd>
+<dt>赋值</dt>
+<dd>
+<p>简单的赋值：<code>a = b</code> 和合并了其他操作的赋值：<code>a * = 2</code>。</p>
+</dd>
+<dt>按位运算符</dt>
+<dd>
+<p>按位运算符在最低位级上操作 32 位的整数：详见 <a href="https://developer.mozilla.org/zh/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise">文档</a>。</p>
+</dd>
+<dt>三元运算符</dt>
+<dd>
+<p>唯一具有三个参数的操作：<code>cond ? resultA : resultB</code>。如果 <code>cond</code> 为真，则返回 <code>resultA</code>，否则返回 <code>resultB</code>。</p>
+</dd>
+<dt>逻辑运算符</dt>
+<dd>
+<p>逻辑与 <code>&amp;&amp;</code> 和或 <code>||</code> 执行短路运算，然后返回运算停止处的值（<code>true</code>/<code>false</code> 不是必须的）。逻辑非 <code>!</code> 将操作数转换为布尔值并返回其相反的值。</p>
+</dd>
+<dt>空值合并运算符</dt>
+<dd>
+<p><code>??</code> 运算符从一列变量中，选取值为已定义的值（defined value）的变量。<code>a ?? b</code> 的结果是 <code>a</code>，除非 <code>a</code> 为 <code>null/undefined</code>，这时结果是 <code>b</code>。</p>
+</dd>
+<dt>比较运算符</dt>
+<dd>
+<p>对不同类型的值进行相等检查时，运算符 <code>==</code> 会将不同类型的值转换为数字（除了 <code>null</code> 和 <code>undefined</code>，它们彼此相等而没有其他情况），所以下面的例子是相等的：</p>
+<div id="nyiyns178n" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>alert( 0 == false ); // true
+alert( 0 == '' ); // true</code></pre>
+        </div>
+      </div>
+      
+      </div><p>其他比较也将转换为数字。</p>
+<p>严格相等运算符 <code>===</code> 不会进行转换：不同的类型总是指不同的值。</p>
+<p>值 <code>null</code> 和 <code>undefined</code> 是特殊的：它们只在 <code>==</code> 下相等，且不相等于其他任何值。</p>
+<p>大于/小于比较，在比较字符串时，会按照字符顺序逐个字符地进行比较。其他类型则被转换为数字。</p>
+</dd>
+<dt>其他运算符</dt>
+<dd>
+<p>还有很少一部分其他运算符，如逗号运算符。</p>
+</dd>
+</dl>
+<p>更多内容：<a href="../operators/index.html">基础运算符，数学</a>，<a href="../comparison/index.html">值的比较</a>，<a href="../logical-operators/index.html">逻辑运算符</a>，<a href="../nullish-coalescing-operator/index.html">空值合并运算符 '??'</a>。</p>
+<h2><a class="main__anchor" name="xun-huan" href="#xun-huan">循环</a></h2><ul>
+<li>
+<p>我们涵盖了 3 种类型的循环：</p>
+<div id="vqe5tanogl" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 1
+while (condition) {
+  ...
+}
+
+// 2
+do {
+  ...
+} while (condition);
+
+// 3
+for(let i = 0; i &lt; 10; i++) {
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>在 <code>for(let...)</code> 循环内部声明的变量，只在该循环内可见。但我们也可以省略 <code>let</code> 并重用已有的变量。</p>
+</li>
+<li>
+<p>指令 <code>break/continue</code> 允许退出整个循环/当前迭代。使用标签来打破嵌套循环。</p>
+</li>
+</ul>
+<p>更多内容：<a href="../while-for/index.html">循环：while 和 for</a>。</p>
+<p>稍后我们将学习更多类型的循环来处理对象。</p>
+<h2><a class="main__anchor" name="switch-jie-gou" href="#switch-jie-gou">“switch” 结构</a></h2><p>“switch” 结构可以替代多个 <code>if</code> 检查。它内部使用 <code>===</code>（严格相等）进行比较。</p>
+<p>例如：</p>
+<div id="equ9rt9mwc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let age = prompt('Your age?', 18);
+
+switch (age) {
+  case 18:
+    alert(&quot;Won't work&quot;); // prompt 的结果是一个字符串，而不是数字
+    break;
+
+  case &quot;18&quot;:
+    alert(&quot;This works!&quot;);
+    break;
+
+  default:
+    alert(&quot;Any value not equal to one above&quot;);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>详情请见：<a href="../switch/index.html">&quot;switch&quot; 语句</a>。</p>
+<h2><a class="main__anchor" name="han-shu" href="#han-shu">函数</a></h2><p>我们介绍了三种在 JavaScript 中创建函数的方式：</p>
+<ol>
+<li>
+<p>函数声明：主代码流中的函数</p>
+<div id="xs5d69z0a8" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sum(a, b) {
+  let result = a + b;
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>函数表达式：表达式上下文中的函数</p>
+<div id="vj4wyem94x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sum = function(a, b) {
+  let result = a + b;
+
+  return result;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+<li>
+<p>箭头函数：</p>
+<div id="ekqp4fn0be" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 表达式在右侧
+let sum = (a, b) =&gt; a + b;
+
+// 或带 {...} 的多行语法，此处需要 return：
+let sum = (a, b) =&gt; {
+  // ...
+  return a + b;
+}
+
+// 没有参数
+let sayHi = () =&gt; alert(&quot;Hello&quot;);
+
+// 有一个参数
+let double = n =&gt; n * 2;</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<ul>
+<li>函数可能具有局部变量：在函数内部声明的变量，或在其参数列表中。这类变量只在函数内部可见。</li>
+<li>参数可以有默认值：<code>function sum(a = 1, b = 2) {...}</code>。</li>
+<li>函数总是返回一些东西。如果没有 <code>return</code> 语句，那么返回的结果是 <code>undefined</code>。</li>
+</ul>
+<p>详细内容：请见 <a href="../function-basics/index.html">函数</a>，<a href="../arrow-functions-basics/index.html">箭头函数，基础知识</a>。</p>
+<h2><a class="main__anchor" name="geng-duo-nei-rong" href="#geng-duo-nei-rong">更多内容</a></h2><p>这些是 JavaScript 特性的简要概述。截至目前，我们仅仅学习了基础知识。随着教程的深入，你会发现 JavaScript 的更多特性和高级特性。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../arrow-functions-basics/index.html" data-tooltip="箭头函数，基础知识"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../code-quality/index.html" data-tooltip="代码质量"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/javascript-specials","identifier":"\/javascript-specials"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../first-steps/index.html">JavaScript 基础知识</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#dai-ma-jie-gou">代码结构</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yan-ge-mo-shi">严格模式</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bian-liang">变量</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#jiao-hu">交互</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#yun-suan-fu">运算符</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xun-huan">循环</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#switch-jie-gou">“switch” 结构</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#han-shu">函数</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#geng-duo-nei-rong">更多内容</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fjavascript-specials" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/02-first-steps/18-javascript-specials" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Server Sent Events</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/server-sent-events"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Server Sent Events"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Server Sent Events"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/websocket"><link rel="next" href="/data-storage"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Server Sent Events"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/server-sent-events"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/server-sent-events"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/server-sent-events"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/server-sent-events"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/server-sent-events"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/server-sent-events"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/server-sent-events"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/">عربي</option><option value="https://javascript.info/server-sent-events">English</option><option value="https://es.javascript.info/server-sent-events">Español</option><option value="https://fr.javascript.info/server-sent-events">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/server-sent-events">Italiano</option><option value="https://ja.javascript.info/server-sent-events">日本語</option><option value="https://ko.javascript.info/">한국어</option><option value="https://learn.javascript.ru/server-sent-events">Русский</option><option value="https://tr.javascript.info/server-sent-events">Türkçe</option><option value="https://uk.javascript.info/">Українська</option><option value="https://zh.javascript.info/server-sent-events" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="12" max="12" data-tooltip="第 12/12 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../network/index.html"><span>网络请求</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"网络请求","item":"https://zh.javascript.info/network"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 12日 四月 2020"><div class="updated-at__content">12日 四月 2020</div></div></div><h1 class="main__header-title">Server Sent Events</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Server Sent Events"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p><a href="https://html.spec.whatwg.org/multipage/comms.html#the-eventsource-interface">Server-Sent Events</a> 规范描述了一个内建的类 <code>EventSource</code>，它能保持与服务器的连接，并允许从中接收事件。</p>
+<p>与 <code>WebSocket</code> 类似，其连接是持久的。</p>
+<p>但是两者之间有几个重要的区别：</p>
+<table>
+<thead>
+<tr>
+<th><code>WebSocket</code></th>
+<th><code>EventSource</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双向：客户端和服务端都能交换消息</td>
+<td>单向：仅服务端能发送消息</td>
+</tr>
+<tr>
+<td>二进制和文本数据</td>
+<td>仅文本数据</td>
+</tr>
+<tr>
+<td>WebSocket 协议</td>
+<td>常规 HTTP 协议</td>
+</tr>
+</tbody>
+</table>
+<p>与 <code>WebSocket</code> 相比，<code>EventSource</code> 是与服务器通信的一种不那么强大的方式。</p>
+<p>我们为什么要使用它？</p>
+<p>主要原因：简单。在很多应用中，<code>WebSocket</code> 有点大材小用。</p>
+<p>我们需要从服务器接收一个数据流：可能是聊天消息或者市场价格等。这正是 <code>EventSource</code> 所擅长的。它还支持自动重新连接，而在 <code>WebSocket</code> 中这个功能需要我们手动实现。此外，它是一个普通的旧的 HTTP，不是一个新协议。</p>
+<h2><a class="main__anchor" name="huo-qu-xiao-xi" href="#huo-qu-xiao-xi">获取消息</a></h2><p>要开始接收消息，我们只需要创建 <code>new EventSource(url)</code> 即可。</p>
+<p>浏览器将会连接到 <code>url</code> 并保持连接打开，等待事件。</p>
+<p>服务器响应状态码应该为 200，header 为 <code>Content-Type: text/event-stream</code>，然后保持此连接并以一种特殊的格式写入消息，就像这样：</p>
+<div id="xlpx9gf7i3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>data: Message 1
+
+data: Message 2
+
+data: Message 3
+data: of two lines</code></pre>
+        </div>
+      </div>
+      
+      </div><ul>
+<li><code>data:</code> 后为消息文本，冒号后面的空格是可选的。</li>
+<li>消息以双换行符 <code>\n\n</code> 分隔。</li>
+<li>要发送一个换行 <code>\n</code>，我们可以在要换行的位置立即再发送一个 <code>data:</code>（上面的第三条消息）。</li>
+</ul>
+<p>在实际开发中，复杂的消息通常是用 JSON 编码后发送。换行符在其中编码为 <code>\n</code>，因此不需要多行 <code>data:</code> 消息。</p>
+<p>例如：</p>
+<div id="2o4m2vmxsl" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:42,&quot;end&quot;:44}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>data: {&quot;user&quot;:&quot;John&quot;,&quot;message&quot;:&quot;First line\n Second line&quot;}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>……因此，我们可以假设一个 <code>data:</code> 只保存了一条消息。</p>
+<p>对于每个这样的消息，都会生成 <code>message</code> 事件：</p>
+<div id="pm6lftbu20" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let eventSource = new EventSource(&quot;/events/subscribe&quot;);
+
+eventSource.onmessage = function(event) {
+  console.log(&quot;New message&quot;, event.data);
+  // 对于上面的数据流将打印三次
+};
+
+// 或 eventSource.addEventListener('message', ...)</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="kua-yuan-qing-qiu" href="#kua-yuan-qing-qiu">跨源请求</a></h3><p><code>EventSource</code> 支持跨源请求，就像 <code>fetch</code> 任何其他网络方法。我们可以使用任何 URL：</p>
+<div id="76ap2u75g3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let source = new EventSource(&quot;https://another-site.com/events&quot;);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>远程服务器将会获取到 <code>Origin</code> header，并且必须以 <code>Access-Control-Allow-Origin</code> 响应来处理。</p>
+<p>要传递凭证（credentials），我们应该设置附加选项 <code>withCredentials</code>，就像这样：</p>
+<div id="r3mu609ck7" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let source = new EventSource(&quot;https://another-site.com/events&quot;, {
+  withCredentials: true
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更多关于跨源 header 的详细内容，请参见 <a href="../fetch-crossorigin/index.html">Fetch：跨源请求</a>。</p>
+<h2><a class="main__anchor" name="zhong-xin-lian-jie" href="#zhong-xin-lian-jie">重新连接</a></h2><p>创建之后，<code>new EventSource</code> 连接到服务器，如果连接断开 —— 则重新连接。</p>
+<p>这非常方便，我们不用去关心重新连接的事情。</p>
+<p>每次重新连接之间有一点小的延迟，默认为几秒钟。</p>
+<p>服务器可以使用 <code>retry:</code> 来设置需要的延迟响应时间（以毫秒为单位）。</p>
+<div id="38gft1f1f5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>retry: 15000
+data: Hello, I set the reconnection delay to 15 seconds</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>retry:</code> 既可以与某些数据一起出现，也可以作为独立的消息出现。</p>
+<p>在重新连接之前，浏览器需要等待那么多毫秒。甚至更长，例如，如果浏览器知道（从操作系统）此时没有网络连接，它会等到连接出现，然后重试。</p>
+<ul>
+<li>如果服务器想要浏览器停止重新连接，那么它应该使用 HTTP 状态码 204 进行响应。</li>
+<li>如果浏览器想要关闭连接，则应该调用 <code>eventSource.close()</code>：</li>
+</ul>
+<div id="gi2932p1qw" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let eventSource = new EventSource(...);
+
+eventSource.close();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>并且，如果响应具有不正确的 <code>Content-Type</code> 或者其 HTTP 状态码不是 301，307，200 和 204，则不会进行重新连接。在这种情况下，将会发出 <code>&quot;error&quot;</code> 事件，并且浏览器不会重新连接。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">请注意：</span></div>
+            <div class="important__content"><p>当连接最终被关闭时，就无法“重新打开”它。如果我们想要再次连接，只需要创建一个新的 <code>EventSource</code>。</p>
+</div></div>
+<h2><a class="main__anchor" name="xiao-xi-id" href="#xiao-xi-id">消息 id</a></h2><p>当一个连接由于网络问题而中断时，客户端和服务器都无法确定哪些消息已经收到哪些没有收到。</p>
+<p>为了正确地恢复连接，每条消息都应该有一个 <code>id</code> 字段，就像这样：</p>
+<div id="tb7qdk5khi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>data: Message 1
+id: 1
+
+data: Message 2
+id: 2
+
+data: Message 3
+data: of two lines
+id: 3</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当收到具有 <code>id</code> 的消息时，浏览器会：</p>
+<ul>
+<li>将属性 <code>eventSource.lastEventId</code> 设置为其值。</li>
+<li>重新连接后，发送带有 <code>id</code> 的 header <code>Last-Event-ID</code>，以便服务器可以重新发送后面的消息。</li>
+</ul>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">把 <code>id:</code> 放在 <code>data:</code> 后</span></div>
+            <div class="important__content"><p>请注意：<code>id</code> 被服务器附加到 <code>data</code> 消息后，以确保在收到消息后 <code>lastEventId</code> 会被更新。</p>
+</div></div>
+<h2><a class="main__anchor" name="lian-jie-zhuang-tai-readystate" href="#lian-jie-zhuang-tai-readystate">连接状态：readyState</a></h2><p><code>EventSource</code> 对象有 <code>readyState</code> 属性，该属性具有下列值之一：</p>
+<div id="cxs61iky8x" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>EventSource.CONNECTING = 0; // 连接中或者重连中
+EventSource.OPEN = 1;       // 已连接
+EventSource.CLOSED = 2;     // 连接已关闭</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对象创建完成或者连接断开后，它始终是 <code>EventSource.CONNECTING</code>（等于 <code>0</code>）。</p>
+<p>我们可以查询该属性以了解 <code>EventSource</code> 的状态。</p>
+<h2><a class="main__anchor" name="event-lei-xing" href="#event-lei-xing">Event 类型</a></h2><p>默认情况下 <code>EventSource</code> 对象生成三个事件：</p>
+<ul>
+<li><code>message</code> —— 收到消息，可以用 <code>event.data</code> 访问。</li>
+<li><code>open</code> —— 连接已打开。</li>
+<li><code>error</code> —— 无法建立连接，例如，服务器返回 HTTP 500 状态码。</li>
+</ul>
+<p>服务器可以在事件开始时使用 <code>event: ...</code> 指定另一种类型事件。</p>
+<p>例如：</p>
+<div id="zcikkd5cd1" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-none"><code>event: join
+data: Bob
+
+data: Hello
+
+event: leave
+data: Bob</code></pre>
+        </div>
+      </div>
+      
+      </div><p>要处理自定义事件，我们必须使用 <code>addEventListener</code> 而非 <code>onmessage</code>：</p>
+<div id="qr1txsi5ad" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>eventSource.addEventListener('join', event =&gt; {
+  alert(`Joined ${event.data}`);
+});
+
+eventSource.addEventListener('message', event =&gt; {
+  alert(`Said: ${event.data}`);
+});
+
+eventSource.addEventListener('leave', event =&gt; {
+  alert(`Left ${event.data}`);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="wan-zheng-shi-li" href="#wan-zheng-shi-li">完整示例</a></h2><p>服务器依次发送 <code>1</code>，<code>2</code>，<code>3</code>，最后发送 <code>bye</code> 并断开连接。</p>
+<p>然后浏览器会自动重新连接。</p>
+<div class="code-tabs code-tabs_result_on"><div class="code-tabs__tools"><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_left" title="&amp;larr;" data-code-tabs-left="data-code-tabs-left"></button></div><div class="code-tabs__switches-wrap"><div class="code-tabs__switches" data-code-tabs-switches="data-code-tabs-switches"><div class="code-tabs__switches-items"><div class="code-tabs__switch code-tabs__switch_current">结果</div><div class="code-tabs__switch">server.js</div><div class="code-tabs__switch">index.html</div></div></div></div><div class="code-tabs__scroll-wrap"><button class="code-tabs__scroll-button code-tabs__scroll-button_right" title="&amp;rarr;" data-code-tabs-right="data-code-tabs-right"></button></div><div class="code-tabs__buttons"><a class="code-tabs__button code-tabs__button_external" target="_blank" title="在新窗口中打开" href="../article/server-sent-events/eventsource/index.html"></a><a class="code-tabs__button code-tabs__button_download" target="_blank" href="../tutorial/zipview/eventsource_plunkId%3DNnYjoCPNrx1ujFfc.zip"></a></div></div><div class="code-tabs__content" data-code-tabs-content="data-code-tabs-content" style="height:200px"><div class="code-tabs__section code-tabs__section_current"><iframe class="code-tabs__result" src="../article/server-sent-events/eventsource/index.html"></iframe></div><div class="code-tabs__section"><pre class="language-javascript line-numbers"><code>let http = require('http');
+let url = require('url');
+let querystring = require('querystring');
+
+function onDigits(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream; charset=utf-8',
+    'Cache-Control': 'no-cache'
+  });
+
+  let i = 0;
+
+  let timer = setInterval(write, 1000);
+  write();
+
+  function write() {
+    i++;
+
+    if (i == 4) {
+      res.write('event: bye\ndata: bye-bye\n\n');
+      clearInterval(timer);
+      res.end();
+      return;
+    }
+
+    res.write('data: ' + i + '\n\n');
+
+  }
+}
+
+function accept(req, res) {
+
+  if (req.url == '/digits') {
+    onDigits(req, res);
+    return;
+  }
+
+  fileServer.serve(req, res);
+
+}
+
+
+if (!module.parent) {
+  http.createServer(accept).listen(8080);
+} else {
+  exports.accept = accept;
+}</code></pre></div><div class="code-tabs__section"><pre class="language-markup line-numbers"><code>&lt;!DOCTYPE html&gt;
+&lt;script&gt;
+let eventSource;
+
+function start() { // when &quot;Start&quot; button pressed
+  if (!window.EventSource) {
+    // IE or an old browser
+    alert(&quot;The browser doesn't support EventSource.&quot;);
+    return;
+  }
+
+  eventSource = new EventSource('digits');
+
+  eventSource.onopen = function(e) {
+    log(&quot;Event: open&quot;);
+  };
+
+  eventSource.onerror = function(e) {
+    log(&quot;Event: error&quot;);
+    if (this.readyState == EventSource.CONNECTING) {
+      log(`Reconnecting (readyState=${this.readyState})...`);
+    } else {
+      log(&quot;Error has occured.&quot;);
+    }
+  };
+
+  eventSource.addEventListener('bye', function(e) {
+    log(&quot;Event: bye, data: &quot; + e.data);
+  });
+
+  eventSource.onmessage = function(e) {
+    log(&quot;Event: message, data: &quot; + e.data);
+  };
+}
+
+function stop() { // when &quot;Stop&quot; button pressed
+  eventSource.close();
+  log(&quot;eventSource.close()&quot;);
+}
+
+function log(msg) {
+  logElem.innerHTML += msg + &quot;&lt;br&gt;&quot;;
+  document.documentElement.scrollTop = 99999999;
+}
+&lt;/script&gt;
+
+&lt;button onclick=&quot;start()&quot;&gt;Start&lt;/button&gt; Press the &quot;Start&quot; to begin.
+&lt;div id=&quot;logElem&quot; style=&quot;margin: 6px 0&quot;&gt;&lt;/div&gt;
+
+&lt;button onclick=&quot;stop()&quot;&gt;Stop&lt;/button&gt; &quot;Stop&quot; to finish.</code></pre></div></div></div><h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p><code>EventSource</code> 对象自动建立一个持久的连接，并允许服务器通过这个连接发送消息。</p>
+<p>它提供了：</p>
+<ul>
+<li>在可调的 <code>retry</code> 超时内自动重新连接。</li>
+<li>用于恢复事件的消息 id，重新连接后，最后接收到的标识符被在 <code>Last-Event-ID</code> header 中发送出去。</li>
+<li>当前状态位于 <code>readyState</code> 属性中。</li>
+</ul>
+<p>这使得 <code>EventSource</code> 成为 <code>WebSocket</code> 的一个可行的替代方案，因为 <code>WebSocket</code> 更低级（low-level），且缺乏这样的内建功能（尽管它们可以被实现）。</p>
+<p>在很多实际应用中，<code>EventSource</code> 的功能就已经够用了。</p>
+<p><code>EventSource</code> 在所有现代浏览器（除了 IE）中都得到了支持。</p>
+<p>语法：</p>
+<div id="e0rm295lq0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let source = new EventSource(url, [credentials]);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第二个参数只有一个可选项：<code>{ withCredentials: true }</code>，它允许发送跨源凭证。</p>
+<p>总体跨源安全性与 <code>fetch</code> 以及其他网络方法相同。</p>
+<h3><a class="main__anchor" name="eventsource-dui-xiang-de-shu-xing" href="#eventsource-dui-xiang-de-shu-xing"><code>EventSource</code> 对象的属性</a></h3><dl>
+<dt><code>readyState</code></dt>
+<dd>当前连接状态：为 <code>EventSource.CONNECTING (=0)</code>，<code>EventSource.OPEN (=1)</code>，<code>EventSource.CLOSED (=2)</code> 三者之一。</dd>
+<dt><code>lastEventId</code></dt>
+<dd>最后接收到的 <code>id</code>。重新连接后，浏览器在 header <code>Last-Event-ID</code> 中发送此 id。</dd>
+</dl>
+<h3><a class="main__anchor" name="eventsource-dui-xiang-de-fang-fa" href="#eventsource-dui-xiang-de-fang-fa"><code>EventSource</code> 对象的方法</a></h3><dl>
+<dt><code>close()</code></dt>
+<dd>关闭连接。</dd>
+</dl>
+<h3><a class="main__anchor" name="eventsource-dui-xiang-de-shi-jian" href="#eventsource-dui-xiang-de-shi-jian"><code>EventSource</code> 对象的事件</a></h3><dl>
+<dt><code>message</code></dt>
+<dd>接收到的消息，消息数据在 <code>event.data</code> 中。</dd>
+<dt><code>open</code></dt>
+<dd>连接已建立。</dd>
+<dt><code>error</code></dt>
+<dd>如果发生错误，包括连接丢失（将会自动重连）以及其他致命错误。我们可以检查 <code>readyState</code> 以查看是否正在尝试重新连接。</dd>
+</dl>
+<p>服务器可以在 <code>event:</code> 中设置自定义事件名称。应该使用 <code>addEventListener</code> 来处理此类事件，而不是使用 <code>on&lt;event&gt;</code>。</p>
+<h3><a class="main__anchor" name="fu-wu-qi-xiang-ying-ge-shi" href="#fu-wu-qi-xiang-ying-ge-shi">服务器响应格式</a></h3><p>服务器发送由 <code>\n\n</code> 分隔的消息。</p>
+<p>一条消息可能有以下字段：</p>
+<ul>
+<li><code>data:</code> —— 消息体（body），一系列多个 <code>data</code> 被解释为单个消息，各个部分之间由 <code>\n</code> 分隔。</li>
+<li><code>id:</code> —— 更新 <code>lastEventId</code>，重连时以 <code>Last-Event-ID</code> 发送此 id。</li>
+<li><code>retry:</code> —— 建议重连的延迟，以 ms 为单位。无法通过 JavaScript 进行设置。</li>
+<li><code>event:</code> —— 事件名，必须在 <code>data:</code> 之前。</li>
+</ul>
+<p>一条消息可以按任何顺序包含一个或多个字段，但是 <code>id:</code> 通常排在最后。</p>
+</div></article></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../websocket/index.html" data-tooltip="WebSocket"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../data-storage/index.html" data-tooltip="在浏览器中存储数据"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/server-sent-events","identifier":"\/server-sent-events"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../network/index.html">网络请求</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#huo-qu-xiao-xi">获取消息</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zhong-xin-lian-jie">重新连接</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xiao-xi-id">消息 id</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lian-jie-zhuang-tai-readystate">连接状态：readyState</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#event-lei-xing">Event 类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#wan-zheng-shi-li">完整示例</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fserver-sent-events" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/5-network/12-server-sent-events" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

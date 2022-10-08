@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">鼠标事件</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/mouse-events-basics"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="鼠标事件"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="鼠标事件"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/event-details"><link rel="next" href="/mousemove-mouseover-mouseout-mouseenter-mouseleave"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script>
+{
+  let timer = 0;
+
+  function showmesg(t, form) {
+
+     if (timer == 0) {
+       timer = new Date();
+     }
+
+     let tm = new Date();
+
+     if (tm - timer > 300) {
+       t = '------------------------------\n' + t;
+     }
+
+     let area = document.forms[form + 'form'].getElementsByTagName('textarea')[0];
+
+     area.value += t + '\n';
+     area.scrollTop = area.scrollHeight;
+
+     timer = tm;
+  }
+
+  function logMouse(e) {
+     let evt = e.type;
+     while (evt.length < 11) evt += ' ';
+     showmesg(evt + " button=" + e.button, 'test')
+     return false;
+  }
+
+  function keyval(n) {
+     if (n == null) return 'undefined';
+     let s = '' + n;
+     if (n >= 32 && n < 127) s += ' ' + String.fromCharCode(n);
+     while (s.length < 6) s += ' ';
+     return s;
+  }
+
+
+  function logClear(form) {
+  	timer = 0;
+  	document.forms[form+'form'].getElementsByTagName('textarea')[0].value ='';
+  	lines = 0;
+  }
+
+  window.logClear = logClear;
+  window.logMouse = logMouse;
+}
+</script>
+<meta property="og:title" content="鼠标事件"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/mouse-events-basics"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/mouse-events-basics"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/mouse-events-basics"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/mouse-events-basics"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/mouse-events-basics"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/mouse-events-basics"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/mouse-events-basics"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/mouse-events-basics"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/mouse-events-basics"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/mouse-events-basics"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/mouse-events-basics">عربي</option><option value="https://javascript.info/mouse-events-basics">English</option><option value="https://es.javascript.info/mouse-events-basics">Español</option><option value="https://fr.javascript.info/mouse-events-basics">Français</option><option value="https://id.javascript.info/">Indonesia</option><option value="https://it.javascript.info/mouse-events-basics">Italiano</option><option value="https://ja.javascript.info/mouse-events-basics">日本語</option><option value="https://ko.javascript.info/mouse-events-basics">한국어</option><option value="https://learn.javascript.ru/mouse-events-basics">Русский</option><option value="https://tr.javascript.info/mouse-events-basics">Türkçe</option><option value="https://uk.javascript.info/mouse-events-basics">Українська</option><option value="https://zh.javascript.info/mouse-events-basics" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="17" max="32" data-tooltip="第 17/32 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../ui/index.html"><span>浏览器：文档，事件，接口</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../event-details/index.html"><span>UI 事件</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"浏览器：文档，事件，接口","item":"https://zh.javascript.info/ui"},{"@type":"ListItem","position":3,"name":"UI 事件","item":"https://zh.javascript.info/event-details"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 8日 十一月 2020"><div class="updated-at__content">8日 十一月 2020</div></div></div><h1 class="main__header-title">鼠标事件</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="鼠标事件"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>在本章中，我们将详细介绍鼠标事件及其属性。</p>
+<p>请注意：此类事件不仅可能来自于“鼠标设备”，还可能来自于对此类操作进行了模拟以实现兼容性的其他设备，例如手机和平板电脑。</p>
+<h2><a class="main__anchor" name="shu-biao-shi-jian-lei-xing" href="#shu-biao-shi-jian-lei-xing">鼠标事件类型</a></h2><p>我们已经见过了其中一些事件：</p>
+<dl>
+<dt><code>mousedown/mouseup</code></dt>
+<dd>在元素上点击/释放鼠标按钮。</dd>
+<dt><code>mouseover/mouseout</code></dt>
+<dd>鼠标指针从一个元素上移入/移出。</dd>
+<dt><code>mousemove</code></dt>
+<dd>鼠标在元素上的每个移动都会触发此事件。</dd>
+<dt><code>click</code></dt>
+<dd>如果使用的是鼠标左键，则在同一个元素上的 <code>mousedown</code> 及 <code>mouseup</code> 相继触发后，触发该事件。</dd>
+<dt><code>dblclick</code></dt>
+<dd>在短时间内双击同一元素后触发。如今已经很少使用了。</dd>
+<dt><code>contextmenu</code></dt>
+<dd>在鼠标右键被按下时触发。还有其他打开上下文菜单的方式，例如使用特殊的键盘按键，在这种情况下它也会被触发，因此它并不完全是鼠标事件。</dd>
+</dl>
+<p>……还有其他几种事件，我们稍后会学习它们。</p>
+<h2><a class="main__anchor" name="shi-jian-shun-xu" href="#shi-jian-shun-xu">事件顺序</a></h2><p>从上面的列表中我们可以看到，一个用户操作可能会触发多个事件。</p>
+<p>例如，点击鼠标左键，在鼠标左键被按下时，会首先触发 <code>mousedown</code>，然后当鼠标左键被释放时，会触发 <code>mouseup</code> 和 <code>click</code>。</p>
+<p>在单个动作触发多个事件时，事件的顺序是固定的。也就是说，会遵循 <code>mousedown</code> → <code>mouseup</code> → <code>click</code> 的顺序调用处理程序。</p>
+<p>点击（译注：即单击）下面的按钮，你会看到事件。并尝试双击它。</p>
+<p>在测试台下面记录了所有的鼠标事件，如果它们之间的延迟时间超过 1 秒，那么它们会被水平分割线分开。</p>
+<p>我们还可以看出 <code>button</code> 属性允许检测鼠标按钮，演示示例如下。</p>
+<p><input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Click me with the right or the left mouse button" type="button"> <input onclick="logClear('test')" value="Clear" type="button"> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form></p>
+<h2><a class="main__anchor" name="shu-biao-an-niu" href="#shu-biao-an-niu">鼠标按钮</a></h2><p>与点击相关的事件始终具有 <code>button</code> 属性，该属性允许获取确切的鼠标按钮。</p>
+<p>通常我们不在 <code>click</code> 和 <code>contextmenu</code> 事件中使用这一属性，因为前者只在单击鼠标左键时触发，后者只在单击鼠标右键时触发。</p>
+<p>不过，在 <code>mousedown</code> 和 <code>mouseup</code> 事件中则可能需要用到 <code>event.button</code>，因为这两个事件在任何按键上都会触发，所以我们可以使用 <code>button</code> 属性来区分是左键单击还是右键单击。</p>
+<p><code>event.button</code> 的所有可能值如下：</p>
+<table>
+<thead>
+<tr>
+<th>鼠标按键状态</th>
+<th><code>event.button</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左键 (主要按键)</td>
+<td>0</td>
+</tr>
+<tr>
+<td>中键 (辅助按键)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>右键 (次要按键)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>X1 键 (后退按键)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>X2 键 (前进按键)</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>大多数鼠标设备只有左键和右键，对应的值就是 <code>0</code> 和 <code>2</code>。触屏设备中的点按操作也会触发类似的事件。</p>
+<p>另外，还有一个 <code>event.buttons</code> 属性，其中以整数的形式存储着当前所有按下的鼠标按键，每个按键一个比特位。在实际开发中，很少会用到这个属性，如果有需要的话，你可以在 <a href="https://developer.mozilla.org/zh/docs/Web/api/MouseEvent/buttons">MDN</a> 中找到更多细节。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">过时的 <code>event.which</code></span></div>
+            <div class="important__content"><p>一些老代码可能会使用 <code>event.which</code> 属性来获得按下的按键。这是一个古老的非标准的方式，具有以下可能值：</p>
+<ul>
+<li><code>event.which == 1</code> —— 鼠标左键，</li>
+<li><code>event.which == 2</code> —— 鼠标中键，</li>
+<li><code>event.which == 3</code> —— 鼠标右键。</li>
+</ul>
+<p>现在，<code>event.which</code> 已经被弃用了，不应再使用它。</p>
+</div></div>
+<h2><a class="main__anchor" name="zu-he-jian-shiftaltctrlmeta" href="#zu-he-jian-shiftaltctrlmeta">组合键：shift，alt，ctrl，meta</a></h2><p>所有的鼠标事件都包含有关按下的组合键的信息。</p>
+<p>事件属性：</p>
+<ul>
+<li><code>shiftKey</code>：<kbd class="shortcut">Shift</kbd></li>
+<li><code>altKey</code>：<kbd class="shortcut">Alt</kbd>（或对于 Mac 是 <kbd class="shortcut">Opt</kbd>）</li>
+<li><code>ctrlKey</code>：<kbd class="shortcut">Ctrl</kbd></li>
+<li><code>metaKey</code>：对于 Mac 是 <kbd class="shortcut">Cmd</kbd></li>
+</ul>
+<p>如果在事件期间按下了相应的键，则它们为 <code>true</code>。</p>
+<p>比如，下面这个按钮仅在 <kbd class="shortcut">Alt<span class="shortcut__plus">+</span>Shift</kbd>+click 时才有效：</p>
+<div id="2fk49xep09" data-trusted="1" class="code-example" data-demo-height="60" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;button id=&quot;button&quot;&gt;Alt+Shift+Click on me!&lt;/button&gt;
+
+&lt;script&gt;
+  button.onclick = function(event) {
+    if (event.altKey &amp;&amp; event.shiftKey) {
+      alert('Hooray!');
+    }
+  };
+&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-2fk49xep09" style="height:60px" src="about:blank"></iframe>
+        </div>
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">注意：在 Mac 上我们通常使用 <code>Cmd</code> 代替 <code>Ctrl</code></span></div>
+            <div class="important__content"><p>在 Windows 和 Linux 上有 <kbd class="shortcut">Alt</kbd>，<kbd class="shortcut">Shift</kbd> 和 <kbd class="shortcut">Ctrl</kbd>。在 Mac 上还有：<kbd class="shortcut">Cmd</kbd>，它对应于属性 <code>metaKey</code>。</p>
+<p>在大多数情况下，当在 Windows/Linux 上使用 <kbd class="shortcut">Ctrl</kbd> 时，在 Mac 是使用 <kbd class="shortcut">Cmd</kbd>。</p>
+<p>也就说：当 Windows 用户按下 <kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>Enter</kbd> 或 <kbd class="shortcut">Ctrl<span class="shortcut__plus">+</span>A</kbd> 时，Mac 用户会按下 <kbd class="shortcut">Cmd<span class="shortcut__plus">+</span>Enter</kbd> 或 <kbd class="shortcut">Cmd<span class="shortcut__plus">+</span>A</kbd>，以此类推。</p>
+<p>因此，如果我们想支持 <kbd class="shortcut">Ctrl</kbd>+click，那么对于 Mac 应该使用 <kbd class="shortcut">Cmd</kbd>+click。对于 Mac 用户而言，这更舒适。</p>
+<p>即使我们想强制 Mac 用户使用 <kbd class="shortcut">Ctrl</kbd>+click —— 这非常困难。问题是：在 MacOS 上左键单击和 <kbd class="shortcut">Ctrl</kbd> 一起使用会被解释为 <strong>右键单击</strong>，并且会生成 <code>contextmenu</code> 事件，而不是像 Windows/Linux 中的 <code>click</code> 事件。</p>
+<p>因此，如果我们想让所有操作系统的用户都感到舒适，那么我们应该将 <code>ctrlKey</code> 与 <code>metaKey</code> 一起进行检查。</p>
+<p>对于 JS 代码，这意味着我们应该检查 <code>if (event.ctrlKey || event.metaKey)</code>。</p>
+</div></div>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">还有移动设备</span></div>
+            <div class="important__content"><p>键盘组合是工作流的一个补充。这样，如果访客使用键盘操作 —— 它们就会起作用。</p>
+<p>但是，如果访客的设备没有键盘 —— 那么这里应该有另一种不使用键盘也能做到这一点的方式。</p>
+</div></div>
+<h2><a class="main__anchor" name="zuo-biao-clientxypagexy" href="#zuo-biao-clientxypagexy">坐标：clientX/Y，pageX/Y</a></h2><p>所有的鼠标事件都提供了两种形式的坐标：</p>
+<ol>
+<li>相对于窗口的坐标：<code>clientX</code> 和 <code>clientY</code>。</li>
+<li>相对于文档的坐标：<code>pageX</code> 和 <code>pageY</code>。</li>
+</ol>
+<p>我们已经在 <a href="../coordinates/index.html">坐标</a> 中解释过它们之间的区别。</p>
+<p>简而言之，相对于文档的坐标 <code>pageX/Y</code> 以文档的左上角为参照物，并且同一位置的坐标不随页面的滚动而改变。相对于窗口的坐标 <code>clientX/Y</code> 以当前窗口的左上角为参照物，并且同一位置的坐标会随着页面的滚动而改变。</p>
+<p>例如，如果我们有一个大小为 500x500 的窗口，并且鼠标在左上角，那么 <code>clientX</code> 和 <code>clientY</code> 均为 <code>0</code>，无论页面如何滚动。</p>
+<p>如果鼠标位于中间，那么 <code>clientX</code> 和 <code>clientY</code> 均为 <code>250</code>。这与它在文档中的位置无关。在这方面，它们类似于 <code>position:fixed</code>。</p>
+<p>将鼠标移动到输入字段上，可以看到 <code>clientX/clientY</code>（此示例位于 <code>iframe</code> 中，因此坐标是相对于 <code>iframe</code> 的）：</p>
+<div id="tmvwtkml7i" data-trusted="1" class="code-example" data-demo-height="50" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;input onmousemove=&quot;this.value=event.clientX+':'+event.clientY&quot; value=&quot;Mouse over me&quot;&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-tmvwtkml7i" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><h2><a class="main__anchor" name="fang-zhi-zai-shu-biao-an-xia-shi-de-xuan-ze" href="#fang-zhi-zai-shu-biao-an-xia-shi-de-xuan-ze">防止在鼠标按下时的选择</a></h2><p>双击鼠标会有副作用，在某些界面中可能会出现干扰：它会选择文本。</p>
+<p>比如，双击下面的文本，除了我们的处理程序外，还会选择文本：</p>
+<div id="9zp17koiqb" data-trusted="1" class="code-example" data-demo-height="50" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;span ondblclick=&quot;alert('dblclick')&quot;&gt;Double-click me&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-9zp17koiqb" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><p>如果按下鼠标左键，并在不松开的情况下移动鼠标，这也常常会造成不必要的选择。</p>
+<p>有多种防止选择的方法，你可以在 <a href="../selection-range/index.html">选择（Selection）和范围（Range）</a> 一章中详细阅读。</p>
+<p>在这种情况下，最合理的方式是防止浏览器对 <code>mousedown</code> 进行操作。这样能够阻止刚刚提到的两种选择：</p>
+<div id="hrrjqwjfbj" data-trusted="1" class="code-example" data-demo-height="50" data-highlight="[{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:32,&quot;end&quot;:58}]}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>Before...
+&lt;b ondblclick=&quot;alert('Click!')&quot; onmousedown=&quot;return false&quot;&gt;
+  Double-click me
+&lt;/b&gt;
+...After</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-hrrjqwjfbj" style="height:50px" src="about:blank"></iframe>
+        </div>
+      </div><p>现在，在双击时，粗体元素不会被选中，并且在粗体元素上按下鼠标左键也不会开始选择。</p>
+<p>请注意：其中的文本仍然是可选择的。但是，选择不应该开始于该文本自身，而应该在该文本之前或之后开始。通常，这对用户来说挺好的。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">防止复制</span></div>
+            <div class="important__content"><p>如果我们想禁用选择以保护我们页面的内容不被复制粘贴，那么我们可以使用另一个事件：<code>oncopy</code>。</p>
+<div id="2m8l6oazbw" data-trusted="1" class="code-example" data-demo-height="80" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:5,&quot;end&quot;:54}]}]" data-autorun="true">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-markup"><code>&lt;div oncopy=&quot;alert('Copying forbidden!');return false&quot;&gt;
+  Dear user,
+  The copying is forbidden for you.
+  If you know JS or HTML, then you can get everything from the page source though.
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+      <div class="code-result code-example__result">
+          <iframe class="code-result__iframe" name="test-2m8l6oazbw" style="height:80px" src="about:blank"></iframe>
+        </div>
+      </div><p>如果你试图在 <code>&lt;div&gt;</code> 中复制一段文本，这是行不通的，因为默认行为 <code>oncopy</code> 被阻止了。</p>
+<p>当然，用户可以访问页面的 HTML 源码，并且可以从那里获取内容，但并不是每个人都知道如何做到这一点。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>鼠标事件有以下属性：</p>
+<ul>
+<li>
+<p>按钮：<code>button</code>。</p>
+</li>
+<li>
+<p>组合键（如果被按下则为 <code>true</code>）：<code>altKey</code>，<code>ctrlKey</code>，<code>shiftKey</code> 和 <code>metaKey</code>（Mac）。</p>
+<ul>
+<li>如果你想处理 <kbd class="shortcut">Ctrl</kbd>，那么不要忘记 Mac 用户，他们通常使用的是 <kbd class="shortcut">Cmd</kbd>，所以最好检查 <code>if (e.metaKey || e.ctrlKey)</code>。</li>
+</ul>
+</li>
+<li>
+<p>窗口相对坐标：<code>clientX/clientY</code>。</p>
+</li>
+<li>
+<p>文档相对坐标：<code>pageX/pageY</code>。</p>
+</li>
+</ul>
+<p><code>mousedown</code> 的默认浏览器操作是文本选择，如果它对界面不利，则应避免它。</p>
+<p>在下一章中，我们将看到有关鼠标指针移动后的事件，以及如何跟踪其下元素变化的更多详细信息。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ke-xuan-lie-biao" name="ke-xuan-lie-biao">可选列表</a></h3><a class="task__open-link" href="../task/selectable-list/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>创建一个可以选择元素的列表，例如在文件管理器中。</p>
+<ul>
+<li>点击列表元素，只选择该元素（添加 <code>.selected</code> 类），取消选择其他所有元素。</li>
+<li>如果点击时，按键 <kbd class="shortcut">Ctrl</kbd>（在 Mac 中为 <kbd class="shortcut">Cmd</kbd>）是被按下的，则选择会被切换到被点击的元素上，但其他元素不会被改动。</li>
+</ul>
+<p>示例：</p>
+<div class="code-result">
+    <div class="code-result__toolbar toolbar"></div>
+    <iframe class="code-result__iframe" data-trusted="1" style="height:180px" src="https://zh.js.cx/task/selectable-list/solution/"></iframe>
+  </div><p>P.S. 对于此任务，我们可以假设列表项是纯文本的。没有嵌套标签。</p>
+<p>P.P.S. 防止点击时浏览器原生的文本选择。</p>
+<p><a href="https://plnkr.co/edit/KXtUC6anluUx7OdE?p=preview" target="_blank" data-plunk-id="KXtUC6anluUx7OdE">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/XMqWNV9jiegIyi2W?p=preview" target="_blank" data-plunk-id="XMqWNV9jiegIyi2W">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../event-details/index.html" data-tooltip="UI 事件"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../mousemove-mouseover-mouseout-mouseenter-mouseleave/index.html" data-tooltip="移动鼠标：mouseover/out，mouseenter/leave"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/mouse-events-basics","identifier":"\/mouse-events-basics"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../event-details/index.html">UI 事件</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-biao-shi-jian-lei-xing">鼠标事件类型</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-jian-shun-xu">事件顺序</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-biao-an-niu">鼠标按钮</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zu-he-jian-shiftaltctrlmeta">组合键：shift，alt，ctrl，meta</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zuo-biao-clientxypagexy">坐标：clientX/Y，pageX/Y</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#fang-zhi-zai-shu-biao-an-xia-shi-de-xuan-ze">防止在鼠标按下时的选择</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fmouse-events-basics" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/2-ui/3-event-details/1-mouse-events-basics" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

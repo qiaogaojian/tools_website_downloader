@@ -1,0 +1,522 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Promise</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/promise-basics"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Promise"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Promise"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/callbacks"><link rel="next" href="/promise-chaining"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><script>
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error("Script load error: " + src));
+
+    document.head.append(script);
+  });
+}
+</script>
+<meta property="og:title" content="Promise"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/promise-basics"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/promise-basics"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/promise-basics"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/promise-basics"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/promise-basics"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/promise-basics"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/promise-basics"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/promise-basics"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/promise-basics"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/promise-basics"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/promise-basics"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/promise-basics">عربي</option><option value="https://javascript.info/promise-basics">English</option><option value="https://es.javascript.info/promise-basics">Español</option><option value="https://fr.javascript.info/promise-basics">Français</option><option value="https://id.javascript.info/promise-basics">Indonesia</option><option value="https://it.javascript.info/promise-basics">Italiano</option><option value="https://ja.javascript.info/promise-basics">日本語</option><option value="https://ko.javascript.info/promise-basics">한국어</option><option value="https://learn.javascript.ru/promise-basics">Русский</option><option value="https://tr.javascript.info/promise-basics">Türkçe</option><option value="https://uk.javascript.info/promise-basics">Українська</option><option value="https://zh.javascript.info/promise-basics" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="76" max="92" data-tooltip="第 76/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../async/index.html"><span>Promise，async/await</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"Promise，async/await","item":"https://zh.javascript.info/async"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Promise</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Promise"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>想象一下，你是一位顶尖歌手，粉丝没日没夜地询问你下首歌什么时候发。</p>
+<p>为了从中解放，你承诺（promise）会在单曲发布的第一时间发给他们。你给了粉丝们一个列表。他们可以在上面填写他们的电子邮件地址，以便当歌曲发布后，让所有订阅了的人能够立即收到。即便遇到不测，例如录音室发生了火灾，以致你无法发布新歌，他们也能及时收到相关通知。</p>
+<p>每个人都很开心：你不会被任何人催促，粉丝们也不用担心错过歌曲发行。</p>
+<p>这是我们在编程中经常遇到的事儿与真实生活的类比：</p>
+<ol>
+<li>“生产者代码（producing code）”会做一些事儿，并且会需要一些时间。例如，通过网络加载数据的代码。它就像一位“歌手”。</li>
+<li>“消费者代码（consuming code）”想要在“生产者代码”完成工作的第一时间就能获得其工作成果。许多函数可能都需要这个结果。这些就是“粉丝”。</li>
+<li><strong>Promise</strong> 是将“生产者代码”和“消费者代码”连接在一起的一个特殊的 JavaScript 对象。用我们的类比来说：这就是就像是“订阅列表”。“生产者代码”花费它所需的任意长度时间来产出所承诺的结果，而 “promise” 将在它（译注：指的是“生产者代码”，也就是下文所说的 executor）准备好时，将结果向所有订阅了的代码开放。</li>
+</ol>
+<p>这种类比并不十分准确，因为 JavaScipt 的 promise 比简单的订阅列表更加复杂：它们还拥有其他的功能和局限性。但以此开始挺好的。</p>
+<p>Promise 对象的构造器（constructor）语法如下：</p>
+<div id="6cm5x5alb0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  // executor（生产者代码，“歌手”）
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>传递给 <code>new Promise</code> 的函数被称为 <strong>executor</strong>。当 <code>new Promise</code> 被创建，executor 会自动运行。它包含最终应产出结果的生产者代码。按照上面的类比：executor 就是“歌手”。</p>
+<p>它的参数 <code>resolve</code> 和 <code>reject</code> 是由 JavaScript 自身提供的回调。我们的代码仅在 executor 的内部。</p>
+<p>当 executor 获得了结果，无论是早还是晚都没关系，它应该调用以下回调之一：</p>
+<ul>
+<li><code>resolve(value)</code> —— 如果任务成功完成并带有结果 <code>value</code>。</li>
+<li><code>reject(error)</code> —— 如果出现了 error，<code>error</code> 即为 error 对象。</li>
+</ul>
+<p>所以总结一下就是：executor 会自动运行并尝试执行一项工作。尝试结束后，如果成功则调用 <code>resolve</code>，如果出现 error 则调用 <code>reject</code>。</p>
+<p>由 <code>new Promise</code> 构造器返回的 <code>promise</code> 对象具有以下内部属性：</p>
+<ul>
+<li><code>state</code> —— 最初是 <code>&quot;pending&quot;</code>，然后在 <code>resolve</code> 被调用时变为 <code>&quot;fulfilled&quot;</code>，或者在 <code>reject</code> 被调用时变为 <code>&quot;rejected&quot;</code>。</li>
+<li><code>result</code> —— 最初是 <code>undefined</code>，然后在 <code>resolve(value)</code> 被调用时变为 <code>value</code>，或者在 <code>reject(error)</code> 被调用时变为 <code>error</code>。</li>
+</ul>
+<p>所以，executor 最终将 <code>promise</code> 移至以下状态之一：</p>
+<figure><div class="image" style="width:512px">
+      <div class="image__ratio" style="padding-top:48.046875%"></div>
+      <object type="image/svg+xml" data="../article/promise-basics/promise-resolve-reject.svg" width="512" height="246" class="image__image" data-use-theme>
+        <img src="../article/promise-basics/promise-resolve-reject.svg" alt width="512" height="246">
+      </object>
+      </div></figure><p>稍后我们将看到“粉丝”如何订阅这些更改。</p>
+<p>下面是一个 promise 构造器和一个简单的 executor 函数，该 executor 函数具有包含时间（即 <code>setTimeout</code>）的“生产者代码”：</p>
+<div id="8tboboxqne" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;cols&quot;:[{&quot;start&quot;:19,&quot;end&quot;:34}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  // 当 promise 被构造完成时，自动执行此函数
+
+  // 1 秒后发出工作已经被完成的信号，并带有结果 &quot;done&quot;
+  setTimeout(() =&gt; resolve(&quot;done&quot;), 1000);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>通过运行上面的代码，我们可以看到两件事儿：</p>
+<ol>
+<li>
+<p>executor 被自动且立即调用（通过 <code>new Promise</code>）。</p>
+</li>
+<li>
+<p>executor 接受两个参数：<code>resolve</code> 和 <code>reject</code>。这些函数由 JavaScipt 引擎预先定义，因此我们不需要创建它们。我们只需要在准备好（译注：指的是 executor 准备好）时调用其中之一即可。</p>
+<p>经过 1 秒的“处理”后，executor 调用 <code>resolve(&quot;done&quot;)</code> 来产生结果。这将改变 <code>promise</code> 对象的状态：</p>
+<figure><div class="image" style="width:538px">
+      <div class="image__ratio" style="padding-top:19.702602230483272%"></div>
+      <object type="image/svg+xml" data="../article/promise-basics/promise-resolve-1.svg" width="538" height="106" class="image__image" data-use-theme>
+        <img src="../article/promise-basics/promise-resolve-1.svg" alt width="538" height="106">
+      </object>
+      </div></figure></li>
+</ol>
+<p>这是一个成功完成任务的例子，一个“成功实现了的诺言”。</p>
+<p>现在的则是一个 executor 以 error 拒绝 promise 的示例：</p>
+<div id="b4dipnkbrv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:19,&quot;end&quot;:47}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  // 1 秒后发出工作已经被完成的信号，并带有 error
+  setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 1000);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>对 <code>reject(...)</code> 的调用将 promise 对象的状态移至 <code>&quot;rejected&quot;</code>：</p>
+<figure><div class="image" style="width:535px">
+      <div class="image__ratio" style="padding-top:19.813084112149532%"></div>
+      <object type="image/svg+xml" data="../article/promise-basics/promise-reject-1.svg" width="535" height="106" class="image__image" data-use-theme>
+        <img src="../article/promise-basics/promise-reject-1.svg" alt width="535" height="106">
+      </object>
+      </div></figure><p>总而言之，executor 应该执行一项工作（通常是需要花费一些时间的事儿），然后调用 <code>resolve</code> 或 <code>reject</code> 来改变对应的 promise 对象的状态。</p>
+<p>与最初的 “pending” promise 相反，一个 resolved 或 rejected 的 promise 都会被称为 “settled”。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">这儿只能有一个结果或一个 error</span></div>
+            <div class="important__content"><p>executor 只能调用一个 <code>resolve</code> 或一个 <code>reject</code>。任何状态的更改都是最终的。</p>
+<p>所有其他的再对 <code>resolve</code> 和 <code>reject</code> 的调用都会被忽略：</p>
+<div id="36zpyuhbiu" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  resolve(&quot;done&quot;);
+
+  reject(new Error(&quot;…&quot;)); // 被忽略
+  setTimeout(() =&gt; resolve(&quot;…&quot;)); // 被忽略
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这儿的宗旨是，一个被 executor 完成的工作只能有一个结果或一个 error。</p>
+<p>并且，<code>resolve/reject</code> 只需要一个参数（或不包含任何参数），并且将忽略额外的参数。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">以 <code>Error</code> 对象 reject</span></div>
+            <div class="important__content"><p>如果什么东西出了问题， executor 应该调用 <code>reject</code>。这可以使用任何类型的参数来完成（就像 <code>resolve</code> 一样）。但是建议使用 <code>Error</code> 对象（或继承自 <code>Error</code> 的对象）。这样做的理由很快就会显而易见。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">Resolve/reject 可以立即进行</span></div>
+            <div class="important__content"><p>实际上，executor 通常是异步执行某些操作，并在一段时间后调用 <code>resolve/reject</code>，但这不是必须的。我们还可以立即调用 <code>resolve</code> 或 <code>reject</code>，就像这样：</p>
+<div id="n8t8e0sd1s" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  // 不花时间去做这项工作
+  resolve(123); // 立即给出结果：123
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>例如，当我们开始做一个任务时，但随后看到一切都已经完成并已被缓存时，可能就会发生这种情况。</p>
+<p>这挺好。我们立即就有了一个 resolved 的 promise。</p>
+</div></div>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type"><code>state</code> 和 <code>result</code> 都是内部的</span></div>
+            <div class="important__content"><p>Promise 对象的 <code>state</code> 和 <code>result</code> 属性都是内部的。我们无法直接访问它们。但我们可以对它们使用 <code>.then</code>/<code>.catch</code>/<code>.finally</code> 方法。我们在下面对这些方法进行了描述。</p>
+</div></div>
+<h2><a class="main__anchor" name="xiao-fei-zhe-thencatchfinally" href="#xiao-fei-zhe-thencatchfinally">消费者：then，catch，finally</a></h2><p>Promise 对象充当的是 executor（“生产者代码”或“歌手”）和消费函数（“粉丝”）之间的连接，后者将接收结果或 error。可以通过使用 <code>.then</code>、<code>.catch</code> 和 <code>.finally</code> 方法为消费函数进行注册。</p>
+<h3><a class="main__anchor" name="then" href="#then">then</a></h3><p>最重要最基础的一个就是 <code>.then</code>。</p>
+<p>语法如下：</p>
+<div id="dvrc9xuodn" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:20,&quot;end&quot;:41}]},{&quot;start&quot;:1,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:53}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>promise.then(
+  function(result) { /* handle a successful result */ },
+  function(error) { /* handle an error */ }
+);</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>.then</code> 的第一个参数是一个函数，该函数将在 promise resolved 后运行并接收结果。</p>
+<p><code>.then</code> 的第二个参数也是一个函数，该函数将在 promise rejected 后运行并接收 error。</p>
+<p>例如，以下是对成功 resolved 的 promise 做出的反应：</p>
+<div id="7k0cldb8xv" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  setTimeout(() =&gt; resolve(&quot;done!&quot;), 1000);
+});
+
+// resolve 运行 .then 中的第一个函数
+promise.then(
+  result =&gt; alert(result), // 1 秒后显示 &quot;done!&quot;
+  error =&gt; alert(error) // 不运行
+);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>第一个函数被运行了。</p>
+<p>在 reject 的情况下，运行第二个：</p>
+<div id="v7eutz7o26" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 1000);
+});
+
+// reject 运行 .then 中的第二个函数
+promise.then(
+  result =&gt; alert(result), // 不运行
+  error =&gt; alert(error) // 1 秒后显示 &quot;Error: Whoops!&quot;
+);</code></pre>
+        </div>
+      </div>
+      
+      </div><p>如果我们只对成功完成的情况感兴趣，那么我们可以只为 <code>.then</code> 提供一个函数参数：</p>
+<div id="s5xr4jw1w2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(resolve =&gt; {
+  setTimeout(() =&gt; resolve(&quot;done!&quot;), 1000);
+});
+
+promise.then(alert); // 1 秒后显示 &quot;done!&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="catch" href="#catch">catch</a></h3><p>如果我们只对 error 感兴趣，那么我们可以使用 <code>null</code> 作为第一个参数：<code>.then(null, errorHandlingFunction)</code>。或者我们也可以使用 <code>.catch(errorHandlingFunction)</code>，其实是一样的：</p>
+<div id="6hw54u4wy3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; reject(new Error(&quot;Whoops!&quot;)), 1000);
+});
+
+// .catch(f) 与 promise.then(null, f) 一样
+promise.catch(alert); // 1 秒后显示 &quot;Error: Whoops!&quot;</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>.catch(f)</code> 调用是 <code>.then(null, f)</code> 的完全的模拟，它只是一个简写形式。</p>
+<h3><a class="main__anchor" name="finally" href="#finally">finally</a></h3><p>就像常规 <code>try {...} catch {...}</code> 中的 <code>finally</code> 子句一样，promise 中也有 <code>finally</code>。</p>
+<p><code>.finally(f)</code> 调用与 <code>.then(f, f)</code> 类似，在某种意义上，<code>f</code> 总是在 promise 被 settled 时运行：即 promise 被 resolve 或 reject。</p>
+<p><code>finally</code> 是执行清理（cleanup）的很好的处理程序（handler），例如无论结果如何，都停止使用不再需要的加载指示符（indicator）。</p>
+<p>像这样：</p>
+<div id="hqu4q3rqor" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:5}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Promise((resolve, reject) =&gt; {
+  /* 做一些需要时间的事儿，然后调用 resolve/reject */
+})
+  // 在 promise 为 settled 时运行，无论成功与否
+  .finally(() =&gt; stop loading indicator)
+  // 所以，加载指示器（loading indicator）始终会在我们处理结果/错误之前停止
+  .then(result =&gt; show result, err =&gt; show error)</code></pre>
+        </div>
+      </div>
+      
+      </div><p>也就是说，<code>finally(f)</code> 其实并不是 <code>then(f,f)</code> 的别名。它们之间有一些细微的区别：</p>
+<ol>
+<li>
+<p><code>finally</code> 处理程序（handler）没有参数。在 <code>finally</code> 中，我们不知道 promise 是否成功。没关系，因为我们的任务通常是执行“常规”的定稿程序（finalizing procedures）。</p>
+</li>
+<li>
+<p><code>finally</code> 处理程序将结果和 error 传递给下一个处理程序。</p>
+<p>例如，在这儿结果被从 <code>finally</code> 传递给了 <code>then</code>：</p>
+<div id="fpeu4mtil0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Promise((resolve, reject) =&gt; {
+  setTimeout(() =&gt; resolve(&quot;result&quot;), 2000)
+})
+  .finally(() =&gt; alert(&quot;Promise ready&quot;))
+  .then(result =&gt; alert(result)); // &lt;-- .then 对结果进行处理</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在这儿，promise 中有一个 error，这个 error 被从 <code>finally</code> 传递给了 <code>catch</code>：</p>
+<div id="e8452b9mkb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>new Promise((resolve, reject) =&gt; {
+  throw new Error(&quot;error&quot;);
+})
+  .finally(() =&gt; alert(&quot;Promise ready&quot;))
+  .catch(err =&gt; alert(err));  // &lt;-- .catch 对 error 对象进行处理</code></pre>
+        </div>
+      </div>
+      
+      </div></li>
+</ol>
+<p>这非常方便，因为 <code>finally</code> 并不是意味着要处理 promise 的结果。所以它将结果传递了下去。</p>
+<p>在下一章中，我们将详细讨论 promise 链以及处理程序（handler）之间的结果传递。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">我们可以对 settled 的 promise 附加处理程序</span></div>
+            <div class="important__content"><p>如果 promise 为 pending 状态，<code>.then/catch/finally</code> 处理程序（handler）将等待它。否则，如果 promise 已经是 settled 状态，它们就会运行：</p>
+<div id="31hw2ulv30" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 下面这 promise 在被创建后立即变为 resolved 状态
+let promise = new Promise(resolve =&gt; resolve(&quot;done!&quot;));
+
+promise.then(alert); // done!（现在显示）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意这使得 promise 比现实生活中的“订阅列表”方案强大得多。如果歌手已经发布了他们的单曲，然后某个人在订阅列表上进行了注册，则他们很可能不会收到该单曲。实际生活中的订阅必须在活动开始之前进行。</p>
+<p>Promise 则更加灵活。我们可以随时添加处理程序（handler）：如果结果已经在了，它们就会执行。</p>
+</div></div>
+<p>接下来，让我们看一下关于 promise 如何帮助我们编写异步代码的更多实际示例。</p>
+<h2><a class="main__anchor" name="loadscript" href="#loadscript">示例：loadScript</a></h2><p>我们从上一章获得了用于加载脚本的 <code>loadScript</code> 函数。</p>
+<p>这是基于回调函数的变体，记住它：</p>
+<div id="62u1jqksvf" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () =&gt; callback(null, script);
+  script.onerror = () =&gt; callback(new Error(`Script load error for ${src}`));
+
+  document.head.append(script);
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>让我们用 promise 重写它。</p>
+<p>新函数 <code>loadScript</code> 将不需要回调。取而代之的是，它将创建并返回一个在加载完成时解析（resolve）的 promise 对象。外部代码可以使用 <code>.then</code> 向其添加处理程序（订阅函数）：</p>
+<div id="yp27y139jt" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () =&gt; resolve(script);
+    script.onerror = () =&gt; reject(new Error(`Script load error for ${src}`));
+
+    document.head.append(script);
+  });
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>用法：</p>
+<div id="j1ohckdezm" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = loadScript(&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js&quot;);
+
+promise.then(
+  script =&gt; alert(`${script.src} is loaded!`),
+  error =&gt; alert(`Error: ${error.message}`)
+);
+
+promise.then(script =&gt; alert('Another handler...'));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们立刻就能发现 promise 相较于基于回调的模式的一些好处：</p>
+<table>
+<thead>
+<tr>
+<th>Promises</th>
+<th>Callbacks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Promises 允许我们按照自然顺序进行编码。首先，我们运行 <code>loadScript</code> 和 <code>.then</code> 来处理结果。</td>
+<td>在调用 <code>loadScript(script, callback)</code> 时，在我们处理的地方（disposal）必须有一个 <code>callback</code> 函数。换句话说，在调用 <code>loadScript</code> <strong>之前</strong>，我们必须知道如何处理结果。</td>
+</tr>
+<tr>
+<td>我们可以根据需要，在 promise 上多次调用 <code>.then</code>。每次调用，我们都会在“订阅列表”中添加一个新的“分析”，一个新的订阅函数。在下一章将对此内容进行详细介绍：<a href="../promise-chaining/index.html">Promise 链</a>。</td>
+<td>只能有一个回调。</td>
+</tr>
+</tbody>
+</table>
+<p>因此，promise 为我们提供了更好的代码流和灵活性。但其实还有更多相关内容。我们将在下一章看到。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#yong-promise-zhong-xin-jie-jue" name="yong-promise-zhong-xin-jie-jue">用 promise 重新解决？</a></h3><a class="task__open-link" href="../task/re-resolve/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>下列这段代码会输出什么？</p>
+<div id="b18jwilpnx" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let promise = new Promise(function(resolve, reject) {
+  resolve(1);
+
+  setTimeout(() =&gt; resolve(2), 1000);
+});
+
+promise.then(alert);</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>输出为：<code>1</code>。</p>
+<p>第二个对 <code>resolve</code> 的调用会被忽略，因为只有第一次对 <code>reject/resolve</code> 的调用才会被处理。进一步的调用都会被忽略。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ji-yu-promise-de-yan-shi" name="ji-yu-promise-de-yan-shi">基于 promise 的延时</a></h3><a class="task__open-link" href="../task/delay-promise/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>内建函数 <code>setTimeout</code> 使用了回调函数。请创建一个基于 promise 的替代方案。</p>
+<p>函数 <code>delay(ms)</code> 应该返回一个 promise。这个 promise 应该在 <code>ms</code> 毫秒后被 resolve，所以我们可以向其中添加 <code>.then</code>，像这样：</p>
+<div id="cz3cvomqlr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(ms) {
+  // 你的代码
+}
+
+delay(3000).then(() =&gt; alert('runs after 3 seconds'));</code></pre>
+        </div>
+      </div>
+      
+      </div></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="k142e5t9rb" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function delay(ms) {
+  return new Promise(resolve =&gt; setTimeout(resolve, ms));
+}
+
+delay(3000).then(() =&gt; alert('runs after 3 seconds'));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意，在此任务中 <code>resolve</code> 是不带参数调用的。我们不从 <code>delay</code> 中返回任何值，只是确保延迟即可。</p>
+</div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#dai-you-promise-de-yuan-xing-dong-hua" name="dai-you-promise-de-yuan-xing-dong-hua">带有 promise 的圆形动画</a></h3><a class="task__open-link" href="../task/animate-circle-promise/index.html" target="_blank"></a></div><div class="task__header-note"></div><div class="task__content"><div class="task__formatted"><p>重写任务 <span class="markdown-error">任务 &quot;task/animate-circle-callback&quot; 未找到</span> 的解决方案中的 <code>showCircle</code> 函数，以使其返回一个 promise，而不接受回调。</p>
+<p>新的用法：</p>
+<div id="w6u2qu75aq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>showCircle(150, 150, 100).then(div =&gt; {
+  div.classList.add('message-ball');
+  div.append(&quot;Hello, world!&quot;);
+});</code></pre>
+        </div>
+      </div>
+      
+      </div><p>以任务 <span class="markdown-error">任务 &quot;task/animate-circle-callback&quot; 未找到</span> 的解决方案为基础。</p>
+</div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p><a href="https://plnkr.co/edit/HfJS0Kzo8HK4EEG9?p=preview" target="_blank" data-plunk-id="HfJS0Kzo8HK4EEG9">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../callbacks/index.html" data-tooltip="简介：回调"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../promise-chaining/index.html" data-tooltip="Promise 链"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/promise-basics","identifier":"\/promise-basics"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../async/index.html">Promise，async/await</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#xiao-fei-zhe-thencatchfinally">消费者：then，catch，finally</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#loadscript">示例：loadScript</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (3)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fpromise-basics" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/11-async/02-promise-basics" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

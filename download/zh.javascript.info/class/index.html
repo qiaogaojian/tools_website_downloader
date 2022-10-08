@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">Class 基本语法</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/class"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="Class 基本语法"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Class 基本语法"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/classes"><link rel="next" href="/class-inheritance"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="Class 基本语法"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/class"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/class"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/class"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/class"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/class"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/class"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/class"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/class"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/class"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/class"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/class"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/class">عربي</option><option value="https://javascript.info/class">English</option><option value="https://es.javascript.info/class">Español</option><option value="https://fr.javascript.info/class">Français</option><option value="https://id.javascript.info/class">Indonesia</option><option value="https://it.javascript.info/class">Italiano</option><option value="https://ja.javascript.info/class">日本語</option><option value="https://ko.javascript.info/class">한국어</option><option value="https://learn.javascript.ru/class">Русский</option><option value="https://tr.javascript.info/class">Türkçe</option><option value="https://uk.javascript.info/class">Українська</option><option value="https://zh.javascript.info/class" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="66" max="92" data-tooltip="第 66/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../classes/index.html"><span>类</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"类","item":"https://zh.javascript.info/classes"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">Class 基本语法</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="Class 基本语法"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><blockquote class="quote"><div class="quote__i"><div class="quote__text"><p>在面向对象的编程中，<em>class</em> 是用于创建对象的可扩展的程序代码模版，它为对象提供了状态（成员变量）的初始值和行为（成员函数或方法）的实现。</p>
+</div></div><footer class="quote__footer">
+        <cite class="quote__author">Wikipedia</cite>
+       </footer></blockquote><p>在日常开发中，我们经常需要创建许多相同类型的对象，例如用户（users）、商品（goods）或者任何其他东西。</p>
+<p>正如我们在 <a href="../constructor-new/index.html">构造器和操作符 &quot;new&quot;</a> 一章中已经学到的，<code>new function</code> 可以帮助我们实现这种需求。</p>
+<p>但在现代 JavaScript 中，还有一个更高级的“类（class）”构造方式，它引入许多非常棒的新功能，这些功能对于面向对象编程很有用。</p>
+<h2><a class="main__anchor" name="class-yu-fa" href="#class-yu-fa">“class” 语法</a></h2><p>基本语法是：</p>
+<div id="hkdtr7g48g" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyClass {
+  // class 方法
+  constructor() { ... }
+  method1() { ... }
+  method2() { ... }
+  method3() { ... }
+  ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后使用 <code>new MyClass()</code> 来创建具有上述列出的所有方法的新对象。</p>
+<p><code>new</code> 会自动调用 <code>constructor()</code> 方法，因此我们可以在 <code>constructor()</code> 中初始化对象。</p>
+<p>例如：</p>
+<div id="d76h1635r9" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+// 用法：
+let user = new User(&quot;John&quot;);
+user.sayHi();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当 <code>new User(&quot;John&quot;)</code> 被调用：</p>
+<ol>
+<li>一个新对象被创建。</li>
+<li><code>constructor</code> 使用给定的参数运行，并将其赋值给 <code>this.name</code>。</li>
+</ol>
+<p>……然后我们就可以调用对象方法了，例如 <code>user.sayHi</code>。</p>
+<div class="important important_warn">
+            <div class="important__header"><span class="important__type">类的方法之间没有逗号</span></div>
+            <div class="important__content"><p>对于新手开发人员来说，常见的陷阱是在类的方法之间放置逗号，这会导致语法错误。</p>
+<p>不要把这里的符号与对象字面量相混淆。在类中，不需要逗号。</p>
+</div></div>
+<h2><a class="main__anchor" name="shi-mo-shi-class" href="#shi-mo-shi-class">什么是 class？</a></h2><p>所以，<code>class</code> 到底是什么？正如人们可能认为的那样，这不是一个全新的语言级实体。</p>
+<p>让我们揭开其神秘面纱，看看类究竟是什么。这将有助于我们理解许多复杂的方面。</p>
+<p>在 JavaScript 中，类是一种函数。</p>
+<p>看看下面这段代码：</p>
+<div id="y0b4yyebv2" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:6,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  constructor(name) { this.name = name; }
+  sayHi() { alert(this.name); }
+}
+
+// 佐证：User 是一个函数
+alert(typeof User); // function</code></pre>
+        </div>
+      </div>
+      
+      </div><p><code>class User {...}</code> 构造实际上做了如下的事儿：</p>
+<ol>
+<li>创建一个名为 <code>User</code> 的函数，该函数成为类声明的结果。该函数的代码来自于 <code>constructor</code> 方法（如果我们不编写这种方法，那么它就被假定为空）。</li>
+<li>存储类中的方法，例如 <code>User.prototype</code> 中的 <code>sayHi</code>。</li>
+</ol>
+<p>当 <code>new User</code> 对象被创建后，当我们调用其方法时，它会从原型中获取对应的方法，正如我们在 <a href="../function-prototype/index.html">F.prototype</a> 一章中所讲的那样。因此，对象 <code>new User</code> 可以访问类中的方法。</p>
+<p>我们可以将 <code>class User</code> 声明的结果解释为：</p>
+<figure><div class="image" style="width:486px">
+      <div class="image__ratio" style="padding-top:19.34156378600823%"></div>
+      <object type="image/svg+xml" data="../article/class/class-user.svg" width="486" height="94" class="image__image" data-use-theme>
+        <img src="../article/class/class-user.svg" alt width="486" height="94">
+      </object>
+      </div></figure><p>下面这些代码很好地解释了它们：</p>
+<div id="ue5xi87sqe" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  constructor(name) { this.name = name; }
+  sayHi() { alert(this.name); }
+}
+
+// class 是一个函数
+alert(typeof User); // function
+
+// ...或者，更确切地说，是 constructor 方法
+alert(User === User.prototype.constructor); // true
+
+// 方法在 User.prototype 中，例如：
+alert(User.prototype.sayHi); // sayHi 方法的代码
+
+// 在原型中实际上有两个方法
+alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="bu-jin-jin-shi-yu-fa-tang" href="#bu-jin-jin-shi-yu-fa-tang">不仅仅是语法糖</a></h2><p>人们常说 <code>class</code> 是一个语法糖（旨在使内容更易阅读，但不引入任何新内容的语法），因为我们实际上可以在不使用 <code>class</code> 的情况下声明相同的内容：</p>
+<div id="exsoiqv0iy" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 用纯函数重写 class User
+
+// 1. 创建构造器函数
+function User(name) {
+  this.name = name;
+}
+// 函数的原型（prototype）默认具有 &quot;constructor&quot; 属性，
+// 所以，我们不需要创建它
+
+// 2. 将方法添加到原型
+User.prototype.sayHi = function() {
+  alert(this.name);
+};
+
+// 用法：
+let user = new User(&quot;John&quot;);
+user.sayHi();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个定义的结果与使用类得到的结果基本相同。因此，这确实是将 <code>class</code> 视为一种定义构造器及其原型方法的语法糖的理由。</p>
+<p>尽管，它们之间存在着重大差异：</p>
+<ol>
+<li>
+<p>首先，通过 <code>class</code> 创建的函数具有特殊的内部属性标记 <code>[[IsClassConstructor]]: true</code>。因此，它与手动创建并不完全相同。</p>
+<p>编程语言会在许多地方检查该属性。例如，与普通函数不同，必须使用 <code>new</code> 来调用它：</p>
+<div id="hj0gj3w3ui" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  constructor() {}
+}
+
+alert(typeof User); // function
+User(); // Error: Class constructor User cannot be invoked without 'new'</code></pre>
+        </div>
+      </div>
+      
+      </div><p>此外，大多数 JavaScript 引擎中的类构造器的字符串表示形式都以 “class…” 开头</p>
+<div id="r9bozy5pu2" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  constructor() {}
+}
+
+alert(User); // class User { ... }</code></pre>
+        </div>
+      </div>
+      
+      </div><p>还有其他的不同之处，我们很快就会看到。</p>
+</li>
+<li>
+<p>类方法不可枚举。
+类定义将 <code>&quot;prototype&quot;</code> 中的所有方法的 <code>enumerable</code> 标志设置为 <code>false</code>。</p>
+<p>这很好，因为如果我们对一个对象调用 <code>for..in</code> 方法，我们通常不希望 class 方法出现。</p>
+</li>
+<li>
+<p>类总是使用 <code>use strict</code>。
+在类构造中的所有代码都将自动进入严格模式。</p>
+</li>
+</ol>
+<p>此外，<code>class</code> 语法还带来了许多其他功能，我们稍后将会探索它们。</p>
+<h2><a class="main__anchor" name="lei-biao-da-shi" href="#lei-biao-da-shi">类表达式</a></h2><p>就像函数一样，类可以在另外一个表达式中被定义，被传递，被返回，被赋值等。</p>
+<p>这是一个类表达式的例子：</p>
+<div id="e036tbw872" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let User = class {
+  sayHi() {
+    alert(&quot;Hello&quot;);
+  }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>类似于命名函数表达式（Named Function Expressions），类表达式可能也应该有一个名字。</p>
+<p>如果类表达式有名字，那么该名字仅在类内部可见：</p>
+<div id="30qiaauim3" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;cols&quot;:[{&quot;start&quot;:17,&quot;end&quot;:24}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// “命名类表达式（Named Class Expression）”
+// (规范中没有这样的术语，但是它和命名函数表达式类似)
+let User = class MyClass {
+  sayHi() {
+    alert(MyClass); // MyClass 这个名字仅在类内部可见
+  }
+};
+
+new User().sayHi(); // 正常运行，显示 MyClass 中定义的内容
+
+alert(MyClass); // error，MyClass 在外部不可见</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们甚至可以动态地“按需”创建类，就像这样：</p>
+<div id="atn776vv75" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeClass(phrase) {
+  // 声明一个类并返回它
+  return class {
+    sayHi() {
+      alert(phrase);
+    }
+  };
+}
+
+// 创建一个新的类
+let User = makeClass(&quot;Hello&quot;);
+
+new User().sayHi(); // Hello</code></pre>
+        </div>
+      </div>
+      
+      </div><h2><a class="main__anchor" name="getterssetters" href="#getterssetters">Getters/setters</a></h2><p>就像对象字面量，类可能包括 getters/setters，计算属性（computed properties）等。</p>
+<p>这是一个使用 <code>get/set</code> 实现 <code>user.name</code> 的示例：</p>
+<div id="jwok5ryoyf" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:11,&quot;end&quot;:11},{&quot;start&quot;:7,&quot;end&quot;:7}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+
+  constructor(name) {
+    // 调用 setter
+    this.name = name;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (value.length &lt; 4) {
+      alert(&quot;Name is too short.&quot;);
+      return;
+    }
+    this._name = value;
+  }
+
+}
+
+let user = new User(&quot;John&quot;);
+alert(user.name); // John
+
+user = new User(&quot;&quot;); // Name is too short.</code></pre>
+        </div>
+      </div>
+      
+      </div><p>从技术上来讲，这样的类声明可以通过在 <code>User.prototype</code> 中创建 getters 和 setters 来实现。</p>
+<h2><a class="main__anchor" name="ji-suan-shu-xing-ming-cheng" href="#ji-suan-shu-xing-ming-cheng">计算属性名称 […]</a></h2><p>这里有一个使用中括号 <code>[...]</code> 的计算方法名称示例：</p>
+<div id="wgqstg4i6v" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:2,&quot;end&quot;:2}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+
+  ['say' + 'Hi']() {
+    alert(&quot;Hello&quot;);
+  }
+
+}
+
+new User().sayHi();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这种特性很容易记住，因为它们和对象字面量类似。</p>
+<h2><a class="main__anchor" name="class-zi-duan" href="#class-zi-duan">Class 字段</a></h2><div class="important important_warn">
+            <div class="important__header"><span class="important__type">旧的浏览器可能需要 polyfill</span></div>
+            <div class="important__content"><p>类字段（field）是最近才添加到语言中的。</p>
+</div></div>
+<p>之前，我们的类仅具有方法。</p>
+<p>“类字段”是一种允许添加任何属性的语法。</p>
+<p>例如，让我们在 <code>class User</code> 中添加一个 <code>name</code> 属性：</p>
+<div id="myirwmjs19" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  name = &quot;John&quot;;
+
+  sayHi() {
+    alert(`Hello, ${this.name}!`);
+  }
+}
+
+new User().sayHi(); // Hello, John!</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，我们就只需在表达式中写 &quot;<property name> = <value>&quot;，就这样。</value></property></p>
+<p>类字段重要的不同之处在于，它们会在每个独立对象中被设好，而不是设在 <code>User.prototype</code>：</p>
+<div id="yw0ypumxh" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  name = &quot;John&quot;;
+}
+
+let user = new User();
+alert(user.name); // John
+alert(User.prototype.name); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们也可以在赋值时使用更复杂的表达式和函数调用：</p>
+<div id="7w6moeeo9e" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:1,&quot;end&quot;:1}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class User {
+  name = prompt(&quot;Name, please?&quot;, &quot;John&quot;);
+}
+
+let user = new User();
+alert(user.name); // John</code></pre>
+        </div>
+      </div>
+      
+      </div><h3><a class="main__anchor" name="shi-yong-lei-zi-duan-zhi-zuo-bang-ding-fang-fa" href="#shi-yong-lei-zi-duan-zhi-zuo-bang-ding-fang-fa">使用类字段制作绑定方法</a></h3><p>正如 <a href="../bind/index.html">函数绑定</a> 一章中所讲的，JavaScript 中的函数具有动态的 <code>this</code>。它取决于调用上下文。</p>
+<p>因此，如果一个对象方法被传递到某处，或者在另一个上下文中被调用，则 <code>this</code> 将不再是对其对象的引用。</p>
+<p>例如，此代码将显示 <code>undefined</code>：</p>
+<div id="mbdospniw7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:12,&quot;end&quot;:12}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button(&quot;hello&quot;);
+
+setTimeout(button.click, 1000); // undefined</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个问题被称为“丢失 <code>this</code>”。</p>
+<p>我们在 <a href="../bind/index.html">函数绑定</a> 一章中讲过，有两种可以修复它的方式：</p>
+<ol>
+<li>传递一个包装函数，例如 <code>setTimeout(() =&gt; button.click(), 1000)</code>。</li>
+<li>将方法绑定到对象，例如在 constructor 中。</li>
+</ol>
+<p>类字段提供了另一种非常优雅的语法：</p>
+<div id="r3zppqzygj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:6}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Button {
+  constructor(value) {
+    this.value = value;
+  }
+  click = () =&gt; {
+    alert(this.value);
+  }
+}
+
+let button = new Button(&quot;hello&quot;);
+
+setTimeout(button.click, 1000); // hello</code></pre>
+        </div>
+      </div>
+      
+      </div><p>类字段 <code>click = () =&gt; {...}</code> 是基于每一个对象被创建的，在这里对于每一个 <code>Button</code> 对象都有一个独立的方法，在内部都有一个指向此对象的 <code>this</code>。我们可以把 <code>button.click</code> 传递到任何地方，而且 <code>this</code> 的值总是正确的。</p>
+<p>在浏览器环境中，它对于进行事件监听尤为有用。</p>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>基本的类语法看起来像这样：</p>
+<div id="t9rb0puwpq" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class MyClass {
+  prop = value; // 属性
+
+  constructor(...) { // 构造器
+    // ...
+  }
+
+  method(...) {} // method
+
+  get something(...) {} // getter 方法
+  set something(...) {} // setter 方法
+
+  [Symbol.iterator]() {} // 有计算名称（computed name）的方法（此处为 symbol）
+  // ...
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>技术上来说，<code>MyClass</code> 是一个函数（我们提供作为 <code>constructor</code> 的那个），而 methods、getters 和 settors 都被写入了 <code>MyClass.prototype</code>。</p>
+<p>在下一章，我们将会进一步学习类的相关知识，包括继承和其他功能。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#zhong-xie-wei-class" name="zhong-xie-wei-class">重写为 class</a></h3><a class="task__open-link" href="../task/rewrite-to-class/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p><code>Clock</code> 类（请见沙箱）是以函数式编写的。请以 “class” 语法重写它。</p>
+<p>P.S. 时钟在控制台（console）中滴答，打开控制台即可查看。</p>
+<p><a href="https://plnkr.co/edit/8d4eEPeZcILxvFdT?p=preview" target="_blank" data-plunk-id="8d4eEPeZcILxvFdT">打开一个任务沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><div id="spj0wrwata" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours &lt; 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins &lt; 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs &lt; 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() =&gt; this.render(), 1000);
+  }
+}
+
+
+let clock = new Clock({template: 'h:m:s'});
+clock.start();</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/Uxg60VwXITwe5X3J?p=preview" target="_blank" data-plunk-id="Uxg60VwXITwe5X3J">使用沙箱打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../classes/index.html" data-tooltip="类"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../class-inheritance/index.html" data-tooltip="类继承"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/class","identifier":"\/class"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../classes/index.html">类</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#class-yu-fa">“class” 语法</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shi-mo-shi-class">什么是 class？</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#bu-jin-jin-shi-yu-fa-tang">不仅仅是语法糖</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#lei-biao-da-shi">类表达式</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#getterssetters">Getters/setters</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ji-suan-shu-xing-ming-cheng">计算属性名称 […]</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#class-zi-duan">Class 字段</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (1)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Fclass" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/09-classes/01-class" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>

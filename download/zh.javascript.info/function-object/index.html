@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh" data-theme-enabled="1"><head><script>window.currentUser = null;</script><script>window.rateUsdToNative = 6.3589;</script><title itemprop="name">函数对象，NFE</title><link href="../pack/styles.e61986aaa5d558f47fd2.css" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><!-- chrome autotranslate is enabled only for "en" main version--><meta name="google" content="notranslate"><script>if (window.devicePixelRatio > 1) document.cookie = 'pixelRatio=' + window.devicePixelRatio + ';path=/;expires=Tue, 19 Jan 2038 03:14:07 GMT';</script><link href="//fonts.googleapis.com/css?family=Open+Sans:bold,italic,bolditalic" rel="stylesheet"><link rel="apple-touch-icon-precomposed" href="../img/favicon/apple-touch-icon-precomposed.png"><link rel="canonical" href="https://zh.javascript.info/function-object"><meta name="msapplication-TileColor" content="#222A2C"><meta name="msapplication-TileImage" content="/img/favicon/tileicon.png"><link rel="icon" href="../img/favicon/favicon.png"><meta itemprop="image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><meta property="og:title" content="函数对象，NFE"><meta property="og:image" content="../img/site_preview_en_1200x630.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="fb:admins" content="100001562528165"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="函数对象，NFE"><meta name="twitter:site" content="@iliakan"><meta name="twitter:creator" content="@iliakan"><meta name="twitter:image" content="https://zh.javascript.info/img/site_preview_en_512x512.png"><link rel="prev" href="/global-object"><link rel="next" href="/new-function"><script>window.GA_ID = "UA-2056213-15";</script><script>window.YANDEX_METRIKA_ID = 65598091;</script><script>window.GoogleAnalyticsObject="ga",window.ga=function(){window.ga.q.push(arguments)},window.ga.q=[],window.ga.l=Date.now(),ga("create",GA_ID,"auto"),window.GTM_ID&&ga("require",GTM_ID),window.currentUser?ga("set","&uid",currentUser.id):ga("set","anonymizeIp",!0),window.addEventListener("error",function(e){var r=(e.filename||e.errorUrl)+": "+(e.lineno||e.errorLine),n=e.stack||e.error&&e.error.stack;ga("send","exception",{exDescription:e.message+" "+r+" "+n,exFatal:!0})});</script><script src="https://www.google-analytics.com/analytics.js" async></script><script>ga('send', 'pageview');</script><script>window.metrika={reachGoal:function(){}},window.yandex_metrika_callbacks=[function(){try{window.metrika=new Ya.Metrika({id:YANDEX_METRIKA_ID,webvisor:!0,clickmap:!0,params:{user:window.currentUser&&window.currentUser.id}}),metrika.trackLinks({delay:150}),window.addEventListener("error",function(r){window.metrika.reachGoal("JSERROR",{src:(r.filename||r.errorUrl)+": "+(r.lineno||r.errorLine),stack:r.stack||r.error&&r.error.stack,message:r.message})})}catch(r){}}];</script><script src="//mc.yandex.ru/metrika/watch.js" async></script><script>window.RECAPTCHA_ID = "6LfmLAEVAAAAAJMykMnf7aY8nkyTRmYi2ynx51R1";</script><script src="../pack/init.f551d10c469632252be6.js"></script><script src="../pack/head.7c4dbce7f0d4e5d1865e.js" defer></script><meta property="og:title" content="函数对象，NFE"><meta property="og:type" content="article"><script src="../pack/tutorial.0085805d53a665cf3a7e.js" defer></script><script src="../pack/footer.b5edaae5b6e4efe79394.js" defer></script></head><body class="no-icons"><script>window.fontTest();</script><div class="page-wrapper page-wrapper_sidebar_on"><!--[if IE]><div style="color:red;text-align:center">很抱歉，我们不支持 Internet Explorer 等浏览器，请使用一个更新版本的浏览器。</div><![endif]--><div class="sitetoolbar sitetoolbar_tutorial"><script>window.langs = [{"code":"ar","name":"Arabic"},{"code":"az","name":"Azerbaijani"},{"code":"bg","name":"Bulgarian"},{"code":"bn","name":"Bengali"},{"code":"bs","name":"Bosnian"},{"code":"ca","name":"Catalan"},{"code":"cs","name":"Czech"},{"code":"da","name":"Danish"},{"code":"de","name":"German"},{"code":"el","name":"Greek"},{"code":"en","name":"English"},{"code":"es","name":"Spanish"},{"code":"fa","name":"Persian (Farsi)"},{"code":"fi","name":"Finnish"},{"code":"fr","name":"French"},{"code":"he","name":"Hebrew"},{"code":"hi","name":"Hindi"},{"code":"hr","name":"Croatian"},{"code":"hu","name":"Hungarian"},{"code":"hy","name":"Armenian"},{"code":"id","name":"Indonesian"},{"code":"it","name":"Italian"},{"code":"ja","name":"Japanese"},{"code":"ka","name":"Georgian"},{"code":"kk","name":"Kazakh"},{"code":"km","name":"Central Khmer"},{"code":"ko","name":"Korean"},{"code":"lt","name":"Lithuanian"},{"code":"me","name":"Montenegrin"},{"code":"ml","name":"Malayalam"},{"code":"my","name":"Burmese"},{"code":"nl","name":"Dutch"},{"code":"no","name":"Norvegian"},{"code":"pa","name":"Punjabi"},{"code":"pl","name":"Polish"},{"code":"pt","name":"Portuguese"},{"code":"ro","name":"Romanian"},{"code":"ru","name":"Russian"},{"code":"si","name":"Sinhala"},{"code":"sk","name":"Slovak"},{"code":"sl","name":"Slovenian"},{"code":"sq","name":"Albanian"},{"code":"sr","name":"Serbian"},{"code":"ta","name":"Tamil"},{"code":"te","name":"Telugu"},{"code":"test","name":"Test"},{"code":"th","name":"Thai"},{"code":"tk","name":"Turkmen"},{"code":"tr","name":"Turkish"},{"code":"uk","name":"Ukrainian"},{"code":"ur","name":"Urdu"},{"code":"uz","name":"Uzbek"},{"code":"v2","name":"v2"},{"code":"vi","name":"Vietnamese"},{"code":"zh-hant","name":"Chinese Traditional"},{"code":"zh","name":"Chinese"}];</script><script>window.lang = "zh";</script><script>{let t=navigator.languages||[];t=t.map(t=>t.toLowerCase());let o,i,n=[];for(let o of window.langs)for(let i of t)if(i===o.code||i.startsWith(o.code+"-")){n.push(o);break}if(!o&&"ru"!=lang&&"en"!=lang){n.find(t=>"en"==t.code)&&(o=`\n            According to your browser headers, you know English. Please help to <a href="https://github.com/javascript-tutorial/${lang}.javascript.info#readme">translate the tutorial</a>.\n            Thank you!\n          `,i="notify-translate-tutorial-local")}if(o){let t=`<div class="notification notification_top notification_info sitetoolbar__notification" style="display:none" id="${i}">\n          <div class="notification__content">${o}</div>\n          <button class="notification__close" title="Close"></button>\n        </div>`;document.write(t),showTopNotification()}}</script><div class="sitetoolbar__content"><div class="sitetoolbar__lang-switcher"><button class="sitetoolbar__dropdown-button" data-dropdown-toggler>ZH</button><div class="sitetoolbar__dropdown-wrap"><div class="sitetoolbar__dropdown-body"><div class="sitetoolbar__lang-switcher-body"><div class="supported-langs supported-langs_toolbar"><div class="supported-langs__container"><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ar.javascript.info/function-object"><span class="supported-langs__brief">AR</span><span class="supported-langs__title">عربي</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://javascript.info/function-object"><span class="supported-langs__brief">EN</span><span class="supported-langs__title">English</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://es.javascript.info/function-object"><span class="supported-langs__brief">ES</span><span class="supported-langs__title">Español</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://fr.javascript.info/function-object"><span class="supported-langs__brief">FR</span><span class="supported-langs__title">Français</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://id.javascript.info/function-object"><span class="supported-langs__brief">ID</span><span class="supported-langs__title">Indonesia</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://it.javascript.info/function-object"><span class="supported-langs__brief">IT</span><span class="supported-langs__title">Italiano</span></a></li></ul><ul class="supported-langs__list" style="height:200px"><li class="supported-langs__item"><a class="supported-langs__link" href="https://ja.javascript.info/function-object"><span class="supported-langs__brief">JA</span><span class="supported-langs__title">日本語</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://ko.javascript.info/function-object"><span class="supported-langs__brief">KO</span><span class="supported-langs__title">한국어</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://learn.javascript.ru/function-object"><span class="supported-langs__brief">RU</span><span class="supported-langs__title">Русский</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://tr.javascript.info/function-object"><span class="supported-langs__brief">TR</span><span class="supported-langs__title">Türkçe</span></a></li><li class="supported-langs__item"><a class="supported-langs__link" href="https://uk.javascript.info/function-object"><span class="supported-langs__brief">UK</span><span class="supported-langs__title">Українська</span></a></li><li class="supported-langs__item supported-langs__item_current"><a class="supported-langs__link" href="index.html"><span class="supported-langs__brief">ZH</span><span class="supported-langs__title">简体中文</span></a></li></ul></div><div class="supported-langs__text">我们希望将这个开源项目提供给全世界的人。请帮助我们将教程的内容 <a href="https://github.com/javascript-tutorial/translate" rel="noopener noreferrer" target="_blank">翻译为你所掌握的语言</a> 对应的版本。</div></div></div></div></div></div><div class="sitetoolbar__logo-wrap"><a class="sitetoolbar__link sitetoolbar__link_logo" href="../index.html"><img class="sitetoolbar__logo sitetoolbar__logo_normal" src="../img/sitetoolbar__logo_en.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_normal sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_en-white.svg" width="200" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small" src="../img/sitetoolbar__logo_small_en.svg" width="70" alt role="presentation"><img class="sitetoolbar__logo sitetoolbar__logo_small sitetoolbar__logo_dark" src="../img/sitetoolbar__logo_small_en-white.svg" width="70" alt role="presentation"><script>Array.prototype.forEach.call(document.querySelectorAll("img.sitetoolbar__logo"),function(e){let t=document.createElement("object");t.type="image/svg+xml",t.className=e.className,t.style.cssText="left:0;top:0;position:absolute",t.onload=function(){t.onload=null,e.style.visibility="hidden"},t.data=e.src,e.parentNode.insertBefore(t,e)});</script></a></div><div class="sitetoolbar__nav-toggle-wrap"><button class="sitetoolbar__nav-toggle" type="button"></button></div><nav class="sitetoolbar__sections"><ul class="sitetoolbar__sections-list"></ul></nav><div class="sitetoolbar__book-wrap"><a class="buy-book-button" href="../ebook/index.html"><span class="buy-book-button__extra-text">购买</span>EPUB/PDF</a></div><div class="sitetoolbar__theme-switcher"><div class="theme-changer"><label class="theme-changer__label" for="theme-changer-input" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span></label></div></div><div class="sitetoolbar__search-wrap"><div class="sitetoolbar__search-content"><button class="sitetoolbar__search-toggle" type="button"></button><form class="sitetoolbar__search" method="GET" action="/search"><div class="sitetoolbar__search-input"><div class="text-input"><input class="text-input__control" name="query" placeholder="在 Javascript.info 网站中搜索" required="required" type="text"></div><button class="sitetoolbar__find" type="submit">搜索</button></div></form></div></div></div><div class="tablet-menu"><div class="tablet-menu__line"><div class="tablet-menu__content"><form class="tablet-menu-search" action="/search/"><input class="tablet-menu-search__input" type="search" name="query" placeholder="在教程中搜索" required="required"><button class="tablet-menu-search__button" type="submit" name="type" value="articles">搜索</button></form></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="theme-changer theme-changer_tablet-menu theme-changer_has-label"><label class="theme-changer__label" for="theme-changer-input-tablet" data-tooltip="Change theme"><input class="theme-changer__input" type="checkbox" id="theme-changer-input-tablet" data-theme-changer="data-theme-changer"><span class="theme-changer__icon theme-changer__icon_light-theme"></span><span class="theme-changer__icon theme-changer__icon_dark-theme"></span><span class="theme-changer__label-text theme-changer__label-text_light-theme">Light theme</span><span class="theme-changer__label-text theme-changer__label-text_dark-theme">Dark theme</span></label></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a></div></div></div><div class="tablet-menu__line"><div class="tablet-menu__content"><select class="tablet-menu__nav input-select input-select input-select_small" onchange="if(this.value) window.location.href=this.value"><option value="https://ar.javascript.info/function-object">عربي</option><option value="https://javascript.info/function-object">English</option><option value="https://es.javascript.info/function-object">Español</option><option value="https://fr.javascript.info/function-object">Français</option><option value="https://id.javascript.info/function-object">Indonesia</option><option value="https://it.javascript.info/function-object">Italiano</option><option value="https://ja.javascript.info/function-object">日本語</option><option value="https://ko.javascript.info/function-object">한국어</option><option value="https://learn.javascript.ru/function-object">Русский</option><option value="https://tr.javascript.info/function-object">Türkçe</option><option value="https://uk.javascript.info/function-object">Українська</option><option value="https://zh.javascript.info/function-object" selected>简体中文</option></select></div></div></div><progress class="tutorial-progress" data-sticky value="54" max="92" data-tooltip="第 54/92 节"></progress></div><div class="page page_sidebar_on page_inner_padding"><script>if(localStorage.noSidebar){document.querySelector(".page").classList.remove("page_sidebar_on");let e=document.querySelector(".page-wrapper");e&&e.classList.remove("page-wrapper_sidebar_on")}setTimeout(function(){document.querySelector(".page").classList.add("page_sidebar-animation-on")});</script><div class="page__inner"><main class="main main_width-limit"><header class="main__header"><div class="main__header-inner"><div class="main__header-group"><ol class="breadcrumbs"><li class="breadcrumbs__item breadcrumbs__item_home"><a class="breadcrumbs__link" href="../index.html"><span class="breadcrumbs__hidden-text">教程</span></a></li><li class="breadcrumbs__item" id="breadcrumb-1"><a class="breadcrumbs__link" href="../js/index.html"><span>JavaScript 编程语言</span></a></li><li class="breadcrumbs__item" id="breadcrumb-2"><a class="breadcrumbs__link" href="../advanced-functions/index.html"><span>函数进阶内容</span></a></li><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"教程","item":"https://zh.javascript.info/"},{"@type":"ListItem","position":2,"name":"JavaScript 编程语言","item":"https://zh.javascript.info/js"},{"@type":"ListItem","position":3,"name":"函数进阶内容","item":"https://zh.javascript.info/advanced-functions"}]}</script></ol><div class="updated-at" data-tooltip="最后修改在 13日 二月 2022"><div class="updated-at__content">13日 二月 2022</div></div></div><h1 class="main__header-title">函数对象，NFE</h1></div></header><div class="content"><article class="formatted" itemscope itemtype="http://schema.org/TechArticle"><meta itemprop="name" content="函数对象，NFE"><div itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="email" content="iliakan@gmail.com"><meta itemprop="name" content="Ilya Kantor"></div><div itemprop="articleBody"><p>我们已经知道，在 JavaScript 中，函数就是值。</p>
+<p>JavaScript 中的每个值都有一种类型，那么函数是什么类型呢？</p>
+<p>在 JavaScript 中，函数就是对象。</p>
+<p>一个容易理解的方式是把函数想象成可被调用的“行为对象（action object）”。我们不仅可以调用它们，还能把它们当作对象来处理：增/删属性，按引用传递等。</p>
+<h2><a class="main__anchor" name="shu-xing-name" href="#shu-xing-name">属性 “name”</a></h2><p>函数对象包含一些便于使用的属性。</p>
+<p>比如，一个函数的名字可以通过属性 “name” 来访问：</p>
+<div id="qi3s6e1f4d" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sayHi() {
+  alert(&quot;Hi&quot;);
+}
+
+alert(sayHi.name); // sayHi</code></pre>
+        </div>
+      </div>
+      
+      </div><p>更有趣的是，名称赋值的逻辑很智能。即使函数被创建时没有名字，名称赋值的逻辑也能给它赋予一个正确的名字，然后进行赋值：</p>
+<div id="4yw5bnk0mi" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function() {
+  alert(&quot;Hi&quot;);
+};
+
+alert(sayHi.name); // sayHi（有名字！）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>当以默认值的方式完成了赋值时，它也有效：</p>
+<div id="1j97opauyr" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f(sayHi = function() {}) {
+  alert(sayHi.name); // sayHi（生效了！）
+}
+
+f();</code></pre>
+        </div>
+      </div>
+      
+      </div><p>规范中把这种特性叫做「上下文命名」。如果函数自己没有提供，那么在赋值中，会根据上下文来推测一个。</p>
+<p>对象方法也有名字：</p>
+<div id="8bhgdoj6a0" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let user = {
+
+  sayHi() {
+    // ...
+  },
+
+  sayBye: function() {
+    // ...
+  }
+
+}
+
+alert(user.sayHi.name); // sayHi
+alert(user.sayBye.name); // sayBye</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这没有什么神奇的。有时会出现无法推测名字的情况。此时，属性 <code>name</code> 会是空，像这样：</p>
+<div id="ucvlvc9r13" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>// 函数是在数组中创建的
+let arr = [function() {}];
+
+alert( arr[0].name ); // &lt;空字符串&gt;
+// 引擎无法设置正确的名字，所以没有值</code></pre>
+        </div>
+      </div>
+      
+      </div><p>而实际上，大多数函数都是有名字的。</p>
+<h2><a class="main__anchor" name="shu-xing-length" href="#shu-xing-length">属性 “length”</a></h2><p>还有另一个内建属性 “length”，它返回函数入参的个数，比如：</p>
+<div id="at6retyoq3" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f1(a) {}
+function f2(a, b) {}
+function many(a, b, ...more) {}
+
+alert(f1.length); // 1
+alert(f2.length); // 2
+alert(many.length); // 2</code></pre>
+        </div>
+      </div>
+      
+      </div><p>可以看到，rest 参数不参与计数。</p>
+<p>属性 <code>length</code> 有时在操作其它函数的函数中用于做 <a href="https://zh.wikipedia.org/wiki/%E5%86%85%E7%9C%81_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)">内省/运行时检查（introspection）</a>。</p>
+<p>比如，下面的代码中函数 <code>ask</code> 接受一个询问答案的参数 <code>question</code> 和可能包含任意数量 <code>handler</code> 的参数 <code>...handlers</code>。</p>
+<p>当用户提供了自己的答案后，函数会调用那些 <code>handlers</code>。我们可以传入两种 <code>handlers</code>：</p>
+<ul>
+<li>一种是无参函数，它仅在用户回答给出积极的答案时被调用。</li>
+<li>一种是有参函数，它在两种情况都会被调用，并且返回一个答案。</li>
+</ul>
+<p>为了正确地调用 <code>handler</code>，我们需要检查 <code>handler.length</code> 属性。</p>
+<p>我们的想法是，我们用一个简单的无参数的 <code>handler</code> 语法来处理积极的回答（最常见的变体），但也要能够提供通用的 handler：</p>
+<div id="0phis0fmzk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function ask(question, ...handlers) {
+  let isYes = confirm(question);
+
+  for(let handler of handlers) {
+    if (handler.length == 0) {
+      if (isYes) handler();
+    } else {
+      handler(isYes);
+    }
+  }
+
+}
+
+// 对于积极的回答，两个 handler 都会被调用
+// 对于负面的回答，只有第二个 handler 被调用
+ask(&quot;Question?&quot;, () =&gt; alert('You said yes'), result =&gt; alert(result));</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这种特别的情况就是所谓的 <a href="https://en.wikipedia.org/wiki/Polymorphism_(computer_science)">多态性</a> —— 根据参数的类型，或者根据在我们的具体情景下的 <code>length</code> 来做不同的处理。这种思想在 JavaScript 的库里有应用。</p>
+<h2><a class="main__anchor" name="zi-ding-yi-shu-xing" href="#zi-ding-yi-shu-xing">自定义属性</a></h2><p>我们也可以添加我们自己的属性。</p>
+<p>这里我们添加了 <code>counter</code> 属性，用来跟踪总的调用次数：</p>
+<div id="qbpohm1m0m" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:3,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sayHi() {
+  alert(&quot;Hi&quot;);
+
+  // 计算调用次数
+  sayHi.counter++;
+}
+sayHi.counter = 0; // 初始值
+
+sayHi(); // Hi
+sayHi(); // Hi
+
+alert( `Called ${sayHi.counter} times` ); // Called 2 times</code></pre>
+        </div>
+      </div>
+      
+      </div><div class="important important_warn">
+            <div class="important__header"><span class="important__type">属性不是变量</span></div>
+            <div class="important__content"><p>被赋值给函数的属性，比如 <code>sayHi.counter = 0</code>，<strong>不会</strong> 在函数内定义一个局部变量 <code>counter</code>。换句话说，属性 <code>counter</code> 和变量 <code>let counter</code> 是毫不相关的两个东西。</p>
+<p>我们可以把函数当作对象，在它里面存储属性，但是这对它的执行没有任何影响。变量不是函数属性，反之亦然。它们之间是平行的。</p>
+</div></div>
+<p>函数属性有时会用来替代闭包。例如，我们可以使用函数属性将 <a href="../closure/index.html">变量作用域，闭包</a> 章节中 counter 函数的例子进行重写：</p>
+<div id="alpor463e5" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+  // 不需要这个了
+  // let count = 0
+
+  function counter() {
+    return counter.count++;
+  };
+
+  counter.count = 0;
+
+  return counter;
+}
+
+let counter = makeCounter();
+alert( counter() ); // 0
+alert( counter() ); // 1</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在 <code>count</code> 被直接存储在函数里，而不是它外部的词法环境。</p>
+<p>那么它和闭包谁好谁赖？</p>
+<p>两者最大的不同就是如果 <code>count</code> 的值位于外层（函数）变量中，那么外部的代码无法访问到它，只有嵌套的函数可以修改它。而如果它是绑定到函数的，那么就很容易：</p>
+<div id="io7w3cjex7" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:13,&quot;end&quot;:14}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+
+  function counter() {
+    return counter.count++;
+  };
+
+  counter.count = 0;
+
+  return counter;
+}
+
+let counter = makeCounter();
+
+counter.count = 10;
+alert( counter() ); // 10</code></pre>
+        </div>
+      </div>
+      
+      </div><p>所以，选择哪种实现方式取决于我们的需求是什么。</p>
+<h2><a class="main__anchor" name="ming-ming-han-shu-biao-da-shi" href="#ming-ming-han-shu-biao-da-shi">命名函数表达式</a></h2><p>命名函数表达式（NFE，Named Function Expression），指带有名字的函数表达式的术语。</p>
+<p>例如，让我们写一个普通的函数表达式：</p>
+<div id="177f4030cc" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function(who) {
+  alert(`Hello, ${who}`);
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>然后给它加一个名字：</p>
+<div id="67holwy76c" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:25}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function func(who) {
+  alert(`Hello, ${who}`);
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们这里得到了什么吗？为它添加一个 <code>&quot;func&quot;</code> 名字的目的是什么？</p>
+<p>首先请注意，它仍然是一个函数表达式。在 <code>function</code> 后面加一个名字 <code>&quot;func&quot;</code> 没有使它成为一个函数声明，因为它仍然是作为赋值表达式中的一部分被创建的。</p>
+<p>添加这个名字当然也没有打破任何东西。</p>
+<p>函数依然可以通过 <code>sayHi()</code> 来调用：</p>
+<div id="1p2tpmq1ft" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:25}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function func(who) {
+  alert(`Hello, ${who}`);
+};
+
+sayHi(&quot;John&quot;); // Hello, John</code></pre>
+        </div>
+      </div>
+      
+      </div><p>关于名字 <code>func</code> 有两个特殊的地方，这就是添加它的原因：</p>
+<ol>
+<li>它允许函数在内部引用自己。</li>
+<li>它在函数外是不可见的。</li>
+</ol>
+<p>例如，下面的函数 <code>sayHi</code> 会在没有入参 <code>who</code> 时，以 <code>&quot;Guest&quot;</code> 为入参调用自己：</p>
+<div id="1kwlm3vj6u" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:25}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function func(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    func(&quot;Guest&quot;); // 使用 func 再次调用函数自身
+  }
+};
+
+sayHi(); // Hello, Guest
+
+// 但这不工作：
+func(); // Error, func is not defined（在函数外不可见）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>我们为什么使用 <code>func</code> 呢？为什么不直接使用 <code>sayHi</code> 进行嵌套调用？</p>
+<p>当然，在大多数情况下我们可以这样做：</p>
+<div id="vnrfeh1mso" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    sayHi(&quot;Guest&quot;);
+  }
+};</code></pre>
+        </div>
+      </div>
+      
+      </div><p>上面这段代码的问题在于 <code>sayHi</code> 的值可能会被函数外部的代码改变。如果该函数被赋值给另外一个变量（译注：也就是原变量被修改），那么函数就会开始报错：</p>
+<div id="9hozzvueyo" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    sayHi(&quot;Guest&quot;); // Error: sayHi is not a function
+  }
+};
+
+let welcome = sayHi;
+sayHi = null;
+
+welcome(); // Error，嵌套调用 sayHi 不再有效！</code></pre>
+        </div>
+      </div>
+      
+      </div><p>发生这种情况是因为该函数从它的外部词法环境获取 <code>sayHi</code>。没有局部的 <code>sayHi</code> 了，所以使用外部变量。而当调用时，外部的 <code>sayHi</code> 是 <code>null</code>。</p>
+<p>我们给函数表达式添加的可选的名字，正是用来解决这类问题的。</p>
+<p>让我们使用它来修复我们的代码：</p>
+<div id="x4o4tfw3fj" data-trusted="1" class="code-example" data-highlight="[{&quot;start&quot;:4,&quot;end&quot;:4},{&quot;start&quot;:0,&quot;cols&quot;:[{&quot;start&quot;:21,&quot;end&quot;:25}]}]">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>let sayHi = function func(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    func(&quot;Guest&quot;); // 现在一切正常
+  }
+};
+
+let welcome = sayHi;
+sayHi = null;
+
+welcome(); // Hello, Guest（嵌套调用有效）</code></pre>
+        </div>
+      </div>
+      
+      </div><p>现在它可以正常运行了，因为名字 <code>func</code> 是函数局部域的。它不是从外部获取的（而且它对外部也是不可见的）。规范确保它只会引用当前函数。</p>
+<p>外部代码仍然有该函数的 <code>sayHi</code> 或 <code>welcome</code> 变量。而且 <code>func</code> 是一个“内部函数名”，可用于函数在自身内部进行自调用。</p>
+<div class="important important_smart">
+            <div class="important__header"><span class="important__type">函数声明没有这个东西</span></div>
+            <div class="important__content"><p>这里所讲的“内部名”特性只针对函数表达式，而不是函数声明。对于函数声明，没有用来添加“内部”名的语法。</p>
+<p>有时，当我们需要一个可靠的内部名时，这就成为了你把函数声明重写成函数表达式的理由了。</p>
+</div></div>
+<h2><a class="main__anchor" name="zong-jie" href="#zong-jie">总结</a></h2><p>函数就是对象。</p>
+<p>我们介绍了它们的一些属性：</p>
+<ul>
+<li><code>name</code> —— 函数的名字。通常取自函数定义，但如果函数定义时没设定函数名，JavaScript 会尝试通过函数的上下文猜一个函数名（例如把赋值的变量名取为函数名）。</li>
+<li><code>length</code> —— 函数定义时的入参的个数。Rest 参数不参与计数。</li>
+</ul>
+<p>如果函数是通过函数表达式的形式被声明的（不是在主代码流里），并且附带了名字，那么它被称为命名函数表达式（Named Function Expression）。这个名字可以用于在该函数内部进行自调用，例如递归调用等。</p>
+<p>此外，函数可以带有额外的属性。很多知名的 JavaScript 库都充分利用了这个功能。</p>
+<p>它们创建一个“主”函数，然后给它附加很多其它“辅助”函数。例如，<a href="https://jquery.com">jQuery</a> 库创建了一个名为 <code>$</code> 的函数。<a href="https://lodash.com">lodash</a> 库创建一个 <code>_</code> 函数，然后为其添加了 <code>_.add</code>、<code>_.keyBy</code> 以及其它属性（想要了解更多内容，参查阅 <a href="https://lodash.com/docs">docs</a>）。实际上，它们这么做是为了减少对全局空间的污染，这样一个库就只会有一个全局变量。这样就降低了命名冲突的可能性。</p>
+<p>所以，一个函数本身可以完成一项有用的工作，还可以在自身的属性中附带许多其他功能。</p>
+</div></article><div class="tasks formatted"><h2 class="tasks__title" id="tasks"><a class="tasks__title-anchor main__anchor main__anchor main__anchor_noicon" href="#tasks">任务</a></h2><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#wei-counter-tian-jia-set-he-decrease-fang-fa" name="wei-counter-tian-jia-set-he-decrease-fang-fa">为 counter 添加 set 和 decrease 方法</a></h3><a class="task__open-link" href="../task/counter-inc-dec/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 5</span></div><div class="task__content"><div class="task__formatted"><p>修改 <code>makeCounter()</code> 代码，使得 counter 可以进行减一和设置值的操作：</p>
+<ul>
+<li><code>counter()</code> 应该返回下一个数字（与之前的逻辑相同）。</li>
+<li><code>counter.set(value)</code> 应该将 <code>count</code> 设置为 <code>value</code>。</li>
+<li><code>counter.decrease()</code> 应该把 <code>count</code> 减 1。</li>
+</ul>
+<p>查看沙箱中的代码获取完整使用示例。</p>
+<p>P.S. 你可以使用闭包或者函数属性来保持当前的计数，或者两种都写。</p>
+<p><a href="https://plnkr.co/edit/6bGBoApzWu06Wo6X?p=preview" target="_blank" data-plunk-id="6bGBoApzWu06Wo6X">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><p>该解决方案在局部变量中使用 <code>count</code>，而进行加法操作的方法是直接写在 <code>counter</code> 中的。它们共享同一个外部词法环境，并且可以访问当前的 <code>count</code>。</p>
+<div id="kkxca145uk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function makeCounter() {
+  let count = 0;
+
+  function counter() {
+    return count++;
+  }
+
+  counter.set = value =&gt; count = value;
+
+  counter.decrease = () =&gt; count--;
+
+  return counter;
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p><a href="https://plnkr.co/edit/qzuK3meGjrOTIIbC?p=preview" target="_blank" data-plunk-id="qzuK3meGjrOTIIbC">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div><div class="task tasks__task"><div class="task__header"><div class="task__title-wrap"><h3 class="task__title"><a class="main__anchor" href="#ren-yi-shu-liang-de-kuo-hao-qiu-he" name="ren-yi-shu-liang-de-kuo-hao-qiu-he">任意数量的括号求和</a></h3><a class="task__open-link" href="../task/sum-many-brackets/index.html" target="_blank"></a></div><div class="task__header-note"><span class="task__importance" title="任务的重要程度有多高，等级从 1 到 5。">重要程度: 2</span></div><div class="task__content"><div class="task__formatted"><p>写一个函数 <code>sum</code>，它有这样的功能：</p>
+<div id="74pu2ojgqk" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>sum(1)(2) == 3; // 1 + 2
+sum(1)(2)(3) == 6; // 1 + 2 + 3
+sum(5)(-1)(2) == 6
+sum(6)(-1)(-2)(-3) == 0
+sum(0)(1)(2)(3)(4)(5) == 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>P.S. 提示：你可能需要创建自定义对象来为你的函数提供基本类型转换。</p>
+<p><a href="https://plnkr.co/edit/JZkhoSx1MPH2fjEL?p=preview" target="_blank" data-plunk-id="JZkhoSx1MPH2fjEL">打开带有测试的沙箱。</a></p></div><button class="task__solution" type="button">解决方案</button><div class="task__answer"><div class="task__answer-content"><div class="formatted"><ol>
+<li>为了使整个程序无论如何都能正常工作，<code>sum</code> 的结果必须是函数。</li>
+<li>这个函数必须将两次调用之间的当前值保存在内存中。</li>
+<li>根据这个题目，当函数被用于 <code>==</code> 比较时必须转换成数字。函数是对象，所以转换规则会按照 <a href="../object-toprimitive/index.html">对象 — 原始值转换</a> 章节所讲的进行，我们可以提供自己的方法来返回数字。</li>
+</ol>
+<p>代码如下：</p>
+<div id="jd4kgtiq1m" data-trusted="1" class="code-example" data-demo="1">
+      <div class="codebox code-example__codebox">
+        
+        <div class="toolbar codebox__toolbar">
+          <div class="toolbar__tool">
+            <a href="#" title="运行" data-action="run" class="toolbar__button toolbar__button_run"></a>
+          </div>
+          <div class="toolbar__tool">
+            <a href="#" title="在沙箱中打开" target="_blank" data-action="edit" class="toolbar__button toolbar__button_edit"></a>
+          </div>
+        </div>
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function sum(a) {
+
+  let currentSum = a;
+
+  function f(b) {
+    currentSum += b;
+    return f;
+  }
+
+  f.toString = function() {
+    return currentSum;
+  };
+
+  return f;
+}
+
+alert( sum(1)(2) ); // 3
+alert( sum(5)(-1)(2) ); // 6
+alert( sum(6)(-1)(-2)(-3) ); // 0
+alert( sum(0)(1)(2)(3)(4)(5) ); // 15</code></pre>
+        </div>
+      </div>
+      
+      </div><p>请注意 <code>sum</code> 函数只工作一次，它返回了函数 <code>f</code>。</p>
+<p>然后，接下来的每一次子调用，<code>f</code> 都会把自己的参数加到求和 <code>currentSum</code> 上，然后 <code>f</code> 自身。</p>
+<p><strong>在 <code>f</code> 的最后一行没有递归。</strong></p>
+<p>递归是这样子的：</p>
+<div id="9x0engi47w" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f(b) {
+  currentSum += b;
+  return f(); // &lt;-- 递归调用
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>在我们的例子中，只是返回了函数，并没有调用它：</p>
+<div id="b4oh6o4v37" data-trusted="1" class="code-example">
+      <div class="codebox code-example__codebox">
+        
+        <div class="codebox__code" data-code="1">
+          <pre class="line-numbers language-javascript"><code>function f(b) {
+  currentSum += b;
+  return f; // &lt;-- 没有调用自己，只是返回了自己
+}</code></pre>
+        </div>
+      </div>
+      
+      </div><p>这个 <code>f</code> 会被用于下一次调用，然后再次返回自己，按照需要重复。然后，当它被用做数字或字符串时 —— <code>toString</code> 返回 <code>currentSum</code>。我们也可以使用 <code>Symbol.toPrimitive</code> 或者 <code>valueOf</code> 来实现转换。</p>
+<p><a href="https://plnkr.co/edit/UxNw2whgysma7WW3?p=preview" target="_blank" data-plunk-id="UxNw2whgysma7WW3">使用沙箱的测试功能打开解决方案。</a></p></div></div><button class="close-button task__answer-close" type="button" title="关闭"></button></div></div></div></div></div></div><div class="page__nav-wrap"><a class="page__nav page__nav_prev" href="../global-object/index.html" data-tooltip="全局对象"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">上一节</span></a><a class="page__nav page__nav_next" href="../new-function/index.html" data-tooltip="&quot;new Function&quot; 语法"><span class="page__nav-text"><span class="page__nav-text-shortcut"></span></span><span class="page__nav-text-alternate">下一节</span></a></div><div class="article-tablet-foot tablet-only"><div class="article-tablet-foot__layout"><div class="share-icons"><span class="share-icons__title">分享</span><a class="share share_tw" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a><a class="share share_fb" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p%5Burl%5D=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a></div><div class="article-tablet-foot__map"><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map"><span class="map__text">教程路线图</span></a></div></div></div><div class="comments formatted" id="comments"><div class="comments__header"><h2 class="comments__header-title"><a href="#comments" name="comments">评论</a></h2><div class="comments__read-before"><span class="comments__read-before-link">在评论之前先阅读本内容…</span><div class="comments__read-before-popup"><div class="comments__read-before-popup-i"><ul><li>如果你发现教程有错误，或者有其他需要修改和提升的地方 — 请 <a href="https://github.com/javascript-tutorial/zh.javascript.info/issues">提交一个 GitHub issue</a> 或 pull request，而不是在这评论。</li><li>如果你对教程的内容有不理解的地方 — 请详细说明。</li><li>使用 <code>&lt;code&gt;</code> 标签插入只有几个词的代码，插入多行代码可以使用 <code>&lt;pre&gt;</code> 标签，对于超过 10 行的代码，建议你使用沙箱（<a href="https://plnkr.co/edit/?p=preview">plnkr</a>，<a href="https://jsbin.com">JSBin</a>，<a href="http://codepen.io">codepen</a>…）</li></ul></div></div></div></div><div id="disqus_thread"></div><script>var disqus_config = function() { if (!this.page) this.page = {}; Object.assign(this.page, {"url":"https:\/\/zh.javascript.info\/function-object","identifier":"\/function-object"}); };</script><script>var disqus_shortname = "zh-javascript-info";</script><script>var disqus_enabled = true;</script></div></main></div><div class="sidebar page__sidebar sidebar sidebar_sticky-footer"><button class="sidebar__toggle" data-sidebar-toggle></button><a class="map" href="../tutorial/map/index.html" data-action="tutorial-map" data-tooltip="教程路线图"></a><div class="sidebar__inner"><div class="sidebar__content"><div class="sidebar__section"><h4 class="sidebar__section-title">章节</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="../advanced-functions/index.html">函数进阶内容</a></li></ul></nav></div><div class="sidebar__section"><h4 class="sidebar__section-title">课程导航</h4><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-name">属性 “name”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#shu-xing-length">属性 “length”</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zi-ding-yi-shu-xing">自定义属性</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#ming-ming-han-shu-biao-da-shi">命名函数表达式</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#zong-jie">总结</a></li></ul></nav></div><div class="sidebar__section"><nav class="sidebar__navigation"><ul class="sidebar__navigation-links"><li class="sidebar__navigation-link"><a class="sidebar__link" href="#tasks">任务 (2)</a></li><li class="sidebar__navigation-link"><a class="sidebar__link" href="#comments">评论</a></li></ul></nav></div><div class="sidebar__section"><div class="sidebar__section-title">分享</div><a class="share share_tw sidebar__share" href="https://twitter.com/share?url=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a><a class="share share_fb sidebar__share" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=https%3A%2F%2Fzh.javascript.info%2Ffunction-object" rel="nofollow"></a></div><div class="sidebar__section"><a class="sidebar__link" href="https://github.com/javascript-tutorial/zh.javascript.info/blob/master/1-js/06-advanced-functions/06-function-object" rel="nofollow">在 GitHub 上编辑</a></div></div></div></div></div></div><div class="page-footer"><ul class="page-footer__list"><li class="page-footer__item page-footer__item_copy">©&nbsp;2007—2022&nbsp; Ilya Kantor</li><li class="page-footer__item page-footer__item_about"><a class="page-footer__link" href="../about/index.html">关于本项目</a></li><li class="page-footer__item page-footer__item_contact"><a class="page-footer__link" href="../about/index.html#contact-us">联系我们</a></li></ul></div></body></html>
