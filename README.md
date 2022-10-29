@@ -9,3 +9,9 @@ This application uses [website-scraper](https://github.com/website-scraper/node-
 
 - `npm install`
 - `node app.js`
+
+## 快速开始
+
+```sh
+node .\console.js https://csdiy.wiki/
+```
